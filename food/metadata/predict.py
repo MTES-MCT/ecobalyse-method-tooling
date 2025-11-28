@@ -258,6 +258,73 @@ class ValueClassifier:
         return float(pred_value), confidence
 
 
+class ValueRegressor:
+    """Regressor for continuous values using KNN on embeddings."""
+
+    def __init__(self, names: list, values: list, model, translate_fn=None, n_neighbors=5):
+        """
+        Build a KNN regressor on embeddings for continuous value prediction.
+
+        Args:
+            names: List of food names from reference data
+            values: List of corresponding numeric values
+            model: SentenceTransformer model for encoding
+            translate_fn: Optional function to translate names before encoding
+            n_neighbors: Number of neighbors for KNN
+        """
+        self.values = np.array(values)
+        self.n_neighbors = n_neighbors
+
+        # Translate names if translation function provided (batch translation)
+        if translate_fn:
+            print(f"  Translating {len(names)} names (batch)...")
+            names = translate_fn(names)  # Pass list for batch translation
+
+        # Compute embeddings for all reference names
+        print(f"  Computing embeddings for {len(names)} reference items...")
+        self.embeddings = model.encode(names)
+        print(f"  KNN regressor ready ({len(names)} items, k={n_neighbors})")
+
+    def predict(self, query: str, model, translate_fn=None) -> tuple[float, float]:
+        """
+        Predict value for a query string using KNN regression.
+
+        Returns:
+            (predicted_value, confidence_score)
+        """
+        # Translate query if translation function provided
+        if translate_fn:
+            query = translate_fn(query)
+
+        query_emb = model.encode(query).reshape(1, -1)
+
+        # Compute cosine similarities to all reference embeddings
+        similarities = np.dot(self.embeddings, query_emb.T).flatten()
+        similarities = similarities / (
+            np.linalg.norm(self.embeddings, axis=1) * np.linalg.norm(query_emb)
+        )
+
+        # Get k nearest neighbors (highest similarity)
+        k = min(self.n_neighbors, len(self.values))
+        top_k_idx = np.argsort(similarities)[-k:]
+        top_k_similarities = similarities[top_k_idx]
+        top_k_values = self.values[top_k_idx]
+
+        # Weighted average by similarity (higher similarity = more weight)
+        weights = np.maximum(top_k_similarities, 0)  # Clip negative similarities
+        if weights.sum() > 0:
+            predicted_value = np.average(top_k_values, weights=weights)
+        else:
+            predicted_value = np.mean(top_k_values)
+
+        # Confidence based on mean similarity of top-k neighbors
+        confidence = float(np.mean(top_k_similarities))
+        # Normalize to 0-1 range (similarity is already roughly in this range)
+        confidence = max(0.0, min(1.0, confidence))
+
+        return float(predicted_value), confidence
+
+
 class CategoryClassifier:
     """Classifier for string categories using semantic matching."""
 
@@ -688,9 +755,9 @@ class Predictor:
 
         # 6. Train value classifiers from reference data
         if verbose:
-            print("Training density classifier from reference data...")
+            print("Training density regressor from reference data (KNN)...")
         density_names, density_vals = _load_density_data()
-        self.density_classifier = ValueClassifier(
+        self.density_classifier = ValueRegressor(
             density_names, density_vals, self.model, translate_fn=self._translate
         )
 
@@ -983,10 +1050,12 @@ class Predictor:
             "transport_encoder": self.transport_encoder,
             # CropGroup classifier (SVM-based, semantic matching)
             "cropgroup_classifier": self.cropgroup_classifier,
-            # Value classifiers (SVM-based)
+            # Value classifiers (density uses KNN regressor, others use SVM)
             "density_classifier": self.density_classifier,
             "inedible_classifier": self.inedible_classifier,
             "ratio_classifier": self.ratio_classifier,
+            # Translation cache (avoid re-translating on reload)
+            "_translation_cache": self._translation_cache,
             # Training data (for categorical classifiers and evaluation)
             "training_features": self.training_features,
             "training_ingredients": self.training_ingredients,
