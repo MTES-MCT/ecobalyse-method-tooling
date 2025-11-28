@@ -177,6 +177,27 @@ def _load_ratio_data() -> tuple[list, list]:
     return names, values
 
 
+def _build_cropgroup_data(ingredients: list) -> tuple[list, list]:
+    """Build (names, cropGroups) from training ingredients + cropGroup labels themselves."""
+    names = []
+    cropgroups = []
+
+    # Add ingredient names as training points
+    for ing in ingredients:
+        if ing.get("cropGroup"):
+            names.append(ing.get("name", ""))
+            cropgroups.append(ing["cropGroup"])
+
+    # Add cropGroup labels themselves as training points
+    # e.g., "LEGUMES-FLEURS" → LEGUMES-FLEURS
+    unique_cropgroups = set(cropgroups)
+    for cg in unique_cropgroups:
+        names.append(cg)  # The label itself
+        cropgroups.append(cg)
+
+    return names, cropgroups
+
+
 class ValueClassifier:
     """Classifier that treats unique numeric values as categories."""
 
@@ -221,6 +242,51 @@ class ValueClassifier:
         # Decode back to original value
         pred_value = self.encoder.inverse_transform([pred_class])[0]
         return float(pred_value), confidence
+
+
+class CategoryClassifier:
+    """Classifier for string categories using semantic matching."""
+
+    def __init__(self, names: list, categories: list, model):
+        """
+        Train an SVM classifier on embeddings where classes are string categories.
+
+        Args:
+            names: List of food names from reference data
+            categories: List of corresponding category strings
+            model: SentenceTransformer model for encoding
+        """
+        self.encoder = LabelEncoder()
+
+        # Encode categories as classes
+        self.encoded_labels = self.encoder.fit_transform(categories)
+
+        # Compute embeddings for all reference names
+        print(f"  Computing embeddings for {len(names)} reference items...")
+        self.embeddings = model.encode(names)
+
+        # Train classifier (SVM with probability estimates)
+        print(f"  Training SVM classifier ({len(self.encoder.classes_)} classes)...")
+        self.classifier = SVC(kernel="rbf", probability=True, class_weight="balanced")
+        self.classifier.fit(self.embeddings, self.encoded_labels)
+
+    def predict(self, query: str, model) -> tuple[str, float]:
+        """
+        Predict category for a query string.
+
+        Returns:
+            (predicted_category, confidence_score)
+        """
+        query_emb = model.encode(query).reshape(1, -1)
+
+        # Get prediction and probability
+        pred_class = self.classifier.predict(query_emb)[0]
+        proba = self.classifier.predict_proba(query_emb)[0]
+        confidence = float(proba.max())
+
+        # Decode back to original category string
+        pred_category = self.encoder.inverse_transform([pred_class])[0]
+        return pred_category, confidence
 
 
 # =============================================================================
@@ -347,13 +413,14 @@ class Predictor:
 
         # Classifieurs pour categorical metadata
         self.category_classifier = None
-        self.crop_group_classifier = None
         self.transport_classifier = None
 
         # Encoders for categorical metadata
         self.category_encoder = LabelEncoder()
-        self.crop_group_encoder = LabelEncoder()
         self.transport_encoder = LabelEncoder()
+
+        # CropGroup classifier (SVM-based, uses semantic matching)
+        self.cropgroup_classifier = None
 
         # Value classifiers for continuous values (trained on reference data)
         self.density_classifier = None
@@ -483,36 +550,16 @@ class Predictor:
         )
         self.category_classifier.fit(self.training_features, y_cat_encoded)
 
-        # 3. Entraînement du classifieur cropGroup (seulement sur végétaux)
+        # 3. Entraînement du classifieur cropGroup (SVM-based avec semantic matching)
         if verbose:
-            print("Training cropGroup classifier...")
+            print("Training cropGroup classifier (semantic matching)...")
 
-        vegetal_mask = [
-            self._is_vegetal(ing.get("categories", [])) for ing in ingredients
-        ]
-        vegetal_indices = [i for i, is_veg in enumerate(vegetal_mask) if is_veg]
-
-        if vegetal_indices:
-            X_vegetal = self.training_features[vegetal_indices]
-            y_crop = [
-                ingredients[i].get("cropGroup", "DIVERS") or "DIVERS"
-                for i in vegetal_indices
-            ]
-
-            # Encoder avec toutes les valeurs possibles connues
-            all_crop_groups = list(set(y_crop))
-            self.crop_group_encoder.fit(all_crop_groups)
-            y_crop_encoded = self.crop_group_encoder.transform(y_crop)
-
-            self.crop_group_classifier = RandomForestClassifier(
-                n_estimators=100,
-                max_depth=12,
-                min_samples_leaf=2,
-                class_weight="balanced",
-                random_state=42,
-                n_jobs=-1,
+        # Build training data from ingredients + cropGroup labels themselves
+        cropgroup_names, cropgroup_vals = _build_cropgroup_data(ingredients)
+        if cropgroup_names:
+            self.cropgroup_classifier = CategoryClassifier(
+                cropgroup_names, cropgroup_vals, self.model
             )
-            self.crop_group_classifier.fit(X_vegetal, y_crop_encoded)
 
         # 4. Entraînement du classifieur transportCooling
         if verbose:
@@ -598,12 +645,10 @@ class Predictor:
 
         predictions["categories"] = categories
 
-        # 3. cropGroup (si végétal)
-        if self._is_vegetal(categories) and self.crop_group_classifier is not None:
-            crop_pred = self.crop_group_classifier.predict(features)[0]
-            predictions["cropGroup"] = self.crop_group_encoder.inverse_transform([
-                crop_pred
-            ])[0]
+        # 3. cropGroup (si végétal) - uses semantic matching
+        if self._is_vegetal(categories) and self.cropgroup_classifier is not None:
+            cropgroup_val, _ = self.cropgroup_classifier.predict(name, self.model)
+            predictions["cropGroup"] = cropgroup_val
         else:
             predictions["cropGroup"] = None
 
@@ -667,10 +712,11 @@ class Predictor:
             categories.append("bleublanccoeur")
         predictions["categories"] = categories
 
-        # 2. cropGroup
-        if self._is_vegetal(categories) and self.crop_group_classifier is not None:
-            crop_pred = self.crop_group_classifier.predict(features)[0]
-            predictions["cropGroup"] = self.crop_group_encoder.inverse_transform([crop_pred])[0]
+        # 2. cropGroup - uses semantic matching
+        cropgroup_conf = 0.0
+        if self._is_vegetal(categories) and self.cropgroup_classifier is not None:
+            cropgroup_val, cropgroup_conf = self.cropgroup_classifier.predict(name, self.model)
+            predictions["cropGroup"] = cropgroup_val
         else:
             predictions["cropGroup"] = None
 
@@ -703,9 +749,8 @@ class Predictor:
         transport_proba = self.transport_classifier.predict_proba(features)[0]
         confidence["transportCooling"] = float(transport_proba.max())
 
-        if predictions["cropGroup"] and self.crop_group_classifier:
-            crop_proba = self.crop_group_classifier.predict_proba(features)[0]
-            confidence["cropGroup"] = float(crop_proba.max())
+        if predictions["cropGroup"]:
+            confidence["cropGroup"] = cropgroup_conf
 
         # Confiance pour les value classifiers
         confidence["density"] = density_conf
@@ -766,30 +811,20 @@ class Predictor:
                 f"TransportCooling accuracy: {transport_scores.mean():.3f} ± {transport_scores.std():.3f}"
             )
 
-        # Évaluation cropGroup (sur végétaux uniquement)
-        vegetal_mask = [
-            self._is_vegetal(ing.get("categories", []))
-            for ing in self.training_ingredients
-        ]
-        vegetal_indices = [i for i, is_veg in enumerate(vegetal_mask) if is_veg]
+        # Évaluation cropGroup (sur végétaux uniquement, using SVM on name embeddings)
+        cropgroup_names, cropgroup_vals = _build_cropgroup_data(self.training_ingredients)
 
-        if len(vegetal_indices) > 10:
-            X_veg = self.training_features[vegetal_indices]
-            y_crop = [
-                self.training_ingredients[i].get("cropGroup", "DIVERS") or "DIVERS"
-                for i in vegetal_indices
-            ]
-
-            from sklearn.preprocessing import LabelEncoder
-
+        if len(cropgroup_names) > 10:
+            # Compute embeddings for names
+            X_crop = self.model.encode(cropgroup_names)
             le = LabelEncoder()
-            y_crop_enc = le.fit_transform(y_crop)
+            y_crop_enc = le.fit_transform(cropgroup_vals)
 
             crop_scores = cross_val_score(
-                RandomForestClassifier(n_estimators=100, class_weight="balanced", random_state=42),
-                X_veg,
+                SVC(kernel="rbf", class_weight="balanced"),
+                X_crop,
                 y_crop_enc,
-                cv=min(5, len(set(y_crop))),
+                cv=min(5, len(set(cropgroup_vals))),
                 scoring="accuracy",
             )
             scores["cropGroup"] = {"mean": crop_scores.mean(), "std": crop_scores.std()}
@@ -810,11 +845,11 @@ class Predictor:
         state = {
             # Categorical classifiers
             "category_classifier": self.category_classifier,
-            "crop_group_classifier": self.crop_group_classifier,
             "transport_classifier": self.transport_classifier,
             "category_encoder": self.category_encoder,
-            "crop_group_encoder": self.crop_group_encoder,
             "transport_encoder": self.transport_encoder,
+            # CropGroup classifier (SVM-based, semantic matching)
+            "cropgroup_classifier": self.cropgroup_classifier,
             # Value classifiers (SVM-based)
             "density_classifier": self.density_classifier,
             "inedible_classifier": self.inedible_classifier,
