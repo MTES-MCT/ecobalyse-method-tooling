@@ -9,6 +9,9 @@ Usage:
 import json
 
 import pandas
+from rich.console import Console
+from rich.table import Table
+
 from predict import Predictor
 
 # Données d'entraînement (échantillon)
@@ -65,21 +68,98 @@ def main():
     print("🔮 PRÉDICTIONS POUR NOUVEAUX INGRÉDIENTS")
     print("=" * 60)
 
-    for ing in test_ingredients:
-        print(f"\n{'─' * 50}")
-        print(f"🥗 {ing['name']}")
-        print(f"   Process: {ing['activityName']}")
+    console = Console()
 
+    # Create table with columns for each metadata + confidence
+    table = Table(title="Predictions", show_header=True, header_style="bold")
+    table.add_column("Name", style="cyan", no_wrap=True, max_width=30)
+    table.add_column("categories", no_wrap=True)
+    table.add_column("conf", justify="right")
+    table.add_column("cropGroup", no_wrap=True)
+    table.add_column("conf", justify="right")
+    table.add_column("transport", no_wrap=True)
+    table.add_column("conf", justify="right")
+    table.add_column("origin", no_wrap=True)
+    table.add_column("density", justify="right")
+    table.add_column("conf", justify="right")
+    table.add_column("inedible", justify="right")
+    table.add_column("conf", justify="right")
+    table.add_column("ratio", justify="right")
+    table.add_column("conf", justify="right")
+
+    # Collect all confidence scores for mean calculation
+    all_conf = {
+        "categories": [],
+        "cropGroup": [],
+        "transportCooling": [],
+        "density": [],
+        "inediblePart": [],
+        "rawToCookedRatio": [],
+    }
+
+    for ing in test_ingredients:
         predictions, confidence = predictor.predict_with_confidence(ing)
 
-        print("\n   Prédictions:")
-        for key, value in predictions.items():
+        # Collect confidence scores
+        for key in all_conf:
             if key in confidence:
-                conf = confidence[key]
-                conf_bar = "█" * int(conf * 10) + "░" * (10 - int(conf * 10))
-                print(f"   • {key}: {value} [{conf_bar}] {conf:.0%}")
-            else:
-                print(f"   • {key}: {value}")
+                all_conf[key].append(confidence[key])
+
+        # Format values
+        cats = ",".join(predictions.get("categories", []))
+        crop = predictions.get("cropGroup") or "-"
+        transport = predictions.get("transportCooling", "-")
+        origin = predictions.get("defaultOrigin", "-")
+        density = f"{predictions.get('density', 0):.2f}"
+        inedible = f"{predictions.get('inediblePart', 0):.2f}"
+        ratio = f"{predictions.get('rawToCookedRatio', 0):.2f}"
+
+        # Format confidence scores
+        def fmt_conf(key):
+            if key in confidence:
+                return f"{confidence[key]:.0%}"
+            return "-"
+
+        table.add_row(
+            ing["name"][:30],
+            cats,
+            fmt_conf("categories"),
+            crop,
+            fmt_conf("cropGroup"),
+            transport,
+            fmt_conf("transportCooling"),
+            origin,
+            density,
+            fmt_conf("density"),
+            inedible,
+            fmt_conf("inediblePart"),
+            ratio,
+            fmt_conf("rawToCookedRatio"),
+        )
+
+    # Add mean row
+    def mean_conf(scores):
+        return f"{sum(scores) / len(scores):.0%}" if scores else "-"
+
+    table.add_row(
+        "[bold]MEAN[/bold]",
+        "",
+        f"[bold]{mean_conf(all_conf['categories'])}[/bold]",
+        "",
+        f"[bold]{mean_conf(all_conf['cropGroup'])}[/bold]",
+        "",
+        f"[bold]{mean_conf(all_conf['transportCooling'])}[/bold]",
+        "",
+        "",
+        f"[bold]{mean_conf(all_conf['density'])}[/bold]",
+        "",
+        f"[bold]{mean_conf(all_conf['inediblePart'])}[/bold]",
+        "",
+        f"[bold]{mean_conf(all_conf['rawToCookedRatio'])}[/bold]",
+        style="on dark_green",
+    )
+
+    console.print(table)
 
     # 4. Sauvegarde du modèle
     print("\n" + "=" * 60)
