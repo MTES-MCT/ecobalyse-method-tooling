@@ -221,10 +221,10 @@ class ValueClassifier:
         # Encode unique values as classes
         self.encoded_labels = self.encoder.fit_transform(values)
 
-        # Translate names if translation function provided
+        # Translate names if translation function provided (batch translation)
         if translate_fn:
-            print(f"  Translating {len(names)} names...")
-            names = [translate_fn(n) for n in names]
+            print(f"  Translating {len(names)} names (batch)...")
+            names = translate_fn(names)  # Pass list for batch translation
 
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
@@ -277,10 +277,10 @@ class CategoryClassifier:
         # Encode categories as classes
         self.encoded_labels = self.encoder.fit_transform(categories)
 
-        # Translate names if translation function provided
+        # Translate names if translation function provided (batch translation)
         if translate_fn:
-            print(f"  Translating {len(names)} names...")
-            names = [translate_fn(n) for n in names]
+            print(f"  Translating {len(names)} names (batch)...")
+            names = translate_fn(names)  # Pass list for batch translation
 
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
@@ -449,6 +449,7 @@ class Predictor:
         self.mt_tokenizer = None
         self.mt_model = None
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self._translation_cache = {}  # Cache for translated strings
 
         # Classifieurs pour categorical metadata
         self.category_classifier = None
@@ -489,36 +490,61 @@ class Predictor:
 
             self._model_loaded = True
 
-    def _translate(self, text: str) -> str:
-        """Translate French text to English."""
+    def _translate(self, text: str | list[str]) -> str | list[str]:
+        """Translate French text(s) to English. Handles both single string and list."""
+        if isinstance(text, list):
+            return self._translate_batch(text)
+
+        # Single string case
         text = text.strip()
         if not text:
             return ""
 
+        # Check cache first
+        if text in self._translation_cache:
+            return self._translation_cache[text]
+
         inputs = self.mt_tokenizer(text, return_tensors="pt").to(self.device)
         with torch.no_grad():
             outputs = self.mt_model.generate(**inputs, max_length=40)
-        return self.mt_tokenizer.batch_decode(outputs, skip_special_tokens=True)[0].strip()
+        result = self.mt_tokenizer.batch_decode(outputs, skip_special_tokens=True)[0].strip()
+
+        # Cache the result
+        self._translation_cache[text] = result
+        return result
 
     def _translate_batch(self, texts: list[str]) -> list[str]:
-        """Translate a batch of French texts to English."""
-        # Filter empty texts and remember positions
-        non_empty = [(i, t.strip()) for i, t in enumerate(texts) if t.strip()]
-        if not non_empty:
-            return [""] * len(texts)
+        """Translate a batch of French texts to English (with caching)."""
+        results = [""] * len(texts)
+        to_translate = []  # (original_index, text) pairs for texts not in cache
 
-        indices, valid_texts = zip(*non_empty) if non_empty else ([], [])
+        # Check cache and collect texts that need translation
+        for i, t in enumerate(texts):
+            t = t.strip()
+            if not t:
+                results[i] = ""
+            elif t in self._translation_cache:
+                results[i] = self._translation_cache[t]
+            else:
+                to_translate.append((i, t))
 
+        if not to_translate:
+            return results
+
+        # Batch translate only the uncached texts
+        indices, valid_texts = zip(*to_translate)
         inputs = self.mt_tokenizer(list(valid_texts), return_tensors="pt", padding=True).to(self.device)
         with torch.no_grad():
             outputs = self.mt_model.generate(**inputs, max_length=40)
         translations = self.mt_tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
-        # Rebuild full list with empty strings in original positions
-        result = [""] * len(texts)
-        for idx, trans in zip(indices, translations):
-            result[idx] = trans.strip()
-        return result
+        # Store results and update cache
+        for idx, original_text, trans in zip(indices, valid_texts, translations):
+            trans = trans.strip()
+            results[idx] = trans
+            self._translation_cache[original_text] = trans
+
+        return results
 
     def _get_base_category(self, categories: list) -> str:
         """Extrait la catégorie de base (pas organic/bleublanccoeur)."""
@@ -589,22 +615,28 @@ class Predictor:
         if verbose:
             print(f"Training on {len(ingredients)} ingredients...")
 
-        # 1. Extraction des features pour tous les ingrédients
+        # 1. Pre-translate all ingredient names (batch for performance)
         if verbose:
-            print("Extracting features (with translation)...")
+            print("Pre-translating ingredient names (batch)...")
+        all_names = [ing.get("name", "") for ing in ingredients]
+        translated_names = self._translate(all_names)
+
+        # 2. Extraction des features pour tous les ingrédients
+        if verbose:
+            print("Extracting features...")
 
         features_list = []
-        for ing in ingredients:
-            name = ing.get("name", "")
+        for i, ing in enumerate(ingredients):
             activity = ing.get("activityName", "")
-            feat = extract_features(name, activity, self.model, translate_fn=self._translate)
+            # Use pre-translated name, no translate_fn needed
+            feat = extract_features(translated_names[i], activity, self.model)
             features_list.append(feat)
 
         self.training_features = np.array(features_list)
         self.training_ingredients = ingredients
         self.feature_dim = self.training_features.shape[1]
 
-        # 2. Entraînement du classifieur de catégories
+        # 3. Entraînement du classifieur de catégories
         if verbose:
             print("Training category classifier...")
 
@@ -625,7 +657,7 @@ class Predictor:
         )
         self.category_classifier.fit(self.training_features, y_cat_encoded)
 
-        # 3. Entraînement du classifieur cropGroup (SVM-based avec semantic matching)
+        # 4. Entraînement du classifieur cropGroup (SVM-based avec semantic matching)
         if verbose:
             print("Training cropGroup classifier (semantic matching)...")
 
@@ -636,7 +668,7 @@ class Predictor:
                 cropgroup_names, cropgroup_vals, self.model, translate_fn=self._translate
             )
 
-        # 4. Entraînement du classifieur transportCooling
+        # 5. Entraînement du classifieur transportCooling
         if verbose:
             print("Training transportCooling classifier...")
 
@@ -654,7 +686,7 @@ class Predictor:
         )
         self.transport_classifier.fit(self.training_features, y_transport_encoded)
 
-        # 5. Train value classifiers from reference data
+        # 6. Train value classifiers from reference data
         if verbose:
             print("Training density classifier from reference data...")
         density_names, density_vals = _load_density_data()
