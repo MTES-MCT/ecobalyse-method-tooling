@@ -45,10 +45,11 @@ from pathlib import Path
 from typing import Any, Optional
 
 import numpy as np
+import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
-from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import LabelEncoder
+from sklearn.svm import SVC
 
 warnings.filterwarnings("ignore")
 
@@ -100,6 +101,126 @@ ORIGIN_MAPPING = {
     "IN": "OutOfEuropeAndMaghreb",
     "US": "OutOfEuropeAndMaghreb",
 }
+
+
+# =============================================================================
+# REFERENCE DATA FOR VALUE CLASSIFIERS
+# =============================================================================
+
+# Paths to reference data files (relative to ecobalyse_data package)
+DENSITY_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "density_DB.xlsx"
+INEDIBLE_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "inedible_part.csv"
+RATIO_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "cooked_to_raw.csv"
+
+
+def _load_density_data() -> tuple[list, list]:
+    """Load density_DB.xlsx, return (names, values)."""
+    df = pd.read_excel(DENSITY_DATA_PATH, sheet_name="Density DB", engine="openpyxl")
+    # Columns: A=food, B=density, C=specific_gravity
+    df = df.iloc[:, :3]
+    df.columns = ["food", "density", "specific_gravity"]
+    df = df[pd.notnull(df["density"]) | pd.notnull(df["specific_gravity"])]
+    df = df.dropna(subset=["food"])
+
+    names = []
+    values = []
+    for _, row in df.iterrows():
+        name = str(row["food"]).strip()
+        if not name:
+            continue
+        # Use density, fallback to specific_gravity
+        value = row["density"] if pd.notnull(row["density"]) else row["specific_gravity"]
+        # Handle value ranges like "0.2-0.4" → 0.3
+        if isinstance(value, str) and "-" in value:
+            parts = [float(x) for x in value.split("-")]
+            value = sum(parts) / len(parts)
+        if isinstance(value, (int, float)):
+            names.append(name)
+            values.append(float(value))
+
+    return names, values
+
+
+def _load_inedible_data() -> tuple[list, list]:
+    """Load inedible_part.csv, return (names, inedible_values)."""
+    df = pd.read_csv(INEDIBLE_DATA_PATH, sep=";", decimal=",")
+    # Columns: category;name;inedible_part (value is already inedible part)
+    names = []
+    values = []
+    for _, row in df.iterrows():
+        name = str(row.iloc[1]).strip() if pd.notnull(row.iloc[1]) else ""
+        if not name:
+            continue
+        inedible_part = row.iloc[2]
+        if pd.notnull(inedible_part):
+            names.append(name)
+            values.append(float(inedible_part))
+
+    return names, values
+
+
+def _load_ratio_data() -> tuple[list, list]:
+    """Load cooked_to_raw.csv, return (names, values)."""
+    df = pd.read_csv(RATIO_DATA_PATH, sep=";")
+    # Columns: food;value
+    names = []
+    values = []
+    for _, row in df.iterrows():
+        name = str(row["food"]).strip() if pd.notnull(row.get("food")) else ""
+        if not name:
+            continue
+        value = row.get("value")
+        if pd.notnull(value):
+            names.append(name)
+            values.append(float(value))
+
+    return names, values
+
+
+class ValueClassifier:
+    """Classifier that treats unique numeric values as categories."""
+
+    def __init__(self, names: list, values: list, model):
+        """
+        Train an SVM classifier on embeddings where classes are unique values.
+
+        Args:
+            names: List of food names from reference data
+            values: List of corresponding numeric values
+            model: SentenceTransformer model for encoding
+        """
+        self.encoder = LabelEncoder()
+        self.values = np.array(values)
+
+        # Encode unique values as classes
+        self.encoded_labels = self.encoder.fit_transform(values)
+
+        # Compute embeddings for all reference names
+        print(f"  Computing embeddings for {len(names)} reference items...")
+        self.embeddings = model.encode(names)
+
+        # Train classifier (SVM with probability estimates)
+        print(f"  Training SVM classifier ({len(self.encoder.classes_)} classes)...")
+        self.classifier = SVC(kernel="rbf", probability=True, class_weight="balanced")
+        self.classifier.fit(self.embeddings, self.encoded_labels)
+
+    def predict(self, query: str, model) -> tuple[float, float]:
+        """
+        Predict value for a query string.
+
+        Returns:
+            (predicted_value, confidence_score)
+        """
+        query_emb = model.encode(query).reshape(1, -1)
+
+        # Get prediction and probability
+        pred_class = self.classifier.predict(query_emb)[0]
+        proba = self.classifier.predict_proba(query_emb)[0]
+        confidence = float(proba.max())
+
+        # Decode back to original value
+        pred_value = self.encoder.inverse_transform([pred_class])[0]
+        return float(pred_value), confidence
 
 
 # =============================================================================
@@ -216,7 +337,7 @@ class Predictor:
 
     Combine :
     - Classification RandomForest pour categories, cropGroup, transportCooling
-    - KNN pondéré pour density, inediblePart, rawToCookedRatio
+    - Classification SVM pour density, inediblePart, rawToCookedRatio (values as categories)
     - Règles déterministes pour defaultOrigin
     """
 
@@ -224,21 +345,22 @@ class Predictor:
         self.model = None  # SentenceTransformer, chargé lazily
         self._model_loaded = False
 
-        # Classifieurs
+        # Classifieurs pour categorical metadata
         self.category_classifier = None
         self.crop_group_classifier = None
         self.transport_classifier = None
 
-        # Encoders
+        # Encoders for categorical metadata
         self.category_encoder = LabelEncoder()
         self.crop_group_encoder = LabelEncoder()
         self.transport_encoder = LabelEncoder()
 
-        # KNN pour valeurs continues
-        self.knn_model = None
-        self.knn_values = {}  # {"density": [...], "inediblePart": [...], ...}
+        # Value classifiers for continuous values (trained on reference data)
+        self.density_classifier = None
+        self.inedible_classifier = None
+        self.ratio_classifier = None
 
-        # Données d'entraînement (pour KNN)
+        # Training data (for categorical classifiers)
         self.training_features = None
         self.training_ingredients = None
 
@@ -410,22 +532,21 @@ class Predictor:
         )
         self.transport_classifier.fit(self.training_features, y_transport_encoded)
 
-        # 5. Configuration KNN pour valeurs continues
+        # 5. Train value classifiers from reference data
         if verbose:
-            print("Setting up KNN for continuous values...")
+            print("Training density classifier from reference data...")
+        density_names, density_vals = _load_density_data()
+        self.density_classifier = ValueClassifier(density_names, density_vals, self.model)
 
-        self.knn_model = NearestNeighbors(n_neighbors=5, metric="cosine")
-        self.knn_model.fit(self.training_features)
+        if verbose:
+            print("Training inedible part classifier from reference data...")
+        inedible_names, inedible_vals = _load_inedible_data()
+        self.inedible_classifier = ValueClassifier(inedible_names, inedible_vals, self.model)
 
-        self.knn_values = {
-            "density": np.array([ing.get("density", 1.0) for ing in ingredients]),
-            "inediblePart": np.array([
-                ing.get("inediblePart", 0.0) for ing in ingredients
-            ]),
-            "rawToCookedRatio": np.array([
-                ing.get("rawToCookedRatio", 1.0) for ing in ingredients
-            ]),
-        }
+        if verbose:
+            print("Training raw-to-cooked ratio classifier from reference data...")
+        ratio_names, ratio_vals = _load_ratio_data()
+        self.ratio_classifier = ValueClassifier(ratio_names, ratio_vals, self.model)
 
         self.is_fitted = True
 
@@ -499,21 +620,14 @@ class Predictor:
         # 5. defaultOrigin (par règles)
         predictions["defaultOrigin"] = _extract_origin(activity)
 
-        # 6. Valeurs continues par KNN
-        distances, indices = self.knn_model.kneighbors(features)
+        # 6. Continuous values by classification (query = name only)
+        density_val, _ = self.density_classifier.predict(name, self.model)
+        inedible_val, _ = self.inedible_classifier.predict(name, self.model)
+        ratio_val, _ = self.ratio_classifier.predict(name, self.model)
 
-        # Pondération inverse à la distance
-        weights = 1.0 / (distances[0] + 1e-6)
-        weights = weights / weights.sum()
-
-        for key in ["density", "inediblePart", "rawToCookedRatio"]:
-            neighbor_values = self.knn_values[key][indices[0]]
-            predictions[key] = float(np.average(neighbor_values, weights=weights))
-
-        # Arrondir les valeurs
-        predictions["density"] = round(predictions["density"], 3)
-        predictions["inediblePart"] = round(predictions["inediblePart"], 2)
-        predictions["rawToCookedRatio"] = round(predictions["rawToCookedRatio"], 3)
+        predictions["density"] = round(density_val, 3)
+        predictions["inediblePart"] = round(inedible_val, 2)
+        predictions["rawToCookedRatio"] = round(ratio_val, 3)
 
         return predictions
 
@@ -533,10 +647,56 @@ class Predictor:
         activity = ingredient.get("activityName", "")
         features = extract_features(name, activity, self.model).reshape(1, -1)
 
-        predictions = self.predict(ingredient)
+        # Get base predictions first
+        predictions = {}
+
+        # Extraire les features binaires pour les règles
+        binary_features = self._extract_binary_from_features(features)
+
+        # 1. Catégorie de base (règles prioritaires, puis ML)
+        base_category = self._predict_category_by_rules(binary_features)
+        if base_category is None:
+            cat_pred = self.category_classifier.predict(features)[0]
+            base_category = self.category_encoder.inverse_transform([cat_pred])[0]
+
+        categories = [base_category]
+        full_text = f"{name} {activity}".lower()
+        if re.search(r"\b(bio|organic)\b", full_text, re.IGNORECASE):
+            categories.append("organic")
+        if re.search(r"\b(bleu.?blanc.?c[oœ]eur)\b", full_text, re.IGNORECASE):
+            categories.append("bleublanccoeur")
+        predictions["categories"] = categories
+
+        # 2. cropGroup
+        if self._is_vegetal(categories) and self.crop_group_classifier is not None:
+            crop_pred = self.crop_group_classifier.predict(features)[0]
+            predictions["cropGroup"] = self.crop_group_encoder.inverse_transform([crop_pred])[0]
+        else:
+            predictions["cropGroup"] = None
+
+        # 3. transportCooling
+        transport_cooling = self._predict_transport_by_rules(binary_features)
+        if transport_cooling is None:
+            transport_pred = self.transport_classifier.predict(features)[0]
+            transport_cooling = self.transport_encoder.inverse_transform([transport_pred])[0]
+        predictions["transportCooling"] = transport_cooling
+
+        # 4. defaultOrigin
+        predictions["defaultOrigin"] = _extract_origin(activity)
+
+        # 5. Value predictions with confidence
+        density_val, density_conf = self.density_classifier.predict(name, self.model)
+        inedible_val, inedible_conf = self.inedible_classifier.predict(name, self.model)
+        ratio_val, ratio_conf = self.ratio_classifier.predict(name, self.model)
+
+        predictions["density"] = round(density_val, 3)
+        predictions["inediblePart"] = round(inedible_val, 2)
+        predictions["rawToCookedRatio"] = round(ratio_val, 3)
+
+        # Build confidence dict
         confidence = {}
 
-        # Confiance pour les classifications (max probability)
+        # Confiance pour les classifications catégorielles (max probability)
         cat_proba = self.category_classifier.predict_proba(features)[0]
         confidence["categories"] = float(cat_proba.max())
 
@@ -547,38 +707,12 @@ class Predictor:
             crop_proba = self.crop_group_classifier.predict_proba(features)[0]
             confidence["cropGroup"] = float(crop_proba.max())
 
-        # Confiance pour KNN (basée sur distance moyenne)
-        distances, _ = self.knn_model.kneighbors(features)
-        mean_distance = distances[0].mean()
-        # Convertir distance cosine en score de similarité
-        confidence["knn_similarity"] = float(1.0 - mean_distance)
+        # Confiance pour les value classifiers
+        confidence["density"] = density_conf
+        confidence["inediblePart"] = inedible_conf
+        confidence["rawToCookedRatio"] = ratio_conf
 
         return predictions, confidence
-
-    def get_similar_ingredients(self, ingredient: dict, k: int = 5) -> list[dict]:
-        """
-        Retourne les k ingrédients les plus similaires.
-
-        Utile pour debug et validation manuelle.
-        """
-        if not self.is_fitted:
-            raise RuntimeError("Predictor must be fitted before query.")
-
-        self._load_model()
-
-        name = ingredient.get("name", "")
-        activity = ingredient.get("activityName", "")
-        features = extract_features(name, activity, self.model).reshape(1, -1)
-
-        distances, indices = self.knn_model.kneighbors(features, n_neighbors=k)
-
-        results = []
-        for dist, idx in zip(distances[0], indices[0]):
-            similar = self.training_ingredients[idx].copy()
-            similar["_similarity"] = float(1.0 - dist)
-            results.append(similar)
-
-        return results
 
     def evaluate(self, verbose: bool = True) -> dict:
         """
@@ -674,14 +808,18 @@ class Predictor:
 
         # On ne sauvegarde pas le modèle d'embedding (trop gros, rechargé au besoin)
         state = {
+            # Categorical classifiers
             "category_classifier": self.category_classifier,
             "crop_group_classifier": self.crop_group_classifier,
             "transport_classifier": self.transport_classifier,
             "category_encoder": self.category_encoder,
             "crop_group_encoder": self.crop_group_encoder,
             "transport_encoder": self.transport_encoder,
-            "knn_model": self.knn_model,
-            "knn_values": self.knn_values,
+            # Value classifiers (SVM-based)
+            "density_classifier": self.density_classifier,
+            "inedible_classifier": self.inedible_classifier,
+            "ratio_classifier": self.ratio_classifier,
+            # Training data (for categorical classifiers and evaluation)
             "training_features": self.training_features,
             "training_ingredients": self.training_ingredients,
             "feature_dim": self.feature_dim,
@@ -765,16 +903,17 @@ class Detector:
         """
         predictions, confidence = self.predictor.predict_with_confidence(ingredient)
 
-        # Score global = moyenne des confiances
+        # Score global = moyenne des confiances (categorical + value classifiers)
         score = np.mean([
             confidence.get("categories", 0),
             confidence.get("transportCooling", 0),
-            confidence.get("knn_similarity", 0),
+            confidence.get("density", 0),
+            confidence.get("inediblePart", 0),
+            confidence.get("rawToCookedRatio", 0),
         ])
 
-        # Best match = ingrédient le plus similaire
-        similar = self.predictor.get_similar_ingredients(ingredient, k=1)
-        best_match = similar[0]["name"] if similar else ""
+        # Best match info is no longer available without KNN
+        best_match = f"density={predictions.get('density')}, inedible={predictions.get('inediblePart')}"
 
         return predictions, score, best_match
 
@@ -859,9 +998,6 @@ def main():
     infer_parser.add_argument(
         "--activity", "-a", type=str, required=True, help="Activity/process name"
     )
-    infer_parser.add_argument(
-        "--similar", "-s", type=int, default=0, help="Show N similar ingredients"
-    )
 
     # Evaluate command
     eval_parser = subparsers.add_parser(
@@ -891,14 +1027,11 @@ def main():
 
         print("\n📊 Predictions:")
         for key, value in predictions.items():
-            conf = confidence.get(key, confidence.get("knn_similarity", 0))
-            print(f"  {key}: {value} (confidence: {conf:.2f})")
-
-        if args.similar > 0:
-            print(f"\n🔍 {args.similar} most similar ingredients:")
-            similar = predictor.get_similar_ingredients(ingredient, k=args.similar)
-            for ing in similar:
-                print(f"  - {ing['name']} (similarity: {ing['_similarity']:.2f})")
+            conf = confidence.get(key, 0)
+            if conf > 0:
+                print(f"  {key}: {value} (confidence: {conf:.2f})")
+            else:
+                print(f"  {key}: {value}")
 
     elif args.command == "evaluate":
         with open(args.input) as f:

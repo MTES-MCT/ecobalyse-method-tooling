@@ -13,7 +13,7 @@ from predict import Predictor
 
 # Données d'entraînement (échantillon)
 TRAINING_DATA = []
-with open("ingredients.json") as data:
+with open("../ingredients.json") as data:
     TRAINING_DATA = json.load(data)
 
 
@@ -55,12 +55,11 @@ def main():
     #       },
     #   ]
     test_ingredients = (
-        pandas.read_csv("icv_high_impact_final.csv")[["item", "icv_final"]]
+        pandas.read_csv("../icv_high_impact_final.csv")[["item", "icv_final"]]
         .rename(columns={"item": "name", "icv_final": "activityName"})
         .dropna()
         .to_dict("records")
     )
-    breakpoint()
 
     print("\n" + "=" * 60)
     print("🔮 PRÉDICTIONS POUR NOUVEAUX INGRÉDIENTS")
@@ -81,12 +80,6 @@ def main():
                 print(f"   • {key}: {value} [{conf_bar}] {conf:.0%}")
             else:
                 print(f"   • {key}: {value}")
-
-        # Ingrédients similaires
-        print("\n   Ingrédients similaires:")
-        similar = predictor.get_similar_ingredients(ing, k=3)
-        for s in similar:
-            print(f"   → {s['name']} (similarité: {s['_similarity']:.2f})")
 
     # 4. Sauvegarde du modèle
     print("\n" + "=" * 60)
