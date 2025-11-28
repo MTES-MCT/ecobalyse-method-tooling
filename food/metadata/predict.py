@@ -46,10 +46,12 @@ from typing import Any, Optional
 
 import numpy as np
 import pandas as pd
+import torch
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.svm import SVC
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 warnings.filterwarnings("ignore")
 
@@ -58,6 +60,7 @@ warnings.filterwarnings("ignore")
 # =============================================================================
 
 MODEL = "all-MiniLM-L6-v2"  # Même modèle que density.py et cooked_to_raw.py
+MT_MODEL = "Helsinki-NLP/opus-mt-fr-en"  # FR → EN Machine Translation
 
 # Catégories de base (pas des labels additifs)
 BASE_CATEGORIES = [
@@ -201,7 +204,7 @@ def _build_cropgroup_data(ingredients: list) -> tuple[list, list]:
 class ValueClassifier:
     """Classifier that treats unique numeric values as categories."""
 
-    def __init__(self, names: list, values: list, model):
+    def __init__(self, names: list, values: list, model, translate_fn=None):
         """
         Train an SVM classifier on embeddings where classes are unique values.
 
@@ -209,12 +212,19 @@ class ValueClassifier:
             names: List of food names from reference data
             values: List of corresponding numeric values
             model: SentenceTransformer model for encoding
+            translate_fn: Optional function to translate names before encoding
         """
         self.encoder = LabelEncoder()
         self.values = np.array(values)
+        self.translate_fn = translate_fn
 
         # Encode unique values as classes
         self.encoded_labels = self.encoder.fit_transform(values)
+
+        # Translate names if translation function provided
+        if translate_fn:
+            print(f"  Translating {len(names)} names...")
+            names = [translate_fn(n) for n in names]
 
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
@@ -225,13 +235,17 @@ class ValueClassifier:
         self.classifier = SVC(kernel="rbf", probability=True, class_weight="balanced")
         self.classifier.fit(self.embeddings, self.encoded_labels)
 
-    def predict(self, query: str, model) -> tuple[float, float]:
+    def predict(self, query: str, model, translate_fn=None) -> tuple[float, float]:
         """
         Predict value for a query string.
 
         Returns:
             (predicted_value, confidence_score)
         """
+        # Translate query if translation function provided
+        if translate_fn:
+            query = translate_fn(query)
+
         query_emb = model.encode(query).reshape(1, -1)
 
         # Get prediction and probability
@@ -247,7 +261,7 @@ class ValueClassifier:
 class CategoryClassifier:
     """Classifier for string categories using semantic matching."""
 
-    def __init__(self, names: list, categories: list, model):
+    def __init__(self, names: list, categories: list, model, translate_fn=None):
         """
         Train an SVM classifier on embeddings where classes are string categories.
 
@@ -255,11 +269,18 @@ class CategoryClassifier:
             names: List of food names from reference data
             categories: List of corresponding category strings
             model: SentenceTransformer model for encoding
+            translate_fn: Optional function to translate names before encoding
         """
         self.encoder = LabelEncoder()
+        self.translate_fn = translate_fn
 
         # Encode categories as classes
         self.encoded_labels = self.encoder.fit_transform(categories)
+
+        # Translate names if translation function provided
+        if translate_fn:
+            print(f"  Translating {len(names)} names...")
+            names = [translate_fn(n) for n in names]
 
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
@@ -270,13 +291,17 @@ class CategoryClassifier:
         self.classifier = SVC(kernel="rbf", probability=True, class_weight="balanced")
         self.classifier.fit(self.embeddings, self.encoded_labels)
 
-    def predict(self, query: str, model) -> tuple[str, float]:
+    def predict(self, query: str, model, translate_fn=None) -> tuple[str, float]:
         """
         Predict category for a query string.
 
         Returns:
             (predicted_category, confidence_score)
         """
+        # Translate query if translation function provided
+        if translate_fn:
+            query = translate_fn(query)
+
         query_emb = model.encode(query).reshape(1, -1)
 
         # Get prediction and probability
@@ -369,20 +394,29 @@ def _extract_origin(activity_name: str) -> str:
     return "OutOfEuropeAndMaghreb"
 
 
-def extract_features(name: str, activity_name: str, embedding_model) -> np.ndarray:
+def extract_features(
+    name: str, activity_name: str, embedding_model, translate_fn=None
+) -> np.ndarray:
     """
     Extrait un vecteur de features à partir du nom et du procédé.
+
+    Args:
+        name: Ingredient name (potentially French)
+        activity_name: Activity/process name
+        embedding_model: SentenceTransformer model
+        translate_fn: Optional function to translate name before encoding
 
     Returns:
         np.ndarray de dimension (384 + nb_patterns,)
     """
-    # Combine nom + activité pour le texte complet
+    # Combine nom + activité pour le texte complet (keep original for regex matching)
     full_text = f"{name} {activity_name}".lower()
 
-    # 1. Embedding du nom (384 dims)
-    name_embedding = embedding_model.encode(name, convert_to_tensor=False)
+    # 1. Embedding du nom (384 dims) - translate first if available
+    name_for_embedding = translate_fn(name) if translate_fn else name
+    name_embedding = embedding_model.encode(name_for_embedding, convert_to_tensor=False)
 
-    # 2. Features binaires par regex
+    # 2. Features binaires par regex (on original French text)
     binary_features = []
     for pattern_name, pattern in DETECTION_PATTERNS.items():
         match = 1.0 if re.search(pattern, full_text, re.IGNORECASE) else 0.0
@@ -411,6 +445,11 @@ class Predictor:
         self.model = None  # SentenceTransformer, chargé lazily
         self._model_loaded = False
 
+        # Translation model (FR → EN)
+        self.mt_tokenizer = None
+        self.mt_model = None
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+
         # Classifieurs pour categorical metadata
         self.category_classifier = None
         self.transport_classifier = None
@@ -436,14 +475,50 @@ class Predictor:
         self.feature_dim = None
 
     def _load_model(self):
-        """Charge le modèle d'embedding (lazy loading)."""
+        """Charge le modèle d'embedding et de traduction (lazy loading)."""
         if not self._model_loaded:
             print(f"Importing sentence_transformers...")
             from sentence_transformers import SentenceTransformer
 
-            print(f"Loading model: {MODEL}")
+            print(f"Loading embedding model: {MODEL}")
             self.model = SentenceTransformer(MODEL)
+
+            print(f"Loading translation model: {MT_MODEL}")
+            self.mt_tokenizer = AutoTokenizer.from_pretrained(MT_MODEL)
+            self.mt_model = AutoModelForSeq2SeqLM.from_pretrained(MT_MODEL).to(self.device)
+
             self._model_loaded = True
+
+    def _translate(self, text: str) -> str:
+        """Translate French text to English."""
+        text = text.strip()
+        if not text:
+            return ""
+
+        inputs = self.mt_tokenizer(text, return_tensors="pt").to(self.device)
+        with torch.no_grad():
+            outputs = self.mt_model.generate(**inputs, max_length=40)
+        return self.mt_tokenizer.batch_decode(outputs, skip_special_tokens=True)[0].strip()
+
+    def _translate_batch(self, texts: list[str]) -> list[str]:
+        """Translate a batch of French texts to English."""
+        # Filter empty texts and remember positions
+        non_empty = [(i, t.strip()) for i, t in enumerate(texts) if t.strip()]
+        if not non_empty:
+            return [""] * len(texts)
+
+        indices, valid_texts = zip(*non_empty) if non_empty else ([], [])
+
+        inputs = self.mt_tokenizer(list(valid_texts), return_tensors="pt", padding=True).to(self.device)
+        with torch.no_grad():
+            outputs = self.mt_model.generate(**inputs, max_length=40)
+        translations = self.mt_tokenizer.batch_decode(outputs, skip_special_tokens=True)
+
+        # Rebuild full list with empty strings in original positions
+        result = [""] * len(texts)
+        for idx, trans in zip(indices, translations):
+            result[idx] = trans.strip()
+        return result
 
     def _get_base_category(self, categories: list) -> str:
         """Extrait la catégorie de base (pas organic/bleublanccoeur)."""
@@ -516,13 +591,13 @@ class Predictor:
 
         # 1. Extraction des features pour tous les ingrédients
         if verbose:
-            print("Extracting features...")
+            print("Extracting features (with translation)...")
 
         features_list = []
         for ing in ingredients:
             name = ing.get("name", "")
             activity = ing.get("activityName", "")
-            feat = extract_features(name, activity, self.model)
+            feat = extract_features(name, activity, self.model, translate_fn=self._translate)
             features_list.append(feat)
 
         self.training_features = np.array(features_list)
@@ -558,7 +633,7 @@ class Predictor:
         cropgroup_names, cropgroup_vals = _build_cropgroup_data(ingredients)
         if cropgroup_names:
             self.cropgroup_classifier = CategoryClassifier(
-                cropgroup_names, cropgroup_vals, self.model
+                cropgroup_names, cropgroup_vals, self.model, translate_fn=self._translate
             )
 
         # 4. Entraînement du classifieur transportCooling
@@ -583,17 +658,23 @@ class Predictor:
         if verbose:
             print("Training density classifier from reference data...")
         density_names, density_vals = _load_density_data()
-        self.density_classifier = ValueClassifier(density_names, density_vals, self.model)
+        self.density_classifier = ValueClassifier(
+            density_names, density_vals, self.model, translate_fn=self._translate
+        )
 
         if verbose:
             print("Training inedible part classifier from reference data...")
         inedible_names, inedible_vals = _load_inedible_data()
-        self.inedible_classifier = ValueClassifier(inedible_names, inedible_vals, self.model)
+        self.inedible_classifier = ValueClassifier(
+            inedible_names, inedible_vals, self.model, translate_fn=self._translate
+        )
 
         if verbose:
             print("Training raw-to-cooked ratio classifier from reference data...")
         ratio_names, ratio_vals = _load_ratio_data()
-        self.ratio_classifier = ValueClassifier(ratio_names, ratio_vals, self.model)
+        self.ratio_classifier = ValueClassifier(
+            ratio_names, ratio_vals, self.model, translate_fn=self._translate
+        )
 
         self.is_fitted = True
 
@@ -620,8 +701,10 @@ class Predictor:
         name = ingredient.get("name", "")
         activity = ingredient.get("activityName", "")
 
-        # Extraction des features
-        features = extract_features(name, activity, self.model).reshape(1, -1)
+        # Extraction des features (with translation)
+        features = extract_features(
+            name, activity, self.model, translate_fn=self._translate
+        ).reshape(1, -1)
 
         predictions = {}
 
@@ -647,7 +730,9 @@ class Predictor:
 
         # 3. cropGroup (si végétal) - uses semantic matching
         if self._is_vegetal(categories) and self.cropgroup_classifier is not None:
-            cropgroup_val, _ = self.cropgroup_classifier.predict(name, self.model)
+            cropgroup_val, _ = self.cropgroup_classifier.predict(
+                name, self.model, translate_fn=self._translate
+            )
             predictions["cropGroup"] = cropgroup_val
         else:
             predictions["cropGroup"] = None
@@ -666,9 +751,15 @@ class Predictor:
         predictions["defaultOrigin"] = _extract_origin(activity)
 
         # 6. Continuous values by classification (query = name only)
-        density_val, _ = self.density_classifier.predict(name, self.model)
-        inedible_val, _ = self.inedible_classifier.predict(name, self.model)
-        ratio_val, _ = self.ratio_classifier.predict(name, self.model)
+        density_val, _ = self.density_classifier.predict(
+            name, self.model, translate_fn=self._translate
+        )
+        inedible_val, _ = self.inedible_classifier.predict(
+            name, self.model, translate_fn=self._translate
+        )
+        ratio_val, _ = self.ratio_classifier.predict(
+            name, self.model, translate_fn=self._translate
+        )
 
         predictions["density"] = round(density_val, 3)
         predictions["inediblePart"] = round(inedible_val, 2)
@@ -690,7 +781,9 @@ class Predictor:
 
         name = ingredient.get("name", "")
         activity = ingredient.get("activityName", "")
-        features = extract_features(name, activity, self.model).reshape(1, -1)
+        features = extract_features(
+            name, activity, self.model, translate_fn=self._translate
+        ).reshape(1, -1)
 
         # Get base predictions first
         predictions = {}
@@ -715,7 +808,9 @@ class Predictor:
         # 2. cropGroup - uses semantic matching
         cropgroup_conf = 0.0
         if self._is_vegetal(categories) and self.cropgroup_classifier is not None:
-            cropgroup_val, cropgroup_conf = self.cropgroup_classifier.predict(name, self.model)
+            cropgroup_val, cropgroup_conf = self.cropgroup_classifier.predict(
+                name, self.model, translate_fn=self._translate
+            )
             predictions["cropGroup"] = cropgroup_val
         else:
             predictions["cropGroup"] = None
@@ -731,9 +826,15 @@ class Predictor:
         predictions["defaultOrigin"] = _extract_origin(activity)
 
         # 5. Value predictions with confidence
-        density_val, density_conf = self.density_classifier.predict(name, self.model)
-        inedible_val, inedible_conf = self.inedible_classifier.predict(name, self.model)
-        ratio_val, ratio_conf = self.ratio_classifier.predict(name, self.model)
+        density_val, density_conf = self.density_classifier.predict(
+            name, self.model, translate_fn=self._translate
+        )
+        inedible_val, inedible_conf = self.inedible_classifier.predict(
+            name, self.model, translate_fn=self._translate
+        )
+        ratio_val, ratio_conf = self.ratio_classifier.predict(
+            name, self.model, translate_fn=self._translate
+        )
 
         predictions["density"] = round(density_val, 3)
         predictions["inediblePart"] = round(inedible_val, 2)
