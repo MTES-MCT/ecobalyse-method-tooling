@@ -59,7 +59,7 @@ warnings.filterwarnings("ignore")
 # CONFIGURATION
 # =============================================================================
 
-MODEL = "all-MiniLM-L6-v2"  # Même modèle que density.py et cooked_to_raw.py
+MODEL = "jonny9f/food_embeddings2"  # Food-domain embeddings (was all-MiniLM-L6-v2)
 
 # Translation cache file (persisted to disk for faster subsequent runs)
 TRANSLATION_CACHE_PATH = Path(__file__).parent / ".translation_cache.pkl"
@@ -430,7 +430,7 @@ DETECTION_PATTERNS = {
 
 # Index des features binaires dans le vecteur (après les 384 dims d'embedding)
 BINARY_FEATURE_NAMES = list(DETECTION_PATTERNS.keys())
-EMBEDDING_DIM = 384
+EMBEDDING_DIM = 768  # food_embeddings2 output dimension (was 384 for MiniLM)
 
 
 def _extract_location(activity_name: str) -> Optional[str]:

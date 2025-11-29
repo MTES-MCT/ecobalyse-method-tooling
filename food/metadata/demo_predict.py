@@ -9,6 +9,7 @@ Usage:
 
 import argparse
 import json
+from pathlib import Path
 
 import pandas
 from rich.console import Console
@@ -32,7 +33,12 @@ def main():
 
     if args.clear_cache:
         Predictor.clear_translation_cache()
-        return
+        # Also remove saved model (embeddings changed)
+        model_path = Path("/tmp/demo_predictor.pkl")
+        if model_path.exists():
+            model_path.unlink()
+            print("Model cache cleared")
+        # Don't return - continue to run the demo
     print("=" * 60)
     print("DÉMONSTRATION DU PRÉDICTEUR DE MÉTADONNÉES")
     print("=" * 60)
