@@ -3,13 +3,16 @@
 Démonstration du prédicteur de métadonnées.
 
 Usage:
-    python demo_predict.py
+    python demo_predict.py                    # Test sur tous les ingrédients CSV
+    python demo_predict.py "Tomate cerise"    # Test unitaire sur un ingrédient
 """
 
+import argparse
 import json
 
 import pandas
 from rich.console import Console
+from rich.progress import track
 from rich.table import Table
 
 from predict import Predictor
@@ -21,6 +24,15 @@ with open("../ingredients.json") as data:
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Démonstration du prédicteur")
+    parser.add_argument("ingredient", nargs="?", help="Nom d'ingrédient à tester (optionnel)")
+    parser.add_argument("--activity", "-a", default="", help="Nom du procédé ACV (optionnel)")
+    parser.add_argument("--clear-cache", action="store_true", help="Effacer le cache de traduction")
+    args = parser.parse_args()
+
+    if args.clear_cache:
+        Predictor.clear_translation_cache()
+        return
     print("=" * 60)
     print("DÉMONSTRATION DU PRÉDICTEUR DE MÉTADONNÉES")
     print("=" * 60)
@@ -30,33 +42,32 @@ def main():
     predictor = Predictor()
     predictor.fit(TRAINING_DATA)
 
-    # 2. Évaluation
+    # 2. Mode test unitaire ou batch
+    if args.ingredient:
+        # Test unitaire sur un seul ingrédient
+        print(f"\n🔮 Test unitaire: {args.ingredient}")
+        ing = {"name": args.ingredient, "activityName": args.activity}
+        predictions, confidence = predictor.predict_with_confidence(ing)
+
+        print(f"\n{'─' * 50}")
+        print(f"🥗 {ing['name']}")
+        if args.activity:
+            print(f"   Process: {args.activity}")
+        print("\n   Prédictions:")
+        for key, value in predictions.items():
+            if key in confidence:
+                conf = confidence[key]
+                print(f"   • {key}: {value} ({conf:.0%})")
+            else:
+                print(f"   • {key}: {value}")
+        print("=" * 60)
+        return
+
+    # 3. Évaluation
     print("\n📈 Évaluation en cross-validation:")
     predictor.evaluate()
 
-    # 3. Tests de prédiction
-    #   test_ingredients = [
-    #       {
-    #           "name": "Courgette bio",
-    #           "activityName": "Zucchini, organic, at farm gate {FR} U",
-    #       },
-    #       {
-    #           "name": "Filet de cabillaud surgelé",
-    #           "activityName": "Cod fillet, frozen, at processing {IS} U",
-    #       },
-    #       {
-    #           "name": "Noix de cajou grillée",
-    #           "activityName": "Cashew nut, roasted, at plant {VN} U",
-    #       },
-    #       {
-    #           "name": "Yaourt nature",
-    #           "activityName": "Yoghurt, plain, at dairy {FR} U",
-    #       },
-    #       {
-    #           "name": "Lentilles vertes",
-    #           "activityName": "Green lentils, at farm gate {FR} U",
-    #       },
-    #   ]
+    # 4. Tests de prédiction batch
     test_ingredients = (
         pandas.read_csv("../icv_high_impact_final.csv")[["item", "icv_final"]]
         .rename(columns={"item": "name", "icv_final": "activityName"})
@@ -97,8 +108,14 @@ def main():
         "rawToCookedRatio": [],
     }
 
-    for ing in test_ingredients:
+    # Collect predictions first with progress bar
+    all_predictions = []
+    for ing in track(test_ingredients, description="Predicting..."):
         predictions, confidence = predictor.predict_with_confidence(ing)
+        all_predictions.append((ing, predictions, confidence))
+
+    # Build table from collected predictions
+    for ing, predictions, confidence in all_predictions:
 
         # Collect confidence scores
         for key in all_conf:

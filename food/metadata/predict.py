@@ -60,6 +60,9 @@ warnings.filterwarnings("ignore")
 # =============================================================================
 
 MODEL = "all-MiniLM-L6-v2"  # Même modèle que density.py et cooked_to_raw.py
+
+# Translation cache file (persisted to disk for faster subsequent runs)
+TRANSLATION_CACHE_PATH = Path(__file__).parent / ".translation_cache.pkl"
 MT_MODEL = "Helsinki-NLP/opus-mt-fr-en"  # FR → EN Machine Translation
 
 # Catégories de base (pas des labels additifs)
@@ -132,7 +135,9 @@ def _load_density_data() -> tuple[list, list]:
         if not name:
             continue
         # Use density, fallback to specific_gravity
-        value = row["density"] if pd.notnull(row["density"]) else row["specific_gravity"]
+        value = (
+            row["density"] if pd.notnull(row["density"]) else row["specific_gravity"]
+        )
         # Handle value ranges like "0.2-0.4" → 0.3
         if isinstance(value, str) and "-" in value:
             parts = [float(x) for x in value.split("-")]
@@ -221,10 +226,10 @@ class ValueClassifier:
         # Encode unique values as classes
         self.encoded_labels = self.encoder.fit_transform(values)
 
-        # Translate names if translation function provided (batch translation)
+        # Translate names if translation function provided (cached)
         if translate_fn:
-            print(f"  Translating {len(names)} names (batch)...")
-            names = translate_fn(names)  # Pass list for batch translation
+            print(f"  Translating {len(names)} names (cached)...")
+            names = [translate_fn(n) for n in names]
 
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
@@ -261,7 +266,9 @@ class ValueClassifier:
 class ValueRegressor:
     """Regressor for continuous values using KNN on embeddings."""
 
-    def __init__(self, names: list, values: list, model, translate_fn=None, n_neighbors=5):
+    def __init__(
+        self, names: list, values: list, model, translate_fn=None, n_neighbors=5
+    ):
         """
         Build a KNN regressor on embeddings for continuous value prediction.
 
@@ -275,10 +282,10 @@ class ValueRegressor:
         self.values = np.array(values)
         self.n_neighbors = n_neighbors
 
-        # Translate names if translation function provided (batch translation)
+        # Translate names if translation function provided (cached)
         if translate_fn:
-            print(f"  Translating {len(names)} names (batch)...")
-            names = translate_fn(names)  # Pass list for batch translation
+            print(f"  Translating {len(names)} names (cached)...")
+            names = [translate_fn(n) for n in names]
 
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
@@ -344,10 +351,10 @@ class CategoryClassifier:
         # Encode categories as classes
         self.encoded_labels = self.encoder.fit_transform(categories)
 
-        # Translate names if translation function provided (batch translation)
+        # Translate names if translation function provided (cached)
         if translate_fn:
-            print(f"  Translating {len(names)} names (batch)...")
-            names = translate_fn(names)  # Pass list for batch translation
+            print(f"  Translating {len(names)} names (cached)...")
+            names = [translate_fn(n) for n in names]
 
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
@@ -394,7 +401,7 @@ DETECTION_PATTERNS = {
     "is_cooked": r"\b(cuit|cuite|cuire|cooked|roasted|grillé|grillee|rôti|rotie|bouilli|poché|pochee|frit|frite)\b",
     "is_raw": r"\b(cru|crue|raw|brut|brute)\b",
     "is_dried": r"\b(séché|sechee|sec|sèche|seche|dried|déshydraté|deshydratee)\b",
-    "is_processed": r"\b(transformé|transformee|processed|préparé|preparee|industriel)\b",
+    "is_processed": r"\b(transformé|transformee|processed|préparé|preparee|industriel|conserve)\b",
     "is_canned": r"\b(conserve|appertisé|appertisee|canned)\b",
     "is_smoked": r"\b(fumé|fumee|smoked)\b",
     # Types d'aliments - Animaux
@@ -516,7 +523,9 @@ class Predictor:
         self.mt_tokenizer = None
         self.mt_model = None
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self._translation_cache = {}  # Cache for translated strings
+        self._translation_cache = (
+            self._load_translation_cache()
+        )  # Load from disk if exists
 
         # Classifieurs pour categorical metadata
         self.category_classifier = None
@@ -542,6 +551,32 @@ class Predictor:
         self.is_fitted = False
         self.feature_dim = None
 
+    @staticmethod
+    def _load_translation_cache() -> dict:
+        """Load translation cache from disk if exists."""
+        if TRANSLATION_CACHE_PATH.exists():
+            try:
+                with open(TRANSLATION_CACHE_PATH, "rb") as f:
+                    cache = pickle.load(f)
+                print(f"Loaded {len(cache)} cached translations from disk")
+                return cache
+            except Exception:
+                return {}
+        return {}
+
+    def _save_translation_cache(self):
+        """Save translation cache to disk."""
+        with open(TRANSLATION_CACHE_PATH, "wb") as f:
+            pickle.dump(self._translation_cache, f)
+        print(f"Saved {len(self._translation_cache)} translations to cache")
+
+    @staticmethod
+    def clear_translation_cache():
+        """Clear the translation cache file."""
+        if TRANSLATION_CACHE_PATH.exists():
+            TRANSLATION_CACHE_PATH.unlink()
+            print("Translation cache cleared")
+
     def _load_model(self):
         """Charge le modèle d'embedding et de traduction (lazy loading)."""
         if not self._model_loaded:
@@ -553,16 +588,14 @@ class Predictor:
 
             print(f"Loading translation model: {MT_MODEL}")
             self.mt_tokenizer = AutoTokenizer.from_pretrained(MT_MODEL)
-            self.mt_model = AutoModelForSeq2SeqLM.from_pretrained(MT_MODEL).to(self.device)
+            self.mt_model = AutoModelForSeq2SeqLM.from_pretrained(MT_MODEL).to(
+                self.device
+            )
 
             self._model_loaded = True
 
-    def _translate(self, text: str | list[str]) -> str | list[str]:
-        """Translate French text(s) to English. Handles both single string and list."""
-        if isinstance(text, list):
-            return self._translate_batch(text)
-
-        # Single string case
+    def _translate(self, text: str) -> str:
+        """Translate French text to English (with caching)."""
         text = text.strip()
         if not text:
             return ""
@@ -574,44 +607,13 @@ class Predictor:
         inputs = self.mt_tokenizer(text, return_tensors="pt").to(self.device)
         with torch.no_grad():
             outputs = self.mt_model.generate(**inputs, max_length=40)
-        result = self.mt_tokenizer.batch_decode(outputs, skip_special_tokens=True)[0].strip()
+        result = self.mt_tokenizer.batch_decode(outputs, skip_special_tokens=True)[
+            0
+        ].strip()
 
         # Cache the result
         self._translation_cache[text] = result
         return result
-
-    def _translate_batch(self, texts: list[str]) -> list[str]:
-        """Translate a batch of French texts to English (with caching)."""
-        results = [""] * len(texts)
-        to_translate = []  # (original_index, text) pairs for texts not in cache
-
-        # Check cache and collect texts that need translation
-        for i, t in enumerate(texts):
-            t = t.strip()
-            if not t:
-                results[i] = ""
-            elif t in self._translation_cache:
-                results[i] = self._translation_cache[t]
-            else:
-                to_translate.append((i, t))
-
-        if not to_translate:
-            return results
-
-        # Batch translate only the uncached texts
-        indices, valid_texts = zip(*to_translate)
-        inputs = self.mt_tokenizer(list(valid_texts), return_tensors="pt", padding=True).to(self.device)
-        with torch.no_grad():
-            outputs = self.mt_model.generate(**inputs, max_length=40)
-        translations = self.mt_tokenizer.batch_decode(outputs, skip_special_tokens=True)
-
-        # Store results and update cache
-        for idx, original_text, trans in zip(indices, valid_texts, translations):
-            trans = trans.strip()
-            results[idx] = trans
-            self._translation_cache[original_text] = trans
-
-        return results
 
     def _get_base_category(self, categories: list) -> str:
         """Extrait la catégorie de base (pas organic/bleublanccoeur)."""
@@ -677,20 +679,28 @@ class Predictor:
         Args:
             ingredients: Liste de dicts avec au minimum "name" et "activityName"
         """
+        import time
+
+        def timed_print(msg, start_time=[None]):
+            if start_time[0] is not None:
+                elapsed = time.time() - start_time[0]
+                print(f"  [{elapsed:.1f}s]")
+            print(msg, end="", flush=True)
+            start_time[0] = time.time()
+
         self._load_model()
 
         if verbose:
-            print(f"Training on {len(ingredients)} ingredients...")
+            timed_print(f"Training on {len(ingredients)} ingredients...\n")
 
         # 1. Pre-translate all ingredient names (batch for performance)
         if verbose:
-            print("Pre-translating ingredient names (batch)...")
-        all_names = [ing.get("name", "") for ing in ingredients]
-        translated_names = self._translate(all_names)
+            timed_print("Translating ingredient names (cached)...")
+        translated_names = [self._translate(ing.get("name", "")) for ing in ingredients]
 
         # 2. Extraction des features pour tous les ingrédients
         if verbose:
-            print("Extracting features...")
+            timed_print("Extracting features...")
 
         features_list = []
         for i, ing in enumerate(ingredients):
@@ -705,7 +715,7 @@ class Predictor:
 
         # 3. Entraînement du classifieur de catégories
         if verbose:
-            print("Training category classifier...")
+            timed_print("Training category classifier...")
 
         y_categories = [
             self._get_base_category(ing.get("categories", ["misc"]))
@@ -726,18 +736,21 @@ class Predictor:
 
         # 4. Entraînement du classifieur cropGroup (SVM-based avec semantic matching)
         if verbose:
-            print("Training cropGroup classifier (semantic matching)...")
+            timed_print("Training cropGroup classifier (semantic matching)...")
 
         # Build training data from ingredients + cropGroup labels themselves
         cropgroup_names, cropgroup_vals = _build_cropgroup_data(ingredients)
         if cropgroup_names:
             self.cropgroup_classifier = CategoryClassifier(
-                cropgroup_names, cropgroup_vals, self.model, translate_fn=self._translate
+                cropgroup_names,
+                cropgroup_vals,
+                self.model,
+                translate_fn=self._translate,
             )
 
         # 5. Entraînement du classifieur transportCooling
         if verbose:
-            print("Training transportCooling classifier...")
+            timed_print("Training transportCooling classifier...")
 
         y_transport = [ing.get("transportCooling", "none") for ing in ingredients]
         self.transport_encoder.fit(TRANSPORT_COOLING_VALUES)
@@ -755,21 +768,23 @@ class Predictor:
 
         # 6. Train value classifiers from reference data
         if verbose:
-            print("Training density regressor from reference data (KNN)...")
+            timed_print("Training density regressor from reference data (KNN)...")
         density_names, density_vals = _load_density_data()
         self.density_classifier = ValueRegressor(
             density_names, density_vals, self.model, translate_fn=self._translate
         )
 
         if verbose:
-            print("Training inedible part classifier from reference data...")
+            timed_print("Training inedible part classifier from reference data...")
         inedible_names, inedible_vals = _load_inedible_data()
         self.inedible_classifier = ValueClassifier(
             inedible_names, inedible_vals, self.model, translate_fn=self._translate
         )
 
         if verbose:
-            print("Training raw-to-cooked ratio classifier from reference data...")
+            timed_print(
+                "Training raw-to-cooked ratio classifier from reference data..."
+            )
         ratio_names, ratio_vals = _load_ratio_data()
         self.ratio_classifier = ValueClassifier(
             ratio_names, ratio_vals, self.model, translate_fn=self._translate
@@ -777,8 +792,11 @@ class Predictor:
 
         self.is_fitted = True
 
+        # Save translation cache to disk for faster subsequent runs
+        self._save_translation_cache()
+
         if verbose:
-            print("✓ Training complete!")
+            timed_print("✓ Training complete!\n")
 
     def predict(self, ingredient: dict) -> dict:
         """
@@ -918,7 +936,9 @@ class Predictor:
         transport_cooling = self._predict_transport_by_rules(binary_features)
         if transport_cooling is None:
             transport_pred = self.transport_classifier.predict(features)[0]
-            transport_cooling = self.transport_encoder.inverse_transform([transport_pred])[0]
+            transport_cooling = self.transport_encoder.inverse_transform([
+                transport_pred
+            ])[0]
         predictions["transportCooling"] = transport_cooling
 
         # 4. defaultOrigin
@@ -977,7 +997,9 @@ class Predictor:
             for ing in self.training_ingredients
         ])
         cat_scores = cross_val_score(
-            RandomForestClassifier(n_estimators=100, class_weight="balanced", random_state=42),
+            RandomForestClassifier(
+                n_estimators=100, class_weight="balanced", random_state=42
+            ),
             self.training_features,
             y_cat,
             cv=5,
@@ -995,7 +1017,9 @@ class Predictor:
             ing.get("transportCooling", "none") for ing in self.training_ingredients
         ])
         transport_scores = cross_val_score(
-            RandomForestClassifier(n_estimators=100, class_weight="balanced", random_state=42),
+            RandomForestClassifier(
+                n_estimators=100, class_weight="balanced", random_state=42
+            ),
             self.training_features,
             y_transport,
             cv=5,
@@ -1012,7 +1036,9 @@ class Predictor:
             )
 
         # Évaluation cropGroup (sur végétaux uniquement, using SVM on name embeddings)
-        cropgroup_names, cropgroup_vals = _build_cropgroup_data(self.training_ingredients)
+        cropgroup_names, cropgroup_vals = _build_cropgroup_data(
+            self.training_ingredients
+        )
 
         if len(cropgroup_names) > 10:
             # Compute embeddings for names
