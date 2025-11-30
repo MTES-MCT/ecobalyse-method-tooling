@@ -89,29 +89,27 @@ def main():
 
     # Create table with columns for each metadata + confidence
     table = Table(title="Predictions", show_header=True, header_style="bold")
-    table.add_column("Name", style="cyan", no_wrap=True, max_width=30)
-    table.add_column("categories", no_wrap=True)
+    table.add_column("Name", style="cyan", no_wrap=True, max_width=25)
+    table.add_column("foodType", no_wrap=True)
     table.add_column("conf", justify="right")
+    table.add_column("proc", no_wrap=True)
+    table.add_column("conf", justify="right")
+    table.add_column("pkg", no_wrap=True)
+    table.add_column("transport", no_wrap=True)
     table.add_column("cropGroup", no_wrap=True)
     table.add_column("conf", justify="right")
-    table.add_column("transport", no_wrap=True)
-    table.add_column("conf", justify="right")
-    table.add_column("origin", no_wrap=True)
     table.add_column("density", justify="right")
     table.add_column("conf", justify="right")
     table.add_column("inedible", justify="right")
     table.add_column("conf", justify="right")
-    table.add_column("ratio", justify="right")
-    table.add_column("conf", justify="right")
 
     # Collect all confidence scores for mean calculation
     all_conf = {
-        "categories": [],
+        "foodType": [],
+        "processingState": [],
         "cropGroup": [],
-        "transportCooling": [],
         "density": [],
         "inediblePart": [],
-        "rawToCookedRatio": [],
     }
 
     # Collect predictions first with progress bar
@@ -129,13 +127,13 @@ def main():
                 all_conf[key].append(confidence[key])
 
         # Format values
-        cats = ",".join(predictions.get("categories", []))
-        crop = predictions.get("cropGroup") or "-"
+        food_type = predictions.get("foodType", "-")
+        proc_state = predictions.get("processingState", "-")
+        packaging = predictions.get("packaging") or "-"
         transport = predictions.get("transportCooling", "-")
-        origin = predictions.get("defaultOrigin", "-")
+        crop = predictions.get("cropGroup") or "-"
         density = f"{predictions.get('density', 0):.2f}"
         inedible = f"{predictions.get('inediblePart', 0):.2f}"
-        ratio = f"{predictions.get('rawToCookedRatio', 0):.2f}"
 
         # Format confidence scores
         def fmt_conf(key):
@@ -144,20 +142,19 @@ def main():
             return "-"
 
         table.add_row(
-            ing["name"][:30],
-            cats,
-            fmt_conf("categories"),
+            ing["name"][:25],
+            food_type,
+            fmt_conf("foodType"),
+            proc_state,
+            fmt_conf("processingState"),
+            packaging,
+            transport,
             crop,
             fmt_conf("cropGroup"),
-            transport,
-            fmt_conf("transportCooling"),
-            origin,
             density,
             fmt_conf("density"),
             inedible,
             fmt_conf("inediblePart"),
-            ratio,
-            fmt_conf("rawToCookedRatio"),
         )
 
     # Add mean row
@@ -167,18 +164,17 @@ def main():
     table.add_row(
         "[bold]MEAN[/bold]",
         "",
-        f"[bold]{mean_conf(all_conf['categories'])}[/bold]",
+        f"[bold]{mean_conf(all_conf['foodType'])}[/bold]",
+        "",
+        f"[bold]{mean_conf(all_conf['processingState'])}[/bold]",
+        "",
+        "",
         "",
         f"[bold]{mean_conf(all_conf['cropGroup'])}[/bold]",
-        "",
-        f"[bold]{mean_conf(all_conf['transportCooling'])}[/bold]",
-        "",
         "",
         f"[bold]{mean_conf(all_conf['density'])}[/bold]",
         "",
         f"[bold]{mean_conf(all_conf['inediblePart'])}[/bold]",
-        "",
-        f"[bold]{mean_conf(all_conf['rawToCookedRatio'])}[/bold]",
         style="on dark_green",
     )
 
@@ -196,7 +192,9 @@ def main():
     test = {"name": "Pomme de terre FR", "activityName": "Potato, at farm gate {FR} U"}
     pred = predictor2.predict(test)
     print(f"\n✓ Test après rechargement: {test['name']}")
-    print(f"  → categories: {pred['categories']}")
+    print(f"  → foodType: {pred['foodType']}")
+    print(f"  → processingState: {pred['processingState']}")
+    print(f"  → packaging: {pred['packaging']}")
     print(f"  → cropGroup: {pred['cropGroup']}")
     print(f"  → transportCooling: {pred['transportCooling']}")
 

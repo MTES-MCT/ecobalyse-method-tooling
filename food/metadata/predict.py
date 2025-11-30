@@ -65,7 +65,7 @@ MODEL = "jonny9f/food_embeddings2"  # Food-domain embeddings (was all-MiniLM-L6-
 TRANSLATION_CACHE_PATH = Path(__file__).parent / ".translation_cache.pkl"
 MT_MODEL = "Helsinki-NLP/opus-mt-fr-en"  # FR → EN Machine Translation
 
-# Catégories de base (pas des labels additifs)
+# Catégories de base (legacy - kept for backward compatibility during training)
 BASE_CATEGORIES = [
     "misc",
     "dairy_product",
@@ -78,6 +78,46 @@ BASE_CATEGORIES = [
     "grain_raw",
     "nut_oilseed_processed",
 ]
+
+# New dimensional approach: split categories into foodType + processingState
+FOOD_TYPES = [
+    "vegetable",
+    "fruit",
+    "grain",
+    "nut_oilseed",
+    "dairy",
+    "meat",
+    "fish_seafood",
+    "spice_condiment",
+    "misc",
+]
+
+PROCESSING_STATES = ["raw", "processed"]
+
+# Mapping from old categories to new dimensions (foodType, processingState)
+CATEGORY_TO_DIMENSIONS = {
+    "vegetable_fresh": ("vegetable", "raw"),
+    "vegetable_processed": ("vegetable", "processed"),
+    "grain_raw": ("grain", "raw"),
+    "grain_processed": ("grain", "processed"),
+    "nut_oilseed_raw": ("nut_oilseed", "raw"),
+    "nut_oilseed_processed": ("nut_oilseed", "processed"),
+    "dairy_product": ("dairy", "processed"),
+    "animal_product": ("meat", "raw"),
+    "spice_condiment_additive": ("spice_condiment", "processed"),
+    "misc": ("misc", "processed"),
+}
+
+# Packaging types with their keywords and transportCooling values
+PACKAGING_PATTERNS = {
+    "canned": (r"\b(conserve|canned|appertis[ée]|bo[iî]te|tin)\b", "none"),
+    "dried": (r"\b(s[ée]ch[ée]|d[ée]shydrat[ée]|dried|dehydrated|sec)\b", "none"),
+    "frozen": (r"\b(surgel[ée]|congel[ée]|frozen)\b", "always"),
+    "jar": (r"\b(bocal|jar|pot)\b", "none"),
+    "vacuum": (r"\b(sous.?vide|vacuum)\b", "once_transformed"),
+    "ambient": (r"\b(ambiant|ambient|shelf.?stable)\b", "none"),
+    "fresh": (r"\b(frais|fra[iî]che|fresh)\b", None),  # None = depends on foodType
+}
 
 # Labels additifs (peuvent se combiner avec une catégorie de base)
 ADDITIVE_LABELS = ["organic", "bleublanccoeur"]
@@ -527,12 +567,14 @@ class Predictor:
             self._load_translation_cache()
         )  # Load from disk if exists
 
-        # Classifieurs pour categorical metadata
-        self.category_classifier = None
+        # Classifieurs pour categorical metadata (new dimensional approach)
+        self.food_type_classifier = None
+        self.processing_classifier = None
         self.transport_classifier = None
 
         # Encoders for categorical metadata
-        self.category_encoder = LabelEncoder()
+        self.food_type_encoder = LabelEncoder()
+        self.processing_encoder = LabelEncoder()
         self.transport_encoder = LabelEncoder()
 
         # CropGroup classifier (SVM-based, uses semantic matching)
@@ -672,6 +714,41 @@ class Predictor:
             return "always"
         return None
 
+    def _detect_packaging(self, text: str) -> tuple[str | None, str | None]:
+        """
+        Detect packaging type from text and return (packaging, transportCooling).
+
+        Returns:
+            (packaging_type, transport_cooling) or (None, None) if not detected
+        """
+        text_lower = text.lower()
+        for pkg_type, (pattern, transport) in PACKAGING_PATTERNS.items():
+            if re.search(pattern, text_lower, re.IGNORECASE):
+                return pkg_type, transport
+        return None, None
+
+    def _get_transport_from_packaging(
+        self, packaging: str | None, food_type: str
+    ) -> str:
+        """
+        Determine transportCooling from packaging and foodType.
+
+        If packaging is 'fresh' or None, uses foodType to decide:
+        - meat, fish_seafood, dairy, vegetable, fruit → always
+        - grain, nut_oilseed, spice_condiment, misc → none
+        """
+        if packaging and packaging != "fresh":
+            # Packaging has a direct mapping
+            _, transport = PACKAGING_PATTERNS.get(packaging, (None, None))
+            if transport:
+                return transport
+
+        # Fresh or unknown packaging: use foodType
+        perishable_types = {"meat", "fish_seafood", "dairy", "vegetable", "fruit"}
+        if food_type in perishable_types:
+            return "always"
+        return "none"
+
     def fit(self, ingredients: list[dict], verbose: bool = True):
         """
         Entraîne le prédicteur sur une liste d'ingrédients.
@@ -713,18 +790,25 @@ class Predictor:
         self.training_ingredients = ingredients
         self.feature_dim = self.training_features.shape[1]
 
-        # 3. Entraînement du classifieur de catégories
+        # 3. Entraînement des classifieurs foodType et processingState
         if verbose:
-            timed_print("Training category classifier...")
+            timed_print("Training foodType classifier...")
 
-        y_categories = [
-            self._get_base_category(ing.get("categories", ["misc"]))
-            for ing in ingredients
-        ]
-        self.category_encoder.fit(BASE_CATEGORIES)
-        y_cat_encoded = self.category_encoder.transform(y_categories)
+        # Extract foodType and processingState from old categories
+        y_food_types = []
+        y_processing = []
+        for ing in ingredients:
+            base_cat = self._get_base_category(ing.get("categories", ["misc"]))
+            food_type, proc_state = CATEGORY_TO_DIMENSIONS.get(
+                base_cat, ("misc", "processed")
+            )
+            y_food_types.append(food_type)
+            y_processing.append(proc_state)
 
-        self.category_classifier = RandomForestClassifier(
+        self.food_type_encoder.fit(FOOD_TYPES)
+        y_food_encoded = self.food_type_encoder.transform(y_food_types)
+
+        self.food_type_classifier = RandomForestClassifier(
             n_estimators=100,
             max_depth=15,
             min_samples_leaf=2,
@@ -732,7 +816,23 @@ class Predictor:
             random_state=42,
             n_jobs=-1,
         )
-        self.category_classifier.fit(self.training_features, y_cat_encoded)
+        self.food_type_classifier.fit(self.training_features, y_food_encoded)
+
+        if verbose:
+            timed_print("Training processingState classifier...")
+
+        self.processing_encoder.fit(PROCESSING_STATES)
+        y_proc_encoded = self.processing_encoder.transform(y_processing)
+
+        self.processing_classifier = RandomForestClassifier(
+            n_estimators=100,
+            max_depth=10,
+            min_samples_leaf=2,
+            class_weight="balanced",
+            random_state=42,
+            n_jobs=-1,
+        )
+        self.processing_classifier.fit(self.training_features, y_proc_encoded)
 
         # 4. Entraînement du classifieur cropGroup (SVM-based avec semantic matching)
         if verbose:
@@ -824,29 +924,50 @@ class Predictor:
         ).reshape(1, -1)
 
         predictions = {}
+        full_text = f"{name} {activity}"
 
         # Extraire les features binaires pour les règles
         binary_features = self._extract_binary_from_features(features)
 
-        # 1. Catégorie de base (règles prioritaires, puis ML)
-        base_category = self._predict_category_by_rules(binary_features)
-        if base_category is None:
+        # 1. FoodType (règles prioritaires, puis ML)
+        # Check if we can determine foodType from rules (e.g., fish, meat, dairy)
+        if binary_features.get("is_fish") or binary_features.get("is_seafood"):
+            food_type = "fish_seafood"
+        elif binary_features.get("is_meat"):
+            food_type = "meat"
+        elif binary_features.get("is_dairy"):
+            food_type = "dairy"
+        else:
             # Fallback sur ML
-            cat_pred = self.category_classifier.predict(features)[0]
-            base_category = self.category_encoder.inverse_transform([cat_pred])[0]
+            food_pred = self.food_type_classifier.predict(features)[0]
+            food_type = self.food_type_encoder.inverse_transform([food_pred])[0]
 
-        # 2. Labels additifs (par règles)
-        categories = [base_category]
-        full_text = f"{name} {activity}".lower()
+        predictions["foodType"] = food_type
+
+        # 2. ProcessingState (packaging detection prioritaire, puis ML)
+        packaging, _ = self._detect_packaging(full_text)
+        if packaging and packaging != "fresh":
+            # Non-fresh packaging implies processed
+            processing_state = "processed"
+        else:
+            # Use ML classifier
+            proc_pred = self.processing_classifier.predict(features)[0]
+            processing_state = self.processing_encoder.inverse_transform([proc_pred])[0]
+
+        predictions["processingState"] = processing_state
+        predictions["packaging"] = packaging
+
+        # 3. Labels additifs (par règles)
+        labels = []
         if re.search(r"\b(bio|organic)\b", full_text, re.IGNORECASE):
-            categories.append("organic")
+            labels.append("organic")
         if re.search(r"\b(bleu.?blanc.?c[oœ]eur)\b", full_text, re.IGNORECASE):
-            categories.append("bleublanccoeur")
+            labels.append("bleublanccoeur")
+        predictions["labels"] = labels
 
-        predictions["categories"] = categories
-
-        # 3. cropGroup (si végétal) - uses semantic matching
-        if self._is_vegetal(categories) and self.cropgroup_classifier is not None:
+        # 4. cropGroup (si végétal) - uses semantic matching
+        vegetal_types = {"vegetable", "fruit", "grain", "nut_oilseed", "spice_condiment"}
+        if food_type in vegetal_types and self.cropgroup_classifier is not None:
             cropgroup_val, _ = self.cropgroup_classifier.predict(
                 name, self.model, translate_fn=self._translate
             )
@@ -854,14 +975,8 @@ class Predictor:
         else:
             predictions["cropGroup"] = None
 
-        # 4. transportCooling (règles prioritaires, puis ML)
-        transport_cooling = self._predict_transport_by_rules(binary_features)
-        if transport_cooling is None:
-            # Fallback sur ML
-            transport_pred = self.transport_classifier.predict(features)[0]
-            transport_cooling = self.transport_encoder.inverse_transform([
-                transport_pred
-            ])[0]
+        # 5. transportCooling (packaging-based, puis foodType-based)
+        transport_cooling = self._get_transport_from_packaging(packaging, food_type)
         predictions["transportCooling"] = transport_cooling
 
         # 5. defaultOrigin (par règles)
@@ -898,33 +1013,62 @@ class Predictor:
 
         name = ingredient.get("name", "")
         activity = ingredient.get("activityName", "")
+        full_text = f"{name} {activity}"
         features = extract_features(
             name, activity, self.model, translate_fn=self._translate
         ).reshape(1, -1)
 
-        # Get base predictions first
         predictions = {}
+        confidence = {}
 
         # Extraire les features binaires pour les règles
         binary_features = self._extract_binary_from_features(features)
 
-        # 1. Catégorie de base (règles prioritaires, puis ML)
-        base_category = self._predict_category_by_rules(binary_features)
-        if base_category is None:
-            cat_pred = self.category_classifier.predict(features)[0]
-            base_category = self.category_encoder.inverse_transform([cat_pred])[0]
+        # 1. FoodType (règles prioritaires, puis ML)
+        food_type_conf = 1.0  # Default confidence for rule-based
+        if binary_features.get("is_fish") or binary_features.get("is_seafood"):
+            food_type = "fish_seafood"
+        elif binary_features.get("is_meat"):
+            food_type = "meat"
+        elif binary_features.get("is_dairy"):
+            food_type = "dairy"
+        else:
+            # Fallback sur ML
+            food_pred = self.food_type_classifier.predict(features)[0]
+            food_type = self.food_type_encoder.inverse_transform([food_pred])[0]
+            food_proba = self.food_type_classifier.predict_proba(features)[0]
+            food_type_conf = float(food_proba.max())
 
-        categories = [base_category]
-        full_text = f"{name} {activity}".lower()
+        predictions["foodType"] = food_type
+        confidence["foodType"] = food_type_conf
+
+        # 2. ProcessingState (packaging detection prioritaire, puis ML)
+        packaging, _ = self._detect_packaging(full_text)
+        proc_conf = 1.0  # Default confidence for rule-based
+        if packaging and packaging != "fresh":
+            processing_state = "processed"
+        else:
+            proc_pred = self.processing_classifier.predict(features)[0]
+            processing_state = self.processing_encoder.inverse_transform([proc_pred])[0]
+            proc_proba = self.processing_classifier.predict_proba(features)[0]
+            proc_conf = float(proc_proba.max())
+
+        predictions["processingState"] = processing_state
+        predictions["packaging"] = packaging
+        confidence["processingState"] = proc_conf
+
+        # 3. Labels additifs (par règles)
+        labels = []
         if re.search(r"\b(bio|organic)\b", full_text, re.IGNORECASE):
-            categories.append("organic")
+            labels.append("organic")
         if re.search(r"\b(bleu.?blanc.?c[oœ]eur)\b", full_text, re.IGNORECASE):
-            categories.append("bleublanccoeur")
-        predictions["categories"] = categories
+            labels.append("bleublanccoeur")
+        predictions["labels"] = labels
 
-        # 2. cropGroup - uses semantic matching
+        # 4. cropGroup - uses semantic matching
         cropgroup_conf = 0.0
-        if self._is_vegetal(categories) and self.cropgroup_classifier is not None:
+        vegetal_types = {"vegetable", "fruit", "grain", "nut_oilseed", "spice_condiment"}
+        if food_type in vegetal_types and self.cropgroup_classifier is not None:
             cropgroup_val, cropgroup_conf = self.cropgroup_classifier.predict(
                 name, self.model, translate_fn=self._translate
             )
@@ -932,19 +1076,18 @@ class Predictor:
         else:
             predictions["cropGroup"] = None
 
-        # 3. transportCooling
-        transport_cooling = self._predict_transport_by_rules(binary_features)
-        if transport_cooling is None:
-            transport_pred = self.transport_classifier.predict(features)[0]
-            transport_cooling = self.transport_encoder.inverse_transform([
-                transport_pred
-            ])[0]
-        predictions["transportCooling"] = transport_cooling
+        if predictions["cropGroup"]:
+            confidence["cropGroup"] = cropgroup_conf
 
-        # 4. defaultOrigin
+        # 5. transportCooling (packaging-based, deterministic from packaging + foodType)
+        transport_cooling = self._get_transport_from_packaging(packaging, food_type)
+        predictions["transportCooling"] = transport_cooling
+        # No confidence for rule-based transportCooling
+
+        # 6. defaultOrigin
         predictions["defaultOrigin"] = _extract_origin(activity)
 
-        # 5. Value predictions with confidence
+        # 7. Value predictions with confidence
         density_val, density_conf = self.density_classifier.predict(
             name, self.model, translate_fn=self._translate
         )
@@ -959,20 +1102,6 @@ class Predictor:
         predictions["inediblePart"] = round(inedible_val, 2)
         predictions["rawToCookedRatio"] = round(ratio_val, 3)
 
-        # Build confidence dict
-        confidence = {}
-
-        # Confiance pour les classifications catégorielles (max probability)
-        cat_proba = self.category_classifier.predict_proba(features)[0]
-        confidence["categories"] = float(cat_proba.max())
-
-        transport_proba = self.transport_classifier.predict_proba(features)[0]
-        confidence["transportCooling"] = float(transport_proba.max())
-
-        if predictions["cropGroup"]:
-            confidence["cropGroup"] = cropgroup_conf
-
-        # Confiance pour les value classifiers
         confidence["density"] = density_conf
         confidence["inediblePart"] = inedible_conf
         confidence["rawToCookedRatio"] = ratio_conf
@@ -991,25 +1120,50 @@ class Predictor:
 
         scores = {}
 
-        # Évaluation catégories
-        y_cat = self.category_encoder.transform([
-            self._get_base_category(ing.get("categories", ["misc"]))
-            for ing in self.training_ingredients
-        ])
-        cat_scores = cross_val_score(
+        # Évaluation foodType
+        y_food = []
+        y_proc = []
+        for ing in self.training_ingredients:
+            base_cat = self._get_base_category(ing.get("categories", ["misc"]))
+            food_type, proc_state = CATEGORY_TO_DIMENSIONS.get(
+                base_cat, ("misc", "processed")
+            )
+            y_food.append(food_type)
+            y_proc.append(proc_state)
+
+        y_food_encoded = self.food_type_encoder.transform(y_food)
+        food_scores = cross_val_score(
             RandomForestClassifier(
                 n_estimators=100, class_weight="balanced", random_state=42
             ),
             self.training_features,
-            y_cat,
+            y_food_encoded,
             cv=5,
             scoring="accuracy",
         )
-        scores["categories"] = {"mean": cat_scores.mean(), "std": cat_scores.std()}
+        scores["foodType"] = {"mean": food_scores.mean(), "std": food_scores.std()}
 
         if verbose:
             print(
-                f"Categories accuracy: {cat_scores.mean():.3f} ± {cat_scores.std():.3f}"
+                f"FoodType accuracy: {food_scores.mean():.3f} ± {food_scores.std():.3f}"
+            )
+
+        # Évaluation processingState
+        y_proc_encoded = self.processing_encoder.transform(y_proc)
+        proc_scores = cross_val_score(
+            RandomForestClassifier(
+                n_estimators=100, class_weight="balanced", random_state=42
+            ),
+            self.training_features,
+            y_proc_encoded,
+            cv=5,
+            scoring="accuracy",
+        )
+        scores["processingState"] = {"mean": proc_scores.mean(), "std": proc_scores.std()}
+
+        if verbose:
+            print(
+                f"ProcessingState accuracy: {proc_scores.mean():.3f} ± {proc_scores.std():.3f}"
             )
 
         # Évaluation transportCooling
@@ -1069,10 +1223,12 @@ class Predictor:
 
         # On ne sauvegarde pas le modèle d'embedding (trop gros, rechargé au besoin)
         state = {
-            # Categorical classifiers
-            "category_classifier": self.category_classifier,
+            # Categorical classifiers (new dimensional approach)
+            "food_type_classifier": self.food_type_classifier,
+            "processing_classifier": self.processing_classifier,
             "transport_classifier": self.transport_classifier,
-            "category_encoder": self.category_encoder,
+            "food_type_encoder": self.food_type_encoder,
+            "processing_encoder": self.processing_encoder,
             "transport_encoder": self.transport_encoder,
             # CropGroup classifier (SVM-based, semantic matching)
             "cropgroup_classifier": self.cropgroup_classifier,
