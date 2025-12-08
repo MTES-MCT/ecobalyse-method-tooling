@@ -767,6 +767,15 @@ class Predictor:
 
         self._load_model()
 
+        # Load augmented training data if available
+        augmented_path = Path(__file__).parent.parent / "ingredients_augmented.json"
+        if augmented_path.exists():
+            with open(augmented_path) as f:
+                augmented = json.load(f)
+            ingredients = list(ingredients) + augmented
+            if verbose:
+                print(f"Added {len(augmented)} augmented ingredients")
+
         if verbose:
             timed_print(f"Training on {len(ingredients)} ingredients...\n")
 
