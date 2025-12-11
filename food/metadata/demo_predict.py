@@ -99,10 +99,13 @@ def main():
     table.add_column("cropGroup", no_wrap=True)
     table.add_column("conf", justify="right")
     table.add_column("density", justify="right")
+    table.add_column("match", no_wrap=True, max_width=15)
     table.add_column("conf", justify="right")
     table.add_column("inedible", justify="right")
+    table.add_column("match", no_wrap=True, max_width=15)
     table.add_column("conf", justify="right")
     table.add_column("ratio", justify="right")
+    table.add_column("match", no_wrap=True, max_width=15)
     table.add_column("conf", justify="right")
 
     # Collect all confidence scores for mean calculation
@@ -136,8 +139,11 @@ def main():
         transport = predictions.get("transportCooling", "-")
         crop = predictions.get("cropGroup") or "-"
         density = f"{predictions.get('density', 0):.2f}"
+        density_match = (predictions.get("densityMatch") or "-")[:15]
         inedible = f"{predictions.get('inediblePart', 0):.2f}"
+        inedible_match = (predictions.get("inediblePartMatch") or "-")[:15]
         ratio = f"{predictions.get('rawToCookedRatio', 0):.2f}"
+        ratio_match = (predictions.get("rawToCookedRatioMatch") or "-")[:15]
 
         # Format confidence scores
         def fmt_conf(key):
@@ -156,10 +162,13 @@ def main():
             crop,
             fmt_conf("cropGroup"),
             density,
+            density_match,
             fmt_conf("density"),
             inedible,
+            inedible_match,
             fmt_conf("inediblePart"),
             ratio,
+            ratio_match,
             fmt_conf("rawToCookedRatio"),
         )
 
@@ -178,9 +187,12 @@ def main():
         "",
         f"[bold]{mean_conf(all_conf['cropGroup'])}[/bold]",
         "",
+        "",
         f"[bold]{mean_conf(all_conf['density'])}[/bold]",
         "",
+        "",
         f"[bold]{mean_conf(all_conf['inediblePart'])}[/bold]",
+        "",
         "",
         f"[bold]{mean_conf(all_conf['rawToCookedRatio'])}[/bold]",
         style="on dark_green",

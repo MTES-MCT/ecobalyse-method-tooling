@@ -154,38 +154,17 @@ ORIGIN_MAPPING = {
 # =============================================================================
 
 # Paths to reference data files (relative to ecobalyse_data package)
-DENSITY_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "density_DB.xlsx"
+DENSITY_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "density.csv"
 INEDIBLE_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "inedible_part.csv"
 RATIO_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "cooked_to_raw.csv"
 
 
 def _load_density_data() -> tuple[list, list]:
-    """Load density_DB.xlsx, return (names, values)."""
-    df = pd.read_excel(DENSITY_DATA_PATH, sheet_name="Density DB", engine="openpyxl")
-    # Columns: A=food, B=density, C=specific_gravity
-    df = df.iloc[:, :3]
-    df.columns = ["food", "density", "specific_gravity"]
-    df = df[pd.notnull(df["density"]) | pd.notnull(df["specific_gravity"])]
-    df = df.dropna(subset=["food"])
-
-    names = []
-    values = []
-    for _, row in df.iterrows():
-        name = str(row["food"]).strip()
-        if not name:
-            continue
-        # Use density, fallback to specific_gravity
-        value = (
-            row["density"] if pd.notnull(row["density"]) else row["specific_gravity"]
-        )
-        # Handle value ranges like "0.2-0.4" → 0.3
-        if isinstance(value, str) and "-" in value:
-            parts = [float(x) for x in value.split("-")]
-            value = sum(parts) / len(parts)
-        if isinstance(value, (int, float)):
-            names.append(name)
-            values.append(float(value))
-
+    """Load density.csv, return (names, values)."""
+    df = pd.read_csv(DENSITY_DATA_PATH)
+    # Columns: name, density, source
+    names = df["name"].tolist()
+    values = df["density"].tolist()
     return names, values
 
 
@@ -261,31 +240,33 @@ class ValueClassifier:
         """
         self.encoder = LabelEncoder()
         self.values = np.array(values)
+        self.names = list(names)  # Store original names for best match lookup
         self.translate_fn = translate_fn
 
         # Encode unique values as classes
         self.encoded_labels = self.encoder.fit_transform(values)
 
         # Translate names if translation function provided (cached)
+        translated_names = names
         if translate_fn:
             print(f"  Translating {len(names)} names (cached)...")
-            names = [translate_fn(n) for n in names]
+            translated_names = [translate_fn(n) for n in names]
 
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
-        self.embeddings = model.encode(names)
+        self.embeddings = model.encode(translated_names)
 
         # Train classifier (SVM with probability estimates)
         print(f"  Training SVM classifier ({len(self.encoder.classes_)} classes)...")
         self.classifier = SVC(kernel="rbf", probability=True, class_weight="balanced")
         self.classifier.fit(self.embeddings, self.encoded_labels)
 
-    def predict(self, query: str, model, translate_fn=None) -> tuple[float, float]:
+    def predict(self, query: str, model, translate_fn=None) -> tuple[float, float, str]:
         """
         Predict value for a query string.
 
         Returns:
-            (predicted_value, confidence_score)
+            (predicted_value, confidence_score, best_match_name)
         """
         # Translate query if translation function provided
         if translate_fn:
@@ -300,7 +281,16 @@ class ValueClassifier:
 
         # Decode back to original value
         pred_value = self.encoder.inverse_transform([pred_class])[0]
-        return float(pred_value), confidence
+
+        # Find best match name (highest cosine similarity)
+        similarities = np.dot(self.embeddings, query_emb.T).flatten()
+        similarities = similarities / (
+            np.linalg.norm(self.embeddings, axis=1) * np.linalg.norm(query_emb)
+        )
+        best_idx = int(np.argmax(similarities))
+        best_match = self.names[best_idx]
+
+        return float(pred_value), confidence, best_match
 
 
 class ValueRegressor:
@@ -320,24 +310,26 @@ class ValueRegressor:
             n_neighbors: Number of neighbors for KNN
         """
         self.values = np.array(values)
+        self.names = list(names)  # Store original names for best match lookup
         self.n_neighbors = n_neighbors
 
         # Translate names if translation function provided (cached)
+        translated_names = names
         if translate_fn:
             print(f"  Translating {len(names)} names (cached)...")
-            names = [translate_fn(n) for n in names]
+            translated_names = [translate_fn(n) for n in names]
 
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
-        self.embeddings = model.encode(names)
+        self.embeddings = model.encode(translated_names)
         print(f"  KNN regressor ready ({len(names)} items, k={n_neighbors})")
 
-    def predict(self, query: str, model, translate_fn=None) -> tuple[float, float]:
+    def predict(self, query: str, model, translate_fn=None) -> tuple[float, float, str]:
         """
         Predict value for a query string using KNN regression.
 
         Returns:
-            (predicted_value, confidence_score)
+            (predicted_value, confidence_score, best_match_name)
         """
         # Translate query if translation function provided
         if translate_fn:
@@ -357,6 +349,10 @@ class ValueRegressor:
         top_k_similarities = similarities[top_k_idx]
         top_k_values = self.values[top_k_idx]
 
+        # Best match is the nearest neighbor (highest similarity)
+        best_idx = int(np.argmax(similarities))
+        best_match = self.names[best_idx]
+
         # Weighted average by similarity (higher similarity = more weight)
         weights = np.maximum(top_k_similarities, 0)  # Clip negative similarities
         if weights.sum() > 0:
@@ -369,7 +365,7 @@ class ValueRegressor:
         # Normalize to 0-1 range (similarity is already roughly in this range)
         confidence = max(0.0, min(1.0, confidence))
 
-        return float(predicted_value), confidence
+        return float(predicted_value), confidence, best_match
 
 
 class CategoryClassifier:
@@ -877,9 +873,9 @@ class Predictor:
 
         # 6. Train value classifiers from reference data
         if verbose:
-            timed_print("Training density regressor from reference data (KNN)...")
+            timed_print("Training density classifier from reference data...")
         density_names, density_vals = _load_density_data()
-        self.density_classifier = ValueRegressor(
+        self.density_classifier = ValueClassifier(
             density_names, density_vals, self.model, translate_fn=self._translate
         )
 
@@ -992,19 +988,22 @@ class Predictor:
         predictions["defaultOrigin"] = _extract_origin(activity)
 
         # 6. Continuous values by classification (query = name only)
-        density_val, _ = self.density_classifier.predict(
+        density_val, _, density_match = self.density_classifier.predict(
             name, self.model, translate_fn=self._translate
         )
-        inedible_val, _ = self.inedible_classifier.predict(
+        inedible_val, _, inedible_match = self.inedible_classifier.predict(
             name, self.model, translate_fn=self._translate
         )
-        ratio_val, _ = self.ratio_classifier.predict(
+        ratio_val, _, ratio_match = self.ratio_classifier.predict(
             name, self.model, translate_fn=self._translate
         )
 
         predictions["density"] = round(density_val, 3)
+        predictions["densityMatch"] = density_match
         predictions["inediblePart"] = round(inedible_val, 2)
+        predictions["inediblePartMatch"] = inedible_match
         predictions["rawToCookedRatio"] = round(ratio_val, 3)
+        predictions["rawToCookedRatioMatch"] = ratio_match
 
         return predictions
 
@@ -1097,19 +1096,22 @@ class Predictor:
         predictions["defaultOrigin"] = _extract_origin(activity)
 
         # 7. Value predictions with confidence
-        density_val, density_conf = self.density_classifier.predict(
+        density_val, density_conf, density_match = self.density_classifier.predict(
             name, self.model, translate_fn=self._translate
         )
-        inedible_val, inedible_conf = self.inedible_classifier.predict(
+        inedible_val, inedible_conf, inedible_match = self.inedible_classifier.predict(
             name, self.model, translate_fn=self._translate
         )
-        ratio_val, ratio_conf = self.ratio_classifier.predict(
+        ratio_val, ratio_conf, ratio_match = self.ratio_classifier.predict(
             name, self.model, translate_fn=self._translate
         )
 
         predictions["density"] = round(density_val, 3)
+        predictions["densityMatch"] = density_match
         predictions["inediblePart"] = round(inedible_val, 2)
+        predictions["inediblePartMatch"] = inedible_match
         predictions["rawToCookedRatio"] = round(ratio_val, 3)
+        predictions["rawToCookedRatioMatch"] = ratio_match
 
         confidence["density"] = density_conf
         confidence["inediblePart"] = inedible_conf
