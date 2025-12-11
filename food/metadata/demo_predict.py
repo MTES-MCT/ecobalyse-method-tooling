@@ -102,6 +102,8 @@ def main():
     table.add_column("conf", justify="right")
     table.add_column("inedible", justify="right")
     table.add_column("conf", justify="right")
+    table.add_column("ratio", justify="right")
+    table.add_column("conf", justify="right")
 
     # Collect all confidence scores for mean calculation
     all_conf = {
@@ -110,6 +112,7 @@ def main():
         "cropGroup": [],
         "density": [],
         "inediblePart": [],
+        "rawToCookedRatio": [],
     }
 
     # Collect predictions first with progress bar
@@ -134,6 +137,7 @@ def main():
         crop = predictions.get("cropGroup") or "-"
         density = f"{predictions.get('density', 0):.2f}"
         inedible = f"{predictions.get('inediblePart', 0):.2f}"
+        ratio = f"{predictions.get('rawToCookedRatio', 0):.2f}"
 
         # Format confidence scores
         def fmt_conf(key):
@@ -155,6 +159,8 @@ def main():
             fmt_conf("density"),
             inedible,
             fmt_conf("inediblePart"),
+            ratio,
+            fmt_conf("rawToCookedRatio"),
         )
 
     # Add mean row
@@ -175,6 +181,8 @@ def main():
         f"[bold]{mean_conf(all_conf['density'])}[/bold]",
         "",
         f"[bold]{mean_conf(all_conf['inediblePart'])}[/bold]",
+        "",
+        f"[bold]{mean_conf(all_conf['rawToCookedRatio'])}[/bold]",
         style="on dark_green",
     )
 
