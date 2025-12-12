@@ -225,12 +225,12 @@ def _build_cropgroup_data(ingredients: list) -> tuple[list, list]:
     return names, cropgroups
 
 
-class ValueClassifier:
-    """Classifier that treats unique numeric values as categories."""
+class NearestNeighborMatcher:
+    """Find nearest neighbor by cosine similarity and return its value."""
 
     def __init__(self, names: list, values: list, model, translate_fn=None):
         """
-        Train an SVM classifier on embeddings where classes are unique values.
+        Build a nearest neighbor matcher on embeddings.
 
         Args:
             names: List of food names from reference data
@@ -238,16 +238,11 @@ class ValueClassifier:
             model: SentenceTransformer model for encoding
             translate_fn: Optional function to translate names before encoding
         """
-        self.encoder = LabelEncoder()
+        self.names = list(names)
         self.values = np.array(values)
-        self.names = list(names)  # Store original names for best match lookup
-        self.translate_fn = translate_fn
-
-        # Encode unique values as classes
-        self.encoded_labels = self.encoder.fit_transform(values)
 
         # Translate names if translation function provided (cached)
-        translated_names = names
+        translated_names = list(names)
         if translate_fn:
             print(f"  Translating {len(names)} names (cached)...")
             translated_names = [translate_fn(n) for n in names]
@@ -255,81 +250,14 @@ class ValueClassifier:
         # Compute embeddings for all reference names
         print(f"  Computing embeddings for {len(names)} reference items...")
         self.embeddings = model.encode(translated_names)
-
-        # Train classifier (SVM with probability estimates)
-        print(f"  Training SVM classifier ({len(self.encoder.classes_)} classes)...")
-        self.classifier = SVC(kernel="rbf", probability=True, class_weight="balanced")
-        self.classifier.fit(self.embeddings, self.encoded_labels)
+        print(f"  Nearest neighbor matcher ready ({len(names)} items)")
 
     def predict(self, query: str, model, translate_fn=None) -> tuple[float, float, str]:
         """
-        Predict value for a query string.
+        Find nearest neighbor and return its value.
 
         Returns:
-            (predicted_value, confidence_score, best_match_name)
-        """
-        # Translate query if translation function provided
-        if translate_fn:
-            query = translate_fn(query)
-
-        query_emb = model.encode(query).reshape(1, -1)
-
-        # Get prediction and probability
-        pred_class = self.classifier.predict(query_emb)[0]
-        proba = self.classifier.predict_proba(query_emb)[0]
-        confidence = float(proba.max())
-
-        # Decode back to original value
-        pred_value = self.encoder.inverse_transform([pred_class])[0]
-
-        # Find best match name (highest cosine similarity)
-        similarities = np.dot(self.embeddings, query_emb.T).flatten()
-        similarities = similarities / (
-            np.linalg.norm(self.embeddings, axis=1) * np.linalg.norm(query_emb)
-        )
-        best_idx = int(np.argmax(similarities))
-        best_match = self.names[best_idx]
-
-        return float(pred_value), confidence, best_match
-
-
-class ValueRegressor:
-    """Regressor for continuous values using KNN on embeddings."""
-
-    def __init__(
-        self, names: list, values: list, model, translate_fn=None, n_neighbors=5
-    ):
-        """
-        Build a KNN regressor on embeddings for continuous value prediction.
-
-        Args:
-            names: List of food names from reference data
-            values: List of corresponding numeric values
-            model: SentenceTransformer model for encoding
-            translate_fn: Optional function to translate names before encoding
-            n_neighbors: Number of neighbors for KNN
-        """
-        self.values = np.array(values)
-        self.names = list(names)  # Store original names for best match lookup
-        self.n_neighbors = n_neighbors
-
-        # Translate names if translation function provided (cached)
-        translated_names = names
-        if translate_fn:
-            print(f"  Translating {len(names)} names (cached)...")
-            translated_names = [translate_fn(n) for n in names]
-
-        # Compute embeddings for all reference names
-        print(f"  Computing embeddings for {len(names)} reference items...")
-        self.embeddings = model.encode(translated_names)
-        print(f"  KNN regressor ready ({len(names)} items, k={n_neighbors})")
-
-    def predict(self, query: str, model, translate_fn=None) -> tuple[float, float, str]:
-        """
-        Predict value for a query string using KNN regression.
-
-        Returns:
-            (predicted_value, confidence_score, best_match_name)
+            (value, confidence, best_match_name)
         """
         # Translate query if translation function provided
         if translate_fn:
@@ -343,29 +271,9 @@ class ValueRegressor:
             np.linalg.norm(self.embeddings, axis=1) * np.linalg.norm(query_emb)
         )
 
-        # Get k nearest neighbors (highest similarity)
-        k = min(self.n_neighbors, len(self.values))
-        top_k_idx = np.argsort(similarities)[-k:]
-        top_k_similarities = similarities[top_k_idx]
-        top_k_values = self.values[top_k_idx]
-
-        # Best match is the nearest neighbor (highest similarity)
+        # Return value of closest match
         best_idx = int(np.argmax(similarities))
-        best_match = self.names[best_idx]
-
-        # Weighted average by similarity (higher similarity = more weight)
-        weights = np.maximum(top_k_similarities, 0)  # Clip negative similarities
-        if weights.sum() > 0:
-            predicted_value = np.average(top_k_values, weights=weights)
-        else:
-            predicted_value = np.mean(top_k_values)
-
-        # Confidence based on mean similarity of top-k neighbors
-        confidence = float(np.mean(top_k_similarities))
-        # Normalize to 0-1 range (similarity is already roughly in this range)
-        confidence = max(0.0, min(1.0, confidence))
-
-        return float(predicted_value), confidence, best_match
+        return float(self.values[best_idx]), float(similarities[best_idx]), self.names[best_idx]
 
 
 class CategoryClassifier:
@@ -576,10 +484,10 @@ class Predictor:
         # CropGroup classifier (SVM-based, uses semantic matching)
         self.cropgroup_classifier = None
 
-        # Value classifiers for continuous values (trained on reference data)
-        self.density_classifier = None
-        self.inedible_classifier = None
-        self.ratio_classifier = None
+        # Value matchers for continuous values (nearest neighbor on reference data)
+        self.density_matcher = None
+        self.inedible_matcher = None
+        self.ratio_matcher = None
 
         # Training data (for categorical classifiers)
         self.training_features = None
@@ -871,27 +779,25 @@ class Predictor:
         )
         self.transport_classifier.fit(self.training_features, y_transport_encoded)
 
-        # 6. Train value classifiers from reference data
+        # 6. Build nearest neighbor matchers from reference data
         if verbose:
-            timed_print("Training density classifier from reference data...")
+            timed_print("Building density matcher from reference data...")
         density_names, density_vals = _load_density_data()
-        self.density_classifier = ValueClassifier(
+        self.density_matcher = NearestNeighborMatcher(
             density_names, density_vals, self.model, translate_fn=self._translate
         )
 
         if verbose:
-            timed_print("Training inedible part classifier from reference data...")
+            timed_print("Building inedible part matcher from reference data...")
         inedible_names, inedible_vals = _load_inedible_data()
-        self.inedible_classifier = ValueClassifier(
+        self.inedible_matcher = NearestNeighborMatcher(
             inedible_names, inedible_vals, self.model, translate_fn=self._translate
         )
 
         if verbose:
-            timed_print(
-                "Training raw-to-cooked ratio classifier from reference data..."
-            )
+            timed_print("Building raw-to-cooked ratio matcher from reference data...")
         ratio_names, ratio_vals = _load_ratio_data()
-        self.ratio_classifier = ValueClassifier(
+        self.ratio_matcher = NearestNeighborMatcher(
             ratio_names, ratio_vals, self.model, translate_fn=self._translate
         )
 
@@ -988,13 +894,13 @@ class Predictor:
         predictions["defaultOrigin"] = _extract_origin(activity)
 
         # 6. Continuous values by classification (query = name only)
-        density_val, _, density_match = self.density_classifier.predict(
+        density_val, _, density_match = self.density_matcher.predict(
             name, self.model, translate_fn=self._translate
         )
-        inedible_val, _, inedible_match = self.inedible_classifier.predict(
+        inedible_val, _, inedible_match = self.inedible_matcher.predict(
             name, self.model, translate_fn=self._translate
         )
-        ratio_val, _, ratio_match = self.ratio_classifier.predict(
+        ratio_val, _, ratio_match = self.ratio_matcher.predict(
             name, self.model, translate_fn=self._translate
         )
 
@@ -1096,13 +1002,13 @@ class Predictor:
         predictions["defaultOrigin"] = _extract_origin(activity)
 
         # 7. Value predictions with confidence
-        density_val, density_conf, density_match = self.density_classifier.predict(
+        density_val, density_conf, density_match = self.density_matcher.predict(
             name, self.model, translate_fn=self._translate
         )
-        inedible_val, inedible_conf, inedible_match = self.inedible_classifier.predict(
+        inedible_val, inedible_conf, inedible_match = self.inedible_matcher.predict(
             name, self.model, translate_fn=self._translate
         )
-        ratio_val, ratio_conf, ratio_match = self.ratio_classifier.predict(
+        ratio_val, ratio_conf, ratio_match = self.ratio_matcher.predict(
             name, self.model, translate_fn=self._translate
         )
 
@@ -1243,10 +1149,10 @@ class Predictor:
             "transport_encoder": self.transport_encoder,
             # CropGroup classifier (SVM-based, semantic matching)
             "cropgroup_classifier": self.cropgroup_classifier,
-            # Value classifiers (density uses KNN regressor, others use SVM)
-            "density_classifier": self.density_classifier,
-            "inedible_classifier": self.inedible_classifier,
-            "ratio_classifier": self.ratio_classifier,
+            # Value matchers (nearest neighbor on reference data)
+            "density_matcher": self.density_matcher,
+            "inedible_matcher": self.inedible_matcher,
+            "ratio_matcher": self.ratio_matcher,
             # Translation cache (avoid re-translating on reload)
             "_translation_cache": self._translation_cache,
             # Training data (for categorical classifiers and evaluation)
