@@ -87,36 +87,29 @@ def main():
 
     console = Console()
 
-    # Create table with columns for each metadata + confidence
+    # Create table with columns for each metadata + match
+    # Set max_width=0 to hide columns (easy to re-enable by changing to a positive value)
     table = Table(title="Predictions", show_header=True, header_style="bold")
     table.add_column("Name", style="cyan", no_wrap=True, max_width=25)
     table.add_column("foodType", no_wrap=True)
-    table.add_column("conf", justify="right")
+    table.add_column("match", no_wrap=True, max_width=18)
+    table.add_column("conf", justify="right", max_width=0)
     table.add_column("proc", no_wrap=True)
-    table.add_column("conf", justify="right")
+    table.add_column("match", no_wrap=True, max_width=18)
+    table.add_column("conf", justify="right", max_width=0)
     table.add_column("pkg", no_wrap=True)
     table.add_column("transport", no_wrap=True)
     table.add_column("cropGroup", no_wrap=True)
-    table.add_column("conf", justify="right")
-    table.add_column("density", justify="right")
-    table.add_column("match", no_wrap=True, max_width=15)
-    table.add_column("conf", justify="right")
-    table.add_column("inedible", justify="right")
-    table.add_column("match", no_wrap=True, max_width=15)
-    table.add_column("conf", justify="right")
-    table.add_column("ratio", justify="right")
-    table.add_column("match", no_wrap=True, max_width=15)
-    table.add_column("conf", justify="right")
-
-    # Collect all confidence scores for mean calculation
-    all_conf = {
-        "foodType": [],
-        "processingState": [],
-        "cropGroup": [],
-        "density": [],
-        "inediblePart": [],
-        "rawToCookedRatio": [],
-    }
+    table.add_column("conf", justify="right", max_width=0)
+    table.add_column("density", justify="right", max_width=0)
+    table.add_column("match", no_wrap=True, max_width=0)
+    table.add_column("conf", justify="right", max_width=0)
+    table.add_column("inedible", justify="right", max_width=0)
+    table.add_column("match", no_wrap=True, max_width=0)
+    table.add_column("conf", justify="right", max_width=0)
+    table.add_column("ratio", justify="right", max_width=0)
+    table.add_column("match", no_wrap=True, max_width=0)
+    table.add_column("conf", justify="right", max_width=0)
 
     # Collect predictions first with progress bar
     all_predictions = []
@@ -126,15 +119,11 @@ def main():
 
     # Build table from collected predictions
     for ing, predictions, confidence in all_predictions:
-
-        # Collect confidence scores
-        for key in all_conf:
-            if key in confidence:
-                all_conf[key].append(confidence[key])
-
         # Format values
         food_type = predictions.get("foodType", "-")
+        food_type_match = (predictions.get("foodTypeMatch") or "-")[:18]
         proc_state = predictions.get("processingState", "-")
+        proc_match = (predictions.get("processingStateMatch") or "-")[:18]
         packaging = predictions.get("packaging") or "-"
         transport = predictions.get("transportCooling", "-")
         crop = predictions.get("cropGroup") or "-"
@@ -154,8 +143,10 @@ def main():
         table.add_row(
             ing["name"][:25],
             food_type,
+            food_type_match,
             fmt_conf("foodType"),
             proc_state,
+            proc_match,
             fmt_conf("processingState"),
             packaging,
             transport,
@@ -171,32 +162,6 @@ def main():
             ratio_match,
             fmt_conf("rawToCookedRatio"),
         )
-
-    # Add mean row
-    def mean_conf(scores):
-        return f"{sum(scores) / len(scores):.0%}" if scores else "-"
-
-    table.add_row(
-        "[bold]MEAN[/bold]",
-        "",
-        f"[bold]{mean_conf(all_conf['foodType'])}[/bold]",
-        "",
-        f"[bold]{mean_conf(all_conf['processingState'])}[/bold]",
-        "",
-        "",
-        "",
-        f"[bold]{mean_conf(all_conf['cropGroup'])}[/bold]",
-        "",
-        "",
-        f"[bold]{mean_conf(all_conf['density'])}[/bold]",
-        "",
-        "",
-        f"[bold]{mean_conf(all_conf['inediblePart'])}[/bold]",
-        "",
-        "",
-        f"[bold]{mean_conf(all_conf['rawToCookedRatio'])}[/bold]",
-        style="on dark_green",
-    )
 
     console.print(table)
 

@@ -50,7 +50,6 @@ import torch
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import LabelEncoder
-from sklearn.svm import SVC
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 warnings.filterwarnings("ignore")
@@ -59,7 +58,7 @@ warnings.filterwarnings("ignore")
 # CONFIGURATION
 # =============================================================================
 
-MODEL = "jonny9f/food_embeddings2"  # Food-domain embeddings (was all-MiniLM-L6-v2)
+MODEL = "intfloat/e5-base-v2"  # 192M params, 768 dims (was jonny9f/food_embeddings2)
 
 # Translation cache file (persisted to disk for faster subsequent runs)
 TRANSLATION_CACHE_PATH = Path(__file__).parent / ".translation_cache.pkl"
@@ -234,12 +233,12 @@ class NearestNeighborMatcher:
 
         Args:
             names: List of food names from reference data
-            values: List of corresponding numeric values
+            values: List of corresponding values (numeric or string)
             model: SentenceTransformer model for encoding
             translate_fn: Optional function to translate names before encoding
         """
         self.names = list(names)
-        self.values = np.array(values)
+        self.values = list(values)  # Keep as list to support both numeric and string
 
         # Translate names if translation function provided (cached)
         translated_names = list(names)
@@ -252,12 +251,12 @@ class NearestNeighborMatcher:
         self.embeddings = model.encode(translated_names)
         print(f"  Nearest neighbor matcher ready ({len(names)} items)")
 
-    def predict(self, query: str, model, translate_fn=None) -> tuple[float, float, str]:
+    def predict(self, query: str, model, translate_fn=None):
         """
         Find nearest neighbor and return its value.
 
         Returns:
-            (value, confidence, best_match_name)
+            (value, confidence, best_match_name) - value can be numeric or string
         """
         # Translate query if translation function provided
         if translate_fn:
@@ -273,63 +272,11 @@ class NearestNeighborMatcher:
 
         # Return value of closest match
         best_idx = int(np.argmax(similarities))
-        return float(self.values[best_idx]), float(similarities[best_idx]), self.names[best_idx]
-
-
-class CategoryClassifier:
-    """Classifier for string categories using semantic matching."""
-
-    def __init__(self, names: list, categories: list, model, translate_fn=None):
-        """
-        Train an SVM classifier on embeddings where classes are string categories.
-
-        Args:
-            names: List of food names from reference data
-            categories: List of corresponding category strings
-            model: SentenceTransformer model for encoding
-            translate_fn: Optional function to translate names before encoding
-        """
-        self.encoder = LabelEncoder()
-        self.translate_fn = translate_fn
-
-        # Encode categories as classes
-        self.encoded_labels = self.encoder.fit_transform(categories)
-
-        # Translate names if translation function provided (cached)
-        if translate_fn:
-            print(f"  Translating {len(names)} names (cached)...")
-            names = [translate_fn(n) for n in names]
-
-        # Compute embeddings for all reference names
-        print(f"  Computing embeddings for {len(names)} reference items...")
-        self.embeddings = model.encode(names)
-
-        # Train classifier (SVM with probability estimates)
-        print(f"  Training SVM classifier ({len(self.encoder.classes_)} classes)...")
-        self.classifier = SVC(kernel="rbf", probability=True, class_weight="balanced")
-        self.classifier.fit(self.embeddings, self.encoded_labels)
-
-    def predict(self, query: str, model, translate_fn=None) -> tuple[str, float]:
-        """
-        Predict category for a query string.
-
-        Returns:
-            (predicted_category, confidence_score)
-        """
-        # Translate query if translation function provided
-        if translate_fn:
-            query = translate_fn(query)
-
-        query_emb = model.encode(query).reshape(1, -1)
-
-        # Get prediction and probability
-        pred_class = self.classifier.predict(query_emb)[0]
-        proba = self.classifier.predict_proba(query_emb)[0]
-        confidence = float(proba.max())
-
-        # Decode back to original category string
-        pred_category = self.encoder.inverse_transform([pred_class])[0]
-        return pred_category, confidence
+        value = self.values[best_idx]
+        # Convert to float if numeric, otherwise keep as string
+        if isinstance(value, (int, float, np.number)):
+            value = float(value)
+        return value, float(similarities[best_idx]), self.names[best_idx]
 
 
 # =============================================================================
@@ -471,18 +418,13 @@ class Predictor:
             self._load_translation_cache()
         )  # Load from disk if exists
 
-        # Classifieurs pour categorical metadata (new dimensional approach)
-        self.food_type_classifier = None
-        self.processing_classifier = None
-        self.transport_classifier = None
+        # Matchers for categorical metadata (nearest neighbor approach)
+        self.food_type_matcher = None
+        self.processing_matcher = None
+        self.transport_matcher = None
 
-        # Encoders for categorical metadata
-        self.food_type_encoder = LabelEncoder()
-        self.processing_encoder = LabelEncoder()
-        self.transport_encoder = LabelEncoder()
-
-        # CropGroup classifier (SVM-based, uses semantic matching)
-        self.cropgroup_classifier = None
+        # CropGroup matcher (nearest neighbor)
+        self.cropgroup_matcher = None
 
         # Value matchers for continuous values (nearest neighbor on reference data)
         self.density_matcher = None
@@ -703,11 +645,12 @@ class Predictor:
         self.training_ingredients = ingredients
         self.feature_dim = self.training_features.shape[1]
 
-        # 3. Entraînement des classifieurs foodType et processingState
+        # 3. Build foodType and processingState matchers (nearest neighbor)
         if verbose:
-            timed_print("Training foodType classifier...")
+            timed_print("Building foodType matcher...")
 
         # Extract foodType and processingState from old categories
+        ing_names = [ing["name"] for ing in ingredients]
         y_food_types = []
         y_processing = []
         for ing in ingredients:
@@ -718,66 +661,39 @@ class Predictor:
             y_food_types.append(food_type)
             y_processing.append(proc_state)
 
-        self.food_type_encoder.fit(FOOD_TYPES)
-        y_food_encoded = self.food_type_encoder.transform(y_food_types)
-
-        self.food_type_classifier = RandomForestClassifier(
-            n_estimators=100,
-            max_depth=15,
-            min_samples_leaf=2,
-            class_weight="balanced",
-            random_state=42,
-            n_jobs=-1,
+        self.food_type_matcher = NearestNeighborMatcher(
+            ing_names, y_food_types, self.model, translate_fn=self._translate
         )
-        self.food_type_classifier.fit(self.training_features, y_food_encoded)
 
         if verbose:
-            timed_print("Training processingState classifier...")
+            timed_print("Building processingState matcher...")
 
-        self.processing_encoder.fit(PROCESSING_STATES)
-        y_proc_encoded = self.processing_encoder.transform(y_processing)
-
-        self.processing_classifier = RandomForestClassifier(
-            n_estimators=100,
-            max_depth=10,
-            min_samples_leaf=2,
-            class_weight="balanced",
-            random_state=42,
-            n_jobs=-1,
+        self.processing_matcher = NearestNeighborMatcher(
+            ing_names, y_processing, self.model, translate_fn=self._translate
         )
-        self.processing_classifier.fit(self.training_features, y_proc_encoded)
 
-        # 4. Entraînement du classifieur cropGroup (SVM-based avec semantic matching)
+        # 4. Build cropGroup matcher (nearest neighbor)
         if verbose:
-            timed_print("Training cropGroup classifier (semantic matching)...")
+            timed_print("Building cropGroup matcher...")
 
-        # Build training data from ingredients + cropGroup labels themselves
+        # Build training data from ingredients with cropGroup
         cropgroup_names, cropgroup_vals = _build_cropgroup_data(ingredients)
         if cropgroup_names:
-            self.cropgroup_classifier = CategoryClassifier(
+            self.cropgroup_matcher = NearestNeighborMatcher(
                 cropgroup_names,
                 cropgroup_vals,
                 self.model,
                 translate_fn=self._translate,
             )
 
-        # 5. Entraînement du classifieur transportCooling
+        # 5. Build transportCooling matcher (nearest neighbor)
         if verbose:
-            timed_print("Training transportCooling classifier...")
+            timed_print("Building transportCooling matcher...")
 
         y_transport = [ing.get("transportCooling", "none") for ing in ingredients]
-        self.transport_encoder.fit(TRANSPORT_COOLING_VALUES)
-        y_transport_encoded = self.transport_encoder.transform(y_transport)
-
-        self.transport_classifier = RandomForestClassifier(
-            n_estimators=100,
-            max_depth=10,
-            min_samples_leaf=2,
-            class_weight="balanced",
-            random_state=42,
-            n_jobs=-1,
+        self.transport_matcher = NearestNeighborMatcher(
+            ing_names, y_transport, self.model, translate_fn=self._translate
         )
-        self.transport_classifier.fit(self.training_features, y_transport_encoded)
 
         # 6. Build nearest neighbor matchers from reference data
         if verbose:
@@ -840,32 +756,40 @@ class Predictor:
         # Extraire les features binaires pour les règles
         binary_features = self._extract_binary_from_features(features)
 
-        # 1. FoodType (règles prioritaires, puis ML)
+        # 1. FoodType (règles prioritaires, puis nearest neighbor)
         # Check if we can determine foodType from rules (e.g., fish, meat, dairy)
         if binary_features.get("is_fish") or binary_features.get("is_seafood"):
             food_type = "fish_seafood"
+            food_type_match = None
         elif binary_features.get("is_meat"):
             food_type = "meat"
+            food_type_match = None
         elif binary_features.get("is_dairy"):
             food_type = "dairy"
+            food_type_match = None
         else:
-            # Fallback sur ML
-            food_pred = self.food_type_classifier.predict(features)[0]
-            food_type = self.food_type_encoder.inverse_transform([food_pred])[0]
+            # Fallback to nearest neighbor
+            food_type, _, food_type_match = self.food_type_matcher.predict(
+                name, self.model, translate_fn=self._translate
+            )
 
         predictions["foodType"] = food_type
+        predictions["foodTypeMatch"] = food_type_match
 
-        # 2. ProcessingState (packaging detection prioritaire, puis ML)
+        # 2. ProcessingState (packaging detection prioritaire, puis nearest neighbor)
         packaging, _ = self._detect_packaging(full_text)
         if packaging and packaging != "fresh":
             # Non-fresh packaging implies processed
             processing_state = "processed"
+            processing_match = None
         else:
-            # Use ML classifier
-            proc_pred = self.processing_classifier.predict(features)[0]
-            processing_state = self.processing_encoder.inverse_transform([proc_pred])[0]
+            # Fallback to nearest neighbor
+            processing_state, _, processing_match = self.processing_matcher.predict(
+                name, self.model, translate_fn=self._translate
+            )
 
         predictions["processingState"] = processing_state
+        predictions["processingStateMatch"] = processing_match
         predictions["packaging"] = packaging
 
         # 3. Labels additifs (par règles)
@@ -876,15 +800,17 @@ class Predictor:
             labels.append("bleublanccoeur")
         predictions["labels"] = labels
 
-        # 4. cropGroup (si végétal) - uses semantic matching
+        # 4. cropGroup (si végétal) - nearest neighbor matching
         vegetal_types = {"vegetable", "fruit", "grain", "nut_oilseed", "spice_condiment"}
-        if food_type in vegetal_types and self.cropgroup_classifier is not None:
-            cropgroup_val, _ = self.cropgroup_classifier.predict(
+        if food_type in vegetal_types and self.cropgroup_matcher is not None:
+            cropgroup_val, _, cropgroup_match = self.cropgroup_matcher.predict(
                 name, self.model, translate_fn=self._translate
             )
             predictions["cropGroup"] = cropgroup_val
+            predictions["cropGroupMatch"] = cropgroup_match
         else:
             predictions["cropGroup"] = None
+            predictions["cropGroupMatch"] = None
 
         # 5. transportCooling (packaging-based, puis foodType-based)
         transport_cooling = self._get_transport_from_packaging(packaging, food_type)
@@ -938,8 +864,9 @@ class Predictor:
         # Extraire les features binaires pour les règles
         binary_features = self._extract_binary_from_features(features)
 
-        # 1. FoodType (règles prioritaires, puis ML)
+        # 1. FoodType (règles prioritaires, puis nearest neighbor)
         food_type_conf = 1.0  # Default confidence for rule-based
+        food_type_match = None
         if binary_features.get("is_fish") or binary_features.get("is_seafood"):
             food_type = "fish_seafood"
         elif binary_features.get("is_meat"):
@@ -947,27 +874,28 @@ class Predictor:
         elif binary_features.get("is_dairy"):
             food_type = "dairy"
         else:
-            # Fallback sur ML
-            food_pred = self.food_type_classifier.predict(features)[0]
-            food_type = self.food_type_encoder.inverse_transform([food_pred])[0]
-            food_proba = self.food_type_classifier.predict_proba(features)[0]
-            food_type_conf = float(food_proba.max())
+            # Fallback to nearest neighbor
+            food_type, food_type_conf, food_type_match = self.food_type_matcher.predict(
+                name, self.model, translate_fn=self._translate
+            )
 
         predictions["foodType"] = food_type
+        predictions["foodTypeMatch"] = food_type_match
         confidence["foodType"] = food_type_conf
 
-        # 2. ProcessingState (packaging detection prioritaire, puis ML)
+        # 2. ProcessingState (packaging detection prioritaire, puis nearest neighbor)
         packaging, _ = self._detect_packaging(full_text)
         proc_conf = 1.0  # Default confidence for rule-based
+        processing_match = None
         if packaging and packaging != "fresh":
             processing_state = "processed"
         else:
-            proc_pred = self.processing_classifier.predict(features)[0]
-            processing_state = self.processing_encoder.inverse_transform([proc_pred])[0]
-            proc_proba = self.processing_classifier.predict_proba(features)[0]
-            proc_conf = float(proc_proba.max())
+            processing_state, proc_conf, processing_match = self.processing_matcher.predict(
+                name, self.model, translate_fn=self._translate
+            )
 
         predictions["processingState"] = processing_state
+        predictions["processingStateMatch"] = processing_match
         predictions["packaging"] = packaging
         confidence["processingState"] = proc_conf
 
@@ -979,16 +907,18 @@ class Predictor:
             labels.append("bleublanccoeur")
         predictions["labels"] = labels
 
-        # 4. cropGroup - uses semantic matching
+        # 4. cropGroup - nearest neighbor matching
         cropgroup_conf = 0.0
         vegetal_types = {"vegetable", "fruit", "grain", "nut_oilseed", "spice_condiment"}
-        if food_type in vegetal_types and self.cropgroup_classifier is not None:
-            cropgroup_val, cropgroup_conf = self.cropgroup_classifier.predict(
+        if food_type in vegetal_types and self.cropgroup_matcher is not None:
+            cropgroup_val, cropgroup_conf, cropgroup_match = self.cropgroup_matcher.predict(
                 name, self.model, translate_fn=self._translate
             )
             predictions["cropGroup"] = cropgroup_val
+            predictions["cropGroupMatch"] = cropgroup_match
         else:
             predictions["cropGroup"] = None
+            predictions["cropGroupMatch"] = None
 
         if predictions["cropGroup"]:
             confidence["cropGroup"] = cropgroup_conf
@@ -1048,7 +978,8 @@ class Predictor:
             y_food.append(food_type)
             y_proc.append(proc_state)
 
-        y_food_encoded = self.food_type_encoder.transform(y_food)
+        food_encoder = LabelEncoder()
+        y_food_encoded = food_encoder.fit_transform(y_food)
         food_scores = cross_val_score(
             RandomForestClassifier(
                 n_estimators=100, class_weight="balanced", random_state=42
@@ -1066,7 +997,8 @@ class Predictor:
             )
 
         # Évaluation processingState
-        y_proc_encoded = self.processing_encoder.transform(y_proc)
+        proc_encoder = LabelEncoder()
+        y_proc_encoded = proc_encoder.fit_transform(y_proc)
         proc_scores = cross_val_score(
             RandomForestClassifier(
                 n_estimators=100, class_weight="balanced", random_state=42
@@ -1084,7 +1016,8 @@ class Predictor:
             )
 
         # Évaluation transportCooling
-        y_transport = self.transport_encoder.transform([
+        transport_encoder = LabelEncoder()
+        y_transport = transport_encoder.fit_transform([
             ing.get("transportCooling", "none") for ing in self.training_ingredients
         ])
         transport_scores = cross_val_score(
@@ -1106,7 +1039,7 @@ class Predictor:
                 f"TransportCooling accuracy: {transport_scores.mean():.3f} ± {transport_scores.std():.3f}"
             )
 
-        # Évaluation cropGroup (sur végétaux uniquement, using SVM on name embeddings)
+        # Évaluation cropGroup (sur végétaux uniquement, using RandomForest on embeddings)
         cropgroup_names, cropgroup_vals = _build_cropgroup_data(
             self.training_ingredients
         )
@@ -1118,7 +1051,9 @@ class Predictor:
             y_crop_enc = le.fit_transform(cropgroup_vals)
 
             crop_scores = cross_val_score(
-                SVC(kernel="rbf", class_weight="balanced"),
+                RandomForestClassifier(
+                    n_estimators=100, class_weight="balanced", random_state=42
+                ),
                 X_crop,
                 y_crop_enc,
                 cv=min(5, len(set(cropgroup_vals))),
@@ -1140,22 +1075,19 @@ class Predictor:
 
         # On ne sauvegarde pas le modèle d'embedding (trop gros, rechargé au besoin)
         state = {
-            # Categorical classifiers (new dimensional approach)
-            "food_type_classifier": self.food_type_classifier,
-            "processing_classifier": self.processing_classifier,
-            "transport_classifier": self.transport_classifier,
-            "food_type_encoder": self.food_type_encoder,
-            "processing_encoder": self.processing_encoder,
-            "transport_encoder": self.transport_encoder,
-            # CropGroup classifier (SVM-based, semantic matching)
-            "cropgroup_classifier": self.cropgroup_classifier,
+            # Categorical matchers (nearest neighbor approach)
+            "food_type_matcher": self.food_type_matcher,
+            "processing_matcher": self.processing_matcher,
+            "transport_matcher": self.transport_matcher,
+            # CropGroup matcher (nearest neighbor)
+            "cropgroup_matcher": self.cropgroup_matcher,
             # Value matchers (nearest neighbor on reference data)
             "density_matcher": self.density_matcher,
             "inedible_matcher": self.inedible_matcher,
             "ratio_matcher": self.ratio_matcher,
             # Translation cache (avoid re-translating on reload)
             "_translation_cache": self._translation_cache,
-            # Training data (for categorical classifiers and evaluation)
+            # Training data (for evaluation)
             "training_features": self.training_features,
             "training_ingredients": self.training_ingredients,
             "feature_dim": self.feature_dim,
