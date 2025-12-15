@@ -174,10 +174,13 @@ ORIGIN_MAPPING = {
 # REFERENCE DATA FOR VALUE CLASSIFIERS
 # =============================================================================
 
-# Paths to reference data files (relative to ecobalyse_data package)
-DENSITY_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "density.csv"
-INEDIBLE_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "inedible_part.csv"
-RATIO_DATA_PATH = Path(__file__).parent.parent.parent / "data" / "cooked_to_raw.csv"
+# Paths to reference data files (relative to predict module)
+DATA_DIR = Path(__file__).parent / "data"
+DENSITY_DATA_PATH = DATA_DIR / "density.csv"
+INEDIBLE_DATA_PATH = DATA_DIR / "inedible_part.csv"
+RATIO_DATA_PATH = DATA_DIR / "cooked_to_raw.csv"
+CATEGORIES_DATA_PATH = DATA_DIR / "categories.csv"
+TRANSPORT_DATA_PATH = DATA_DIR / "transport_cooling.csv"
 
 
 def _load_density_data() -> tuple[list, list]:
@@ -223,6 +226,24 @@ def _load_ratio_data() -> tuple[list, list]:
             values.append(float(value))
 
     return names, values
+
+
+def _load_categories_data() -> tuple[list, list]:
+    """Load categories.csv, return (names, categories)."""
+    df = pd.read_csv(CATEGORIES_DATA_PATH)
+    # Columns: name,categories
+    names = df["name"].tolist()
+    categories = df["categories"].tolist()
+    return names, categories
+
+
+def _load_transport_data() -> tuple[list, list]:
+    """Load transport_cooling.csv, return (names, transport_cooling)."""
+    df = pd.read_csv(TRANSPORT_DATA_PATH)
+    # Columns: name,transportCooling
+    names = df["name"].tolist()
+    transport = df["transportCooling"].tolist()
+    return names, transport
 
 
 def _build_cropgroup_data(ingredients: list) -> tuple[list, list]:
@@ -705,15 +726,6 @@ class Predictor:
         self._load_model()
         self._load_foodon()
 
-        # Load augmented training data if available
-        augmented_path = Path(__file__).parent.parent / "ingredients_augmented.json"
-        if augmented_path.exists():
-            with open(augmented_path) as f:
-                augmented = json.load(f)
-            ingredients = list(ingredients) + augmented
-            if verbose:
-                print(f"Added {len(augmented)} augmented ingredients")
-
         if verbose:
             timed_print(f"Training on {len(ingredients)} ingredients...\n")
 
@@ -744,7 +756,7 @@ class Predictor:
         if verbose:
             timed_print("Building foodType matcher...")
 
-        # Extract foodType and processingState from old categories
+        # Extract foodType and processingState from training ingredients
         ing_names = [ing["name"] for ing in ingredients]
         y_food_types = []
         y_processing = []
@@ -752,6 +764,16 @@ class Predictor:
             base_cat = self._get_base_category(ing.get("categories", ["misc"]))
             food_type, proc_state = CATEGORY_TO_DIMENSIONS.get(
                 base_cat, ("misc", "processed")
+            )
+            y_food_types.append(food_type)
+            y_processing.append(proc_state)
+
+        # Also add reference data from categories.csv
+        ref_cat_names, ref_categories = _load_categories_data()
+        for name, cat in zip(ref_cat_names, ref_categories):
+            ing_names.append(name)
+            food_type, proc_state = CATEGORY_TO_DIMENSIONS.get(
+                cat, ("misc", "processed")
             )
             y_food_types.append(food_type)
             y_processing.append(proc_state)
@@ -788,9 +810,17 @@ class Predictor:
         if verbose:
             timed_print("Building transportCooling matcher...")
 
+        # Build from training ingredients
+        transport_names = [ing["name"] for ing in ingredients]
         y_transport = [ing.get("transportCooling", "none") for ing in ingredients]
+
+        # Also add reference data from transport_cooling.csv
+        ref_transport_names, ref_transport = _load_transport_data()
+        transport_names.extend(ref_transport_names)
+        y_transport.extend(ref_transport)
+
         self.transport_matcher = NearestNeighborMatcher(
-            ing_names, y_transport, self.model,
+            transport_names, y_transport, self.model,
             translate_fn=self._translate, foodon_extractor=self.foodon_extractor
         )
 

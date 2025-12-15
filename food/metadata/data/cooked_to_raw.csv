@@ -1,0 +1,123 @@
+food;value
+Fruit;0.856
+papaye;0.856
+ananas;0.856
+mandarine;0.856
+framboise;0.856
+prune;0.856
+banane;0.856
+abricot;0.856
+pêche;0.856
+kiwi;0.856
+vegetables;0.856
+épinard;0.856
+salade, mâche;0.856
+pomme de terre;0.856
+courgette;0.856
+endive;0.856
+artichaut;0.856
+betterave;0.856
+racines;0.856
+céleri;0.856
+navet;0.856
+carotte;0.856
+brocoli;0.856
+oignon, échalote;0.856
+chou, choux;0.856
+litchi;0.856
+garlic, ail;0.856
+fish, shellfish;0.819
+crustacé;0.819
+crabe;0.819
+crevette;0.819
+calmar;0.819
+homard;0.819
+seeds;2.259
+soja;2.259
+ensilage;2.259
+céréales, blé dur;2.259
+orge;2.259
+triricale;2.259
+colza;2.259
+avoine;2.259
+riz;2.259
+legumineuses;2.33
+soupe déshydratée;12
+dehydrated onion;1.9
+lentilles;2.33
+eggs;0.974
+red meats;0.792
+viande;0.792
+porc;0.792
+boeuf haché;0.792
+jambon;0.792
+chicken, volaille, poultry;0.755
+waste, offal;0.73
+radis;0.85
+Produit laitier;1
+crème;1
+fromage;1
+emmental;1
+jus de fruit;1
+liquide, boisson, sirop;1
+sirop ou sucre;1
+miel;1
+soup;1
+huile végétale;1
+huiles, beurre, graisses animales;1
+chataigne;1
+pois;1
+noix, noisettes;1
+farine;1
+poudre;1
+café;1
+autres ingrédients;1
+légume frais;1.18
+légume en conserve;1.0
+légume surgelé;1.11
+légume séché;3.33
+légume en bocal;1.0
+fruit frais;1.0
+fruit en conserve;1.0
+fruit surgelé;1.0
+fruit séché;4.0
+confiture;1.0
+compote;1.0
+viande fraîche;1.33
+viande surgelée;1.33
+viande séchée;2.5
+charcuterie;1.0
+viande en conserve;1.0
+poisson frais;1.18
+poisson surgelé;1.18
+poisson en conserve;1.0
+poisson fumé;1.11
+poisson séché;2.86
+fruits de mer;1.11
+crustacés;1.11
+lait frais;1.0
+lait UHT;1.0
+fromage;1.0
+yaourt;1.0
+beurre;1.0
+crème fraîche;1.0
+lait en poudre;10.0
+céréale;2.5
+farine;1.0
+pain;1.11
+pâtes;2.5
+riz;2.86
+semoule;2.5
+noix;1.0
+graine;1.0
+huile;1.0
+beurre de cacahuète;1.0
+épice;1.0
+herbe aromatique;1.0
+sauce;1.0
+vinaigre;1.0
+moutarde;1.0
+sel;1.0
+sucre;1.0
+œuf;1.11
+œuf en poudre;4.0
