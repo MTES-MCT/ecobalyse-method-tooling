@@ -12,11 +12,10 @@ import json
 from pathlib import Path
 
 import pandas
+from predict import Predictor
 from rich.console import Console
 from rich.progress import track
 from rich.table import Table
-
-from predict import Predictor
 
 # Données d'entraînement (échantillon)
 TRAINING_DATA = []
@@ -26,9 +25,15 @@ with open("../ingredients.json") as data:
 
 def main():
     parser = argparse.ArgumentParser(description="Démonstration du prédicteur")
-    parser.add_argument("ingredient", nargs="?", help="Nom d'ingrédient à tester (optionnel)")
-    parser.add_argument("--activity", "-a", default="", help="Nom du procédé ACV (optionnel)")
-    parser.add_argument("--clear-cache", action="store_true", help="Effacer le cache de traduction")
+    parser.add_argument(
+        "ingredient", nargs="?", help="Nom d'ingrédient à tester (optionnel)"
+    )
+    parser.add_argument(
+        "--activity", "-a", default="", help="Nom du procédé ACV (optionnel)"
+    )
+    parser.add_argument(
+        "--clear-cache", action="store_true", help="Effacer le cache de traduction"
+    )
     args = parser.parse_args()
 
     if args.clear_cache:
@@ -39,9 +44,6 @@ def main():
             model_path.unlink()
             print("Model cache cleared")
         # Don't return - continue to run the demo
-    print("=" * 60)
-    print("DÉMONSTRATION DU PRÉDICTEUR DE MÉTADONNÉES")
-    print("=" * 60)
 
     # 1. Entraînement
     print("\n📚 Entraînement sur", len(TRAINING_DATA), "ingrédients...")
@@ -91,25 +93,22 @@ def main():
     # Set max_width=0 to hide columns (easy to re-enable by changing to a positive value)
     table = Table(title="Predictions", show_header=True, header_style="bold")
     table.add_column("Name", style="cyan", no_wrap=True, max_width=25)
-    table.add_column("foodType", no_wrap=True)
+    table.add_column("categories", no_wrap=True)
     table.add_column("match", no_wrap=True, max_width=18)
-    table.add_column("conf", justify="right", max_width=0)
-    table.add_column("proc", no_wrap=True)
-    table.add_column("match", no_wrap=True, max_width=18)
-    table.add_column("conf", justify="right", max_width=0)
-    table.add_column("pkg", no_wrap=True)
+    table.add_column("sure?", justify="right")
+    table.add_column("pkg", no_wrap=True, max_width=0)
     table.add_column("transport", no_wrap=True)
     table.add_column("cropGroup", no_wrap=True)
-    table.add_column("conf", justify="right", max_width=0)
-    table.add_column("density", justify="right", max_width=0)
-    table.add_column("match", no_wrap=True, max_width=0)
-    table.add_column("conf", justify="right", max_width=0)
-    table.add_column("inedible", justify="right", max_width=0)
-    table.add_column("match", no_wrap=True, max_width=0)
-    table.add_column("conf", justify="right", max_width=0)
-    table.add_column("ratio", justify="right", max_width=0)
-    table.add_column("match", no_wrap=True, max_width=0)
-    table.add_column("conf", justify="right", max_width=0)
+    table.add_column("sure?", justify="right", max_width=3)
+    table.add_column("density", justify="right", max_width=3)
+    table.add_column("match", no_wrap=True, max_width=3)
+    table.add_column("sure?", justify="right", max_width=3)
+    table.add_column("inedible", justify="right", max_width=3)
+    table.add_column("match", no_wrap=True, max_width=3)
+    table.add_column("sure?", justify="right", max_width=3)
+    table.add_column("ratio", justify="right", max_width=3)
+    table.add_column("match", no_wrap=True, max_width=3)
+    table.add_column("sure?", justify="right", max_width=3)
 
     # Collect predictions first with progress bar
     all_predictions = []
@@ -120,10 +119,9 @@ def main():
     # Build table from collected predictions
     for ing, predictions, confidence in all_predictions:
         # Format values
-        food_type = predictions.get("foodType", "-")
+        categories = predictions.get("categories", [])
+        categories_str = ", ".join(categories) if categories else "-"
         food_type_match = (predictions.get("foodTypeMatch") or "-")[:18]
-        proc_state = predictions.get("processingState", "-")
-        proc_match = (predictions.get("processingStateMatch") or "-")[:18]
         packaging = predictions.get("packaging") or "-"
         transport = predictions.get("transportCooling", "-")
         crop = predictions.get("cropGroup") or "-"
@@ -142,12 +140,9 @@ def main():
 
         table.add_row(
             ing["name"][:25],
-            food_type,
+            categories_str,
             food_type_match,
-            fmt_conf("foodType"),
-            proc_state,
-            proc_match,
-            fmt_conf("processingState"),
+            fmt_conf("categories"),
             packaging,
             transport,
             crop,
@@ -177,15 +172,10 @@ def main():
     test = {"name": "Pomme de terre FR", "activityName": "Potato, at farm gate {FR} U"}
     pred = predictor2.predict(test)
     print(f"\n✓ Test après rechargement: {test['name']}")
-    print(f"  → foodType: {pred['foodType']}")
-    print(f"  → processingState: {pred['processingState']}")
+    print(f"  → categories: {pred['categories']}")
     print(f"  → packaging: {pred['packaging']}")
     print(f"  → cropGroup: {pred['cropGroup']}")
     print(f"  → transportCooling: {pred['transportCooling']}")
-
-    print("\n" + "=" * 60)
-    print("✅ Démonstration terminée!")
-    print("=" * 60)
 
 
 if __name__ == "__main__":
