@@ -50,10 +50,10 @@ def main():
     predictor = Predictor()
     predictor.fit(TRAINING_DATA)
 
-    # 2. Mode test unitaire ou batch
+    # 2. Mode test ou batch
     if args.ingredient:
-        # Test unitaire sur un seul ingrédient
-        print(f"\n🔮 Test unitaire: {args.ingredient}")
+        # Test sur un seul ingrédient
+        print(f"\n🔮 Test : {args.ingredient}")
         ing = {"name": args.ingredient, "activityName": args.activity}
         predictions, confidence = predictor.predict_with_confidence(ing)
 
@@ -91,24 +91,32 @@ def main():
 
     # Create table with columns for each metadata + match
     # Set max_width=0 to hide columns (easy to re-enable by changing to a positive value)
+    # Color coding: cyan=name, yellow=categories, green=transport, magenta=cropGroup,
+    #               blue=density, red=inedible, white=ratio
     table = Table(title="Predictions", show_header=True, header_style="bold")
     table.add_column("Name", style="cyan", no_wrap=True, max_width=25)
-    table.add_column("categories", no_wrap=True)
-    table.add_column("match", no_wrap=True, max_width=18)
-    table.add_column("sure?", justify="right")
-    table.add_column("pkg", no_wrap=True, max_width=0)
-    table.add_column("transport", no_wrap=True)
-    table.add_column("cropGroup", no_wrap=True)
-    table.add_column("sure?", justify="right", max_width=3)
-    table.add_column("density", justify="right", max_width=3)
-    table.add_column("match", no_wrap=True, max_width=3)
-    table.add_column("sure?", justify="right", max_width=3)
-    table.add_column("inedible", justify="right", max_width=3)
-    table.add_column("match", no_wrap=True, max_width=3)
-    table.add_column("sure?", justify="right", max_width=3)
-    table.add_column("ratio", justify="right", max_width=3)
-    table.add_column("match", no_wrap=True, max_width=3)
-    table.add_column("sure?", justify="right", max_width=3)
+    # Categories group (yellow)
+    table.add_column("categories", style="yellow", no_wrap=True)
+    table.add_column("match", style="yellow", no_wrap=True, max_width=18)
+    table.add_column("conf", style="yellow", justify="right")
+    # Transport group (green)
+    table.add_column("pkg", style="green", no_wrap=True, max_width=0)
+    table.add_column("transport", style="green", no_wrap=True)
+    # CropGroup group (magenta)
+    table.add_column("cropGroup", style="magenta", no_wrap=True, max_width=20)
+    table.add_column("conf", style="magenta", justify="right", max_width=4)
+    # Density group (blue)
+    table.add_column("density", style="blue", justify="right", max_width=5)
+    table.add_column("match", style="blue", no_wrap=True, max_width=20)
+    table.add_column("conf", style="blue", justify="right", max_width=4)
+    # Inedible group (red)
+    table.add_column("inedible", style="red", justify="right", max_width=5)
+    table.add_column("match", style="red", no_wrap=True, max_width=20)
+    table.add_column("conf", style="red", justify="right", max_width=4)
+    # Ratio group (white/default)
+    table.add_column("c/raw", justify="right", max_width=5)
+    table.add_column("match", no_wrap=True, max_width=20)
+    table.add_column("conf", justify="right", max_width=4)
 
     # Collect predictions first with progress bar
     all_predictions = []
