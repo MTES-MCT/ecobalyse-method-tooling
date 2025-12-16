@@ -58,7 +58,6 @@ warnings.filterwarnings("ignore")
 # CONFIGURATION
 # =============================================================================
 
-MODEL = "intfloat/e5-base-v2"  # 192M params, 768 dims (was jonny9f/food_embeddings2)
 
 # Noise words to remove from ingredient names before embedding
 # Case-insensitive words
@@ -96,6 +95,8 @@ def cleanup_name(name: str) -> str:
 # Translation cache file (persisted to disk for faster subsequent runs)
 TRANSLATION_CACHE_PATH = Path(__file__).parent / ".translation_cache.pkl"
 MT_MODEL = "Helsinki-NLP/opus-mt-fr-en"  # FR → EN Machine Translation
+# Embedding model (used for evaluation cross-validation only)
+MODEL = "all-MiniLM-L6-v2"
 
 # Catégories de base (legacy - kept for backward compatibility during training)
 BASE_CATEGORIES = [
@@ -334,22 +335,22 @@ def _build_cropgroup_data(ingredients: list) -> tuple[list, list]:
 
 
 class NearestNeighborMatcher:
-    """Find nearest neighbor by cosine similarity using combined features (E5 + FoodOn + regex)."""
+    """Find nearest neighbor by cosine similarity using FoodOn + regex features."""
 
-    def __init__(self, names: list, values: list, model, translate_fn=None, foodon_extractor=None):
+    def __init__(self, names: list, values: list, translate_fn=None, foodon_extractor=None):
         """
-        Build a nearest neighbor matcher on combined features.
+        Build a nearest neighbor matcher on FoodOn + regex features.
 
         Args:
             names: List of food names from reference data
             values: List of corresponding values (numeric or string)
-            model: SentenceTransformer model for encoding
             translate_fn: Optional function to translate names before encoding
             foodon_extractor: Optional FoodOnFeatureExtractor for ontology features
         """
         self.names = list(names)
         self.values = list(values)  # Keep as list to support both numeric and string
         self.foodon_extractor = foodon_extractor
+        self.translate_fn = translate_fn
 
         # Translate names if translation function provided (cached)
         translated_names = list(names)
@@ -357,47 +358,84 @@ class NearestNeighborMatcher:
             print(f"  Translating {len(names)} names (cached)...")
             translated_names = [translate_fn(n) for n in names]
 
-        # Compute combined features for all reference names
-        print(f"  Computing embeddings for {len(names)} reference items...")
+        # Store both original and translated names (lowercase) for text matching
+        self.names_lower = [n.lower() for n in names]
+        self.translated_lower = [n.lower() for n in translated_names]
+
+        # Compute FoodOn + regex features for all reference names
+        print(f"  Computing FoodOn+regex features for {len(names)} reference items...")
         features_list = []
         for i, name in enumerate(names):
-            # Use extract_features with FoodOn for combined features
-            # Pass translated name for both embedding AND FoodOn (FoodOn is English-based)
             feat = extract_features(
-                translated_names[i], "", model,
+                translated_names[i], "",
+                translate_fn=None,  # Already translated
                 foodon_extractor=foodon_extractor
             )
-            # FoodOn is already extracted from translated name in extract_features
-            # (FoodOn ontology uses English terms, so translation helps matching)
             features_list.append(feat)
-        self.embeddings = np.array(features_list)
+        self.features = np.array(features_list)
         print(f"  Nearest neighbor matcher ready ({len(names)} items)")
 
-    def predict(self, query: str, model, translate_fn=None, foodon_extractor=None):
+    def predict(self, query: str, translate_fn=None, foodon_extractor=None):
         """
         Find nearest neighbor and return its value.
 
+        Priority:
+        1. Exact text match (case-insensitive)
+        2. Substring match (query contains reference or vice versa)
+        3. FoodOn + regex feature similarity
+
         Args:
             query: Query string (ingredient name)
-            model: Embedding model
             translate_fn: Optional translation function
             foodon_extractor: Optional FoodOn extractor (uses stored one if not provided)
 
         Returns:
             (value, confidence, best_match_name) - value can be numeric or string
         """
-        # Use stored foodon_extractor if not provided
+        # Use stored values if not provided
         extractor = foodon_extractor if foodon_extractor is not None else self.foodon_extractor
+        translator = translate_fn if translate_fn is not None else self.translate_fn
 
-        # Extract combined features for query
+        # Normalize query for text matching
+        query_lower = query.lower()
+        query_translated = translator(query).lower() if translator else query_lower
+
+        # 1. Try exact text match first (original or translated)
+        for i, (name_low, trans_low) in enumerate(zip(self.names_lower, self.translated_lower)):
+            if query_lower == name_low or query_translated == trans_low:
+                value = self.values[i]
+                if isinstance(value, (int, float, np.number)):
+                    value = float(value)
+                return value, 1.0, self.names[i]
+
+        # 2. Try substring match (prioritize longer matches)
+        substring_matches = []
+        for i, (name_low, trans_low) in enumerate(zip(self.names_lower, self.translated_lower)):
+            # Check if reference name is contained in query (e.g., "pomme de terre" in "pomme de terre FR")
+            if name_low in query_lower or trans_low in query_translated:
+                substring_matches.append((i, len(name_low)))
+            # Check if query is contained in reference (e.g., "potato" in "Potato, at farm")
+            elif query_lower in name_low or query_translated in trans_low:
+                substring_matches.append((i, len(query_lower)))
+
+        if substring_matches:
+            # Return the longest substring match
+            best_i, _ = max(substring_matches, key=lambda x: x[1])
+            value = self.values[best_i]
+            if isinstance(value, (int, float, np.number)):
+                value = float(value)
+            return value, 0.95, self.names[best_i]
+
+        # 3. Fall back to FoodOn + regex feature similarity
         query_features = extract_features(
-            query, "", model, translate_fn=translate_fn,
+            query, "",
+            translate_fn=translator,
             foodon_extractor=extractor
         ).reshape(1, -1)
 
-        # Compute cosine similarities to all reference embeddings
-        similarities = np.dot(self.embeddings, query_features.T).flatten()
-        norms_ref = np.linalg.norm(self.embeddings, axis=1)
+        # Compute cosine similarities to all reference features
+        similarities = np.dot(self.features, query_features.T).flatten()
+        norms_ref = np.linalg.norm(self.features, axis=1)
         norm_query = np.linalg.norm(query_features)
         # Avoid division by zero
         valid_norms = (norms_ref > 0) & (norm_query > 0)
@@ -453,19 +491,18 @@ DETECTION_PATTERNS = {
     "is_heated_greenhouse": r"\b(heated\s+greenhouse|serre\s+chauffée|serre\s+chauffee)\b",
 }
 
-# Index des features binaires dans le vecteur (après les 768 dims d'embedding)
+# Index des features binaires dans le vecteur
 BINARY_FEATURE_NAMES = list(DETECTION_PATTERNS.keys())
-EMBEDDING_DIM = 768  # E5-base-v2 output dimension
 
 # FoodOn feature dimension (loaded from foodon_loader)
 FOODON_DIM = 20
 
-# Scale factors for equal contribution in cosine similarity
-# E5 has 768 dims, we scale smaller feature vectors to have similar weight
-# sqrt(768 / N) gives each feature set equal total contribution
+# Scale factors to balance FoodOn and regex features
 import math
-FOODON_SCALE = math.sqrt(EMBEDDING_DIM / FOODON_DIM)  # ~6.2
-REGEX_SCALE = math.sqrt(EMBEDDING_DIM / len(DETECTION_PATTERNS))  # ~5.5
+# FoodOn features are already normalized, so scale = 1.0
+FOODON_SCALE = 1.0
+# Regex features are scaled to have similar magnitude
+REGEX_SCALE = math.sqrt(FOODON_DIM / len(DETECTION_PATTERNS))  # ~0.9
 
 
 def _extract_location(activity_name: str) -> Optional[str]:
@@ -504,54 +541,46 @@ def _extract_origin(activity_name: str) -> str:
 
 
 def extract_features(
-    name: str, activity_name: str, embedding_model, translate_fn=None,
+    name: str, activity_name: str, translate_fn=None,
     foodon_extractor=None
 ) -> np.ndarray:
     """
-    Extrait un vecteur de features combinant E5 + FoodOn + regex.
+    Extract feature vector combining FoodOn ontology + regex pattern features.
 
     Features vector structure:
-    - [0:768] E5 embedding (L2 normalized)
-    - [768:788] FoodOn features (scaled by ~6.2)
-    - [788:813] Regex binary features (scaled by ~5.5)
+    - [0:20] FoodOn ontology features (scaled)
+    - [20:45] Regex binary features (scaled)
 
     Args:
         name: Ingredient name (potentially French)
         activity_name: Activity/process name
-        embedding_model: SentenceTransformer model
         translate_fn: Optional function to translate name before encoding
         foodon_extractor: Optional FoodOnFeatureExtractor for ontology features
 
     Returns:
-        np.ndarray de dimension (768 + 20 + nb_patterns)
+        np.ndarray of dimension (20 + nb_patterns) = 45 dims
     """
-    # Combine nom + activité pour le texte complet (keep original for regex matching)
+    # Combine name + activity for regex matching
     full_text = f"{name} {activity_name}".lower()
 
-    # 1. E5 Embedding (768 dims) - translate first if available, then L2 normalize
-    name_for_embedding = translate_fn(name) if translate_fn else name
-    name_embedding = embedding_model.encode(name_for_embedding, convert_to_tensor=False)
-    # L2 normalize embedding
-    norm = np.linalg.norm(name_embedding)
-    if norm > 0:
-        name_embedding = name_embedding / norm
-
-    # 2. FoodOn features (20 dims) - scaled for equal weight
+    # 1. FoodOn features (20 dims) - uses translated name for English ontology
     if foodon_extractor is not None:
-        foodon_features = foodon_extractor.extract_features(name)
+        # Translate name for FoodOn (English-based ontology)
+        name_for_foodon = translate_fn(name) if translate_fn else name
+        foodon_features = foodon_extractor.extract_features(name_for_foodon)
     else:
         foodon_features = np.zeros(FOODON_DIM, dtype=np.float32)
     foodon_scaled = foodon_features * FOODON_SCALE
 
-    # 3. Regex binary features (25 dims) - scaled for equal weight
+    # 2. Regex binary features (25 dims) - scaled for equal weight
     binary_features = []
     for pattern_name, pattern in DETECTION_PATTERNS.items():
         match = 1.0 if re.search(pattern, full_text, re.IGNORECASE) else 0.0
         binary_features.append(match)
     regex_features = np.array(binary_features, dtype=np.float32) * REGEX_SCALE
 
-    # 4. Concatenate all features
-    return np.concatenate([name_embedding, foodon_scaled, regex_features])
+    # Concatenate features
+    return np.concatenate([foodon_scaled, regex_features])
 
 
 # =============================================================================
@@ -563,14 +592,17 @@ class Predictor:
     """
     Prédicteur de métadonnées pour ingrédients alimentaires.
 
-    Combine :
-    - Classification RandomForest pour categories, cropGroup, transportCooling
-    - Classification SVM pour density, inediblePart, rawToCookedRatio (values as categories)
-    - Règles déterministes pour defaultOrigin
+    Uses FoodOn ontology + regex pattern features for nearest neighbor matching.
+    Combines:
+    - Nearest neighbor matching for foodType, processingState, cropGroup, transportCooling
+    - Nearest neighbor matching for density, inediblePart, rawToCookedRatio
+    - Rule-based extraction for defaultOrigin
     """
 
     def __init__(self):
-        self.model = None  # SentenceTransformer, chargé lazily
+        """Initialize predictor."""
+        # SentenceTransformer for evaluation cross-validation only
+        self.model = None
         self._model_loaded = False
 
         # Translation model (FR → EN)
@@ -598,7 +630,7 @@ class Predictor:
         self.inedible_matcher = None
         self.ratio_matcher = None
 
-        # Training data (for categorical classifiers)
+        # Training data (for evaluation)
         self.training_features = None
         self.training_ingredients = None
 
@@ -632,21 +664,23 @@ class Predictor:
             TRANSLATION_CACHE_PATH.unlink()
             print("Translation cache cleared")
 
-    def _load_model(self):
-        """Charge le modèle d'embedding et de traduction (lazy loading)."""
-        if not self._model_loaded:
-            print(f"Importing sentence_transformers...")
-            from sentence_transformers import SentenceTransformer
-
-            print(f"Loading embedding model: {MODEL}")
-            self.model = SentenceTransformer(MODEL)
-
+    def _load_translation_model(self):
+        """Load translation model (lazy loading)."""
+        if self.mt_model is None:
             print(f"Loading translation model: {MT_MODEL}")
             self.mt_tokenizer = AutoTokenizer.from_pretrained(MT_MODEL)
             self.mt_model = AutoModelForSeq2SeqLM.from_pretrained(MT_MODEL).to(
                 self.device
             )
 
+    def _load_embedding_model(self):
+        """Load embedding model for evaluation only (lazy loading)."""
+        if not self._model_loaded:
+            print(f"Importing sentence_transformers...")
+            from sentence_transformers import SentenceTransformer
+
+            print(f"Loading embedding model: {MODEL}")
+            self.model = SentenceTransformer(MODEL)
             self._model_loaded = True
 
     def _load_foodon(self):
@@ -703,10 +737,10 @@ class Predictor:
         return any(cat in vegetal_categories for cat in categories)
 
     def _extract_binary_from_features(self, features: np.ndarray) -> dict:
-        """Extrait les features binaires (regex) du vecteur de features."""
-        # Skip embedding (768) and FoodOn (20) to get to regex features
-        regex_start = EMBEDDING_DIM + FOODON_DIM
-        binary_values = features[0, regex_start:]  # Skip embedding and FoodOn
+        """Extract binary regex features from the feature vector."""
+        # Features: [0:20] FoodOn, [20:45] regex
+        regex_start = FOODON_DIM  # 20
+        binary_values = features[0, regex_start:]  # Skip FoodOn to get regex features
         # Unscale to get original binary values
         binary_values = binary_values / REGEX_SCALE
         return {
@@ -776,10 +810,10 @@ class Predictor:
 
     def fit(self, ingredients: list[dict], verbose: bool = True):
         """
-        Entraîne le prédicteur sur une liste d'ingrédients.
+        Train the predictor on a list of ingredients.
 
         Args:
-            ingredients: Liste de dicts avec au minimum "name" et "activityName"
+            ingredients: List of dicts with at least "name" and "activityName"
         """
         import time
 
@@ -790,7 +824,7 @@ class Predictor:
             print(msg, end="", flush=True)
             start_time[0] = time.time()
 
-        self._load_model()
+        self._load_translation_model()
         self._load_foodon()
 
         if verbose:
@@ -806,16 +840,16 @@ class Predictor:
         if verbose and cache_misses > 0:
             print(f" ({cache_hits} hits, {cache_misses} new)", end="")
 
-        # 2. Extraction des features pour tous les ingrédients
+        # 2. Extract features for all ingredients
         if verbose:
             timed_print("Extracting features...")
 
         features_list = []
         for i, ing in enumerate(ingredients):
             activity = ing.get("activityName", "")
-            # Use translated name for both embedding AND FoodOn (FoodOn is English-based)
             feat = extract_features(
-                translated_names[i], activity, self.model,
+                translated_names[i], activity,
+                translate_fn=None,  # Already translated
                 foodon_extractor=self.foodon_extractor
             )
             features_list.append(feat)
@@ -826,14 +860,13 @@ class Predictor:
 
         # 3. Build foodType matcher (nearest neighbor)
         # Use ONLY reference data from food_type.csv - NOT ingredients.json
-        # (ingredients.json uses vegetable_fresh for both vegetables AND fruits)
         if verbose:
             timed_print("Building foodType matcher...")
 
         ref_food_names, ref_food_types = _load_food_type_data()
 
         self.food_type_matcher = NearestNeighborMatcher(
-            ref_food_names, ref_food_types, self.model,
+            ref_food_names, ref_food_types,
             translate_fn=self._translate, foodon_extractor=self.foodon_extractor
         )
 
@@ -857,12 +890,11 @@ class Predictor:
         y_processing.extend(ref_proc_states)
 
         self.processing_matcher = NearestNeighborMatcher(
-            ing_names_proc, y_processing, self.model,
+            ing_names_proc, y_processing,
             translate_fn=self._translate, foodon_extractor=self.foodon_extractor
         )
 
         # 4. Build cropGroup matcher (nearest neighbor)
-        # Combine reference data from cropgroup.csv with ingredients.json
         if verbose:
             timed_print("Building cropGroup matcher...")
 
@@ -876,37 +908,32 @@ class Predictor:
 
         if cropgroup_names:
             self.cropgroup_matcher = NearestNeighborMatcher(
-                cropgroup_names,
-                cropgroup_vals,
-                self.model,
-                translate_fn=self._translate,
-                foodon_extractor=self.foodon_extractor,
+                cropgroup_names, cropgroup_vals,
+                translate_fn=self._translate, foodon_extractor=self.foodon_extractor
             )
 
-        # 5. Build transportCooling matcher (nearest neighbor)
+        # 5. Build transportCooling matcher (not used for prediction, but kept for compatibility)
         if verbose:
             timed_print("Building transportCooling matcher...")
 
-        # Build from training ingredients
         transport_names = [ing["name"] for ing in ingredients]
         y_transport = [ing.get("transportCooling", "none") for ing in ingredients]
 
-        # Also add reference data from transport_cooling.csv
         ref_transport_names, ref_transport = _load_transport_data()
         transport_names.extend(ref_transport_names)
         y_transport.extend(ref_transport)
 
         self.transport_matcher = NearestNeighborMatcher(
-            transport_names, y_transport, self.model,
+            transport_names, y_transport,
             translate_fn=self._translate, foodon_extractor=self.foodon_extractor
         )
 
-        # 6. Build nearest neighbor matchers from reference data
+        # 6. Build nearest neighbor matchers for continuous values
         if verbose:
             timed_print("Building density matcher from reference data...")
         density_names, density_vals = _load_density_data()
         self.density_matcher = NearestNeighborMatcher(
-            density_names, density_vals, self.model,
+            density_names, density_vals,
             translate_fn=self._translate, foodon_extractor=self.foodon_extractor
         )
 
@@ -914,7 +941,7 @@ class Predictor:
             timed_print("Building inedible part matcher from reference data...")
         inedible_names, inedible_vals = _load_inedible_data()
         self.inedible_matcher = NearestNeighborMatcher(
-            inedible_names, inedible_vals, self.model,
+            inedible_names, inedible_vals,
             translate_fn=self._translate, foodon_extractor=self.foodon_extractor
         )
 
@@ -922,7 +949,7 @@ class Predictor:
             timed_print("Building raw-to-cooked ratio matcher from reference data...")
         ratio_names, ratio_vals = _load_ratio_data()
         self.ratio_matcher = NearestNeighborMatcher(
-            ratio_names, ratio_vals, self.model,
+            ratio_names, ratio_vals,
             translate_fn=self._translate, foodon_extractor=self.foodon_extractor
         )
 
@@ -936,39 +963,39 @@ class Predictor:
 
     def predict(self, ingredient: dict) -> dict:
         """
-        Prédit les métadonnées pour un nouvel ingrédient.
+        Predict metadata for a new ingredient.
 
         Args:
-            ingredient: Dict avec "name" et "activityName"
+            ingredient: Dict with "name" and "activityName"
 
         Returns:
-            Dict avec les métadonnées prédites
+            Dict with predicted metadata
         """
         if not self.is_fitted:
             raise RuntimeError(
                 "Predictor must be fitted before prediction. Call fit() first."
             )
 
-        self._load_model()
+        self._load_translation_model()
         self._load_foodon()
 
         name = ingredient.get("name", "")
         activity = ingredient.get("activityName", "")
 
-        # Extraction des features (with translation and FoodOn)
+        # Extract features (with translation and FoodOn)
         features = extract_features(
-            name, activity, self.model, translate_fn=self._translate,
+            name, activity,
+            translate_fn=self._translate,
             foodon_extractor=self.foodon_extractor
         ).reshape(1, -1)
 
         predictions = {}
         full_text = f"{name} {activity}"
 
-        # Extraire les features binaires pour les règles
+        # Extract binary features for rules
         binary_features = self._extract_binary_from_features(features)
 
-        # 1. FoodType (règles prioritaires, puis nearest neighbor)
-        # Check if we can determine foodType from rules (e.g., fish, meat, dairy)
+        # 1. FoodType (rules first, then nearest neighbor)
         if binary_features.get("is_fish") or binary_features.get("is_seafood"):
             food_type = "fish_seafood"
             food_type_match = None
@@ -981,29 +1008,27 @@ class Predictor:
         else:
             # Fallback to nearest neighbor
             food_type, _, food_type_match = self.food_type_matcher.predict(
-                name, self.model, translate_fn=self._translate
+                name, translate_fn=self._translate
             )
 
         predictions["foodType"] = food_type
         predictions["foodTypeMatch"] = food_type_match
 
-        # 2. ProcessingState (packaging detection prioritaire, puis nearest neighbor)
+        # 2. ProcessingState (packaging detection first, then nearest neighbor)
         packaging, _ = self._detect_packaging(full_text)
         if packaging and packaging != "fresh":
-            # Non-fresh packaging implies processed
             processing_state = "processed"
             processing_match = None
         else:
-            # Fallback to nearest neighbor
             processing_state, _, processing_match = self.processing_matcher.predict(
-                name, self.model, translate_fn=self._translate
+                name, translate_fn=self._translate
             )
 
         predictions["processingState"] = processing_state
         predictions["processingStateMatch"] = processing_match
         predictions["packaging"] = packaging
 
-        # 3. Labels additifs (par règles)
+        # 3. Additive labels (by rules)
         labels = []
         if re.search(r"\b(bio|organic)\b", full_text, re.IGNORECASE):
             labels.append("organic")
@@ -1018,11 +1043,11 @@ class Predictor:
         categories = [base_category] + labels
         predictions["categories"] = categories
 
-        # 4. cropGroup (si végétal) - nearest neighbor matching
+        # 5. cropGroup (for vegetal types) - nearest neighbor matching
         vegetal_types = {"vegetable", "fruit", "grain", "nut_oilseed", "spice_condiment"}
         if food_type in vegetal_types and self.cropgroup_matcher is not None:
             cropgroup_val, _, cropgroup_match = self.cropgroup_matcher.predict(
-                name, self.model, translate_fn=self._translate
+                name, translate_fn=self._translate
             )
             predictions["cropGroup"] = cropgroup_val
             predictions["cropGroupMatch"] = cropgroup_match
@@ -1030,22 +1055,22 @@ class Predictor:
             predictions["cropGroup"] = None
             predictions["cropGroupMatch"] = None
 
-        # 5. transportCooling (packaging-based, puis foodType-based)
+        # 6. transportCooling (packaging-based, then foodType-based)
         transport_cooling = self._get_transport_from_packaging(packaging, food_type)
         predictions["transportCooling"] = transport_cooling
 
-        # 5. defaultOrigin (par règles)
+        # 7. defaultOrigin (by rules)
         predictions["defaultOrigin"] = _extract_origin(activity)
 
-        # 6. Continuous values by classification (query = name only)
+        # 8. Continuous values (nearest neighbor)
         density_val, _, density_match = self.density_matcher.predict(
-            name, self.model, translate_fn=self._translate
+            name, translate_fn=self._translate
         )
         inedible_val, _, inedible_match = self.inedible_matcher.predict(
-            name, self.model, translate_fn=self._translate
+            name, translate_fn=self._translate
         )
         ratio_val, _, ratio_match = self.ratio_matcher.predict(
-            name, self.model, translate_fn=self._translate
+            name, translate_fn=self._translate
         )
 
         predictions["density"] = round(density_val, 3)
@@ -1059,7 +1084,7 @@ class Predictor:
 
     def predict_with_confidence(self, ingredient: dict) -> tuple[dict, dict]:
         """
-        Prédit avec scores de confiance.
+        Predict with confidence scores.
 
         Returns:
             (predictions, confidence_scores)
@@ -1067,24 +1092,25 @@ class Predictor:
         if not self.is_fitted:
             raise RuntimeError("Predictor must be fitted before prediction.")
 
-        self._load_model()
+        self._load_translation_model()
         self._load_foodon()
 
         name = ingredient.get("name", "")
         activity = ingredient.get("activityName", "")
         full_text = f"{name} {activity}"
         features = extract_features(
-            name, activity, self.model, translate_fn=self._translate,
+            name, activity,
+            translate_fn=self._translate,
             foodon_extractor=self.foodon_extractor
         ).reshape(1, -1)
 
         predictions = {}
         confidence = {}
 
-        # Extraire les features binaires pour les règles
+        # Extract binary features for rules
         binary_features = self._extract_binary_from_features(features)
 
-        # 1. FoodType (règles prioritaires, puis nearest neighbor)
+        # 1. FoodType (rules first, then nearest neighbor)
         food_type_conf = 1.0  # Default confidence for rule-based
         food_type_match = None
         if binary_features.get("is_fish") or binary_features.get("is_seafood"):
@@ -1096,14 +1122,14 @@ class Predictor:
         else:
             # Fallback to nearest neighbor
             food_type, food_type_conf, food_type_match = self.food_type_matcher.predict(
-                name, self.model, translate_fn=self._translate
+                name, translate_fn=self._translate
             )
 
         predictions["foodType"] = food_type
         predictions["foodTypeMatch"] = food_type_match
         confidence["foodType"] = food_type_conf
 
-        # 2. ProcessingState (packaging detection prioritaire, puis nearest neighbor)
+        # 2. ProcessingState (packaging detection first, then nearest neighbor)
         packaging, _ = self._detect_packaging(full_text)
         proc_conf = 1.0  # Default confidence for rule-based
         processing_match = None
@@ -1111,7 +1137,7 @@ class Predictor:
             processing_state = "processed"
         else:
             processing_state, proc_conf, processing_match = self.processing_matcher.predict(
-                name, self.model, translate_fn=self._translate
+                name, translate_fn=self._translate
             )
 
         predictions["processingState"] = processing_state
@@ -1119,7 +1145,7 @@ class Predictor:
         predictions["packaging"] = packaging
         confidence["processingState"] = proc_conf
 
-        # 3. Labels additifs (par règles)
+        # 3. Additive labels (by rules)
         labels = []
         if re.search(r"\b(bio|organic)\b", full_text, re.IGNORECASE):
             labels.append("organic")
@@ -1133,7 +1159,6 @@ class Predictor:
         )
         categories = [base_category] + labels
         predictions["categories"] = categories
-        # Use foodType confidence as categories confidence
         confidence["categories"] = food_type_conf
 
         # 5. cropGroup - nearest neighbor matching
@@ -1141,7 +1166,7 @@ class Predictor:
         vegetal_types = {"vegetable", "fruit", "grain", "nut_oilseed", "spice_condiment"}
         if food_type in vegetal_types and self.cropgroup_matcher is not None:
             cropgroup_val, cropgroup_conf, cropgroup_match = self.cropgroup_matcher.predict(
-                name, self.model, translate_fn=self._translate
+                name, translate_fn=self._translate
             )
             predictions["cropGroup"] = cropgroup_val
             predictions["cropGroupMatch"] = cropgroup_match
@@ -1152,23 +1177,22 @@ class Predictor:
         if predictions["cropGroup"]:
             confidence["cropGroup"] = cropgroup_conf
 
-        # 5. transportCooling (packaging-based, deterministic from packaging + foodType)
+        # 6. transportCooling (packaging-based, deterministic)
         transport_cooling = self._get_transport_from_packaging(packaging, food_type)
         predictions["transportCooling"] = transport_cooling
-        # No confidence for rule-based transportCooling
 
-        # 6. defaultOrigin
+        # 7. defaultOrigin
         predictions["defaultOrigin"] = _extract_origin(activity)
 
-        # 7. Value predictions with confidence
+        # 8. Value predictions with confidence
         density_val, density_conf, density_match = self.density_matcher.predict(
-            name, self.model, translate_fn=self._translate
+            name, translate_fn=self._translate
         )
         inedible_val, inedible_conf, inedible_match = self.inedible_matcher.predict(
-            name, self.model, translate_fn=self._translate
+            name, translate_fn=self._translate
         )
         ratio_val, ratio_conf, ratio_match = self.ratio_matcher.predict(
-            name, self.model, translate_fn=self._translate
+            name, translate_fn=self._translate
         )
 
         predictions["density"] = round(density_val, 3)
@@ -1274,6 +1298,8 @@ class Predictor:
         )
 
         if len(cropgroup_names) > 10:
+            # Load embedding model for cropGroup evaluation
+            self._load_embedding_model()
             # Compute embeddings for names
             X_crop = self.model.encode(cropgroup_names)
             le = LabelEncoder()
@@ -1298,12 +1324,11 @@ class Predictor:
         return scores
 
     def save(self, path: str):
-        """Sauvegarde le prédicteur entraîné."""
+        """Save the trained predictor."""
         if not self.is_fitted:
             raise RuntimeError("Cannot save unfitted predictor.")
 
-        # Clear FoodOn extractor references from matchers (can't be pickled)
-        # They will be restored on load when predict() is called
+        # Clear unpicklable references from matchers
         matchers = [
             self.food_type_matcher,
             self.processing_matcher,
@@ -1316,8 +1341,9 @@ class Predictor:
         for matcher in matchers:
             if matcher is not None:
                 matcher.foodon_extractor = None
+                matcher.translate_fn = None  # Can't pickle bound methods
 
-        # On ne sauvegarde pas le modèle d'embedding ni FoodOn (rechargés au besoin)
+        # Don't save embedding model or FoodOn (reloaded lazily)
         state = {
             # Categorical matchers (nearest neighbor approach)
             "food_type_matcher": self.food_type_matcher,
@@ -1337,7 +1363,7 @@ class Predictor:
             "feature_dim": self.feature_dim,
             "is_fitted": True,
             # FoodOn state (extractor is reloaded lazily)
-            "_foodon_loaded": False,  # Will be reloaded on first predict
+            "_foodon_loaded": False,
         }
 
         with open(path, "wb") as f:
@@ -1396,8 +1422,8 @@ class Detector:
     ):
         """
         Args:
-            model_path: Chemin vers un modèle sauvegardé
-            training_data: Données d'entraînement (si pas de modèle sauvegardé)
+            model_path: Path to a saved model
+            training_data: Training data (if no saved model provided)
         """
         self.predictor = Predictor()
 
@@ -1434,13 +1460,19 @@ class Detector:
 
 def update(input_json, threshold=THRESHOLD, debug=False, model_path=None):
     """
-    Met à jour les métadonnées pour tous les ingrédients.
+    Update metadata for all ingredients.
 
-    Compatible avec le CLI existant.
+    Compatible with existing CLI.
+
+    Args:
+        input_json: List of ingredients
+        threshold: Confidence threshold for predictions
+        debug: Add debug info to output
+        model_path: Path to saved model (optional)
     """
     from rich.progress import track
 
-    # Filtrer les ingrédients qui ont déjà toutes les métadonnées
+    # Filter ingredients that already have all metadata
     to_predict = [ing for ing in input_json if not _get(ing)]
     already_done = [ing for ing in input_json if _get(ing)]
 
@@ -1448,8 +1480,10 @@ def update(input_json, threshold=THRESHOLD, debug=False, model_path=None):
         print("All ingredients already have metadata.")
         return input_json
 
-    # Entraîner sur les ingrédients existants si pas de modèle fourni
-    detector = Detector(model_path=model_path, training_data=already_done or input_json)
+    # Train on existing ingredients if no model provided
+    detector = Detector(
+        model_path=model_path, training_data=already_done or input_json
+    )
 
     output_json = list(already_done)
 
@@ -1476,7 +1510,7 @@ def update(input_json, threshold=THRESHOLD, debug=False, model_path=None):
 
 
 def detect(ingredient, model_path=None, training_data=None):
-    """Interface simple pour détecter un seul ingrédient."""
+    """Simple interface to detect a single ingredient."""
     detector = Detector(model_path=model_path, training_data=training_data)
     return detector.detect(ingredient)
 
