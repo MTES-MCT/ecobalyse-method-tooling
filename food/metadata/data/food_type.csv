@@ -1,0 +1,70 @@
+name,foodType
+légume frais,vegetable
+légume en conserve,vegetable
+légume surgelé,vegetable
+légume séché,vegetable
+légume en bocal,vegetable
+fruit frais,fruit
+fruit en conserve,fruit
+fruit surgelé,fruit
+fruit séché,fruit
+confiture,fruit
+compote,fruit
+viande fraîche,meat
+viande surgelée,meat
+viande séchée,meat
+charcuterie,meat
+viande en conserve,meat
+poisson frais,fish_seafood
+poisson surgelé,fish_seafood
+poisson en conserve,fish_seafood
+poisson fumé,fish_seafood
+poisson séché,fish_seafood
+fruits de mer,fish_seafood
+crustacés,fish_seafood
+lait frais,dairy
+lait UHT,dairy
+fromage,dairy
+yaourt,dairy
+beurre,dairy
+crème fraîche,dairy
+lait en poudre,dairy
+céréale,grain
+farine,grain
+pain,grain
+pâtes,grain
+riz,grain
+semoule,grain
+noix,nut_oilseed
+graine,nut_oilseed
+huile,nut_oilseed
+beurre de cacahuète,nut_oilseed
+épice,spice_condiment
+herbe aromatique,spice_condiment
+sauce,spice_condiment
+vinaigre,spice_condiment
+moutarde,spice_condiment
+sel,spice_condiment
+sucre,spice_condiment
+œuf,meat
+œuf en poudre,meat
+choux,vegetable
+asperge,vegetable
+carotte,vegetable
+tomate,vegetable
+pomme de terre,vegetable
+oignon,vegetable
+melon,fruit
+pastèque,fruit
+pomme,fruit
+orange,fruit
+banane,fruit
+fraise,fruit
+raisin,fruit
+pêche,fruit
+abricot,fruit
+cerise,fruit
+ananas,fruit
+mangue,fruit
+citron,fruit
+pamplemousse,fruit

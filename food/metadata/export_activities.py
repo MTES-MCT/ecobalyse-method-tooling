@@ -13,9 +13,44 @@ import uuid
 from pathlib import Path
 
 import pandas as pd
+import torch
 from rich.progress import track
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 from predict import Predictor
+
+# English to French translation model
+EN_FR_MODEL = "Helsinki-NLP/opus-mt-en-fr"
+
+class EnglishToFrenchTranslator:
+    """Translate English ingredient names to French."""
+
+    def __init__(self):
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        print(f"Loading EN→FR translation model: {EN_FR_MODEL}")
+        self.tokenizer = AutoTokenizer.from_pretrained(EN_FR_MODEL)
+        self.model = AutoModelForSeq2SeqLM.from_pretrained(EN_FR_MODEL).to(self.device)
+        self._cache = {}
+
+    def translate(self, text: str) -> str:
+        """Translate English text to French."""
+        text = text.strip()
+        if not text:
+            return ""
+
+        # Check cache
+        if text in self._cache:
+            return self._cache[text]
+
+        inputs = self.tokenizer(text, return_tensors="pt").to(self.device)
+        with torch.no_grad():
+            outputs = self.model.generate(**inputs, max_length=60)
+        result = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0].strip()
+
+        # Cache result
+        self._cache[text] = result
+        return result
+
 
 # Animal detection patterns and mappings
 ANIMAL_PATTERNS = {
@@ -130,6 +165,7 @@ def build_activity_entry(
     activity_name: str,
     source: str,
     predictions: dict,
+    translator: EnglishToFrenchTranslator = None,
 ) -> dict:
     """
     Build an activity entry in the activities.json format.
@@ -141,8 +177,11 @@ def build_activity_entry(
     # Generate alias from English name
     alias = generate_alias(name)
 
-    # Use English name as displayName (as requested)
-    display_name = name
+    # Translate to French for displayName
+    if translator:
+        display_name = translator.translate(name)
+    else:
+        display_name = name
 
     # Build ingredient metadata
     ingredient = {
@@ -229,6 +268,9 @@ def main():
         predictor = Predictor()
         predictor.fit(training_data)
 
+    # Load EN→FR translator
+    translator = EnglishToFrenchTranslator()
+
     # Process each ingredient
     print(f"\nProcessing {len(df)} ingredients...")
     activities = []
@@ -245,8 +287,8 @@ def main():
         ingredient = {"name": name, "activityName": activity_name}
         predictions = predictor.predict(ingredient)
 
-        # Build activity entry
-        activity = build_activity_entry(name, activity_name, source, predictions)
+        # Build activity entry (with French translation)
+        activity = build_activity_entry(name, activity_name, source, predictions, translator)
         activities.append(activity)
 
     # Write output

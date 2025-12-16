@@ -60,6 +60,39 @@ warnings.filterwarnings("ignore")
 
 MODEL = "intfloat/e5-base-v2"  # 192M params, 768 dims (was jonny9f/food_embeddings2)
 
+# Noise words to remove from ingredient names before embedding
+# Case-insensitive words
+NAME_NOISE_WORDS_CI = [
+    "par défaut",
+    "par defaut",
+    "élec",
+]
+# Case-sensitive words (uppercase country codes)
+NAME_NOISE_WORDS_CS = [
+    "FR",
+    "IT",
+    "DE",
+    "ES",
+    "BE",
+    "UE",
+    "EU",
+]
+
+
+def cleanup_name(name: str) -> str:
+    """Remove noise words (country codes, 'par défaut', etc.) from ingredient name."""
+    s = name
+    # Case-insensitive removal
+    pattern_ci = r"\b(" + "|".join(NAME_NOISE_WORDS_CI) + r")\b"
+    s = re.sub(pattern_ci, " ", s, flags=re.IGNORECASE)
+    # Case-sensitive removal (uppercase country codes only)
+    pattern_cs = r"\b(" + "|".join(NAME_NOISE_WORDS_CS) + r")\b"
+    s = re.sub(pattern_cs, " ", s)
+    # Clean up punctuation and multiple spaces
+    s = re.sub(r"[|]", " ", s)
+    s = re.sub(r"\s+", " ", s)
+    return s.strip(" ,;-").strip()
+
 # Translation cache file (persisted to disk for faster subsequent runs)
 TRANSLATION_CACHE_PATH = Path(__file__).parent / ".translation_cache.pkl"
 MT_MODEL = "Helsinki-NLP/opus-mt-fr-en"  # FR → EN Machine Translation
@@ -176,19 +209,31 @@ ORIGIN_MAPPING = {
 
 # Paths to reference data files (relative to predict module)
 DATA_DIR = Path(__file__).parent / "data"
+FAO_DENSITY_DATA_PATH = DATA_DIR / "fao_density.csv"
 DENSITY_DATA_PATH = DATA_DIR / "density.csv"
 INEDIBLE_DATA_PATH = DATA_DIR / "inedible_part.csv"
 RATIO_DATA_PATH = DATA_DIR / "cooked_to_raw.csv"
-CATEGORIES_DATA_PATH = DATA_DIR / "categories.csv"
+FOOD_TYPE_DATA_PATH = DATA_DIR / "food_type.csv"
+PROCESSING_STATE_DATA_PATH = DATA_DIR / "processing_state.csv"
 TRANSPORT_DATA_PATH = DATA_DIR / "transport_cooling.csv"
 
 
 def _load_density_data() -> tuple[list, list]:
-    """Load density.csv, return (names, values)."""
-    df = pd.read_csv(DENSITY_DATA_PATH)
-    # Columns: name, density, source
-    names = df["name"].tolist()
-    values = df["density"].tolist()
+    """Load fao_density.csv and density.csv, return combined (names, values)."""
+    names = []
+    values = []
+
+    # Load FAO density data (primary reference) if exists
+    if FAO_DENSITY_DATA_PATH.exists():
+        df_fao = pd.read_csv(FAO_DENSITY_DATA_PATH)
+        names.extend(df_fao["name"].tolist())
+        values.extend(df_fao["density"].tolist())
+
+    # Load generic density data (additional reference)
+    df_generic = pd.read_csv(DENSITY_DATA_PATH)
+    names.extend(df_generic["name"].tolist())
+    values.extend(df_generic["density"].tolist())
+
     return names, values
 
 
@@ -228,13 +273,22 @@ def _load_ratio_data() -> tuple[list, list]:
     return names, values
 
 
-def _load_categories_data() -> tuple[list, list]:
-    """Load categories.csv, return (names, categories)."""
-    df = pd.read_csv(CATEGORIES_DATA_PATH)
-    # Columns: name,categories
+def _load_food_type_data() -> tuple[list, list]:
+    """Load food_type.csv, return (names, food_types)."""
+    df = pd.read_csv(FOOD_TYPE_DATA_PATH)
+    # Columns: name,foodType
     names = df["name"].tolist()
-    categories = df["categories"].tolist()
-    return names, categories
+    food_types = df["foodType"].tolist()
+    return names, food_types
+
+
+def _load_processing_state_data() -> tuple[list, list]:
+    """Load processing_state.csv, return (names, processing_states)."""
+    df = pd.read_csv(PROCESSING_STATE_DATA_PATH)
+    # Columns: name,processingState
+    names = df["name"].tolist()
+    processing_states = df["processingState"].tolist()
+    return names, processing_states
 
 
 def _load_transport_data() -> tuple[list, list]:
@@ -592,7 +646,8 @@ class Predictor:
 
     def _translate(self, text: str) -> str:
         """Translate French text to English (with caching)."""
-        text = text.strip()
+        # Clean up noise words (country codes, "par défaut", etc.) before translation
+        text = cleanup_name(text)
         if not text:
             return ""
 
@@ -730,9 +785,14 @@ class Predictor:
             timed_print(f"Training on {len(ingredients)} ingredients...\n")
 
         # 1. Pre-translate all ingredient names (batch for performance)
+        cache_size_before = len(self._translation_cache)
         if verbose:
-            timed_print("Translating ingredient names (cached)...")
+            timed_print(f"Translating ingredient names ({cache_size_before} cached)...")
         translated_names = [self._translate(ing.get("name", "")) for ing in ingredients]
+        cache_hits = cache_size_before
+        cache_misses = len(self._translation_cache) - cache_size_before
+        if verbose and cache_misses > 0:
+            print(f" ({cache_hits} hits, {cache_misses} new)", end="")
 
         # 2. Extraction des features pour tous les ingrédients
         if verbose:
@@ -752,42 +812,40 @@ class Predictor:
         self.training_ingredients = ingredients
         self.feature_dim = self.training_features.shape[1]
 
-        # 3. Build foodType and processingState matchers (nearest neighbor)
+        # 3. Build foodType matcher (nearest neighbor)
+        # Use ONLY reference data from food_type.csv - NOT ingredients.json
+        # (ingredients.json uses vegetable_fresh for both vegetables AND fruits)
         if verbose:
             timed_print("Building foodType matcher...")
 
-        # Extract foodType and processingState from training ingredients
-        ing_names = [ing["name"] for ing in ingredients]
-        y_food_types = []
-        y_processing = []
-        for ing in ingredients:
-            base_cat = self._get_base_category(ing.get("categories", ["misc"]))
-            food_type, proc_state = CATEGORY_TO_DIMENSIONS.get(
-                base_cat, ("misc", "processed")
-            )
-            y_food_types.append(food_type)
-            y_processing.append(proc_state)
-
-        # Also add reference data from categories.csv
-        ref_cat_names, ref_categories = _load_categories_data()
-        for name, cat in zip(ref_cat_names, ref_categories):
-            ing_names.append(name)
-            food_type, proc_state = CATEGORY_TO_DIMENSIONS.get(
-                cat, ("misc", "processed")
-            )
-            y_food_types.append(food_type)
-            y_processing.append(proc_state)
+        ref_food_names, ref_food_types = _load_food_type_data()
 
         self.food_type_matcher = NearestNeighborMatcher(
-            ing_names, y_food_types, self.model,
+            ref_food_names, ref_food_types, self.model,
             translate_fn=self._translate, foodon_extractor=self.foodon_extractor
         )
 
+        # 3b. Build processingState matcher (nearest neighbor)
         if verbose:
             timed_print("Building processingState matcher...")
 
+        # Extract processingState from training ingredients
+        ing_names_proc = [ing["name"] for ing in ingredients]
+        y_processing = []
+        for ing in ingredients:
+            base_cat = self._get_base_category(ing.get("categories", ["misc"]))
+            _, proc_state = CATEGORY_TO_DIMENSIONS.get(
+                base_cat, ("misc", "processed")
+            )
+            y_processing.append(proc_state)
+
+        # Add reference data from processing_state.csv
+        ref_proc_names, ref_proc_states = _load_processing_state_data()
+        ing_names_proc.extend(ref_proc_names)
+        y_processing.extend(ref_proc_states)
+
         self.processing_matcher = NearestNeighborMatcher(
-            ing_names, y_processing, self.model,
+            ing_names_proc, y_processing, self.model,
             translate_fn=self._translate, foodon_extractor=self.foodon_extractor
         )
 

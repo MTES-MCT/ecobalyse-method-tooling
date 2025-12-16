@@ -1,0 +1,51 @@
+name,processingState
+légume frais,raw
+légume en conserve,processed
+légume surgelé,processed
+légume séché,processed
+légume en bocal,processed
+fruit frais,raw
+fruit en conserve,processed
+fruit surgelé,processed
+fruit séché,processed
+confiture,processed
+compote,processed
+viande fraîche,raw
+viande surgelée,processed
+viande séchée,processed
+charcuterie,processed
+viande en conserve,processed
+poisson frais,raw
+poisson surgelé,processed
+poisson en conserve,processed
+poisson fumé,processed
+poisson séché,processed
+fruits de mer,raw
+crustacés,raw
+lait frais,raw
+lait UHT,processed
+fromage,processed
+yaourt,processed
+beurre,processed
+crème fraîche,processed
+lait en poudre,processed
+céréale,raw
+farine,processed
+pain,processed
+pâtes,processed
+riz,raw
+semoule,processed
+noix,raw
+graine,raw
+huile,processed
+beurre de cacahuète,processed
+épice,processed
+herbe aromatique,raw
+sauce,processed
+vinaigre,processed
+moutarde,processed
+sel,processed
+sucre,processed
+œuf,raw
+œuf en poudre,processed
+choux,raw

@@ -94,29 +94,32 @@ def main():
     # Color coding: cyan=name, yellow=categories, green=transport, magenta=cropGroup,
     #               blue=density, red=inedible, white=ratio
     table = Table(title="Predictions", show_header=True, header_style="bold")
-    table.add_column("Name", style="cyan", no_wrap=True, max_width=25)
-    # Categories group (yellow)
-    table.add_column("categories", style="yellow", no_wrap=True)
-    table.add_column("match", style="yellow", no_wrap=True, max_width=18)
-    table.add_column("conf", style="yellow", justify="right")
+    table.add_column("Name", style="cyan", no_wrap=True, max_width=15)
+    # Categories group (yellow) - show foodType and processingState with their matches
+    table.add_column("categories", style="yellow", no_wrap=True, max_width=15)
+    table.add_column("foodType", style="yellow", no_wrap=True, max_width=12)
+    table.add_column("ftMatch", style="yellow", no_wrap=True, max_width=15)
+    table.add_column("procState", style="yellow", no_wrap=True, max_width=10)
+    table.add_column("psMatch", style="yellow", no_wrap=True, max_width=15)
+    table.add_column("%", style="yellow", justify="right")
     # Transport group (green)
     table.add_column("pkg", style="green", no_wrap=True, max_width=0)
     table.add_column("transport", style="green", no_wrap=True)
     # CropGroup group (magenta)
     table.add_column("cropGroup", style="magenta", no_wrap=True, max_width=20)
-    table.add_column("conf", style="magenta", justify="right", max_width=4)
+    table.add_column("%", style="magenta", justify="right", max_width=4)
     # Density group (blue)
     table.add_column("density", style="blue", justify="right", max_width=5)
     table.add_column("match", style="blue", no_wrap=True, max_width=20)
-    table.add_column("conf", style="blue", justify="right", max_width=4)
+    table.add_column("%", style="blue", justify="right", max_width=4)
     # Inedible group (red)
     table.add_column("inedible", style="red", justify="right", max_width=5)
     table.add_column("match", style="red", no_wrap=True, max_width=20)
-    table.add_column("conf", style="red", justify="right", max_width=4)
+    table.add_column("%", style="red", justify="right", max_width=4)
     # Ratio group (white/default)
     table.add_column("c/raw", justify="right", max_width=5)
     table.add_column("match", no_wrap=True, max_width=20)
-    table.add_column("conf", justify="right", max_width=4)
+    table.add_column("%", justify="right", max_width=4)
 
     # Collect predictions first with progress bar
     all_predictions = []
@@ -129,7 +132,10 @@ def main():
         # Format values
         categories = predictions.get("categories", [])
         categories_str = ", ".join(categories) if categories else "-"
-        food_type_match = (predictions.get("foodTypeMatch") or "-")[:18]
+        food_type = predictions.get("foodType") or "-"
+        food_type_match = (predictions.get("foodTypeMatch") or "-")[:15]
+        proc_state = predictions.get("processingState") or "-"
+        proc_state_match = (predictions.get("processingStateMatch") or "-")[:15]
         packaging = predictions.get("packaging") or "-"
         transport = predictions.get("transportCooling", "-")
         crop = predictions.get("cropGroup") or "-"
@@ -143,13 +149,16 @@ def main():
         # Format confidence scores
         def fmt_conf(key):
             if key in confidence:
-                return f"{confidence[key]:.0%}"
+                return f"{int(confidence[key] * 100)}"
             return "-"
 
         table.add_row(
             ing["name"][:25],
             categories_str,
+            food_type,
             food_type_match,
+            proc_state,
+            proc_state_match,
             fmt_conf("categories"),
             packaging,
             transport,
