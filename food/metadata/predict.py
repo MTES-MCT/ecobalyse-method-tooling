@@ -215,6 +215,7 @@ INEDIBLE_DATA_PATH = DATA_DIR / "inedible_part.csv"
 RATIO_DATA_PATH = DATA_DIR / "cooked_to_raw.csv"
 FOOD_TYPE_DATA_PATH = DATA_DIR / "food_type.csv"
 PROCESSING_STATE_DATA_PATH = DATA_DIR / "processing_state.csv"
+CROPGROUP_DATA_PATH = DATA_DIR / "cropgroup.csv"
 TRANSPORT_DATA_PATH = DATA_DIR / "transport_cooling.csv"
 
 
@@ -289,6 +290,17 @@ def _load_processing_state_data() -> tuple[list, list]:
     names = df["name"].tolist()
     processing_states = df["processingState"].tolist()
     return names, processing_states
+
+
+def _load_cropgroup_data() -> tuple[list, list]:
+    """Load cropgroup.csv, return (names, cropgroups)."""
+    if not CROPGROUP_DATA_PATH.exists():
+        return [], []
+    df = pd.read_csv(CROPGROUP_DATA_PATH, comment="#")
+    # Columns: name,cropGroup
+    names = df["name"].tolist()
+    cropgroups = df["cropGroup"].tolist()
+    return names, cropgroups
 
 
 def _load_transport_data() -> tuple[list, list]:
@@ -850,11 +862,18 @@ class Predictor:
         )
 
         # 4. Build cropGroup matcher (nearest neighbor)
+        # Combine reference data from cropgroup.csv with ingredients.json
         if verbose:
             timed_print("Building cropGroup matcher...")
 
-        # Build training data from ingredients with cropGroup
-        cropgroup_names, cropgroup_vals = _build_cropgroup_data(ingredients)
+        # Start with reference data from cropgroup.csv
+        cropgroup_names, cropgroup_vals = _load_cropgroup_data()
+
+        # Add training data from ingredients with cropGroup
+        ing_cg_names, ing_cg_vals = _build_cropgroup_data(ingredients)
+        cropgroup_names.extend(ing_cg_names)
+        cropgroup_vals.extend(ing_cg_vals)
+
         if cropgroup_names:
             self.cropgroup_matcher = NearestNeighborMatcher(
                 cropgroup_names,

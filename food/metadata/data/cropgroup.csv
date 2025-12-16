@@ -1,0 +1,159 @@
+name,cropGroup
+# Tree fruits (VERGERS = orchards)
+pomme,VERGERS
+poire,VERGERS
+cerise,VERGERS
+prune,VERGERS
+abricot,VERGERS
+pêche,VERGERS
+nectarine,VERGERS
+orange,VERGERS
+citron,VERGERS
+pamplemousse,VERGERS
+mandarine,VERGERS
+clémentine,VERGERS
+mangue,VERGERS
+ananas,VERGERS
+banane,VERGERS
+kiwi,VERGERS
+litchi,VERGERS
+fruit exotique,VERGERS
+fruit frais,VERGERS
+fruit en conserve,VERGERS
+fruit surgelé,VERGERS
+fruit séché,VERGERS
+compote,VERGERS
+confiture,VERGERS
+jus de fruit,VERGERS
+# Melons and ground vegetables (LEGUMES-FLEURS)
+melon,LEGUMES-FLEURS
+pastèque,LEGUMES-FLEURS
+concombre,LEGUMES-FLEURS
+courgette,LEGUMES-FLEURS
+courge,LEGUMES-FLEURS
+potiron,LEGUMES-FLEURS
+citrouille,LEGUMES-FLEURS
+tomate,LEGUMES-FLEURS
+poivron,LEGUMES-FLEURS
+aubergine,LEGUMES-FLEURS
+carotte,LEGUMES-FLEURS
+radis,LEGUMES-FLEURS
+navet,LEGUMES-FLEURS
+betterave,LEGUMES-FLEURS
+céleri,LEGUMES-FLEURS
+fenouil,LEGUMES-FLEURS
+poireau,LEGUMES-FLEURS
+oignon,LEGUMES-FLEURS
+ail,LEGUMES-FLEURS
+échalote,LEGUMES-FLEURS
+asperge,LEGUMES-FLEURS
+artichaut,LEGUMES-FLEURS
+brocoli,LEGUMES-FLEURS
+chou-fleur,LEGUMES-FLEURS
+chou,LEGUMES-FLEURS
+choux,LEGUMES-FLEURS
+laitue,LEGUMES-FLEURS
+salade,LEGUMES-FLEURS
+épinard,LEGUMES-FLEURS
+haricot vert,LEGUMES-FLEURS
+petit pois,LEGUMES-FLEURS
+légume frais,LEGUMES-FLEURS
+légume en conserve,LEGUMES-FLEURS
+légume surgelé,LEGUMES-FLEURS
+légume séché,LEGUMES-FLEURS
+pomme de terre,LEGUMES-FLEURS
+patate,LEGUMES-FLEURS
+# Wheat products (BLE TENDRE)
+blé,BLE TENDRE
+blé tendre,BLE TENDRE
+farine,BLE TENDRE
+farine de blé,BLE TENDRE
+pain,BLE TENDRE
+pâtes,BLE TENDRE
+semoule,BLE TENDRE
+couscous,BLE TENDRE
+biscuit,BLE TENDRE
+gâteau,BLE TENDRE
+# Rice (RIZ)
+riz,RIZ
+riz basmati,RIZ
+riz complet,RIZ
+farine de riz,RIZ
+# Corn (MAIS GRAIN ET ENSILAGE)
+maïs,MAIS GRAIN ET ENSILAGE
+maïs doux,MAIS GRAIN ET ENSILAGE
+pop-corn,MAIS GRAIN ET ENSILAGE
+farine de maïs,MAIS GRAIN ET ENSILAGE
+polenta,MAIS GRAIN ET ENSILAGE
+# Barley (ORGE)
+orge,ORGE
+malt,ORGE
+bière,ORGE
+# Other cereals (AUTRES CEREALES)
+avoine,AUTRES CEREALES
+flocon d'avoine,AUTRES CEREALES
+seigle,AUTRES CEREALES
+sarrasin,AUTRES CEREALES
+millet,AUTRES CEREALES
+quinoa,AUTRES CEREALES
+épeautre,AUTRES CEREALES
+céréale,AUTRES CEREALES
+# Nuts (FRUITS A COQUES)
+noix,FRUITS A COQUES
+noisette,FRUITS A COQUES
+amande,FRUITS A COQUES
+pistache,FRUITS A COQUES
+noix de cajou,FRUITS A COQUES
+noix de pécan,FRUITS A COQUES
+noix de macadamia,FRUITS A COQUES
+châtaigne,FRUITS A COQUES
+marron,FRUITS A COQUES
+cacahuète,FRUITS A COQUES
+arachide,FRUITS A COQUES
+beurre de cacahuète,FRUITS A COQUES
+huile de noisette,FRUITS A COQUES
+huile de noix,FRUITS A COQUES
+# Sunflower (TOURNESOL)
+tournesol,TOURNESOL
+huile de tournesol,TOURNESOL
+graine de tournesol,TOURNESOL
+# Rapeseed/Canola (COLZA)
+colza,COLZA
+huile de colza,COLZA
+canola,COLZA
+# Olives (OLIVIERS)
+olive,OLIVIERS
+huile d'olive,OLIVIERS
+# Grapes/Vines (VIGNES)
+raisin,VIGNES
+vin,VIGNES
+vin rouge,VIGNES
+vin blanc,VIGNES
+vinaigre,VIGNES
+huile de pépin de raisin,VIGNES
+# Soy and other oilseeds (AUTRES OLEAGINEUX)
+soja,AUTRES OLEAGINEUX
+huile de soja,AUTRES OLEAGINEUX
+tofu,AUTRES OLEAGINEUX
+tempeh,AUTRES OLEAGINEUX
+lait de soja,AUTRES OLEAGINEUX
+sésame,AUTRES OLEAGINEUX
+huile de sésame,AUTRES OLEAGINEUX
+lin,AUTRES OLEAGINEUX
+huile de lin,AUTRES OLEAGINEUX
+huile de palme,AUTRES OLEAGINEUX
+huile végétale,AUTRES OLEAGINEUX
+huile,AUTRES OLEAGINEUX
+graine,AUTRES OLEAGINEUX
+# Legumes (LEGUMINEUSES A GRAIN)
+lentille,LEGUMINEUSES A GRAIN
+lentilles,LEGUMINEUSES A GRAIN
+pois chiche,LEGUMINEUSES A GRAIN
+haricot sec,LEGUMINEUSES A GRAIN
+haricot rouge,LEGUMINEUSES A GRAIN
+haricot blanc,LEGUMINEUSES A GRAIN
+flageolet,LEGUMINEUSES A GRAIN
+fève,LEGUMINEUSES A GRAIN
+pois cassé,LEGUMINEUSES A GRAIN
+blé dur,AUTRES CEREALES
+pois,AUTRES CEREALES

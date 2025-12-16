@@ -53,7 +53,7 @@ asperge,vegetable
 carotte,vegetable
 tomate,vegetable
 pomme de terre,vegetable
-oignon,vegetable
+"oignon, échalotte",vegetable
 melon,fruit
 pastèque,fruit
 pomme,fruit
@@ -68,3 +68,6 @@ ananas,fruit
 mangue,fruit
 citron,fruit
 pamplemousse,fruit
+Igname,vegetable
+"racine, tubercule",vegetable
+bogue fish, fish_seafood
