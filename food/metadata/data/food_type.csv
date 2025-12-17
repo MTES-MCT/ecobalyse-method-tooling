@@ -72,7 +72,6 @@ Igname,vegetable
 "racine, tubercule",vegetable
 bogue fish, fish_seafood
 agave,vegetable
-# Vegetables
 poivron,vegetable
 bell pepper,vegetable
 potiron,vegetable
@@ -101,7 +100,6 @@ poireau,vegetable
 leek,vegetable
 ail,vegetable
 garlic,vegetable
-# Fruits
 kiwi,fruit
 poire,fruit
 pear,fruit
@@ -126,7 +124,6 @@ blackberry,fruit
 groseille,fruit
 currant,fruit
 cassis,fruit
-# Meat and animals
 boeuf,meat
 beef,meat
 vache,meat
@@ -151,7 +148,6 @@ canard,meat
 duck,meat
 lapin,meat
 rabbit,meat
-# Fish and seafood
 hareng,fish_seafood
 herring,fish_seafood
 sardine,fish_seafood
@@ -185,7 +181,6 @@ poulpe,fish_seafood
 octopus,fish_seafood
 anchois,fish_seafood
 anchovy,fish_seafood
-# Nuts and oilseeds
 soja,nut_oilseed
 soybean,nut_oilseed
 tournesol,nut_oilseed
