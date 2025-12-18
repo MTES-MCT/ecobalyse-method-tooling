@@ -162,22 +162,56 @@ def generate_alias(name: str) -> str:
     return alias
 
 
+def load_existing_uuids(output_path: str) -> dict:
+    """
+    Load existing UUIDs from output file to preserve them on re-export.
+
+    Returns dict mapping (alias, activityName) -> (activity_id, ingredient_id)
+    """
+    existing = {}
+    path = Path(output_path)
+    if path.exists():
+        try:
+            with open(path, encoding="utf-8") as f:
+                activities = json.load(f)
+            for activity in activities:
+                alias = activity.get("alias", "")
+                activity_name = activity.get("activityName", "")
+                activity_id = activity.get("id")
+                # Get ingredient ID from metadata
+                ingredient_id = None
+                food_list = activity.get("metadata", {}).get("food", [])
+                if food_list:
+                    ingredient_id = food_list[0].get("id")
+                if alias and activity_id:
+                    existing[(alias, activity_name)] = (activity_id, ingredient_id)
+        except (json.JSONDecodeError, KeyError):
+            pass  # File corrupt or wrong format, start fresh
+    return existing
+
+
 def build_activity_entry(
     name: str,
     activity_name: str,
     source: str,
     predictions: dict,
     translator: EnglishToFrenchTranslator = None,
+    existing_uuids: dict = None,
 ) -> dict:
     """
     Build an activity entry in the activities.json format.
     """
-    # Generate UUIDs
-    activity_id = str(uuid.uuid4())
-    ingredient_id = str(uuid.uuid4())
-
-    # Generate alias from English name
+    # Generate alias first (needed for UUID lookup)
     alias = generate_alias(name)
+
+    # Reuse existing UUIDs if available, otherwise generate new ones
+    if existing_uuids and (alias, activity_name) in existing_uuids:
+        activity_id, ingredient_id = existing_uuids[(alias, activity_name)]
+        if not ingredient_id:
+            ingredient_id = str(uuid.uuid4())
+    else:
+        activity_id = str(uuid.uuid4())
+        ingredient_id = str(uuid.uuid4())
 
     # Translate to French for displayName
     if translator:
@@ -272,6 +306,11 @@ def main():
     # Load EN→FR translator
     translator = EnglishToFrenchTranslator()
 
+    # Load existing UUIDs to preserve them on re-export
+    existing_uuids = load_existing_uuids(args.output)
+    if existing_uuids:
+        print(f"Loaded {len(existing_uuids)} existing UUIDs from {args.output}")
+
     # Process each ingredient
     print(f"\nProcessing {len(df)} ingredients...")
     activities = []
@@ -294,9 +333,9 @@ def main():
         ingredient = {"name": name, "activityName": activity_name}
         predictions = predictor.predict(ingredient)
 
-        # Build activity entry (with French translation)
+        # Build activity entry (with French translation, preserving existing UUIDs)
         activity = build_activity_entry(
-            name, activity_name, source, predictions, translator
+            name, activity_name, source, predictions, translator, existing_uuids
         )
         activities.append(activity)
 
