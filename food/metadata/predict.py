@@ -222,35 +222,40 @@ CROPGROUP_DATA_PATH = DATA_DIR / "cropgroup.csv"
 TRANSPORT_DATA_PATH = DATA_DIR / "transport_cooling.csv"
 
 
-def _load_density_data() -> tuple[list, list]:
-    """Load fao_density.csv and density.csv, return combined (names, values)."""
+def _load_density_data() -> tuple[list, list, list]:
+    """Load fao_density.csv and density.csv, return combined (names, values, sources)."""
     names = []
     values = []
+    sources = []
 
     # Load FAO density data (primary reference) if exists
     if FAO_DENSITY_DATA_PATH.exists():
         df_fao = pd.read_csv(FAO_DENSITY_DATA_PATH, sep=";", decimal=".")
         names.extend(df_fao["name"].tolist())
         values.extend(df_fao["density"].tolist())
+        sources.extend(["fao_density.csv"] * len(df_fao))
 
     # Load generic density data (additional reference)
     df_generic = pd.read_csv(DENSITY_DATA_PATH, sep=";", decimal=".")
     names.extend(df_generic["name"].tolist())
     values.extend(df_generic["density"].tolist())
+    sources.extend(["density.csv"] * len(df_generic))
 
-    return names, values
+    return names, values, sources
 
 
-def _load_inedible_data() -> tuple[list, list]:
-    """Load agb_inedible.csv and inedible_part.csv, return combined (names, inedible_values)."""
+def _load_inedible_data() -> tuple[list, list, list]:
+    """Load agb_inedible.csv and inedible_part.csv, return combined (names, inedible_values, sources)."""
     names = []
     values = []
+    sources = []
 
     # Load AGB inedible data (primary reference) if exists
     if AGB_INEDIBLE_DATA_PATH.exists():
         df_agb = pd.read_csv(AGB_INEDIBLE_DATA_PATH, sep=";", decimal=".")
         names.extend(df_agb["name"].tolist())
         values.extend(df_agb["inedible_part"].tolist())
+        sources.extend(["agb_inedible.csv"] * len(df_agb))
 
     # Load generic inedible data (additional reference: seafood, generic categories)
     df = pd.read_csv(INEDIBLE_DATA_PATH, sep=";", decimal=".")
@@ -263,16 +268,18 @@ def _load_inedible_data() -> tuple[list, list]:
         if pd.notnull(inedible_part):
             names.append(name)
             values.append(float(inedible_part))
+            sources.append("inedible_part.csv")
 
-    return names, values
+    return names, values, sources
 
 
-def _load_ratio_data() -> tuple[list, list]:
-    """Load cooked_to_raw.csv, return (names, values)."""
+def _load_ratio_data() -> tuple[list, list, list]:
+    """Load cooked_to_raw.csv, return (names, values, sources)."""
     df = pd.read_csv(RATIO_DATA_PATH, sep=";")
     # Columns: food;value
     names = []
     values = []
+    sources = []
     for _, row in df.iterrows():
         name = str(row["food"]).strip() if pd.notnull(row.get("food")) else ""
         if not name:
@@ -281,58 +288,65 @@ def _load_ratio_data() -> tuple[list, list]:
         if pd.notnull(value):
             names.append(name)
             values.append(float(value))
+            sources.append("cooked_to_raw.csv")
 
-    return names, values
+    return names, values, sources
 
 
-def _load_food_type_data() -> tuple[list, list]:
-    """Load food_type.csv, return (names, food_types)."""
+def _load_food_type_data() -> tuple[list, list, list]:
+    """Load food_type.csv, return (names, food_types, sources)."""
     df = pd.read_csv(FOOD_TYPE_DATA_PATH)
     # Columns: name,foodType
     names = df["name"].tolist()
     food_types = df["foodType"].tolist()
-    return names, food_types
+    sources = ["food_type.csv"] * len(df)
+    return names, food_types, sources
 
 
-def _load_processing_state_data() -> tuple[list, list]:
-    """Load processing_state.csv, return (names, processing_states)."""
+def _load_processing_state_data() -> tuple[list, list, list]:
+    """Load processing_state.csv, return (names, processing_states, sources)."""
     df = pd.read_csv(PROCESSING_STATE_DATA_PATH)
     # Columns: name,processingState
     names = df["name"].tolist()
     processing_states = df["processingState"].tolist()
-    return names, processing_states
+    sources = ["processing_state.csv"] * len(df)
+    return names, processing_states, sources
 
 
-def _load_cropgroup_data() -> tuple[list, list]:
-    """Load cropgroup.csv, return (names, cropgroups)."""
+def _load_cropgroup_data() -> tuple[list, list, list]:
+    """Load cropgroup.csv, return (names, cropgroups, sources)."""
     if not CROPGROUP_DATA_PATH.exists():
-        return [], []
+        return [], [], []
     df = pd.read_csv(CROPGROUP_DATA_PATH, comment="#")
     # Columns: name,cropGroup
     names = df["name"].tolist()
     cropgroups = df["cropGroup"].tolist()
-    return names, cropgroups
+    sources = ["cropgroup.csv"] * len(df)
+    return names, cropgroups, sources
 
 
-def _load_transport_data() -> tuple[list, list]:
-    """Load transport_cooling.csv, return (names, transport_cooling)."""
+def _load_transport_data() -> tuple[list, list, list]:
+    """Load transport_cooling.csv, return (names, transport_cooling, sources)."""
     df = pd.read_csv(TRANSPORT_DATA_PATH)
     # Columns: name,transportCooling
     names = df["name"].tolist()
     transport = df["transportCooling"].tolist()
-    return names, transport
+    sources = ["transport_cooling.csv"] * len(df)
+    return names, transport, sources
 
 
-def _build_cropgroup_data(ingredients: list) -> tuple[list, list]:
-    """Build (names, cropGroups) from training ingredients + cropGroup labels themselves."""
+def _build_cropgroup_data(ingredients: list) -> tuple[list, list, list]:
+    """Build (names, cropGroups, sources) from training ingredients + cropGroup labels themselves."""
     names = []
     cropgroups = []
+    sources = []
 
     # Add ingredient names as training points
     for ing in ingredients:
         if ing.get("cropGroup"):
             names.append(ing.get("name", ""))
             cropgroups.append(ing["cropGroup"])
+            sources.append("ingredients.json")
 
     # Add cropGroup labels themselves as training points
     # e.g., "LEGUMES-FLEURS" → LEGUMES-FLEURS
@@ -340,15 +354,16 @@ def _build_cropgroup_data(ingredients: list) -> tuple[list, list]:
     for cg in unique_cropgroups:
         names.append(cg)  # The label itself
         cropgroups.append(cg)
+        sources.append("cropgroup_labels")
 
-    return names, cropgroups
+    return names, cropgroups, sources
 
 
 class NearestNeighborMatcher:
     """Find nearest neighbor by cosine similarity using FoodOn + regex features."""
 
     def __init__(
-        self, names: list, values: list, translate_fn=None, foodon_extractor=None
+        self, names: list, values: list, sources: list = None, translate_fn=None, foodon_extractor=None
     ):
         """
         Build a nearest neighbor matcher on FoodOn + regex features.
@@ -356,11 +371,13 @@ class NearestNeighborMatcher:
         Args:
             names: List of food names from reference data
             values: List of corresponding values (numeric or string)
+            sources: List of source file names (e.g., "fao_density.csv", "ingredients.json")
             translate_fn: Optional function to translate names before encoding
             foodon_extractor: Optional FoodOnFeatureExtractor for ontology features
         """
         self.names = list(names)
         self.values = list(values)  # Keep as list to support both numeric and string
+        self.sources = list(sources) if sources else ["unknown"] * len(names)
         self.foodon_extractor = foodon_extractor
         self.translate_fn = translate_fn
 
@@ -403,7 +420,7 @@ class NearestNeighborMatcher:
             foodon_extractor: Optional FoodOn extractor (uses stored one if not provided)
 
         Returns:
-            (value, confidence, best_match_name) - value can be numeric or string
+            (value, confidence, best_match_name, source) - value can be numeric or string
         """
         # Use stored values if not provided
         extractor = (
@@ -423,19 +440,24 @@ class NearestNeighborMatcher:
                 value = self.values[i]
                 if isinstance(value, (int, float, np.number)):
                     value = float(value)
-                return value, 1.0, self.names[i]
+                return value, 1.0, self.names[i], self.sources[i]
 
-        # 2. Try substring match (prioritize longer matches)
+        # 2. Try substring match (prioritize longer matches, min 5 chars to avoid false matches)
+        MIN_SUBSTRING_LENGTH = 5
         substring_matches = []
         for i, (name_low, trans_low) in enumerate(
             zip(self.names_lower, self.translated_lower)
         ):
-            # Check if reference name is contained in query (e.g., "pomme de terre" in "pomme de terre FR")
-            if name_low in query_lower or trans_low in query_translated:
+            # Check if reference name is contained in query (min length required)
+            if len(name_low) >= MIN_SUBSTRING_LENGTH and name_low in query_lower:
                 substring_matches.append((i, len(name_low)))
-            # Check if query is contained in reference (e.g., "potato" in "Potato, at farm")
-            elif query_lower in name_low or query_translated in trans_low:
+            elif len(trans_low) >= MIN_SUBSTRING_LENGTH and trans_low in query_translated:
+                substring_matches.append((i, len(trans_low)))
+            # Check if query is contained in reference (min length required)
+            elif len(query_lower) >= MIN_SUBSTRING_LENGTH and query_lower in name_low:
                 substring_matches.append((i, len(query_lower)))
+            elif len(query_translated) >= MIN_SUBSTRING_LENGTH and query_translated in trans_low:
+                substring_matches.append((i, len(query_translated)))
 
         if substring_matches:
             # Return the longest substring match
@@ -443,7 +465,7 @@ class NearestNeighborMatcher:
             value = self.values[best_i]
             if isinstance(value, (int, float, np.number)):
                 value = float(value)
-            return value, 0.95, self.names[best_i]
+            return value, 0.95, self.names[best_i], self.sources[best_i]
 
         # 3. Fall back to FoodOn + regex feature similarity
         query_features = extract_features(
@@ -467,7 +489,7 @@ class NearestNeighborMatcher:
         # Convert to float if numeric, otherwise keep as string
         if isinstance(value, (int, float, np.number)):
             value = float(value)
-        return value, float(similarities[best_idx]), self.names[best_idx]
+        return value, float(similarities[best_idx]), self.names[best_idx], self.sources[best_idx]
 
 
 # =============================================================================
@@ -884,11 +906,12 @@ class Predictor:
         if verbose:
             timed_print("Building foodType matcher...")
 
-        ref_food_names, ref_food_types = _load_food_type_data()
+        ref_food_names, ref_food_types, ref_food_sources = _load_food_type_data()
 
         self.food_type_matcher = NearestNeighborMatcher(
             ref_food_names,
             ref_food_types,
+            sources=ref_food_sources,
             translate_fn=self._translate,
             foodon_extractor=self.foodon_extractor,
         )
@@ -900,19 +923,23 @@ class Predictor:
         # Extract processingState from training ingredients
         ing_names_proc = [ing["name"] for ing in ingredients]
         y_processing = []
+        proc_sources = []
         for ing in ingredients:
             base_cat = self._get_base_category(ing.get("categories", ["misc"]))
             _, proc_state = CATEGORY_TO_DIMENSIONS.get(base_cat, ("misc", "processed"))
             y_processing.append(proc_state)
+            proc_sources.append("ingredients.json")
 
         # Add reference data from processing_state.csv
-        ref_proc_names, ref_proc_states = _load_processing_state_data()
+        ref_proc_names, ref_proc_states, ref_proc_sources = _load_processing_state_data()
         ing_names_proc.extend(ref_proc_names)
         y_processing.extend(ref_proc_states)
+        proc_sources.extend(ref_proc_sources)
 
         self.processing_matcher = NearestNeighborMatcher(
             ing_names_proc,
             y_processing,
+            sources=proc_sources,
             translate_fn=self._translate,
             foodon_extractor=self.foodon_extractor,
         )
@@ -922,17 +949,19 @@ class Predictor:
             timed_print("Building cropGroup matcher...")
 
         # Start with reference data from cropgroup.csv
-        cropgroup_names, cropgroup_vals = _load_cropgroup_data()
+        cropgroup_names, cropgroup_vals, cropgroup_sources = _load_cropgroup_data()
 
         # Add training data from ingredients with cropGroup
-        ing_cg_names, ing_cg_vals = _build_cropgroup_data(ingredients)
+        ing_cg_names, ing_cg_vals, ing_cg_sources = _build_cropgroup_data(ingredients)
         cropgroup_names.extend(ing_cg_names)
         cropgroup_vals.extend(ing_cg_vals)
+        cropgroup_sources.extend(ing_cg_sources)
 
         if cropgroup_names:
             self.cropgroup_matcher = NearestNeighborMatcher(
                 cropgroup_names,
                 cropgroup_vals,
+                sources=cropgroup_sources,
                 translate_fn=self._translate,
                 foodon_extractor=self.foodon_extractor,
             )
@@ -943,14 +972,17 @@ class Predictor:
 
         transport_names = [ing["name"] for ing in ingredients]
         y_transport = [ing.get("transportCooling", "none") for ing in ingredients]
+        transport_sources = ["ingredients.json"] * len(ingredients)
 
-        ref_transport_names, ref_transport = _load_transport_data()
+        ref_transport_names, ref_transport, ref_transport_sources = _load_transport_data()
         transport_names.extend(ref_transport_names)
         y_transport.extend(ref_transport)
+        transport_sources.extend(ref_transport_sources)
 
         self.transport_matcher = NearestNeighborMatcher(
             transport_names,
             y_transport,
+            sources=transport_sources,
             translate_fn=self._translate,
             foodon_extractor=self.foodon_extractor,
         )
@@ -963,14 +995,17 @@ class Predictor:
         # Start with ingredients.json data
         density_names = [ing["name"] for ing in ingredients if ing.get("ingredientDensity")]
         density_vals = [ing["ingredientDensity"] for ing in ingredients if ing.get("ingredientDensity")]
+        density_sources = ["ingredients.json"] * len(density_names)
         # Add reference data
-        ref_density_names, ref_density_vals = _load_density_data()
+        ref_density_names, ref_density_vals, ref_density_sources = _load_density_data()
         density_names.extend(ref_density_names)
         density_vals.extend(ref_density_vals)
+        density_sources.extend(ref_density_sources)
 
         self.density_matcher = NearestNeighborMatcher(
             density_names,
             density_vals,
+            sources=density_sources,
             translate_fn=self._translate,
             foodon_extractor=self.foodon_extractor,
         )
@@ -981,14 +1016,17 @@ class Predictor:
         # Start with ingredients.json data
         inedible_names = [ing["name"] for ing in ingredients if ing.get("inediblePart") is not None]
         inedible_vals = [ing["inediblePart"] for ing in ingredients if ing.get("inediblePart") is not None]
+        inedible_sources = ["ingredients.json"] * len(inedible_names)
         # Add reference data
-        ref_inedible_names, ref_inedible_vals = _load_inedible_data()
+        ref_inedible_names, ref_inedible_vals, ref_inedible_sources = _load_inedible_data()
         inedible_names.extend(ref_inedible_names)
         inedible_vals.extend(ref_inedible_vals)
+        inedible_sources.extend(ref_inedible_sources)
 
         self.inedible_matcher = NearestNeighborMatcher(
             inedible_names,
             inedible_vals,
+            sources=inedible_sources,
             translate_fn=self._translate,
             foodon_extractor=self.foodon_extractor,
         )
@@ -999,14 +1037,17 @@ class Predictor:
         # Start with ingredients.json data
         ratio_names = [ing["name"] for ing in ingredients if ing.get("rawToCookedRatio")]
         ratio_vals = [ing["rawToCookedRatio"] for ing in ingredients if ing.get("rawToCookedRatio")]
+        ratio_sources = ["ingredients.json"] * len(ratio_names)
         # Add reference data
-        ref_ratio_names, ref_ratio_vals = _load_ratio_data()
+        ref_ratio_names, ref_ratio_vals, ref_ratio_sources = _load_ratio_data()
         ratio_names.extend(ref_ratio_names)
         ratio_vals.extend(ref_ratio_vals)
+        ratio_sources.extend(ref_ratio_sources)
 
         self.ratio_matcher = NearestNeighborMatcher(
             ratio_names,
             ratio_vals,
+            sources=ratio_sources,
             translate_fn=self._translate,
             foodon_extractor=self.foodon_extractor,
         )
@@ -1057,34 +1098,36 @@ class Predictor:
         # 1. FoodType (rules first, then nearest neighbor)
         if binary_features.get("is_fish") or binary_features.get("is_seafood"):
             food_type = "fish_seafood"
-            food_type_match = None
+            food_type_match_info = None
         elif binary_features.get("is_meat"):
             food_type = "meat"
-            food_type_match = None
+            food_type_match_info = None
         elif binary_features.get("is_dairy"):
             food_type = "dairy"
-            food_type_match = None
+            food_type_match_info = None
         else:
             # Fallback to nearest neighbor
-            food_type, _, food_type_match = self.food_type_matcher.predict(
-                name, translate_fn=self._translate
+            food_type, _, food_type_match, food_type_source = (
+                self.food_type_matcher.predict(name, translate_fn=self._translate)
             )
+            food_type_match_info = {"file": food_type_source, "name": food_type_match}
 
         predictions["foodType"] = food_type
-        predictions["foodTypeMatch"] = food_type_match
+        predictions["foodTypeMatch"] = food_type_match_info
 
         # 2. ProcessingState (packaging detection first, then nearest neighbor)
         packaging, _ = self._detect_packaging(full_text)
         if packaging and packaging != "fresh":
             processing_state = "processed"
-            processing_match = None
+            processing_match_info = None
         else:
-            processing_state, _, processing_match = self.processing_matcher.predict(
-                name, translate_fn=self._translate
+            processing_state, _, processing_match, processing_source = (
+                self.processing_matcher.predict(name, translate_fn=self._translate)
             )
+            processing_match_info = {"file": processing_source, "name": processing_match}
 
         predictions["processingState"] = processing_state
-        predictions["processingStateMatch"] = processing_match
+        predictions["processingStateMatch"] = processing_match_info
         predictions["packaging"] = packaging
 
         # 3. Additive labels (by rules)
@@ -1111,16 +1154,17 @@ class Predictor:
             "spice_condiment",
         }
         if food_type in vegetal_types and self.cropgroup_matcher is not None:
-            cropgroup_val, _, cropgroup_match = self.cropgroup_matcher.predict(
-                name, translate_fn=self._translate
+            cropgroup_val, _, cropgroup_match, cropgroup_source = (
+                self.cropgroup_matcher.predict(name, translate_fn=self._translate)
             )
             predictions["cropGroup"] = cropgroup_val
-            predictions["cropGroupMatch"] = cropgroup_match
+            predictions["cropGroupMatch"] = {"file": cropgroup_source, "name": cropgroup_match}
         else:
             predictions["cropGroup"] = None
             predictions["cropGroupMatch"] = None
 
         # 6. transportCooling (packaging first, then rules, then nearest neighbor)
+        transport_match_info = None
         if packaging and packaging != "fresh":
             # Explicit packaging detected (canned, frozen, dried, etc.)
             _, transport_cooling = PACKAGING_PATTERNS.get(packaging, (None, None))
@@ -1131,31 +1175,33 @@ class Predictor:
             transport_cooling = self._predict_transport_by_rules(binary_features)
             if not transport_cooling:
                 # Fall back to nearest neighbor matching
-                transport_cooling, _, _ = self.transport_matcher.predict(
-                    name, translate_fn=self._translate
+                transport_cooling, _, transport_match, transport_source = (
+                    self.transport_matcher.predict(name, translate_fn=self._translate)
                 )
+                transport_match_info = {"file": transport_source, "name": transport_match}
         predictions["transportCooling"] = transport_cooling
+        predictions["transportCoolingMatch"] = transport_match_info
 
         # 7. defaultOrigin (by rules)
         predictions["defaultOrigin"] = _extract_origin(activity)
 
         # 8. Continuous values (nearest neighbor)
-        density_val, _, density_match = self.density_matcher.predict(
+        density_val, _, density_match, density_source = self.density_matcher.predict(
             name, translate_fn=self._translate
         )
-        inedible_val, _, inedible_match = self.inedible_matcher.predict(
+        inedible_val, _, inedible_match, inedible_source = self.inedible_matcher.predict(
             name, translate_fn=self._translate
         )
-        ratio_val, _, ratio_match = self.ratio_matcher.predict(
+        ratio_val, _, ratio_match, ratio_source = self.ratio_matcher.predict(
             name, translate_fn=self._translate
         )
 
         predictions["density"] = round(density_val, 3)
-        predictions["densityMatch"] = density_match
+        predictions["densityMatch"] = {"file": density_source, "name": density_match}
         predictions["inediblePart"] = round(inedible_val, 2)
-        predictions["inediblePartMatch"] = inedible_match
+        predictions["inediblePartMatch"] = {"file": inedible_source, "name": inedible_match}
         predictions["rawToCookedRatio"] = round(ratio_val, 3)
-        predictions["rawToCookedRatioMatch"] = ratio_match
+        predictions["rawToCookedRatioMatch"] = {"file": ratio_source, "name": ratio_match}
 
         return predictions
 
@@ -1190,7 +1236,7 @@ class Predictor:
 
         # 1. FoodType (rules first, then nearest neighbor)
         food_type_conf = 1.0  # Default confidence for rule-based
-        food_type_match = None
+        food_type_match_info = None
         if binary_features.get("is_fish") or binary_features.get("is_seafood"):
             food_type = "fish_seafood"
         elif binary_features.get("is_meat"):
@@ -1199,27 +1245,29 @@ class Predictor:
             food_type = "dairy"
         else:
             # Fallback to nearest neighbor
-            food_type, food_type_conf, food_type_match = self.food_type_matcher.predict(
-                name, translate_fn=self._translate
+            food_type, food_type_conf, food_type_match, food_type_source = (
+                self.food_type_matcher.predict(name, translate_fn=self._translate)
             )
+            food_type_match_info = {"file": food_type_source, "name": food_type_match}
 
         predictions["foodType"] = food_type
-        predictions["foodTypeMatch"] = food_type_match
+        predictions["foodTypeMatch"] = food_type_match_info
         confidence["foodType"] = food_type_conf
 
         # 2. ProcessingState (packaging detection first, then nearest neighbor)
         packaging, _ = self._detect_packaging(full_text)
         proc_conf = 1.0  # Default confidence for rule-based
-        processing_match = None
+        processing_match_info = None
         if packaging and packaging != "fresh":
             processing_state = "processed"
         else:
-            processing_state, proc_conf, processing_match = (
+            processing_state, proc_conf, processing_match, processing_source = (
                 self.processing_matcher.predict(name, translate_fn=self._translate)
             )
+            processing_match_info = {"file": processing_source, "name": processing_match}
 
         predictions["processingState"] = processing_state
-        predictions["processingStateMatch"] = processing_match
+        predictions["processingStateMatch"] = processing_match_info
         predictions["packaging"] = packaging
         confidence["processingState"] = proc_conf
 
@@ -1249,11 +1297,11 @@ class Predictor:
             "spice_condiment",
         }
         if food_type in vegetal_types and self.cropgroup_matcher is not None:
-            cropgroup_val, cropgroup_conf, cropgroup_match = (
+            cropgroup_val, cropgroup_conf, cropgroup_match, cropgroup_source = (
                 self.cropgroup_matcher.predict(name, translate_fn=self._translate)
             )
             predictions["cropGroup"] = cropgroup_val
-            predictions["cropGroupMatch"] = cropgroup_match
+            predictions["cropGroupMatch"] = {"file": cropgroup_source, "name": cropgroup_match}
         else:
             predictions["cropGroup"] = None
             predictions["cropGroupMatch"] = None
@@ -1262,6 +1310,7 @@ class Predictor:
             confidence["cropGroup"] = cropgroup_conf
 
         # 6. transportCooling (packaging first, then rules, then nearest neighbor)
+        transport_match_info = None
         if packaging and packaging != "fresh":
             # Explicit packaging detected (canned, frozen, dried, etc.)
             _, transport_cooling = PACKAGING_PATTERNS.get(packaging, (None, None))
@@ -1272,31 +1321,33 @@ class Predictor:
             transport_cooling = self._predict_transport_by_rules(binary_features)
             if not transport_cooling:
                 # Fall back to nearest neighbor matching
-                transport_cooling, _, _ = self.transport_matcher.predict(
-                    name, translate_fn=self._translate
+                transport_cooling, _, transport_match, transport_source = (
+                    self.transport_matcher.predict(name, translate_fn=self._translate)
                 )
+                transport_match_info = {"file": transport_source, "name": transport_match}
         predictions["transportCooling"] = transport_cooling
+        predictions["transportCoolingMatch"] = transport_match_info
 
         # 7. defaultOrigin
         predictions["defaultOrigin"] = _extract_origin(activity)
 
         # 8. Value predictions with confidence
-        density_val, density_conf, density_match = self.density_matcher.predict(
-            name, translate_fn=self._translate
+        density_val, density_conf, density_match, density_source = (
+            self.density_matcher.predict(name, translate_fn=self._translate)
         )
-        inedible_val, inedible_conf, inedible_match = self.inedible_matcher.predict(
-            name, translate_fn=self._translate
+        inedible_val, inedible_conf, inedible_match, inedible_source = (
+            self.inedible_matcher.predict(name, translate_fn=self._translate)
         )
-        ratio_val, ratio_conf, ratio_match = self.ratio_matcher.predict(
-            name, translate_fn=self._translate
+        ratio_val, ratio_conf, ratio_match, ratio_source = (
+            self.ratio_matcher.predict(name, translate_fn=self._translate)
         )
 
         predictions["density"] = round(density_val, 3)
-        predictions["densityMatch"] = density_match
+        predictions["densityMatch"] = {"file": density_source, "name": density_match}
         predictions["inediblePart"] = round(inedible_val, 2)
-        predictions["inediblePartMatch"] = inedible_match
+        predictions["inediblePartMatch"] = {"file": inedible_source, "name": inedible_match}
         predictions["rawToCookedRatio"] = round(ratio_val, 3)
-        predictions["rawToCookedRatioMatch"] = ratio_match
+        predictions["rawToCookedRatioMatch"] = {"file": ratio_source, "name": ratio_match}
 
         confidence["density"] = density_conf
         confidence["inediblePart"] = inedible_conf

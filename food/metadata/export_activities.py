@@ -186,17 +186,22 @@ def build_activity_entry(
         "displayName": display_name,
         "id": ingredient_id,
         "inediblePart": predictions.get("inediblePart", 0),
+        "inediblePartMatch": predictions.get("inediblePartMatch"),
         "ingredientCategories": predictions.get("categories", ["misc"]),
         "ingredientDensity": predictions.get("density", 1.0),
+        "ingredientDensityMatch": predictions.get("densityMatch"),
         "rawToCookedRatio": predictions.get("rawToCookedRatio", 1.0),
+        "rawToCookedRatioMatch": predictions.get("rawToCookedRatioMatch"),
         "scenario": "reference",
         "transportCooling": predictions.get("transportCooling", "none"),
+        "transportCoolingMatch": predictions.get("transportCoolingMatch"),
         "visible": True,
     }
 
     # Add cropGroup for vegetables
     if predictions.get("cropGroup"):
         ingredient["cropGroup"] = predictions["cropGroup"]
+        ingredient["cropGroupMatch"] = predictions.get("cropGroupMatch")
 
     # Add animal fields if animal product
     animal_fields = detect_animal_fields(name, activity_name)
