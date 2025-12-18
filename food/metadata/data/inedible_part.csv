@@ -1,215 +1,52 @@
-category;name;inedible part
-sea food;Lieu ou colin d'Alaska;0,36
-sea food;Thon germon ou thon blanc;0,6
-sea food;Bar rayé ou bar d'Amérique;0,44
-sea food;Pecten d'Amérique ou Peigne du canada, noix;0,14
-sea food;Anchois ;0,5
-sea food;Lotte ou baudroie;0,36
-sea food;Omble chevalier;0,5
-sea food;Bar ou loup de l'Atlantique;0,44
-sea food;Maquereau espagnol ou maquereau blanc ou billard;0,52
-sea food;Flétan de l'Atlantique ou flétan blanc;0,6
-sea food;Hareng fumé, à l'huile;0,5
-sea food;Pecten d'Amérique ou Peigne du canada, noix, crue;0,14
-sea food;Coulirou;0,52
-sea food;Joëls (petits poissons entiers) pour fritures;0,5
-sea food;Dorade grise, ou daurade grise, ou griset;0,42
-sea food;Dorade rose, ou daurade rose;0,42
-sea food;Grenadier bleu ou hoki de Nouvelle-Zélande;0,4
-sea food;Lingue bleue ou Lingue;0,36
-sea food;Empereur, filet, sans peau;0,36
-sea food;Bogue;0,5
-sea food;Bonite;0,6
-sea food;Pangasius ou Poisson-chat;0,44
-sea food;Corb;0,6
-sea food;Capelan;0,6
-sea food;Carpe, élevage;0,5
-sea food;Cabillaud;0,36
-sea food;Limande;0,36
-sea food;Denté;0,36
-sea food;Sole;0,42
-sea food;Congre;0,36
-sea food;Carangue;0,6
-sea food;Bar commun ou loup;0,44
-sea food;Merlu;0,4
-sea food;Perche;0,5
-sea food;Sardine, à l'huile d'olive, appertisée, égouttée;0,5
-sea food;Carrelet ou plie;0,36
-sea food;Sprat;0,5
-sea food;Brème;0,44
-sea food;Orphie commune;0,5
-sea food;Dorade royale ou daurade ou vraie daurade, élevage;0,44
-sea food;Grand sébaste, ou dorade sébaste, ou daurade sébaste;0,36
-sea food;Flétan du Groënland ou flétan noir ou flétan commun;0,36
-sea food;Hoki, tout lieu de pêche;0,36
-sea food;Mérou;0,6
-sea food;Églefin;0,36
-sea food;Merlu;0,4
-sea food;Chinchard gras;0,52
-sea food;Saint-Pierre;0,36
-sea food;Sabre;0,36
-sea food;Limande-sole;0,36
-sea food;Julienne ou Lingue;0,36
-sea food;Maquereau;0,52
-sea food;Bar commun ou loup (Méditerranée), élevage;0,44
-sea food;Cardine franche;0,36
-sea food;*Moule;0,25
-sea food;Mulet;0,36
-sea food;Perche du Nil;0,5
-sea food;;0,31
-sea food;Roussette ou petite roussette ou saumonette;0,36
-sea food;Panga, Pangasius, ou poisson-chat du Mékong, filet, cuit;0,44
-sea food;Pétoncle ou Peigne du Pérou, noix;0,14
-sea food;Lieu jaune ou colin;0,36
-sea food;Éperlan;0,5
-sea food;Tacaud;0,36
-sea food;Truite arc en ciel, élevage;0,5
-sea food;Raie;0,36
-sea food;Grondin;0,42
-sea food;Grenadier (de roche);0,36
-sea food;Lieu noir;0,36
-sea food;Saupe;0,42
-sea food;Saumon;0,5
-sea food;Truite saumonée;0,5
-sea food;Coquille Saint-Jacques, noix et corail;0,14
-sea food;Truite de mer;0,5
-sea food;Merlu blanc du Cap;0,4
-sea food;Requin;0,36
-sea food;*Crevette;0,45
-sea food;Thon listao ou Bonite à ventre rayé;0,6
-sea food;Vivaneau;0,6
-sea food;Rascasse;0,36
-sea food;Loup tacheté;0,36
-sea food;Calmar ou calamar ou encornet;0,36
-sea food;Rouget-barbet de roche;0,42
-sea food;Espadon;0,6
-sea food;Sole tropicale ou Sole langue;0,42
-sea food;Truite d'élevage;0,5
-sea food;Grondin perlon;0,36
-sea food;Thon;0,6
-sea food;Turbot d'élevage;0,44
-sea food;Merlan;0,36
-sea food;Thon albacore ou thon jaune, ;0,6
-Vegetable;Artichokes;0,6
-Vegetable;Asparagus;0,4
-Vegetable;Avocados;0,3
-Vegetable;Basil;0,1
-Vegetable;Beetroots;0,1
-Vegetable;Broccoli;0,2
-Vegetable;Brussels sprout;0,1
-Vegetable;Cabbage;0,2
-Vegetable;Carrots;0,1
-Vegetable;Cassava;0,1
-Vegetable;Cauliflower;0,2
-Vegetable;Celeriac;0,1
-Vegetable;Celery;0,03
-Vegetable;Chesnut;0,5
-Vegetable;Chicory;0,2
-Vegetable;Chinese or Japanese artichokes;0,1
-Vegetable;Coriander;0,1
-Vegetable;Cucumbers;0,1
-Vegetable;Eggplant;0,1
-Vegetable;Endive;0,2
-Vegetable;Escaroles;0,4
-Vegetable;Fennel;0,2
-Vegetable;French bean;0,1
-Vegetable;Garden cress;0,2
-Vegetable;Garden peas;0,2
-Vegetable;Green Celery ;0,03
-Vegetable;Green peas;0
-Vegetable;Jerusalemen artichoke;0,1
-Vegetable;Leek;0,2
-Vegetable;Lettuce;0,4
-Vegetable;Mint;0,1
-Vegetable;Mushroom;0,1
-Vegetable;Olives;0,5
-Vegetable;Onions;0,1
-Vegetable;Parsley;0,1
-Vegetable;Peppers;0,03
-Vegetable;Potatoes ;0,1
-Vegetable;Pumpkin;0,2
-Vegetable;Radish;0,03
-Vegetable;Red endive;0,2
-Vegetable;Salad;0,4
-Vegetable;Salsify;0,2
-Vegetable;Shallot;0,1
-Vegetable;Spinach;0,03
-Vegetable;Sweet potatoes or Yams;0,1
-Vegetable;Tarragon;0,2
-Vegetable;Tomatoes;0,03
-Vegetable;Turnips;0,2
-Fruits;Almonds;0,5
-Fruits;Apple;0,1
-Fruits;Apricot;0,2
-Fruits;Banana;0,3
-Fruits;Blackberries;0,03
-Fruits;Blueberries;0,03
-Fruits;Cherry;0,2
-Fruits;Currant;0,2
-Fruits;Grapefruit (inc. pomelos);0,3
-Fruits;Lemon;0,3
-Fruits;Mandarin;0,2
-Fruits;Mango;0,2
-Fruits;Melon;0,4
-Fruits;Orange;0,2
-Fruits;Peach;0,2
-Fruits;Pear;0,1
-Fruits;Pineapple;0,5
-Fruits;Plum;0,2
-Fruits;Pomegranate;0,2
-Fruits;Raspberries;0,03
-Fruits;Strawberries;0,03
-Fruits;Table grape;0,1
-Fruits;Walnuts;0,5
-Eggs;Egg;0,2
-Meat;Viande avec os;0,2
-Meat;Viand sans os;0
-generic;légume frais;0,1
-generic;légume en conserve;0
-generic;légume surgelé;0,05
-generic;légume séché;0
-generic;légume en bocal;0
-generic;fruit frais;0,15
-generic;fruit en conserve;0
-generic;fruit surgelé;0
-generic;fruit séché;0
-generic;confiture;0
-generic;compote;0
-generic;viande fraîche;0,1
-generic;viande surgelée;0,1
-generic;viande séchée;0
-generic;charcuterie;0
-generic;viande en conserve;0
-generic;poisson frais;0,4
-generic;poisson surgelé;0,3
-generic;poisson en conserve;0
-generic;poisson fumé;0
-generic;poisson séché;0
-generic;fruits de mer;0,3
-generic;crustacés;0,5
-generic;lait frais;0
-generic;lait UHT;0
-generic;fromage;0
-generic;yaourt;0
-generic;beurre;0
-generic;crème fraîche;0
-generic;lait en poudre;0
-generic;céréale;0
-generic;farine;0
-generic;pain;0
-generic;pâtes;0
-generic;riz;0
-generic;semoule;0
-generic;noix;0,5
-generic;graine;0
-generic;huile;0
-generic;beurre de cacahuète;0
-generic;épice;0
-generic;herbe aromatique;0,1
-generic;sauce;0
-generic;vinaigre;0
-generic;moutarde;0
-generic;sel;0
-generic;sucre;0
-generic;œuf;0,12
-generic;œuf en poudre;0
+name;inedible_part
+Viande avec os;0.2
+Viande sans os;0
+légume frais;0.2
+légume en conserve;0
+légume surgelé;0
+légume séché;0
+légume en bocal;0
+fruit frais;0.2
+fruit en conserve;0
+fruit surgelé;0
+fruit séché;0
+confiture;0
+compote;0
+viande fraîche;0.1
+viande surgelée;0.1
+viande séchée;0
+charcuterie;0
+viande en conserve;0
+poisson frais;0.4
+poisson surgelé;0
+poisson en conserve;0
+poisson fumé;0
+poisson séché;0
+fruits de mer;0.5
+crustacés;0.5
+lait frais;0
+lait UHT;0
+fromage;0
+yaourt;0
+beurre;0
+crème fraîche;0
+lait en poudre;0
+céréale;0
+farine;0
+pain;0
+pâtes;0
+riz;0
+semoule;0
+noix;0.5
+graine;0
+huile;0
+beurre de cacahuète;0
+épice;0
+herbe aromatique;0.1
+sauce;0
+vinaigre;0
+moutarde;0
+sel;0
+sucre;0
+œuf;0.12
+œuf en poudre;0

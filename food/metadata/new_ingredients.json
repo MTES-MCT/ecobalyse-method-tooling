@@ -6,19 +6,19 @@
       "ingredient"
     ],
     "displayName": "Agave",
-    "id": "2b278734-1471-4d23-98ac-893125b4cdd4",
+    "id": "e2dda21e-1e20-4121-b9c0-12e785751634",
     "metadata": {
       "food": [
         {
           "alias": "agave",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Agave",
-          "id": "75246f2e-6017-4770-905d-4d6f9a668d6b",
+          "id": "8fe9a4cc-2d6c-416c-ace3-e872bad97033",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.018,
+          "ingredientDensity": 0.72,
           "rawToCookedRatio": 2.33,
           "scenario": "reference",
           "transportCooling": "always",
@@ -39,14 +39,14 @@
       "ingredient"
     ],
     "displayName": "Amandes, en coque",
-    "id": "fc409ca3-f384-49af-acfd-7ac2f0051d57",
+    "id": "19b662b0-e622-4000-96e2-c126d33fcc48",
     "metadata": {
       "food": [
         {
           "alias": "almonds-in-shell",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Amandes, en coque",
-          "id": "55990dc7-54c6-4149-a461-84ced1d3fe2d",
+          "id": "957f5ac7-5c15-4664-a33e-850596706f2e",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "nut_oilseed_raw"
@@ -72,17 +72,17 @@
       "ingredient"
     ],
     "displayName": "Amaranth",
-    "id": "ac017791-6016-4cc9-b41a-9e791549f7af",
+    "id": "fe6eb0fb-ca65-4fe7-80b8-29114dccc886",
     "metadata": {
       "food": [
         {
           "alias": "amaranth",
           "defaultOrigin": "France",
           "displayName": "Amaranth",
-          "id": "eee5969f-743a-43d0-85fc-f9d8ac4d2509",
+          "id": "7ce336c5-c4bd-408b-b842-0a820903a44d",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 1.018,
           "rawToCookedRatio": 2.33,
@@ -105,15 +105,15 @@
       "ingredient"
     ],
     "displayName": "Anchois",
-    "id": "d81a46b6-50f8-4fc1-96b1-0ee5d4f3b687",
+    "id": "7dec33e5-7354-4caf-9d2f-10489b97067a",
     "metadata": {
       "food": [
         {
           "alias": "anchovies",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Anchois",
-          "id": "b8eae53c-bc81-404c-a3fd-6c5af292432c",
-          "inediblePart": 0.36,
+          "id": "ff227d88-fa01-412b-ab24-4d8dcc3fcb66",
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -137,19 +137,19 @@
       "ingredient"
     ],
     "displayName": "Pommes",
-    "id": "0431504c-d5c4-45ae-bbfa-c8f0a39c9719",
+    "id": "6288c139-8662-49e0-b31c-cb5d006ba8ac",
     "metadata": {
       "food": [
         {
           "alias": "apple",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pommes",
-          "id": "1d1aadaf-7ad9-414f-a017-53d72ce0d69f",
+          "id": "bee9a380-0c26-4a66-8c4d-28623ed16070",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -170,19 +170,19 @@
       "ingredient"
     ],
     "displayName": "Abricots",
-    "id": "5a50ae63-9293-4a68-bab7-e1053df893dd",
+    "id": "577e2c28-b6f6-4116-ae41-e89c4c720226",
     "metadata": {
       "food": [
         {
           "alias": "apricots",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Abricots",
-          "id": "999c1f04-2531-4904-9882-75e3d6071a54",
-          "inediblePart": 0.3,
+          "id": "4b2ae738-5728-4f70-97d8-ae225b9dfe01",
+          "inediblePart": 0.2,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -203,20 +203,20 @@
       "ingredient"
     ],
     "displayName": "Char de l'Arctique, filet",
-    "id": "80b9692b-2811-4b9d-8655-8cd5be14a2a7",
+    "id": "0e568705-4d4d-461e-80d7-f80b6ff8c1a2",
     "metadata": {
       "food": [
         {
           "alias": "arctic-char-fillet",
           "defaultOrigin": "France",
           "displayName": "Char de l'Arctique, filet",
-          "id": "17c6421b-1d94-4198-9a5b-a3f6cc97f0d0",
-          "inediblePart": 0.36,
+          "id": "4d6a499d-5d13-46b1-9436-1bf0aeb021f8",
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.96,
-          "rawToCookedRatio": 0.819,
+          "ingredientDensity": 0.919,
+          "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -235,19 +235,19 @@
       "ingredient"
     ],
     "displayName": "Asperges",
-    "id": "e3fb566b-699d-4e69-a15c-d361ba80b84b",
+    "id": "69a9f875-6139-4e6f-88c7-3ba6e43e3bb0",
     "metadata": {
       "food": [
         {
           "alias": "asparagus",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Asperges",
-          "id": "2aa8be1f-8ed5-4749-8ac1-1a79678da19b",
+          "id": "be67aab0-6ea4-4d77-b890-40251a8e50f0",
           "inediblePart": 0.4,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -268,19 +268,19 @@
       "ingredient"
     ],
     "displayName": "Avocat",
-    "id": "f333a984-f4e6-4071-acc6-216f9c12d96a",
+    "id": "ac874388-9c30-42c0-a754-a85fe388f09b",
     "metadata": {
       "food": [
         {
           "alias": "avocado",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Avocat",
-          "id": "31282bcd-6148-4f1c-ba4e-c416fd3e430a",
-          "inediblePart": 0.36,
+          "id": "63df3ba6-c35f-4fdc-959e-39b459935777",
+          "inediblePart": 0.3,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -301,14 +301,14 @@
       "ingredient"
     ],
     "displayName": "Tours de bambou",
-    "id": "ac217c5e-1a40-43ca-9ee6-77ef49f72c1c",
+    "id": "8699a52b-418f-4cb5-9f80-6a0691da41a5",
     "metadata": {
       "food": [
         {
           "alias": "bamboo-shoots",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tours de bambou",
-          "id": "8356299a-47ca-4e7e-ab32-32504a0595aa",
+          "id": "53166b99-c2e6-4ace-b0e6-491ce08bcc60",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -334,19 +334,19 @@
       "ingredient"
     ],
     "displayName": "Banane",
-    "id": "d21f05ca-14df-44bc-be36-62aa81236411",
+    "id": "ad61e391-e516-4797-bffd-9cee941f81aa",
     "metadata": {
       "food": [
         {
           "alias": "banana",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Banane",
-          "id": "b90bbf65-6e89-49a4-9683-6934228bd035",
-          "inediblePart": 0.1,
+          "id": "8603855b-6ad5-4a4d-8ee5-df6089bc800f",
+          "inediblePart": 0.3,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -367,19 +367,19 @@
       "ingredient"
     ],
     "displayName": "Riz basmati",
-    "id": "8a0ce8d9-416e-4c8e-ad8c-88bcf91db185",
+    "id": "9ab71460-335d-48a5-b1e6-5a26e7add8f0",
     "metadata": {
       "food": [
         {
           "alias": "basmati-rice",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Riz basmati",
-          "id": "b542ea17-b783-46ee-986d-7960d350948b",
+          "id": "50f0c4ef-c93b-4cc1-adc9-77907cec87db",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.117,
+          "ingredientDensity": 0.72,
           "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
@@ -400,24 +400,24 @@
       "ingredient"
     ],
     "displayName": "Haricots",
-    "id": "afb4d36d-48be-4b12-aceb-9918481937c8",
+    "id": "2215e30f-9e2d-4292-bd74-6ba8c0291743",
     "metadata": {
       "food": [
         {
           "alias": "beans",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots",
-          "id": "db488065-d6c3-4e29-9ad7-dde5c61a190f",
+          "id": "1a970b08-246f-471b-a141-b4689ff79a95",
           "inediblePart": 0.3,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 0.8,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "PROTEAGINEUX"
         }
       ]
     },
@@ -433,24 +433,24 @@
       "ingredient"
     ],
     "displayName": "Poivrons, verts, jaunes ou rouges",
-    "id": "e0790b7f-0dff-40ba-ac2e-47fe8d416645",
+    "id": "2f13000f-d5bd-4a1c-8180-ced1fca94f55",
     "metadata": {
       "food": [
         {
           "alias": "bell-pepper-green-yellow-or-red",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Poivrons, verts, jaunes ou rouges",
-          "id": "7be83d67-f499-4950-bfb1-4b1dd517ea62",
+          "id": "d2be057f-bbb9-4dc2-b4ad-d643df4f7f5d",
           "inediblePart": 0.03,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.95,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
-          "cropGroup": "AUTRES CULTURES INDUSTRIELLES"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -466,15 +466,15 @@
       "ingredient"
     ],
     "displayName": "Éperlan de sable à grande échelle",
-    "id": "dfebb7ff-218b-4769-b257-f273f4764a99",
+    "id": "31eb96b8-f080-4687-8226-b1a70924b469",
     "metadata": {
       "food": [
         {
           "alias": "big-scale-sand-smelt",
           "defaultOrigin": "France",
           "displayName": "Éperlan de sable à grande échelle",
-          "id": "d830c92f-acbf-4707-8583-2bcb7794c1eb",
-          "inediblePart": 0.1,
+          "id": "b201b113-13bc-465e-a3e0-eccbc2265837",
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -499,15 +499,15 @@
       "ingredient"
     ],
     "displayName": "Mûres noires, crues",
-    "id": "da19cb2d-985a-4bf6-8966-357dc629b6ea",
+    "id": "50a3fca6-0de1-445b-99d6-6e11a54b8362",
     "metadata": {
       "food": [
         {
           "alias": "black-mulberry-raw",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Mûres noires, crues",
-          "id": "70d6be54-265c-4243-972d-9f6a8ab10bf3",
-          "inediblePart": 0.14,
+          "id": "846d6efe-de3d-48b4-bb3c-4a49ca96a768",
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -532,14 +532,14 @@
       "ingredient"
     ],
     "displayName": "Blackberry (du bras)",
-    "id": "4a18e2cc-0a7e-4c00-81fa-61704c9b4234",
+    "id": "dabe526b-2481-40f7-b8a6-f5e45692ecd7",
     "metadata": {
       "food": [
         {
           "alias": "blackberry-from-bramble",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Blackberry (du bras)",
-          "id": "f699d3bc-4b43-4e0b-882d-257c950ee268",
+          "id": "4951e150-7831-40e2-abd4-98c7a0a3f5ec",
           "inediblePart": 0.3,
           "ingredientCategories": [
             "vegetable_processed"
@@ -565,19 +565,19 @@
       "ingredient"
     ],
     "displayName": "Bleuets",
-    "id": "36ffd199-629b-40f3-a15c-177f7c1392c9",
+    "id": "785234b2-593d-484c-bddf-fb5dd959c086",
     "metadata": {
       "food": [
         {
           "alias": "blueberry",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Bleuets",
-          "id": "dcbdab18-4958-484e-ad3c-2a8c3eab7ef5",
+          "id": "a7713a1a-8197-4531-831d-4b3b699290c9",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -598,24 +598,23 @@
       "ingredient"
     ],
     "displayName": "Bogue",
-    "id": "4550559f-172d-4f29-9c9d-5dc024286b70",
+    "id": "f5fb22ec-4bd1-4908-81ac-9982df634dea",
     "metadata": {
       "food": [
         {
           "alias": "bogue",
           "defaultOrigin": "France",
           "displayName": "Bogue",
-          "id": "ac779689-fd4f-4be4-926c-9cc633e1eef5",
-          "inediblePart": 0.36,
+          "id": "9421d902-4f42-4598-835b-a40b4b12b7b0",
+          "inediblePart": 0.5,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "misc"
           ],
           "ingredientDensity": 1.043,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "VERGERS"
+          "transportCooling": "none",
+          "visible": true
         }
       ]
     },
@@ -631,19 +630,19 @@
       "ingredient"
     ],
     "displayName": "Noix du Brésil",
-    "id": "29f678c2-cc33-4646-92a9-3428a22b925f",
+    "id": "483c4f75-eb01-4c2e-b6c5-9d31c68f0666",
     "metadata": {
       "food": [
         {
           "alias": "brazil-nuts",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Noix du Brésil",
-          "id": "c456923a-4f40-40cb-817d-5537dd9d1ec3",
-          "inediblePart": 0.14,
+          "id": "750db3e3-0853-4ed4-a5ec-739756085168",
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.5,
+          "ingredientDensity": 0.63,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -664,24 +663,24 @@
       "ingredient"
     ],
     "displayName": "Fruits à frire",
-    "id": "625fccfa-cac8-4b7d-a5dd-cd7f44af5b53",
+    "id": "a55b6b1c-cedc-4190-aa5c-c1b97ace4f25",
     "metadata": {
       "food": [
         {
           "alias": "breadfruit",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Fruits à frire",
-          "id": "0b3e4dfd-68dc-4307-b75c-5a6d57dbd411",
-          "inediblePart": 0.1,
+          "id": "2463bbff-cd3d-4bb1-9bf0-538a3121c4bc",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_processed"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.29,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "BLE TENDRE"
         }
       ]
     },
@@ -697,19 +696,19 @@
       "ingredient"
     ],
     "displayName": "Brocoli",
-    "id": "4f427696-30aa-4222-b563-0e8ade8626c8",
+    "id": "254dd58b-08b3-47f5-b17a-b77e2d2e16f4",
     "metadata": {
       "food": [
         {
           "alias": "broccoli",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Brocoli",
-          "id": "97957a06-a08f-40ff-9e61-fa0b1263ffc4",
-          "inediblePart": 0.4,
+          "id": "03b161be-9cce-4626-937e-ac3bb2008694",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -730,24 +729,24 @@
       "ingredient"
     ],
     "displayName": "Broyeur",
-    "id": "55926e52-55de-42b7-97fa-a05f3e049e9e",
+    "id": "46e05768-a589-4a3e-ac42-9f66279964ce",
     "metadata": {
       "food": [
         {
           "alias": "broiler",
           "defaultOrigin": "France",
           "displayName": "Broyeur",
-          "id": "da8095d2-4541-4adb-9b2b-53a5b16ebbe6",
-          "inediblePart": 0.5,
+          "id": "85ed7289-d368-4395-b9a8-982c964b8068",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "nut_oilseed_processed"
           ],
-          "ingredientDensity": 0.919,
-          "rawToCookedRatio": 0.792,
+          "ingredientDensity": 0.92,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "COLZA",
+          "cropGroup": "AUTRES OLEAGINEUX",
           "animalGroup1": "poultry",
           "animalGroup2": "chicken",
           "animalProduct": "meat"
@@ -766,24 +765,24 @@
       "ingredient"
     ],
     "displayName": "Choux de Bruxelles",
-    "id": "a69923a1-5572-44e8-ab00-93d27fab0e95",
+    "id": "c88cd68f-7354-4245-8c73-b7efea41860a",
     "metadata": {
       "food": [
         {
           "alias": "brussels-sprout",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Choux de Bruxelles",
-          "id": "8f2268e0-ff85-4ef5-a7d8-d02a6f81d059",
+          "id": "2275e634-8366-4725-85c3-04ce70d4b85b",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.74,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 1.2,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "DIVERS"
         }
       ]
     },
@@ -799,20 +798,20 @@
       "ingredient"
     ],
     "displayName": "Haricot à beurre",
-    "id": "607abf6a-6f6f-4f13-803d-1044c9720f1a",
+    "id": "3be86b1c-2ddc-4876-955f-37e6180af26b",
     "metadata": {
       "food": [
         {
           "alias": "butter-bean",
           "defaultOrigin": "France",
           "displayName": "Haricot à beurre",
-          "id": "85914776-a5fb-413c-a6ad-897db6ca858c",
-          "inediblePart": 0.2,
+          "id": "4ded0249-ec00-42c6-9606-5569374e94c0",
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "dairy_product"
           ],
-          "ingredientDensity": 0.95,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 0.8,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -831,15 +830,15 @@
       "ingredient"
     ],
     "displayName": "Capelin, filet",
-    "id": "8f2517a0-9765-4614-8cee-6bd45e3ae451",
+    "id": "c64ebaaf-4203-48bd-8f87-f7850842c968",
     "metadata": {
       "food": [
         {
           "alias": "capelin-fillet",
           "defaultOrigin": "France",
           "displayName": "Capelin, filet",
-          "id": "7a5b70cc-42f3-4e8b-8e3d-b5264c35f0a6",
-          "inediblePart": 0.36,
+          "id": "879ae4a7-26bb-4333-a202-f706cc4d0521",
+          "inediblePart": 0.64,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -863,17 +862,17 @@
       "ingredient"
     ],
     "displayName": "Carambole",
-    "id": "9fec2572-2fcf-4367-90bb-bf8c88f893bc",
+    "id": "a473a2fc-6d8e-4166-bd55-59e304f47f1c",
     "metadata": {
       "food": [
         {
           "alias": "carambola",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Carambole",
-          "id": "083bac76-6817-48e6-82a8-beea72972faa",
+          "id": "c1459eb7-3845-4c62-8d33-6bd05201bb87",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.74,
           "rawToCookedRatio": 0.856,
@@ -896,15 +895,15 @@
       "ingredient"
     ],
     "displayName": "Cardon",
-    "id": "32ee4926-1d4f-4a27-93cd-05a474041516",
+    "id": "bfecf224-48e3-4e73-bb8d-88bebb68593d",
     "metadata": {
       "food": [
         {
           "alias": "cardoon",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cardon",
-          "id": "5c3fbe11-2109-4ab4-ae48-7a827d1fb2b3",
-          "inediblePart": 0.36,
+          "id": "85908e6c-1236-45a8-aa44-a972c8beed58",
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -929,22 +928,22 @@
       "ingredient"
     ],
     "displayName": "Carottes",
-    "id": "28a58c31-2c10-49f3-a5d3-e1d5fe471668",
+    "id": "b2b9e24d-78da-4e77-9fdb-9b4f9f1b8db0",
     "metadata": {
       "food": [
         {
           "alias": "carrots",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Carottes",
-          "id": "a5e83fb3-292a-4900-aa60-f35ae6bac6cc",
+          "id": "0ed43316-29c0-4d3d-8a99-52705d379064",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.013,
-          "rawToCookedRatio": 1.0,
+          "ingredientDensity": 1.0,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -962,19 +961,19 @@
       "ingredient"
     ],
     "displayName": "Noix de cajou",
-    "id": "ffe92f0d-cded-4722-8df3-c1d37a45beca",
+    "id": "587eb528-3b35-4374-991a-dc1924d62472",
     "metadata": {
       "food": [
         {
           "alias": "cashew",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Noix de cajou",
-          "id": "fe3a22ca-e3f1-4065-a1af-3d35500acf5f",
+          "id": "cb0df88a-b6e8-4e7b-a9cd-86e37fc36e42",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 1.16,
+          "ingredientDensity": 0.6,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -995,19 +994,19 @@
       "ingredient"
     ],
     "displayName": "Cassaves",
-    "id": "abe2290c-e6c3-41a4-b83f-e74b7c4828f2",
+    "id": "6f2c844b-15f5-4125-967b-1bfbc609348b",
     "metadata": {
       "food": [
         {
           "alias": "cassava",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cassaves",
-          "id": "d46f85f9-ee3f-461e-9618-f852d430edfa",
+          "id": "54bf194d-f682-4d96-ae6c-13a4ad381dc9",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.55,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1028,15 +1027,15 @@
       "ingredient"
     ],
     "displayName": "Bovins",
-    "id": "4c14265f-981d-4a95-a2a2-a3389c3c31d5",
+    "id": "70acdc55-bcf0-434b-a608-77b1bee79ca0",
     "metadata": {
       "food": [
         {
           "alias": "cattle",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Bovins",
-          "id": "5dba6673-f506-409a-a0bd-f42ba6a8900c",
-          "inediblePart": 0.4,
+          "id": "ea7820bb-b1dd-41ee-9eae-db1423e9dde1",
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -1063,19 +1062,19 @@
       "ingredient"
     ],
     "displayName": "Choux-fleurs",
-    "id": "e4903f4c-798e-465b-bbb2-7fa911bcc1cb",
+    "id": "f7ab14ab-9f60-40c8-8cad-c08eb503259a",
     "metadata": {
       "food": [
         {
           "alias": "cauliflower",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Choux-fleurs",
-          "id": "b5f0e3ca-8e87-4a70-bc27-aa4a23f72636",
-          "inediblePart": 0.1,
+          "id": "2bdbb0b5-5a22-4792-aaf7-1ea7d52c3844",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1096,14 +1095,14 @@
       "ingredient"
     ],
     "displayName": "Céleriac",
-    "id": "4bf4a76d-5fc4-4f01-9dee-ed9a627b75c2",
+    "id": "4115f919-e09f-4b90-baad-60dddfe5f493",
     "metadata": {
       "food": [
         {
           "alias": "celeriac",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Céleriac",
-          "id": "7d81fc11-3e3b-4ce4-8398-bf89c99ffa81",
+          "id": "a29f3399-9527-499a-9d28-c69541469ed6",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -1129,19 +1128,19 @@
       "ingredient"
     ],
     "displayName": "Céleri",
-    "id": "daa245d9-6114-41da-9d70-87b6bd14cf5f",
+    "id": "a9587c0e-8ed6-45f4-af13-cd4f1dd134e8",
     "metadata": {
       "food": [
         {
           "alias": "celery",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Céleri",
-          "id": "c6fef391-350e-44a2-a799-b47f7ab8d112",
-          "inediblePart": 0.4,
+          "id": "a5661afd-f8f7-485a-8c20-b80575d93c5e",
+          "inediblePart": 0.03,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1162,19 +1161,19 @@
       "ingredient"
     ],
     "displayName": "Cerise",
-    "id": "f6737dbb-8ffb-408a-8396-61e07c00ff05",
+    "id": "7ed6f2a7-de1c-4230-9ae6-e56ff506b2b0",
     "metadata": {
       "food": [
         {
           "alias": "cherry",
           "defaultOrigin": "France",
           "displayName": "Cerise",
-          "id": "b3717150-44df-4889-8af8-8cf3ce9cc81c",
-          "inediblePart": 0.36,
+          "id": "2ce7ba02-c5b7-451b-9faf-8c556bfdcc3c",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1195,14 +1194,14 @@
       "ingredient"
     ],
     "displayName": "Châtaigne",
-    "id": "c8bcfe20-40e1-41b2-9d7b-661ec0a03be0",
+    "id": "7f7f1cb3-83aa-473f-ac52-6ac3cf88a74f",
     "metadata": {
       "food": [
         {
           "alias": "chestnut",
           "defaultOrigin": "France",
           "displayName": "Châtaigne",
-          "id": "4e26a01c-7826-41b6-b283-74a3e92613cf",
+          "id": "5482c26d-6ece-4511-9c9d-088afb1fb38b",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "nut_oilseed_processed"
@@ -1228,24 +1227,24 @@
       "ingredient"
     ],
     "displayName": "Graines de chia, séchées",
-    "id": "ea353efb-8d0e-4eaa-9363-f031058f8246",
+    "id": "1fb40767-ca36-4f92-96cc-0fb84c426ab2",
     "metadata": {
       "food": [
         {
           "alias": "chia-seed-dried",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Graines de chia, séchées",
-          "id": "870d6a61-0ed2-40da-a1ef-077dc53e75d6",
-          "inediblePart": 0.2,
+          "id": "bc165932-5373-47b2-95ee-eb0b60ad57e6",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "vegetable_processed"
+            "nut_oilseed_processed"
           ],
-          "ingredientDensity": 1.04,
-          "rawToCookedRatio": 2.33,
+          "ingredientDensity": 0.7,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "TOURNESOL"
+          "cropGroup": "AUTRES OLEAGINEUX"
         }
       ]
     },
@@ -1261,15 +1260,15 @@
       "ingredient"
     ],
     "displayName": "Racines de chicorée",
-    "id": "69283db7-7534-4771-a592-e64a48316e46",
+    "id": "cbb5c963-83ee-48ce-8696-1c463d19c7d7",
     "metadata": {
       "food": [
         {
           "alias": "chicory-root",
           "defaultOrigin": "France",
           "displayName": "Racines de chicorée",
-          "id": "47778965-a7aa-492a-b668-e22cb53e0a7f",
-          "inediblePart": 0.6,
+          "id": "2f18c6d3-7c46-4bb7-919c-b5b3a7e48c28",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -1294,24 +1293,24 @@
       "ingredient"
     ],
     "displayName": "Poêle",
-    "id": "b21df86a-7924-499c-a198-0d80a2583d90",
+    "id": "b417c722-b907-4dbb-9809-f31e94e73763",
     "metadata": {
       "food": [
         {
           "alias": "chive",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Poêle",
-          "id": "4b99e59f-041a-4dfb-bdd6-f308d8aeef0c",
-          "inediblePart": 0.1,
+          "id": "75c40ff4-5dab-4aad-ba15-9e67c4d8b3b0",
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.7,
+          "ingredientDensity": 1.043,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "VERGERS"
         }
       ]
     },
@@ -1327,19 +1326,19 @@
       "ingredient"
     ],
     "displayName": "Cinnamon",
-    "id": "3d60b2ba-df68-4dfd-a613-5bb261a053d4",
+    "id": "7094b411-2a44-4e56-a8c0-5a9bb4179094",
     "metadata": {
       "food": [
         {
           "alias": "cinnamon",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cinnamon",
-          "id": "ef89a312-f032-4c47-8bde-c7b1870d333c",
+          "id": "628895f1-6fb7-4c12-992c-dd89a44ca2e8",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.5,
+          "ingredientDensity": 0.56,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -1360,19 +1359,19 @@
       "ingredient"
     ],
     "displayName": "Clémentine",
-    "id": "01708052-fd46-4824-9387-ad70f45698ab",
+    "id": "b8e0b11d-8c1a-4195-aace-7713186622aa",
     "metadata": {
       "food": [
         {
           "alias": "clementine",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Clémentine",
-          "id": "70c1c246-422c-47b8-a809-48a131efc6d7",
+          "id": "a9c1f92c-0f48-4325-ab6c-2e483d320b73",
           "inediblePart": 0.3,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.08,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1393,24 +1392,24 @@
       "ingredient"
     ],
     "displayName": "Haricots de cacao",
-    "id": "720e4f41-bfb7-4314-b33d-2b9706d8720b",
+    "id": "2dfb2999-f203-453a-a98f-f1328b097dbc",
     "metadata": {
       "food": [
         {
           "alias": "cocoa-bean",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots de cacao",
-          "id": "480dcc80-cfed-494a-af8e-ddea39ae792a",
+          "id": "5662c050-4924-4215-be17-d0e5b679c8ad",
           "inediblePart": 0.4,
           "ingredientCategories": [
             "vegetable_processed"
           ],
-          "ingredientDensity": 0.3,
+          "ingredientDensity": 0.8,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "PROTEAGINEUX"
         }
       ]
     },
@@ -1426,19 +1425,19 @@
       "ingredient"
     ],
     "displayName": "Noix de coco, décortiquée",
-    "id": "d4b89a95-4a7e-4509-a19a-6605e7db6290",
+    "id": "1397255e-398f-40c3-9554-707b2e95d1df",
     "metadata": {
       "food": [
         {
           "alias": "coconut-dehusked",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Noix de coco, décortiquée",
-          "id": "71a8d4cb-82eb-4e89-91c3-61ac5d2ee1e2",
+          "id": "848b5a19-d27c-4cb7-bc2e-1e6f1a88368f",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.61,
+          "ingredientDensity": 0.5,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -1459,24 +1458,24 @@
       "ingredient"
     ],
     "displayName": "Graines de café",
-    "id": "7038d4f9-e86c-4e12-8c55-72db4788dbdb",
+    "id": "82401582-c7a5-44b6-a407-09e562f2dd28",
     "metadata": {
       "food": [
         {
           "alias": "coffee-beans",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Graines de café",
-          "id": "b1f34c5d-e2de-4c65-86bd-98fd381b942a",
+          "id": "7b19a8d4-c327-4177-995a-6fdc55182424",
           "inediblePart": 0.2,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.8,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "PROTEAGINEUX"
         }
       ]
     },
@@ -1492,15 +1491,15 @@
       "ingredient"
     ],
     "displayName": "Semelle commune",
-    "id": "a74f08f0-f7aa-4fbd-961a-d88523dfcefe",
+    "id": "6caca55a-b4a0-48c8-b3ca-02e505cdf5b2",
     "metadata": {
       "food": [
         {
           "alias": "common-sole",
           "defaultOrigin": "France",
           "displayName": "Semelle commune",
-          "id": "b4d8db27-a25d-451b-b264-af1c1f2e92ce",
-          "inediblePart": 0.44,
+          "id": "cf0c44f3-8691-4de3-81c1-546f7608aa2c",
+          "inediblePart": 0.58,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -1524,14 +1523,14 @@
       "ingredient"
     ],
     "displayName": "Coriandre",
-    "id": "19b51457-a5f5-4137-a128-81facd958c8d",
+    "id": "da1a909c-2661-4a54-b6e0-6cdb9e21e386",
     "metadata": {
       "food": [
         {
           "alias": "coriander",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Coriandre",
-          "id": "f3e09be3-360e-436a-a54f-ce1933e83ecf",
+          "id": "debf976b-b68b-44ac-b1be-4b9bac1064fa",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -1557,19 +1556,19 @@
       "ingredient"
     ],
     "displayName": "Maïs",
-    "id": "c969dff4-dcea-44a2-8b1f-3b98198016d7",
+    "id": "6a7a1c96-6934-4810-b5c3-b3e4d9cf02c3",
     "metadata": {
       "food": [
         {
           "alias": "corn",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Maïs",
-          "id": "823b1f36-9c08-4a3e-a8f5-469c5abf665e",
-          "inediblePart": 0.0,
+          "id": "63c80ad9-a844-4e15-8be2-11cfd27aaf02",
+          "inediblePart": 0.64,
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.67,
+          "ingredientDensity": 0.72,
           "rawToCookedRatio": 2.5,
           "scenario": "reference",
           "transportCooling": "none",
@@ -1590,19 +1589,19 @@
       "ingredient"
     ],
     "displayName": "Sirop de glucose de maïs",
-    "id": "494d9be1-a294-471d-8ba6-5f3900edae5a",
+    "id": "b5c6ad09-eae1-4386-b6d5-904ab587424f",
     "metadata": {
       "food": [
         {
           "alias": "corn-glucose-syrup",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sirop de glucose de maïs",
-          "id": "cc4d0ced-c2a1-431f-98ea-b08846a010d1",
+          "id": "54b7918a-b20d-46e7-b33c-9dabd4f0d00b",
           "inediblePart": 0.0,
           "ingredientCategories": [
-            "grain_processed"
+            "grain_raw"
           ],
-          "ingredientDensity": 1.38,
+          "ingredientDensity": 0.72,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -1623,24 +1622,23 @@
       "ingredient"
     ],
     "displayName": "Vache",
-    "id": "cb6681c7-bf31-4ce4-a8d9-2b3419f26dbb",
+    "id": "0737d8e2-c17d-474a-84c1-7e930ccae883",
     "metadata": {
       "food": [
         {
           "alias": "cow",
           "defaultOrigin": "France",
           "displayName": "Vache",
-          "id": "ee4b53f3-7705-475f-803f-06177c2db6ce",
+          "id": "251d7c40-6e79-43c0-8cc1-539438d69fec",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.05,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
-          "cropGroup": "COLZA",
           "animalGroup1": "cattle",
           "animalGroup2": "cow",
           "animalProduct": "meat"
@@ -1659,19 +1657,19 @@
       "ingredient"
     ],
     "displayName": "Lait de vache",
-    "id": "4ab0225f-2d6e-4a70-8d3c-085da053df62",
+    "id": "ad98a19e-970f-4546-9816-88c3fd4a0554",
     "metadata": {
       "food": [
         {
           "alias": "cow-milk",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lait de vache",
-          "id": "08a0c677-57e4-49c9-b6cc-ed2882575520",
+          "id": "e64fd7b8-35c0-4790-b733-76564222c200",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "dairy_product"
           ],
-          "ingredientDensity": 0.911,
+          "ingredientDensity": 1.05,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1694,19 +1692,19 @@
       "ingredient"
     ],
     "displayName": "Crabe",
-    "id": "b1d7723f-bba8-4c06-bd87-a3ec6c5e7527",
+    "id": "8abcaad8-ed7a-44cd-8a8d-be48946f995b",
     "metadata": {
       "food": [
         {
           "alias": "crab",
           "defaultOrigin": "France",
           "displayName": "Crabe",
-          "id": "493df735-3d92-4271-b77a-e24a5bfbd7b1",
-          "inediblePart": 0.36,
+          "id": "19fe2079-a997-4d04-b723-152d398af3d8",
+          "inediblePart": 0.55,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.819,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1726,19 +1724,19 @@
       "ingredient"
     ],
     "displayName": "Canneberges",
-    "id": "1bed4820-efab-4fa4-9cfc-9ff22214fa41",
+    "id": "20b08df8-b840-4c57-a6d7-f98aa877747b",
     "metadata": {
       "food": [
         {
           "alias": "cranberry",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Canneberges",
-          "id": "146e49b9-4ae8-46c6-8e33-dded7b15989b",
+          "id": "9e120f82-c069-47a0-9c13-3b1329603a4a",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 1.052,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1759,19 +1757,19 @@
       "ingredient"
     ],
     "displayName": "Concombre",
-    "id": "d2de2d67-1d59-4d35-bfde-273eef71f57c",
+    "id": "6aebfc9c-48f1-4ac5-b7bd-2be710fcff58",
     "metadata": {
       "food": [
         {
           "alias": "cucumber",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Concombre",
-          "id": "49ccdfed-bc61-461e-b04c-eb32880090f8",
-          "inediblePart": 0.4,
+          "id": "ce7036ba-5412-4956-b3ca-6d62a53905f6",
+          "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1792,19 +1790,19 @@
       "ingredient"
     ],
     "displayName": "Graines de Cucurbitacées",
-    "id": "d03e0f39-8f59-404e-ad04-853a5e32698b",
+    "id": "73a06a35-3a1e-4a40-9cc9-850eab777262",
     "metadata": {
       "food": [
         {
           "alias": "cucurbitacea-seed",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Graines de Cucurbitacées",
-          "id": "6f878226-1d6b-40a9-a35d-4b3ba2d0a50b",
+          "id": "d906f7af-fcea-4767-af06-6f8891730ef2",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.77,
+          "ingredientDensity": 0.7,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -1825,14 +1823,14 @@
       "ingredient"
     ],
     "displayName": "Dates",
-    "id": "6d7e6251-a219-4f31-b6e4-58b807748734",
+    "id": "4add81c3-6f84-466a-84b1-669b636cb82b",
     "metadata": {
       "food": [
         {
           "alias": "dates",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Dates",
-          "id": "50e7121a-4d03-4972-8476-51a5dee8e3cf",
+          "id": "ce73eee4-f9e1-4c76-8b1c-b0c5d344f0bb",
           "inediblePart": 0.3,
           "ingredientCategories": [
             "vegetable_processed"
@@ -1858,14 +1856,14 @@
       "ingredient"
     ],
     "displayName": "Diluant, frais",
-    "id": "4c0a0460-909e-403b-962c-beb7bf66fde5",
+    "id": "5a7ca85e-6b97-4ee8-a6d1-c8b41b16ae99",
     "metadata": {
       "food": [
         {
           "alias": "dill-fresh",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Diluant, frais",
-          "id": "953242f5-89d1-47ee-9985-2c0d41d585b5",
+          "id": "73aac668-97e7-4af6-9e40-59115cf0a022",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_processed"
@@ -1891,14 +1889,14 @@
       "ingredient"
     ],
     "displayName": "Canard",
-    "id": "2cf0b4d9-0054-4b30-8b77-db999b403d68",
+    "id": "e18975fe-8e0c-4ae9-99c3-d66ec86487fc",
     "metadata": {
       "food": [
         {
           "alias": "duck",
           "defaultOrigin": "France",
           "displayName": "Canard",
-          "id": "e5a8eba3-f44a-44d3-b7a0-f57918931229",
+          "id": "fc57b709-0b01-4723-aea8-1feb54f035b6",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
@@ -1926,24 +1924,24 @@
       "ingredient"
     ],
     "displayName": "Blé dur",
-    "id": "ec0a2ffc-d728-4d69-ae82-bb67b6dc0367",
+    "id": "93f80cfa-3a3b-4d8e-a3d2-7245c69c95a7",
     "metadata": {
       "food": [
         {
           "alias": "durum-wheat",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Blé dur",
-          "id": "ecb9727a-fafb-4ffb-9f0d-524c2cd5a34f",
+          "id": "c17be2ae-1635-41ef-8d6f-4dea5974899c",
           "inediblePart": 0.0,
           "ingredientCategories": [
-            "grain_processed"
+            "grain_raw"
           ],
-          "ingredientDensity": 0.53,
+          "ingredientDensity": 0.77,
           "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "BLE TENDRE"
+          "cropGroup": "AUTRES CEREALES"
         }
       ]
     },
@@ -1959,19 +1957,19 @@
       "ingredient"
     ],
     "displayName": "Oeufs",
-    "id": "93e462ad-b476-4e26-970c-f3745eaf66a2",
+    "id": "e68356f1-c6ff-4c28-a864-53412896b917",
     "metadata": {
       "food": [
         {
           "alias": "egg",
           "defaultOrigin": "France",
           "displayName": "Oeufs",
-          "id": "4a5e676e-b821-4a47-9fc7-12c5ddfba350",
-          "inediblePart": 0.2,
+          "id": "9b3c90df-79ac-4b46-b991-553d36910def",
+          "inediblePart": 0.1,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.017,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 1.11,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1991,24 +1989,23 @@
       "ingredient"
     ],
     "displayName": "Aubergines",
-    "id": "8d69ff4c-50a0-4f6d-9c8b-cb8aa3dfd811",
+    "id": "cea37afc-287b-484a-8f79-64f75f986d5d",
     "metadata": {
       "food": [
         {
           "alias": "eggplant",
           "defaultOrigin": "France",
           "displayName": "Aubergines",
-          "id": "577398e2-6cbe-4e04-b72a-fe5a96a87140",
-          "inediblePart": 0.4,
+          "id": "f909dde1-cc22-458e-831a-a00bc1c463cc",
+          "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "animal_product"
           ],
-          "ingredientDensity": 0.825,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 1.0,
+          "rawToCookedRatio": 1.11,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "visible": true
         }
       ]
     },
@@ -2024,15 +2021,15 @@
       "ingredient"
     ],
     "displayName": "Mûres",
-    "id": "a77e6ce6-a115-4e40-9e53-8428d0323950",
+    "id": "49cb4ab8-8d9f-451d-9791-7c63625412c6",
     "metadata": {
       "food": [
         {
           "alias": "elderberries",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Mûres",
-          "id": "91256715-f674-4f83-a769-df094f6189bd",
-          "inediblePart": 0.36,
+          "id": "70be0619-521c-46b2-8e74-035726f3ff6b",
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -2057,22 +2054,22 @@
       "ingredient"
     ],
     "displayName": "Endive",
-    "id": "4bb684df-47ca-4d3f-997a-6a7ba3e19802",
+    "id": "debd5ed5-3599-47cb-802b-e35af7a0b2f6",
     "metadata": {
       "food": [
         {
           "alias": "endive",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Endive",
-          "id": "88522ffb-f6f5-411b-8915-dbfc6b066fe4",
+          "id": "83e91296-d7c7-4b00-8422-350771b476ca",
           "inediblePart": 0.2,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -2090,22 +2087,22 @@
       "ingredient"
     ],
     "displayName": "Fenouil",
-    "id": "9d251b66-76e5-43fa-aaca-ec4c66420f8b",
+    "id": "c1bebccc-0c79-44e4-8b64-e318b7ceb4fc",
     "metadata": {
       "food": [
         {
           "alias": "fennel",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Fenouil",
-          "id": "58323366-7471-4652-9cfd-f48faf97c202",
+          "id": "228506dc-9cba-4aca-a1a0-1ff4f78da87b",
           "inediblePart": 0.2,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.95,
+          "ingredientDensity": 0.3,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -2123,19 +2120,19 @@
       "ingredient"
     ],
     "displayName": "Fig.",
-    "id": "f5579ec0-6284-4cf4-bdc6-128de3d95233",
+    "id": "87d257fa-9c76-4264-a6b5-a2c3c524ff98",
     "metadata": {
       "food": [
         {
           "alias": "fig",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Fig.",
-          "id": "6130077f-88b4-44e3-aa57-ea5ea8fc08d4",
+          "id": "1448f115-b52b-40ca-bcee-ceed55e5aee5",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -2156,25 +2153,25 @@
       "ingredient"
     ],
     "displayName": "Graines de lin",
-    "id": "bda704a9-d608-421a-8795-033daaa123c0",
+    "id": "1a31a649-9f76-41bc-8ef2-78173bb7ec78",
     "metadata": {
       "food": [
         {
           "alias": "flaxseed",
           "defaultOrigin": "France",
           "displayName": "Graines de lin",
-          "id": "091771aa-4025-46f2-9109-af6f6e30d58a",
-          "inediblePart": 0.1,
+          "id": "1dc63af6-31cc-4495-9513-b1ec7bf5fceb",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "vegetable_fresh",
+            "nut_oilseed_raw",
             "bleublanccoeur"
           ],
           "ingredientDensity": 0.7,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "AUTRES OLEAGINEUX"
         }
       ]
     },
@@ -2190,15 +2187,15 @@
       "ingredient"
     ],
     "displayName": "Gadidae",
-    "id": "03d73602-bf7f-40a6-8ac9-17c30dff3948",
+    "id": "34fb897d-fa62-4cac-a190-93890e497a6f",
     "metadata": {
       "food": [
         {
           "alias": "gadidae",
           "defaultOrigin": "France",
           "displayName": "Gadidae",
-          "id": "2a8583e8-9c2f-4dcd-a7f4-d419b3246b9f",
-          "inediblePart": 0.36,
+          "id": "df5c7275-f397-4e9a-93b2-9d54f4e0d85a",
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -2223,14 +2220,14 @@
       "ingredient"
     ],
     "displayName": "Aile",
-    "id": "edbe1be7-8bff-47c2-8820-9a0efa7392f2",
+    "id": "bf64740d-ee31-4ca1-8653-2b8468bd7ac5",
     "metadata": {
       "food": [
         {
           "alias": "garlic",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Aile",
-          "id": "f80920f5-a4d1-4876-a10f-5a1de39d386a",
+          "id": "598f8015-544c-4ba4-baac-d55b870df98b",
           "inediblePart": 0.4,
           "ingredientCategories": [
             "vegetable_fresh"
@@ -2256,14 +2253,14 @@
       "ingredient"
     ],
     "displayName": "Gingembre",
-    "id": "a40669d2-8540-4d7b-a988-0f07f464afc4",
+    "id": "4cf35f57-9196-4584-a278-2d780b330d79",
     "metadata": {
       "food": [
         {
           "alias": "ginger",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Gingembre",
-          "id": "5333bcd6-3d15-4bd2-9288-8a406c6cfaaf",
+          "id": "b7959771-949a-4941-8b74-e498de22bdb7",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -2289,24 +2286,23 @@
       "ingredient"
     ],
     "displayName": "Chèvre",
-    "id": "66d47b6e-69ba-4961-b09b-0d26c2d51c61",
+    "id": "a78bbbee-d8ea-43ca-b72f-f0ab55dd3e89",
     "metadata": {
       "food": [
         {
           "alias": "goat",
           "defaultOrigin": "France",
           "displayName": "Chèvre",
-          "id": "410f9ae1-f9ee-485b-b24b-ae272f82397f",
+          "id": "788cf6ff-ead0-46ff-941c-d1b60fd5832a",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.05,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
-          "transportCooling": "none",
-          "visible": true,
-          "cropGroup": "COLZA"
+          "transportCooling": "always",
+          "visible": true
         }
       ]
     },
@@ -2322,24 +2318,24 @@
       "ingredient"
     ],
     "displayName": "Raisins (noirs ou blancs)",
-    "id": "1b92cea6-0a56-4c5d-88f3-85caa3995663",
+    "id": "d7bad37d-1c78-4edd-a65c-4ffc39caee3c",
     "metadata": {
       "food": [
         {
           "alias": "grapes-black-or-white",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Raisins (noirs ou blancs)",
-          "id": "d473a238-68ea-41e1-9ecb-6b5d5771f175",
-          "inediblePart": 0.3,
+          "id": "f1c4ee7d-847c-41b8-8956-60514c821e7b",
+          "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "VIGNES"
         }
       ]
     },
@@ -2355,22 +2351,22 @@
       "ingredient"
     ],
     "displayName": "Haricots verts",
-    "id": "956bac1c-9ea7-435e-b021-c23d13106cbf",
+    "id": "3c5fa43c-5adf-4598-be4c-2235623a32e1",
     "metadata": {
       "food": [
         {
           "alias": "green-beans",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots verts",
-          "id": "87779919-552d-477a-b6c7-b34e3a0ad17c",
-          "inediblePart": 0.14,
+          "id": "ede10b54-e9cf-4181-983f-b700585da7e3",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.01,
+          "ingredientDensity": 0.53,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -2388,19 +2384,19 @@
       "ingredient"
     ],
     "displayName": "Choux verts",
-    "id": "23130160-68d8-49d5-9e57-5eea8e9b1e21",
+    "id": "30df413a-1324-4ce5-a84a-686e8d3ce90c",
     "metadata": {
       "food": [
         {
           "alias": "green-cabbage",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Choux verts",
-          "id": "51ebf689-0ce5-43d1-863d-2c2fb9b30e38",
-          "inediblePart": 0.4,
+          "id": "c94dfca6-54ec-4fa3-8ded-abb20b60e14d",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -2421,19 +2417,19 @@
       "ingredient"
     ],
     "displayName": "Prune verglaçante",
-    "id": "6e5e8557-249c-4cf2-81aa-c7c4d8f8e7ee",
+    "id": "1a45e2ad-5be9-4f43-8752-0caf40342b41",
     "metadata": {
       "food": [
         {
           "alias": "greengage-plum",
           "defaultOrigin": "France",
           "displayName": "Prune verglaçante",
-          "id": "2e309fe3-7c48-426b-b66d-a7932d28e2c2",
-          "inediblePart": 0.5,
+          "id": "acdac55b-dd06-4024-be60-06184ee64068",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.08,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -2454,14 +2450,14 @@
       "ingredient"
     ],
     "displayName": "Goyaves",
-    "id": "fb935a31-5692-4940-95b4-1dac634856a5",
+    "id": "61051394-88a8-46a6-b947-e660fa1a22f4",
     "metadata": {
       "food": [
         {
           "alias": "guava",
           "defaultOrigin": "France",
           "displayName": "Goyaves",
-          "id": "fb89c500-8f11-4c4b-9376-23d296184179",
+          "id": "06e8c422-c3cb-450a-9e53-c99d7cc0cfe7",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
@@ -2487,19 +2483,19 @@
       "ingredient"
     ],
     "displayName": "Cuire",
-    "id": "6c6a9dc9-1fca-465e-b00b-f395ec63c027",
+    "id": "6899cbd5-be6f-4921-8643-1f8f86c9d3da",
     "metadata": {
       "food": [
         {
           "alias": "hake",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cuire",
-          "id": "cf391557-125f-4f41-a6a4-023734ead148",
-          "inediblePart": 0.52,
+          "id": "93718909-0d65-48dd-aec0-b09931e40148",
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
@@ -2519,19 +2515,19 @@
       "ingredient"
     ],
     "displayName": "Noisettes décortiquées",
-    "id": "cb4b3f93-f1fa-4914-95c3-761cbca55232",
+    "id": "75a41702-8248-4074-a9f9-f251f1691ce0",
     "metadata": {
       "food": [
         {
           "alias": "hazelnuts-shelled",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Noisettes décortiquées",
-          "id": "7aeab18d-2c9c-42e4-a477-b242093647b8",
-          "inediblePart": 0.14,
+          "id": "378de883-caf8-4fc9-808c-f17a434f061a",
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.5,
+          "ingredientDensity": 0.55,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -2552,14 +2548,14 @@
       "ingredient"
     ],
     "displayName": "Céréales de chanvre",
-    "id": "6a6bf2c4-4c03-4006-a611-4ed1a785fa47",
+    "id": "95cd3d54-db93-40c6-ab99-becd2e2a1d58",
     "metadata": {
       "food": [
         {
           "alias": "hemp-grain",
           "defaultOrigin": "France",
           "displayName": "Céréales de chanvre",
-          "id": "2cb9ba2f-d214-49ff-9b22-328e635bf32d",
+          "id": "69980028-432b-4a57-8db9-5c3df3bff38b",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_raw"
@@ -2585,24 +2581,23 @@
       "ingredient"
     ],
     "displayName": "Hareng",
-    "id": "d4b67c88-909f-4e53-a526-0b121cda9bd5",
+    "id": "11f88419-8c37-443f-8520-6d12d29406e8",
     "metadata": {
       "food": [
         {
           "alias": "herring",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Hareng",
-          "id": "e38cd08a-b213-4834-bc56-a4b44d0098d9",
+          "id": "741820ef-33c7-4679-afe0-522b512461c5",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
-          "transportCooling": "none",
-          "visible": true,
-          "cropGroup": "COLZA"
+          "transportCooling": "always",
+          "visible": true
         }
       ]
     },
@@ -2618,22 +2613,22 @@
       "ingredient"
     ],
     "displayName": "Chérie",
-    "id": "d91f7c4d-2f32-493b-8046-cf2a7b67eb8d",
+    "id": "0fedf6fb-d8c0-459a-8850-46b512ec1870",
     "metadata": {
       "food": [
         {
           "alias": "honey",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Chérie",
-          "id": "1af36b82-0a27-4ad9-a011-374fa04516ee",
+          "id": "fa165b36-50fd-4547-9041-968541690a37",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_processed"
           ],
           "ingredientDensity": 1.28,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "DIVERS"
         }
@@ -2651,22 +2646,22 @@
       "ingredient"
     ],
     "displayName": "Horseradish, frais",
-    "id": "e6d0f771-f464-4a10-8f5a-41220f1318fc",
+    "id": "48ee38ec-db56-4ab2-8cac-9da831bfc9b6",
     "metadata": {
       "food": [
         {
           "alias": "horseradish-fresh",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Horseradish, frais",
-          "id": "d6e6a043-073e-4b20-afa3-f0de2007bc96",
-          "inediblePart": 0.14,
+          "id": "26ca9cc9-8483-4840-8e5e-7764c0b164c0",
+          "inediblePart": 0.03,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.45,
-          "rawToCookedRatio": 0.792,
+          "ingredientDensity": 0.6,
+          "rawToCookedRatio": 0.85,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -2684,19 +2679,19 @@
       "ingredient"
     ],
     "displayName": "Kale",
-    "id": "14985b38-ad74-49e5-bd1b-787844f61ecb",
+    "id": "f9c1ac2f-6131-4a33-92dc-52660379d3c8",
     "metadata": {
       "food": [
         {
           "alias": "kale",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Kale",
-          "id": "2210df36-d1ec-4e00-b7e4-a77b5958933a",
+          "id": "c1d0233c-9632-4e3e-b482-7ba761726674",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -2717,22 +2712,22 @@
       "ingredient"
     ],
     "displayName": "Kiwi",
-    "id": "b0c78c35-1f9e-4017-8345-81ac3ea044a7",
+    "id": "5b78860e-41fd-4b6c-9893-eb9a9dafebac",
     "metadata": {
       "food": [
         {
           "alias": "kiwi",
           "defaultOrigin": "France",
           "displayName": "Kiwi",
-          "id": "6a010da8-3ac6-478e-9f5a-55995af393aa",
+          "id": "db7e74cf-dce9-4ed9-9c92-2b4fdf208c14",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.07,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "VERGERS"
         }
@@ -2750,19 +2745,19 @@
       "ingredient"
     ],
     "displayName": "M. Kohlrabi",
-    "id": "e74bfcfd-c481-4c12-9887-1f8e04917e22",
+    "id": "c67cd2a7-7611-4f6e-af94-604b04943f6e",
     "metadata": {
       "food": [
         {
           "alias": "kohlrabi",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "M. Kohlrabi",
-          "id": "bc45a311-8bdc-465e-b2e3-438b8411317c",
+          "id": "07fd00c6-991c-40f9-8d48-6d2f36f4bf14",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -2783,19 +2778,19 @@
       "ingredient"
     ],
     "displayName": "Kumquat",
-    "id": "9c3268e6-0fe7-4202-a9e9-5e4faadb1754",
+    "id": "4b0148e2-7fa5-45a5-a726-cb9bc5c1c2ca",
     "metadata": {
       "food": [
         {
           "alias": "kumquat",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Kumquat",
-          "id": "6fe59942-e99e-4852-99d4-fc56bda97bad",
+          "id": "dfc1a566-b811-4424-9ea3-77f16c5e8aba",
           "inediblePart": 0.3,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.08,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -2816,19 +2811,19 @@
       "ingredient"
     ],
     "displayName": "Agneau",
-    "id": "e24334b3-96d3-4cc2-8631-ce33734ded71",
+    "id": "5d00e5ec-02c7-4282-97c9-82d069b5a3ae",
     "metadata": {
       "food": [
         {
           "alias": "lamb",
           "defaultOrigin": "France",
           "displayName": "Agneau",
-          "id": "7f738035-79f4-4227-a090-c3d26cb239c4",
+          "id": "49af6a01-b852-434d-8d6d-daa3e79be90d",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 1.05,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
@@ -2851,20 +2846,20 @@
       "ingredient"
     ],
     "displayName": "Grandes truites",
-    "id": "9e55678f-430b-49ec-9aa8-080b6d9f1f5a",
+    "id": "92b830b8-e666-405d-99e1-09e0c84e02b6",
     "metadata": {
       "food": [
         {
           "alias": "large-trout",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Grandes truites",
-          "id": "232c2bb2-6a4b-4bb2-82d9-c066afb65312",
-          "inediblePart": 0.5,
+          "id": "9a93f2e2-568a-4468-bda6-4619b48b880a",
+          "inediblePart": 0.64,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.933,
-          "rawToCookedRatio": 0.819,
+          "ingredientDensity": 1.0,
+          "rawToCookedRatio": 1.18,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -2883,19 +2878,19 @@
       "ingredient"
     ],
     "displayName": "Fuite",
-    "id": "12e332ba-3372-4fdf-b335-e954d202c1fe",
+    "id": "0713f91a-92b9-4705-8dbb-e838c2d18b95",
     "metadata": {
       "food": [
         {
           "alias": "leek",
           "defaultOrigin": "France",
           "displayName": "Fuite",
-          "id": "90873e60-682d-4bf6-a936-3629ee19f636",
-          "inediblePart": 0.4,
+          "id": "32895334-bf63-43de-b041-670c2e4de94d",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -2916,15 +2911,15 @@
       "ingredient"
     ],
     "displayName": "Citron",
-    "id": "f1a23284-3a8d-4109-bada-9e670c0fa932",
+    "id": "d0782e62-4389-492d-8af8-3283348c2f9c",
     "metadata": {
       "food": [
         {
           "alias": "lemon",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Citron",
-          "id": "61af28ff-5648-4f08-a707-f064ca2c7f4d",
-          "inediblePart": 0.1,
+          "id": "8cdf60c9-88ea-4e35-8545-a2e9dc7784f0",
+          "inediblePart": 0.3,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -2949,24 +2944,24 @@
       "ingredient"
     ],
     "displayName": "Lentil",
-    "id": "1c9025f1-2797-4d19-b5d1-a33747d2fab0",
+    "id": "db68d21e-e592-42d6-86d8-9403a30127ab",
     "metadata": {
       "food": [
         {
           "alias": "lentil",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lentil",
-          "id": "7ef41d3c-78fc-48be-b733-bb9e39fe871d",
-          "inediblePart": 0.1,
+          "id": "5046e323-3623-45cb-a7a7-60d210efb9bb",
+          "inediblePart": 0.64,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.7,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 0.8,
+          "rawToCookedRatio": 2.33,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMINEUSES A GRAIN"
         }
       ]
     },
@@ -2982,19 +2977,19 @@
       "ingredient"
     ],
     "displayName": "Lobster",
-    "id": "021474a6-816e-41f8-93df-fcc003798e40",
+    "id": "8a871cf5-5383-4943-baa7-8db28bffc258",
     "metadata": {
       "food": [
         {
           "alias": "lobster",
           "defaultOrigin": "France",
           "displayName": "Lobster",
-          "id": "78a3824b-1c03-47b1-8630-55e05024d7b9",
-          "inediblePart": 0.36,
+          "id": "38cb8816-ee39-450c-bbe1-ff198ebb2b69",
+          "inediblePart": 0.55,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.819,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3014,24 +3009,24 @@
       "ingredient"
     ],
     "displayName": "Lupin",
-    "id": "358563f8-c302-4add-a6a7-f5bd572f0196",
+    "id": "16213860-4273-4014-b32e-a6588b21d7b3",
     "metadata": {
       "food": [
         {
           "alias": "lupin",
           "defaultOrigin": "France",
           "displayName": "Lupin",
-          "id": "b4847cb8-65b2-49bf-8e94-6afc026fd8da",
+          "id": "725c74df-ca90-4d33-80ff-7ebef621fc2b",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.7,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -3047,19 +3042,19 @@
       "ingredient"
     ],
     "displayName": "Lychee",
-    "id": "10a837cb-e4cd-411e-9a7f-5ad947d52ee5",
+    "id": "d22c3a0b-fb23-4acb-b25d-2cf4de261732",
     "metadata": {
       "food": [
         {
           "alias": "lychee",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lychee",
-          "id": "607e6292-7974-41b8-a324-c1d73176c37f",
-          "inediblePart": 0.36,
+          "id": "1a7c2973-d3c9-4532-a941-f431c1a9afa6",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3080,19 +3075,19 @@
       "ingredient"
     ],
     "displayName": "Maquereau",
-    "id": "348c6c48-e9b7-4924-8781-5b55899aa5e7",
+    "id": "ab63d536-5b47-4fec-afdc-88e53ebe5c0f",
     "metadata": {
       "food": [
         {
           "alias": "mackerel",
           "defaultOrigin": "France",
           "displayName": "Maquereau",
-          "id": "fde4380b-5269-43fe-add0-8e4324b83521",
-          "inediblePart": 0.52,
+          "id": "dca972e5-5525-4307-b32c-34416044b3f1",
+          "inediblePart": 0.48,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3112,19 +3107,19 @@
       "ingredient"
     ],
     "displayName": "Mango",
-    "id": "2b6d2046-811c-42e5-bd04-6b1e66d03a70",
+    "id": "88730f34-4892-4fd0-b8c2-d72c0a57a207",
     "metadata": {
       "food": [
         {
           "alias": "mango",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Mango",
-          "id": "cc438d6a-1227-4fd8-bbed-77eb958de101",
-          "inediblePart": 0.36,
+          "id": "8d0d09ed-f7f8-4479-8f9f-79750f3017c9",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3145,24 +3140,24 @@
       "ingredient"
     ],
     "displayName": "Melon (choneydew, Charentais, Cataloupe, Cavaillon)",
-    "id": "6be8c622-89e2-48f1-b880-7e863ccdf74b",
+    "id": "690b17d6-9a88-4980-878d-ada9d3d5fd6c",
     "metadata": {
       "food": [
         {
           "alias": "melon-honeydew-charentais-cataloupe-cavaillon",
           "defaultOrigin": "France",
           "displayName": "Melon (choneydew, Charentais, Cataloupe, Cavaillon)",
-          "id": "c004d067-b844-4914-bb00-200f4a80cc6f",
-          "inediblePart": 0.36,
+          "id": "029d261c-9c66-4843-9770-b42f0b30763b",
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 1.0,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -3178,20 +3173,20 @@
       "ingredient"
     ],
     "displayName": "Millet",
-    "id": "7cf30945-2bcf-40db-be08-596c51c547f2",
+    "id": "097b930a-fe17-45eb-a9cb-c948dafb96fe",
     "metadata": {
       "food": [
         {
           "alias": "millet",
           "defaultOrigin": "France",
           "displayName": "Millet",
-          "id": "bf4d1b04-21dc-409b-a30d-26ab6632f9ad",
+          "id": "91cc4c7d-c081-4518-bdcc-c42256d23053",
           "inediblePart": 0.0,
           "ingredientCategories": [
-            "grain_processed"
+            "grain_raw"
           ],
-          "ingredientDensity": 0.53,
-          "rawToCookedRatio": 2.259,
+          "ingredientDensity": 0.64,
+          "rawToCookedRatio": 2.5,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -3211,22 +3206,22 @@
       "ingredient"
     ],
     "displayName": "Menthe",
-    "id": "82283ae6-f699-483c-a7a4-5a723a506a71",
+    "id": "bcc647d6-fa37-4688-bc0f-a1ffe146c74c",
     "metadata": {
       "food": [
         {
           "alias": "mint",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Menthe",
-          "id": "a97b7eac-0804-4953-8542-e316f5556864",
+          "id": "685ee0d3-1ee8-4506-8729-e62f9218a4d9",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 1.12,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN"
         }
@@ -3244,14 +3239,14 @@
       "ingredient"
     ],
     "displayName": "Molokhia poudre",
-    "id": "97fc038f-23fb-4a81-87bc-9cce328e26bc",
+    "id": "d1c76b39-77b9-4988-a9ab-7793503fb0b4",
     "metadata": {
       "food": [
         {
           "alias": "molokhia-powder",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Molokhia poudre",
-          "id": "7fb2805d-1fa3-4277-9cc5-ee78418b2a15",
+          "id": "ca0d617d-bb79-4933-83ab-612177a21119",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_raw"
@@ -3277,15 +3272,15 @@
       "ingredient"
     ],
     "displayName": "Cerise Morello",
-    "id": "0c4b97cd-54d4-4945-a70b-7cdfb60686aa",
+    "id": "95772e97-575f-468a-b904-1eabb44193fa",
     "metadata": {
       "food": [
         {
           "alias": "morello-cherry",
           "defaultOrigin": "France",
           "displayName": "Cerise Morello",
-          "id": "32e701b0-2f84-470f-ac6e-c4ee522d20b2",
-          "inediblePart": 0.1,
+          "id": "6bc4118a-8e52-49f1-9f2d-bdd7418bb920",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3310,20 +3305,20 @@
       "ingredient"
     ],
     "displayName": "Moules, avec coquille",
-    "id": "d1d849e8-a400-4e4a-b2bc-27627a68149d",
+    "id": "ea9f56f2-2a6a-46e4-b9b4-e05242633aea",
     "metadata": {
       "food": [
         {
           "alias": "mussels-with-shell",
           "defaultOrigin": "France",
           "displayName": "Moules, avec coquille",
-          "id": "bf2c924c-8278-48c9-86a8-708963ee51af",
-          "inediblePart": 0.5,
+          "id": "5c4b0bf8-718b-4c35-a65d-0e9ac20aa7bf",
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.79,
-          "rawToCookedRatio": 1.11,
+          "ingredientDensity": 1.0,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -3342,24 +3337,24 @@
       "ingredient"
     ],
     "displayName": "Graines de moutarde",
-    "id": "6f1c459f-81a4-4efe-b0db-c0989fd8f0e7",
+    "id": "978d08c6-8694-4021-bbe3-83f060092ab2",
     "metadata": {
       "food": [
         {
           "alias": "mustard-seed",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Graines de moutarde",
-          "id": "a85dfce2-b063-4360-a431-e1024dc2da05",
-          "inediblePart": 0.2,
+          "id": "121c1325-bf45-4147-820f-9ec040325631",
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.745,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 1.0,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "LEGUMINEUSES A GRAIN"
         }
       ]
     },
@@ -3375,24 +3370,24 @@
       "ingredient"
     ],
     "displayName": "Nectarine",
-    "id": "10bd68f9-9dfd-4439-b941-8490a0b49d40",
+    "id": "5088b2c5-fc71-4e87-a845-9b3bb5cebc07",
     "metadata": {
       "food": [
         {
           "alias": "nectarine",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Nectarine",
-          "id": "56e0ac38-b0ff-4143-9b13-632e66b3d9f6",
+          "id": "d23a9229-1083-401d-92d6-1ebec7cef6fb",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "VERGERS"
         }
       ]
     },
@@ -3408,22 +3403,22 @@
       "ingredient"
     ],
     "displayName": "Épinards de Nouvelle-Zélande",
-    "id": "fb9dcef4-2807-41b8-bb96-7281eccb7118",
+    "id": "2677cc34-0fb1-4799-ac89-6d2519f5c676",
     "metadata": {
       "food": [
         {
           "alias": "new-zealand-spinach",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Épinards de Nouvelle-Zélande",
-          "id": "b4cad176-1c25-4a32-bddd-5b54a2ca91cd",
-          "inediblePart": 0.1,
+          "id": "b689c4a4-58bc-41b4-8169-04f2ca947b6a",
+          "inediblePart": 0.03,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.95,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -3441,15 +3436,15 @@
       "ingredient"
     ],
     "displayName": "Perchaude du Nil",
-    "id": "5da94f15-8190-46bb-8e42-d5a8e0f450bd",
+    "id": "d3743192-216f-48a4-baf8-9ef332e2ffe8",
     "metadata": {
       "food": [
         {
           "alias": "nile-perch",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Perchaude du Nil",
-          "id": "75ab7556-85b1-4074-b8c0-d6f41c135c29",
-          "inediblePart": 0.36,
+          "id": "79bfdb28-bc28-4bed-b111-74942356459b",
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3473,14 +3468,14 @@
       "ingredient"
     ],
     "displayName": "Nutmeg",
-    "id": "446e3446-2f9e-413d-8954-ea457ad79e81",
+    "id": "429e9164-0cff-47a0-930e-b2c1056ce7ad",
     "metadata": {
       "food": [
         {
           "alias": "nutmeg",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Nutmeg",
-          "id": "d22fe2b8-4f65-4ad7-9abb-7db26eb8320d",
+          "id": "71b64edd-6cb8-420b-8c33-43e4ebb7ad86",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -3506,24 +3501,24 @@
       "ingredient"
     ],
     "displayName": "Avoine",
-    "id": "b6e1cc86-b68b-48b1-9292-d9d186643c36",
+    "id": "7dbfd8f7-27ef-4c92-a146-96f32a2d18c1",
     "metadata": {
       "food": [
         {
           "alias": "oats",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Avoine",
-          "id": "fd9b6b2c-5c2a-466a-87ca-e78ba0890c8e",
-          "inediblePart": 0.36,
+          "id": "630c8e2d-5bb0-4288-91da-1b2e6fdd853a",
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.043,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 0.41,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "AUTRES CEREALES"
         }
       ]
     },
@@ -3539,19 +3534,19 @@
       "ingredient"
     ],
     "displayName": "Okra",
-    "id": "53d103b5-e758-4698-925e-e1c315779bcb",
+    "id": "3115a200-0428-4d2b-87e9-bce391ed68bc",
     "metadata": {
       "food": [
         {
           "alias": "okra",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Okra",
-          "id": "6b56dea3-2d66-4c78-adc4-8f602a7243fb",
+          "id": "d1827411-97f7-47c3-be2e-349d51c045cb",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3572,24 +3567,24 @@
       "ingredient"
     ],
     "displayName": "Oignons",
-    "id": "2c7f781f-de4b-4496-9631-a632d75337f4",
+    "id": "d2e2badd-5655-47e3-8a23-fbd0c116eab6",
     "metadata": {
       "food": [
         {
           "alias": "olives",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Oignons",
-          "id": "1a7216ae-2601-4f6a-9511-369208b8b89b",
-          "inediblePart": 0.3,
+          "id": "6523c22c-117e-4bd3-865c-ee7ad8d38cd2",
+          "inediblePart": 0.5,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.65,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "OLIVIERS"
         }
       ]
     },
@@ -3605,24 +3600,24 @@
       "ingredient"
     ],
     "displayName": "Oignons",
-    "id": "1a6f4a6a-4f26-40dd-bb03-23abd2f2a4fb",
+    "id": "6474e7c4-1d16-4c57-80c8-ea29a35fd144",
     "metadata": {
       "food": [
         {
           "alias": "onions",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Oignons",
-          "id": "6e2fa2f2-5ccc-4090-a16d-ebf3555cfd26",
-          "inediblePart": 0.3,
+          "id": "b68521e0-bc33-43f2-a835-0fcd79cab8f3",
+          "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.22,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -3638,19 +3633,19 @@
       "ingredient"
     ],
     "displayName": "Oranges",
-    "id": "2319f686-4408-42e6-86ed-a3595d725c9c",
+    "id": "e17f3e93-0174-4ee1-87c7-58da72ae4295",
     "metadata": {
       "food": [
         {
           "alias": "oranges",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Oranges",
-          "id": "49a12e25-1c32-41b1-91de-6e04493975c8",
-          "inediblePart": 0.3,
+          "id": "36e39088-da20-4012-a833-91116246dd90",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.08,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3671,19 +3666,19 @@
       "ingredient"
     ],
     "displayName": "Fruits de palme",
-    "id": "e09e9fd3-0a10-4038-9e07-23f36486c944",
+    "id": "4b5f0585-b743-4d3a-8a9d-2651e21bf411",
     "metadata": {
       "food": [
         {
           "alias": "palm-fruit",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Fruits de palme",
-          "id": "a0def9c3-c54a-4b8d-b6c9-325955fbe159",
+          "id": "49e8736a-7291-4d1f-a5cf-cb132b569e7a",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_processed"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.77,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3704,19 +3699,19 @@
       "ingredient"
     ],
     "displayName": "Papaye",
-    "id": "70a936dc-3dae-4350-a2c2-3b465caf67fa",
+    "id": "92b54c11-0e8e-48bf-8616-439c2844c2c9",
     "metadata": {
       "food": [
         {
           "alias": "papaya",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Papaye",
-          "id": "363cc7db-dfbb-4aca-ad4e-d56af9f25447",
-          "inediblePart": 0.36,
+          "id": "f8873e5f-eae9-4ce5-bdfd-b90b30f265dc",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3737,14 +3732,14 @@
       "ingredient"
     ],
     "displayName": "Persil, frais",
-    "id": "6a9c8178-b494-4fb4-9ffd-39961255698c",
+    "id": "c394e901-7dd4-46c7-a0ad-85e25c14cc15",
     "metadata": {
       "food": [
         {
           "alias": "parsley-fresh",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Persil, frais",
-          "id": "e4533395-6d2f-4a7d-b77c-6b74cf44acf8",
+          "id": "ec611dcd-b7b9-4ea8-bf9a-12bc60ebd796",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_processed"
@@ -3770,14 +3765,14 @@
       "ingredient"
     ],
     "displayName": "Parsnips",
-    "id": "02a70c70-1021-4be7-905b-895545a7671f",
+    "id": "30d11619-639b-4e3b-99f2-4a43cb638c06",
     "metadata": {
       "food": [
         {
           "alias": "parsnips",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Parsnips",
-          "id": "29f65adb-798a-4a94-a1ae-be0f109a4fe5",
+          "id": "22b90b72-752d-41e1-9ce4-033f1a00b7da",
           "inediblePart": 0.3,
           "ingredientCategories": [
             "vegetable_processed"
@@ -3803,19 +3798,19 @@
       "ingredient"
     ],
     "displayName": "Fruits de la passion",
-    "id": "d0f092cb-3856-4f20-9806-e13c10130117",
+    "id": "5292f436-0770-426e-9638-42a10b46d4f5",
     "metadata": {
       "food": [
         {
           "alias": "passion-fruit",
           "defaultOrigin": "France",
           "displayName": "Fruits de la passion",
-          "id": "0f52b5e0-a66e-4fe5-910f-21fe5dbf07fc",
-          "inediblePart": 0.36,
+          "id": "ef2381c9-8d0c-4787-84a1-2772daba4ad4",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3836,19 +3831,19 @@
       "ingredient"
     ],
     "displayName": "Pêches",
-    "id": "bf1cf76c-a10c-4635-ad69-92836fe91aad",
+    "id": "07f86fe9-9404-408f-9495-5eb1a01f7303",
     "metadata": {
       "food": [
         {
           "alias": "peaches",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pêches",
-          "id": "fae7f724-c64b-4f60-bcd2-dbd4963baee8",
-          "inediblePart": 0.36,
+          "id": "145fa32e-1f9f-4329-aaeb-438b915f1705",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.043,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3869,19 +3864,19 @@
       "ingredient"
     ],
     "displayName": "Tourteaux",
-    "id": "88762f68-fca6-4fc6-82e4-f65529b0f835",
+    "id": "364833e3-0247-4c51-a30e-c6820718230d",
     "metadata": {
       "food": [
         {
           "alias": "peanut",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tourteaux",
-          "id": "f9e45676-582b-4c37-8e54-914f8c25ecb2",
+          "id": "05931c65-4d60-4929-a272-5a76037d9883",
           "inediblePart": 0.0,
           "ingredientCategories": [
-            "nut_oilseed_processed"
+            "nut_oilseed_raw"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.55,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -3902,24 +3897,24 @@
       "ingredient"
     ],
     "displayName": "Poires",
-    "id": "f83e7bad-5883-4ee0-a03f-85c2c9528259",
+    "id": "c20867d9-5f00-4fd0-b172-39b6bb0b4430",
     "metadata": {
       "food": [
         {
           "alias": "pears",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Poires",
-          "id": "375967ae-cbba-431f-b4fc-8e15f81158b1",
-          "inediblePart": 0.3,
+          "id": "ee3cde81-6702-469e-b411-7aa2884867f2",
+          "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -3935,24 +3930,24 @@
       "ingredient"
     ],
     "displayName": "Pois, avec gousses",
-    "id": "db4e4306-2cce-449f-8590-190dae6576a5",
+    "id": "004dd964-0cba-4135-94b2-f22f4e5595a6",
     "metadata": {
       "food": [
         {
           "alias": "peas-with-pods",
           "defaultOrigin": "France",
           "displayName": "Pois, avec gousses",
-          "id": "df8744c3-f129-42cc-8034-d56f81a2f0bb",
-          "inediblePart": 0.36,
+          "id": "ccdde1fd-bbb3-4f8b-8c7f-33bf065f73ff",
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.043,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 0.8,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "AUTRES CEREALES"
         }
       ]
     },
@@ -3968,19 +3963,19 @@
       "ingredient"
     ],
     "displayName": "Poivre",
-    "id": "f20bfcd7-3474-464c-9ef6-56ae86a9b6b1",
+    "id": "3badcde3-544f-4d3b-ad17-928f87f2ca94",
     "metadata": {
       "food": [
         {
           "alias": "pepper",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Poivre",
-          "id": "b0658d4e-5981-4683-8064-37dc5c854108",
-          "inediblePart": 0.4,
+          "id": "e863e5d6-86e3-4d82-b70a-58ea1ec58072",
+          "inediblePart": 0.03,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4001,19 +3996,19 @@
       "ingredient"
     ],
     "displayName": "Persimmon",
-    "id": "41ce27bc-8501-4064-a7d6-43c990e9b288",
+    "id": "2a1109f6-cb55-41d0-ba11-4cf9654d6785",
     "metadata": {
       "food": [
         {
           "alias": "persimmon",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Persimmon",
-          "id": "77759b23-d691-4075-8760-1f47ddc7f432",
+          "id": "9e7f0b88-4786-474b-b579-16a541affce5",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4034,24 +4029,23 @@
       "ingredient"
     ],
     "displayName": "Porc",
-    "id": "3838b624-8243-4dab-9e16-2ae30be883e7",
+    "id": "fab59702-a34a-449e-a655-e427c57d4195",
     "metadata": {
       "food": [
         {
           "alias": "pig",
           "defaultOrigin": "France",
           "displayName": "Porc",
-          "id": "a9cc88ed-2f93-4c95-b18f-666a8893f523",
+          "id": "544b93ef-f14c-4b8d-8bdf-6d1a1c68a265",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.05,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
-          "cropGroup": "COLZA",
           "animalGroup1": "pig",
           "animalGroup2": "pig",
           "animalProduct": "meat"
@@ -4070,19 +4064,19 @@
       "ingredient"
     ],
     "displayName": "Noix de pin",
-    "id": "d35462d9-6598-4562-a192-c5e88ce5087f",
+    "id": "40c98751-7556-4f5d-aebc-b8f8c59e9ffd",
     "metadata": {
       "food": [
         {
           "alias": "pine-nuts",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Noix de pin",
-          "id": "d78e605d-c75a-47be-999a-26bee16c0dd9",
-          "inediblePart": 0.14,
+          "id": "a4f02d53-da8c-445f-8b9b-a47ff6444e25",
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.5,
+          "ingredientDensity": 0.63,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -4103,19 +4097,19 @@
       "ingredient"
     ],
     "displayName": "Ananas",
-    "id": "6be43a03-86d3-447e-a5ca-d7f714d531e8",
+    "id": "af8ff3ff-1684-4461-9e0f-e0fe00fab715",
     "metadata": {
       "food": [
         {
           "alias": "pineapple",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Ananas",
-          "id": "866a2799-f45d-4d6a-86d0-49e16fb3552d",
+          "id": "b85fa14b-973e-4220-9b39-8058d1a2d17c",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.08,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4136,15 +4130,15 @@
       "ingredient"
     ],
     "displayName": "Pistaches",
-    "id": "7801964e-73d5-44ae-851b-8a71c1a5b4aa",
+    "id": "459fa578-d82b-4aee-a49c-f65b5f75ff51",
     "metadata": {
       "food": [
         {
           "alias": "pistachios",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pistaches",
-          "id": "d6ff9423-03f1-42b7-9d8b-ff6a6823002f",
-          "inediblePart": 0.14,
+          "id": "149498e1-006b-414c-b992-f5d6c2fb2390",
+          "inediblePart": 0.86,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -4169,22 +4163,22 @@
       "ingredient"
     ],
     "displayName": "Plantain",
-    "id": "e0c03793-4f83-4ac8-9260-d6411b3d4e3f",
+    "id": "b9872b40-ad08-466f-96e1-6d67fa7d507f",
     "metadata": {
       "food": [
         {
           "alias": "plantain",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Plantain",
-          "id": "808f8281-faa0-436f-a052-9ca0d7d3c5cb",
+          "id": "8e1096bb-c864-499f-8d07-8a66889ab351",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.919,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "COLZA"
         }
@@ -4202,15 +4196,15 @@
       "ingredient"
     ],
     "displayName": "grenade",
-    "id": "90836ef3-5a64-4e6c-b193-4b0a63c3a97b",
+    "id": "fa48f1fb-573d-4cf7-9b33-16553066c774",
     "metadata": {
       "food": [
         {
           "alias": "pomegranate",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "grenade",
-          "id": "71f1a122-d5fa-4bf8-af31-b8a679bac2c1",
-          "inediblePart": 0.1,
+          "id": "f0188fd4-0d97-410c-8f8e-f94fd40487c7",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4235,24 +4229,24 @@
       "ingredient"
     ],
     "displayName": "Graines de coquelicots",
-    "id": "53781119-483b-48e4-851a-aae2afa6a18d",
+    "id": "1e3599bc-b546-4de1-ab8d-2ae5579f2da8",
     "metadata": {
       "food": [
         {
           "alias": "poppy-seeds",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Graines de coquelicots",
-          "id": "ec0d02ad-1a4a-4ddb-a0d6-2297bbb02bce",
-          "inediblePart": 0.36,
+          "id": "eba9ae3b-88b4-42f3-a5e6-ba42152b7e00",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.96,
-          "rawToCookedRatio": 0.819,
+          "ingredientDensity": 0.7,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "MAIS GRAIN ET ENSILAGE"
+          "cropGroup": "AUTRES OLEAGINEUX"
         }
       ]
     },
@@ -4268,19 +4262,19 @@
       "ingredient"
     ],
     "displayName": "Pommes de terre",
-    "id": "5df67f78-be4b-45f1-b01d-8fe44a950806",
+    "id": "4cc8c2e1-0ca9-4e4d-8bbc-8c8a7553ac2a",
     "metadata": {
       "food": [
         {
           "alias": "potato",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pommes de terre",
-          "id": "cddf7a1a-c108-4225-87b0-c7d309275ded",
-          "inediblePart": 0.2,
+          "id": "8a3ad034-da17-4751-9488-b23acd448d07",
+          "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.054,
+          "ingredientDensity": 1.1,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4301,22 +4295,22 @@
       "ingredient"
     ],
     "displayName": "Citrouille",
-    "id": "e17f89cf-b206-407c-ac97-5af0922532f4",
+    "id": "ccbded9b-2853-45a9-b251-67b641f6524d",
     "metadata": {
       "food": [
         {
           "alias": "pumpkin",
           "defaultOrigin": "France",
           "displayName": "Citrouille",
-          "id": "2bca2ed8-de53-46e6-a090-1413c22b695f",
+          "id": "af4628b4-6e67-4f26-bbdf-3aba3e39c627",
           "inediblePart": 0.2,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.745,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -4334,19 +4328,19 @@
       "ingredient"
     ],
     "displayName": "Raccord",
-    "id": "76c6b581-8c58-4d39-9c3c-e12ffad972f2",
+    "id": "8463b0a2-8739-4c6d-b37f-1923141a68ca",
     "metadata": {
       "food": [
         {
           "alias": "quince",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Raccord",
-          "id": "ed726679-6a4e-430c-8b20-0559b6a868d0",
+          "id": "804c70a6-5508-4397-b27f-84e59bfd502c",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4367,14 +4361,14 @@
       "ingredient"
     ],
     "displayName": "Quinoa",
-    "id": "9efa94ce-a7dc-4def-990f-1ead168d0a5c",
+    "id": "d01c2211-6e90-45f3-9653-39ecea89ca84",
     "metadata": {
       "food": [
         {
           "alias": "quinoa",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Quinoa",
-          "id": "dcf00a94-1cfa-49a8-bbaa-90b4cd5facd1",
+          "id": "f4bdbbf4-0a7b-4767-b438-97eadb9f3153",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_processed"
@@ -4400,14 +4394,14 @@
       "ingredient"
     ],
     "displayName": "Lapin",
-    "id": "ee9ce19e-def6-420f-92ab-5e8c7099029d",
+    "id": "22483c9f-bfaf-4a47-8668-78d03d183de5",
     "metadata": {
       "food": [
         {
           "alias": "rabbit",
           "defaultOrigin": "France",
           "displayName": "Lapin",
-          "id": "f345e460-177a-4f70-9a5a-ed792cb00876",
+          "id": "f31b71a1-c086-4fb0-899e-8a85572fe0d1",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
@@ -4432,20 +4426,20 @@
       "ingredient"
     ],
     "displayName": "Radish",
-    "id": "e4dd9076-d836-43a8-bc05-4450b27332aa",
+    "id": "3ff9215f-7221-4b4f-bac8-784f80657f60",
     "metadata": {
       "food": [
         {
           "alias": "radish",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Radish",
-          "id": "9df25dbc-a923-460a-88e0-106c20156552",
-          "inediblePart": 0.4,
+          "id": "e4716bd3-0d83-4636-aeb8-6784962b05ca",
+          "inediblePart": 0.03,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
-          "rawToCookedRatio": 0.856,
+          "ingredientDensity": 0.6,
+          "rawToCookedRatio": 0.85,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
@@ -4465,17 +4459,17 @@
       "ingredient"
     ],
     "displayName": "Violés",
-    "id": "56bca594-c004-432b-bfcd-57731baed770",
+    "id": "e8138550-aefa-4dcd-b516-fe81b9c07c47",
     "metadata": {
       "food": [
         {
           "alias": "rapeseed",
           "defaultOrigin": "France",
           "displayName": "Violés",
-          "id": "b09b2a3b-ff03-4c29-bbab-f93271de6e76",
-          "inediblePart": 0.1,
+          "id": "44e58e75-cd96-4cd6-a56f-ae430f9d0e8d",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.77,
           "rawToCookedRatio": 2.259,
@@ -4501,24 +4495,24 @@
       "ingredient"
     ],
     "displayName": "Framboise",
-    "id": "b39b9033-10ee-4a9e-89d5-61a6037ebde5",
+    "id": "680c7f13-324f-45a2-9291-03f47f01f126",
     "metadata": {
       "food": [
         {
           "alias": "raspberry",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Framboise",
-          "id": "6bc21de3-d76e-470d-886f-2c85db26957f",
-          "inediblePart": 0.36,
+          "id": "3d7e6f5c-48bd-4b44-b43e-9414ade180a7",
+          "inediblePart": 0.64,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -4534,24 +4528,24 @@
       "ingredient"
     ],
     "displayName": "Fèves rouges séchées",
-    "id": "826940c2-79e4-4bf0-9eb1-2e5a1d03edfe",
+    "id": "2b7524db-15df-46bc-b01f-93b0d8fc6b68",
     "metadata": {
       "food": [
         {
           "alias": "red-beans-dried",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Fèves rouges séchées",
-          "id": "8b6a62aa-0c1a-467d-aa87-c6fa44d98b3a",
-          "inediblePart": 0.14,
+          "id": "129062e9-844f-4c1e-a19f-51ba39408934",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_processed"
           ],
-          "ingredientDensity": 1.01,
+          "ingredientDensity": 0.8,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "LEGUMINEUSES A GRAIN"
         }
       ]
     },
@@ -4567,20 +4561,20 @@
       "ingredient"
     ],
     "displayName": "Endive rouge",
-    "id": "357bb977-d689-41e6-b21e-22a536789797",
+    "id": "6373860a-f8d4-4ce0-b02e-c9043508564c",
     "metadata": {
       "food": [
         {
           "alias": "red-endive",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Endive rouge",
-          "id": "a10e9374-2084-4062-b6c7-6a8c2f9a3f54",
-          "inediblePart": 0.14,
+          "id": "ab300cf3-0012-4348-8c24-48ee59b736e9",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
           "ingredientDensity": 1.01,
-          "rawToCookedRatio": 0.792,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -4600,15 +4594,15 @@
       "ingredient"
     ],
     "displayName": "Mullet rouge",
-    "id": "8309ecf6-ed6d-43a4-b8fa-ffff1b6e5f01",
+    "id": "d1f7e9ca-f85a-46bd-ad9f-59a93bb952c9",
     "metadata": {
       "food": [
         {
           "alias": "red-mullet",
           "defaultOrigin": "France",
           "displayName": "Mullet rouge",
-          "id": "1b261927-8e11-444c-af02-84c11980a08c",
-          "inediblePart": 0.14,
+          "id": "8fc9d010-7441-4976-ad13-19bcc281bf76",
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -4632,24 +4626,23 @@
       "ingredient"
     ],
     "displayName": "Rhubarb",
-    "id": "e1b2342a-86d0-4013-819f-3cda3ad63c68",
+    "id": "384bbf14-faf2-4307-9db1-b1d27fb2f277",
     "metadata": {
       "food": [
         {
           "alias": "rhubarb",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Rhubarb",
-          "id": "7d7ca7d7-c76e-4d70-8cb9-3defb179ff3a",
+          "id": "d87ceb0f-0ca3-40a8-a86e-dce9ecaa7a56",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "animal_product"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "visible": true
         }
       ]
     },
@@ -4665,17 +4658,17 @@
       "ingredient"
     ],
     "displayName": "Rutabaga",
-    "id": "efa54ff7-f553-4d9d-a385-7e8afe50b1dd",
+    "id": "7a57b7a8-0240-4f79-95cc-14dbf3265ac1",
     "metadata": {
       "food": [
         {
           "alias": "rutabaga",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Rutabaga",
-          "id": "47269ac7-8971-4726-9548-8b279e1fb7a8",
+          "id": "785a3fbb-2cd0-47bf-89b1-cf4c9359591a",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.74,
           "rawToCookedRatio": 0.856,
@@ -4698,14 +4691,14 @@
       "ingredient"
     ],
     "displayName": "Safran",
-    "id": "f3711560-7997-40d4-b7fd-d05697cfe312",
+    "id": "b21fa56c-69cb-4112-b085-ad10519b9242",
     "metadata": {
       "food": [
         {
           "alias": "saffron",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Safran",
-          "id": "f114cf22-fb6b-4795-9d8b-864743e90371",
+          "id": "fd780361-a7e9-4724-a3c6-e987050732ec",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -4731,24 +4724,23 @@
       "ingredient"
     ],
     "displayName": "Saithe",
-    "id": "609b35fc-e130-413a-8ba4-688ce7b5e97e",
+    "id": "215865e4-2586-4d6a-b218-039ab31d5a59",
     "metadata": {
       "food": [
         {
           "alias": "saithe",
           "defaultOrigin": "France",
           "displayName": "Saithe",
-          "id": "5ffeee76-a14f-404a-82b2-83cc07f5d8cd",
+          "id": "f01c1f3c-066f-474b-958b-baeea7ade846",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "animal_product"
           ],
           "ingredientDensity": 1.06,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "FRUITS A COQUES"
+          "visible": true
         }
       ]
     },
@@ -4764,19 +4756,19 @@
       "ingredient"
     ],
     "displayName": "Salade, laitue",
-    "id": "91c6fbb9-bde5-41b2-bf9a-d3bcfd905543",
+    "id": "1a13a36d-11fd-43ba-a92e-490baa3cda4e",
     "metadata": {
       "food": [
         {
           "alias": "salad-lettuce",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Salade, laitue",
-          "id": "75b5adbd-2819-411e-8fc3-62ee67f6692a",
+          "id": "6ebc9c04-9781-48d8-9ac8-8254ef46ffbb",
           "inediblePart": 0.4,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.09,
+          "ingredientDensity": 0.3,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4797,19 +4789,19 @@
       "ingredient"
     ],
     "displayName": "Salicornie, fraîche",
-    "id": "0c34f994-1db2-4b9b-b394-eaf9c7c45334",
+    "id": "3a420684-5b0a-4596-a0a7-31107fda615f",
     "metadata": {
       "food": [
         {
           "alias": "salicornia-fresh",
           "defaultOrigin": "France",
           "displayName": "Salicornie, fraîche",
-          "id": "3cabd1b5-3ecf-445b-8945-d696779ac8b7",
-          "inediblePart": 0.1,
+          "id": "bfebc978-a7e7-4e2c-855e-0c25c9d304d3",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.73,
+          "ingredientDensity": 0.72,
           "rawToCookedRatio": 1.18,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4830,19 +4822,19 @@
       "ingredient"
     ],
     "displayName": "Saumon",
-    "id": "0ef397d5-f0a9-4d15-a3d6-5c15209aa1e4",
+    "id": "01850f0f-632b-4093-99bc-da37ac4ccbbe",
     "metadata": {
       "food": [
         {
           "alias": "salmon",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Saumon",
-          "id": "e3cfb821-9941-4376-a2e2-f91581a623f8",
+          "id": "433ae5a0-56c0-4ec5-b8ef-c8935108dd5b",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.06,
+          "ingredientDensity": 1.05,
           "rawToCookedRatio": 1.11,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4862,15 +4854,15 @@
       "ingredient"
     ],
     "displayName": "Salsifier",
-    "id": "4e1018c7-9a4a-4d99-9c28-922d780ff3b6",
+    "id": "b1aed0d7-e7cf-425c-8ff6-b3af739f58e7",
     "metadata": {
       "food": [
         {
           "alias": "salsify",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Salsifier",
-          "id": "2cae3477-c577-4052-b080-23a419862aa2",
-          "inediblePart": 0.1,
+          "id": "4f0dafa7-d630-49fb-86df-4df2b818594c",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -4895,19 +4887,19 @@
       "ingredient"
     ],
     "displayName": "Sardines",
-    "id": "36e73726-825c-4de4-857d-ecfde7b188ab",
+    "id": "951ebb87-182b-4fe6-acf4-b2eba2612290",
     "metadata": {
       "food": [
         {
           "alias": "sardines",
           "defaultOrigin": "France",
           "displayName": "Sardines",
-          "id": "4daadb40-2531-4dc2-991b-20c9ca19a6d5",
-          "inediblePart": 0.44,
+          "id": "96c3cac5-5675-4c1d-b1a3-e86178218287",
+          "inediblePart": 0.56,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.933,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4927,14 +4919,14 @@
       "ingredient"
     ],
     "displayName": "Échalotes",
-    "id": "95d130eb-64e6-4eae-9d21-7794843360d1",
+    "id": "1057a0a2-9ae5-4f60-97fd-e00393b70687",
     "metadata": {
       "food": [
         {
           "alias": "scallops",
           "defaultOrigin": "France",
           "displayName": "Échalotes",
-          "id": "3ccf14c3-accb-4b18-97b4-a46dfb43c1ef",
+          "id": "f76aa997-ddbb-4c59-8599-83f8bcfc273d",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
@@ -4959,19 +4951,19 @@
       "ingredient"
     ],
     "displayName": "Bass de mer",
-    "id": "43d5ceed-4b10-4d11-8557-f9b4922bf328",
+    "id": "51e595d7-8a77-4cc5-b587-d23c0d4e2b35",
     "metadata": {
       "food": [
         {
           "alias": "sea-bass",
           "defaultOrigin": "France",
           "displayName": "Bass de mer",
-          "id": "3becd4d9-f896-4380-94d4-0151b1df9ed9",
-          "inediblePart": 0.52,
+          "id": "0eff775c-12c7-49a3-80ae-de5af1aa3416",
+          "inediblePart": 0.48,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.05,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4991,14 +4983,14 @@
       "ingredient"
     ],
     "displayName": "Algues marines",
-    "id": "3486f21e-24c1-4850-b2ff-622df85bfe4a",
+    "id": "898316c1-7443-465e-a654-2241c738809b",
     "metadata": {
       "food": [
         {
           "alias": "seaweed",
           "defaultOrigin": "France",
           "displayName": "Algues marines",
-          "id": "97fcf52a-3293-422f-a0b2-b1f73e939087",
+          "id": "6748fc15-88e5-49c0-bb70-199352463d38",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_raw"
@@ -5024,20 +5016,20 @@
       "ingredient"
     ],
     "displayName": "Sémoline",
-    "id": "b4f8496f-c0c2-4c89-b148-206878a917d0",
+    "id": "aa6069c3-6d70-4c42-bc3b-abd3dfc0f873",
     "metadata": {
       "food": [
         {
           "alias": "semolina",
           "defaultOrigin": "France",
           "displayName": "Sémoline",
-          "id": "a5d27fa5-69a0-41a6-a45e-1d8d0473dcce",
+          "id": "98238cc1-93c4-4cfc-9d8f-6f1ec46c482b",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_processed"
           ],
-          "ingredientDensity": 0.53,
-          "rawToCookedRatio": 2.259,
+          "ingredientDensity": 0.7,
+          "rawToCookedRatio": 2.5,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -5057,20 +5049,20 @@
       "ingredient"
     ],
     "displayName": "Graines de sésame",
-    "id": "618644e5-c0bc-4a17-9b1d-067ca35338ee",
+    "id": "8c3b0d33-2a9d-42fa-b6a7-dbc8db6d39f5",
     "metadata": {
       "food": [
         {
           "alias": "sesame-seeds",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Graines de sésame",
-          "id": "9c226074-2e26-4ac4-bf36-c577faac3e9e",
-          "inediblePart": 0.5,
+          "id": "d4fd6bab-db12-4e42-8a83-9266a453d6e0",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "grain_processed"
+            "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.7,
-          "rawToCookedRatio": 2.259,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -5090,24 +5082,24 @@
       "ingredient"
     ],
     "displayName": "Échalotes",
-    "id": "ba98cf60-4b5e-4372-a9e4-f1750c23c941",
+    "id": "3a7cdfb7-66b5-4814-b394-2ecf7292ccc8",
     "metadata": {
       "food": [
         {
           "alias": "shallots",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Échalotes",
-          "id": "1236bb61-c0a1-4f4a-ba5a-efea7b92a052",
-          "inediblePart": 0.3,
+          "id": "edd4db2b-6bc9-4194-8b04-d3b15a57670e",
+          "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 1.023,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -5123,14 +5115,14 @@
       "ingredient"
     ],
     "displayName": "Lait d'ovins",
-    "id": "365482cc-d5a4-4af4-b2ef-b5e4899f296a",
+    "id": "4119d909-f764-401f-9e61-63d7194a538a",
     "metadata": {
       "food": [
         {
           "alias": "sheep-milk",
           "defaultOrigin": "France",
           "displayName": "Lait d'ovins",
-          "id": "40b40358-5067-475f-bc7c-e991cf9e2eab",
+          "id": "520aab04-5886-49d0-af68-598c006ebb8e",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "dairy_product"
@@ -5158,19 +5150,19 @@
       "ingredient"
     ],
     "displayName": "Crevettes",
-    "id": "785dd400-4041-4b8f-a7b2-8f43d44fa2c1",
+    "id": "9cb7728c-e1c6-4506-a3e2-e7c7235cc4fe",
     "metadata": {
       "food": [
         {
           "alias": "shrimp",
           "defaultOrigin": "France",
           "displayName": "Crevettes",
-          "id": "bdb9f90e-6050-44f8-95cc-5f279634a61d",
-          "inediblePart": 0.36,
+          "id": "4c21e85b-5904-49a0-a8f6-f5fe6f07c0ce",
+          "inediblePart": 0.55,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.819,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5190,24 +5182,24 @@
       "ingredient"
     ],
     "displayName": "Escargots",
-    "id": "e4848c7b-1104-47cd-882e-3de1cc95399e",
+    "id": "804e3bab-03f9-4fd0-bd54-c0c15ddf236a",
     "metadata": {
       "food": [
         {
           "alias": "snail",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Escargots",
-          "id": "866c3053-006b-4cfa-be84-a44b7687bca7",
+          "id": "92aa7e77-da23-486b-9825-a018c7b6d0d9",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 0.3,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
-          "cropGroup": "COLZA"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -5223,19 +5215,19 @@
       "ingredient"
     ],
     "displayName": "Pois des neiges",
-    "id": "2bb602a7-fefc-4349-9ddb-67b278485823",
+    "id": "cfa7bac1-99a4-4cbd-91f0-57a9b4fe56f7",
     "metadata": {
       "food": [
         {
           "alias": "snow-pea",
           "defaultOrigin": "France",
           "displayName": "Pois des neiges",
-          "id": "93745bf4-0f64-43d7-9e10-3d1826581652",
+          "id": "c706c10a-81fa-413d-a79f-4f02f5566c92",
           "inediblePart": 0.2,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.054,
+          "ingredientDensity": 0.8,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5256,19 +5248,19 @@
       "ingredient"
     ],
     "displayName": "Blé tendre",
-    "id": "907ddf2a-1dd5-4f15-9e58-6a03997be342",
+    "id": "bcff2ab0-b1c4-4096-8c59-4b86ee760c5b",
     "metadata": {
       "food": [
         {
           "alias": "soft-wheat",
           "defaultOrigin": "France",
           "displayName": "Blé tendre",
-          "id": "9818216a-5fe9-4693-b7d8-d4ebbe7e96a6",
+          "id": "4dbf664c-66a5-435a-97ee-ae1bd07fd1c2",
           "inediblePart": 0.0,
           "ingredientCategories": [
-            "grain_processed"
+            "grain_raw"
           ],
-          "ingredientDensity": 0.53,
+          "ingredientDensity": 0.77,
           "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
@@ -5289,19 +5281,19 @@
       "ingredient"
     ],
     "displayName": "Sorgho",
-    "id": "b0eb7724-d709-47f5-955a-ae2790ab2681",
+    "id": "cf385345-b9fe-4821-a60f-174b59a33e54",
     "metadata": {
       "food": [
         {
           "alias": "sorghum",
           "defaultOrigin": "France",
           "displayName": "Sorgho",
-          "id": "7f50fb64-4d4c-4574-96df-1f02496cb281",
+          "id": "4266f367-da83-4ccb-9500-c38d9a14d0e4",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_processed"
           ],
-          "ingredientDensity": 0.53,
+          "ingredientDensity": 0.54,
           "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
@@ -5322,24 +5314,24 @@
       "ingredient"
     ],
     "displayName": "Soja",
-    "id": "44919c8f-bccc-42b1-96f1-4db78801fbeb",
+    "id": "620413e8-e3e4-4c1e-ae55-fcb4a2ae5b21",
     "metadata": {
       "food": [
         {
           "alias": "soybean",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Soja",
-          "id": "f31188e8-e075-4a24-afe1-1a529fdec509",
+          "id": "d40febfb-936d-4e94-865a-fec47d4f76c2",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.74,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "AUTRES OLEAGINEUX"
         }
       ]
     },
@@ -5355,14 +5347,14 @@
       "ingredient"
     ],
     "displayName": "Épeautre",
-    "id": "059dc208-d16e-4fcf-89a5-81bb3a1521c1",
+    "id": "b7a52e70-baa2-47df-99e1-b6337409c113",
     "metadata": {
       "food": [
         {
           "alias": "spelt",
           "defaultOrigin": "France",
           "displayName": "Épeautre",
-          "id": "3c3cebe7-eb61-4734-9951-df6ea94844a9",
+          "id": "fc90ea6c-bc87-43aa-b5c6-b20ac3804309",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_processed"
@@ -5372,7 +5364,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "BLE TENDRE"
+          "cropGroup": "AUTRES CEREALES"
         }
       ]
     },
@@ -5388,19 +5380,19 @@
       "ingredient"
     ],
     "displayName": "Épinards",
-    "id": "37e47081-814c-46f5-ac59-f4a6beaed325",
+    "id": "2b318d67-d1d4-4d79-919e-c55508992ff0",
     "metadata": {
       "food": [
         {
           "alias": "spinach",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Épinards",
-          "id": "06b20dfd-0cc0-4d3a-bab7-04163da6cccb",
-          "inediblePart": 0.4,
+          "id": "5c4b5c5e-54c0-4e30-9547-83e62c338bba",
+          "inediblePart": 0.03,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5421,19 +5413,19 @@
       "ingredient"
     ],
     "displayName": "Pois fendus",
-    "id": "fd0093db-762d-44ea-9ae0-a58dae98048b",
+    "id": "4f1d8673-39b6-4a4a-a45f-61a3bd70ba2e",
     "metadata": {
       "food": [
         {
           "alias": "split-pea",
           "defaultOrigin": "France",
           "displayName": "Pois fendus",
-          "id": "68b59973-3b76-4a67-a1d9-920abb59ceb4",
+          "id": "9c57865d-2df3-4274-8f02-781620d9333a",
           "inediblePart": 0.4,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.1,
+          "ingredientDensity": 0.8,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5454,15 +5446,15 @@
       "ingredient"
     ],
     "displayName": "Fabre de printemps",
-    "id": "7c94b9e1-3247-4583-93ce-bc9163285522",
+    "id": "f6e3f185-fcad-4a0a-b424-9dd5d82fcc32",
     "metadata": {
       "food": [
         {
           "alias": "spring-faba",
           "defaultOrigin": "France",
           "displayName": "Fabre de printemps",
-          "id": "824c1584-6d4b-4b05-8d73-a2486446964a",
-          "inediblePart": 0.36,
+          "id": "1551e7d7-1e62-4a82-9be0-070cbcdb7e65",
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5487,19 +5479,19 @@
       "ingredient"
     ],
     "displayName": "Pois de printemps",
-    "id": "879e7e7d-06b2-49c6-b869-f8417929abe6",
+    "id": "82b5caac-b233-4745-8506-130ed50d1bfd",
     "metadata": {
       "food": [
         {
           "alias": "spring-pea",
           "defaultOrigin": "France",
           "displayName": "Pois de printemps",
-          "id": "149dc598-0d7b-4f9d-ae29-50b34cea3f0d",
+          "id": "23389c08-6dca-4b3f-9b45-0895ce7627f6",
           "inediblePart": 0.4,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.8,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5520,24 +5512,24 @@
       "ingredient"
     ],
     "displayName": "Courges, crues, avec peau",
-    "id": "ff670ce8-79f6-470d-b4e0-9876bf83b8b8",
+    "id": "6c26236f-ef54-492f-9608-d585636b2ec8",
     "metadata": {
       "food": [
         {
           "alias": "squash-raw-with-skin",
           "defaultOrigin": "France",
           "displayName": "Courges, crues, avec peau",
-          "id": "1d177e84-a2f9-4fe4-9be9-b833e7c7cd77",
+          "id": "3364c204-bc54-4f40-a6f4-de6e911ee7ce",
           "inediblePart": 0.3,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.63,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -5553,19 +5545,19 @@
       "ingredient"
     ],
     "displayName": "Calmars",
-    "id": "9dc5513a-6729-42d1-9265-2066d80a368b",
+    "id": "e04eea81-fa8e-4f3a-8936-c2a0fccbb668",
     "metadata": {
       "food": [
         {
           "alias": "squid",
           "defaultOrigin": "France",
           "displayName": "Calmars",
-          "id": "c68d8a34-a2d7-43cf-b457-b78fad229bbb",
-          "inediblePart": 0.36,
+          "id": "320d373e-f436-434e-a583-24309d7aa0fe",
+          "inediblePart": 0.64,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.819,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5585,24 +5577,24 @@
       "ingredient"
     ],
     "displayName": "Fraises",
-    "id": "3b8da9c7-f835-458c-ae17-3df167d55431",
+    "id": "26b02070-c42d-438c-a470-e3f3fe5d06b0",
     "metadata": {
       "food": [
         {
           "alias": "strawberry",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Fraises",
-          "id": "508ee7c0-1162-4745-bce2-5b2ca1f96540",
-          "inediblePart": 0.36,
+          "id": "d830173e-2c2a-4079-af17-a67638430018",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -5618,24 +5610,24 @@
       "ingredient"
     ],
     "displayName": "Betteraves sucrières",
-    "id": "8789b9f1-64e9-4cba-baf9-3650f668995d",
+    "id": "2a72902a-d414-4dc5-a80d-a72045c9a5ae",
     "metadata": {
       "food": [
         {
           "alias": "sugar-beet",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Betteraves sucrières",
-          "id": "57b70f0c-011f-4ea2-9fe7-0f2eca9757be",
-          "inediblePart": 0.4,
+          "id": "180ac6eb-9e66-4c02-9934-283252d577e6",
+          "inediblePart": 0.0,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES"
         }
       ]
     },
@@ -5651,19 +5643,19 @@
       "ingredient"
     ],
     "displayName": "Sucre blanc",
-    "id": "359c625a-ba6a-4e01-bd20-2ed39b79182c",
+    "id": "dbd0df9b-c15f-418a-8b15-59e1de57ce9e",
     "metadata": {
       "food": [
         {
           "alias": "sugar-white",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sucre blanc",
-          "id": "77ed4c36-4dc2-4ca7-83e0-2915c6da9a1f",
+          "id": "121116bc-1f42-4728-97da-1e027682133b",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 1.05,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -5684,17 +5676,17 @@
       "ingredient"
     ],
     "displayName": "Tournesol, graines",
-    "id": "31b55537-8ba9-444e-9dc5-0007cd918227",
+    "id": "46499683-d8fc-4048-be65-2f3e68f4340c",
     "metadata": {
       "food": [
         {
           "alias": "sunflower-seed",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tournesol, graines",
-          "id": "96994ba9-45c5-4b19-8bdc-9c4ba4fa2595",
+          "id": "f271eadd-3e27-48d2-925f-fb3840922787",
           "inediblePart": 0.0,
           "ingredientCategories": [
-            "nut_oilseed_processed"
+            "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.62,
           "rawToCookedRatio": 1.0,
@@ -5717,19 +5709,19 @@
       "ingredient"
     ],
     "displayName": "Pommes de terre douces",
-    "id": "7312b8ec-dd4f-4114-8eaa-27e500d876f8",
+    "id": "27ee14a5-103e-4431-9492-8afeac673151",
     "metadata": {
       "food": [
         {
           "alias": "sweet-potato",
           "defaultOrigin": "France",
           "displayName": "Pommes de terre douces",
-          "id": "4307d7be-8f5f-4bf2-85cc-7da9b1959a33",
-          "inediblePart": 0.2,
+          "id": "9f4d25ec-855a-409f-a76d-60355e058709",
+          "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.054,
+          "ingredientDensity": 1.1,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5750,19 +5742,19 @@
       "ingredient"
     ],
     "displayName": "Mûres suisses",
-    "id": "7eb65b06-4e9d-40e1-be6f-7a99eeb8ad09",
+    "id": "c54f97c4-1a07-477c-9192-3db9fc35bbca",
     "metadata": {
       "food": [
         {
           "alias": "swiss-chard",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Mûres suisses",
-          "id": "9c2b2081-04b1-4560-b2e2-4d4b2b051667",
+          "id": "2b26ef70-f8e4-4e37-a4a9-56d3c653fb22",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5783,14 +5775,14 @@
       "ingredient"
     ],
     "displayName": "Poisson d'espadon",
-    "id": "a3dd4783-3b85-4f36-97a2-696792d88fb2",
+    "id": "6a8030bc-2af3-4b7f-9c22-19e76bf3f653",
     "metadata": {
       "food": [
         {
           "alias": "swordfish",
           "defaultOrigin": "France",
           "displayName": "Poisson d'espadon",
-          "id": "5e2ecac4-6458-49c0-a57a-7e280ce57633",
+          "id": "168de322-95ad-4f91-bbef-dcd66a3751e4",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
@@ -5815,19 +5807,19 @@
       "ingredient"
     ],
     "displayName": "Tamarin",
-    "id": "8c3e0933-a7fd-45de-a07b-c39459fb2eb4",
+    "id": "1e610f25-44d2-46e2-98d8-f56031d73f3e",
     "metadata": {
       "food": [
         {
           "alias": "tamarind",
           "defaultOrigin": "France",
           "displayName": "Tamarin",
-          "id": "15c390e9-3849-42d9-bde2-b5d73301f7f4",
+          "id": "81128b21-85e3-4cbf-a991-30ce09080a90",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 1.013,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5848,14 +5840,14 @@
       "ingredient"
     ],
     "displayName": "Taro, tubercule",
-    "id": "3f5d41c0-04ef-4663-8584-884969ddabd0",
+    "id": "5819845c-a960-4b65-9b6f-b1f07e16c985",
     "metadata": {
       "food": [
         {
           "alias": "taro-tuber",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Taro, tubercule",
-          "id": "73dcf950-3fc7-4164-bb6a-8696af61da29",
+          "id": "3fa91f2a-822c-4e8a-8ca9-163436b24497",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -5881,14 +5873,14 @@
       "ingredient"
     ],
     "displayName": "Thé, feuille fraîche",
-    "id": "c39a84c0-2877-4945-9a5c-5545154163aa",
+    "id": "bea2dd38-0fae-4563-8db8-6a5a6b210aaa",
     "metadata": {
       "food": [
         {
           "alias": "tea-fresh-leaf",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Thé, feuille fraîche",
-          "id": "0c1ccd33-683d-4879-ba6e-688a23838ae8",
+          "id": "dda80973-c0b6-4fef-8371-a24bfd866bbc",
           "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_processed"
@@ -5914,19 +5906,19 @@
       "ingredient"
     ],
     "displayName": "Tomates",
-    "id": "c1899dc5-c602-4e7e-946e-20b8b35d3529",
+    "id": "92ee30b2-d5d1-456a-8ee4-172a09b62942",
     "metadata": {
       "food": [
         {
           "alias": "tomato",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Tomates",
-          "id": "564932b4-fd0a-4c38-8a2a-97def7cd81f6",
-          "inediblePart": 0.4,
+          "id": "fb01591c-f586-48a2-8b27-04d52a394269",
+          "inediblePart": 0.03,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5947,14 +5939,14 @@
       "ingredient"
     ],
     "displayName": "Triticale",
-    "id": "8d319b42-4f9d-4a2f-b3d5-aef6165c32d4",
+    "id": "36b389cc-f6ad-4db6-b512-ea4f831a5586",
     "metadata": {
       "food": [
         {
           "alias": "triticale",
           "defaultOrigin": "France",
           "displayName": "Triticale",
-          "id": "3d0acbd5-f809-4b47-a67e-f7c726c6e2b6",
+          "id": "18c1cb61-3b63-4ad6-a22f-7dd8de0f933c",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "grain_processed"
@@ -5980,19 +5972,19 @@
       "ingredient"
     ],
     "displayName": "Thon",
-    "id": "8b4e125e-ee71-480d-9d92-1d1d03b3238e",
+    "id": "e0e31c24-9686-4751-880d-45ad37473a9b",
     "metadata": {
       "food": [
         {
           "alias": "tuna",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Thon",
-          "id": "a44e7fc3-0f31-4b9a-80f5-4f5d95aae9c9",
-          "inediblePart": 0.52,
+          "id": "657636a1-190c-4ecf-9a47-4c10048871cc",
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
+          "ingredientDensity": 1.05,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
@@ -6012,14 +6004,14 @@
       "ingredient"
     ],
     "displayName": "Turquie",
-    "id": "ffbb019a-9724-47c0-ad1b-51499f26243e",
+    "id": "dc4520ad-e2d0-4246-a8ee-153dc72b87b0",
     "metadata": {
       "food": [
         {
           "alias": "turkey",
           "defaultOrigin": "France",
           "displayName": "Turquie",
-          "id": "464bfd4c-3ef4-4387-8376-639aff561f63",
+          "id": "4404a99e-a0a0-4565-8985-c3ca6b9d0b45",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
@@ -6047,19 +6039,19 @@
       "ingredient"
     ],
     "displayName": "Naveaux",
-    "id": "e47e0ba8-640b-42ea-82a1-5d7d3245e51b",
+    "id": "3c01e7cc-4318-424d-98a0-ab7bea049b8e",
     "metadata": {
       "food": [
         {
           "alias": "turnip",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Naveaux",
-          "id": "6cfb1783-eeb6-44d4-866f-1a0cd509f4e3",
-          "inediblePart": 0.4,
+          "id": "ab1d78a4-a821-47fd-8713-f7711d7fc01a",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -6080,14 +6072,14 @@
       "ingredient"
     ],
     "displayName": "Vanille, extrait alcoolique ou aqueux",
-    "id": "e5c8101d-23c5-457e-8651-8df8c2d56a00",
+    "id": "3acec472-5ad1-4f81-acf3-23ec135cba5b",
     "metadata": {
       "food": [
         {
           "alias": "vanilla-alcoholic-or-aqueous-extract",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Vanille, extrait alcoolique ou aqueux",
-          "id": "a9882228-cc8f-4063-92c3-fc2f7ab51443",
+          "id": "68d53b50-dcea-4953-859e-b2fb24b6a35f",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -6113,19 +6105,19 @@
       "ingredient"
     ],
     "displayName": "Veau",
-    "id": "25dd055f-52db-49e2-a500-49bc9902b1ee",
+    "id": "88715cf0-2094-4389-972b-d586abab9b8a",
     "metadata": {
       "food": [
         {
           "alias": "veal",
           "defaultOrigin": "France",
           "displayName": "Veau",
-          "id": "ccc31151-bec9-4867-849e-709507a05052",
+          "id": "f890234e-d8c3-4e38-a451-cfe28d688e1e",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 1.05,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
@@ -6148,19 +6140,19 @@
       "ingredient"
     ],
     "displayName": "Noix communes",
-    "id": "43ecabb8-12de-483b-bead-82dfe0b00d54",
+    "id": "e815add9-1f13-4843-a586-87b7608f6dea",
     "metadata": {
       "food": [
         {
           "alias": "walnuts",
           "defaultOrigin": "France",
           "displayName": "Noix communes",
-          "id": "8c02f26e-51e6-4a2b-8f92-3eace7e5f2d0",
+          "id": "b3377de8-3359-43e0-8752-861f3eccd358",
           "inediblePart": 0.5,
           "ingredientCategories": [
             "nut_oilseed_processed"
           ],
-          "ingredientDensity": 0.46,
+          "ingredientDensity": 0.5,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -6181,24 +6173,24 @@
       "ingredient"
     ],
     "displayName": "Pastèque",
-    "id": "fce55859-e765-46e6-8c85-27b70098dc58",
+    "id": "d14f5fea-6ffb-4c08-82fd-75861a579f1a",
     "metadata": {
       "food": [
         {
           "alias": "watermelon",
           "defaultOrigin": "France",
           "displayName": "Pastèque",
-          "id": "f5934988-d0a3-4113-a17d-75b3a614f94e",
-          "inediblePart": 0.36,
+          "id": "11252c04-03f6-407a-9684-f05ea1812620",
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.998,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -6214,19 +6206,19 @@
       "ingredient"
     ],
     "displayName": "Choux blancs",
-    "id": "827f7434-1e46-4837-bd5d-bf5424542c2b",
+    "id": "a1964076-7395-4461-a834-97d92262ce92",
     "metadata": {
       "food": [
         {
           "alias": "white-cabbage",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Choux blancs",
-          "id": "f04ac7ed-a0b7-4e6f-95af-0dbb055b6d13",
-          "inediblePart": 0.4,
+          "id": "4361584f-8ec8-4ba0-bbce-24450987ed4e",
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -6247,19 +6239,19 @@
       "ingredient"
     ],
     "displayName": "Pois d'hiver",
-    "id": "87386237-f2f4-405f-89c1-443bd3485f8b",
+    "id": "97320e10-c141-441a-b990-aa93a0d3bac7",
     "metadata": {
       "food": [
         {
           "alias": "winter-pea",
           "defaultOrigin": "France",
           "displayName": "Pois d'hiver",
-          "id": "49cdaf8e-7bad-425a-bc76-abd0cd6ff6bc",
+          "id": "e60f6837-0299-4274-8ecf-cc393a0fecdf",
           "inediblePart": 0.4,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.825,
+          "ingredientDensity": 0.8,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -6280,19 +6272,19 @@
       "ingredient"
     ],
     "displayName": "Yam",
-    "id": "0ea9ac69-8f31-429b-b1b4-16dfe6d60be5",
+    "id": "9aea766f-a161-469a-9924-d330c0a01da7",
     "metadata": {
       "food": [
         {
           "alias": "yam",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Yam",
-          "id": "0a3342af-f8dd-44a2-ba56-fad9d22ff3af",
+          "id": "dbfb1cb9-fef7-4718-a2fe-b35b58e0d267",
           "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
+          "ingredientDensity": 0.535,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -6313,19 +6305,19 @@
       "ingredient"
     ],
     "displayName": "Levure (ébéniste, chimique ou boulanger)",
-    "id": "39b67471-dd7b-44f9-b411-a0e0da16c2cd",
+    "id": "a05de04b-f203-486e-8a31-f74c62f0fdfc",
     "metadata": {
       "food": [
         {
           "alias": "yeast-edible-chemical-or-bakers",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Levure (ébéniste, chimique ou boulanger)",
-          "id": "4652a729-5cfa-42c7-9f89-8bd0b091553a",
+          "id": "c3dee09b-0ff5-4a39-80c4-f0ba95d2741f",
           "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_processed"
           ],
-          "ingredientDensity": 0.46,
+          "ingredientDensity": 0.95,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -6346,22 +6338,22 @@
       "ingredient"
     ],
     "displayName": "Zucchini",
-    "id": "578c5bcc-4a6d-46ce-8554-6a7fad5b90fb",
+    "id": "a85c8e09-d059-4405-aa23-212b42556947",
     "metadata": {
       "food": [
         {
           "alias": "zucchini",
           "defaultOrigin": "France",
           "displayName": "Zucchini",
-          "id": "26182d00-5632-4db8-97e8-8a30f256b057",
+          "id": "4ddb671a-c12b-4fa5-9bfa-e7b60c107b0b",
           "inediblePart": 0.2,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.95,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
