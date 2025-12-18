@@ -9,7 +9,6 @@ FoodOn: https://foodon.org/
 """
 
 import warnings
-from difflib import SequenceMatcher
 from pathlib import Path
 
 import numpy as np
@@ -19,6 +18,26 @@ warnings.filterwarnings("ignore", category=SyntaxWarning)
 warnings.filterwarnings("ignore", category=UnicodeWarning)
 
 FOODON_PATH = Path(__file__).parent / "data" / "foodon.owl"
+FOODON_URL = "http://purl.obolibrary.org/obo/foodon.owl"
+
+
+def _download_foodon(destination: Path) -> None:
+    """Download FoodOn ontology from OBO Foundry.
+
+    Args:
+        destination: Path to save the foodon.owl file
+    """
+    import urllib.request
+
+    print(f"Downloading FoodOn ontology from {FOODON_URL}...")
+    print("(This is a ~200MB file, may take a few minutes)")
+
+    # Ensure data directory exists
+    destination.parent.mkdir(parents=True, exist_ok=True)
+
+    # Download with progress indication
+    urllib.request.urlretrieve(FOODON_URL, destination)
+    print(f"FoodOn downloaded to {destination}")
 
 # FoodOn term IDs for food categories (verified via pronto)
 FOODON_CATEGORIES = {
@@ -44,10 +63,16 @@ class FoodOnFeatureExtractor:
         """
         Load FoodOn ontology and build lookup indices.
 
+        Downloads foodon.owl automatically if it doesn't exist.
+
         Args:
             foodon_path: Path to foodon.owl file
         """
         import pronto
+
+        # Download FoodOn if not present
+        if not foodon_path.exists():
+            _download_foodon(foodon_path)
 
         print("Loading FoodOn ontology...")
         self.ontology = pronto.Ontology(str(foodon_path))

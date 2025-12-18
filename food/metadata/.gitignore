@@ -1,0 +1,8 @@
+# FoodOn ontology (auto-downloaded, ~200MB)
+foodon.owl
+data/foodon.owl
+
+# Cache files
+__pycache__/
+*.pyc
+.translation_cache.pkl
