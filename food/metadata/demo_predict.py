@@ -77,7 +77,7 @@ def main():
 
     # 4. Tests de prédiction batch
     test_ingredients = (
-        pandas.read_csv("../icv_high_impact_final.csv")[["item", "icv_final"]]
+        pandas.read_csv("data/new_ingredient_FR.csv")[["item", "icv final"]]
         .rename(columns={"item": "name", "icv_final": "activityName"})
         .dropna()
         .to_dict("records")

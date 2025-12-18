@@ -3,7 +3,7 @@
 Export predicted ingredients to activities.json format.
 
 Usage:
-    python export_activities.py ../icv_high_impact_final.csv -o new_ingredients.json
+    python export_activities.py data/new_ingredient_FR.csv -o new_ingredients.json
 """
 
 import argparse
@@ -14,13 +14,13 @@ from pathlib import Path
 
 import pandas as pd
 import torch
+from predict import Predictor
 from rich.progress import track
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
-from predict import Predictor
-
 # English to French translation model
 EN_FR_MODEL = "Helsinki-NLP/opus-mt-en-fr"
+
 
 class EnglishToFrenchTranslator:
     """Translate English ingredient names to French."""
@@ -45,7 +45,9 @@ class EnglishToFrenchTranslator:
         inputs = self.tokenizer(text, return_tensors="pt").to(self.device)
         with torch.no_grad():
             outputs = self.model.generate(**inputs, max_length=60)
-        result = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[0].strip()
+        result = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[
+            0
+        ].strip()
 
         # Cache result
         self._cache[text] = result
@@ -216,9 +218,7 @@ def build_activity_entry(
         "categories": ["ingredient"],
         "displayName": display_name,
         "id": activity_id,
-        "metadata": {
-            "food": [ingredient]
-        },
+        "metadata": {"food": [ingredient]},
         "scopes": ["food"],
         "source": source,
     }
@@ -233,10 +233,11 @@ def main():
     parser.add_argument(
         "input_csv",
         type=str,
-        help="Input CSV file (icv_high_impact_final.csv)",
+        help="Input CSV file (new_ingredient_FR.csv)",
     )
     parser.add_argument(
-        "-o", "--output",
+        "-o",
+        "--output",
         type=str,
         default="new_ingredients.json",
         help="Output JSON file",
@@ -253,9 +254,9 @@ def main():
     print(f"Loading {args.input_csv}...")
     df = pd.read_csv(args.input_csv)
 
-    # Expected columns: item, icv_final, Source
-    if "item" not in df.columns or "icv_final" not in df.columns:
-        raise ValueError("CSV must have 'item' and 'icv_final' columns")
+    # Expected columns: item, icv final, Source
+    if "item" not in df.columns or "icv final" not in df.columns:
+        raise ValueError("CSV must have 'item' and 'icv final' columns")
 
     # Load or train predictor
     if args.model and Path(args.model).exists():
@@ -277,8 +278,14 @@ def main():
 
     for _, row in track(df.iterrows(), total=len(df), description="Predicting..."):
         name = str(row["item"]).strip()
-        activity_name = str(row["icv_final"]).strip() if pd.notna(row["icv_final"]) else ""
-        source = str(row.get("Source", "")).strip() if pd.notna(row.get("Source")) else "Unknown"
+        activity_name = (
+            str(row["icv final"]).strip() if pd.notna(row["icv final"]) else ""
+        )
+        source = (
+            str(row.get("Source", "")).strip()
+            if pd.notna(row.get("Source"))
+            else "Unknown"
+        )
 
         if not name or not activity_name:
             continue
@@ -288,7 +295,9 @@ def main():
         predictions = predictor.predict(ingredient)
 
         # Build activity entry (with French translation)
-        activity = build_activity_entry(name, activity_name, source, predictions, translator)
+        activity = build_activity_entry(
+            name, activity_name, source, predictions, translator
+        )
         activities.append(activity)
 
     # Write output
