@@ -937,7 +937,7 @@ class Predictor:
                 foodon_extractor=self.foodon_extractor,
             )
 
-        # 5. Build transportCooling matcher (not used for prediction, but kept for compatibility)
+        # 5. Build transportCooling matcher (combines ingredients.json + reference data)
         if verbose:
             timed_print("Building transportCooling matcher...")
 
@@ -956,9 +956,18 @@ class Predictor:
         )
 
         # 6. Build nearest neighbor matchers for continuous values
+        # Each matcher combines ingredients.json + reference CSV data
         if verbose:
-            timed_print("Building density matcher from reference data...")
-        density_names, density_vals = _load_density_data()
+            timed_print("Building density matcher...")
+
+        # Start with ingredients.json data
+        density_names = [ing["name"] for ing in ingredients if ing.get("ingredientDensity")]
+        density_vals = [ing["ingredientDensity"] for ing in ingredients if ing.get("ingredientDensity")]
+        # Add reference data
+        ref_density_names, ref_density_vals = _load_density_data()
+        density_names.extend(ref_density_names)
+        density_vals.extend(ref_density_vals)
+
         self.density_matcher = NearestNeighborMatcher(
             density_names,
             density_vals,
@@ -967,8 +976,16 @@ class Predictor:
         )
 
         if verbose:
-            timed_print("Building inedible part matcher from reference data...")
-        inedible_names, inedible_vals = _load_inedible_data()
+            timed_print("Building inedible part matcher...")
+
+        # Start with ingredients.json data
+        inedible_names = [ing["name"] for ing in ingredients if ing.get("inediblePart") is not None]
+        inedible_vals = [ing["inediblePart"] for ing in ingredients if ing.get("inediblePart") is not None]
+        # Add reference data
+        ref_inedible_names, ref_inedible_vals = _load_inedible_data()
+        inedible_names.extend(ref_inedible_names)
+        inedible_vals.extend(ref_inedible_vals)
+
         self.inedible_matcher = NearestNeighborMatcher(
             inedible_names,
             inedible_vals,
@@ -977,8 +994,16 @@ class Predictor:
         )
 
         if verbose:
-            timed_print("Building raw-to-cooked ratio matcher from reference data...")
-        ratio_names, ratio_vals = _load_ratio_data()
+            timed_print("Building raw-to-cooked ratio matcher...")
+
+        # Start with ingredients.json data
+        ratio_names = [ing["name"] for ing in ingredients if ing.get("rawToCookedRatio")]
+        ratio_vals = [ing["rawToCookedRatio"] for ing in ingredients if ing.get("rawToCookedRatio")]
+        # Add reference data
+        ref_ratio_names, ref_ratio_vals = _load_ratio_data()
+        ratio_names.extend(ref_ratio_names)
+        ratio_vals.extend(ref_ratio_vals)
+
         self.ratio_matcher = NearestNeighborMatcher(
             ratio_names,
             ratio_vals,
@@ -1095,8 +1120,20 @@ class Predictor:
             predictions["cropGroup"] = None
             predictions["cropGroupMatch"] = None
 
-        # 6. transportCooling (packaging-based, then foodType-based)
-        transport_cooling = self._get_transport_from_packaging(packaging, food_type)
+        # 6. transportCooling (packaging first, then rules, then nearest neighbor)
+        if packaging and packaging != "fresh":
+            # Explicit packaging detected (canned, frozen, dried, etc.)
+            _, transport_cooling = PACKAGING_PATTERNS.get(packaging, (None, None))
+            if not transport_cooling:
+                transport_cooling = "none"
+        else:
+            # Try rule-based from binary features
+            transport_cooling = self._predict_transport_by_rules(binary_features)
+            if not transport_cooling:
+                # Fall back to nearest neighbor matching
+                transport_cooling, _, _ = self.transport_matcher.predict(
+                    name, translate_fn=self._translate
+                )
         predictions["transportCooling"] = transport_cooling
 
         # 7. defaultOrigin (by rules)
@@ -1224,8 +1261,20 @@ class Predictor:
         if predictions["cropGroup"]:
             confidence["cropGroup"] = cropgroup_conf
 
-        # 6. transportCooling (packaging-based, deterministic)
-        transport_cooling = self._get_transport_from_packaging(packaging, food_type)
+        # 6. transportCooling (packaging first, then rules, then nearest neighbor)
+        if packaging and packaging != "fresh":
+            # Explicit packaging detected (canned, frozen, dried, etc.)
+            _, transport_cooling = PACKAGING_PATTERNS.get(packaging, (None, None))
+            if not transport_cooling:
+                transport_cooling = "none"
+        else:
+            # Try rule-based from binary features
+            transport_cooling = self._predict_transport_by_rules(binary_features)
+            if not transport_cooling:
+                # Fall back to nearest neighbor matching
+                transport_cooling, _, _ = self.transport_matcher.predict(
+                    name, translate_fn=self._translate
+                )
         predictions["transportCooling"] = transport_cooling
 
         # 7. defaultOrigin
