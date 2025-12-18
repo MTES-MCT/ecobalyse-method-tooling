@@ -73,93 +73,94 @@ Table grape;0.10
 Grape;0.10
 Walnuts;0.50
 Egg;0.10
-Lieu ou colin d'Alaska;0.64
-Thon germon ou thon blanc;0.40
-Bar rayé ou bar d'Amérique;0.56
-Pecten d'Amérique ou Peigne du canada, noix;0.86
-Anchois;0.50
-Lotte ou baudroie;0.64
-Omble chevalier;0.50
-Bar ou loup de l'Atlantique;0.56
-Maquereau espagnol ou maquereau blanc ou billard;0.48
-Flétan de l'Atlantique ou flétan blanc;0.40
-Hareng fumé, à l'huile;0.50
-Pecten d'Amérique ou Peigne du canada, noix, crue;0.86
-Coulirou;0.48
-Joëls (petits poissons entiers) pour fritures;0.50
-Dorade grise, ou daurade grise, ou griset;0.58
-Dorade rose, ou daurade rose;0.58
-Grenadier bleu ou hoki de Nouvelle-Zélande;0.60
-Lingue bleue ou Lingue;0.64
-Empereur, filet, sans peau;0.64
+Alaska pollock;0.64
+Albacore;0.40
+American bass;0.56
+American or Canadian sea scallop;0.86
+Anchovy;0.50
+Anglerfish;0.64
+Arctic char;0.50
+Atlantic bass;0.56
+Atlantic chub mackerel;0.48
+Atlantic halibut;0.40
+Atlantic herring;0.50
+American or Canadian See scallop;0.86
+Bigeye scad;0.48
+Big-scale sand smelt;0.50
+Black seabream;0.58
+Blackspot seabream;0.58
+Blue grenadier;0.60
+Blue ling;0.64
+Blue shark;0.64
 Bogue;0.50
-Bonite;0.40
-Pangasius ou Poisson-chat;0.56
-Corb;0.40
-Capelan;0.40
-Carpe, élevage;0.50
-Cabillaud;0.64
-Limande;0.64
-Denté;0.64
-Sole;0.58
-Congre;0.64
-Carangue;0.40
-Bar commun ou loup;0.56
-Merlu;0.60
-Perche;0.50
-Sardine, à l'huile d'olive, appertisée, égouttée;0.50
-Carrelet ou plie;0.64
-Sprat;0.50
-Brème;0.56
-Orphie commune;0.50
-Dorade royale ou daurade ou vraie daurade, élevage;0.56
-Grand sébaste, ou dorade sébaste, ou daurade sébaste;0.64
-Flétan du Groënland ou flétan noir ou flétan commun;0.64
-Hoki, tout lieu de pêche;0.64
-Mérou;0.40
-Églefin;0.64
-Chinchard gras;0.48
-Saint-Pierre;0.64
-Sabre;0.64
-Limande-sole;0.64
-Julienne ou Lingue;0.64
-Maquereau;0.48
-Bar commun ou loup (Méditerranée), élevage;0.56
-Cardine franche;0.64
-Moule;0.75
-Mulet;0.64
-Perche du Nil;0.50
-Langoustine;0.69
-Roussette ou petite roussette ou saumonette;0.64
-Panga, Pangasius, ou poisson-chat du Mékong, filet, cuit;0.56
-Pétoncle ou Peigne du Pérou, noix;0.86
-Lieu jaune ou colin;0.64
-Éperlan;0.50
-Tacaud;0.64
-Truite arc en ciel, élevage;0.50
-Raie;0.64
-Grondin;0.58
-Grenadier (de roche);0.64
-Lieu noir;0.64
-Saupe;0.58
-Saumon;0.50
-Truite saumonée;0.50
-Coquille Saint-Jacques, noix et corail;0.86
-Truite de mer;0.50
-Merlu blanc du Cap;0.60
-Requin;0.64
-Crevette;0.55
-Thon listao ou Bonite à ventre rayé;0.40
-Vivaneau;0.40
-Rascasse;0.64
-Loup tacheté;0.64
-Calmar ou calamar ou encornet;0.64
-Rouget-barbet de roche;0.58
-Espadon;0.40
-Sole tropicale ou Sole langue;0.58
-Truite d'élevage;0.50
-Grondin perlon;0.64
-Thon;0.40
-Turbot d'élevage;0.56
-Merlan;0.64
-Thon albacore ou thon jaune;0.40
+Bonito;0.40
+Brown bullhead;0.56
+Brown meagre;0.40
+Capelin;0.40
+Carp;0.50
+Cod;0.64
+Common dab;0.64
+Common dentex;0.64
+Common sole;0.58
+Conger  ;0.64
+Crevalle jack;0.40
+European bass;0.56
+European hake;0.60
+European perch;0.50
+European pilchard or sardine;0.50
+European plaice;0.64
+European sprat;0.50
+Freshwater bream;0.56
+Garfish;0.50
+Gilthead seabream;0.56
+Golden redfish;0.64
+Greenland halibut;0.64
+Grenadier;0.64
+Grouper;0.40
+Haddock;0.64
+Hake;0.60
+Horse mackerel;0.48
+John dory;0.64
+Largehead hairtail;0.64
+Lemon sole;0.64
+Ling;0.64
+Mackerel;0.48
+Mediterranean bass;0.56
+Megrim;0.64
+Mussels;0.75
+Mullet;0.64
+Nile perch;0.50
+Norway lobster;0.69
+Nursehound or lesser spotted dogfish;0.64
+Pangasius;0.56
+Peru sea scallop, without coral;0.86
+Pollack;0.64
+Pond smelt;0.50
+Pouting;0.64
+Rainbow trout;0.50
+Ray;0.64
+Red gurnard;0.58
+Roundnose grenadier ;0.64
+Saithe;0.64
+Salema;0.58
+Salmon;0.50
+Salmon trout;0.50
+Scallop;0.86
+Sea trout;0.50
+Shallow-water Cape hake;0.60
+Shark;0.64
+Shrimp;0.55
+Skipjack tuna;0.40
+Snapper;0.40
+Spiny scorpionfish;0.64
+Spotted wolffish;0.64
+Squid;0.64
+Surmullet or red mullet ;0.58
+Swordfish;0.40
+Tonguesole;0.58
+Trout;0.50
+Tub gurnard;0.64
+Tuna;0.40
+Turbot;0.56
+Whiting;0.64
+Yellowfin tuna;0.40
