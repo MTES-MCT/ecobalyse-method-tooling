@@ -177,23 +177,6 @@ def main():
 
     console.print(table)
 
-    # 4. Sauvegarde du modèle
-    print("\n" + "=" * 60)
-    print("💾 Sauvegarde du modèle...")
-    predictor.save("/tmp/demo_predictor.pkl")
-
-    # 5. Rechargement et test
-    print("\n🔄 Rechargement du modèle...")
-    predictor2 = Predictor.load("/tmp/demo_predictor.pkl")
-
-    test = {"name": "Pomme de terre FR", "activityName": "Potato, at farm gate {FR} U"}
-    pred = predictor2.predict(test)
-    print(f"\n✓ Test après rechargement: {test['name']}")
-    print(f"  → categories: {pred['categories']}")
-    print(f"  → packaging: {pred['packaging']}")
-    print(f"  → cropGroup: {pred['cropGroup']}")
-    print(f"  → transportCooling: {pred['transportCooling']}")
-
 
 if __name__ == "__main__":
     main()
