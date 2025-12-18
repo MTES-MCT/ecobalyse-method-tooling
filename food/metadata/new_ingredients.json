@@ -16,14 +16,14 @@
           "id": "8b0e13cc-a518-46d1-9877-5a2d5fc8ad5e",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "vegetable_processed"
           ],
-          "ingredientDensity": 0.72,
-          "rawToCookedRatio": 2.33,
+          "ingredientDensity": 1.018,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "MAIS GRAIN ET ENSILAGE"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -82,10 +82,10 @@
           "id": "10fbac27-282f-4b9d-a503-4e950b4ce45a",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "vegetable_processed"
           ],
           "ingredientDensity": 1.018,
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
@@ -113,7 +113,7 @@
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Anchois",
           "id": "9246f9a5-3697-4d0f-9a3c-aa8d3f891840",
-          "inediblePart": 0.5,
+          "inediblePart": 0.6,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -187,7 +187,7 @@
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES"
         }
       ]
     },
@@ -344,12 +344,12 @@
           "id": "0b452e26-3742-47aa-9821-5a1525efe933",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 1.013,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -474,7 +474,7 @@
           "defaultOrigin": "France",
           "displayName": "Bovins de boucherie",
           "id": "ee779e0c-d60f-4e15-a963-e94ea97c47e9",
-          "inediblePart": 0.5,
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -511,12 +511,12 @@
           "id": "e18e292a-6c2c-4991-9069-6dbf1b6efbc8",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "nut_oilseed_raw"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.74,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -676,9 +676,9 @@
           "id": "a8e1a107-1648-4f32-a210-fcbd72869e78",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.5,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -742,12 +742,12 @@
           "id": "c404f9a2-0706-4bbb-86fc-1601fe20dbce",
           "inediblePart": 0.5,
           "ingredientCategories": [
-            "misc"
+            "animal_product"
           ],
           "ingredientDensity": 1.043,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true
         }
       ]
@@ -946,7 +946,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "FRUITS A COQUES"
+          "cropGroup": "DIVERS"
         }
       ]
     },
@@ -972,12 +972,12 @@
           "id": "3ef9b6f5-df87-4d5a-afd2-d9930e59849b",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_processed"
           ],
-          "ingredientDensity": 1.2,
-          "rawToCookedRatio": 1.0,
+          "ingredientDensity": 0.74,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "DIVERS"
         }
@@ -1003,12 +1003,12 @@
           "defaultOrigin": "France",
           "displayName": "Capelin, filet",
           "id": "3579c5db-3056-4d4b-8003-9bfc0879d6ac",
-          "inediblePart": 0.64,
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "animal_product"
           ],
           "ingredientDensity": 0.933,
-          "rawToCookedRatio": 1.11,
+          "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -1037,12 +1037,12 @@
           "id": "1611c1ce-c88f-451d-be55-6596139b52d6",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "nut_oilseed_raw"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.74,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "VERGERS"
         }
@@ -1270,7 +1270,7 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.6,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -1369,7 +1369,7 @@
           "ingredientCategories": [
             "nut_oilseed_processed"
           ],
-          "ingredientDensity": 0.46,
+          "ingredientDensity": 0.6,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -1403,7 +1403,7 @@
             "nut_oilseed_processed"
           ],
           "ingredientDensity": 0.7,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -1467,12 +1467,12 @@
           "id": "83dd9ce2-5d44-4f4a-a133-ff25bbf6fc7c",
           "inediblePart": 0.2,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.23,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -1502,12 +1502,12 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
-          "rawToCookedRatio": 0.792,
+          "ingredientDensity": 0.45,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "VIGNES"
         }
       ]
     },
@@ -1859,7 +1859,7 @@
           "defaultOrigin": "France",
           "displayName": "Maïs",
           "id": "0467fd78-6608-4ecb-94c3-b378a87ac9af",
-          "inediblePart": 0.64,
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -1901,7 +1901,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "DIVERS"
+          "cropGroup": "MAIS GRAIN ET ENSILAGE"
         }
       ]
     },
@@ -1925,7 +1925,7 @@
           "defaultOrigin": "France",
           "displayName": "Vache",
           "id": "1b9f1056-fc8e-4db7-8425-5ff19b52e1c0",
-          "inediblePart": 0.5,
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "dairy_product"
           ],
@@ -2098,7 +2098,7 @@
             "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.7,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -2135,7 +2135,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -2161,12 +2161,12 @@
           "id": "37066404-4714-43a7-8c89-b08a55f17cb8",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "spice_condiment_additive"
           ],
-          "ingredientDensity": 1.04,
+          "ingredientDensity": 0.3,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "visible": true,
           "cropGroup": "PRAIRIES TEMPORAIRES"
         }
@@ -2225,7 +2225,7 @@
           "defaultOrigin": "France",
           "displayName": "Canard",
           "id": "9c9af666-c8cf-4317-bf23-f0034b7141cb",
-          "inediblePart": 0.5,
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -2298,7 +2298,7 @@
             "animal_product"
           ],
           "ingredientDensity": 1.0,
-          "rawToCookedRatio": 1.11,
+          "rawToCookedRatio": 0.974,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -2330,7 +2330,7 @@
             "animal_product"
           ],
           "ingredientDensity": 1.0,
-          "rawToCookedRatio": 1.11,
+          "rawToCookedRatio": 0.974,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -2423,12 +2423,12 @@
           "defaultOrigin": "France",
           "displayName": "Carpe d'élevage, filet",
           "id": "55e3e910-1168-4a69-b99d-8d621e2f4af8",
-          "inediblePart": 0.56,
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
           ],
           "ingredientDensity": 0.933,
-          "rawToCookedRatio": 2.259,
+          "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -2460,7 +2460,7 @@
             "animal_product"
           ],
           "ingredientDensity": 0.933,
-          "rawToCookedRatio": 2.259,
+          "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -2591,7 +2591,7 @@
             "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.7,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -2654,12 +2654,12 @@
           "id": "86e6deab-a461-42ca-b83c-3e7c95222255",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "spice_condiment_additive"
           ],
           "ingredientDensity": 0.73,
-          "rawToCookedRatio": 1.18,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -2753,12 +2753,12 @@
           "id": "dfb460cc-e9da-464f-a1b6-c89b5785f394",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "nut_oilseed_raw"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.74,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "VERGERS"
         }
@@ -2817,12 +2817,12 @@
           "defaultOrigin": "France",
           "displayName": "Chèvre",
           "id": "12a1a5be-418e-4e59-83e1-3ddfb2833113",
-          "inediblePart": 0.5,
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "animal_product"
           ],
           "ingredientDensity": 1.05,
-          "rawToCookedRatio": 0.792,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -2854,7 +2854,7 @@
             "dairy_product"
           ],
           "ingredientDensity": 1.05,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -2883,12 +2883,12 @@
           "id": "66d7d8d0-367b-40fb-822b-a1ff4394857d",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "nut_oilseed_raw"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.74,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "VERGERS"
         }
@@ -3153,7 +3153,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "RIZ"
+          "cropGroup": "BLE TENDRE"
         }
       ]
     },
@@ -3209,16 +3209,15 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Chérie",
           "id": "a21befec-33cd-4510-b83a-b36e12b722fc",
-          "inediblePart": 0.5,
+          "inediblePart": 0.4,
           "ingredientCategories": [
-            "vegetable_processed"
+            "animal_product"
           ],
           "ingredientDensity": 1.28,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "DIVERS"
+          "visible": true
         }
       ]
     },
@@ -3279,7 +3278,7 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.6,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3341,7 +3340,7 @@
           "defaultOrigin": "France",
           "displayName": "Kiwi",
           "id": "5e6eeb56-7b8e-4250-ac0e-c1cf570864b6",
-          "inediblePart": 0.5,
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3440,7 +3439,7 @@
           "defaultOrigin": "France",
           "displayName": "Agneau",
           "id": "64891845-79c8-4225-bd27-a9cd094d2008",
-          "inediblePart": 0.5,
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3475,7 +3474,7 @@
           "defaultOrigin": "France",
           "displayName": "Grandes truites",
           "id": "8b323681-60e7-461c-9834-2f79f491e133",
-          "inediblePart": 0.64,
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3573,7 +3572,7 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lentil",
           "id": "3e9f3117-b76e-4474-883a-5cfe47988135",
-          "inediblePart": 0.64,
+          "inediblePart": 0.1,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3611,11 +3610,11 @@
             "vegetable_processed"
           ],
           "ingredientDensity": 0.8,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 2.33,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMINEUSES A GRAIN"
         }
       ]
     },
@@ -3644,7 +3643,7 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.8,
-          "rawToCookedRatio": 0.792,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
@@ -3672,7 +3671,7 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lobster",
           "id": "0bab7b7e-10db-458d-a4b3-9bd81cf87256",
-          "inediblePart": 0.55,
+          "inediblePart": 0.69,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3709,7 +3708,7 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.9,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 2.33,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
@@ -3742,7 +3741,7 @@
             "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.7,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -3774,7 +3773,7 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.95,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -3807,7 +3806,7 @@
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.55,
+          "ingredientDensity": 0.6,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
@@ -3901,16 +3900,15 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sirop d'érable",
           "id": "9355d83d-2871-4a25-97fe-09672aa85589",
-          "inediblePart": 0.5,
+          "inediblePart": 0.4,
           "ingredientCategories": [
-            "vegetable_processed"
+            "animal_product"
           ],
           "ingredientDensity": 1.28,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "DIVERS"
+          "visible": true
         }
       ]
     },
@@ -4009,7 +4007,7 @@
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "LEGUMINEUSES A GRAIN"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -4134,12 +4132,12 @@
           "id": "7964dea2-df56-4e0f-85f8-c9684ecada65",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 1.013,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -4165,12 +4163,12 @@
           "defaultOrigin": "France",
           "displayName": "Moules, avec coquille",
           "id": "7fe2f654-bfc7-4250-a2d4-7b3501c9365d",
-          "inediblePart": 0.0,
+          "inediblePart": 0.75,
           "ingredientCategories": [
             "animal_product"
           ],
           "ingredientDensity": 1.0,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -4301,7 +4299,7 @@
             "animal_product"
           ],
           "ingredientDensity": 0.933,
-          "rawToCookedRatio": 1.11,
+          "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -4328,16 +4326,16 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Nutmeg",
           "id": "bec87111-d4ab-4a81-8938-4eeca078a18e",
-          "inediblePart": 0.1,
+          "inediblePart": 0.5,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.5,
+          "ingredientDensity": 0.6,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "DIVERS"
+          "cropGroup": "FRUITS A COQUES"
         }
       ]
     },
@@ -4563,7 +4561,7 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.95,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4594,12 +4592,12 @@
           "id": "01244a42-0e5b-4eb8-b615-dfb7c2900123",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "spice_condiment_additive"
           ],
-          "ingredientDensity": 1.04,
+          "ingredientDensity": 0.3,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "visible": true,
           "cropGroup": "PRAIRIES TEMPORAIRES"
         }
@@ -4634,7 +4632,7 @@
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "VERGERS"
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -4662,7 +4660,7 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.95,
+          "ingredientDensity": 1.0,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -4794,7 +4792,7 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.95,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
@@ -4888,7 +4886,7 @@
           "defaultOrigin": "France",
           "displayName": "Porc",
           "id": "33bb88c2-37fd-41bc-95af-6efa9ec1e60d",
-          "inediblePart": 0.5,
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -4989,7 +4987,7 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pistaches",
           "id": "70034c8f-5a72-4b25-863f-acb5cec725c2",
-          "inediblePart": 0.86,
+          "inediblePart": 0.5,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -5022,16 +5020,15 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Plantain",
           "id": "6dbc2aa1-80e8-4010-bbd3-8664fad06b2b",
-          "inediblePart": 0.5,
+          "inediblePart": 0.4,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "animal_product"
           ],
           "ingredientDensity": 0.919,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "COLZA"
+          "visible": true
         }
       ]
     },
@@ -5059,7 +5056,7 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -5093,7 +5090,7 @@
             "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.7,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -5159,7 +5156,7 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.95,
-          "rawToCookedRatio": 2.259,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
@@ -5286,7 +5283,7 @@
           "defaultOrigin": "France",
           "displayName": "Lapin",
           "id": "f43966cb-73b5-4208-acf3-2803c4e92b42",
-          "inediblePart": 0.5,
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -5384,7 +5381,7 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Framboise",
           "id": "cdd16e9a-9de7-4c45-989b-6374b2f97e5b",
-          "inediblePart": 0.64,
+          "inediblePart": 0.2,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5455,7 +5452,7 @@
             "vegetable_processed"
           ],
           "ingredientDensity": 0.8,
-          "rawToCookedRatio": 0.792,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -5518,12 +5515,12 @@
           "id": "97d0f213-ecbb-47a4-8cf4-791c72037969",
           "inediblePart": 0.2,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 1.01,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -5549,12 +5546,12 @@
           "defaultOrigin": "France",
           "displayName": "Mullet rouge",
           "id": "8dd3a33f-9a5f-455a-b6ca-7a857d1a9ee0",
-          "inediblePart": 0.0,
+          "inediblePart": 0.58,
           "ingredientCategories": [
             "animal_product"
           ],
           "ingredientDensity": 1.01,
-          "rawToCookedRatio": 0.792,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -5583,13 +5580,14 @@
           "id": "e13796f3-3e4c-48af-a25e-7d8e39c8cb30",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "animal_product"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.9,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true
+          "visible": true,
+          "cropGroup": "LEGUMES-FLEURS"
         }
       ]
     },
@@ -5615,12 +5613,12 @@
           "id": "4c6ecc58-fb49-4b6a-a72a-0200349a5482",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "nut_oilseed_raw"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.74,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "VERGERS"
         }
@@ -5679,12 +5677,12 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Saithe",
           "id": "1fb2a413-6e7c-46ea-84fe-282babfaec77",
-          "inediblePart": 0.5,
+          "inediblePart": 0.64,
           "ingredientCategories": [
             "animal_product"
           ],
           "ingredientDensity": 1.06,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 0.819,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -5744,16 +5742,15 @@
           "defaultOrigin": "France",
           "displayName": "Salicornie, fraîche",
           "id": "c62d3065-d784-46a6-9d59-14218c18c9d1",
-          "inediblePart": 0.2,
+          "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "animal_product"
           ],
           "ingredientDensity": 0.72,
-          "rawToCookedRatio": 1.18,
+          "rawToCookedRatio": 1.33,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "visible": true
         }
       ]
     },
@@ -5782,7 +5779,7 @@
             "animal_product"
           ],
           "ingredientDensity": 1.05,
-          "rawToCookedRatio": 1.11,
+          "rawToCookedRatio": 0.819,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -5842,12 +5839,12 @@
           "defaultOrigin": "France",
           "displayName": "Sardines",
           "id": "b687f2a3-1b5e-45dd-b5d5-d5acca79ae47",
-          "inediblePart": 0.56,
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "animal_product"
           ],
           "ingredientDensity": 1.0,
-          "rawToCookedRatio": 2.259,
+          "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -5874,12 +5871,12 @@
           "defaultOrigin": "France",
           "displayName": "Échalotes",
           "id": "5ced06c2-2304-4157-bbb6-ca51eb3c9ee7",
-          "inediblePart": 0.5,
+          "inediblePart": 0.86,
           "ingredientCategories": [
             "animal_product"
           ],
           "ingredientDensity": 0.79,
-          "rawToCookedRatio": 1.11,
+          "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -5906,7 +5903,7 @@
           "defaultOrigin": "France",
           "displayName": "Bass de mer",
           "id": "d3ed86fe-fc22-4108-890f-12235522fce4",
-          "inediblePart": 0.48,
+          "inediblePart": 0.64,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -6042,7 +6039,7 @@
             "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.7,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -6170,16 +6167,15 @@
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Escargots",
           "id": "052d9405-a261-479e-8047-71a694e76448",
-          "inediblePart": 0.5,
+          "inediblePart": 0.4,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "animal_product"
           ],
-          "ingredientDensity": 0.3,
+          "ingredientDensity": 0.919,
           "rawToCookedRatio": 0.792,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "visible": true
         }
       ]
     },
@@ -6208,11 +6204,11 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.8,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "AUTRES CEREALES"
         }
       ]
     },
@@ -6307,11 +6303,11 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.7,
-          "rawToCookedRatio": 0.792,
+          "rawToCookedRatio": 2.33,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "LEGUMINEUSES A GRAIN"
         }
       ]
     },
@@ -6434,16 +6430,15 @@
           "defaultOrigin": "France",
           "displayName": "Spiritueux (pastis, cognac, gin, rhum, vodka, whisky, armagnac, cognac, saké, calvados)",
           "id": "5d08d469-b024-4956-bc81-9147fcf7c874",
-          "inediblePart": 0.64,
+          "inediblePart": 0.48,
           "ingredientCategories": [
-            "vegetable_fresh"
+            "animal_product"
           ],
           "ingredientDensity": 1.04,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
-          "visible": true,
-          "cropGroup": "VIGNES"
+          "visible": true
         }
       ]
     },
@@ -6472,11 +6467,11 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.8,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "LEGUMINEUSES A GRAIN"
         }
       ]
     },
@@ -6533,16 +6528,16 @@
           "defaultOrigin": "France",
           "displayName": "Pois de printemps",
           "id": "f74a7956-2730-4d90-80c4-f9249f0fc993",
-          "inediblePart": 0.4,
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.8,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "AUTRES CEREALES"
         }
       ]
     },
@@ -6673,7 +6668,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
-          "cropGroup": "RIZ"
+          "cropGroup": "MAIS GRAIN ET ENSILAGE"
         }
       ]
     },
@@ -6735,7 +6730,7 @@
             "spice_condiment_additive"
           ],
           "ingredientDensity": 0.95,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -6801,7 +6796,7 @@
             "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.62,
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 2.259,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -6833,7 +6828,7 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.1,
+          "ingredientDensity": 0.65,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -6895,12 +6890,12 @@
           "defaultOrigin": "France",
           "displayName": "Poisson d'espadon",
           "id": "b78d54c1-863f-401a-ad3f-e8dda792cc2f",
-          "inediblePart": 0.5,
+          "inediblePart": 0.4,
           "ingredientCategories": [
             "animal_product"
           ],
           "ingredientDensity": 0.919,
-          "rawToCookedRatio": 0.792,
+          "rawToCookedRatio": 0.819,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true
@@ -6960,14 +6955,14 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tapioca",
           "id": "aedf099b-df11-4220-85c4-5e38fb19e141",
-          "inediblePart": 0.0,
+          "inediblePart": 0.1,
           "ingredientCategories": [
-            "vegetable_processed"
+            "spice_condiment_additive"
           ],
           "ingredientDensity": 0.6,
           "rawToCookedRatio": 12.0,
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -6995,12 +6990,12 @@
           "id": "906dd2bf-4601-4767-af5a-fb3278d0fb16",
           "inediblePart": 0.1,
           "ingredientCategories": [
-            "spice_condiment_additive"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 1.013,
           "rawToCookedRatio": 1.0,
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS"
         }
@@ -7031,7 +7026,7 @@
             "vegetable_processed"
           ],
           "ingredientDensity": 1.04,
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
@@ -7125,7 +7120,7 @@
           "defaultOrigin": "France",
           "displayName": "Triticale",
           "id": "cae1da29-f716-4f90-808c-e3b1a82fa8fc",
-          "inediblePart": 0.5,
+          "inediblePart": 0.64,
           "ingredientCategories": [
             "grain_processed"
           ],
@@ -7190,7 +7185,7 @@
           "defaultOrigin": "France",
           "displayName": "Turquie",
           "id": "7110ca3e-b775-4c1a-8483-43d1c371f1d4",
-          "inediblePart": 0.5,
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -7229,7 +7224,7 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.6,
           "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "always",
@@ -7291,7 +7286,7 @@
           "defaultOrigin": "France",
           "displayName": "Veau",
           "id": "bb6c0fa5-68f8-4025-a2e7-51b5cbb4dccf",
-          "inediblePart": 0.5,
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -7430,7 +7425,7 @@
             "vegetable_processed"
           ],
           "ingredientDensity": 0.8,
-          "rawToCookedRatio": 0.792,
+          "rawToCookedRatio": 0.856,
           "scenario": "reference",
           "transportCooling": "none",
           "visible": true,
@@ -7493,13 +7488,14 @@
           "id": "48ab67e1-d46b-4422-b54a-c764279b1900",
           "inediblePart": 0.0,
           "ingredientCategories": [
-            "animal_product"
+            "grain_raw"
           ],
           "ingredientDensity": 0.62,
           "rawToCookedRatio": 2.259,
           "scenario": "reference",
-          "transportCooling": "always",
-          "visible": true
+          "transportCooling": "none",
+          "visible": true,
+          "cropGroup": "ORGE"
         }
       ]
     },
@@ -7560,7 +7556,7 @@
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.7,
+          "ingredientDensity": 0.72,
           "rawToCookedRatio": 2.5,
           "scenario": "reference",
           "transportCooling": "none",
@@ -7589,16 +7585,16 @@
           "defaultOrigin": "France",
           "displayName": "Pois d'hiver",
           "id": "470922f2-f860-4fb7-8657-1264e7f296a7",
-          "inediblePart": 0.4,
+          "inediblePart": 0.0,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.8,
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "scenario": "reference",
           "transportCooling": "always",
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS"
+          "cropGroup": "AUTRES CEREALES"
         }
       ]
     },

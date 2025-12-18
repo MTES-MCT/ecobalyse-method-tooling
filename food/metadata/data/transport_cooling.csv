@@ -1,50 +1,50 @@
 name,transportCooling
-légume frais,always
-légume en conserve,none
-légume surgelé,always
-légume séché,none
-légume en bocal,none
-fruit frais,always
-fruit en conserve,none
-fruit surgelé,always
-fruit séché,none
-confiture,none
+fresh vegetable,always
+canned vegetable,none
+frozen vegetable,always
+dried vegetable,none
+jarred vegetable,none
+fresh fruit,always
+canned fruit,none
+frozen fruit,always
+dried fruit,none
+jam,none
 compote,none
-viande fraîche,always
-viande surgelée,always
-viande séchée,none
-charcuterie,always
-viande en conserve,none
-poisson frais,always
-poisson surgelé,always
-poisson en conserve,none
-poisson fumé,always
-poisson séché,none
-fruits de mer,always
-crustacés,always
-lait frais,always
-lait UHT,none
-fromage,always
-yaourt,always
-beurre,always
-crème fraîche,always
-lait en poudre,none
-céréale,none
-farine,none
-pain,none
-pâtes,none
-riz,none
-semoule,none
-noix,none
-graine,none
-huile,none
-beurre de cacahuète,none
-épice,none
-herbe aromatique,none
+fresh meat,always
+frozen meat,always
+dried meat,none
+deli meat,always
+canned meat,none
+fresh fish,always
+frozen fish,always
+canned fish,none
+smoked fish,always
+dried fish,none
+seafood,always
+crustacean,always
+fresh milk,always
+UHT milk,none
+cheese,always
+yogurt,always
+butter,always
+fresh cream,always
+milk powder,none
+cereal,none
+flour,none
+bread,none
+pasta,none
+rice,none
+semolina,none
+nut,none
+seed,none
+oil,none
+peanut butter,none
+spice,none
+aromatic herb,none
 sauce,none
-vinaigre,none
-moutarde,none
-sel,none
-sucre,none
-œuf,always
-œuf en poudre,none
+vinegar,none
+mustard,none
+salt,none
+sugar,none
+egg,always
+egg powder,none

@@ -1,202 +1,130 @@
 name,processingState
-légume frais,raw
-légume en conserve,processed
-légume surgelé,processed
-légume séché,processed
-légume en bocal,processed
-fruit frais,raw
-fruit en conserve,processed
-fruit surgelé,processed
-fruit séché,processed
-confiture,processed
+fresh vegetable,raw
+canned vegetable,processed
+frozen vegetable,processed
+dried vegetable,processed
+jarred vegetable,processed
+fresh fruit,raw
+canned fruit,processed
+frozen fruit,processed
+dried fruit,processed
+jam,processed
 compote,processed
-viande fraîche,raw
-viande surgelée,processed
-viande séchée,processed
-charcuterie,processed
-viande en conserve,processed
-poisson frais,raw
-poisson surgelé,processed
-poisson en conserve,processed
-poisson fumé,processed
-poisson séché,processed
-fruits de mer,raw
-crustacés,raw
-lait frais,raw
-lait UHT,processed
-fromage,processed
-yaourt,processed
-beurre,processed
-crème fraîche,processed
-lait en poudre,processed
-céréale,raw
-farine,processed
-pain,processed
-pâtes,processed
-riz,raw
-semoule,processed
-noix,raw
-graine,raw
-huile,processed
-beurre de cacahuète,processed
-épice,processed
-herbe aromatique,raw
+fresh meat,raw
+frozen meat,processed
+dried meat,processed
+deli meat,processed
+canned meat,processed
+fresh fish,raw
+frozen fish,processed
+canned fish,processed
+smoked fish,processed
+dried fish,processed
+seafood,raw
+crustacean,raw
+fresh milk,raw
+UHT milk,processed
+cheese,processed
+yogurt,processed
+butter,processed
+fresh cream,processed
+milk powder,processed
+cereal,raw
+flour,processed
+bread,processed
+pasta,processed
+rice,raw
+semolina,processed
+nut,raw
+seed,raw
+oil,processed
+peanut butter,processed
+spice,processed
+aromatic herb,raw
 sauce,processed
-vinaigre,processed
-moutarde,processed
-sel,processed
-sucre,processed
-œuf,raw
-œuf en poudre,processed
-choux,raw
+vinegar,processed
+mustard,processed
+salt,processed
+sugar,processed
+egg,raw
+egg powder,processed
+cabbage,raw
 tomato,raw
-tomate,raw
 carrot,raw
-carotte,raw
 potato,raw
-pomme de terre,raw
 lettuce,raw
-laitue,raw
 spinach,raw
-épinard,raw
 broccoli,raw
-brocoli,raw
 cauliflower,raw
-chou-fleur,raw
 cucumber,raw
-concombre,raw
 zucchini,raw
-courgette,raw
 pumpkin,raw
-potiron,raw
 bell pepper,raw
-poivron,raw
 onion,raw
-oignon,raw
 garlic,raw
 leek,raw
-poireau,raw
 asparagus,raw
-asperge,raw
 bean,raw
-haricot,raw
 pea,raw
-pois,raw
 lentil,raw
-lentille,raw
 apple,raw
-pomme,raw
 orange,raw
 banana,raw
-banane,raw
 strawberry,raw
-fraise,raw
 raspberry,raw
-framboise,raw
 blueberry,raw
-myrtille,raw
 grape,raw
-raisin,raw
 cherry,raw
-cerise,raw
 peach,raw
-pêche,raw
 pear,raw
-poire,raw
 plum,raw
-prune,raw
 apricot,raw
-abricot,raw
 mango,raw
-mangue,raw
 pineapple,raw
-ananas,raw
 watermelon,raw
-pastèque,raw
 melon,raw
 kiwi,raw
 avocado,raw
-avocat,raw
 fig,raw
-figue,raw
 lemon,raw
-citron,raw
 lime,raw
 beef,raw
-boeuf,raw
 cow,raw
-vache,raw
 pork,raw
-porc,raw
 pig,raw
-cochon,raw
 chicken,raw
-poulet,raw
 turkey,raw
-dinde,raw
 duck,raw
-canard,raw
 lamb,raw
-agneau,raw
 goat,raw
-chèvre,raw
 rabbit,raw
-lapin,raw
 veal,raw
-veau,raw
 salmon,raw
-saumon,raw
 tuna,raw
-thon,raw
 cod,raw
-cabillaud,raw
 herring,raw
-hareng,raw
 sardine,raw
 mackerel,raw
-maquereau,raw
 trout,raw
-truite,raw
 sole,raw
 shrimp,raw
-crevette,raw
 lobster,raw
-homard,raw
 crab,raw
-crabe,raw
 mussel,raw
-moule,raw
 oyster,raw
-huître,raw
 squid,raw
-calamar,raw
 wheat,raw
-blé,raw
 corn,raw
-maïs,raw
 barley,raw
-orge,raw
 oat,raw
-avoine,raw
 rye,raw
-seigle,raw
 soybean,raw
-soja,raw
 sunflower,raw
-tournesol,raw
 rapeseed,raw
-colza,raw
 almond,raw
-amande,raw
 hazelnut,raw
-noisette,raw
 walnut,raw
-noix,raw
 peanut,raw
-cacahuète,raw
 cashew,raw
-noix de cajou,raw
 pistachio,raw
-pistache,raw
 coconut,raw
-noix de coco,raw

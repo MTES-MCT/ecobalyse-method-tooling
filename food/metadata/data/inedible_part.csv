@@ -1,51 +1,51 @@
 name;inedible_part
-Viande avec os;0.2
-Viande sans os;0
-légume frais;0.2
-légume en conserve;0
-légume surgelé;0
-légume séché;0
-légume en bocal;0
-fruit frais;0.2
-fruit en conserve;0
-fruit surgelé;0
-fruit séché;0
-confiture;0
+meat with bone;0.2
+boneless meat;0
+fresh vegetable;0.2
+canned vegetable;0
+frozen vegetable;0
+dried vegetable;0
+jarred vegetable;0
+fresh fruit;0.2
+canned fruit;0
+frozen fruit;0
+dried fruit;0
+jam;0
 compote;0
-viande fraîche;0.1
-viande surgelée;0.1
-viande séchée;0
-charcuterie;0
-viande en conserve;0
-poisson frais;0.4
-poisson surgelé;0
-poisson en conserve;0
-poisson fumé;0
-poisson séché;0
-fruits de mer;0.5
-crustacés;0.5
-lait frais;0
-lait UHT;0
-fromage;0
-yaourt;0
-beurre;0
-crème fraîche;0
-lait en poudre;0
-céréale;0
-farine;0
-pain;0
-pâtes;0
-riz;0
-semoule;0
-noix;0.5
-graine;0
-huile;0
-beurre de cacahuète;0
-épice;0
-herbe aromatique;0.1
+fresh meat;0.1
+frozen meat;0.1
+dried meat;0
+deli meat;0
+canned meat;0
+fresh fish;0.4
+frozen fish;0
+canned fish;0
+smoked fish;0
+dried fish;0
+seafood;0.5
+crustacean;0.5
+fresh milk;0
+UHT milk;0
+cheese;0
+yogurt;0
+butter;0
+fresh cream;0
+milk powder;0
+cereal;0
+flour;0
+bread;0
+pasta;0
+rice;0
+semolina;0
+nut;0.5
+seed;0
+oil;0
+peanut butter;0
+spice;0
+aromatic herb;0.1
 sauce;0
-vinaigre;0
-moutarde;0
-sel;0
-sucre;0
-œuf en poudre;0
+vinegar;0
+mustard;0
+salt;0
+sugar;0
+egg powder;0

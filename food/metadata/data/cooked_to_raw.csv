@@ -1,123 +1,130 @@
 food;value
-Fruit;0.856
-papaye;0.856
-ananas;0.856
-mandarine;0.856
-framboise;0.856
-prune;0.856
-banane;0.856
-abricot;0.856
-pêche;0.856
+fruit;0.856
+papaya;0.856
+pineapple;0.856
+mandarin;0.856
+raspberry;0.856
+plum;0.856
+banana;0.856
+apricot;0.856
+peach;0.856
 kiwi;0.856
-vegetables;0.856
-épinard;0.856
-salade, mâche;0.856
-pomme de terre;0.856
-courgette;0.856
+vegetable;0.856
+spinach;0.856
+lettuce;0.856
+potato;0.856
+zucchini;0.856
 endive;0.856
-artichaut;0.856
-betterave;0.856
-racines;0.856
-céleri;0.856
-navet;0.856
-carotte;0.856
-brocoli;0.856
-oignon, échalote;0.856
-chou, choux;0.856
-litchi;0.856
-garlic, ail;0.856
-fish, shellfish;0.819
-crustacé;0.819
-crabe;0.819
-crevette;0.819
-calmar;0.819
-homard;0.819
-seeds;2.259
-soja;2.259
-ensilage;2.259
-céréales, blé dur;2.259
-orge;2.259
-triricale;2.259
-colza;2.259
-avoine;2.259
-riz;2.259
-legumineuses;2.33
-soupe déshydratée;12
+artichoke;0.856
+beetroot;0.856
+root vegetable;0.856
+celery;0.856
+turnip;0.856
+carrot;0.856
+broccoli;0.856
+onion;0.856
+cabbage;0.856
+lychee;0.856
+garlic;0.856
+fish;0.819
+shellfish;0.819
+crustacean;0.819
+crab;0.819
+shrimp;0.819
+squid;0.819
+lobster;0.819
+seed;2.259
+soybean;2.259
+silage;2.259
+cereal;2.259
+durum wheat;2.259
+barley;2.259
+triticale;2.259
+rapeseed;2.259
+oat;2.259
+rice;2.259
+legume;2.33
+dehydrated soup;12
 dehydrated onion;1.9
-lentilles;2.33
-eggs;0.974
-red meats;0.792
-viande;0.792
-porc;0.792
-boeuf haché;0.792
-jambon;0.792
-chicken, volaille, poultry;0.755
-waste, offal;0.73
-radis;0.85
-Produit laitier;1
-crème;1
-fromage;1
+lentil;2.33
+egg;0.974
+red meat;0.792
+meat;0.792
+pork;0.792
+ground beef;0.792
+ham;0.792
+chicken;0.755
+poultry;0.755
+offal;0.73
+radish;0.85
+dairy product;1
+cream;1
+cheese;1
 emmental;1
-jus de fruit;1
-liquide, boisson, sirop;1
-sirop ou sucre;1
-miel;1
+fruit juice;1
+liquid;1
+beverage;1
+syrup;1
+honey;1
 soup;1
-huile végétale;1
-huiles, beurre, graisses animales;1
-chataigne;1
-pois;1
-noix, noisettes;1
-farine;1
-poudre;1
-café;1
-autres ingrédients;1
-légume frais;1.18
-légume en conserve;1.0
-légume surgelé;1.11
-légume séché;3.33
-légume en bocal;1.0
-fruit frais;1.0
-fruit en conserve;1.0
-fruit surgelé;1.0
-fruit séché;4.0
-confiture;1.0
+vegetable oil;1
+oil;1
+butter;1
+animal fat;1
+chestnut;1
+pea;1
+nut;1
+hazelnut;1
+flour;1
+powder;1
+coffee;1
+other ingredient;1
+fresh vegetable;1.18
+canned vegetable;1.0
+frozen vegetable;1.11
+dried vegetable;3.33
+jarred vegetable;1.0
+fresh fruit;1.0
+canned fruit;1.0
+frozen fruit;1.0
+dried fruit;4.0
+jam;1.0
 compote;1.0
-viande fraîche;1.33
-viande surgelée;1.33
-viande séchée;2.5
-charcuterie;1.0
-viande en conserve;1.0
-poisson frais;1.18
-poisson surgelé;1.18
-poisson en conserve;1.0
-poisson fumé;1.11
-poisson séché;2.86
-fruits de mer;1.11
-crustacés;1.11
-lait frais;1.0
-lait UHT;1.0
-fromage;1.0
-yaourt;1.0
-beurre;1.0
-crème fraîche;1.0
-lait en poudre;10.0
-céréale;2.5
-farine;1.0
-pain;1.11
-pâtes;2.5
-riz;2.86
-semoule;2.5
-noix;1.0
-graine;1.0
-huile;1.0
-beurre de cacahuète;1.0
-épice;1.0
-herbe aromatique;1.0
+fresh meat;1.33
+frozen meat;1.33
+dried meat;2.5
+deli meat;1.0
+canned meat;1.0
+fresh fish;1.18
+frozen fish;1.18
+canned fish;1.0
+smoked fish;1.11
+dried fish;2.86
+seafood;1.11
+crustacean;1.11
+fresh milk;1.0
+UHT milk;1.0
+cheese;1.0
+yogurt;1.0
+butter;1.0
+fresh cream;1.0
+milk powder;10.0
+cereal;2.5
+flour;1.0
+bread;1.11
+pasta;2.5
+rice;2.86
+semolina;2.5
+nut;1.0
+seed;1.0
+oil;1.0
+peanut butter;1.0
+spice;1.0
+aromatic herb;1.0
 sauce;1.0
-vinaigre;1.0
-moutarde;1.0
-sel;1.0
-sucre;1.0
-œuf;1.11
-œuf en poudre;4.0
+vinegar;1.0
+mustard;1.0
+salt;1.0
+sugar;1.0
+egg;1.11
+egg powder;4.0
