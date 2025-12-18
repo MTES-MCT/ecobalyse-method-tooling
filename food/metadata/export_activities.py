@@ -13,45 +13,8 @@ import uuid
 from pathlib import Path
 
 import pandas as pd
-import torch
 from predict import Predictor
 from rich.progress import track
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-
-# English to French translation model
-EN_FR_MODEL = "Helsinki-NLP/opus-mt-en-fr"
-
-
-class EnglishToFrenchTranslator:
-    """Translate English ingredient names to French."""
-
-    def __init__(self):
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        print(f"Loading EN→FR translation model: {EN_FR_MODEL}")
-        self.tokenizer = AutoTokenizer.from_pretrained(EN_FR_MODEL)
-        self.model = AutoModelForSeq2SeqLM.from_pretrained(EN_FR_MODEL).to(self.device)
-        self._cache = {}
-
-    def translate(self, text: str) -> str:
-        """Translate English text to French."""
-        text = text.strip()
-        if not text:
-            return ""
-
-        # Check cache
-        if text in self._cache:
-            return self._cache[text]
-
-        inputs = self.tokenizer(text, return_tensors="pt").to(self.device)
-        with torch.no_grad():
-            outputs = self.model.generate(**inputs, max_length=60)
-        result = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)[
-            0
-        ].strip()
-
-        # Cache result
-        self._cache[text] = result
-        return result
 
 
 # Animal detection patterns and mappings
@@ -192,10 +155,10 @@ def load_existing_uuids(output_path: str) -> dict:
 
 def build_activity_entry(
     name: str,
+    french_name: str,
     activity_name: str,
     source: str,
     predictions: dict,
-    translator: EnglishToFrenchTranslator = None,
     existing_uuids: dict = None,
 ) -> dict:
     """
@@ -213,11 +176,8 @@ def build_activity_entry(
         activity_id = str(uuid.uuid4())
         ingredient_id = str(uuid.uuid4())
 
-    # Translate to French for displayName
-    if translator:
-        display_name = translator.translate(name)
-    else:
-        display_name = name
+    # Use French name from CSV for displayName (fallback to English name)
+    display_name = french_name if french_name else name
 
     # Build ingredient metadata
     ingredient = {
@@ -303,9 +263,6 @@ def main():
         predictor = Predictor()
         predictor.fit(training_data)
 
-    # Load EN→FR translator
-    translator = EnglishToFrenchTranslator()
-
     # Load existing UUIDs to preserve them on re-export
     existing_uuids = load_existing_uuids(args.output)
     if existing_uuids:
@@ -317,6 +274,11 @@ def main():
 
     for _, row in track(df.iterrows(), total=len(df), description="Predicting..."):
         name = str(row["item"]).strip()
+        french_name = (
+            str(row["Liste 4.1 Trad"]).strip()
+            if pd.notna(row.get("Liste 4.1 Trad"))
+            else ""
+        )
         activity_name = (
             str(row["icv final"]).strip() if pd.notna(row["icv final"]) else ""
         )
@@ -333,9 +295,9 @@ def main():
         ingredient = {"name": name, "activityName": activity_name}
         predictions = predictor.predict(ingredient)
 
-        # Build activity entry (with French translation, preserving existing UUIDs)
+        # Build activity entry (using French name from CSV, preserving existing UUIDs)
         activity = build_activity_entry(
-            name, activity_name, source, predictions, translator, existing_uuids
+            name, french_name, activity_name, source, predictions, existing_uuids
         )
         activities.append(activity)
 
