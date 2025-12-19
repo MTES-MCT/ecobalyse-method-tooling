@@ -22,8 +22,9 @@ Usage:
         "name": "Tomate cerise bio",
         "activityName": "Cherry tomato, organic {FR} U"
     }
-    predictions = predictor.predict(new_ingredient)
-    # → {"categories": ["vegetable_fresh", "organic"], "cropGroup": "LEGUMES-FLEURS", ...}
+    predictions, confidence = predictor.predict(new_ingredient)
+    # predictions → {"categories": [...], "foodType": "vegetable", ...}
+    # confidence → {"foodType": 0.95, "density": 0.87, ...}
 
 CLI:
     # Entraîner sur les ingrédients existants
@@ -850,6 +851,18 @@ class Predictor:
             return "always"
         return "none"
 
+    def _build_matcher(
+        self, names: list, values: list, sources: list
+    ) -> NearestNeighborMatcher:
+        """Build a NearestNeighborMatcher with common configuration."""
+        return NearestNeighborMatcher(
+            names,
+            values,
+            sources=sources,
+            translate_fn=self._translate,
+            foodon_extractor=self.foodon_extractor,
+        )
+
     def fit(self, ingredients: list[dict], verbose: bool = True):
         """
         Train the predictor on a list of ingredients.
@@ -908,12 +921,8 @@ class Predictor:
 
         ref_food_names, ref_food_types, ref_food_sources = _load_food_type_data()
 
-        self.food_type_matcher = NearestNeighborMatcher(
-            ref_food_names,
-            ref_food_types,
-            sources=ref_food_sources,
-            translate_fn=self._translate,
-            foodon_extractor=self.foodon_extractor,
+        self.food_type_matcher = self._build_matcher(
+            ref_food_names, ref_food_types, ref_food_sources
         )
 
         # 3b. Build processingState matcher (nearest neighbor)
@@ -936,12 +945,8 @@ class Predictor:
         y_processing.extend(ref_proc_states)
         proc_sources.extend(ref_proc_sources)
 
-        self.processing_matcher = NearestNeighborMatcher(
-            ing_names_proc,
-            y_processing,
-            sources=proc_sources,
-            translate_fn=self._translate,
-            foodon_extractor=self.foodon_extractor,
+        self.processing_matcher = self._build_matcher(
+            ing_names_proc, y_processing, proc_sources
         )
 
         # 4. Build cropGroup matcher (nearest neighbor)
@@ -958,12 +963,8 @@ class Predictor:
         cropgroup_sources.extend(ing_cg_sources)
 
         if cropgroup_names:
-            self.cropgroup_matcher = NearestNeighborMatcher(
-                cropgroup_names,
-                cropgroup_vals,
-                sources=cropgroup_sources,
-                translate_fn=self._translate,
-                foodon_extractor=self.foodon_extractor,
+            self.cropgroup_matcher = self._build_matcher(
+                cropgroup_names, cropgroup_vals, cropgroup_sources
             )
 
         # 5. Build transportCooling matcher (combines ingredients.json + reference data)
@@ -979,12 +980,8 @@ class Predictor:
         y_transport.extend(ref_transport)
         transport_sources.extend(ref_transport_sources)
 
-        self.transport_matcher = NearestNeighborMatcher(
-            transport_names,
-            y_transport,
-            sources=transport_sources,
-            translate_fn=self._translate,
-            foodon_extractor=self.foodon_extractor,
+        self.transport_matcher = self._build_matcher(
+            transport_names, y_transport, transport_sources
         )
 
         # 6. Build nearest neighbor matchers for continuous values
@@ -1002,12 +999,8 @@ class Predictor:
         density_vals.extend(ref_density_vals)
         density_sources.extend(ref_density_sources)
 
-        self.density_matcher = NearestNeighborMatcher(
-            density_names,
-            density_vals,
-            sources=density_sources,
-            translate_fn=self._translate,
-            foodon_extractor=self.foodon_extractor,
+        self.density_matcher = self._build_matcher(
+            density_names, density_vals, density_sources
         )
 
         if verbose:
@@ -1023,12 +1016,8 @@ class Predictor:
         inedible_vals.extend(ref_inedible_vals)
         inedible_sources.extend(ref_inedible_sources)
 
-        self.inedible_matcher = NearestNeighborMatcher(
-            inedible_names,
-            inedible_vals,
-            sources=inedible_sources,
-            translate_fn=self._translate,
-            foodon_extractor=self.foodon_extractor,
+        self.inedible_matcher = self._build_matcher(
+            inedible_names, inedible_vals, inedible_sources
         )
 
         if verbose:
@@ -1044,12 +1033,8 @@ class Predictor:
         ratio_vals.extend(ref_ratio_vals)
         ratio_sources.extend(ref_ratio_sources)
 
-        self.ratio_matcher = NearestNeighborMatcher(
-            ratio_names,
-            ratio_vals,
-            sources=ratio_sources,
-            translate_fn=self._translate,
-            foodon_extractor=self.foodon_extractor,
+        self.ratio_matcher = self._build_matcher(
+            ratio_names, ratio_vals, ratio_sources
         )
 
         self.is_fitted = True
@@ -1060,15 +1045,15 @@ class Predictor:
         if verbose:
             timed_print("✓ Training complete!\n")
 
-    def predict(self, ingredient: dict) -> dict:
+    def _predict(self, ingredient: dict) -> tuple[dict, dict]:
         """
-        Predict metadata for a new ingredient.
+        Internal prediction method returning both predictions and confidence.
 
         Args:
             ingredient: Dict with "name" and "activityName"
 
         Returns:
-            Dict with predicted metadata
+            (predictions, confidence) tuple
         """
         if not self.is_fitted:
             raise RuntimeError(
@@ -1080,147 +1065,9 @@ class Predictor:
 
         name = ingredient.get("name", "")
         activity = ingredient.get("activityName", "")
+        full_text = f"{name} {activity}"
 
         # Extract features (with translation and FoodOn)
-        features = extract_features(
-            name,
-            activity,
-            translate_fn=self._translate,
-            foodon_extractor=self.foodon_extractor,
-        ).reshape(1, -1)
-
-        predictions = {}
-        full_text = f"{name} {activity}"
-
-        # Extract binary features for rules
-        binary_features = self._extract_binary_from_features(features)
-
-        # 1. FoodType (rules first, then nearest neighbor)
-        if binary_features.get("is_fish") or binary_features.get("is_seafood"):
-            food_type = "fish_seafood"
-            food_type_match_info = None
-        elif binary_features.get("is_meat"):
-            food_type = "meat"
-            food_type_match_info = None
-        elif binary_features.get("is_dairy"):
-            food_type = "dairy"
-            food_type_match_info = None
-        else:
-            # Fallback to nearest neighbor
-            food_type, _, food_type_match, food_type_source = (
-                self.food_type_matcher.predict(name, translate_fn=self._translate)
-            )
-            food_type_match_info = {"file": food_type_source, "name": food_type_match}
-
-        predictions["foodType"] = food_type
-        predictions["foodTypeMatch"] = food_type_match_info
-
-        # 2. ProcessingState (packaging detection first, then nearest neighbor)
-        packaging, _ = self._detect_packaging(full_text)
-        if packaging and packaging != "fresh":
-            processing_state = "processed"
-            processing_match_info = None
-        else:
-            processing_state, _, processing_match, processing_source = (
-                self.processing_matcher.predict(name, translate_fn=self._translate)
-            )
-            processing_match_info = {"file": processing_source, "name": processing_match}
-
-        predictions["processingState"] = processing_state
-        predictions["processingStateMatch"] = processing_match_info
-        predictions["packaging"] = packaging
-
-        # 3. Additive labels (by rules)
-        labels = []
-        if re.search(r"\b(bio|organic)\b", full_text, re.IGNORECASE):
-            labels.append("organic")
-        if re.search(r"\b(bleu.?blanc.?c[oœ]eur)\b", full_text, re.IGNORECASE):
-            labels.append("bleublanccoeur")
-        predictions["labels"] = labels
-
-        # 4. Build categories from foodType + processingState + labels
-        base_category = DIMENSIONS_TO_CATEGORY.get(
-            (food_type, processing_state), "misc"
-        )
-        categories = [base_category] + labels
-        predictions["categories"] = categories
-
-        # 5. cropGroup (for vegetal types) - nearest neighbor matching
-        vegetal_types = {
-            "vegetable",
-            "fruit",
-            "grain",
-            "nut_oilseed",
-            "spice_condiment",
-        }
-        if food_type in vegetal_types and self.cropgroup_matcher is not None:
-            cropgroup_val, _, cropgroup_match, cropgroup_source = (
-                self.cropgroup_matcher.predict(name, translate_fn=self._translate)
-            )
-            predictions["cropGroup"] = cropgroup_val
-            predictions["cropGroupMatch"] = {"file": cropgroup_source, "name": cropgroup_match}
-        else:
-            predictions["cropGroup"] = None
-            predictions["cropGroupMatch"] = None
-
-        # 6. transportCooling (packaging first, then rules, then nearest neighbor)
-        transport_match_info = None
-        if packaging and packaging != "fresh":
-            # Explicit packaging detected (canned, frozen, dried, etc.)
-            _, transport_cooling = PACKAGING_PATTERNS.get(packaging, (None, None))
-            if not transport_cooling:
-                transport_cooling = "none"
-        else:
-            # Try rule-based from binary features
-            transport_cooling = self._predict_transport_by_rules(binary_features)
-            if not transport_cooling:
-                # Fall back to nearest neighbor matching
-                transport_cooling, _, transport_match, transport_source = (
-                    self.transport_matcher.predict(name, translate_fn=self._translate)
-                )
-                transport_match_info = {"file": transport_source, "name": transport_match}
-        predictions["transportCooling"] = transport_cooling
-        predictions["transportCoolingMatch"] = transport_match_info
-
-        # 7. defaultOrigin (by rules)
-        predictions["defaultOrigin"] = _extract_origin(activity)
-
-        # 8. Continuous values (nearest neighbor)
-        density_val, _, density_match, density_source = self.density_matcher.predict(
-            name, translate_fn=self._translate
-        )
-        inedible_val, _, inedible_match, inedible_source = self.inedible_matcher.predict(
-            name, translate_fn=self._translate
-        )
-        ratio_val, _, ratio_match, ratio_source = self.ratio_matcher.predict(
-            name, translate_fn=self._translate
-        )
-
-        predictions["density"] = round(density_val, 3)
-        predictions["densityMatch"] = {"file": density_source, "name": density_match}
-        predictions["inediblePart"] = round(inedible_val, 2)
-        predictions["inediblePartMatch"] = {"file": inedible_source, "name": inedible_match}
-        predictions["rawToCookedRatio"] = round(ratio_val, 3)
-        predictions["rawToCookedRatioMatch"] = {"file": ratio_source, "name": ratio_match}
-
-        return predictions
-
-    def predict_with_confidence(self, ingredient: dict) -> tuple[dict, dict]:
-        """
-        Predict with confidence scores.
-
-        Returns:
-            (predictions, confidence_scores)
-        """
-        if not self.is_fitted:
-            raise RuntimeError("Predictor must be fitted before prediction.")
-
-        self._load_translation_model()
-        self._load_foodon()
-
-        name = ingredient.get("name", "")
-        activity = ingredient.get("activityName", "")
-        full_text = f"{name} {activity}"
         features = extract_features(
             name,
             activity,
@@ -1287,7 +1134,7 @@ class Predictor:
         predictions["categories"] = categories
         confidence["categories"] = food_type_conf
 
-        # 5. cropGroup - nearest neighbor matching
+        # 5. cropGroup (for vegetal types) - nearest neighbor matching
         cropgroup_conf = 0.0
         vegetal_types = {
             "vegetable",
@@ -1328,10 +1175,10 @@ class Predictor:
         predictions["transportCooling"] = transport_cooling
         predictions["transportCoolingMatch"] = transport_match_info
 
-        # 7. defaultOrigin
+        # 7. defaultOrigin (by rules)
         predictions["defaultOrigin"] = _extract_origin(activity)
 
-        # 8. Value predictions with confidence
+        # 8. Continuous values (nearest neighbor)
         density_val, density_conf, density_match, density_source = (
             self.density_matcher.predict(name, translate_fn=self._translate)
         )
@@ -1354,6 +1201,20 @@ class Predictor:
         confidence["rawToCookedRatio"] = ratio_conf
 
         return predictions, confidence
+
+    def predict(self, ingredient: dict) -> tuple[dict, dict]:
+        """
+        Predict metadata for a new ingredient.
+
+        Args:
+            ingredient: Dict with "name" and optionally "activityName"
+
+        Returns:
+            (predictions, confidence) tuple where:
+            - predictions: Dict with foodType, processingState, density, etc.
+            - confidence: Dict with confidence scores for each field
+        """
+        return self._predict(ingredient)
 
     def evaluate(self, verbose: bool = True) -> dict:
         """
@@ -1443,7 +1304,7 @@ class Predictor:
             )
 
         # Évaluation cropGroup (sur végétaux uniquement, using RandomForest on embeddings)
-        cropgroup_names, cropgroup_vals = _build_cropgroup_data(
+        cropgroup_names, cropgroup_vals, _ = _build_cropgroup_data(
             self.training_ingredients
         )
 
@@ -1591,7 +1452,7 @@ class Detector:
         Returns:
             (predictions, score, best_match)
         """
-        predictions, confidence = self.predictor.predict_with_confidence(ingredient)
+        predictions, confidence = self.predictor.predict(ingredient)
 
         # Score global = moyenne des confiances (categorical + value classifiers)
         score = np.mean([
@@ -1719,7 +1580,7 @@ def main():
             "activityName": args.activity,
         }
 
-        predictions, confidence = predictor.predict_with_confidence(ingredient)
+        predictions, confidence = predictor.predict(ingredient)
 
         print("\n📊 Predictions:")
         for key, value in predictions.items():

@@ -153,12 +153,20 @@ def load_existing_uuids(output_path: str) -> dict:
     return existing
 
 
+def _match_with_confidence(match_info: dict | None, conf: float | None) -> dict | None:
+    """Add confidence to match info dict."""
+    if match_info is None:
+        return None
+    return {**match_info, "confidence": round(conf, 3) if conf else None}
+
+
 def build_activity_entry(
     name: str,
     french_name: str,
     activity_name: str,
     source: str,
     predictions: dict,
+    confidence: dict,
     existing_uuids: dict = None,
 ) -> dict:
     """
@@ -179,29 +187,39 @@ def build_activity_entry(
     # Use French name from CSV for displayName (fallback to English name)
     display_name = french_name if french_name else name
 
-    # Build ingredient metadata
+    # Build ingredient metadata with match info as (match, confidence) tuples
     ingredient = {
         "alias": alias,
         "defaultOrigin": predictions.get("defaultOrigin", "OutOfEuropeAndMaghreb"),
         "displayName": display_name,
         "id": ingredient_id,
         "inediblePart": predictions.get("inediblePart", 0),
-        "inediblePartMatch": predictions.get("inediblePartMatch"),
+        "inediblePartMatch": _match_with_confidence(
+            predictions.get("inediblePartMatch"), confidence.get("inediblePart")
+        ),
         "ingredientCategories": predictions.get("categories", ["misc"]),
         "ingredientDensity": predictions.get("density", 1.0),
-        "ingredientDensityMatch": predictions.get("densityMatch"),
+        "ingredientDensityMatch": _match_with_confidence(
+            predictions.get("densityMatch"), confidence.get("density")
+        ),
         "rawToCookedRatio": predictions.get("rawToCookedRatio", 1.0),
-        "rawToCookedRatioMatch": predictions.get("rawToCookedRatioMatch"),
+        "rawToCookedRatioMatch": _match_with_confidence(
+            predictions.get("rawToCookedRatioMatch"), confidence.get("rawToCookedRatio")
+        ),
         "scenario": "reference",
         "transportCooling": predictions.get("transportCooling", "none"),
-        "transportCoolingMatch": predictions.get("transportCoolingMatch"),
+        "transportCoolingMatch": _match_with_confidence(
+            predictions.get("transportCoolingMatch"), confidence.get("transportCooling")
+        ),
         "visible": True,
     }
 
     # Add cropGroup for vegetables
     if predictions.get("cropGroup"):
         ingredient["cropGroup"] = predictions["cropGroup"]
-        ingredient["cropGroupMatch"] = predictions.get("cropGroupMatch")
+        ingredient["cropGroupMatch"] = _match_with_confidence(
+            predictions.get("cropGroupMatch"), confidence.get("cropGroup")
+        )
 
     # Add animal fields if animal product
     animal_fields = detect_animal_fields(name, activity_name)
@@ -296,13 +314,13 @@ def main():
         if not name or not activity_name:
             continue
 
-        # Get predictions
+        # Get predictions with confidence
         ingredient = {"name": name, "activityName": activity_name}
-        predictions = predictor.predict(ingredient)
+        predictions, confidence = predictor.predict(ingredient)
 
         # Build activity entry (using French name from CSV, preserving existing UUIDs)
         activity = build_activity_entry(
-            name, french_name, activity_name, source, predictions, existing_uuids
+            name, french_name, activity_name, source, predictions, confidence, existing_uuids
         )
         activities.append(activity)
 

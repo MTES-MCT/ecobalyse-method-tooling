@@ -55,7 +55,7 @@ def main():
         # Test sur un seul ingrédient
         print(f"\n🔮 Test : {args.ingredient}")
         ing = {"name": args.ingredient, "activityName": args.activity}
-        predictions, confidence = predictor.predict_with_confidence(ing)
+        predictions, confidence = predictor.predict(ing)
 
         print(f"\n{'─' * 50}")
         print(f"🥗 {ing['name']}")
@@ -124,7 +124,7 @@ def main():
     # Collect predictions first with progress bar
     all_predictions = []
     for ing in track(test_ingredients, description="Predicting..."):
-        predictions, confidence = predictor.predict_with_confidence(ing)
+        predictions, confidence = predictor.predict(ing)
         all_predictions.append((ing, predictions, confidence))
 
     # Build table from collected predictions
