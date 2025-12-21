@@ -2,37 +2,37 @@
 ecobalyse_data/detect/predict.py
 ================================
 
-Prédit TOUTES les métadonnées d'un nouvel ingrédient à partir de :
-- Son nom (français)
-- Son procédé ACV (activityName)
+Predicts ALL metadata for a new ingredient from:
+- Its name (French or English)
+- Its LCA process name (activityName)
 
-Utilise un ensemble de classifieurs entraînés sur les ingrédients existants.
+Uses classifiers trained on existing ingredients.
 
 Usage:
     from ecobalyse_data.detect import predict
 
-    # Entraînement (une seule fois)
+    # Training (once)
     predictor = predict.Predictor()
-    predictor.fit(existing_ingredients)  # liste de dicts
+    predictor.fit(existing_ingredients)  # list of dicts
     predictor.save("models/ingredient_predictor.pkl")
 
-    # Prédiction
+    # Prediction
     predictor = predict.Predictor.load("models/ingredient_predictor.pkl")
     new_ingredient = {
         "name": "Tomate cerise bio",
         "activityName": "Cherry tomato, organic {FR} U"
     }
     predictions = predictor.predict(new_ingredient)
-    # → {"foodType": "vegetable", "density": 1.0, "densityMatch": {"file": "...", "name": "...", "confidence": 0.95}, ...}
+    # -> {"foodType": "vegetable", "density": 1.0, "densityMatch": {"file": "...", "name": "...", "confidence": 0.95}, ...}
 
 CLI:
-    # Entraîner sur les ingrédients existants
+    # Train on existing ingredients
     python -m ecobalyse_data.detect.predict train ingredients.json --output model.pkl
 
-    # Prédire pour un nouvel ingrédient
+    # Predict for a new ingredient
     python -m ecobalyse_data.detect.predict infer model.pkl --name "Tomate cerise" --activity "Cherry tomato {FR} U"
 
-    # Évaluer en cross-validation
+    # Evaluate with cross-validation
     python -m ecobalyse_data.detect.predict evaluate ingredients.json
 """
 
@@ -99,7 +99,7 @@ MT_MODEL = "Helsinki-NLP/opus-mt-fr-en"  # FR → EN Machine Translation
 # Embedding model (used for evaluation cross-validation only)
 MODEL = "all-MiniLM-L6-v2"
 
-# Catégories de base (legacy - kept for backward compatibility during training)
+# Base categories (legacy - kept for backward compatibility during training)
 BASE_CATEGORIES = [
     "misc",
     "dairy_product",
@@ -175,12 +175,12 @@ PACKAGING_PATTERNS = {
     "fresh": (r"\b(frais|fra[iî]che|fresh)\b", None),  # None = depends on foodType
 }
 
-# Labels additifs (peuvent se combiner avec une catégorie de base)
+# Additive labels (can combine with a base category)
 ADDITIVE_LABELS = ["organic", "bleublanccoeur"]
 
 TRANSPORT_COOLING_VALUES = ["none", "always", "once_transformed"]
 
-# Mapping localisation → origine
+# Mapping location -> origin
 ORIGIN_MAPPING = {
     "FR": "France",
     "IT": "EuropeAndMaghreb",
@@ -496,9 +496,9 @@ class NearestNeighborMatcher:
 # FEATURE EXTRACTION
 # =============================================================================
 
-# Patterns de détection (français + anglais)
+# Detection patterns (French + English)
 DETECTION_PATTERNS = {
-    # Attributs de transformation
+    # Processing attributes
     "is_organic": r"\b(bio|organic|organique)\b",
     "is_fresh": r"\b(frais|fraîche|fraiche|fresh)\b",
     "is_frozen": r"\b(surgelé|surgelee|congelé|congelee|frozen)\b",
@@ -508,13 +508,13 @@ DETECTION_PATTERNS = {
     "is_processed": r"\b(transformé|transformee|processed|préparé|preparee|industriel|conserve)\b",
     "is_canned": r"\b(conserve|appertisé|appertisee|canned)\b",
     "is_smoked": r"\b(fumé|fumee|smoked)\b",
-    # Types d'aliments - Animaux
+    # Food types - Animals
     "is_meat": r"\b(viande|meat|boeuf|beef|porc|pork|veau|veal|agneau|lamb|mouton|mutton|poulet|chicken|dinde|turkey|canard|duck|lapin|rabbit|gibier|game)\b",
     "is_fish": r"\b(poisson|pêche|fish|cabillaud|cod|saumon|salmon|thon|tuna|sardine|maquereau|mackerel|truite|trout|bar|bass|dorade|bream|merlu|hake|sole|anchois|anchovy)\b",
     "is_seafood": r"\b(fruit.{0,3}mer|seafood|crevette|shrimp|prawn|crabe|crab|homard|lobster|moule|mussel|huître|huitre|oyster|coquillage|shellfish|calmar|squid|poulpe|octopus)\b",
     "is_egg": r"\b(oeuf|œuf|egg)\b",
     "is_dairy": r"\b(lait|milk|fromage|cheese|yaourt|yogurt|yoghurt|crème|cream|beurre|butter|lactose|dairy)\b",
-    # Types d'aliments - Végétaux
+    # Food types - Vegetables
     "is_vegetable": r"\b(légume|legume|vegetable|carotte|carrot|tomate|tomato|courgette|zucchini|aubergine|eggplant|poivron|pepper|oignon|onion|ail|garlic|pomme.{0,3}terre|potato|haricot|bean|petit.{0,3}pois|pea|épinard|spinach|salade|salad|laitue|lettuce|chou|cabbage|brocoli|broccoli|céleri|celery|concombre|cucumber|radis|radish|navet|turnip|betterave|beet|artichaut|artichoke|asperge|asparagus|fenouil|fennel|poireau|leek)\b",
     "is_fruit": r"\b(fruit|pomme|apple|poire|pear|orange|citron|lemon|banane|banana|fraise|strawberry|framboise|raspberry|cerise|cherry|pêche|peche|peach|abricot|apricot|prune|plum|raisin|grape|melon|pastèque|watermelon|mangue|mango|ananas|pineapple|kiwi|figue|fig|datte|date|grenade|pomegranate|papaye|papaya|litchi|lychee|avocat|avocado)\b",
     "is_grain": r"\b(céréale|cereale|cereal|grain|blé|ble|wheat|riz|rice|maïs|mais|corn|orge|barley|avoine|oat|seigle|rye|épeautre|epeautre|spelt|sarrasin|buckwheat|quinoa|millet|sorgho|sorghum|farine|flour|semoule|semolina|pâte|pate|pasta)\b",
@@ -524,7 +524,7 @@ DETECTION_PATTERNS = {
     "is_spice": r"\b(épice|epice|spice|herbe|herb|aromate|poivre|pepper|sel|salt|sucre|sugar|cannelle|cinnamon|curcuma|turmeric|gingembre|ginger|paprika|curry|cumin|coriandre|coriander|basilic|basil|thym|thyme|romarin|rosemary|persil|parsley|menthe|mint|aneth|dill|origan|oregano|laurier|bay|muscade|nutmeg|clou.{0,3}girofle|clove|safran|saffron|vanille|vanilla)\b",
     "is_beverage": r"\b(boisson|beverage|drink|jus|juice|café|cafe|coffee|thé|the|tea|vin|wine|bière|biere|beer|alcool|alcohol|eau|water|soda|limonade|lemonade)\b",
     "is_sugar_sweet": r"\b(sucre|sugar|miel|honey|sirop|syrup|confiture|jam|chocolat|chocolate|bonbon|candy|gâteau|gateau|cake|biscuit|cookie|dessert|pâtisserie|patisserie|pastry)\b",
-    # Infos procédé ACV
+    # LCA process info
     "at_farm_gate": r"\bat\s+(farm\s+)?gate\b",
     "at_plant": r"\bat\s+plant\b",
     "at_processing": r"\bat\s+processing\b",
@@ -548,7 +548,7 @@ REGEX_SCALE = math.sqrt(FOODON_DIM / len(DETECTION_PATTERNS))  # ~0.9
 
 
 def _extract_location(activity_name: str) -> Optional[str]:
-    """Extrait le code de localisation du nom du procédé ACV."""
+    """Extract location code from LCA process name."""
     # Pattern: {FR}, {RoW}, {GLO}, etc.
     match = re.search(r"\{([A-Z]{2,3})\}", activity_name)
     if match:
@@ -563,7 +563,7 @@ def _extract_location(activity_name: str) -> Optional[str]:
 
 
 def _extract_origin(activity_name: str) -> str:
-    """Détermine l'origine à partir du nom du procédé."""
+    """Extract origin from the activity name."""
     location = _extract_location(activity_name)
     if location:
         return ORIGIN_MAPPING.get(location, "OutOfEuropeAndMaghreb")
@@ -631,7 +631,7 @@ def extract_features(
 
 class Predictor:
     """
-    Prédicteur de métadonnées pour ingrédients alimentaires.
+    Metadata predictor for food ingredients.
 
     Uses FoodOn ontology + regex pattern features for nearest neighbor matching.
     Combines:
@@ -675,7 +675,7 @@ class Predictor:
         self.training_features = None
         self.training_ingredients = None
 
-        # Métadonnées
+        # Metadata
         self.is_fitted = False
         self.feature_dim = None
 
@@ -725,7 +725,7 @@ class Predictor:
             self._model_loaded = True
 
     def _load_foodon(self):
-        """Charge le FoodOn feature extractor (lazy loading)."""
+        """Load FoodOn feature extractor (lazy loading)."""
         if not self._foodon_loaded:
             from foodon_loader import FoodOnFeatureExtractor
 
@@ -755,18 +755,18 @@ class Predictor:
         return result
 
     def _get_base_category(self, categories: list) -> str:
-        """Extrait la catégorie de base (pas organic/bleublanccoeur)."""
+        """Extract base category (not organic/bleublanccoeur)."""
         for cat in categories:
             if cat in BASE_CATEGORIES:
                 return cat
         return "misc"
 
     def _get_additive_labels(self, categories: list) -> list:
-        """Extrait les labels additifs."""
+        """Extract additive labels."""
         return [cat for cat in categories if cat in ADDITIVE_LABELS]
 
     def _is_vegetal(self, categories: list) -> bool:
-        """Détermine si l'ingrédient est végétal (nécessite cropGroup)."""
+        """Determine if ingredient is vegetal (requires cropGroup)."""
         vegetal_categories = {
             "vegetable_fresh",
             "vegetable_processed",
@@ -791,7 +791,7 @@ class Predictor:
         }
 
     def _predict_category_by_rules(self, binary_features: dict) -> str | None:
-        """Applique les règles déterministes pour la catégorie. Retourne None si aucune règle ne matche."""
+        """Apply deterministic rules for category. Returns None if no rule matches."""
         if binary_features.get("is_fish") or binary_features.get("is_seafood"):
             return "animal_product"
         if binary_features.get("is_meat"):
@@ -803,7 +803,7 @@ class Predictor:
         return None
 
     def _predict_transport_by_rules(self, binary_features: dict) -> str | None:
-        """Applique les règles déterministes pour transportCooling. Retourne None si aucune règle ne matche."""
+        """Apply deterministic rules for transportCooling. Returns None if no rule matches."""
         if binary_features.get("is_frozen"):
             return "always"
         if binary_features.get("is_fresh") and (
@@ -1181,10 +1181,10 @@ class Predictor:
 
     def evaluate(self, verbose: bool = True) -> dict:
         """
-        Évalue le prédicteur en cross-validation sur les données d'entraînement.
+        Evaluate predictor with cross-validation on training data.
 
         Returns:
-            Dict avec les scores par métadonnée
+            Dict with scores per metadata field
         """
         if not self.is_fitted:
             raise RuntimeError("Predictor must be fitted before evaluation.")
@@ -1266,7 +1266,7 @@ class Predictor:
                 f"TransportCooling accuracy: {transport_scores.mean():.3f} ± {transport_scores.std():.3f}"
             )
 
-        # Évaluation cropGroup (sur végétaux uniquement, using RandomForest on embeddings)
+        # Evaluate cropGroup (vegetables only, using RandomForest on embeddings)
         cropgroup_names, cropgroup_vals, _ = _build_cropgroup_data(
             self.training_ingredients
         )
@@ -1347,7 +1347,7 @@ class Predictor:
 
     @classmethod
     def load(cls, path: str) -> "Predictor":
-        """Charge un prédicteur sauvegardé."""
+        """Load a saved predictor."""
         predictor = cls()
 
         with open(path, "rb") as f:
@@ -1361,10 +1361,10 @@ class Predictor:
 
 
 # =============================================================================
-# INTEGRATION avec ecobalyse_data/detect
+# INTEGRATION with ecobalyse_data/detect
 # =============================================================================
 
-# Pour compatibilité avec le pattern existant
+# For compatibility with existing pattern
 THRESHOLD = 0.6
 SCORE_KEY = "predict_Score"
 MATCH_KEY = "predict_BestMatch"
@@ -1382,14 +1382,14 @@ def _get(obj):
 
 
 def _set(obj, predictions):
-    """Applique les prédictions à l'objet."""
+    """Apply predictions to the object."""
     for key, value in predictions.items():
         if value is not None:
             obj[key] = value
 
 
 class Detector:
-    """Interface compatible avec les autres détecteurs."""
+    """Interface compatible with other detectors."""
 
     def __init__(
         self, model_path: Optional[str] = None, training_data: Optional[list] = None
@@ -1410,7 +1410,7 @@ class Detector:
 
     def detect(self, ingredient, debug=False):
         """
-        Prédit les métadonnées pour un ingrédient.
+        Predict metadata for an ingredient.
 
         Returns:
             (predictions, score, best_match)
