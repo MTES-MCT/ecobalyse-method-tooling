@@ -212,128 +212,93 @@ ORIGIN_MAPPING = {
 
 # Paths to reference data files (relative to predict module)
 REFERENCE_DIR = Path(__file__).parent / "reference"
-FAO_DENSITY_DATA_PATH = REFERENCE_DIR / "fao_density.csv"
-DENSITY_DATA_PATH = REFERENCE_DIR / "density.csv"
-AGB_INEDIBLE_DATA_PATH = REFERENCE_DIR / "agb_inedible.csv"
-INEDIBLE_DATA_PATH = REFERENCE_DIR / "inedible_part.csv"
-RATIO_DATA_PATH = REFERENCE_DIR / "cooked_to_raw.csv"
-FOOD_TYPE_DATA_PATH = REFERENCE_DIR / "food_type.csv"
-PROCESSING_STATE_DATA_PATH = REFERENCE_DIR / "processing_state.csv"
-CROPGROUP_DATA_PATH = REFERENCE_DIR / "cropgroup.csv"
-TRANSPORT_DATA_PATH = REFERENCE_DIR / "transport_cooling.csv"
+
+
+def _load_csv_data(
+    path: Path,
+    name_col: str = "name",
+    value_col: str = None,
+    sep: str = ",",
+    comment: str = None,
+) -> tuple[list, list, list]:
+    """
+    Generic CSV loader returning (names, values, sources).
+
+    Args:
+        path: Path to CSV file
+        name_col: Column name for names
+        value_col: Column name for values (if None, uses names as values)
+        sep: CSV separator
+        comment: Comment character for CSV parsing
+    """
+    if not path.exists():
+        return [], [], []
+    df = pd.read_csv(path, sep=sep, comment=comment)
+    names = df[name_col].tolist()
+    values = df[value_col].tolist() if value_col else names
+    sources = [path.name] * len(df)
+    return names, values, sources
 
 
 def _load_density_data() -> tuple[list, list, list]:
     """Load fao_density.csv and density.csv, return combined (names, values, sources)."""
-    names = []
-    values = []
-    sources = []
-
-    # Load FAO density data (primary reference) if exists
-    if FAO_DENSITY_DATA_PATH.exists():
-        df_fao = pd.read_csv(FAO_DENSITY_DATA_PATH, sep=";", decimal=".")
-        names.extend(df_fao["name"].tolist())
-        values.extend(df_fao["density"].tolist())
-        sources.extend(["fao_density.csv"] * len(df_fao))
-
-    # Load generic density data (additional reference)
-    df_generic = pd.read_csv(DENSITY_DATA_PATH, sep=";", decimal=".")
-    names.extend(df_generic["name"].tolist())
-    values.extend(df_generic["density"].tolist())
-    sources.extend(["density.csv"] * len(df_generic))
-
+    names, values, sources = [], [], []
+    # FAO density (primary reference)
+    n, v, s = _load_csv_data(REFERENCE_DIR / "fao_density.csv", "name", "density", sep=";")
+    names.extend(n)
+    values.extend(v)
+    sources.extend(s)
+    # Generic density (additional reference)
+    n, v, s = _load_csv_data(REFERENCE_DIR / "density.csv", "name", "density", sep=";")
+    names.extend(n)
+    values.extend(v)
+    sources.extend(s)
     return names, values, sources
 
 
 def _load_inedible_data() -> tuple[list, list, list]:
-    """Load agb_inedible.csv and inedible_part.csv, return combined (names, inedible_values, sources)."""
-    names = []
-    values = []
-    sources = []
-
-    # Load AGB inedible data (primary reference) if exists
-    if AGB_INEDIBLE_DATA_PATH.exists():
-        df_agb = pd.read_csv(AGB_INEDIBLE_DATA_PATH, sep=";", decimal=".")
-        names.extend(df_agb["name"].tolist())
-        values.extend(df_agb["inedible_part"].tolist())
-        sources.extend(["agb_inedible.csv"] * len(df_agb))
-
-    # Load generic inedible data (additional reference: seafood, generic categories)
-    df = pd.read_csv(INEDIBLE_DATA_PATH, sep=";", decimal=".")
-    # Columns: name;inedible_part
-    for _, row in df.iterrows():
-        name = str(row.iloc[0]).strip() if pd.notnull(row.iloc[0]) else ""
-        if not name:
-            continue
-        inedible_part = row.iloc[1]
-        if pd.notnull(inedible_part):
-            names.append(name)
-            values.append(float(inedible_part))
-            sources.append("inedible_part.csv")
-
+    """Load agb_inedible.csv and inedible_part.csv, return combined (names, values, sources)."""
+    names, values, sources = [], [], []
+    # AGB inedible (primary reference)
+    n, v, s = _load_csv_data(
+        REFERENCE_DIR / "agb_inedible.csv", "name", "inedible_part", sep=";"
+    )
+    names.extend(n)
+    values.extend(v)
+    sources.extend(s)
+    # Generic inedible (additional reference)
+    n, v, s = _load_csv_data(
+        REFERENCE_DIR / "inedible_part.csv", "name", "inedible_part", sep=";"
+    )
+    names.extend(n)
+    values.extend(v)
+    sources.extend(s)
     return names, values, sources
 
 
 def _load_ratio_data() -> tuple[list, list, list]:
     """Load cooked_to_raw.csv, return (names, values, sources)."""
-    df = pd.read_csv(RATIO_DATA_PATH, sep=";")
-    # Columns: food;value
-    names = []
-    values = []
-    sources = []
-    for _, row in df.iterrows():
-        name = str(row["food"]).strip() if pd.notnull(row.get("food")) else ""
-        if not name:
-            continue
-        value = row.get("value")
-        if pd.notnull(value):
-            names.append(name)
-            values.append(float(value))
-            sources.append("cooked_to_raw.csv")
-
-    return names, values, sources
+    return _load_csv_data(REFERENCE_DIR / "cooked_to_raw.csv", "food", "value", sep=";")
 
 
 def _load_food_type_data() -> tuple[list, list, list]:
     """Load food_type.csv, return (names, food_types, sources)."""
-    df = pd.read_csv(FOOD_TYPE_DATA_PATH)
-    # Columns: name,foodType
-    names = df["name"].tolist()
-    food_types = df["foodType"].tolist()
-    sources = ["food_type.csv"] * len(df)
-    return names, food_types, sources
+    return _load_csv_data(REFERENCE_DIR / "food_type.csv", "name", "foodType")
 
 
 def _load_processing_state_data() -> tuple[list, list, list]:
     """Load processing_state.csv, return (names, processing_states, sources)."""
-    df = pd.read_csv(PROCESSING_STATE_DATA_PATH)
-    # Columns: name,processingState
-    names = df["name"].tolist()
-    processing_states = df["processingState"].tolist()
-    sources = ["processing_state.csv"] * len(df)
-    return names, processing_states, sources
+    return _load_csv_data(REFERENCE_DIR / "processing_state.csv", "name", "processingState")
 
 
 def _load_cropgroup_data() -> tuple[list, list, list]:
     """Load cropgroup.csv, return (names, cropgroups, sources)."""
-    if not CROPGROUP_DATA_PATH.exists():
-        return [], [], []
-    df = pd.read_csv(CROPGROUP_DATA_PATH, comment="#")
-    # Columns: name,cropGroup
-    names = df["name"].tolist()
-    cropgroups = df["cropGroup"].tolist()
-    sources = ["cropgroup.csv"] * len(df)
-    return names, cropgroups, sources
+    return _load_csv_data(REFERENCE_DIR / "cropgroup.csv", "name", "cropGroup", comment="#")
 
 
 def _load_transport_data() -> tuple[list, list, list]:
     """Load transport_cooling.csv, return (names, transport_cooling, sources)."""
-    df = pd.read_csv(TRANSPORT_DATA_PATH)
-    # Columns: name,transportCooling
-    names = df["name"].tolist()
-    transport = df["transportCooling"].tolist()
-    sources = ["transport_cooling.csv"] * len(df)
-    return names, transport, sources
+    return _load_csv_data(REFERENCE_DIR / "transport_cooling.csv", "name", "transportCooling")
 
 
 def _build_cropgroup_data(ingredients: list) -> tuple[list, list, list]:
@@ -358,6 +323,30 @@ def _build_cropgroup_data(ingredients: list) -> tuple[list, list, list]:
         sources.append("cropgroup_labels")
 
     return names, cropgroups, sources
+
+
+def _extract_ingredient_values(
+    ingredients: list, field: str, allow_zero: bool = False
+) -> tuple[list, list, list]:
+    """
+    Extract (names, values, sources) from ingredients with a given field.
+
+    Args:
+        ingredients: List of ingredient dicts
+        field: Field name to extract (e.g., "ingredientDensity", "inediblePart")
+        allow_zero: If True, include zero values (use "is not None" check).
+                   If False, exclude zero/falsy values (use truthiness check).
+    """
+    if allow_zero:
+        # Use "is not None" check to include zero values
+        names = [ing["name"] for ing in ingredients if ing.get(field) is not None]
+        values = [ing[field] for ing in ingredients if ing.get(field) is not None]
+    else:
+        # Use truthiness check to exclude zero/falsy values
+        names = [ing["name"] for ing in ingredients if ing.get(field)]
+        values = [ing[field] for ing in ingredients if ing.get(field)]
+    sources = ["ingredients.json"] * len(names)
+    return names, values, sources
 
 
 class NearestNeighborMatcher:
@@ -1003,74 +992,29 @@ class Predictor:
 
         # 6. Build nearest neighbor matchers for continuous values
         # Each matcher combines ingredients.json + reference CSV data
-        if verbose:
-            timed_print("Building density matcher...")
 
-        # Start with ingredients.json data
-        density_names = [
-            ing["name"] for ing in ingredients if ing.get("ingredientDensity")
-        ]
-        density_vals = [
-            ing["ingredientDensity"]
-            for ing in ingredients
-            if ing.get("ingredientDensity")
-        ]
-        density_sources = ["ingredients.json"] * len(density_names)
-        # Add reference data
-        ref_density_names, ref_density_vals, ref_density_sources = _load_density_data()
-        density_names.extend(ref_density_names)
-        density_vals.extend(ref_density_vals)
-        density_sources.extend(ref_density_sources)
+        def build_value_matcher(field, ref_loader, allow_zero=False, name=None):
+            """Helper to build a matcher combining ingredients + reference data."""
+            if verbose:
+                timed_print(f"Building {name or field} matcher...")
+            names, vals, sources = _extract_ingredient_values(
+                ingredients, field, allow_zero=allow_zero
+            )
+            ref_names, ref_vals, ref_sources = ref_loader()
+            names.extend(ref_names)
+            vals.extend(ref_vals)
+            sources.extend(ref_sources)
+            return self._build_matcher(names, vals, sources)
 
-        self.density_matcher = self._build_matcher(
-            density_names, density_vals, density_sources
+        self.density_matcher = build_value_matcher(
+            "ingredientDensity", _load_density_data, name="density"
         )
-
-        if verbose:
-            timed_print("Building inedible part matcher...")
-
-        # Start with ingredients.json data
-        inedible_names = [
-            ing["name"] for ing in ingredients if ing.get("inediblePart") is not None
-        ]
-        inedible_vals = [
-            ing["inediblePart"]
-            for ing in ingredients
-            if ing.get("inediblePart") is not None
-        ]
-        inedible_sources = ["ingredients.json"] * len(inedible_names)
-        # Add reference data
-        ref_inedible_names, ref_inedible_vals, ref_inedible_sources = (
-            _load_inedible_data()
+        self.inedible_matcher = build_value_matcher(
+            "inediblePart", _load_inedible_data, allow_zero=True, name="inedible part"
         )
-        inedible_names.extend(ref_inedible_names)
-        inedible_vals.extend(ref_inedible_vals)
-        inedible_sources.extend(ref_inedible_sources)
-
-        self.inedible_matcher = self._build_matcher(
-            inedible_names, inedible_vals, inedible_sources
+        self.ratio_matcher = build_value_matcher(
+            "rawToCookedRatio", _load_ratio_data, name="raw-to-cooked ratio"
         )
-
-        if verbose:
-            timed_print("Building raw-to-cooked ratio matcher...")
-
-        # Start with ingredients.json data
-        ratio_names = [
-            ing["name"] for ing in ingredients if ing.get("rawToCookedRatio")
-        ]
-        ratio_vals = [
-            ing["rawToCookedRatio"]
-            for ing in ingredients
-            if ing.get("rawToCookedRatio")
-        ]
-        ratio_sources = ["ingredients.json"] * len(ratio_names)
-        # Add reference data
-        ref_ratio_names, ref_ratio_vals, ref_ratio_sources = _load_ratio_data()
-        ratio_names.extend(ref_ratio_names)
-        ratio_vals.extend(ref_ratio_vals)
-        ratio_sources.extend(ref_ratio_sources)
-
-        self.ratio_matcher = self._build_matcher(ratio_names, ratio_vals, ratio_sources)
 
         self.is_fitted = True
 
@@ -1231,9 +1175,27 @@ class Predictor:
         if not self.is_fitted:
             raise RuntimeError("Predictor must be fitted before evaluation.")
 
+        def _cv_score(y_values: list, field_name: str, X=None, cv=5) -> dict:
+            """Run cross-validation and return {mean, std}."""
+            features = X if X is not None else self.training_features
+            encoder = LabelEncoder()
+            y_encoded = encoder.fit_transform(y_values)
+            cv_scores = cross_val_score(
+                RandomForestClassifier(
+                    n_estimators=100, class_weight="balanced", random_state=42
+                ),
+                features,
+                y_encoded,
+                cv=cv,
+                scoring="accuracy",
+            )
+            if verbose:
+                print(f"{field_name} accuracy: {cv_scores.mean():.3f} ± {cv_scores.std():.3f}")
+            return {"mean": cv_scores.mean(), "std": cv_scores.std()}
+
         scores = {}
 
-        # Évaluation foodType
+        # Extract foodType and processingState from categories
         y_food = []
         y_proc = []
         for ing in self.training_ingredients:
@@ -1244,98 +1206,23 @@ class Predictor:
             y_food.append(food_type)
             y_proc.append(proc_state)
 
-        food_encoder = LabelEncoder()
-        y_food_encoded = food_encoder.fit_transform(y_food)
-        food_scores = cross_val_score(
-            RandomForestClassifier(
-                n_estimators=100, class_weight="balanced", random_state=42
-            ),
-            self.training_features,
-            y_food_encoded,
-            cv=5,
-            scoring="accuracy",
+        scores["foodType"] = _cv_score(y_food, "FoodType")
+        scores["processingState"] = _cv_score(y_proc, "ProcessingState")
+        scores["transportCooling"] = _cv_score(
+            [ing.get("transportCooling", "none") for ing in self.training_ingredients],
+            "TransportCooling",
         )
-        scores["foodType"] = {"mean": food_scores.mean(), "std": food_scores.std()}
-
-        if verbose:
-            print(
-                f"FoodType accuracy: {food_scores.mean():.3f} ± {food_scores.std():.3f}"
-            )
-
-        # Évaluation processingState
-        proc_encoder = LabelEncoder()
-        y_proc_encoded = proc_encoder.fit_transform(y_proc)
-        proc_scores = cross_val_score(
-            RandomForestClassifier(
-                n_estimators=100, class_weight="balanced", random_state=42
-            ),
-            self.training_features,
-            y_proc_encoded,
-            cv=5,
-            scoring="accuracy",
-        )
-        scores["processingState"] = {
-            "mean": proc_scores.mean(),
-            "std": proc_scores.std(),
-        }
-
-        if verbose:
-            print(
-                f"ProcessingState accuracy: {proc_scores.mean():.3f} ± {proc_scores.std():.3f}"
-            )
-
-        # Évaluation transportCooling
-        transport_encoder = LabelEncoder()
-        y_transport = transport_encoder.fit_transform([
-            ing.get("transportCooling", "none") for ing in self.training_ingredients
-        ])
-        transport_scores = cross_val_score(
-            RandomForestClassifier(
-                n_estimators=100, class_weight="balanced", random_state=42
-            ),
-            self.training_features,
-            y_transport,
-            cv=5,
-            scoring="accuracy",
-        )
-        scores["transportCooling"] = {
-            "mean": transport_scores.mean(),
-            "std": transport_scores.std(),
-        }
-
-        if verbose:
-            print(
-                f"TransportCooling accuracy: {transport_scores.mean():.3f} ± {transport_scores.std():.3f}"
-            )
 
         # Evaluate cropGroup (vegetables only, using RandomForest on embeddings)
         cropgroup_names, cropgroup_vals, _ = _build_cropgroup_data(
             self.training_ingredients
         )
-
         if len(cropgroup_names) > 10:
-            # Load embedding model for cropGroup evaluation
             self._load_embedding_model()
-            # Compute embeddings for names
             X_crop = self.model.encode(cropgroup_names)
-            le = LabelEncoder()
-            y_crop_enc = le.fit_transform(cropgroup_vals)
-
-            crop_scores = cross_val_score(
-                RandomForestClassifier(
-                    n_estimators=100, class_weight="balanced", random_state=42
-                ),
-                X_crop,
-                y_crop_enc,
-                cv=min(5, len(set(cropgroup_vals))),
-                scoring="accuracy",
+            scores["cropGroup"] = _cv_score(
+                cropgroup_vals, "CropGroup", X=X_crop, cv=min(5, len(set(cropgroup_vals)))
             )
-            scores["cropGroup"] = {"mean": crop_scores.mean(), "std": crop_scores.std()}
-
-            if verbose:
-                print(
-                    f"CropGroup accuracy: {crop_scores.mean():.3f} ± {crop_scores.std():.3f}"
-                )
 
         return scores
 
