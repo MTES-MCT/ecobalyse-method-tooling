@@ -211,16 +211,16 @@ ORIGIN_MAPPING = {
 # =============================================================================
 
 # Paths to reference data files (relative to predict module)
-DATA_DIR = Path(__file__).parent / "data"
-FAO_DENSITY_DATA_PATH = DATA_DIR / "fao_density.csv"
-DENSITY_DATA_PATH = DATA_DIR / "density.csv"
-AGB_INEDIBLE_DATA_PATH = DATA_DIR / "agb_inedible.csv"
-INEDIBLE_DATA_PATH = DATA_DIR / "inedible_part.csv"
-RATIO_DATA_PATH = DATA_DIR / "cooked_to_raw.csv"
-FOOD_TYPE_DATA_PATH = DATA_DIR / "food_type.csv"
-PROCESSING_STATE_DATA_PATH = DATA_DIR / "processing_state.csv"
-CROPGROUP_DATA_PATH = DATA_DIR / "cropgroup.csv"
-TRANSPORT_DATA_PATH = DATA_DIR / "transport_cooling.csv"
+REFERENCE_DIR = Path(__file__).parent / "reference"
+FAO_DENSITY_DATA_PATH = REFERENCE_DIR / "fao_density.csv"
+DENSITY_DATA_PATH = REFERENCE_DIR / "density.csv"
+AGB_INEDIBLE_DATA_PATH = REFERENCE_DIR / "agb_inedible.csv"
+INEDIBLE_DATA_PATH = REFERENCE_DIR / "inedible_part.csv"
+RATIO_DATA_PATH = REFERENCE_DIR / "cooked_to_raw.csv"
+FOOD_TYPE_DATA_PATH = REFERENCE_DIR / "food_type.csv"
+PROCESSING_STATE_DATA_PATH = REFERENCE_DIR / "processing_state.csv"
+CROPGROUP_DATA_PATH = REFERENCE_DIR / "cropgroup.csv"
+TRANSPORT_DATA_PATH = REFERENCE_DIR / "transport_cooling.csv"
 
 
 def _load_density_data() -> tuple[list, list, list]:
