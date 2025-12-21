@@ -22,7 +22,6 @@ import pandas as pd
 from predict import Predictor
 from rich.progress import track
 
-
 # =============================================================================
 # ANIMAL DETECTION
 # =============================================================================
@@ -39,7 +38,9 @@ ANIMAL_PATTERNS = {
         "product_default": "meat",
     },
     "poultry": {
-        "patterns": [r"\b(chicken|poulet|turkey|dinde|duck|canard|poultry|volaille|hen|poule)\b"],
+        "patterns": [
+            r"\b(chicken|poulet|turkey|dinde|duck|canard|poultry|volaille|hen|poule)\b"
+        ],
         "group2": "chicken",
         "product_default": "meat",
     },
@@ -95,6 +96,7 @@ def detect_animal_fields(name: str, activity_name: str) -> dict:
 # HELPERS
 # =============================================================================
 
+
 def generate_alias(name: str) -> str:
     """Generate alias from English name."""
     alias = name.lower()
@@ -146,6 +148,7 @@ def _format_conf(match_info: dict | None) -> str:
 # PREDICTION
 # =============================================================================
 
+
 def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
     """
     Predict metadata for all ingredients in the DataFrame.
@@ -154,7 +157,9 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
     """
     results = []
 
-    for _, row in track(input_df.iterrows(), total=len(input_df), description="Predicting..."):
+    for _, row in track(
+        input_df.iterrows(), total=len(input_df), description="Predicting..."
+    ):
         name = str(row["item"]).strip()
         french_name = (
             str(row["Liste 4.1 Trad"]).strip()
@@ -190,6 +195,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
 # =============================================================================
 # CSV OUTPUT
 # =============================================================================
+
 
 def write_csv(results: list, output_path: str):
     """Write predictions to CSV file."""
@@ -236,7 +242,9 @@ def write_csv(results: list, output_path: str):
                 "processingStateMatch": _format_match(pred.get("processingStateMatch")),
                 "processingStateConf": _format_conf(pred.get("processingStateMatch")),
                 "transportCooling": pred.get("transportCooling", ""),
-                "transportCoolingMatch": _format_match(pred.get("transportCoolingMatch")),
+                "transportCoolingMatch": _format_match(
+                    pred.get("transportCoolingMatch")
+                ),
                 "cropGroup": pred.get("cropGroup", ""),
                 "cropGroupMatch": _format_match(pred.get("cropGroupMatch")),
                 "cropGroupConf": _format_conf(pred.get("cropGroupMatch")),
@@ -247,7 +255,9 @@ def write_csv(results: list, output_path: str):
                 "inediblePartMatch": _format_match(pred.get("inediblePartMatch")),
                 "inediblePartConf": _format_conf(pred.get("inediblePartMatch")),
                 "rawToCookedRatio": f"{pred.get('rawToCookedRatio', 0):.3f}",
-                "rawToCookedRatioMatch": _format_match(pred.get("rawToCookedRatioMatch")),
+                "rawToCookedRatioMatch": _format_match(
+                    pred.get("rawToCookedRatioMatch")
+                ),
                 "rawToCookedRatioConf": _format_conf(pred.get("rawToCookedRatioMatch")),
             })
 
@@ -257,6 +267,7 @@ def write_csv(results: list, output_path: str):
 # =============================================================================
 # JSON OUTPUT (activities.json format)
 # =============================================================================
+
 
 def build_activity_entry(
     name: str,

@@ -37,12 +37,13 @@ CLI:
 """
 
 import json
+import math
 import pickle
 import re
+import time
 import warnings
-from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Optional
+from typing import Optional
 
 import numpy as np
 import pandas as pd
@@ -363,7 +364,12 @@ class NearestNeighborMatcher:
     """Find nearest neighbor by cosine similarity using FoodOn + regex features."""
 
     def __init__(
-        self, names: list, values: list, sources: list = None, translate_fn=None, foodon_extractor=None
+        self,
+        names: list,
+        values: list,
+        sources: list = None,
+        translate_fn=None,
+        foodon_extractor=None,
     ):
         """
         Build a nearest neighbor matcher on FoodOn + regex features.
@@ -451,12 +457,17 @@ class NearestNeighborMatcher:
             # Check if reference name is contained in query (min length required)
             if len(name_low) >= MIN_SUBSTRING_LENGTH and name_low in query_lower:
                 substring_matches.append((i, len(name_low)))
-            elif len(trans_low) >= MIN_SUBSTRING_LENGTH and trans_low in query_translated:
+            elif (
+                len(trans_low) >= MIN_SUBSTRING_LENGTH and trans_low in query_translated
+            ):
                 substring_matches.append((i, len(trans_low)))
             # Check if query is contained in reference (min length required)
             elif len(query_lower) >= MIN_SUBSTRING_LENGTH and query_lower in name_low:
                 substring_matches.append((i, len(query_lower)))
-            elif len(query_translated) >= MIN_SUBSTRING_LENGTH and query_translated in trans_low:
+            elif (
+                len(query_translated) >= MIN_SUBSTRING_LENGTH
+                and query_translated in trans_low
+            ):
                 substring_matches.append((i, len(query_translated)))
 
         if substring_matches:
@@ -489,7 +500,12 @@ class NearestNeighborMatcher:
         # Convert to float if numeric, otherwise keep as string
         if isinstance(value, (int, float, np.number)):
             value = float(value)
-        return value, float(similarities[best_idx]), self.names[best_idx], self.sources[best_idx]
+        return (
+            value,
+            float(similarities[best_idx]),
+            self.names[best_idx],
+            self.sources[best_idx],
+        )
 
 
 # =============================================================================
@@ -532,14 +548,13 @@ DETECTION_PATTERNS = {
     "is_heated_greenhouse": r"\b(heated\s+greenhouse|serre\s+chauffée|serre\s+chauffee)\b",
 }
 
-# Index des features binaires dans le vecteur
+# Index of binary features in the vector
 BINARY_FEATURE_NAMES = list(DETECTION_PATTERNS.keys())
 
 # FoodOn feature dimension (loaded from foodon_loader)
 FOODON_DIM = 20
 
 # Scale factors to balance FoodOn and regex features
-import math
 
 # FoodOn features are already normalized, so scale = 1.0
 FOODON_SCALE = 1.0
@@ -717,7 +732,7 @@ class Predictor:
     def _load_embedding_model(self):
         """Load embedding model for evaluation only (lazy loading)."""
         if not self._model_loaded:
-            print(f"Importing sentence_transformers...")
+            print("Importing sentence_transformers...")
             from sentence_transformers import SentenceTransformer
 
             print(f"Loading embedding model: {MODEL}")
@@ -869,7 +884,6 @@ class Predictor:
         Args:
             ingredients: List of dicts with at least "name" and "activityName"
         """
-        import time
 
         def timed_print(msg, start_time=[None]):
             if start_time[0] is not None:
@@ -939,7 +953,9 @@ class Predictor:
             proc_sources.append("ingredients.json")
 
         # Add reference data from processing_state.csv
-        ref_proc_names, ref_proc_states, ref_proc_sources = _load_processing_state_data()
+        ref_proc_names, ref_proc_states, ref_proc_sources = (
+            _load_processing_state_data()
+        )
         ing_names_proc.extend(ref_proc_names)
         y_processing.extend(ref_proc_states)
         proc_sources.extend(ref_proc_sources)
@@ -974,7 +990,9 @@ class Predictor:
         y_transport = [ing.get("transportCooling", "none") for ing in ingredients]
         transport_sources = ["ingredients.json"] * len(ingredients)
 
-        ref_transport_names, ref_transport, ref_transport_sources = _load_transport_data()
+        ref_transport_names, ref_transport, ref_transport_sources = (
+            _load_transport_data()
+        )
         transport_names.extend(ref_transport_names)
         y_transport.extend(ref_transport)
         transport_sources.extend(ref_transport_sources)
@@ -989,8 +1007,14 @@ class Predictor:
             timed_print("Building density matcher...")
 
         # Start with ingredients.json data
-        density_names = [ing["name"] for ing in ingredients if ing.get("ingredientDensity")]
-        density_vals = [ing["ingredientDensity"] for ing in ingredients if ing.get("ingredientDensity")]
+        density_names = [
+            ing["name"] for ing in ingredients if ing.get("ingredientDensity")
+        ]
+        density_vals = [
+            ing["ingredientDensity"]
+            for ing in ingredients
+            if ing.get("ingredientDensity")
+        ]
         density_sources = ["ingredients.json"] * len(density_names)
         # Add reference data
         ref_density_names, ref_density_vals, ref_density_sources = _load_density_data()
@@ -1006,11 +1030,19 @@ class Predictor:
             timed_print("Building inedible part matcher...")
 
         # Start with ingredients.json data
-        inedible_names = [ing["name"] for ing in ingredients if ing.get("inediblePart") is not None]
-        inedible_vals = [ing["inediblePart"] for ing in ingredients if ing.get("inediblePart") is not None]
+        inedible_names = [
+            ing["name"] for ing in ingredients if ing.get("inediblePart") is not None
+        ]
+        inedible_vals = [
+            ing["inediblePart"]
+            for ing in ingredients
+            if ing.get("inediblePart") is not None
+        ]
         inedible_sources = ["ingredients.json"] * len(inedible_names)
         # Add reference data
-        ref_inedible_names, ref_inedible_vals, ref_inedible_sources = _load_inedible_data()
+        ref_inedible_names, ref_inedible_vals, ref_inedible_sources = (
+            _load_inedible_data()
+        )
         inedible_names.extend(ref_inedible_names)
         inedible_vals.extend(ref_inedible_vals)
         inedible_sources.extend(ref_inedible_sources)
@@ -1023,8 +1055,14 @@ class Predictor:
             timed_print("Building raw-to-cooked ratio matcher...")
 
         # Start with ingredients.json data
-        ratio_names = [ing["name"] for ing in ingredients if ing.get("rawToCookedRatio")]
-        ratio_vals = [ing["rawToCookedRatio"] for ing in ingredients if ing.get("rawToCookedRatio")]
+        ratio_names = [
+            ing["name"] for ing in ingredients if ing.get("rawToCookedRatio")
+        ]
+        ratio_vals = [
+            ing["rawToCookedRatio"]
+            for ing in ingredients
+            if ing.get("rawToCookedRatio")
+        ]
         ratio_sources = ["ingredients.json"] * len(ratio_names)
         # Add reference data
         ref_ratio_names, ref_ratio_vals, ref_ratio_sources = _load_ratio_data()
@@ -1032,9 +1070,7 @@ class Predictor:
         ratio_vals.extend(ref_ratio_vals)
         ratio_sources.extend(ref_ratio_sources)
 
-        self.ratio_matcher = self._build_matcher(
-            ratio_names, ratio_vals, ratio_sources
-        )
+        self.ratio_matcher = self._build_matcher(ratio_names, ratio_vals, ratio_sources)
 
         self.is_fitted = True
 
@@ -1128,7 +1164,13 @@ class Predictor:
         predictions["categories"] = [base_category] + labels
 
         # 5. cropGroup (for vegetal types) - nearest neighbor matching
-        vegetal_types = {"vegetable", "fruit", "grain", "nut_oilseed", "spice_condiment"}
+        vegetal_types = {
+            "vegetable",
+            "fruit",
+            "grain",
+            "nut_oilseed",
+            "spice_condiment",
+        }
         if food_type in vegetal_types and self.cropgroup_matcher is not None:
             cropgroup_val, conf, match, source = self.cropgroup_matcher.predict(
                 name, translate_fn=self._translate
@@ -1554,7 +1596,9 @@ def main():
             match_key = f"{key}Match"
             match = predictions.get(match_key)
             if match and match.get("confidence"):
-                print(f"  {key}: {value} (conf: {match['confidence']:.2f}, match: {match['name']})")
+                print(
+                    f"  {key}: {value} (conf: {match['confidence']:.2f}, match: {match['name']})"
+                )
             else:
                 print(f"  {key}: {value}")
 
