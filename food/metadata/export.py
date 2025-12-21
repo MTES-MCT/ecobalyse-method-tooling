@@ -127,25 +127,19 @@ def load_existing_uuids(output_path: str) -> dict:
     return existing
 
 
-def _match_with_confidence(match_info: dict | None, conf: float | None) -> dict | None:
-    """Add confidence to match info dict."""
-    if match_info is None:
-        return None
-    return {**match_info, "confidence": round(conf, 3) if conf else None}
-
-
 def _format_match(match_info: dict | None) -> str:
-    """Format match info for CSV output."""
+    """Format match name for CSV output."""
     if match_info is None:
         return ""
     return match_info.get("name", "")
 
 
-def _format_conf(confidence: dict, key: str) -> str:
-    """Format confidence for CSV output."""
-    if key in confidence:
-        return f"{confidence[key]:.3f}"
-    return ""
+def _format_conf(match_info: dict | None) -> str:
+    """Format confidence from match info for CSV output."""
+    if match_info is None:
+        return ""
+    conf = match_info.get("confidence")
+    return f"{conf:.3f}" if conf else ""
 
 
 # =============================================================================
@@ -156,7 +150,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
     """
     Predict metadata for all ingredients in the DataFrame.
 
-    Returns list of dicts with: name, french_name, activity_name, source, predictions, confidence
+    Returns list of dicts with: name, french_name, activity_name, source, predictions
     """
     results = []
 
@@ -180,7 +174,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
             continue
 
         ingredient = {"name": name, "activityName": activity_name}
-        predictions, confidence = predictor.predict(ingredient)
+        predictions = predictor.predict(ingredient)
 
         results.append({
             "name": name,
@@ -188,7 +182,6 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
             "activity_name": activity_name,
             "source": source,
             "predictions": predictions,
-            "confidence": confidence,
         })
 
     return results
@@ -231,8 +224,6 @@ def write_csv(results: list, output_path: str):
 
         for r in results:
             pred = r["predictions"]
-            conf = r["confidence"]
-
             categories = pred.get("categories", [])
 
             writer.writerow({
@@ -240,24 +231,24 @@ def write_csv(results: list, output_path: str):
                 "categories": ",".join(categories) if categories else "",
                 "foodType": pred.get("foodType", ""),
                 "foodTypeMatch": _format_match(pred.get("foodTypeMatch")),
-                "foodTypeConf": _format_conf(conf, "foodType"),
+                "foodTypeConf": _format_conf(pred.get("foodTypeMatch")),
                 "processingState": pred.get("processingState", ""),
                 "processingStateMatch": _format_match(pred.get("processingStateMatch")),
-                "processingStateConf": _format_conf(conf, "processingState"),
+                "processingStateConf": _format_conf(pred.get("processingStateMatch")),
                 "transportCooling": pred.get("transportCooling", ""),
                 "transportCoolingMatch": _format_match(pred.get("transportCoolingMatch")),
                 "cropGroup": pred.get("cropGroup", ""),
                 "cropGroupMatch": _format_match(pred.get("cropGroupMatch")),
-                "cropGroupConf": _format_conf(conf, "cropGroup"),
+                "cropGroupConf": _format_conf(pred.get("cropGroupMatch")),
                 "density": f"{pred.get('density', 0):.3f}",
                 "densityMatch": _format_match(pred.get("densityMatch")),
-                "densityConf": _format_conf(conf, "density"),
+                "densityConf": _format_conf(pred.get("densityMatch")),
                 "inediblePart": f"{pred.get('inediblePart', 0):.2f}",
                 "inediblePartMatch": _format_match(pred.get("inediblePartMatch")),
-                "inediblePartConf": _format_conf(conf, "inediblePart"),
+                "inediblePartConf": _format_conf(pred.get("inediblePartMatch")),
                 "rawToCookedRatio": f"{pred.get('rawToCookedRatio', 0):.3f}",
                 "rawToCookedRatioMatch": _format_match(pred.get("rawToCookedRatioMatch")),
-                "rawToCookedRatioConf": _format_conf(conf, "rawToCookedRatio"),
+                "rawToCookedRatioConf": _format_conf(pred.get("rawToCookedRatioMatch")),
             })
 
     print(f"CSV written to {output_path}")
@@ -273,7 +264,6 @@ def build_activity_entry(
     activity_name: str,
     source: str,
     predictions: dict,
-    confidence: dict,
     existing_uuids: dict = None,
 ) -> dict:
     """Build an activity entry in the activities.json format."""
@@ -295,31 +285,21 @@ def build_activity_entry(
         "displayName": display_name,
         "id": ingredient_id,
         "inediblePart": predictions.get("inediblePart", 0),
-        "inediblePartMatch": _match_with_confidence(
-            predictions.get("inediblePartMatch"), confidence.get("inediblePart")
-        ),
+        "inediblePartMatch": predictions.get("inediblePartMatch"),
         "ingredientCategories": predictions.get("categories", ["misc"]),
         "ingredientDensity": predictions.get("density", 1.0),
-        "ingredientDensityMatch": _match_with_confidence(
-            predictions.get("densityMatch"), confidence.get("density")
-        ),
+        "ingredientDensityMatch": predictions.get("densityMatch"),
         "rawToCookedRatio": predictions.get("rawToCookedRatio", 1.0),
-        "rawToCookedRatioMatch": _match_with_confidence(
-            predictions.get("rawToCookedRatioMatch"), confidence.get("rawToCookedRatio")
-        ),
+        "rawToCookedRatioMatch": predictions.get("rawToCookedRatioMatch"),
         "scenario": "reference",
         "transportCooling": predictions.get("transportCooling", "none"),
-        "transportCoolingMatch": _match_with_confidence(
-            predictions.get("transportCoolingMatch"), confidence.get("transportCooling")
-        ),
+        "transportCoolingMatch": predictions.get("transportCoolingMatch"),
         "visible": True,
     }
 
     if predictions.get("cropGroup"):
         ingredient["cropGroup"] = predictions["cropGroup"]
-        ingredient["cropGroupMatch"] = _match_with_confidence(
-            predictions.get("cropGroupMatch"), confidence.get("cropGroup")
-        )
+        ingredient["cropGroupMatch"] = predictions.get("cropGroupMatch")
 
     animal_fields = detect_animal_fields(name, activity_name)
     if animal_fields:
@@ -353,7 +333,6 @@ def write_json(results: list, output_path: str):
             r["activity_name"],
             r["source"],
             r["predictions"],
-            r["confidence"],
             existing_uuids,
         )
         activities.append(activity)

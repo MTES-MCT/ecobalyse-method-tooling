@@ -40,7 +40,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Autres huiles (non encore répertoriées)",
-            "confidence": null
+            "confidence": 0.99
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -98,7 +98,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Amandes en coque UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -156,7 +156,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Autres huiles (non encore répertoriées)",
-            "confidence": null
+            "confidence": 0.993
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -201,7 +201,7 @@
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
             "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": null
+            "confidence": 0.0
           },
           "rawToCookedRatio": 0.819,
           "rawToCookedRatioMatch": {
@@ -262,7 +262,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Pomme par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -320,7 +320,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Abricot UE",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -378,7 +378,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tourteau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -430,7 +430,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Brocoli UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -488,7 +488,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Abricot UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -546,7 +546,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mâche FR",
-            "confidence": null
+            "confidence": 0.998
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -604,7 +604,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Carotte UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -662,7 +662,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Banane par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -720,7 +720,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Ensilage maïs FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "RIZ",
@@ -778,7 +778,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Sel",
-            "confidence": null
+            "confidence": 0.551
           },
           "visible": true,
           "cropGroup": "DIVERS",
@@ -836,7 +836,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Viande de dinde FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "animalGroup1": "cattle",
@@ -891,7 +891,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mandarine par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -949,7 +949,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Betterave rouge FR",
-            "confidence": null
+            "confidence": 0.927
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -1007,7 +1007,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Pomme de terre de table FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -1065,7 +1065,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -1123,7 +1123,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -1235,7 +1235,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -1280,20 +1280,20 @@
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
             "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": null
+            "confidence": 0.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "visible": true
         }
@@ -1345,7 +1345,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Noix avec coque UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -1403,7 +1403,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "bread",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -1461,7 +1461,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oignon par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -1519,7 +1519,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Brocoli UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -1577,7 +1577,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tourteau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -1629,7 +1629,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "sugar",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "DIVERS",
@@ -1687,7 +1687,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mandarine par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -1745,7 +1745,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Truite d'élevage FR",
-            "confidence": null
+            "confidence": 0.919
           },
           "visible": true
         }
@@ -1797,7 +1797,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mandarine par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -1833,7 +1833,7 @@
           "inediblePartMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -1842,27 +1842,27 @@
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
             "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": null
+            "confidence": 0.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
             "name": "apple",
-            "confidence": null
+            "confidence": 0.0
           }
         }
       ]
@@ -1913,7 +1913,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Carotte UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -1971,7 +1971,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Amandes en coque UE",
-            "confidence": null
+            "confidence": 0.935
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -2029,7 +2029,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -2087,7 +2087,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -2145,7 +2145,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Vinaigre balsamique FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VIGNES",
@@ -2203,7 +2203,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Céleri branche UE",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -2261,7 +2261,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Cerise par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -2319,7 +2319,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Cerise par défaut",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -2540,7 +2540,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Endive FR",
-            "confidence": null
+            "confidence": 0.997
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -2598,7 +2598,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Carotte UE",
-            "confidence": null
+            "confidence": 0.999
           },
           "visible": true,
           "cropGroup": "VIGNES",
@@ -2634,7 +2634,7 @@
           "inediblePartMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -2643,27 +2643,27 @@
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
             "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": null
+            "confidence": 0.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
             "name": "apple",
-            "confidence": null
+            "confidence": 0.0
           }
         }
       ]
@@ -2714,7 +2714,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Curcuma par défaut",
-            "confidence": null
+            "confidence": 0.999
           },
           "visible": true,
           "cropGroup": "DIVERS",
@@ -2772,7 +2772,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Clémentine par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -2884,7 +2884,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Beurre de cacao par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -2936,7 +2936,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Poudre de cacao par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -2994,7 +2994,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Amandes en coque UE",
-            "confidence": null
+            "confidence": 0.934
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -3052,7 +3052,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Thé (feuilles) UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -3110,7 +3110,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mélange de céréales FR",
-            "confidence": null
+            "confidence": 0.91
           },
           "visible": true
         }
@@ -3162,7 +3162,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Curcuma par défaut",
-            "confidence": null
+            "confidence": 0.999
           },
           "visible": true,
           "cropGroup": "DIVERS",
@@ -3220,7 +3220,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Ensilage maïs FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "MAIS GRAIN ET ENSILAGE",
@@ -3278,7 +3278,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Sirop de glucose FR ou UE ou par défaut",
-            "confidence": null
+            "confidence": 0.871
           },
           "visible": true,
           "cropGroup": "DIVERS",
@@ -3336,7 +3336,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tourteau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "animalGroup1": "cattle",
@@ -3391,7 +3391,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Lait de chèvre FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "animalGroup1": "cattle",
@@ -3446,7 +3446,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Crabe UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -3498,7 +3498,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -3556,7 +3556,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Concombre hors saison FR",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -3614,7 +3614,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "seed",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "AUTRES OLEAGINEUX",
@@ -3726,7 +3726,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Herbe de prairie temporaire FR",
-            "confidence": null
+            "confidence": 0.9
           },
           "visible": true,
           "cropGroup": "PRAIRIES TEMPORAIRES",
@@ -3838,7 +3838,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Viande de dinde FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "animalGroup1": "poultry",
@@ -3893,7 +3893,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Blé dur UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
@@ -3951,7 +3951,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oeuf FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -4003,7 +4003,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Aubergine UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -4039,7 +4039,7 @@
           "inediblePartMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -4048,27 +4048,27 @@
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
             "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": null
+            "confidence": 0.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
             "name": "apple",
-            "confidence": null
+            "confidence": 0.0
           }
         }
       ]
@@ -4119,7 +4119,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Endive FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -4177,7 +4177,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Truite d'élevage FR",
-            "confidence": null
+            "confidence": 0.918
           },
           "visible": true
         }
@@ -4229,7 +4229,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Truite d'élevage FR",
-            "confidence": null
+            "confidence": 0.918
           },
           "visible": true
         }
@@ -4281,7 +4281,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Fenouil FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -4339,7 +4339,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Citron UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -4451,7 +4451,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Ail FR",
-            "confidence": null
+            "confidence": 0.921
           },
           "visible": true,
           "cropGroup": "AUTRES OLEAGINEUX",
@@ -4509,7 +4509,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oignons déshydratés par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -4567,7 +4567,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Champignon frais UE",
-            "confidence": null
+            "confidence": 0.846
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -4603,7 +4603,7 @@
           "inediblePartMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -4612,27 +4612,27 @@
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
             "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": null
+            "confidence": 0.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
             "name": "apple",
-            "confidence": null
+            "confidence": 0.0
           }
         }
       ]
@@ -4683,7 +4683,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Ail FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -4741,7 +4741,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mandarine par défaut",
-            "confidence": null
+            "confidence": 0.894
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -4799,7 +4799,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Curcuma par défaut",
-            "confidence": null
+            "confidence": 0.999
           },
           "visible": true,
           "cropGroup": "DIVERS",
@@ -4857,7 +4857,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tourteau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -4909,7 +4909,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Lait de chèvre FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -4961,7 +4961,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mandarine par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -5019,7 +5019,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Clémentine par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -5077,7 +5077,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oignons déshydratés par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VIGNES",
@@ -5135,7 +5135,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Chou vert FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -5193,7 +5193,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Prune UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -5251,7 +5251,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -5357,7 +5357,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Noix avec coque UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -5415,7 +5415,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Riz basmati UE",
-            "confidence": null
+            "confidence": 0.925
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -5473,7 +5473,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tourteau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -5525,7 +5525,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Miel FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -5577,7 +5577,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Carotte UE",
-            "confidence": null
+            "confidence": 0.915
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -5635,7 +5635,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Artichaut FR",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -5693,7 +5693,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -5751,7 +5751,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Kiwi par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -5809,7 +5809,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -5867,7 +5867,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Clémentine par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -5925,7 +5925,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Viande de dinde FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "animalGroup1": "sheep",
@@ -5980,7 +5980,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "fresh fish",
-            "confidence": null
+            "confidence": 0.533
           },
           "visible": true
         }
@@ -6032,7 +6032,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Brocoli UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -6090,7 +6090,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Citron UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -6148,7 +6148,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Lentilles Bio",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
@@ -6260,7 +6260,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Carotte UE",
-            "confidence": null
+            "confidence": 0.998
           },
           "visible": true,
           "cropGroup": "VIGNES",
@@ -6318,7 +6318,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Homard UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -6370,7 +6370,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 0.935
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -6428,7 +6428,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Citrouille FR",
-            "confidence": null
+            "confidence": 0.93
           },
           "visible": true,
           "cropGroup": "AUTRES OLEAGINEUX",
@@ -6486,7 +6486,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Abricot UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -6544,7 +6544,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Amandes en coque UE",
-            "confidence": null
+            "confidence": 0.935
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -6602,7 +6602,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Sardine FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -6654,7 +6654,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mangue par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -6712,7 +6712,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Miel FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -6764,7 +6764,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Melon par défaut",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -6822,7 +6822,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Ensilage maïs FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
@@ -6880,7 +6880,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Moutarde FR",
-            "confidence": null
+            "confidence": 0.917
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -6938,7 +6938,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mâche FR",
-            "confidence": null
+            "confidence": 0.997
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -6996,7 +6996,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Cerise par défaut",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -7054,7 +7054,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Betterave rouge FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
@@ -7112,7 +7112,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Carotte UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -7170,7 +7170,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "seafood",
-            "confidence": null
+            "confidence": 0.896
           },
           "visible": true
         }
@@ -7222,7 +7222,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Moutarde FR",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
@@ -7280,7 +7280,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -7338,7 +7338,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Epinard par défaut",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -7396,7 +7396,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Truite d'élevage FR",
-            "confidence": null
+            "confidence": 0.919
           },
           "visible": true
         }
@@ -7448,7 +7448,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Curcuma par défaut",
-            "confidence": null
+            "confidence": 0.996
           },
           "visible": true,
           "cropGroup": "DIVERS",
@@ -7506,7 +7506,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Avoine UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
@@ -7564,7 +7564,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -7622,7 +7622,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Olive UE",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "OLIVIERS",
@@ -7680,7 +7680,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oignons déshydratés par défaut",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -7738,7 +7738,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Orange UE",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -7796,7 +7796,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Huile de palme (raffinée) UE",
-            "confidence": null
+            "confidence": 0.921
           },
           "visible": true,
           "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
@@ -7854,7 +7854,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Abricot UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -7912,7 +7912,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Herbe de prairie temporaire FR",
-            "confidence": null
+            "confidence": 0.9
           },
           "visible": true,
           "cropGroup": "PRAIRIES TEMPORAIRES",
@@ -7970,7 +7970,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oignons déshydratés par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -8028,7 +8028,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Abricot UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -8086,7 +8086,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -8144,7 +8144,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Huile d'arachide (raffinée) par défaut",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -8202,7 +8202,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "peanut butter",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true
         }
@@ -8254,7 +8254,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Poireau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -8290,7 +8290,7 @@
           "inediblePartMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -8299,27 +8299,27 @@
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
             "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": null
+            "confidence": 0.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
             "name": "apple",
-            "confidence": null
+            "confidence": 0.0
           }
         }
       ]
@@ -8370,7 +8370,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -8428,7 +8428,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tourteau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "animalGroup1": "pig",
@@ -8483,7 +8483,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Noix avec coque UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -8541,7 +8541,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Ananas Bio",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -8599,7 +8599,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Noix avec coque UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -8657,7 +8657,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tourteau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -8709,7 +8709,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Citron UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -8767,7 +8767,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Poitrine de porc FR",
-            "confidence": null
+            "confidence": 0.999
           },
           "visible": true
         }
@@ -8819,7 +8819,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Pomme de terre de table FR",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -8877,7 +8877,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mélange de céréales FR",
-            "confidence": null
+            "confidence": 0.913
           },
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
@@ -8935,7 +8935,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Citrouille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -8993,7 +8993,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -9051,7 +9051,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Farine de riz par défaut",
-            "confidence": null
+            "confidence": 0.908
           },
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
@@ -9109,7 +9109,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Viande de dinde FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -9161,7 +9161,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Radis Bio",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -9219,7 +9219,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Huile de colza Bio",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "COLZA",
@@ -9277,7 +9277,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Framboise UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -9335,7 +9335,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Chair à saucisse crue FR",
-            "confidence": null
+            "confidence": 0.889
           },
           "visible": true,
           "cropGroup": "RIZ",
@@ -9447,7 +9447,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mandarine par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -9505,7 +9505,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Endive FR",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -9563,7 +9563,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Carotte UE",
-            "confidence": null
+            "confidence": 0.998
           },
           "visible": true
         }
@@ -9615,7 +9615,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -9673,7 +9673,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mandarine par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
@@ -9785,7 +9785,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "crustacean",
-            "confidence": null
+            "confidence": 0.795
           },
           "visible": true
         }
@@ -9837,7 +9837,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Laitue UE",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -9895,7 +9895,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Champignon frais UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -9947,7 +9947,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Saumon cru UE",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true
         }
@@ -9999,7 +9999,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Vinaigre balsamique FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "VIGNES",
@@ -10057,7 +10057,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Sardine FR",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true
         }
@@ -10109,7 +10109,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "seafood",
-            "confidence": null
+            "confidence": 0.896
           },
           "visible": true
         }
@@ -10161,7 +10161,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Sardine FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -10213,7 +10213,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Sucre de betterave par défaut",
-            "confidence": null
+            "confidence": 0.786
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -10271,7 +10271,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mâche FR",
-            "confidence": null
+            "confidence": 0.989
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -10329,7 +10329,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "semolina",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -10387,7 +10387,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Huile de tournesol par défaut",
-            "confidence": null
+            "confidence": 0.896
           },
           "visible": true,
           "cropGroup": "AUTRES OLEAGINEUX",
@@ -10445,7 +10445,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Echalote FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -10503,7 +10503,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Lait de chèvre FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "animalGroup1": "sheep",
@@ -10558,7 +10558,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Crevettes fraîches par défaut",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true
         }
@@ -10610,7 +10610,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tourteau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -10662,7 +10662,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Fécule de pomme de terre par défaut",
-            "confidence": null
+            "confidence": 0.916
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -10720,7 +10720,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Farine de riz par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -10778,7 +10778,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Farine de riz par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -10836,7 +10836,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Carotte UE",
-            "confidence": null
+            "confidence": 0.913
           },
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
@@ -10948,7 +10948,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Farine de riz par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
@@ -11006,7 +11006,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Epinard par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -11064,7 +11064,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Raisin de cuve FR",
-            "confidence": null
+            "confidence": 0.887
           },
           "visible": true
         }
@@ -11116,7 +11116,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Soupe ES (légumes FR + élec ES)",
-            "confidence": null
+            "confidence": 0.866
           },
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
@@ -11152,7 +11152,7 @@
           "inediblePartMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -11161,27 +11161,27 @@
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
             "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": null
+            "confidence": 0.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Radis FR",
-            "confidence": null
+            "confidence": 0.0
           },
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
             "name": "apple",
-            "confidence": null
+            "confidence": 0.0
           }
         }
       ]
@@ -11232,7 +11232,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Haricot flageolet UE",
-            "confidence": null
+            "confidence": 0.942
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -11290,7 +11290,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Autres eaux et autres boissons (non encore répertoriées)",
-            "confidence": null
+            "confidence": 0.997
           },
           "visible": true,
           "cropGroup": "VIGNES",
@@ -11348,7 +11348,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Courge UE",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -11406,7 +11406,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Homard UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -11458,7 +11458,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Pâtes FR",
-            "confidence": null
+            "confidence": 0.985
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -11516,7 +11516,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Fraise UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -11574,7 +11574,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Betterave sucrière Bio",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
@@ -11632,7 +11632,7 @@
           "transportCoolingMatch": {
             "file": "transport_cooling.csv",
             "name": "sugar",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "DIVERS",
@@ -11690,7 +11690,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tournesol UE",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "TOURNESOL",
@@ -11748,7 +11748,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Fécule de pomme de terre par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -11806,7 +11806,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -11864,7 +11864,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tourteau FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -11916,7 +11916,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -11974,7 +11974,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Soupe déshydratée ES",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -12032,7 +12032,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Carotte UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -12090,7 +12090,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Autres huiles (non encore répertoriées)",
-            "confidence": null
+            "confidence": 0.876
           },
           "visible": true,
           "cropGroup": "TOURNESOL",
@@ -12202,7 +12202,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Tomate UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -12260,7 +12260,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mélange de céréales FR",
-            "confidence": null
+            "confidence": 0.999
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -12366,7 +12366,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Viande de dinde FR",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "animalGroup1": "poultry",
@@ -12421,7 +12421,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Brocoli UE",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -12479,7 +12479,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Sel",
-            "confidence": null
+            "confidence": 0.992
           },
           "visible": true,
           "cropGroup": "DIVERS",
@@ -12537,7 +12537,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Viande de dinde FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "animalGroup1": "cattle",
@@ -12646,7 +12646,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Pastèque Bio",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -12704,7 +12704,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Pâtes FR",
-            "confidence": null
+            "confidence": 0.985
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -12816,7 +12816,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Chou blanc FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -12874,7 +12874,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Orge UE",
-            "confidence": null
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "ORGE",
@@ -12932,7 +12932,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Pâtes DE (blé GLO + élec DE)",
-            "confidence": null
+            "confidence": 0.998
           },
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
@@ -12990,7 +12990,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Pâtes DE (blé GLO + élec DE)",
-            "confidence": null
+            "confidence": 0.998
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -13048,7 +13048,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Haricot flageolet UE",
-            "confidence": null
+            "confidence": 0.942
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -13106,7 +13106,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Myrtille FR",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -13164,7 +13164,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Mâche FR",
-            "confidence": null
+            "confidence": 0.985
           },
           "visible": true,
           "cropGroup": "BLE TENDRE",
@@ -13222,7 +13222,7 @@
           "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oignon par défaut",
-            "confidence": null
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",

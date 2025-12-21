@@ -22,9 +22,8 @@ Usage:
         "name": "Tomate cerise bio",
         "activityName": "Cherry tomato, organic {FR} U"
     }
-    predictions, confidence = predictor.predict(new_ingredient)
-    # predictions → {"categories": [...], "foodType": "vegetable", ...}
-    # confidence → {"foodType": 0.95, "density": 0.87, ...}
+    predictions = predictor.predict(new_ingredient)
+    # → {"foodType": "vegetable", "density": 1.0, "densityMatch": {"file": "...", "name": "...", "confidence": 0.95}, ...}
 
 CLI:
     # Entraîner sur les ingrédients existants
@@ -1045,15 +1044,15 @@ class Predictor:
         if verbose:
             timed_print("✓ Training complete!\n")
 
-    def _predict(self, ingredient: dict) -> tuple[dict, dict]:
+    def predict(self, ingredient: dict) -> dict:
         """
-        Internal prediction method returning both predictions and confidence.
+        Predict metadata for a new ingredient.
 
         Args:
-            ingredient: Dict with "name" and "activityName"
+            ingredient: Dict with "name" and optionally "activityName"
 
         Returns:
-            (predictions, confidence) tuple
+            Dict with predicted values and match info (including confidence)
         """
         if not self.is_fitted:
             raise RuntimeError(
@@ -1076,47 +1075,43 @@ class Predictor:
         ).reshape(1, -1)
 
         predictions = {}
-        confidence = {}
 
         # Extract binary features for rules
         binary_features = self._extract_binary_from_features(features)
 
+        def _match(file: str, name: str, conf: float) -> dict:
+            """Build match info dict with confidence."""
+            return {"file": file, "name": name, "confidence": round(conf, 3)}
+
         # 1. FoodType (rules first, then nearest neighbor)
-        food_type_conf = 1.0  # Default confidence for rule-based
-        food_type_match_info = None
         if binary_features.get("is_fish") or binary_features.get("is_seafood"):
             food_type = "fish_seafood"
+            predictions["foodTypeMatch"] = None
         elif binary_features.get("is_meat"):
             food_type = "meat"
+            predictions["foodTypeMatch"] = None
         elif binary_features.get("is_dairy"):
             food_type = "dairy"
+            predictions["foodTypeMatch"] = None
         else:
-            # Fallback to nearest neighbor
-            food_type, food_type_conf, food_type_match, food_type_source = (
-                self.food_type_matcher.predict(name, translate_fn=self._translate)
+            food_type, conf, match, source = self.food_type_matcher.predict(
+                name, translate_fn=self._translate
             )
-            food_type_match_info = {"file": food_type_source, "name": food_type_match}
-
+            predictions["foodTypeMatch"] = _match(source, match, conf)
         predictions["foodType"] = food_type
-        predictions["foodTypeMatch"] = food_type_match_info
-        confidence["foodType"] = food_type_conf
 
         # 2. ProcessingState (packaging detection first, then nearest neighbor)
         packaging, _ = self._detect_packaging(full_text)
-        proc_conf = 1.0  # Default confidence for rule-based
-        processing_match_info = None
         if packaging and packaging != "fresh":
             processing_state = "processed"
+            predictions["processingStateMatch"] = None
         else:
-            processing_state, proc_conf, processing_match, processing_source = (
-                self.processing_matcher.predict(name, translate_fn=self._translate)
+            processing_state, conf, match, source = self.processing_matcher.predict(
+                name, translate_fn=self._translate
             )
-            processing_match_info = {"file": processing_source, "name": processing_match}
-
+            predictions["processingStateMatch"] = _match(source, match, conf)
         predictions["processingState"] = processing_state
-        predictions["processingStateMatch"] = processing_match_info
         predictions["packaging"] = packaging
-        confidence["processingState"] = proc_conf
 
         # 3. Additive labels (by rules)
         labels = []
@@ -1130,91 +1125,59 @@ class Predictor:
         base_category = DIMENSIONS_TO_CATEGORY.get(
             (food_type, processing_state), "misc"
         )
-        categories = [base_category] + labels
-        predictions["categories"] = categories
-        confidence["categories"] = food_type_conf
+        predictions["categories"] = [base_category] + labels
 
         # 5. cropGroup (for vegetal types) - nearest neighbor matching
-        cropgroup_conf = 0.0
-        vegetal_types = {
-            "vegetable",
-            "fruit",
-            "grain",
-            "nut_oilseed",
-            "spice_condiment",
-        }
+        vegetal_types = {"vegetable", "fruit", "grain", "nut_oilseed", "spice_condiment"}
         if food_type in vegetal_types and self.cropgroup_matcher is not None:
-            cropgroup_val, cropgroup_conf, cropgroup_match, cropgroup_source = (
-                self.cropgroup_matcher.predict(name, translate_fn=self._translate)
+            cropgroup_val, conf, match, source = self.cropgroup_matcher.predict(
+                name, translate_fn=self._translate
             )
             predictions["cropGroup"] = cropgroup_val
-            predictions["cropGroupMatch"] = {"file": cropgroup_source, "name": cropgroup_match}
+            predictions["cropGroupMatch"] = _match(source, match, conf)
         else:
             predictions["cropGroup"] = None
             predictions["cropGroupMatch"] = None
 
-        if predictions["cropGroup"]:
-            confidence["cropGroup"] = cropgroup_conf
-
         # 6. transportCooling (packaging first, then rules, then nearest neighbor)
-        transport_match_info = None
         if packaging and packaging != "fresh":
-            # Explicit packaging detected (canned, frozen, dried, etc.)
             _, transport_cooling = PACKAGING_PATTERNS.get(packaging, (None, None))
-            if not transport_cooling:
-                transport_cooling = "none"
+            transport_cooling = transport_cooling or "none"
+            predictions["transportCoolingMatch"] = None
         else:
-            # Try rule-based from binary features
             transport_cooling = self._predict_transport_by_rules(binary_features)
-            if not transport_cooling:
-                # Fall back to nearest neighbor matching
-                transport_cooling, _, transport_match, transport_source = (
-                    self.transport_matcher.predict(name, translate_fn=self._translate)
+            if transport_cooling:
+                predictions["transportCoolingMatch"] = None
+            else:
+                transport_cooling, conf, match, source = self.transport_matcher.predict(
+                    name, translate_fn=self._translate
                 )
-                transport_match_info = {"file": transport_source, "name": transport_match}
+                predictions["transportCoolingMatch"] = _match(source, match, conf)
         predictions["transportCooling"] = transport_cooling
-        predictions["transportCoolingMatch"] = transport_match_info
 
         # 7. defaultOrigin (by rules)
         predictions["defaultOrigin"] = _extract_origin(activity)
 
         # 8. Continuous values (nearest neighbor)
-        density_val, density_conf, density_match, density_source = (
-            self.density_matcher.predict(name, translate_fn=self._translate)
+        density_val, conf, match, source = self.density_matcher.predict(
+            name, translate_fn=self._translate
         )
-        inedible_val, inedible_conf, inedible_match, inedible_source = (
-            self.inedible_matcher.predict(name, translate_fn=self._translate)
-        )
-        ratio_val, ratio_conf, ratio_match, ratio_source = (
-            self.ratio_matcher.predict(name, translate_fn=self._translate)
-        )
-
         predictions["density"] = round(density_val, 3)
-        predictions["densityMatch"] = {"file": density_source, "name": density_match}
+        predictions["densityMatch"] = _match(source, match, conf)
+
+        inedible_val, conf, match, source = self.inedible_matcher.predict(
+            name, translate_fn=self._translate
+        )
         predictions["inediblePart"] = round(inedible_val, 2)
-        predictions["inediblePartMatch"] = {"file": inedible_source, "name": inedible_match}
+        predictions["inediblePartMatch"] = _match(source, match, conf)
+
+        ratio_val, conf, match, source = self.ratio_matcher.predict(
+            name, translate_fn=self._translate
+        )
         predictions["rawToCookedRatio"] = round(ratio_val, 3)
-        predictions["rawToCookedRatioMatch"] = {"file": ratio_source, "name": ratio_match}
+        predictions["rawToCookedRatioMatch"] = _match(source, match, conf)
 
-        confidence["density"] = density_conf
-        confidence["inediblePart"] = inedible_conf
-        confidence["rawToCookedRatio"] = ratio_conf
-
-        return predictions, confidence
-
-    def predict(self, ingredient: dict) -> tuple[dict, dict]:
-        """
-        Predict metadata for a new ingredient.
-
-        Args:
-            ingredient: Dict with "name" and optionally "activityName"
-
-        Returns:
-            (predictions, confidence) tuple where:
-            - predictions: Dict with foodType, processingState, density, etc.
-            - confidence: Dict with confidence scores for each field
-        """
-        return self._predict(ingredient)
+        return predictions
 
     def evaluate(self, verbose: bool = True) -> dict:
         """
@@ -1452,18 +1415,20 @@ class Detector:
         Returns:
             (predictions, score, best_match)
         """
-        predictions, confidence = self.predictor.predict(ingredient)
+        predictions = self.predictor.predict(ingredient)
 
-        # Score global = moyenne des confiances (categorical + value classifiers)
+        # Extract confidence from match dicts
+        def _get_conf(match_key):
+            match = predictions.get(match_key)
+            return match.get("confidence", 0) if match else 0
+
+        # Score global = moyenne des confiances
         score = np.mean([
-            confidence.get("categories", 0),
-            confidence.get("transportCooling", 0),
-            confidence.get("density", 0),
-            confidence.get("inediblePart", 0),
-            confidence.get("rawToCookedRatio", 0),
+            _get_conf("densityMatch"),
+            _get_conf("inediblePartMatch"),
+            _get_conf("rawToCookedRatioMatch"),
         ])
 
-        # Best match info is no longer available without KNN
         best_match = f"density={predictions.get('density')}, inedible={predictions.get('inediblePart')}"
 
         return predictions, score, best_match
@@ -1580,13 +1545,16 @@ def main():
             "activityName": args.activity,
         }
 
-        predictions, confidence = predictor.predict(ingredient)
+        predictions = predictor.predict(ingredient)
 
         print("\n📊 Predictions:")
         for key, value in predictions.items():
-            conf = confidence.get(key, 0)
-            if conf > 0:
-                print(f"  {key}: {value} (confidence: {conf:.2f})")
+            if key.endswith("Match"):
+                continue  # Skip match info in summary
+            match_key = f"{key}Match"
+            match = predictions.get(match_key)
+            if match and match.get("confidence"):
+                print(f"  {key}: {value} (conf: {match['confidence']:.2f}, match: {match['name']})")
             else:
                 print(f"  {key}: {value}")
 
