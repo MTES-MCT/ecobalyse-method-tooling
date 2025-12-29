@@ -380,7 +380,7 @@ def main():
 
     # Load training data
     print("Loading training data...")
-    with open("../ingredients.json") as f:
+    with open("../../public/data/food/ingredients.json") as f:
         training_data = json.load(f)
 
     # Train predictor

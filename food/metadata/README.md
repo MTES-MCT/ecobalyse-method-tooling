@@ -1,3 +1,5 @@
+This is a separated experiment to compute metadata from a list of new ingredients
+
 # Ingredient Metadata Prediction System
 
 ## Directory Structure
