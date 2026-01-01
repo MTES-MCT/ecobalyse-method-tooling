@@ -914,10 +914,13 @@ class Predictor:
         nova2_patterns = [
             (r"\b(huile|oil)\b(?!.*seed)", "oil"),
             (r"\b(beurre|butter|margarine)\b(?!.*nut)", "butter"),  # exclude butternut
-            (r"\b(sel\s+de|salt,|sodium\s+chloride)\b", "salt"),
+            (r"\b(lard|saindoux)\b", "fat"),  # rendered animal fat
+            (r"\b(salt|sel)\b(?!.*fish)", "salt"),  # exclude salted fish
             (r"\b(farine|flour)\b(?!.*seed)", "flour"),
             (r"\b(f[ée]cule|starch)\b", "starch"),
-            (r"\b(sirop|syrup)\b(?!.*fruit)", "syrup"),
+            (r"\b(maple\s+syrup|sirop\s+d[''e]\s*[ée]rable)\b", "syrup"),  # only maple syrup is NOVA 2
+            (r"\b(vinegar|vinaigre)\b", "vinegar"),
+            (r"\b(molasses|m[ée]lasse)\b", "molasses"),
         ]
         for pattern, ingredient_type in nova2_patterns:
             if re.search(pattern, text, re.IGNORECASE):
@@ -946,14 +949,35 @@ class Predictor:
             if re.search(r"\b(unshelled|raw|whole|fresh)\b", text, re.IGNORECASE):
                 return 1, "raw_at_processing", 0.9
 
+        # Priority 2.5: NOVA 3 processed food indicators (from name)
+        nova3_patterns = [
+            (r"\b(jam|marmalade|confiture)\b", "preserve"),
+            (r"\b(pickled|pickle)\b", "pickled"),
+            (r"\b(cured|salaison)\b", "cured"),
+            (r"\b(smoked|fum[ée])\b", "smoked"),
+            (r"\b(canned|conserve|appertis[ée])\b", "canned"),
+            (r"\b(ham|jambon)\b", "cured_meat"),
+            (r"\bbacon\b", "cured_meat"),  # lard is NOVA 2, not here
+            (r"\b(sausage|saucisse)\b", "processed_meat"),
+        ]
+        for pattern, reason in nova3_patterns:
+            if re.search(pattern, text, re.IGNORECASE):
+                return 3, f"nova3_{reason}", 0.9
+
         # Priority 3: NOVA 4 ultra-processed indicators
         nova4_patterns = [
             (r"\btextured\b", "textured"),
             (r"\brehydrated\b", "rehydrated"),
             (r"\binstant\b", "instant"),
             (r"\bprotein\s+isolate\b", "isolate"),
+            (r"\bhydrolyzed\s+protein\b", "hydrolyzed"),
             (r"\bgluten\s+meal\b", "isolate"),
             (r"\bdistill", "distilled"),
+            (r"\bhigh\s+fructose\b", "industrial_sugar"),
+            (r"\binvert\s+sugar\b", "industrial_sugar"),
+            (r"\bcorn\s+syrup\b", "industrial_sugar"),
+            (r"\bglucose\s+syrup\b", "industrial_sugar"),
+            (r"\bmaltodextrin\b", "industrial_additive"),
         ]
         for pattern, reason in nova4_patterns:
             if re.search(pattern, text, re.IGNORECASE):
@@ -1005,8 +1029,10 @@ class Predictor:
             return 1, "spice_condiment", 0.7
 
         if food_type == "dairy":
-            if re.search(r"\b(milk|lait)\b", text, re.IGNORECASE):
-                return 1, "raw_milk", 0.7
+            # Milk and fermented milk products are NOVA 1
+            if re.search(r"\b(milk|lait|yogurt|yaourt|yoghurt)\b", text, re.IGNORECASE):
+                return 1, "dairy_minimal", 0.7
+            # Cheese is NOVA 3
             return 3, "default_dairy_processed", 0.6
 
         if food_type == "grain":
@@ -1019,6 +1045,9 @@ class Predictor:
                 return 1, "water", 0.9
             if re.search(r"\b(juice|jus)\b", text, re.IGNORECASE):
                 return 1, "fruit_juice", 0.7
+            # Roasted coffee/tea are minimal processing (NOVA 1)
+            if re.search(r"\b(coffee|caf[ée]|tea|th[ée])\b", text, re.IGNORECASE):
+                return 1, "beverage_minimal", 0.7
             if re.search(r"\b(wine|vin|beer|bi[eè]re|cider|cidre)\b", text, re.IGNORECASE):
                 return 3, "alcoholic_beverage", 0.8
             return 4, "industrial_beverage", 0.6
