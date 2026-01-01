@@ -1,3 +1,6 @@
+# Local config
+.env
+
 # FoodOn ontology (auto-downloaded, ~200MB)
 foodon.owl
 data/foodon.owl

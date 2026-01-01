@@ -312,6 +312,13 @@ def _load_transport_data() -> tuple[list, list, list]:
     )
 
 
+def _load_nova_data() -> tuple[list, list, list]:
+    """Load nova_classification.csv, return (names, nova_groups, sources)."""
+    return _load_csv_data(
+        REFERENCE_DIR / "nova_classification.csv", "name", "novaGroup", comment="#"
+    )
+
+
 def _build_cropgroup_data(ingredients: list) -> tuple[list, list, list]:
     """Build (names, cropGroups, sources) from training ingredients + cropGroup labels themselves."""
     names = []
@@ -677,6 +684,7 @@ class Predictor:
         self.food_type_matcher = None
         self.processing_matcher = None
         self.transport_matcher = None
+        self.nova_matcher = None
 
         # CropGroup matcher (nearest neighbor)
         self.cropgroup_matcher = None
@@ -865,6 +873,167 @@ class Predictor:
             return "always"
         return "none"
 
+    def _classify_nova(
+        self, name: str, activity_name: str, food_type: str, binary_features: dict
+    ) -> tuple[int, str, float]:
+        """
+        Classify ingredient into NOVA 1-4 group.
+
+        Decision hierarchy:
+        1. Activity name location keywords (at farm, at orchard, at landing → NOVA 1)
+        2. NOVA 2 culinary ingredient patterns (oil, butter, sugar, salt, flour)
+        3. NOVA 4 ultra-processed indicators (textured, rehydrated, instant, isolate)
+        4. "at plant" processing (minimal→NOVA 1, extracted→NOVA 2, other→NOVA 3)
+        5. Packaging/preservation (canned, smoked → NOVA 3)
+        6. Nearest neighbor matching on reference data
+        7. FoodType-based defaults
+        8. Default: NOVA 1 (unprocessed)
+
+        Returns:
+            (nova_group, reason, confidence)
+        """
+        text = f"{name} {activity_name}".lower()
+
+        # Priority 0: Distilled spirits (highest priority - definitely NOVA 4)
+        distilled_spirits = [
+            r"\b(brandy|cognac|armagnac|calvados|whiskey|whisky|vodka|gin|rum|rhum|pastis|sake|spiritueux|spirits)\b",
+            r"\b(distill|alcool\s+pur|pure\s+alcohol)\b",
+        ]
+        if any(re.search(p, text, re.IGNORECASE) for p in distilled_spirits):
+            return 4, "distilled_spirits", 0.95
+
+        # Priority 0.5: NOVA 2 culinary ingredients (before farm patterns)
+        # These are extracted/refined products that should not be treated as raw farm output
+        name_lower = name.lower()
+
+        # Sugar check: sugar in name but not "sugar beet" or "sugar cane" (raw crops)
+        if re.search(r"\bsugar\b", name_lower, re.IGNORECASE):
+            if not re.search(r"\bsugar\s*(beet|cane)\b", name_lower, re.IGNORECASE):
+                return 2, "nova2_sugar", 0.95
+
+        nova2_patterns = [
+            (r"\b(huile|oil)\b(?!.*seed)", "oil"),
+            (r"\b(beurre|butter|margarine)\b(?!.*nut)", "butter"),  # exclude butternut
+            (r"\b(sel\s+de|salt,|sodium\s+chloride)\b", "salt"),
+            (r"\b(farine|flour)\b(?!.*seed)", "flour"),
+            (r"\b(f[ée]cule|starch)\b", "starch"),
+            (r"\b(sirop|syrup)\b(?!.*fruit)", "syrup"),
+        ]
+        for pattern, ingredient_type in nova2_patterns:
+            if re.search(pattern, text, re.IGNORECASE):
+                return 2, f"nova2_{ingredient_type}", 0.95
+
+        # Priority 1: Activity name location keywords (highest priority - explicit source)
+        # "at farm gate", "at farm", "at orchard", "at landing", "at greenhouse", "production" → NOVA 1
+        farm_patterns = [
+            r"\bat\s+(farm\s+)?gate\b",
+            r"\bat\s+farm\b",
+            r"\bat\s+orchard\b",
+            r"\bat\s+landing\b",
+            r"\bat\s+greenhouse\b",  # greenhouse production is still farm-level
+            r"\bmarket\s+for\b",  # "market for X" = raw market product
+            r"\|\s*[\w\s]*production\b",  # Ecoinvent "| production" or "| xxx yyy production"
+            r"\bproduction\s*\|",  # "production |" pattern
+            r"//\[[^\]]+\]\s*[\w\s]*production\b",  # "//[RoW] mango production" format
+            r"\b\w+\s+production[,\s]",  # "X production," or "X production " (standalone)
+        ]
+        for pattern in farm_patterns:
+            if re.search(pattern, text, re.IGNORECASE):
+                return 1, "at_farm_source", 0.95
+
+        # "at processing" for raw products (nuts, etc.) - still NOVA 1
+        if re.search(r"\bat\s+processing\b", text, re.IGNORECASE):
+            if re.search(r"\b(unshelled|raw|whole|fresh)\b", text, re.IGNORECASE):
+                return 1, "raw_at_processing", 0.9
+
+        # Priority 3: NOVA 4 ultra-processed indicators
+        nova4_patterns = [
+            (r"\btextured\b", "textured"),
+            (r"\brehydrated\b", "rehydrated"),
+            (r"\binstant\b", "instant"),
+            (r"\bprotein\s+isolate\b", "isolate"),
+            (r"\bgluten\s+meal\b", "isolate"),
+            (r"\bdistill", "distilled"),
+        ]
+        for pattern, reason in nova4_patterns:
+            if re.search(pattern, text, re.IGNORECASE):
+                return 4, f"nova4_{reason}", 0.9
+
+        # Check for "at plant" processing
+        if re.search(r"\bat\s+plant\b", text, re.IGNORECASE):
+            # Recipe at plant → NOVA 4
+            if re.search(r"\brecipe\b", text, re.IGNORECASE):
+                return 4, "recipe_at_plant", 0.85
+            # Minimal processing at plant (gutted, filleted, cleaned) → still NOVA 1
+            minimal_at_plant = ["gutted", "fillet", "cleaned", "washed", "peeled", "shelled"]
+            if any(w in text for w in minimal_at_plant):
+                return 1, "minimal_at_plant", 0.85
+            # Fresh fruits, vegetables, spices at plant (packing/sorting/drying) → NOVA 1
+            if food_type in {"fruit", "vegetable", "fish_seafood", "spice_condiment"}:
+                # Unless there's explicit heavy processing indicators
+                processing_indicators = ["juice", "puree", "paste", "canned", "fermented"]
+                if not any(w in text for w in processing_indicators):
+                    return 1, "fresh_at_plant", 0.85
+            # NOVA 2 product types (oil, sugar, flour, starch at plant)
+            if food_type in {"nut_oilseed", "grain"}:
+                if any(w in text for w in ["oil", "butter", "flour", "starch", "sugar", "semolina"]):
+                    return 2, "extracted_at_plant", 0.85
+            # Default: at plant without specific indicator → NOVA 3
+            return 3, "at_plant_processed", 0.8
+
+        # Priority 5: Packaging/preservation indicators
+        if binary_features.get("is_canned"):
+            return 3, "canned_preservation", 0.85
+        # Only match "smoked" if it's the actual product, not "for smoked" (ingredient for)
+        if binary_features.get("is_smoked") and not re.search(
+            r"\bfor\s+smoked\b", text, re.IGNORECASE
+        ):
+            return 3, "smoked_preservation", 0.85
+
+        # NOVA 1: Minimal processing indicators
+        if binary_features.get("is_frozen") or binary_features.get("is_dried"):
+            if not binary_features.get("is_processed"):
+                return 1, "minimal_processing", 0.75
+
+        # Priority 6: FoodType-based defaults (before nearest neighbor for reliable types)
+        raw_default_types = {"vegetable", "fruit", "meat", "fish_seafood"}
+        if food_type in raw_default_types:
+            return 1, f"default_{food_type}", 0.7
+
+        if food_type == "spice_condiment":
+            # Dried spices are minimal processing (NOVA 1)
+            return 1, "spice_condiment", 0.7
+
+        if food_type == "dairy":
+            if re.search(r"\b(milk|lait)\b", text, re.IGNORECASE):
+                return 1, "raw_milk", 0.7
+            return 3, "default_dairy_processed", 0.6
+
+        if food_type == "grain":
+            if re.search(r"\b(grain|seed|graine)\b", text, re.IGNORECASE):
+                return 1, "raw_grain", 0.7
+            return 3, "grain_processed", 0.6
+
+        if food_type == "beverage":
+            if re.search(r"\b(water|eau)\b", text, re.IGNORECASE):
+                return 1, "water", 0.9
+            if re.search(r"\b(juice|jus)\b", text, re.IGNORECASE):
+                return 1, "fruit_juice", 0.7
+            if re.search(r"\b(wine|vin|beer|bi[eè]re|cider|cidre)\b", text, re.IGNORECASE):
+                return 3, "alcoholic_beverage", 0.8
+            return 4, "industrial_beverage", 0.6
+
+        # Priority 7: Nearest neighbor matching (fallback)
+        if self.nova_matcher:
+            matched_nova, match_conf, match_name, match_source = (
+                self.nova_matcher.predict(name, translate_fn=self._translate)
+            )
+            if match_conf >= 0.8:  # Higher threshold for fallback
+                return int(matched_nova), f"matched_{match_name}", match_conf
+
+        # Default: NOVA 1 (unprocessed)
+        return 1, "default_raw", 0.5
+
     def _build_matcher(
         self, names: list, values: list, sources: list
     ) -> NearestNeighborMatcher:
@@ -963,6 +1132,16 @@ class Predictor:
         self.processing_matcher = self._build_matcher(
             ing_names_proc, y_processing, proc_sources
         )
+
+        # 3c. Build NOVA matcher (nearest neighbor on reference data only)
+        if verbose:
+            timed_print("Building NOVA matcher...")
+
+        nova_names, nova_groups, nova_sources = _load_nova_data()
+        if nova_names:
+            # Convert string novaGroup to int
+            nova_groups = [int(g) for g in nova_groups]
+            self.nova_matcher = self._build_matcher(nova_names, nova_groups, nova_sources)
 
         # 4. Build cropGroup matcher (nearest neighbor)
         if verbose:
@@ -1125,17 +1304,25 @@ class Predictor:
                 predictions["foodTypeMatch"] = _match(source, match, conf)
         predictions["foodType"] = food_type
 
-        # 2. ProcessingState (packaging detection first, then nearest neighbor)
-        packaging, _ = self._detect_packaging(full_text)
-        if packaging and packaging != "fresh":
-            processing_state = "processed"
-            predictions["processingStateMatch"] = None
-        else:
-            processing_state, conf, match, source = self.processing_matcher.predict(
-                name, translate_fn=self._translate
-            )
-            predictions["processingStateMatch"] = _match(source, match, conf)
+        # 2. NOVA Classification (determines processingState)
+        nova_group, nova_reason, nova_confidence = self._classify_nova(
+            name, activity, food_type, binary_features
+        )
+        predictions["novaGroup"] = nova_group
+        predictions["novaGroupReason"] = nova_reason
+        predictions["novaGroupConfidence"] = round(nova_confidence, 3)
+
+        # Derive processingState from NOVA
+        # NOVA 1 = raw (unprocessed/minimally processed)
+        # NOVA 2, 3, 4 = processed
+        processing_state = "raw" if nova_group == 1 else "processed"
         predictions["processingState"] = processing_state
+        predictions["processingStateMatch"] = _match(
+            "nova_derived", f"NOVA_{nova_group}", nova_confidence
+        )
+
+        # Keep packaging detection for transportCooling (unchanged)
+        packaging, _ = self._detect_packaging(full_text)
         predictions["packaging"] = packaging
 
         # 3. Additive labels (by rules)

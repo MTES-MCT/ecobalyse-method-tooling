@@ -14,9 +14,14 @@ Outputs:
 import argparse
 import csv
 import json
+import os
 import re
 import uuid
 from pathlib import Path
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 import bw2data
 import pandas as pd
@@ -226,6 +231,9 @@ def write_csv(results: list, output_path: str):
         "foodType",
         "foodTypeMatch",
         "foodTypeConf",
+        "novaGroup",
+        "novaGroupReason",
+        "novaGroupConf",
         "processingState",
         "processingStateMatch",
         "processingStateConf",
@@ -260,6 +268,9 @@ def write_csv(results: list, output_path: str):
                     "foodType": pred.get("foodType", ""),
                     "foodTypeMatch": _format_match(pred.get("foodTypeMatch")),
                     "foodTypeConf": _format_conf(pred.get("foodTypeMatch")),
+                    "novaGroup": pred.get("novaGroup", ""),
+                    "novaGroupReason": pred.get("novaGroupReason", ""),
+                    "novaGroupConf": f"{pred.get('novaGroupConfidence', 0):.3f}",
                     "processingState": pred.get("processingState", ""),
                     "processingStateMatch": _format_match(
                         pred.get("processingStateMatch")
@@ -411,8 +422,9 @@ def main():
         print("Translation cache cleared")
 
     # Load training data
+    training_data_path = Path(__file__).parent / os.environ["TRAINING_DATA"]
     print("Loading training data...")
-    with open("../../public/data/food/ingredients.json") as f:
+    with open(training_data_path) as f:
         training_data = json.load(f)
 
     # Train predictor

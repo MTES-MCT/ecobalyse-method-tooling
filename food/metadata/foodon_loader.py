@@ -53,6 +53,35 @@ FOODON_CATEGORIES = {
     "plant": "FOODON:00001015",  # plant food product (parent of veg/fruit)
 }
 
+# FoodOn processing classes mapped to NOVA groups
+# NOVA 2: Culinary ingredients (oils, butter, sugar, salt, flour, starch)
+# NOVA 3: Processed foods (fermented, cured, canned)
+# NOVA 4: Ultra-processed (distilled, isolates, industrial)
+NOVA_PROCESSING_CLASSES = {
+    # NOVA 2 - Extracted culinary ingredients
+    "FOODON:03460263": 2,  # oil/fat processing
+    "FOODON:03460136": 2,  # sugar/syrup processing
+    "FOODON:00001158": 2,  # oil food product
+    "FOODON:00002275": 2,  # butter food product
+    "FOODON:03311436": 2,  # flour food product
+    "FOODON:00001250": 2,  # starch food product
+    "FOODON:00001185": 2,  # salt food product
+    "FOODON:03301103": 2,  # sugar food product
+    # NOVA 3 - Processed foods
+    "FOODON:03460232": 3,  # alcoholic fermentation (wine, beer)
+    "FOODON:03470104": 3,  # preservation by fermentation (pickles, yogurt)
+    "FOODON:03460253": 3,  # curing/aging process (cured meats, cheese)
+    "FOODON:03450005": 3,  # food baking process (bread)
+    "FOODON:03460190": 3,  # pickling process
+    "FOODON:03420086": 3,  # canned food product
+    "FOODON:00001013": 3,  # cheese food product
+    "FOODON:03307539": 3,  # bread food product
+    # NOVA 4 - Ultra-processed
+    "FOODON:03460270": 4,  # distillation (spirits)
+    "FOODON:03420228": 4,  # extraction - isolates, concentrates (when industrial)
+    "FOODON:00002626": 4,  # protein isolate
+}
+
 # Number of features extracted
 FOODON_FEATURE_DIM = 20
 
@@ -319,6 +348,65 @@ class FoodOnFeatureExtractor:
         features[19] = confidence  # match confidence
 
         return features
+
+    def get_nova_group(self, name: str) -> tuple[int | None, str, float]:
+        """
+        Determine NOVA group from FoodOn ontology classes.
+
+        Checks if term or its ancestors match NOVA processing classes.
+        Returns highest NOVA group found (4 > 3 > 2).
+
+        Args:
+            name: Ingredient name
+
+        Returns:
+            (nova_group, reason, confidence) - nova_group is None if no match
+        """
+        term, confidence = self.lookup(name)
+
+        if term is None:
+            return None, "no_foodon_match", 0.0
+
+        # Get all ancestor IDs
+        ancestors = set(a.id for a in term.superclasses())
+        ancestors.add(term.id)  # Include the term itself
+
+        # Check for NOVA processing classes in ancestors
+        # Priority: NOVA 4 > NOVA 3 > NOVA 2
+        found_nova = None
+        found_reason = None
+
+        for ancestor_id in ancestors:
+            if ancestor_id in NOVA_PROCESSING_CLASSES:
+                nova = NOVA_PROCESSING_CLASSES[ancestor_id]
+                if found_nova is None or nova > found_nova:
+                    found_nova = nova
+                    found_reason = f"foodon_{ancestor_id}"
+
+        if found_nova:
+            return found_nova, found_reason, confidence
+
+        # Check term name for processing keywords (fallback)
+        term_name_lower = (term.name or "").lower()
+
+        # NOVA 4 keywords
+        if any(w in term_name_lower for w in ["isolate", "hydrolyzed", "textured"]):
+            return 4, "foodon_keyword_ultraprocessed", confidence * 0.8
+
+        # NOVA 3 keywords
+        if any(w in term_name_lower for w in ["canned", "pickled", "cured", "smoked"]):
+            return 3, "foodon_keyword_processed", confidence * 0.8
+
+        # NOVA 2 keywords
+        if any(w in term_name_lower for w in ["oil", "butter", "sugar", "salt", "flour", "starch"]):
+            return 2, "foodon_keyword_culinary", confidence * 0.8
+
+        # NOVA 1: raw indicator or no processing found
+        if "raw" in term_name_lower or "(raw)" in term_name_lower:
+            return 1, "foodon_raw", confidence
+
+        # No specific NOVA indicator found
+        return None, "foodon_unclassified", confidence
 
 
 # Singleton instance for reuse
