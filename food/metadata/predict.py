@@ -682,7 +682,6 @@ class Predictor:
 
         # Matchers for categorical metadata (nearest neighbor approach)
         self.food_type_matcher = None
-        self.processing_matcher = None
         self.transport_matcher = None
         self.nova_matcher = None
 
@@ -872,6 +871,29 @@ class Predictor:
         if food_type in perishable_types:
             return "always"
         return "none"
+
+    def _compute_category(self, food_type: str, nova_group: int) -> str:
+        """Compute category directly from foodType and novaGroup.
+
+        This replaces the indirect lookup via DIMENSIONS_TO_CATEGORY.
+        NOVA 1 = raw/fresh, NOVA 2-4 = processed.
+        """
+        is_raw = nova_group == 1
+
+        if food_type in {"vegetable", "fruit"}:
+            return "vegetable_fresh" if is_raw else "vegetable_processed"
+        elif food_type == "grain":
+            return "grain_raw" if is_raw else "grain_processed"
+        elif food_type == "nut_oilseed":
+            return "nut_oilseed_raw" if is_raw else "nut_oilseed_processed"
+        elif food_type in {"meat", "fish_seafood"}:
+            return "animal_product"
+        elif food_type == "dairy":
+            return "dairy_product"
+        elif food_type == "spice_condiment":
+            return "spice_condiment_additive"
+        else:
+            return "misc"
 
     def _classify_nova(
         self, name: str, activity_name: str, food_type: str, binary_features: dict
@@ -1136,33 +1158,7 @@ class Predictor:
             ref_food_names, ref_food_types, ref_food_sources
         )
 
-        # 3b. Build processingState matcher (nearest neighbor)
-        if verbose:
-            timed_print("Building processingState matcher...")
-
-        # Extract processingState from training ingredients
-        ing_names_proc = [ing["name"] for ing in ingredients]
-        y_processing = []
-        proc_sources = []
-        for ing in ingredients:
-            base_cat = self._get_base_category(ing.get("categories", ["misc"]))
-            _, proc_state = CATEGORY_TO_DIMENSIONS.get(base_cat, ("misc", "processed"))
-            y_processing.append(proc_state)
-            proc_sources.append("ingredients.json")
-
-        # Add reference data from processing_state.csv
-        ref_proc_names, ref_proc_states, ref_proc_sources = (
-            _load_processing_state_data()
-        )
-        ing_names_proc.extend(ref_proc_names)
-        y_processing.extend(ref_proc_states)
-        proc_sources.extend(ref_proc_sources)
-
-        self.processing_matcher = self._build_matcher(
-            ing_names_proc, y_processing, proc_sources
-        )
-
-        # 3c. Build NOVA matcher (nearest neighbor on reference data only)
+        # 3b. Build NOVA matcher (nearest neighbor on reference data only)
         if verbose:
             timed_print("Building NOVA matcher...")
 
@@ -1362,10 +1358,8 @@ class Predictor:
             labels.append("bleublanccoeur")
         predictions["labels"] = labels
 
-        # 4. Build categories from foodType + processingState + labels
-        base_category = DIMENSIONS_TO_CATEGORY.get(
-            (food_type, processing_state), "misc"
-        )
+        # 4. Build categories from foodType + novaGroup + labels
+        base_category = self._compute_category(food_type, nova_group)
         predictions["categories"] = [base_category] + labels
 
         # 5. cropGroup (for vegetal types) - nearest neighbor matching
@@ -1500,7 +1494,6 @@ class Predictor:
         # Clear unpicklable references from matchers
         matchers = [
             self.food_type_matcher,
-            self.processing_matcher,
             self.transport_matcher,
             self.cropgroup_matcher,
             self.density_matcher,
@@ -1516,7 +1509,6 @@ class Predictor:
         state = {
             # Categorical matchers (nearest neighbor approach)
             "food_type_matcher": self.food_type_matcher,
-            "processing_matcher": self.processing_matcher,
             "transport_matcher": self.transport_matcher,
             # CropGroup matcher (nearest neighbor)
             "cropgroup_matcher": self.cropgroup_matcher,
