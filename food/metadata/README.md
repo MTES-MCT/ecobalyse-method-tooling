@@ -11,6 +11,8 @@ metadata/
 ├── generated/
 │   ├── predictions.csv            # Output: CSV with predictions + confidence
 │   └── new_activities.json        # Output: activities.json format
+├── data/
+│   └── foodon.owl                 # FoodOn ontology (auto-downloaded)
 ├── reference/
 │   ├── food_type.csv              # custom food type mappings
 │   ├── processing_state.csv       # custom processing state mappings
@@ -18,8 +20,8 @@ metadata/
 │   ├── cropgroup.csv              # custom crop group mappings
 │   ├── density.csv                # custom density values
 │   ├── inedible_part.csv          # custom inedible part percentages
-│   ├── fao_density.csv            # FAO density reference
-│   ├── agb_inedible.csv           # AGB inedible reference
+│   ├── fao_density.csv            # FAO density reference (do not modify)
+│   ├── agb_inedible.csv           # AGB inedible reference (do not modify)
 │   ├── cooked_to_raw.csv          # custom cooked/raw ratios
 │   └── transport_cooling.csv      # custom transport cooling
 ├── export.py                      # Main export script
@@ -41,13 +43,10 @@ TRAINING_DATA=../data/activities.json
 ## Usage
 
 ```bash
-uv run export.py                # Export predictions to CSV + JSON
-uv run export.py --clear-cache  # Clear translation cache first
-uv run validate_nova.py --folds 5  # Validate NOVA classification
+uv run export.py                   # Export predictions to CSV + JSON
+uv run export.py --clear-cache     # Clear translation cache first
+uv run validate_nova.py --folds 5  # Validate NOVA classification (5-fold CV)
 ```
-
-The `fao_density.csv` and `agb_inedible.csv` should not be changed, they are original AGB and FAO values.
-All other reference files can be adapted at will.
 
 ## Architecture
 
@@ -221,30 +220,45 @@ Match info includes source file and confidence:
 
 ## Feature Extraction
 
+Each ingredient is represented as a 48-dimensional feature vector (20 FoodOn + 28 regex).
+
 ### FoodOn Ontology Features (20 dimensions)
+
+The FoodOn ontology (~50K food terms) provides structured semantic features:
 
 ```
 Query: "Watermelon"
          ↓
-   FoodOn Ontology (52,628 food terms)
+   FoodOn Ontology lookup (exact/fuzzy match)
          ↓
-   Find top-20 most similar terms by word overlap
+   Extract ancestor categories from ontology graph
          ↓
-   [0.8, 0.6, 0.4, 0.3, ...] (20 similarity scores)
+   20-dim feature vector:
+     - dims 0-8:  Type flags (vegetable, fruit, grain, meat, fish, dairy, nut, spice, beverage)
+     - dims 9-13: Processing flags (raw, cooked, preserved, fermented, processed)
+     - dims 14-17: Source flags (plant, animal, fungus, mineral)
+     - dims 18-19: Numeric (hierarchy_depth, match_confidence)
 ```
 
-### Regex Binary Features (25 dimensions)
+### Regex Binary Features (28 dimensions)
+
+Pattern-based detection for French/English ingredient names:
 
 ```python
 DETECTION_PATTERNS = {
-    "is_meat": r"\b(viande|meat|boeuf|porc|poulet|...)\b",
-    "is_fish": r"\b(poisson|fish|saumon|thon|...)\b",
-    "is_dairy": r"\b(lait|milk|fromage|cheese|...)\b",
-    "is_vegetable": r"\b(légume|vegetable|carotte|...)\b",
-    "is_fruit": r"\b(fruit|pomme|orange|...)\b",
-    "is_frozen": r"\b(surgelé|frozen|congelé)\b",
-    "is_canned": r"\b(conserve|canned|boîte)\b",
-    # ... 25 total patterns
+    # Processing (9 patterns)
+    "is_organic", "is_fresh", "is_frozen", "is_cooked", "is_raw",
+    "is_dried", "is_processed", "is_canned", "is_smoked",
+
+    # Food types - Animals (5 patterns)
+    "is_meat", "is_fish", "is_seafood", "is_egg", "is_dairy",
+
+    # Food types - Plants (9 patterns)
+    "is_vegetable", "is_fruit", "is_grain", "is_legume", "is_nut_seed",
+    "is_oil_fat", "is_spice", "is_beverage", "is_sugar_sweet",
+
+    # LCA process info (5 patterns)
+    "at_farm_gate", "at_plant", "at_processing", "is_greenhouse", "is_heated_greenhouse"
 }
 ```
 
