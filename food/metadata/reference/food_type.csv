@@ -166,3 +166,18 @@ mussels,fish_seafood
 tapioca,grain
 bogue,fish_seafood
 hake,fish_seafood
+# Additional entries for items with sparse feature vectors
+amaranth,grain
+breadfruit,fruit
+jackfruit,fruit
+durian,fruit
+cassava,vegetable
+taro,vegetable
+yuca,vegetable
+manioc,vegetable
+triticale,grain
+sorghum,grain
+teff,grain
+kamut,grain
+farro,grain
+freekeh,grain

@@ -139,7 +139,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "animal_product"
+            "grain_raw"
           ],
           "ingredientDensity": 0.919,
           "ingredientDensityMatch": {
@@ -160,7 +160,13 @@
             "name": "Petit pois FR",
             "confidence": 1.0
           },
-          "visible": true
+          "visible": true,
+          "cropGroup": "AUTRES CEREALES",
+          "cropGroupMatch": {
+            "file": "cropgroup.csv",
+            "name": "amaranth",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -1335,7 +1341,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "animal_product"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.919,
           "ingredientDensityMatch": {
@@ -1356,7 +1362,13 @@
             "name": "Petit pois FR",
             "confidence": 1.0
           },
-          "visible": true
+          "visible": true,
+          "cropGroup": "VERGERS",
+          "cropGroupMatch": {
+            "file": "cropgroup.csv",
+            "name": "breadfruit",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -8503,10 +8515,10 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "COLZA",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "canola",
+            "name": "amaranth",
             "confidence": 1.0
           }
         }
@@ -10659,7 +10671,7 @@
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "rye",
+            "name": "sorghum",
             "confidence": 1.0
           }
         }
@@ -12146,10 +12158,10 @@
             "confidence": 0.999
           },
           "visible": true,
-          "cropGroup": "BLE TENDRE",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "couscous",
+            "name": "triticale",
             "confidence": 1.0
           }
         }
