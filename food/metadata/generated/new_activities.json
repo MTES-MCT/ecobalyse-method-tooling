@@ -104,9 +104,9 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "almond",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Amandes en coque UE",
+            "confidence": 1.0
           }
         }
       ]
@@ -296,37 +296,37 @@
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "file": "ingredients.json",
-            "name": "Abricot UE",
-            "confidence": 0.95
+            "name": "Poireau FR",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 1.023,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "apricot",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Guava nectar, canned",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Abricot UE",
-            "confidence": 0.95
+            "name": "Poireau FR",
+            "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Abricot UE",
-            "confidence": 0.95
+            "name": "Poireau FR",
+            "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "apricot",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Poireau FR",
+            "confidence": 1.0
           }
         }
       ]
@@ -464,11 +464,11 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Avocat",
           "id": "26531440-482a-451c-ba8e-9ab070dc6ef1",
-          "inediblePart": 0.3,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Avocados",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Prune UE",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -790,9 +790,9 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
-            "confidence": 0.551
+            "file": "cropgroup.csv",
+            "name": "paprika",
+            "confidence": 1.0
           }
         }
       ]
@@ -877,8 +877,8 @@
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "file": "agb_inedible.csv",
-            "name": "Beetroots",
-            "confidence": 0.95
+            "name": "Brussels sprout",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -1074,11 +1074,11 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "clementine",
-            "confidence": 1.0
+            "name": "currant",
+            "confidence": 0.95
           }
         }
       ]
@@ -1188,8 +1188,8 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
+            "file": "cropgroup.csv",
+            "name": "blueberry",
             "confidence": 1.0
           }
         }
@@ -1328,41 +1328,35 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "fruit à pain",
           "id": "92c49402-2ce5-4c5e-b068-c10422e039a0",
-          "inediblePart": 0.0,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "file": "inedible_part.csv",
-            "name": "bread",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Petit pois FR",
+            "confidence": 1.0
           },
           "ingredientCategories": [
-            "grain_raw"
+            "animal_product"
           ],
-          "ingredientDensity": 0.29,
+          "ingredientDensity": 0.919,
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
-            "name": "Bread",
-            "confidence": 0.95
+            "name": "Lard",
+            "confidence": 1.0
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "fruit",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Petit pois FR",
+            "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "transportCoolingMatch": {
-            "file": "transport_cooling.csv",
-            "name": "bread",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Petit pois FR",
+            "confidence": 1.0
           },
-          "visible": true,
-          "cropGroup": "BLE TENDRE",
-          "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "bread",
-            "confidence": 0.95
-          }
+          "visible": true
         }
       ]
     },
@@ -1755,7 +1749,7 @@
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "mandarin",
+            "name": "carambola",
             "confidence": 1.0
           }
         }
@@ -1844,11 +1838,11 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.45,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "carrot",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Cauliflower, boiled",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
@@ -1985,7 +1979,7 @@
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "cauliflower",
+            "name": "cassava",
             "confidence": 1.0
           }
         }
@@ -2100,10 +2094,10 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VIGNES",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "vinegar",
+            "name": "celeriac",
             "confidence": 1.0
           }
         }
@@ -2620,11 +2614,11 @@
             "confidence": 0.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "apple",
-            "confidence": 0.0
+            "name": "chive",
+            "confidence": 1.0
           }
         }
       ]
@@ -2681,9 +2675,9 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
-            "confidence": 0.99
+            "file": "cropgroup.csv",
+            "name": "cinnamon",
+            "confidence": 1.0
           }
         }
       ]
@@ -3000,20 +2994,20 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Café en grains",
           "id": "8d4c4165-7f0f-4628-b8e5-136c2e25cb64",
-          "inediblePart": 0.2,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Thé (feuilles) UE",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "misc"
           ],
-          "ingredientDensity": 0.8,
+          "ingredientDensity": 1.0,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "bean",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Coffee, brewed",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
@@ -3025,8 +3019,8 @@
           "transportCooling": "none",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Thé (feuilles) UE",
+            "confidence": 1.0
           },
           "visible": true
         }
@@ -3143,9 +3137,9 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Curcuma par défaut",
-            "confidence": 0.999
+            "file": "cropgroup.csv",
+            "name": "coriander",
+            "confidence": 1.0
           }
         }
       ]
@@ -3178,7 +3172,7 @@
             "confidence": 0.95
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_raw"
           ],
           "ingredientDensity": 0.72,
           "ingredientDensityMatch": {
@@ -3289,11 +3283,11 @@
           "defaultOrigin": "France",
           "displayName": "Vache",
           "id": "1b9f1056-fc8e-4db7-8425-5ff19b52e1c0",
-          "inediblePart": 0.2,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
             "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
+            "name": "Viande de boeuf sans os - vache de réforme 100% herbe FR",
+            "confidence": 0.95
           },
           "ingredientCategories": [
             "animal_product"
@@ -3304,18 +3298,18 @@
             "name": "cow",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.792,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
+            "name": "Viande de boeuf sans os - vache de réforme 100% herbe FR",
+            "confidence": 0.95
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
+            "name": "Viande de boeuf sans os - vache de réforme 100% herbe FR",
+            "confidence": 0.95
           },
           "visible": true,
           "animalGroup1": "cattle",
@@ -3354,11 +3348,11 @@
           "ingredientCategories": [
             "dairy_product"
           ],
-          "ingredientDensity": 0.911,
+          "ingredientDensity": 1.05,
           "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Butter",
-            "confidence": 1.0
+            "file": "density.csv",
+            "name": "cow",
+            "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
@@ -3483,10 +3477,10 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "clementine",
+            "name": "cranberry",
             "confidence": 1.0
           }
         }
@@ -3715,11 +3709,11 @@
             "confidence": 0.904
           },
           "visible": true,
-          "cropGroup": "PRAIRIES TEMPORAIRES",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Herbe de prairie temporaire FR",
-            "confidence": 0.904
+            "file": "cropgroup.csv",
+            "name": "dill",
+            "confidence": 0.95
           }
         }
       ]
@@ -3770,11 +3764,11 @@
           "transportCooling": "none",
           "transportCoolingMatch": null,
           "visible": true,
-          "cropGroup": "FRUITS A COQUES",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Autres fruits secs (non encore répertoriés)",
-            "confidence": 0.893
+            "file": "cropgroup.csv",
+            "name": "rosemary",
+            "confidence": 0.95
           }
         }
       ]
@@ -4369,35 +4363,35 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots flageolets verts",
           "id": "4253f429-5420-4e8e-842a-2403fe8adb11",
-          "inediblePart": 0.2,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
             "file": "ingredients.json",
-            "name": "Haricot flageolet UE",
-            "confidence": 0.95
+            "name": "Oignons déshydratés par défaut",
+            "confidence": 0.934
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.8,
+          "ingredientDensity": 0.75,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "bean",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Cowpeas, dried, boiled",
+            "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Haricot flageolet UE",
-            "confidence": 0.95
+            "name": "Oignons déshydratés par défaut",
+            "confidence": 0.934
           },
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Haricot flageolet UE",
+            "file": "cropgroup.csv",
+            "name": "flageolet",
             "confidence": 0.95
           }
         }
@@ -4424,14 +4418,14 @@
           "defaultOrigin": "France",
           "displayName": "graines de lin",
           "id": "47539f71-add8-411f-911b-92e2444bff9a",
-          "inediblePart": 0.0,
+          "inediblePart": 0.1,
           "inediblePartMatch": {
-            "file": "inedible_part.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Pomme de terre industrie FR",
+            "confidence": 0.919
           },
           "ingredientCategories": [
-            "nut_oilseed_raw"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.7,
           "ingredientDensityMatch": {
@@ -4439,18 +4433,18 @@
             "name": "Flaxseed",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.259,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Pomme de terre industrie FR",
+            "confidence": 0.919
           },
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "file": "transport_cooling.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Pomme de terre industrie FR",
+            "confidence": 0.919
           },
           "visible": true,
           "cropGroup": "AUTRES OLEAGINEUX",
@@ -4483,40 +4477,40 @@
           "defaultOrigin": "France",
           "displayName": "haricots verts",
           "id": "020de598-20d2-4924-b7f0-92095246039a",
-          "inediblePart": 0.1,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "French bean",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Oignons déshydratés par défaut",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.8,
+          "ingredientDensity": 0.55,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "bean",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Cassava,flour",
+            "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Oignons déshydratés par défaut",
+            "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Oignons déshydratés par défaut",
+            "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "PROTEAGINEUX",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Oignons déshydratés par défaut",
+            "confidence": 1.0
           }
         }
       ]
@@ -4571,11 +4565,11 @@
             "confidence": 0.854
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Champignon frais UE",
-            "confidence": 0.854
+            "file": "cropgroup.csv",
+            "name": "rosemary",
+            "confidence": 0.95
           }
         }
       ]
@@ -4744,9 +4738,9 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Curcuma par défaut",
-            "confidence": 0.999
+            "file": "cropgroup.csv",
+            "name": "ginger",
+            "confidence": 1.0
           }
         }
       ]
@@ -4854,10 +4848,10 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "mandarin",
+            "name": "gooseberry",
             "confidence": 1.0
           }
         }
@@ -4893,17 +4887,17 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.9,
           "ingredientDensityMatch": {
             "file": "density.csv",
-            "name": "grape",
-            "confidence": 0.95
+            "name": "blueberry",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "fruit",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Myrtille FR",
+            "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
@@ -4943,20 +4937,20 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Raisins (noirs ou blancs)",
           "id": "745e0b21-d9f9-43a7-9746-fb78d1b4d7e8",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Grape",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Poireau FR",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 1.023,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "grape",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Guava nectar, canned",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
@@ -4972,11 +4966,11 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VIGNES",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "grape",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Poireau FR",
+            "confidence": 1.0
           }
         }
       ]
@@ -5152,7 +5146,7 @@
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "clementine",
+            "name": "guava",
             "confidence": 1.0
           }
         }
@@ -5188,11 +5182,11 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 1.05,
           "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Milk shake, fruit and other",
-            "confidence": 0.95
+            "file": "density.csv",
+            "name": "tuna",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
@@ -5237,17 +5231,17 @@
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.55,
+          "ingredientDensity": 0.5,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "hazelnut",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Cashews",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "hazelnut",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Noix avec coque UE",
+            "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "none",
@@ -5259,9 +5253,9 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "hazelnut",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Noix avec coque UE",
+            "confidence": 1.0
           }
         }
       ]
@@ -5399,26 +5393,26 @@
           "defaultOrigin": "France",
           "displayName": "Raifort frais",
           "id": "6d62ef81-68f2-44be-9275-201ec5ac5fa0",
-          "inediblePart": 0.03,
+          "inediblePart": 0.1,
           "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Radish",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Carotte UE",
+            "confidence": 0.916
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.6,
+          "ingredientDensity": 0.45,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "radish",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Cauliflower, boiled",
+            "confidence": 0.916
           },
-          "rawToCookedRatio": 0.85,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "radish",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Carotte UE",
+            "confidence": 0.916
           },
           "scenario": "reference",
           "transportCooling": "always",
@@ -5430,9 +5424,9 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "radish",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Carotte UE",
+            "confidence": 0.916
           }
         }
       ]
@@ -5927,11 +5921,11 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lentille",
           "id": "3e9f3117-b76e-4474-883a-5cfe47988135",
-          "inediblePart": 0.0,
+          "inediblePart": 0.1,
           "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Lentilles Bio",
-            "confidence": 0.95
+            "file": "agb_inedible.csv",
+            "name": "Brussels sprout",
+            "confidence": 0.921
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -5952,8 +5946,8 @@
           "transportCooling": "none",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Lentilles Bio",
-            "confidence": 0.95
+            "name": "Moutarde FR",
+            "confidence": 0.921
           },
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
@@ -6041,40 +6035,40 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots de Lima",
           "id": "2336500f-942b-4d9a-8685-3f8e9e17f9c9",
-          "inediblePart": 0.2,
+          "inediblePart": 0.1,
           "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "file": "agb_inedible.csv",
+            "name": "Chinese or Japanese artichokes",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.8,
+          "ingredientDensity": 1.01,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "bean",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Green chartreuse",
+            "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Carotte UE",
+            "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Carotte UE",
+            "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "PROTEAGINEUX",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Carotte UE",
+            "confidence": 1.0
           }
         }
       ]
@@ -6332,31 +6326,31 @@
           "id": "14079411-8b21-4f3c-99f9-83a6ce6dabb5",
           "inediblePart": 0.5,
           "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Amandes en coque UE",
-            "confidence": 0.935
+            "file": "inedible_part.csv",
+            "name": "nut",
+            "confidence": 0.95
           },
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.55,
+          "ingredientDensity": 0.6,
           "ingredientDensityMatch": {
             "file": "density.csv",
-            "name": "almond",
-            "confidence": 1.0
+            "name": "nut",
+            "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
-            "name": "chestnut",
-            "confidence": 0.935
+            "name": "nut",
+            "confidence": 0.95
           },
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "file": "ingredients.json",
-            "name": "Amandes en coque UE",
-            "confidence": 0.935
+            "file": "transport_cooling.csv",
+            "name": "nut",
+            "confidence": 0.95
           },
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
@@ -6707,11 +6701,11 @@
             "confidence": 0.921
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "beetroot",
-            "confidence": 0.921
+            "name": "mint",
+            "confidence": 1.0
           }
         }
       ]
@@ -6982,11 +6976,11 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.79,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "mussel",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Kidney beans, dry, boiled",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
@@ -7287,9 +7281,9 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
-            "confidence": 0.983
+            "file": "cropgroup.csv",
+            "name": "nutmeg",
+            "confidence": 1.0
           }
         }
       ]
@@ -7442,18 +7436,18 @@
             "name": "Olives, green, with stone",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Olive UE",
-            "confidence": 0.95
+            "name": "Poireau FR",
+            "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Olive UE",
-            "confidence": 0.95
+            "name": "Poireau FR",
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "OLIVIERS",
@@ -7548,37 +7542,37 @@
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "file": "ingredients.json",
-            "name": "Orange UE",
-            "confidence": 0.95
+            "name": "Poireau FR",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.95,
+          "ingredientDensity": 1.023,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "orange",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Guava nectar, canned",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Orange UE",
-            "confidence": 0.95
+            "name": "Poireau FR",
+            "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Orange UE",
-            "confidence": 0.95
+            "name": "Poireau FR",
+            "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "orange",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Poireau FR",
+            "confidence": 1.0
           }
         }
       ]
@@ -7695,7 +7689,7 @@
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "apricot",
+            "name": "papaya",
             "confidence": 1.0
           }
         }
@@ -7751,11 +7745,11 @@
             "confidence": 0.904
           },
           "visible": true,
-          "cropGroup": "PRAIRIES TEMPORAIRES",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Herbe de prairie temporaire FR",
-            "confidence": 0.904
+            "file": "cropgroup.csv",
+            "name": "parsley",
+            "confidence": 0.95
           }
         }
       ]
@@ -7872,7 +7866,7 @@
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "pear",
+            "name": "passion fruit",
             "confidence": 1.0
           }
         }
@@ -7899,26 +7893,26 @@
           "defaultOrigin": "France",
           "displayName": "Pêches",
           "id": "fd6dbe64-1a61-4fab-9c2d-9c0917923141",
-          "inediblePart": 0.2,
+          "inediblePart": 0.1,
           "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Peach",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Radis FR",
+            "confidence": 0.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 1.043,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "peach",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
+            "confidence": 0.0
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "peach",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Radis FR",
+            "confidence": 0.0
           },
           "scenario": "reference",
           "transportCooling": "always",
@@ -7931,8 +7925,8 @@
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "peach",
-            "confidence": 0.95
+            "name": "apple",
+            "confidence": 0.0
           }
         }
       ]
@@ -8085,11 +8079,11 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.95,
+          "ingredientDensity": 1.023,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "pear",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Guava nectar, canned",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
@@ -8247,11 +8241,11 @@
           "defaultOrigin": "France",
           "displayName": "Cochon",
           "id": "33bb88c2-37fd-41bc-95af-6efa9ec1e60d",
-          "inediblePart": 0.2,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
             "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
+            "name": "Foie de porc cru FR",
+            "confidence": 0.95
           },
           "ingredientCategories": [
             "animal_product"
@@ -8262,18 +8256,18 @@
             "name": "pig",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.73,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
+            "name": "Foie de porc cru FR",
+            "confidence": 0.95
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
+            "name": "Foie de porc cru FR",
+            "confidence": 0.95
           },
           "visible": true,
           "animalGroup1": "pig",
@@ -8432,9 +8426,9 @@
           ],
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "pistachio",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Cashews",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
@@ -8452,9 +8446,9 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "pistachio",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Noix avec coque UE",
+            "confidence": 1.0
           }
         }
       ]
@@ -8600,39 +8594,33 @@
           "id": "9a3d4df3-c162-49fe-a207-06d074d85741",
           "inediblePart": 0.0,
           "inediblePartMatch": {
-            "file": "inedible_part.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Poitrine de porc FR",
+            "confidence": 1.0
           },
           "ingredientCategories": [
-            "nut_oilseed_raw"
+            "animal_product"
           ],
-          "ingredientDensity": 0.7,
+          "ingredientDensity": 1.018,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Guanabana nectar, canned",
+            "confidence": 1.0
           },
-          "rawToCookedRatio": 2.259,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Poitrine de porc FR",
+            "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "transportCoolingMatch": {
-            "file": "transport_cooling.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Poitrine de porc FR",
+            "confidence": 1.0
           },
-          "visible": true,
-          "cropGroup": "AUTRES OLEAGINEUX",
-          "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "seed",
-            "confidence": 0.95
-          }
+          "visible": true
         }
       ]
     },
@@ -8660,7 +8648,7 @@
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "file": "ingredients.json",
-            "name": "Pomme de terre de table FR",
+            "name": "Pomme de terre de table Bio",
             "confidence": 0.95
           },
           "ingredientCategories": [
@@ -8682,7 +8670,7 @@
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Pomme de terre de table FR",
+            "name": "Pomme de terre de table Bio",
             "confidence": 0.95
           },
           "visible": true,
@@ -9024,8 +9012,8 @@
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Radis Bio",
-            "confidence": 0.95
+            "name": "Brocoli UE",
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
@@ -9148,8 +9136,8 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Framboise UE",
+            "file": "cropgroup.csv",
+            "name": "raspberry",
             "confidence": 1.0
           }
         }
@@ -9237,34 +9225,34 @@
           "id": "be65b735-2b43-4cf7-ae78-187e306e3dc2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "file": "agb_inedible.csv",
+            "name": "Red endive",
+            "confidence": 0.931
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.8,
+          "ingredientDensity": 1.0,
           "ingredientDensityMatch": {
             "file": "density.csv",
-            "name": "bean",
-            "confidence": 0.95
+            "name": "grape",
+            "confidence": 0.931
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Mandarine par défaut",
+            "confidence": 0.928
           },
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
           "visible": true,
-          "cropGroup": "LEGUMINEUSES A GRAIN",
+          "cropGroup": "VIGNES",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "red bean",
-            "confidence": 0.95
+            "name": "grape",
+            "confidence": 0.931
           }
         }
       ]
@@ -9319,11 +9307,11 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "COLZA",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "canola",
-            "confidence": 1.0
+            "name": "currant",
+            "confidence": 0.95
           }
         }
       ]
@@ -9600,9 +9588,9 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Curcuma par défaut",
-            "confidence": 0.999
+            "file": "cropgroup.csv",
+            "name": "saffron",
+            "confidence": 1.0
           }
         }
       ]
@@ -9749,11 +9737,11 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.72,
+          "ingredientDensity": 0.73,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "corn",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Fresh green peas (minji)",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
@@ -9769,11 +9757,11 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "MAIS GRAIN ET ENSILAGE",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "corn",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Champignon frais UE",
+            "confidence": 1.0
           }
         }
       ]
@@ -9911,33 +9899,33 @@
           "defaultOrigin": "France",
           "displayName": "Sardines",
           "id": "b687f2a3-1b5e-45dd-b5d5-d5acca79ae47",
-          "inediblePart": 0.2,
+          "inediblePart": 0.4,
           "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Sardine FR",
-            "confidence": 0.95
+            "file": "agb_inedible.csv",
+            "name": "Crevalle jack",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.933,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "sardine",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Tuna noodle casserole",
+            "confidence": 0.919
           },
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 0.819,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Sardine FR",
-            "confidence": 0.95
+            "name": "Truite d'élevage FR",
+            "confidence": 0.919
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
             "file": "ingredients.json",
-            "name": "Sardine FR",
-            "confidence": 0.95
+            "name": "Truite d'élevage FR",
+            "confidence": 0.919
           },
           "visible": true
         }
@@ -9964,11 +9952,11 @@
           "defaultOrigin": "France",
           "displayName": "Coquilles saint-jacques",
           "id": "5ced06c2-2304-4157-bbb6-ca51eb3c9ee7",
-          "inediblePart": 0.86,
+          "inediblePart": 0.75,
           "inediblePartMatch": {
             "file": "agb_inedible.csv",
-            "name": "Scallop",
-            "confidence": 0.95
+            "name": "Mussels",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "animal_product"
@@ -10094,8 +10082,8 @@
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
+            "file": "transport_cooling.csv",
+            "name": "salt",
             "confidence": 0.95
           },
           "visible": true
@@ -10243,31 +10231,31 @@
           "id": "2aeb443a-8d2c-4d0c-930b-9b57dfa5686a",
           "inediblePart": 0.0,
           "inediblePartMatch": {
-            "file": "inedible_part.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Huile de tournesol par défaut",
+            "confidence": 0.896
           },
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.7,
+          "ingredientDensity": 0.4,
           "ingredientDensityMatch": {
             "file": "density.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "name": "sunflower",
+            "confidence": 0.896
           },
-          "rawToCookedRatio": 2.259,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Huile de tournesol par défaut",
+            "confidence": 0.896
           },
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "once_transformed",
           "transportCoolingMatch": {
-            "file": "transport_cooling.csv",
-            "name": "seed",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Huile de tournesol par défaut",
+            "confidence": 0.896
           },
           "visible": true,
           "cropGroup": "AUTRES OLEAGINEUX",
@@ -10530,17 +10518,17 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.054,
+          "ingredientDensity": 0.8,
           "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Bean soup",
-            "confidence": 0.916
+            "file": "density.csv",
+            "name": "pea",
+            "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Fécule de pomme de terre par défaut",
-            "confidence": 0.916
+            "file": "cooked_to_raw.csv",
+            "name": "pea",
+            "confidence": 0.95
           },
           "scenario": "reference",
           "transportCooling": "none",
@@ -10550,11 +10538,11 @@
             "confidence": 0.916
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "potato",
-            "confidence": 0.916
+            "name": "pea",
+            "confidence": 0.95
           }
         }
       ]
@@ -10996,13 +10984,13 @@
           "ingredientDensityMatch": {
             "file": "density.csv",
             "name": "pea",
-            "confidence": 0.989
+            "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
             "name": "pea",
-            "confidence": 0.989
+            "confidence": 0.95
           },
           "scenario": "reference",
           "transportCooling": "none",
@@ -11110,17 +11098,17 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.04,
+          "ingredientDensity": 0.8,
           "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Githeri (muthugo + beans) + vegetable",
-            "confidence": 0.942
+            "file": "density.csv",
+            "name": "pea",
+            "confidence": 0.95
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Haricot flageolet UE",
-            "confidence": 0.942
+            "file": "cooked_to_raw.csv",
+            "name": "pea",
+            "confidence": 0.95
           },
           "scenario": "reference",
           "transportCooling": "none",
@@ -11130,11 +11118,11 @@
             "confidence": 0.942
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Haricot flageolet UE",
-            "confidence": 0.942
+            "file": "cropgroup.csv",
+            "name": "pea",
+            "confidence": 0.95
           }
         }
       ]
@@ -11415,8 +11403,8 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Fraise UE",
+            "file": "cropgroup.csv",
+            "name": "strawberry",
             "confidence": 1.0
           }
         }
@@ -11622,9 +11610,9 @@
           "id": "453e8b2b-9f81-4d40-8299-e43f08bcc89b",
           "inediblePart": 0.1,
           "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Sweet potatoes or Yams",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Ail FR",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -11652,8 +11640,8 @@
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "potato",
-            "confidence": 0.95
+            "name": "sweet potato",
+            "confidence": 1.0
           }
         }
       ]
@@ -11753,11 +11741,11 @@
             "name": "Lard",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.819,
+          "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "fish",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Petit pois FR",
+            "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
@@ -11875,8 +11863,8 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Soupe déshydratée ES",
+            "file": "cropgroup.csv",
+            "name": "tapioca",
             "confidence": 1.0
           }
         }
@@ -11934,9 +11922,9 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 1.0
+            "file": "cropgroup.csv",
+            "name": "taro",
+            "confidence": 0.95
           }
         }
       ]
@@ -11991,11 +11979,11 @@
             "confidence": 0.883
           },
           "visible": true,
-          "cropGroup": "TOURNESOL",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Autres huiles (non encore répertoriées)",
-            "confidence": 0.883
+            "file": "cropgroup.csv",
+            "name": "tarragon",
+            "confidence": 0.95
           }
         }
       ]
@@ -12239,9 +12227,9 @@
           "id": "dadf11d4-4a4a-4fe7-89e2-8ea2ddd297ec",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Turnips",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Brocoli UE",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -12327,9 +12315,9 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
-            "confidence": 0.992
+            "file": "cropgroup.csv",
+            "name": "vanilla",
+            "confidence": 0.95
           }
         }
       ]
@@ -12420,11 +12408,11 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.5,
+          "ingredientDensity": 0.919,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "walnut",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Lard",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
@@ -12578,36 +12566,36 @@
           "defaultOrigin": "France",
           "displayName": "Haricots blancs séchés",
           "id": "62021732-76ee-4358-8d3b-d886aa91e7a3",
-          "inediblePart": 0.2,
+          "inediblePart": 0.1,
           "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "file": "agb_inedible.csv",
+            "name": "Chinese or Japanese artichokes",
+            "confidence": 0.914
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.8,
+          "ingredientDensity": 1.01,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "bean",
-            "confidence": 0.95
+            "file": "fao_density.csv",
+            "name": "Green chartreuse",
+            "confidence": 0.914
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
+            "name": "Carotte UE",
+            "confidence": 0.914
           },
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
           "visible": true,
-          "cropGroup": "LEGUMINEUSES A GRAIN",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "file": "cropgroup.csv",
-            "name": "white bean",
-            "confidence": 0.95
+            "file": "ingredients.json",
+            "name": "Carotte UE",
+            "confidence": 0.914
           }
         }
       ]
@@ -12822,8 +12810,8 @@
           "ingredientDensity": 0.72,
           "ingredientDensityMatch": {
             "file": "fao_density.csv",
-            "name": "Corn/maize, whole shelled",
-            "confidence": 1.0
+            "name": "Rye",
+            "confidence": 0.95
           },
           "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
@@ -12839,11 +12827,11 @@
             "confidence": 0.993
           },
           "visible": true,
-          "cropGroup": "BLE TENDRE",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "pasta",
-            "confidence": 0.993
+            "name": "rye",
+            "confidence": 0.95
           }
         }
       ]
@@ -12878,17 +12866,17 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.04,
+          "ingredientDensity": 0.8,
           "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Githeri (muthugo + beans) + vegetable",
-            "confidence": 0.942
+            "file": "density.csv",
+            "name": "pea",
+            "confidence": 0.95
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Haricot flageolet UE",
-            "confidence": 0.942
+            "file": "cooked_to_raw.csv",
+            "name": "pea",
+            "confidence": 0.95
           },
           "scenario": "reference",
           "transportCooling": "none",
@@ -12898,11 +12886,11 @@
             "confidence": 0.942
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "file": "ingredients.json",
-            "name": "Haricot flageolet UE",
-            "confidence": 0.942
+            "file": "cropgroup.csv",
+            "name": "pea",
+            "confidence": 0.95
           }
         }
       ]
@@ -12937,11 +12925,11 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.79,
           "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "cauliflower",
-            "confidence": 1.0
+            "file": "fao_density.csv",
+            "name": "Yam, boiled",
+            "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
@@ -12960,7 +12948,7 @@
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "file": "cropgroup.csv",
-            "name": "cauliflower",
+            "name": "yam",
             "confidence": 1.0
           }
         }

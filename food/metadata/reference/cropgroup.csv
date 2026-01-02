@@ -153,3 +153,55 @@ white bean,LEGUMINEUSES A GRAIN
 flageolet,LEGUMINEUSES A GRAIN
 fava bean,LEGUMINEUSES A GRAIN
 split pea,LEGUMINEUSES A GRAIN
+# Berries (LEGUMES-FLEURS - ground-growing fruits)
+blueberry,LEGUMES-FLEURS
+blackberry,LEGUMES-FLEURS
+raspberry,LEGUMES-FLEURS
+cranberry,LEGUMES-FLEURS
+currant,LEGUMES-FLEURS
+gooseberry,LEGUMES-FLEURS
+strawberry,LEGUMES-FLEURS
+# Root vegetables
+celeriac,LEGUMES-FLEURS
+cassava,LEGUMES-FLEURS
+tapioca,LEGUMES-FLEURS
+yam,LEGUMES-FLEURS
+taro,LEGUMES-FLEURS
+sweet potato,LEGUMES-FLEURS
+# Tropical fruits (VERGERS)
+breadfruit,VERGERS
+jackfruit,VERGERS
+durian,VERGERS
+papaya,VERGERS
+passion fruit,VERGERS
+guava,VERGERS
+starfruit,VERGERS
+carambola,VERGERS
+dragon fruit,VERGERS
+# Herbs and spices (DIVERS)
+tarragon,DIVERS
+basil,DIVERS
+oregano,DIVERS
+parsley,DIVERS
+cilantro,DIVERS
+coriander,DIVERS
+dill,DIVERS
+chive,DIVERS
+mint,DIVERS
+sage,DIVERS
+rosemary,DIVERS
+thyme,DIVERS
+bay leaf,DIVERS
+marjoram,DIVERS
+ginger,DIVERS
+turmeric,DIVERS
+pepper,DIVERS
+salt,DIVERS
+vanilla,DIVERS
+cinnamon,DIVERS
+nutmeg,DIVERS
+clove,DIVERS
+cardamom,DIVERS
+cumin,DIVERS
+paprika,DIVERS
+saffron,DIVERS

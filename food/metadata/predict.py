@@ -455,31 +455,32 @@ class NearestNeighborMatcher:
                     value = float(value)
                 return value, 1.0, self.names[i], self.sources[i]
 
-        # 2. Try substring match (prioritize longer matches, min 4 chars to avoid false matches)
-        MIN_SUBSTRING_LENGTH = 4
-        substring_matches = []
+        # 2. Try word match (reference word appears as complete word in query, or vice versa)
+        # Uses word boundaries to avoid false positives like "bread" matching "breadfruit"
+        def is_word_match(word: str, text: str) -> bool:
+            """Check if word appears as a complete word in text."""
+            if len(word) < 3:  # Skip very short words
+                return False
+            return bool(re.search(r'\b' + re.escape(word) + r'\b', text))
+
+        word_matches = []
         for i, (name_low, trans_low) in enumerate(
             zip(self.names_lower, self.translated_lower)
         ):
-            # Check if reference name is contained in query (min length required)
-            if len(name_low) >= MIN_SUBSTRING_LENGTH and name_low in query_lower:
-                substring_matches.append((i, len(name_low)))
-            elif (
-                len(trans_low) >= MIN_SUBSTRING_LENGTH and trans_low in query_translated
-            ):
-                substring_matches.append((i, len(trans_low)))
-            # Check if query is contained in reference (min length required)
-            elif len(query_lower) >= MIN_SUBSTRING_LENGTH and query_lower in name_low:
-                substring_matches.append((i, len(query_lower)))
-            elif (
-                len(query_translated) >= MIN_SUBSTRING_LENGTH
-                and query_translated in trans_low
-            ):
-                substring_matches.append((i, len(query_translated)))
+            # Check if reference name appears as word in query
+            if is_word_match(name_low, query_lower):
+                word_matches.append((i, len(name_low)))
+            elif is_word_match(trans_low, query_translated):
+                word_matches.append((i, len(trans_low)))
+            # Check if query appears as word in reference
+            elif is_word_match(query_lower, name_low):
+                word_matches.append((i, len(query_lower)))
+            elif is_word_match(query_translated, trans_low):
+                word_matches.append((i, len(query_translated)))
 
-        if substring_matches:
-            # Return the longest substring match
-            best_i, _ = max(substring_matches, key=lambda x: x[1])
+        if word_matches:
+            # Return the longest word match
+            best_i, _ = max(word_matches, key=lambda x: x[1])
             value = self.values[best_i]
             if isinstance(value, (int, float, np.number)):
                 value = float(value)
