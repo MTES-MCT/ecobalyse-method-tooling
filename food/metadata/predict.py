@@ -825,18 +825,30 @@ class Predictor:
             return "dairy_product"
         return None
 
-    def _predict_transport_by_rules(self, binary_features: dict) -> str | None:
-        """Apply deterministic rules for transportCooling. Returns None if no rule matches."""
+    def _predict_transport_by_rules(
+        self, binary_features: dict, food_type: str, nova_group: int
+    ) -> str | None:
+        """Apply deterministic rules for transportCooling based on features, foodType and NOVA.
+
+        Returns None if no rule matches (falls back to nearest neighbor matcher).
+        """
+        # Packaging-based rules (highest priority)
         if binary_features.get("is_frozen"):
             return "always"
-        if binary_features.get("is_fresh") and (
-            binary_features.get("is_fish")
-            or binary_features.get("is_seafood")
-            or binary_features.get("is_meat")
-            or binary_features.get("is_dairy")
-        ):
+        if binary_features.get("is_dried") or binary_features.get("is_canned"):
+            return "none"
+
+        # NOVA 1 (raw/fresh) + perishable foodType → needs cooling
+        perishable_types = {"vegetable", "fruit", "meat", "fish_seafood", "dairy"}
+        if nova_group == 1 and food_type in perishable_types:
             return "always"
-        return None
+
+        # Non-perishable types → no cooling needed
+        non_perishable_types = {"grain", "nut_oilseed", "spice_condiment"}
+        if food_type in non_perishable_types:
+            return "none"
+
+        return None  # fallback to matcher for edge cases
 
     def _detect_packaging(self, text: str) -> tuple[str | None, str | None]:
         """
@@ -1387,7 +1399,9 @@ class Predictor:
             transport_cooling = transport_cooling or "none"
             predictions["transportCoolingMatch"] = None
         else:
-            transport_cooling = self._predict_transport_by_rules(binary_features)
+            transport_cooling = self._predict_transport_by_rules(
+                binary_features, food_type, nova_group
+            )
             if transport_cooling:
                 predictions["transportCoolingMatch"] = None
             else:

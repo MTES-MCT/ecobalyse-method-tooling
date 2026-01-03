@@ -75,7 +75,7 @@ ingredients.json ──────┐
             │  └────────────────┘  │      │  • cooked_to_raw.csv        │
             │  ┌────────────────┐  │      │  • transport_cooling.csv    │
             │  │ Regex Patterns │  │      └─────────────┬───────────────┘
-            │  │ (25 binary)    │  │                    │
+            │  │ (28 binary)    │  │                    │
             │  └────────────────┘  │                    │
             └──────────┬───────────┘                    │
                        │                                │
@@ -85,7 +85,6 @@ ingredients.json ──────┐
             │                                                         │
             │   foodType_matcher ←── food_type.csv only               │
             │   nova_matcher ←── nova_classification.csv              │
-            │   processingState_matcher ←── ingredients + CSV         │
             │   cropGroup_matcher ←── ingredients + CSV               │
             │   transportCooling_matcher ←── ingredients + CSV        │
             │   density_matcher ←── ingredients + CSV                 │
@@ -113,16 +112,16 @@ New Ingredient
 │   └─────────────────────────────────────────────────────────┘     │
 │                          │                                        │
 │                          ▼ (if no exact match)                    │
-│   PRIORITY 2: Substring Match (confidence = 0.95)                 │
+│   PRIORITY 2: Word Boundary Match (confidence = 0.95)             │
 │   ┌─────────────────────────────────────────────────────────┐     │
-│   │ Minimum 5 characters required (to avoid false matches)  │     │
-│   │ Longest match wins                                       │     │
+│   │ Uses regex \b word boundaries to match complete words   │     │
+│   │ Prevents false positives like "bread" in "breadfruit"   │     │
 │   └─────────────────────────────────────────────────────────┘     │
 │                          │                                        │
-│                          ▼ (if no substring match)                │
+│                          ▼ (if no word match)                     │
 │   PRIORITY 3: FoodOn + Regex Similarity (confidence = cosine)     │
 │   ┌─────────────────────────────────────────────────────────┐     │
-│   │ 45-dim feature vector: 20 FoodOn + 25 regex             │     │
+│   │ 48-dim feature vector: 20 FoodOn + 28 regex             │     │
 │   │ Cosine similarity with all reference items              │     │
 │   └─────────────────────────────────────────────────────────┘     │
 └───────────────────────────────────────────────────────────────────┘
@@ -267,8 +266,45 @@ DETECTION_PATTERNS = {
 | Match Type | Confidence |
 |------------|------------|
 | Exact match | 1.0 |
-| Substring match (min 5 chars) | 0.95 |
+| Word boundary match | 0.95 |
 | FoodOn + regex similarity | 0.0 - 1.0 (cosine) |
+
+## Category Computation
+
+Categories are computed directly from `foodType + novaGroup`:
+
+```python
+def _compute_category(food_type, nova_group):
+    is_raw = nova_group == 1
+
+    if food_type in {"vegetable", "fruit"}:
+        return "vegetable_fresh" if is_raw else "vegetable_processed"
+    elif food_type == "grain":
+        return "grain_raw" if is_raw else "grain_processed"
+    elif food_type == "nut_oilseed":
+        return "nut_oilseed_raw" if is_raw else "nut_oilseed_processed"
+    elif food_type in {"meat", "fish_seafood"}:
+        return "animal_product"
+    elif food_type == "dairy":
+        return "dairy_product"
+    elif food_type == "spice_condiment":
+        return "spice_condiment_additive"
+    else:
+        return "misc"
+```
+
+## transportCooling Rules
+
+transportCooling is determined by rules based on `foodType + novaGroup`:
+
+```
+1. Packaging detection (frozen → always, dried/canned → none)
+2. NOVA 1 (raw) + perishable type (vegetable, fruit, meat, fish, dairy) → always
+3. Non-perishable types (grain, nut_oilseed, spice_condiment) → none
+4. Fallback: nearest neighbor matching
+```
+
+This rule-based approach handles ~97% of items (220/228), with only edge cases falling back to the matcher.
 
 ## Example
 
