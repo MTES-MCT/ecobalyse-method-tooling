@@ -877,6 +877,68 @@ class Predictor:
         match_words = set(w.lower() for w in re.split(r'\W+', match) if len(w) > 3)
         return bool(query_words & match_words)
 
+    def _detect_inedible_from_keywords(self, name: str, activity: str) -> float | None:
+        """Detect inedible part from processing keywords.
+
+        Returns a value if keywords indicate definitive processing state,
+        None otherwise to fall back to matcher.
+        """
+        text = f"{name} {activity}".lower()
+
+        # Fillet/boneless = 0 (bones removed by definition)
+        if re.search(r"\b(fillet|filet|filé|boneless|désossé)\b", text):
+            return 0.0
+
+        # Shelled/peeled = 0 (shell/peel removed)
+        if re.search(r"\b(shelled|peeled|décortiqué|pelé)\b", text):
+            return 0.0
+
+        # Canned/frozen processed = 0 (pre-processed)
+        if re.search(r"\b(canned|conserve|frozen|surgelé)\b", text):
+            return 0.0
+
+        # With shell = high (shell is inedible)
+        if re.search(r"\b(with\s+shell|avec\s+coquille|in\s+shell)\b", text):
+            return 0.50
+
+        # With bone = medium (bone is inedible)
+        if re.search(r"\b(with\s+bone|avec\s+os)\b", text):
+            return 0.20
+
+        return None  # No keyword found, fall back to matcher
+
+    def _get_default_inedible_part(self, food_type: str, nova_group: int) -> float:
+        """Return sensible default inedible part by foodType and processing level.
+
+        Uses novaGroup to adjust: processed items (NOVA 2-4) typically have
+        lower inedible parts since processing removes waste.
+        """
+        # Processed items (NOVA 2-4) typically have 0 inedible
+        if nova_group >= 2:
+            if food_type in {"dairy", "grain", "spice_condiment", "beverage"}:
+                return 0.0
+            if food_type == "nut_oilseed":
+                return 0.0  # Assume shelled if processed
+            if food_type == "fish_seafood":
+                return 0.0  # Assume fillet if processed
+            if food_type == "meat":
+                return 0.0  # Assume boneless if processed
+
+        # Raw items (NOVA 1) have varying inedible parts
+        # Values from inedible_part.csv and AGB reference data
+        FOODTYPE_INEDIBLE = {
+            "meat": 0.05,  # Mostly boneless (AGB boneless ~0)
+            "fish_seafood": 0.40,  # Whole fish at landing (AGB average)
+            "dairy": 0.0,
+            "grain": 0.0,
+            "vegetable": 0.20,  # From inedible_part.csv "fresh vegetable"
+            "fruit": 0.20,  # From inedible_part.csv "fresh fruit"
+            "nut_oilseed": 0.50,  # In shell (AGB nuts)
+            "spice_condiment": 0.0,
+            "beverage": 0.0,
+        }
+        return FOODTYPE_INEDIBLE.get(food_type, 0.10)
+
     def _detect_packaging(self, text: str) -> tuple[str | None, str | None]:
         """
         Detect packaging type from text and return (packaging, transportCooling).
@@ -1455,11 +1517,26 @@ class Predictor:
             predictions["densityMatch"] = None
         predictions["density"] = round(density_val, 3)
 
-        inedible_val, conf, match, source = self.inedible_matcher.predict(
-            name, translate_fn=self._translate
-        )
-        predictions["inediblePart"] = round(inedible_val, 2)
-        predictions["inediblePartMatch"] = _match(source, match, conf)
+        # 9. InediblePart (keywords first, then matcher with validation, then default)
+        keyword_inedible = self._detect_inedible_from_keywords(name, activity)
+        if keyword_inedible is not None:
+            # Keyword-based (fillet, shelled, etc.) - high confidence
+            predictions["inediblePart"] = round(keyword_inedible, 2)
+            predictions["inediblePartMatch"] = None
+        else:
+            inedible_val, conf, match, source = self.inedible_matcher.predict(
+                name, translate_fn=self._translate
+            )
+            # Validate matcher result (must share words to avoid sparse vector issues)
+            is_valid = conf >= 0.95 and self._is_related_match(name, match)
+            if is_valid:
+                predictions["inediblePart"] = round(inedible_val, 2)
+                predictions["inediblePartMatch"] = _match(source, match, conf)
+            else:
+                # Fall back to foodType/novaGroup default
+                default_inedible = self._get_default_inedible_part(food_type, nova_group)
+                predictions["inediblePart"] = round(default_inedible, 2)
+                predictions["inediblePartMatch"] = None
 
         ratio_val, conf, match, source = self.ratio_matcher.predict(
             name, translate_fn=self._translate

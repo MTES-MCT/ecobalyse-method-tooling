@@ -358,6 +358,48 @@ Items without FoodOn/regex matches get identical sparse feature vectors (only 2 
 
 Current distribution: ~46% direct matches, ~54% foodType defaults.
 
+## InediblePart Prediction
+
+InediblePart uses a 3-tier approach:
+
+```
+1. Keyword Detection (processing indicators)
+   ├─ "fillet", "boneless" → 0.0 (bones removed)
+   ├─ "shelled", "peeled" → 0.0 (shell/peel removed)
+   ├─ "canned", "frozen" → 0.0 (pre-processed)
+   ├─ "with shell", "in shell" → 0.50 (shell is inedible)
+   └─ "with bone" → 0.20 (bone is inedible)
+
+2. Matcher with Semantic Validation
+   └─ Only accept if query and match share a word
+
+3. FoodType + NovaGroup Defaults
+   ├─ NOVA 2-4 (processed): 0.0 for most types
+   └─ NOVA 1 (raw): foodType-specific values
+```
+
+### Default Values by FoodType (NOVA 1)
+
+| FoodType | Default | Source |
+|----------|---------|--------|
+| meat | 0.05 | Mostly boneless (AGB ~0) |
+| fish_seafood | 0.40 | AGB whole fish average |
+| dairy | 0.0 | Always edible |
+| grain | 0.0 | Always edible |
+| vegetable | 0.20 | inedible_part.csv "fresh vegetable" |
+| fruit | 0.20 | inedible_part.csv "fresh fruit" |
+| nut_oilseed | 0.50 | AGB nuts in shell |
+| spice_condiment | 0.0 | Always edible |
+
+### NovaGroup Adjustment
+
+Processed items (NOVA 2-4) typically have inedible parts removed:
+- Fish fillet (NOVA 3) → 0.0 (not 0.40)
+- Shelled nuts (NOVA 2) → 0.0 (not 0.50)
+- Canned vegetables → 0.0 (not 0.15)
+
+Current distribution: ~23% matcher matches, ~77% rules/defaults.
+
 ## Example
 
 Input: `{"name": "Salmon fillet", "activityName": "Salmon, fillet, at plant {NO}"}`
@@ -373,7 +415,7 @@ Step 2: For each field, find best match:
   ├─ cropGroup:        N/A (animal product)
   ├─ transportCooling: always (rule: NOVA 1 + fish = perishable)
   ├─ density:          1.05 (text match: "salmon" in "salmon")
-  ├─ inediblePart:     0.0 (nearest neighbor)
+  ├─ inediblePart:     0.0 (keyword: "fillet" detected)
   └─ rawToCookedRatio: 0.75 (nearest neighbor)
 
 Output: {
@@ -404,6 +446,6 @@ Step 2: For each field:
   ├─ transportCooling: none (rule: grain = non-perishable)
   ├─ density:          0.75 (foodType default - no text match found)
   │                    ↳ Matcher returned "Lard" but no shared words!
-  ├─ inediblePart:     0.20 (nearest neighbor)
+  ├─ inediblePart:     0.0 (foodType+NOVA default: grain=0.0)
   └─ rawToCookedRatio: 2.33 (nearest neighbor)
 ```

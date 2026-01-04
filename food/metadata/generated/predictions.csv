@@ -1,229 +1,229 @@
 name,categories,foodType,foodTypeMatch,foodTypeConf,novaGroup,novaGroupReason,novaGroupConf,processingState,processingStateMatch,processingStateConf,transportCooling,transportCoolingMatch,cropGroup,cropGroupMatch,cropGroupConf,density,densityMatch,densityConf,inediblePart,inediblePartMatch,inediblePartConf,rawToCookedRatio,rawToCookedRatioMatch,rawToCookedRatioConf
-Agave,vegetable_fresh,vegetable,agave,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,LEGUMES-FLEURS,0.997,0.900,,,0.00,Poudre de cacao par défaut,0.995,1.000,Poudre de cacao par défaut,0.995
-"Almonds, in shell",nut_oilseed_raw,nut_oilseed,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Amandes en coque UE,1.000,0.460,Almonds,0.950,0.50,Almonds,0.950,1.000,Amandes en coque UE,1.000
-Amaranth,grain_raw,grain,amaranth,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,amaranth,1.000,0.750,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
-Anchovies,animal_product,fish_seafood,anchovies,1.000,1,default_fish_seafood,0.700,raw,NOVA_1,0.700,always,,,,,1.050,,,0.20,Anchois FR,1.000,0.819,Anchois FR,1.000
-Apple,vegetable_fresh,fruit,apple,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,1.000,0.900,apple,1.000,0.10,Pomme par défaut,1.000,0.856,Pomme par défaut,1.000
-Apricots,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,Poireau FR,1.000,0.856,Poireau FR,1.000
-"Arctic char, fillet",animal_product,fish_seafood,crustacean,0.994,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.50,Arctic char,0.950,1.000,Poitrine de porc FR,1.000
+Agave,vegetable_fresh,vegetable,agave,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,LEGUMES-FLEURS,0.997,0.900,,,0.20,,,1.000,Poudre de cacao par défaut,0.995
+"Almonds, in shell",nut_oilseed_raw,nut_oilseed,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Amandes en coque UE,1.000,0.460,Almonds,0.950,0.50,,,1.000,Amandes en coque UE,1.000
+Amaranth,grain_raw,grain,amaranth,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,amaranth,1.000,0.750,,,0.00,,,2.330,Petit pois FR,1.000
+Anchovies,animal_product,fish_seafood,anchovies,1.000,1,default_fish_seafood,0.700,raw,NOVA_1,0.700,always,,,,,1.050,,,0.40,,,0.819,Anchois FR,1.000
+Apple,vegetable_fresh,fruit,apple,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,1.000,0.900,apple,1.000,0.20,,,0.856,Pomme par défaut,1.000
+Apricots,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,,,0.856,Poireau FR,1.000
+"Arctic char, fillet",animal_product,fish_seafood,crustacean,0.994,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.00,,,1.000,Poitrine de porc FR,1.000
 Asparagus,vegetable_fresh,vegetable,asparagus,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,asparagus,1.000,0.900,asparagus,1.000,0.40,Asparagus,1.000,0.856,Brocoli UE,1.000
-Avocado,vegetable_fresh,fruit,avocado,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,pear,1.000,0.950,avocado,1.000,0.20,Prune UE,1.000,0.856,Prune UE,1.000
-Baking powder,grain_processed,grain,bread,0.998,4,recipe_at_plant,0.850,processed,NOVA_4,0.850,none,,BLE TENDRE,bread,0.998,0.900,Baking powder,1.000,0.40,Mâche FR,0.998,1.000,powder,0.950
-Bamboo shoots,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Carotte UE,1.000,0.900,,,0.10,Carotte UE,1.000,0.856,Carotte UE,1.000
-Banana,vegetable_fresh,fruit,banana,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,banana,1.000,0.950,banana,1.000,0.30,Banane par défaut,1.000,0.856,Banane par défaut,1.000
+Avocado,vegetable_fresh,fruit,avocado,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,pear,1.000,0.950,avocado,1.000,0.20,,,0.856,Prune UE,1.000
+Baking powder,grain_processed,grain,bread,0.998,4,recipe_at_plant,0.850,processed,NOVA_4,0.850,none,,BLE TENDRE,bread,0.998,0.900,Baking powder,1.000,0.00,,,1.000,powder,0.950
+Bamboo shoots,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Carotte UE,1.000,0.900,,,0.20,,,0.856,Carotte UE,1.000
+Banana,vegetable_fresh,fruit,banana,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,banana,1.000,0.950,banana,1.000,0.20,,,0.856,Banane par défaut,1.000
 Basmati rice,grain_raw,grain,rice,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,RIZ,basmati rice,1.000,0.720,Rice,0.950,0.00,rice,0.950,2.259,rice,0.950
-Bay leaves,spice_condiment_additive,spice_condiment,salt,0.551,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,paprika,1.000,0.500,,,0.00,Sel,0.551,1.000,Sel,0.551
-Beef cattle,animal_product,meat,beef,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,beef,0.950,0.00,Viande de veau FR,1.000,0.792,Viande de veau FR,1.000
-Beetroot,vegetable_fresh,vegetable,shallot,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,beetroot,1.000,0.900,,,0.10,Brussels sprout,1.000,0.856,beetroot,1.000
-"Bell pepper, green, yellow or red",vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,bell pepper,0.950,0.900,bell pepper,0.950,0.10,Betterave rouge FR,0.939,0.856,Betterave rouge FR,0.939
+Bay leaves,spice_condiment_additive,spice_condiment,salt,0.551,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,paprika,1.000,0.500,,,0.00,,,1.000,Sel,0.551
+Beef cattle,animal_product,meat,beef,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,beef,0.950,0.05,,,0.792,Viande de veau FR,1.000
+Beetroot,vegetable_fresh,vegetable,shallot,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,beetroot,1.000,0.900,,,0.20,,,0.856,beetroot,1.000
+"Bell pepper, green, yellow or red",vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,bell pepper,0.950,0.900,bell pepper,0.950,0.20,,,0.856,Betterave rouge FR,0.939
 Big-scale sand smelt,animal_product,fish_seafood,sand smelt,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.50,Big-scale sand smelt,1.000,2.330,Petit pois FR,1.000
 Black currant,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,currant,0.950,0.850,,,0.20,Currant,0.950,0.856,Myrtille FR,1.000
-Black mulberry,animal_product,fish_seafood,crustacean,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
-Blueberry,vegetable_fresh,fruit,blueberry,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,blueberry,1.000,0.900,blueberry,1.000,0.03,Myrtille FR,1.000,0.856,Myrtille FR,1.000
+Black mulberry,animal_product,fish_seafood,crustacean,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,,,2.330,Petit pois FR,1.000
+Blueberry,vegetable_fresh,fruit,blueberry,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,blueberry,1.000,0.900,blueberry,1.000,0.20,,,0.856,Myrtille FR,1.000
 Bogue,animal_product,fish_seafood,bogue,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.50,Bogue,1.000,1.000,Radis FR,
-Brazil nuts,nut_oilseed_raw,nut_oilseed,brazil nuts,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Noix avec coque UE,1.000,0.630,Nuts,0.950,0.50,Noix avec coque UE,1.000,1.000,Noix avec coque UE,1.000
-Breadfruit,vegetable_fresh,fruit,breadfruit,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,breadfruit,1.000,0.850,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
-Broad bean,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,PROTEAGINEUX,Fève FR,0.950,0.800,bean,0.950,0.20,Fève FR,0.950,2.330,Fève FR,0.950
-Broccoli,vegetable_fresh,vegetable,broccoli,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,broccoli,1.000,0.900,broccoli,1.000,0.20,Brocoli UE,1.000,0.856,Brocoli UE,1.000
-Broiler,animal_product,meat,broiler,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
+Brazil nuts,nut_oilseed_raw,nut_oilseed,brazil nuts,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Noix avec coque UE,1.000,0.630,Nuts,0.950,0.50,,,1.000,Noix avec coque UE,1.000
+Breadfruit,vegetable_fresh,fruit,breadfruit,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,breadfruit,1.000,0.850,,,0.20,,,2.330,Petit pois FR,1.000
+Broad bean,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,PROTEAGINEUX,Fève FR,0.950,0.800,bean,0.950,0.20,,,2.330,Fève FR,0.950
+Broccoli,vegetable_fresh,vegetable,broccoli,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,broccoli,1.000,0.900,broccoli,1.000,0.20,,,0.856,Brocoli UE,1.000
+Broiler,animal_product,meat,broiler,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.05,,,2.330,Petit pois FR,1.000
 Brown sugar or cane mola,animal_product,fish_seafood,ontology,1.000,2,nova2_sugar,0.950,processed,NOVA_2,0.950,none,sugar,,,,0.950,Sugar,0.950,0.00,sugar,0.950,1.000,sugar,0.950
 Brussels sprout,vegetable_fresh,vegetable,shallot,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,beetroot,1.000,0.900,,,0.10,Brussels sprout,1.000,0.856,beetroot,1.000
-"Capelin, fillet",animal_product,fish_seafood,sardines,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,Capelin,0.950,0.819,Truite d'élevage FR,0.919
-Carambola,vegetable_fresh,fruit,currant,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,carambola,1.000,0.850,,,0.20,Mandarine par défaut,1.000,0.856,Mandarine par défaut,1.000
-Cardoon,animal_product,fish_seafood,crustacean,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
-Carrots,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Carotte UE,1.000,0.900,,,0.10,Carotte UE,1.000,0.856,Carotte UE,1.000
-Cashew,nut_oilseed_raw,nut_oilseed,cashew,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,cashew,1.000,0.600,cashew,1.000,0.20,Petit pois FR,0.858,1.000,hazelnut,1.000
+"Capelin, fillet",animal_product,fish_seafood,sardines,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.00,,,0.819,Truite d'élevage FR,0.919
+Carambola,vegetable_fresh,fruit,currant,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,carambola,1.000,0.850,,,0.20,,,0.856,Mandarine par défaut,1.000
+Cardoon,animal_product,fish_seafood,crustacean,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,,,2.330,Petit pois FR,1.000
+Carrots,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Carotte UE,1.000,0.900,,,0.20,,,0.856,Carotte UE,1.000
+Cashew,nut_oilseed_raw,nut_oilseed,cashew,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,cashew,1.000,0.600,cashew,1.000,0.50,,,1.000,hazelnut,1.000
 Cassava,vegetable_fresh,vegetable,cassava,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cassava,1.000,0.550,"Cassava,flour",0.950,0.10,Cassava,1.000,1.000,Oignons déshydratés par défaut,1.000
 Cauliflower,vegetable_fresh,vegetable,cauliflower,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cauliflower,1.000,0.900,cauliflower,1.000,0.20,Cauliflower,1.000,1.000,Oignons déshydratés par défaut,1.000
 Celeriac,vegetable_fresh,vegetable,celeriac,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,celeriac,1.000,0.900,,,0.10,Celeriac,1.000,1.000,Vinaigre balsamique FR,1.000
 Celery,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,celery,1.000,0.900,,,0.03,Celery,1.000,0.856,celery,1.000
-Cherry,vegetable_fresh,fruit,cherry,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,cherry,1.000,1.000,cherry,1.000,0.20,Cerise par défaut,1.000,0.856,Cerise par défaut,1.000
-Cherry tomato,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,cherry,0.950,1.000,tomato,0.950,0.20,Cerise par défaut,0.950,0.856,Cerise par défaut,0.950
-Chestnut,nut_oilseed_raw,nut_oilseed,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,chestnut,1.000,0.600,,,0.50,Châtaigne avec coque Bio,0.950,1.000,chestnut,1.000
+Cherry,vegetable_fresh,fruit,cherry,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,cherry,1.000,1.000,cherry,1.000,0.20,,,0.856,Cerise par défaut,1.000
+Cherry tomato,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,cherry,0.950,1.000,tomato,0.950,0.20,,,0.856,Cerise par défaut,0.950
+Chestnut,nut_oilseed_raw,nut_oilseed,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,chestnut,1.000,0.600,,,0.50,,,1.000,chestnut,1.000
 "Chia seed, dried",nut_oilseed_raw,nut_oilseed,seed,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES OLEAGINEUX,seed,0.950,0.700,seed,0.950,0.00,seed,0.950,2.259,seed,0.950
-"Chickpeas, dried","vegetable_fresh,organic",vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMINEUSES A GRAIN,Pois chiche par défaut,0.950,0.750,"Cowpeas, dried, boiled",1.000,0.20,Pois chiche par défaut,0.950,2.330,Pois chiche par défaut,0.950
+"Chickpeas, dried","vegetable_fresh,organic",vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMINEUSES A GRAIN,Pois chiche par défaut,0.950,0.750,"Cowpeas, dried, boiled",1.000,0.20,,,2.330,Pois chiche par défaut,0.950
 Chicory root,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Endive FR,0.997,0.900,,,0.20,Chicory,0.950,0.856,Endive FR,0.997
 Chili peppers,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VIGNES,grape,1.000,0.500,"Chili, green",1.000,0.03,Peppers,0.950,0.856,Mandarine par défaut,0.998
-Chive,vegetable_fresh,vegetable,fresh vegetable,,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,DIVERS,chive,1.000,0.900,,,0.10,Radis FR,,1.000,Radis FR,
-Cinnamon,spice_condiment_additive,spice_condiment,salt,0.990,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,cinnamon,1.000,0.560,"Cinnamon, powder",0.950,0.10,Basil,0.999,1.000,Sel,0.990
-Clementine,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,clementine,1.000,0.850,,,0.20,Clémentine par défaut,1.000,0.856,Clémentine par défaut,1.000
-Cocoa bean,vegetable_fresh,vegetable,bean,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,PROTEAGINEUX,Fève FR,0.950,0.800,bean,0.950,0.20,Fève FR,0.950,2.330,Fève FR,0.950
-Cocoa butter,nut_oilseed_processed,nut_oilseed,cocoa butter,1.000,2,nova2_butter,0.950,processed,NOVA_2,0.950,none,,FRUITS A COQUES,Beurre de cacao par défaut,1.000,0.911,Butter,0.950,0.00,Beurre de cacao par défaut,1.000,1.000,Beurre de cacao par défaut,1.000
-Cocoa powder,vegetable_fresh,vegetable,tuber,0.999,1,fresh_at_plant,0.850,raw,NOVA_1,0.850,always,,FRUITS A COQUES,Poudre de cacao par défaut,1.000,0.900,,,0.00,Poudre de cacao par défaut,1.000,1.000,Poudre de cacao par défaut,1.000
-"Coconut, dehusked",nut_oilseed_raw,nut_oilseed,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Amandes en coque UE,0.934,0.500,coconut,0.950,0.50,Amandes en coque UE,0.934,1.000,Amandes en coque UE,0.934
-Coffee beans,misc,beverage,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,Thé (feuilles) UE,,,,1.000,"Coffee, brewed",1.000,0.00,Thé (feuilles) UE,1.000,1.000,coffee,0.950
+Chive,vegetable_fresh,vegetable,fresh vegetable,,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,DIVERS,chive,1.000,0.900,,,0.20,,,1.000,Radis FR,
+Cinnamon,spice_condiment_additive,spice_condiment,salt,0.990,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,cinnamon,1.000,0.560,"Cinnamon, powder",0.950,0.00,,,1.000,Sel,0.990
+Clementine,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,clementine,1.000,0.850,,,0.20,,,0.856,Clémentine par défaut,1.000
+Cocoa bean,vegetable_fresh,vegetable,bean,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,PROTEAGINEUX,Fève FR,0.950,0.800,bean,0.950,0.20,,,2.330,Fève FR,0.950
+Cocoa butter,nut_oilseed_processed,nut_oilseed,cocoa butter,1.000,2,nova2_butter,0.950,processed,NOVA_2,0.950,none,,FRUITS A COQUES,Beurre de cacao par défaut,1.000,0.911,Butter,0.950,0.00,,,1.000,Beurre de cacao par défaut,1.000
+Cocoa powder,vegetable_fresh,vegetable,tuber,0.999,1,fresh_at_plant,0.850,raw,NOVA_1,0.850,always,,FRUITS A COQUES,Poudre de cacao par défaut,1.000,0.900,,,0.20,,,1.000,Poudre de cacao par défaut,1.000
+"Coconut, dehusked",nut_oilseed_raw,nut_oilseed,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Amandes en coque UE,0.934,0.500,coconut,0.950,0.50,,,1.000,Amandes en coque UE,0.934
+Coffee beans,misc,beverage,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,Thé (feuilles) UE,,,,1.000,"Coffee, brewed",1.000,0.00,,,1.000,coffee,0.950
 Common sole,grain_raw,grain,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,Mélange de céréales FR,0.914,0.750,,,0.58,Common sole,1.000,2.259,Mélange de céréales FR,0.914
 Coriander,spice_condiment_additive,spice_condiment,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,coriander,1.000,0.500,,,0.10,Coriander,1.000,1.000,Curcuma par défaut,0.999
-Corn,grain_raw,grain,pasta,0.587,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,MAIS GRAIN ET ENSILAGE,corn,1.000,0.720,corn,1.000,0.50,Maïs doux UE,0.950,2.259,Maïs doux UE,0.950
-Corn glucose syrup,spice_condiment_additive,spice_condiment,maple syrup,0.869,4,nova4_industrial_sugar,0.900,processed,NOVA_4,0.900,none,,MAIS GRAIN ET ENSILAGE,corn,0.950,0.720,corn,0.950,0.00,Sirop de glucose FR ou UE ou par défaut,0.871,1.000,syrup,0.950
-Cow,animal_product,meat,cow,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.00,Viande de boeuf sans os - vache de réforme 100% herbe FR,0.950,0.792,Viande de boeuf sans os - vache de réforme 100% herbe FR,0.950
-Cow milk,dairy_product,dairy,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.030,,,0.00,Lait par défaut,0.950,1.000,Lait par défaut,0.950
-Crab,animal_product,fish_seafood,crab,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,crab,1.000,0.50,Crabe UE,1.000,0.819,Crabe UE,1.000
-Cranberry,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cranberry,1.000,1.052,"Cranberry juice cocktail, bottled",0.950,0.03,Myrtille FR,1.000,0.856,Myrtille FR,1.000
-Cucumber,vegetable_fresh,vegetable,tomato,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cucumber,1.000,1.000,cucumber,1.000,0.10,Concombre hors saison FR,0.950,0.856,Concombre hors saison FR,0.950
+Corn,grain_raw,grain,pasta,0.587,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,MAIS GRAIN ET ENSILAGE,corn,1.000,0.720,corn,1.000,0.00,,,2.259,Maïs doux UE,0.950
+Corn glucose syrup,spice_condiment_additive,spice_condiment,maple syrup,0.869,4,nova4_industrial_sugar,0.900,processed,NOVA_4,0.900,none,,MAIS GRAIN ET ENSILAGE,corn,0.950,0.720,corn,0.950,0.00,,,1.000,syrup,0.950
+Cow,animal_product,meat,cow,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.05,,,0.792,Viande de boeuf sans os - vache de réforme 100% herbe FR,0.950
+Cow milk,dairy_product,dairy,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.030,,,0.00,,,1.000,Lait par défaut,0.950
+Crab,animal_product,fish_seafood,crab,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,crab,1.000,0.40,,,0.819,Crabe UE,1.000
+Cranberry,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cranberry,1.000,1.052,"Cranberry juice cocktail, bottled",0.950,0.20,,,0.856,Myrtille FR,1.000
+Cucumber,vegetable_fresh,vegetable,tomato,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cucumber,1.000,1.000,cucumber,1.000,0.20,,,0.856,Concombre hors saison FR,0.950
 Cucurbitacea seed,nut_oilseed_raw,nut_oilseed,seed,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES OLEAGINEUX,seed,0.950,0.700,seed,0.950,0.00,seed,0.950,2.259,seed,0.950
-Dates,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,Poireau FR,1.000,0.856,Poireau FR,1.000
-"Dill, fresh",spice_condiment_additive,spice_condiment,aromatic herb,0.904,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,dill,0.950,0.500,,,0.00,Herbe de prairie temporaire FR,0.904,1.000,Herbe de prairie temporaire FR,0.904
+Dates,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,,,0.856,Poireau FR,1.000
+"Dill, fresh",spice_condiment_additive,spice_condiment,aromatic herb,0.904,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,dill,0.950,0.500,,,0.00,,,1.000,Herbe de prairie temporaire FR,0.904
 "Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage)",spice_condiment_additive,spice_condiment,dried herbs,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,rosemary,0.950,0.500,,,0.10,Basil,0.950,1.000,Autres fruits secs (non encore répertoriés),0.893
-Duck,animal_product,meat,duck,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,duck,1.000,0.00,Viande de veau FR,1.000,0.792,Viande de veau FR,1.000
-Durum wheat,grain_raw,grain,sorghum,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,durum wheat,1.000,0.770,Wheat,0.950,0.00,Blé dur UE,1.000,2.259,Blé dur UE,1.000
-Egg,animal_product,meat,egg,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.20,Oeuf FR,1.000,0.974,Oeuf FR,1.000
-Eggplant,vegetable_fresh,vegetable,tomato,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,eggplant,1.000,1.000,eggplant,1.000,0.10,Aubergine UE,1.000,0.856,Aubergine UE,1.000
-Elderberries,vegetable_fresh,fruit,elderberries,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,,0.850,,,0.10,Radis FR,,1.000,Radis FR,
+Duck,animal_product,meat,duck,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,duck,1.000,0.05,,,0.792,Viande de veau FR,1.000
+Durum wheat,grain_raw,grain,sorghum,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,durum wheat,1.000,0.770,Wheat,0.950,0.00,,,2.259,Blé dur UE,1.000
+Egg,animal_product,meat,egg,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.05,,,0.974,Oeuf FR,1.000
+Eggplant,vegetable_fresh,vegetable,tomato,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,eggplant,1.000,1.000,eggplant,1.000,0.20,,,0.856,Aubergine UE,1.000
+Elderberries,vegetable_fresh,fruit,elderberries,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,,0.850,,,0.20,,,1.000,Radis FR,
 Endive,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Endive FR,1.000,0.900,,,0.20,Endive FR,1.000,0.856,Endive FR,1.000
-"Farmed carp, fillet",animal_product,fish_seafood,sardines,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.50,Carp,0.950,0.819,Truite d'élevage FR,0.919
-"Farmed turbot, fillet",animal_product,fish_seafood,sardines,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.56,Turbot,0.950,0.819,Truite d'élevage FR,0.919
-Fennel,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,fennel,1.000,0.900,,,0.20,Fenouil FR,1.000,0.856,Fenouil FR,1.000
-Fig,vegetable_fresh,fruit,fig,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,1.000,0.850,,,0.30,Citron UE,1.000,0.856,Citron UE,1.000
-"Flageolet beans, green, dried",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMINEUSES A GRAIN,flageolet,0.950,0.750,"Cowpeas, dried, boiled",1.000,0.00,Oignons déshydratés par défaut,0.934,1.000,Oignons déshydratés par défaut,0.934
-Flaxseed,vegetable_fresh,vegetable,yam,0.894,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES OLEAGINEUX,flaxseed oil,0.950,0.700,Flaxseed,1.000,0.10,Pomme de terre industrie FR,0.919,0.856,Pomme de terre industrie FR,0.919
-French beans,misc,nan,# Vegetables with sparse features,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,Oignons déshydratés par défaut,,,,0.900,,,0.00,Oignons déshydratés par défaut,1.000,1.000,Oignons déshydratés par défaut,1.000
+"Farmed carp, fillet",animal_product,fish_seafood,sardines,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.00,,,0.819,Truite d'élevage FR,0.919
+"Farmed turbot, fillet",animal_product,fish_seafood,sardines,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.00,,,0.819,Truite d'élevage FR,0.919
+Fennel,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,fennel,1.000,0.900,,,0.20,,,0.856,Fenouil FR,1.000
+Fig,vegetable_fresh,fruit,fig,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,1.000,0.850,,,0.20,,,0.856,Citron UE,1.000
+"Flageolet beans, green, dried",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMINEUSES A GRAIN,flageolet,0.950,0.750,"Cowpeas, dried, boiled",1.000,0.20,,,1.000,Oignons déshydratés par défaut,0.934
+Flaxseed,vegetable_fresh,vegetable,yam,0.894,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES OLEAGINEUX,flaxseed oil,0.950,0.700,Flaxseed,1.000,0.20,,,0.856,Pomme de terre industrie FR,0.919
+French beans,misc,nan,# Vegetables with sparse features,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,Oignons déshydratés par défaut,,,,0.900,,,0.10,,,1.000,Oignons déshydratés par défaut,1.000
 "Fresh herbs (dill, basil, chervil, rosemary, sage, thyme)",spice_condiment_additive,spice_condiment,salt,0.840,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,rosemary,0.950,0.500,,,0.10,Basil,0.950,0.856,Champignon frais UE,0.854
-Gadidae,animal_product,fish_seafood,gadidae,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.10,Radis FR,,1.000,Radis FR,
-Gherkin,vegetable_processed,vegetable,ontology,1.000,2,nova2_vinegar,0.950,processed,NOVA_2,0.950,none,Moutarde FR,LEGUMES-FLEURS,beetroot,0.894,0.900,,,0.10,Brussels sprout,0.894,0.856,beetroot,0.894
-Ginger,spice_condiment_additive,spice_condiment,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,ginger,1.000,0.500,,,0.10,Coriander,1.000,1.000,Curcuma par défaut,0.999
-Goat,animal_product,meat,goat,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,goat,1.000,0.00,Lait de chèvre FR,0.950,1.000,Lait de chèvre FR,0.950
-Gooseberry,vegetable_fresh,fruit,currant,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,gooseberry,1.000,0.850,,,0.20,Mandarine par défaut,1.000,0.856,Mandarine par défaut,1.000
+Gadidae,animal_product,fish_seafood,gadidae,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,,,1.000,Radis FR,
+Gherkin,vegetable_processed,vegetable,ontology,1.000,2,nova2_vinegar,0.950,processed,NOVA_2,0.950,none,Moutarde FR,LEGUMES-FLEURS,beetroot,0.894,0.900,,,0.20,,,0.856,beetroot,0.894
+Ginger,spice_condiment_additive,spice_condiment,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,ginger,1.000,0.500,,,0.00,,,1.000,Curcuma par défaut,0.999
+Goat,animal_product,meat,goat,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,goat,1.000,0.05,,,1.000,Lait de chèvre FR,0.950
+Gooseberry,vegetable_fresh,fruit,currant,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,gooseberry,1.000,0.850,,,0.20,,,0.856,Mandarine par défaut,1.000
 Grapefruit,vegetable_fresh,fruit,grapefruit,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,grapefruit,1.000,0.850,,,0.30,Grapefruit,1.000,0.856,Myrtille FR,1.000
-Grapes (black or white),vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,Poireau FR,1.000,0.856,Poireau FR,1.000
-Green cabbage,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Chou vert FR,1.000,0.900,cabbage,0.950,0.20,Chou vert FR,1.000,0.856,Chou vert FR,1.000
-Greengage plum,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,plum,0.950,0.950,plum,0.950,0.20,Prune UE,0.950,0.856,Prune UE,0.950
-Guava,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,guava,1.000,1.023,"Guava nectar, canned",0.950,0.03,Myrtille FR,1.000,0.856,Myrtille FR,1.000
+Grapes (black or white),vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,,,0.856,Poireau FR,1.000
+Green cabbage,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Chou vert FR,1.000,0.900,cabbage,0.950,0.20,,,0.856,Chou vert FR,1.000
+Greengage plum,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,plum,0.950,0.950,plum,0.950,0.20,,,0.856,Prune UE,0.950
+Guava,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,guava,1.000,1.023,"Guava nectar, canned",0.950,0.20,,,0.856,Myrtille FR,1.000
 Hake,animal_product,fish_seafood,hake,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.60,Hake,1.000,1.000,Sardine FR,1.000
-"Hazelnuts, shelled",nut_oilseed_raw,nut_oilseed,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Noix avec coque UE,1.000,0.600,,,0.50,Noix avec coque UE,1.000,1.000,Noix avec coque UE,1.000
-Hemp grain,grain_raw,grain,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,BLE TENDRE,wheat flour,0.928,0.750,,,0.00,Riz basmati UE,0.928,2.259,Riz basmati UE,0.928
+"Hazelnuts, shelled",nut_oilseed_raw,nut_oilseed,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Noix avec coque UE,1.000,0.600,,,0.00,,,1.000,Noix avec coque UE,1.000
+Hemp grain,grain_raw,grain,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,BLE TENDRE,wheat flour,0.928,0.750,,,0.00,,,2.259,Riz basmati UE,0.928
 Herring,animal_product,fish_seafood,herring,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,herring,1.000,0.50,Atlantic herring,0.950,2.330,Petit pois FR,1.000
-"Horseradish, fresh",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Carotte UE,0.916,0.900,,,0.10,Carotte UE,0.916,0.856,Carotte UE,0.916
-Jerusalem artichoke,vegetable_fresh,vegetable,garlic,0.999,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,artichoke,0.950,0.900,,,0.60,Artichaut FR,0.950,0.856,Artichaut FR,0.950
-Kale,vegetable_fresh,vegetable,yam,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cauliflower,1.000,0.900,,,0.10,Cassava,1.000,1.000,Oignons déshydratés par défaut,1.000
+"Horseradish, fresh",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Carotte UE,0.916,0.900,,,0.20,,,0.856,Carotte UE,0.916
+Jerusalem artichoke,vegetable_fresh,vegetable,garlic,0.999,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,artichoke,0.950,0.900,,,0.20,,,0.856,Artichaut FR,0.950
+Kale,vegetable_fresh,vegetable,yam,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cauliflower,1.000,0.900,,,0.20,,,1.000,Oignons déshydratés par défaut,1.000
 Kiwi,vegetable_fresh,fruit,kiwi,1.000,1,fresh_at_plant,0.850,raw,NOVA_1,0.850,always,,VERGERS,kiwi,1.000,1.000,kiwi,1.000,0.10,Kiwi par défaut,1.000,0.856,Kiwi par défaut,1.000
-Kohlrabi,vegetable_fresh,vegetable,yam,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cauliflower,1.000,0.900,,,0.10,Cassava,1.000,1.000,Oignons déshydratés par défaut,1.000
-Kumquat,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,clementine,1.000,0.850,,,0.03,Myrtille FR,1.000,0.856,Myrtille FR,1.000
-Lamb,animal_product,meat,lamb,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,lamb,1.000,0.00,Viande d'agneau (désossée) par défaut,0.950,0.792,Viande d'agneau (désossée) par défaut,0.950
+Kohlrabi,vegetable_fresh,vegetable,yam,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cauliflower,1.000,0.900,,,0.20,,,1.000,Oignons déshydratés par défaut,1.000
+Kumquat,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,clementine,1.000,0.850,,,0.20,,,0.856,Myrtille FR,1.000
+Lamb,animal_product,meat,lamb,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,lamb,1.000,0.05,,,0.792,Viande d'agneau (désossée) par défaut,0.950
 Leek,vegetable_fresh,vegetable,leek,1.000,1,fresh_at_plant,0.850,raw,NOVA_1,0.850,always,,LEGUMES-FLEURS,leek,1.000,0.900,leek,1.000,0.20,Leek,1.000,0.856,Brocoli UE,1.000
-Lemon,vegetable_fresh,fruit,lemon,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,lemon,1.000,1.000,lemon,1.000,0.30,Citron UE,1.000,0.856,Citron UE,1.000
-Lentil,vegetable_fresh,vegetable,lentil,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMINEUSES A GRAIN,lentil,1.000,0.800,lentil,1.000,0.10,Brussels sprout,0.921,2.330,lentil,1.000
-Lentil dried,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMINEUSES A GRAIN,lentil,0.950,0.800,lentil,0.950,0.00,Oignons déshydratés par défaut,0.880,2.330,lentil,0.950
-Lima beans,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Carotte UE,1.000,0.900,,,0.10,Chinese or Japanese artichokes,1.000,0.856,Carotte UE,1.000
-Lobster,animal_product,fish_seafood,lobster,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,lobster,1.000,0.50,Homard UE,1.000,0.819,Homard UE,1.000
-Lupin,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cauliflower,0.935,0.900,,,0.10,Cassava,0.935,1.000,Oignons déshydratés par défaut,0.935
+Lemon,vegetable_fresh,fruit,lemon,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,lemon,1.000,1.000,lemon,1.000,0.20,,,0.856,Citron UE,1.000
+Lentil,vegetable_fresh,vegetable,lentil,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMINEUSES A GRAIN,lentil,1.000,0.800,lentil,1.000,0.20,,,2.330,lentil,1.000
+Lentil dried,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMINEUSES A GRAIN,lentil,0.950,0.800,lentil,0.950,0.20,,,2.330,lentil,0.950
+Lima beans,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Carotte UE,1.000,0.900,,,0.20,,,0.856,Carotte UE,1.000
+Lobster,animal_product,fish_seafood,lobster,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,lobster,1.000,0.40,,,0.819,Homard UE,1.000
+Lupin,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cauliflower,0.935,0.900,,,0.20,,,1.000,Oignons déshydratés par défaut,0.935
 Lupin seed,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES OLEAGINEUX,seed,0.950,0.700,seed,0.950,0.00,seed,0.950,2.259,seed,0.950
-Lychee,vegetable_fresh,fruit,lychee,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,lychee,1.000,1.000,lychee,1.000,0.20,Abricot UE,1.000,0.856,lychee,1.000
-Macadamia nut,nut_oilseed_raw,nut_oilseed,ontology,1.000,1,raw_at_processing,0.900,raw,NOVA_1,0.900,none,,FRUITS A COQUES,macadamia,0.950,0.600,,,0.50,nut,0.950,1.000,nut,0.950
+Lychee,vegetable_fresh,fruit,lychee,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,lychee,1.000,1.000,lychee,1.000,0.20,,,0.856,lychee,1.000
+Macadamia nut,nut_oilseed_raw,nut_oilseed,ontology,1.000,1,raw_at_processing,0.900,raw,NOVA_1,0.900,none,,FRUITS A COQUES,macadamia,0.950,0.600,,,0.50,,,1.000,nut,0.950
 Mackerel,animal_product,fish_seafood,mackerel,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,mackerel,1.000,0.48,Mackerel,1.000,1.000,Sardine FR,1.000
-Mango,vegetable_fresh,fruit,mango,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,mango,1.000,0.950,mango,1.000,0.20,Mangue par défaut,1.000,0.856,Mangue par défaut,1.000
-Maple syrup,spice_condiment_additive,spice_condiment,maple syrup,1.000,2,nova2_syrup,0.950,processed,NOVA_2,0.950,none,,DIVERS,Miel FR,1.000,1.280,"Syrup, blackcurrant, undiluted",0.998,0.00,Miel FR,1.000,1.000,syrup,0.950
+Mango,vegetable_fresh,fruit,mango,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,mango,1.000,0.950,mango,1.000,0.20,,,0.856,Mangue par défaut,1.000
+Maple syrup,spice_condiment_additive,spice_condiment,maple syrup,1.000,2,nova2_syrup,0.950,processed,NOVA_2,0.950,none,,DIVERS,Miel FR,1.000,1.280,"Syrup, blackcurrant, undiluted",0.998,0.00,,,1.000,syrup,0.950
 "Melon (honeydew, Charentais, Cataloupe, Cavaillon)",vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,melon,0.950,1.000,melon,0.950,0.40,Melon par défaut,0.950,0.856,Melon par défaut,0.950
-Millet,grain_raw,grain,pasta,0.587,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,millet,1.000,0.640,Millet,1.000,0.50,Ensilage maïs FR,1.000,2.259,Ensilage maïs FR,1.000
+Millet,grain_raw,grain,pasta,0.587,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,millet,1.000,0.640,Millet,1.000,0.00,,,2.259,Ensilage maïs FR,1.000
 Mint,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,DIVERS,mint,1.000,0.900,,,0.10,Mint,1.000,0.856,beetroot,0.921
-Molokhia powder,vegetable_fresh,vegetable,seaweed,0.998,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,BLE TENDRE,bread,0.997,0.900,,,0.40,Mâche FR,0.997,1.000,powder,0.950
-Morello cherry,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,cherry,0.950,1.000,cherry,0.950,0.20,Cerise par défaut,0.950,0.856,Cerise par défaut,0.950
-"Mung bean, sprouted",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,PROTEAGINEUX,Fève FR,0.950,0.800,bean,0.950,0.20,Fève FR,0.950,2.330,Fève FR,0.950
+Molokhia powder,vegetable_fresh,vegetable,seaweed,0.998,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,BLE TENDRE,bread,0.997,0.900,,,0.20,,,1.000,powder,0.950
+Morello cherry,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,cherry,0.950,1.000,cherry,0.950,0.20,,,0.856,Cerise par défaut,0.950
+"Mung bean, sprouted",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,PROTEAGINEUX,Fève FR,0.950,0.800,bean,0.950,0.20,,,2.330,Fève FR,0.950
 "Mushroom, morel",vegetable_fresh,vegetable,ontology,1.000,1,fresh_at_plant,0.850,raw,NOVA_1,0.850,always,,LEGUMES-FLEURS,Carotte UE,1.000,0.900,,,0.10,Mushroom,0.950,0.856,Carotte UE,1.000
-"Mussels, with shell",animal_product,fish_seafood,mussels,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.75,Mussels,0.950,0.856,Fraise UE,0.898
-Mustard seed,spice_condiment_additive,spice_condiment,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMINEUSES A GRAIN,Moutarde FR,0.950,1.000,mustard,0.950,0.10,Moutarde FR,0.950,0.856,Moutarde FR,0.950
-Nectarine,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,nectarine,1.000,0.850,,,0.03,Myrtille FR,1.000,0.856,Myrtille FR,1.000
-New Zealand spinach,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,spinach,0.950,0.900,spinach,0.950,0.03,Epinard par défaut,0.950,0.856,Epinard par défaut,0.950
-Nile perch,animal_product,fish_seafood,crustacean,1.000,3,nova3_smoked,0.900,processed,NOVA_3,0.900,always,Petit pois FR,,,,1.050,,,0.50,Nile perch,1.000,2.330,Petit pois FR,1.000
-Nutmeg,spice_condiment_additive,spice_condiment,salt,0.983,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,nutmeg,1.000,0.500,,,0.10,Basil,1.000,1.000,Sel,0.983
-Oats,grain_raw,grain,oats,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,Avoine UE,1.000,0.410,Oats,1.000,0.00,Avoine UE,1.000,2.259,Avoine UE,1.000
-Okra,vegetable_fresh,vegetable,okra,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,amaranth,1.000,0.900,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
+"Mussels, with shell",animal_product,fish_seafood,mussels,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.50,,,0.856,Fraise UE,0.898
+Mustard seed,spice_condiment_additive,spice_condiment,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMINEUSES A GRAIN,Moutarde FR,0.950,1.000,mustard,0.950,0.00,,,0.856,Moutarde FR,0.950
+Nectarine,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,nectarine,1.000,0.850,,,0.20,,,0.856,Myrtille FR,1.000
+New Zealand spinach,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,spinach,0.950,0.900,spinach,0.950,0.20,,,0.856,Epinard par défaut,0.950
+Nile perch,animal_product,fish_seafood,crustacean,1.000,3,nova3_smoked,0.900,processed,NOVA_3,0.900,always,Petit pois FR,,,,1.050,,,0.00,,,2.330,Petit pois FR,1.000
+Nutmeg,spice_condiment_additive,spice_condiment,salt,0.983,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,nutmeg,1.000,0.500,,,0.00,,,1.000,Sel,0.983
+Oats,grain_raw,grain,oats,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,Avoine UE,1.000,0.410,Oats,1.000,0.00,,,2.259,Avoine UE,1.000
+Okra,vegetable_fresh,vegetable,okra,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,amaranth,1.000,0.900,,,0.20,,,2.330,Petit pois FR,1.000
 Olives,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,OLIVIERS,OLIVIERS,1.000,0.650,"Olives, green, with stone",0.950,0.50,Olives,1.000,0.856,Poireau FR,1.000
 Onions,misc,nan,# Vegetables with sparse features,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,Oignons déshydratés par défaut,,,,0.220,"Onions, chopped",0.950,0.10,Onions,1.000,1.000,Oignons déshydratés par défaut,0.950
-Oranges,vegetable_fresh,fruit,oranges,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,Poireau FR,1.000,0.856,Poireau FR,1.000
-Palm fruit,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CULTURES INDUSTRIELLES,Huile de palme (raffinée) UE,0.924,0.900,,,0.00,Huile de palme (raffinée) UE,0.924,0.856,fruit,0.950
-Papaya,vegetable_fresh,fruit,papaya,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,papaya,1.000,0.850,,,0.20,Abricot UE,1.000,0.856,papaya,1.000
+Oranges,vegetable_fresh,fruit,oranges,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,,,0.856,Poireau FR,1.000
+Palm fruit,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CULTURES INDUSTRIELLES,Huile de palme (raffinée) UE,0.924,0.900,,,0.20,,,0.856,fruit,0.950
+Papaya,vegetable_fresh,fruit,papaya,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,papaya,1.000,0.850,,,0.20,,,0.856,papaya,1.000
 "Parsley, fresh",spice_condiment_additive,spice_condiment,aromatic herb,0.904,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,parsley,0.950,0.500,,,0.10,Parsley,0.950,1.000,Herbe de prairie temporaire FR,0.904
-Parsnips,misc,nan,# Vegetables with sparse features,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,Oignons déshydratés par défaut,,,,0.900,,,0.00,Oignons déshydratés par défaut,1.000,1.000,Oignons déshydratés par défaut,1.000
-Passion fruit,vegetable_fresh,fruit,melon,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,passion fruit,1.000,0.850,,,0.20,Prune UE,1.000,0.856,fruit,0.950
-Peaches,vegetable_fresh,fruit,peaches,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,,0.850,,,0.10,Radis FR,,1.000,Radis FR,
-Peanut,nut_oilseed_raw,nut_oilseed,peanut,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,peanut,1.000,0.550,peanut,1.000,0.00,Huile d'arachide (raffinée) par défaut,0.950,1.000,Huile d'arachide (raffinée) par défaut,0.950
+Parsnips,misc,nan,# Vegetables with sparse features,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,Oignons déshydratés par défaut,,,,0.900,,,0.10,,,1.000,Oignons déshydratés par défaut,1.000
+Passion fruit,vegetable_fresh,fruit,melon,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,passion fruit,1.000,0.850,,,0.20,,,0.856,fruit,0.950
+Peaches,vegetable_fresh,fruit,peaches,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,,0.850,,,0.20,,,1.000,Radis FR,
+Peanut,nut_oilseed_raw,nut_oilseed,peanut,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,peanut,1.000,0.550,peanut,1.000,0.50,,,1.000,Huile d'arachide (raffinée) par défaut,0.950
 Peanut butter or peanut paste,nut_oilseed_processed,nut_oilseed,ontology,1.000,4,recipe_at_plant,0.850,processed,NOVA_4,0.850,none,,FRUITS A COQUES,peanut butter,0.950,1.000,peanut butter,0.950,0.00,peanut butter,0.950,1.000,peanut butter,0.950
-Pears,vegetable_fresh,fruit,pears,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,Poireau FR,1.000,0.856,Poireau FR,1.000
-"Peas, with pods",vegetable_fresh,vegetable,peas,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Petit pois FR,0.950,0.900,,,0.20,Petit pois FR,0.950,2.330,Petit pois FR,0.950
-Persimmon,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,clementine,1.000,0.850,,,0.03,Myrtille FR,1.000,0.856,Myrtille FR,1.000
-Pig,animal_product,meat,pig,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.00,Foie de porc cru FR,0.950,0.730,Foie de porc cru FR,0.950
-Pine nuts,nut_oilseed_raw,nut_oilseed,pine nuts,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Noix avec coque UE,1.000,0.630,Nuts,0.950,0.50,Noix avec coque UE,1.000,1.000,Noix avec coque UE,1.000
+Pears,vegetable_fresh,fruit,pears,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Poireau FR,1.000,0.850,,,0.20,,,0.856,Poireau FR,1.000
+"Peas, with pods",vegetable_fresh,vegetable,peas,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Petit pois FR,0.950,0.900,,,0.20,,,2.330,Petit pois FR,0.950
+Persimmon,vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,clementine,1.000,0.850,,,0.20,,,0.856,Myrtille FR,1.000
+Pig,animal_product,meat,pig,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.05,,,0.730,Foie de porc cru FR,0.950
+Pine nuts,nut_oilseed_raw,nut_oilseed,pine nuts,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Noix avec coque UE,1.000,0.630,Nuts,0.950,0.50,,,1.000,Noix avec coque UE,1.000
 Pineapple,vegetable_fresh,fruit,pineapple,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,pineapple,1.000,0.950,pineapple,1.000,0.50,Pineapple,1.000,0.856,pineapple,1.000
-Pistachios,nut_oilseed_raw,nut_oilseed,pistachios,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Noix avec coque UE,1.000,0.600,,,0.50,Noix avec coque UE,1.000,1.000,Noix avec coque UE,1.000
-Plantain,vegetable_fresh,fruit,plantain,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,amaranth,1.000,0.850,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
+Pistachios,nut_oilseed_raw,nut_oilseed,pistachios,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,FRUITS A COQUES,Noix avec coque UE,1.000,0.600,,,0.50,,,1.000,Noix avec coque UE,1.000
+Plantain,vegetable_fresh,fruit,plantain,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,amaranth,1.000,0.850,,,0.20,,,2.330,Petit pois FR,1.000
 Pomegranate,vegetable_fresh,fruit,pomegranate,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apricot,1.000,0.850,,,0.20,Pomegranate,1.000,0.856,Abricot UE,1.000
-Poppy seeds,animal_product,fish_seafood,crustacean,0.997,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.00,Poitrine de porc FR,1.000,1.000,Poitrine de porc FR,1.000
-Potato,vegetable_fresh,vegetable,potato,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,potato,1.000,1.100,potato,1.000,0.10,Pomme de terre de table Bio,0.950,0.856,potato,1.000
+Poppy seeds,animal_product,fish_seafood,crustacean,0.997,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,,,1.000,Poitrine de porc FR,1.000
+Potato,vegetable_fresh,vegetable,potato,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,potato,1.000,1.100,potato,1.000,0.20,,,0.856,potato,1.000
 Prickly pear,vegetable_fresh,fruit,prickly pear,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,pear,0.950,0.950,pear,0.950,0.10,Pear,0.950,2.259,Mélange de céréales FR,0.914
-Pumpkin,vegetable_fresh,vegetable,pumpkin,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,pumpkin,1.000,1.000,pumpkin,1.000,0.20,Citrouille FR,1.000,0.856,Citrouille FR,1.000
-Quince,vegetable_fresh,fruit,quince,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,amaranth,1.000,0.850,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
-Quinoa,grain_raw,grain,sorghum,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,quinoa,1.000,0.750,,,0.00,Blé dur UE,1.000,2.259,Blé dur UE,1.000
-Rabbit,animal_product,meat,rabbit,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,rabbit,1.000,0.00,Viande de veau FR,1.000,0.792,Viande de veau FR,1.000
+Pumpkin,vegetable_fresh,vegetable,pumpkin,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,pumpkin,1.000,1.000,pumpkin,1.000,0.20,,,0.856,Citrouille FR,1.000
+Quince,vegetable_fresh,fruit,quince,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,amaranth,1.000,0.850,,,0.20,,,2.330,Petit pois FR,1.000
+Quinoa,grain_raw,grain,sorghum,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,quinoa,1.000,0.750,,,0.00,,,2.259,Blé dur UE,1.000
+Rabbit,animal_product,meat,rabbit,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,rabbit,1.000,0.05,,,0.792,Viande de veau FR,1.000
 Radish,vegetable_fresh,vegetable,radish,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,radish,1.000,0.600,radish,1.000,0.03,Radish,1.000,0.850,radish,1.000
-Rapeseed,nut_oilseed_raw,nut_oilseed,rapeseed,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,COLZA,rapeseed,1.000,0.770,Rapeseed,1.000,0.00,Huile de colza Bio,0.950,2.259,rapeseed,1.000
-Raspberry,vegetable_fresh,fruit,raspberry,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,raspberry,1.000,0.900,raspberry,1.000,0.03,Framboise UE,1.000,0.856,Framboise UE,1.000
+Rapeseed,nut_oilseed_raw,nut_oilseed,rapeseed,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,COLZA,rapeseed,1.000,0.770,Rapeseed,1.000,0.50,,,2.259,rapeseed,1.000
+Raspberry,vegetable_fresh,fruit,raspberry,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,raspberry,1.000,0.900,raspberry,1.000,0.20,,,0.856,Framboise UE,1.000
 "Raw rice, all varieties (white, wild, c Thai or basmati rice, raw)",grain_raw,grain,rice,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,RIZ,basmati rice,0.950,0.850,"Rice, raw",0.950,0.00,rice,0.950,2.259,rice,0.950
-"Red beans, dried",vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,VIGNES,grape,0.931,0.850,,,0.20,Red endive,0.931,0.856,Mandarine par défaut,0.928
+"Red beans, dried",vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,VIGNES,grape,0.931,0.850,,,0.20,,,0.856,Mandarine par défaut,0.928
 Red currant,vegetable_fresh,fruit,currant,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,currant,0.950,0.850,,,0.20,Currant,0.950,2.330,Petit pois FR,1.000
 Red endive,vegetable_fresh,vegetable,red endive,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Endive FR,0.950,0.900,,,0.20,Red endive,1.000,0.856,Endive FR,0.950
 Red mullet,animal_product,fish_seafood,crustacean,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.58,Surmullet or red mullet ,0.950,2.330,Petit pois FR,1.000
-Rhubarb,vegetable_fresh,vegetable,rhubarb,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,amaranth,1.000,0.900,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
-Rutabaga,vegetable_fresh,vegetable,shallot,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,beetroot,1.000,0.900,,,0.10,Brussels sprout,1.000,0.856,beetroot,1.000
-Saffron,spice_condiment_additive,spice_condiment,ontology,1.000,1,fresh_at_plant,0.850,raw,NOVA_1,0.850,none,,DIVERS,saffron,1.000,0.500,,,0.10,Coriander,1.000,1.000,Curcuma par défaut,0.999
+Rhubarb,vegetable_fresh,vegetable,rhubarb,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,amaranth,1.000,0.900,,,0.20,,,2.330,Petit pois FR,1.000
+Rutabaga,vegetable_fresh,vegetable,shallot,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,beetroot,1.000,0.900,,,0.20,,,0.856,beetroot,1.000
+Saffron,spice_condiment_additive,spice_condiment,ontology,1.000,1,fresh_at_plant,0.850,raw,NOVA_1,0.850,none,,DIVERS,saffron,1.000,0.500,,,0.00,,,1.000,Curcuma par défaut,0.999
 Saithe,animal_product,fish_seafood,crustacean,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.64,Saithe,1.000,2.330,Petit pois FR,1.000
-"Salad, lettuce",vegetable_fresh,vegetable,garlic,0.980,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,lettuce,0.950,0.300,lettuce,0.950,0.40,Laitue UE,0.950,0.856,Laitue UE,0.950
-"Salicornia, fresh",vegetable_fresh,vegetable,salicornia,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Champignon frais UE,1.000,0.730,Fresh green peas (minji),1.000,0.10,Champignon frais UE,1.000,0.856,Champignon frais UE,1.000
+"Salad, lettuce",vegetable_fresh,vegetable,garlic,0.980,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,lettuce,0.950,0.300,lettuce,0.950,0.20,,,0.856,Laitue UE,0.950
+"Salicornia, fresh",vegetable_fresh,vegetable,salicornia,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Champignon frais UE,1.000,0.730,Fresh green peas (minji),1.000,0.20,,,0.856,Champignon frais UE,1.000
 Salmon,animal_product,fish_seafood,salmon,1.000,1,minimal_at_plant,0.850,raw,NOVA_1,0.850,always,,,,,1.050,salmon,1.000,0.50,Salmon,1.000,1.000,Saumon cru UE,0.950
 Salsify,vegetable_fresh,vegetable,salsify,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VIGNES,vinegar,1.000,0.900,,,0.20,Salsify,1.000,1.000,Vinaigre balsamique FR,1.000
-Sardines,animal_product,fish_seafood,sardines,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,Crevalle jack,1.000,0.819,Truite d'élevage FR,0.919
-Scallops,animal_product,fish_seafood,mussels,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.75,Mussels,1.000,0.856,Fraise UE,0.898
-Sea bass,animal_product,fish_seafood,sea bass,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.20,Sardine FR,1.000,1.000,Sardine FR,1.000
+Sardines,animal_product,fish_seafood,sardines,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,,,0.819,Truite d'élevage FR,0.919
+Scallops,animal_product,fish_seafood,mussels,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,,,0.856,Fraise UE,0.898
+Sea bass,animal_product,fish_seafood,sea bass,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,,,1.000,Sardine FR,1.000
 "Sea salt, celery salt, or fleur de sel",animal_product,fish_seafood,ontology,1.000,2,nova2_salt,0.950,processed,NOVA_2,0.950,none,salt,,,,1.200,salt,0.950,0.03,Celery,0.950,0.856,celery,0.950
-Seaweed,vegetable_fresh,vegetable,seaweed,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,BLE TENDRE,bread,0.989,0.900,,,0.40,Mâche FR,0.989,1.000,powder,1.000
+Seaweed,vegetable_fresh,vegetable,seaweed,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,BLE TENDRE,bread,0.989,0.900,,,0.20,,,1.000,powder,1.000
 Semolina,grain_processed,grain,semolina,1.000,2,extracted_at_plant,0.850,processed,NOVA_2,0.850,none,,BLE TENDRE,semolina,1.000,0.700,semolina,1.000,0.00,semolina,1.000,2.500,semolina,1.000
-Sesame seeds,grain_raw,grain,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES OLEAGINEUX,sesame,0.950,0.750,,,0.00,Huile de tournesol par défaut,0.896,1.000,Huile de tournesol par défaut,0.896
-Shallots,misc,nan,# Vegetables with sparse features,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,Echalote FR,,,,0.900,,,0.10,Echalote FR,1.000,0.856,Echalote FR,1.000
-Sheep milk,dairy_product,dairy,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.030,,,0.00,Lait par défaut,0.950,1.000,Lait par défaut,0.950
+Sesame seeds,grain_raw,grain,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES OLEAGINEUX,sesame,0.950,0.750,,,0.00,,,1.000,Huile de tournesol par défaut,0.896
+Shallots,misc,nan,# Vegetables with sparse features,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,Echalote FR,,,,0.900,,,0.10,,,0.856,Echalote FR,1.000
+Sheep milk,dairy_product,dairy,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.030,,,0.00,,,1.000,Lait par défaut,0.950
 Shrimp,animal_product,fish_seafood,shrimp,1.000,1,default_fish_seafood,0.700,raw,NOVA_1,0.700,always,,,,,1.000,shrimp,1.000,0.55,Shrimp,1.000,0.819,shrimp,1.000
-Snail,animal_product,fish_seafood,crustacean,1.000,1,default_fish_seafood,0.700,raw,NOVA_1,0.700,always,,,,,1.050,,,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
-Snow pea,vegetable_fresh,vegetable,pea,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,pea,0.950,0.900,,,0.00,Fécule de pomme de terre par défaut,0.916,1.000,pea,0.950
-Soft wheat,grain_raw,grain,cereal,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,BLE TENDRE,soft wheat,1.000,0.770,Wheat,0.950,0.00,cereal,1.000,2.259,cereal,1.000
-Sorghum,grain_raw,grain,sorghum,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,sorghum,1.000,0.540,"Sorghum, fermented flour",0.950,0.00,Blé dur UE,1.000,2.259,Blé dur UE,1.000
-"Soy protein, textured",vegetable_processed,vegetable,ontology,1.000,4,nova4_textured,0.900,processed,NOVA_4,0.900,always,Carotte UE,LEGUMINEUSES A GRAIN,lentil,0.996,0.900,,,0.10,Chinese or Japanese artichokes,0.914,2.330,lentil,0.996
-Soybean,nut_oilseed_raw,nut_oilseed,soybean,1.000,1,minimal_processing,0.750,raw,NOVA_1,0.750,none,,AUTRES OLEAGINEUX,soybean,1.000,0.740,Soybean,1.000,0.00,Soja (non déforestant) par défaut,0.950,2.259,soybean,1.000
-Spelt,grain_raw,grain,sorghum,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,spelt,1.000,0.750,,,0.00,Blé dur UE,1.000,2.259,Blé dur UE,1.000
-Spinach,vegetable_fresh,vegetable,spinach,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,spinach,1.000,0.900,spinach,1.000,0.03,Epinard par défaut,1.000,0.856,Epinard par défaut,1.000
-"Spirits (pastis, brandy, gin, rum, vodka, whiskey, armagnac, cognac, sake, calvados)",misc,beverage,ontology,1.000,4,distilled_spirits,0.950,processed,NOVA_4,0.950,always,Raisin de cuve FR,,,,1.040,Brandy,0.950,0.10,Raisin de cuve FR,0.887,0.856,Raisin de cuve FR,0.887
-Split pea,vegetable_fresh,vegetable,pea,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMINEUSES A GRAIN,split pea,1.000,0.900,,,0.40,Salad,0.869,1.000,pea,0.950
-Spring faba,vegetable_fresh,vegetable,fresh vegetable,,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,,0.900,,,0.10,Radis FR,,1.000,Radis FR,
-Spring pea,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,pea,0.950,0.900,,,0.20,Haricot flageolet UE,0.942,1.000,pea,0.950
-Spring water,misc,beverage,spring water,1.000,1,water,0.900,raw,NOVA_1,0.900,none,Autres eaux et autres boissons (non encore répertoriées),,,,1.000,Water,0.950,0.00,Autres eaux et autres boissons (non encore répertoriées),0.997,1.000,Autres eaux et autres boissons (non encore répertoriées),0.997
-"Squash, raw, with skin",vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,squash,0.950,0.850,,,0.20,Courge UE,0.950,0.856,Courge UE,0.950
+Snail,animal_product,fish_seafood,crustacean,1.000,1,default_fish_seafood,0.700,raw,NOVA_1,0.700,always,,,,,1.050,,,0.40,,,2.330,Petit pois FR,1.000
+Snow pea,vegetable_fresh,vegetable,pea,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,pea,0.950,0.900,,,0.20,,,1.000,pea,0.950
+Soft wheat,grain_raw,grain,cereal,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,BLE TENDRE,soft wheat,1.000,0.770,Wheat,0.950,0.00,,,2.259,cereal,1.000
+Sorghum,grain_raw,grain,sorghum,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,sorghum,1.000,0.540,"Sorghum, fermented flour",0.950,0.00,,,2.259,Blé dur UE,1.000
+"Soy protein, textured",vegetable_processed,vegetable,ontology,1.000,4,nova4_textured,0.900,processed,NOVA_4,0.900,always,Carotte UE,LEGUMINEUSES A GRAIN,lentil,0.996,0.900,,,0.20,,,2.330,lentil,0.996
+Soybean,nut_oilseed_raw,nut_oilseed,soybean,1.000,1,minimal_processing,0.750,raw,NOVA_1,0.750,none,,AUTRES OLEAGINEUX,soybean,1.000,0.740,Soybean,1.000,0.50,,,2.259,soybean,1.000
+Spelt,grain_raw,grain,sorghum,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,spelt,1.000,0.750,,,0.00,,,2.259,Blé dur UE,1.000
+Spinach,vegetable_fresh,vegetable,spinach,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,spinach,1.000,0.900,spinach,1.000,0.20,,,0.856,Epinard par défaut,1.000
+"Spirits (pastis, brandy, gin, rum, vodka, whiskey, armagnac, cognac, sake, calvados)",misc,beverage,ontology,1.000,4,distilled_spirits,0.950,processed,NOVA_4,0.950,always,Raisin de cuve FR,,,,1.040,Brandy,0.950,0.00,,,0.856,Raisin de cuve FR,0.887
+Split pea,vegetable_fresh,vegetable,pea,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMINEUSES A GRAIN,split pea,1.000,0.900,,,0.20,,,1.000,pea,0.950
+Spring faba,vegetable_fresh,vegetable,fresh vegetable,,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,VERGERS,apple,,0.900,,,0.20,,,1.000,Radis FR,
+Spring pea,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,pea,0.950,0.900,,,0.20,,,1.000,pea,0.950
+Spring water,misc,beverage,spring water,1.000,1,water,0.900,raw,NOVA_1,0.900,none,Autres eaux et autres boissons (non encore répertoriées),,,,1.000,Water,0.950,0.00,,,1.000,Autres eaux et autres boissons (non encore répertoriées),0.997
+"Squash, raw, with skin",vegetable_fresh,fruit,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,squash,0.950,0.850,,,0.20,,,0.856,Courge UE,0.950
 Squid,animal_product,fish_seafood,squid,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.000,squid,1.000,0.64,Squid,1.000,0.819,squid,1.000
-Starch corn,grain_processed,grain,sorghum,0.996,2,nova2_starch,0.950,processed,NOVA_2,0.950,none,,MAIS GRAIN ET ENSILAGE,corn,0.950,0.720,corn,0.950,0.00,Blé dur UE,0.996,2.259,Blé dur UE,0.996
-Strawberry,vegetable_fresh,fruit,strawberry,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,strawberry,1.000,0.950,strawberry,1.000,0.03,Fraise UE,1.000,0.856,Fraise UE,1.000
-Sugar beet,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CULTURES INDUSTRIELLES,Betterave sucrière Bio,0.950,0.950,Sugar,0.950,0.00,Betterave sucrière Bio,0.950,1.000,Betterave sucrière Bio,0.950
+Starch corn,grain_processed,grain,sorghum,0.996,2,nova2_starch,0.950,processed,NOVA_2,0.950,none,,MAIS GRAIN ET ENSILAGE,corn,0.950,0.720,corn,0.950,0.00,,,2.259,Blé dur UE,0.996
+Strawberry,vegetable_fresh,fruit,strawberry,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,strawberry,1.000,0.950,strawberry,1.000,0.20,,,0.856,Fraise UE,1.000
+Sugar beet,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CULTURES INDUSTRIELLES,Betterave sucrière Bio,0.950,0.950,Sugar,0.950,0.20,,,1.000,Betterave sucrière Bio,0.950
 "Sugar, white",spice_condiment_additive,spice_condiment,sugar,0.950,2,nova2_sugar,0.950,processed,NOVA_2,0.950,none,,DIVERS,Sucre de canne par défaut,0.981,0.900,"Sugar, white",1.000,0.00,sugar,0.950,1.000,sugar,0.950
-"Sunflower, seed",nut_oilseed_raw,nut_oilseed,sunflower,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,TOURNESOL,sunflower,0.950,0.620,"Sunflower, seed",1.000,0.50,Tournesol UE,0.950,1.000,Tournesol UE,0.950
-Sweet potato,vegetable_fresh,vegetable,potato,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,sweet potato,1.000,0.650,"Sweet potato, boiled",0.950,0.10,Ail FR,1.000,0.856,potato,0.950
-Swiss chard,vegetable_fresh,vegetable,yam,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cauliflower,1.000,0.900,,,0.10,Cassava,1.000,1.000,Oignons déshydratés par défaut,1.000
+"Sunflower, seed",nut_oilseed_raw,nut_oilseed,sunflower,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,TOURNESOL,sunflower,0.950,0.620,"Sunflower, seed",1.000,0.50,,,1.000,Tournesol UE,0.950
+Sweet potato,vegetable_fresh,vegetable,potato,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,sweet potato,1.000,0.650,"Sweet potato, boiled",0.950,0.20,,,0.856,potato,0.950
+Swiss chard,vegetable_fresh,vegetable,yam,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,cauliflower,1.000,0.900,,,0.20,,,1.000,Oignons déshydratés par défaut,1.000
 Swordfish,animal_product,fish_seafood,crustacean,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,,,0.40,Swordfish,1.000,2.330,Petit pois FR,1.000
-Tamarind,animal_product,fish_seafood,crustacean,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.300,tamarind,1.000,0.20,Petit pois FR,1.000,2.330,Petit pois FR,1.000
-Tapioca,grain_raw,grain,tapioca,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMES-FLEURS,tapioca,1.000,0.750,,,0.20,Tarragon,1.000,12.000,Soupe déshydratée ES,1.000
-"Taro, tuber",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,taro,0.950,0.900,,,0.10,Carotte UE,1.000,0.856,Carotte UE,1.000
+Tamarind,animal_product,fish_seafood,crustacean,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.300,tamarind,1.000,0.40,,,2.330,Petit pois FR,1.000
+Tapioca,grain_raw,grain,tapioca,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMES-FLEURS,tapioca,1.000,0.750,,,0.00,,,12.000,Soupe déshydratée ES,1.000
+"Taro, tuber",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,taro,0.950,0.900,,,0.20,,,0.856,Carotte UE,1.000
 Tarragon fresh,spice_condiment_additive,spice_condiment,tarragon,0.950,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,tarragon,0.950,0.500,,,0.20,Tarragon,0.950,1.000,Autres huiles (non encore répertoriées),0.883
-"Tea, fresh leaf",misc,beverage,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,,,,0.900,,,0.00,Thé (feuilles) UE,0.928,1.000,Thé (feuilles) UE,0.928
-Tomato,vegetable_fresh,vegetable,tomato,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,tomato,1.000,1.000,tomato,1.000,0.03,Tomate UE,1.000,0.856,Tomate UE,1.000
-Triticale,grain_processed,grain,triticale,1.000,3,grain_processed,0.600,processed,NOVA_3,0.600,none,,AUTRES CEREALES,triticale,1.000,0.750,,,0.00,Mélange de céréales FR,0.999,2.259,triticale,1.000
-Tuna,animal_product,fish_seafood,tuna,1.000,1,minimal_processing,0.750,raw,NOVA_1,0.750,always,,,,,1.050,tuna,1.000,0.40,Tuna,1.000,1.000,Sardine FR,1.000
-Turnip,vegetable_fresh,vegetable,turnip,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,turnip,1.000,0.900,,,0.20,Brocoli UE,1.000,0.856,turnip,1.000
-"Vanilla, alcoholic or aqueous extract",spice_condiment_additive,spice_condiment,salt,0.992,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,vanilla,0.950,0.500,,,0.10,Basil,0.997,1.000,Sel,0.992
-Veal,animal_product,meat,veal,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,veal,1.000,0.00,Viande de veau FR,0.950,0.792,Viande de veau FR,0.950
+"Tea, fresh leaf",misc,beverage,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,,,,0.900,,,0.00,,,1.000,Thé (feuilles) UE,0.928
+Tomato,vegetable_fresh,vegetable,tomato,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,tomato,1.000,1.000,tomato,1.000,0.20,,,0.856,Tomate UE,1.000
+Triticale,grain_processed,grain,triticale,1.000,3,grain_processed,0.600,processed,NOVA_3,0.600,none,,AUTRES CEREALES,triticale,1.000,0.750,,,0.00,,,2.259,triticale,1.000
+Tuna,animal_product,fish_seafood,tuna,1.000,1,minimal_processing,0.750,raw,NOVA_1,0.750,always,,,,,1.050,tuna,1.000,0.00,,,1.000,Sardine FR,1.000
+Turnip,vegetable_fresh,vegetable,turnip,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,turnip,1.000,0.900,,,0.20,,,0.856,turnip,1.000
+"Vanilla, alcoholic or aqueous extract",spice_condiment_additive,spice_condiment,salt,0.992,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,DIVERS,vanilla,0.950,0.500,,,0.00,,,1.000,Sel,0.992
+Veal,animal_product,meat,veal,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,,,,1.050,veal,1.000,0.05,,,0.792,Viande de veau FR,0.950
 Walnuts,nut_oilseed_raw,nut_oilseed,walnuts,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,amaranth,1.000,0.600,,,0.50,Walnuts,1.000,2.330,Petit pois FR,1.000
-Watermelon,vegetable_fresh,fruit,watermelon,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,watermelon,1.000,1.000,watermelon,1.000,0.40,Pastèque Bio,0.950,0.856,Pastèque Bio,0.950
-Wheat gluten,grain_processed,grain,sorghum,0.999,4,nova4_isolate,0.900,processed,NOVA_4,0.900,none,,BLE TENDRE,wheat,0.950,0.770,Wheat,0.950,0.00,Blé dur UE,0.999,2.259,Blé dur UE,0.999
-"White beans, dried",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMES-FLEURS,Carotte UE,0.914,0.900,,,0.10,Chinese or Japanese artichokes,0.914,0.856,Carotte UE,0.914
-White cabbage,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Chou blanc FR,1.000,0.900,cabbage,0.950,0.20,Chou blanc FR,1.000,0.856,Chou blanc FR,1.000
-Whole barley,grain_raw,grain,pasta,0.993,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,ORGE,barley,0.950,0.620,Barley,0.950,0.00,Orge UE,0.950,2.259,Orge UE,0.950
-Whole millet,grain_raw,grain,pasta,0.993,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,millet,0.950,0.640,Millet,0.950,0.20,Pâtes FR,0.993,2.259,Pâtes FR,0.993
-Whole rye,grain_raw,grain,pasta,0.993,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,rye,0.950,0.750,,,0.20,Pâtes FR,0.993,2.259,Pâtes FR,0.993
-Winter pea,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,pea,0.950,0.900,,,0.20,Haricot flageolet UE,0.942,1.000,pea,0.950
-Yam,vegetable_fresh,vegetable,yam,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,yam,1.000,0.900,,,0.10,Cassava,1.000,1.000,Oignons déshydratés par défaut,1.000
-"Yeast (edible, chemical, or baker's)",grain_processed,grain,bread,1.000,4,recipe_at_plant,0.850,processed,NOVA_4,0.850,none,,BLE TENDRE,bread,1.000,0.950,Yeast,0.950,0.40,Mâche FR,1.000,0.856,Mâche FR,1.000
-Zucchini,vegetable_fresh,vegetable,zucchini,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,zucchini,1.000,1.000,zucchini,1.000,0.00,Concentré de tomates par défaut,1.000,0.856,zucchini,1.000
+Watermelon,vegetable_fresh,fruit,watermelon,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,watermelon,1.000,1.000,watermelon,1.000,0.20,,,0.856,Pastèque Bio,0.950
+Wheat gluten,grain_processed,grain,sorghum,0.999,4,nova4_isolate,0.900,processed,NOVA_4,0.900,none,,BLE TENDRE,wheat,0.950,0.770,Wheat,0.950,0.00,,,2.259,Blé dur UE,0.999
+"White beans, dried",vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,LEGUMES-FLEURS,Carotte UE,0.914,0.900,,,0.20,,,0.856,Carotte UE,0.914
+White cabbage,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,Chou blanc FR,1.000,0.900,cabbage,0.950,0.20,,,0.856,Chou blanc FR,1.000
+Whole barley,grain_raw,grain,pasta,0.993,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,ORGE,barley,0.950,0.620,Barley,0.950,0.00,,,2.259,Orge UE,0.950
+Whole millet,grain_raw,grain,pasta,0.993,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,millet,0.950,0.640,Millet,0.950,0.00,,,2.259,Pâtes FR,0.993
+Whole rye,grain_raw,grain,pasta,0.993,1,at_farm_source,0.950,raw,NOVA_1,0.950,none,,AUTRES CEREALES,rye,0.950,0.750,,,0.00,,,2.259,Pâtes FR,0.993
+Winter pea,vegetable_fresh,vegetable,ontology,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,AUTRES CEREALES,pea,0.950,0.900,,,0.20,,,1.000,pea,0.950
+Yam,vegetable_fresh,vegetable,yam,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,yam,1.000,0.900,,,0.20,,,1.000,Oignons déshydratés par défaut,1.000
+"Yeast (edible, chemical, or baker's)",grain_processed,grain,bread,1.000,4,recipe_at_plant,0.850,processed,NOVA_4,0.850,none,,BLE TENDRE,bread,1.000,0.950,Yeast,0.950,0.00,,,0.856,Mâche FR,1.000
+Zucchini,vegetable_fresh,vegetable,zucchini,1.000,1,at_farm_source,0.950,raw,NOVA_1,0.950,always,,LEGUMES-FLEURS,zucchini,1.000,1.000,zucchini,1.000,0.20,,,0.856,zucchini,1.000

@@ -14,12 +14,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Agave",
           "id": "8b0e13cc-a518-46d1-9877-5a2d5fc8ad5e",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Poudre de cacao par défaut",
-            "confidence": 0.995
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -66,11 +62,7 @@
           "displayName": "Amandes en coquille",
           "id": "9d84dc37-a9b2-40d0-96a5-80769181c03d",
           "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Almonds",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -120,12 +112,8 @@
           "defaultOrigin": "France",
           "displayName": "Amarante",
           "id": "10fbac27-282f-4b9d-a503-4e950b4ce45a",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -171,12 +159,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Anchois",
           "id": "9246f9a5-3697-4d0f-9a3c-aa8d3f891840",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Anchois FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -216,12 +200,8 @@
           "defaultOrigin": "France",
           "displayName": "Pomme",
           "id": "a8ed188b-ad18-45a8-b276-afda6b0df5ca",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Pomme par défaut",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -272,11 +252,7 @@
           "displayName": "abricots",
           "id": "36dadc2a-487b-4944-a863-721e6367e888",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -322,12 +298,8 @@
           "defaultOrigin": "France",
           "displayName": "omble chevalier, filet",
           "id": "6c64b0f9-13ec-4676-8a95-eb43af00f2dd",
-          "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Arctic char",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -423,11 +395,7 @@
           "displayName": "Avocat",
           "id": "26531440-482a-451c-ba8e-9ab070dc6ef1",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Prune UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -477,12 +445,8 @@
           "defaultOrigin": "France",
           "displayName": "Levure chimique",
           "id": "da2fa6ae-0079-4b49-b2c2-cecb4b1957f6",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Mâche FR",
-            "confidence": 0.998
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_processed"
           ],
@@ -532,12 +496,8 @@
           "defaultOrigin": "France",
           "displayName": "pousses de bambou",
           "id": "0b452e26-3742-47aa-9821-5a1525efe933",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -583,12 +543,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Banane",
           "id": "051522f9-b742-4594-9ff5-cb52459eb57e",
-          "inediblePart": 0.3,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Banane par défaut",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -694,11 +650,7 @@
           "displayName": "feuilles de laurier",
           "id": "0855a178-312e-4076-8443-11cd9efcab12",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
-            "confidence": 0.551
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -744,12 +696,8 @@
           "defaultOrigin": "France",
           "displayName": "Boeuf",
           "id": "ee779e0c-d60f-4e15-a963-e94ea97c47e9",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de veau FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -796,12 +744,8 @@
           "defaultOrigin": "France",
           "displayName": "Betterave",
           "id": "e18e292a-6c2c-4991-9069-6dbf1b6efbc8",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Brussels sprout",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -847,12 +791,8 @@
           "defaultOrigin": "France",
           "displayName": "Poivron, vert, jaune ou rouge",
           "id": "cea14297-a875-4b63-8cf1-0e87beff2526",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Betterave rouge FR",
-            "confidence": 0.939
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -998,12 +938,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Mûre noire",
           "id": "8df69b42-5730-4a13-9d19-13e2c1fa0fb8",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -1043,12 +979,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Myrtille",
           "id": "3106023d-52f1-4f46-924b-8302ab211f7c",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -1144,11 +1076,7 @@
           "displayName": "noix du Brésil",
           "id": "74d288ea-4b5d-49c1-8a24-5a07eb6555f8",
           "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Noix avec coque UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -1199,11 +1127,7 @@
           "displayName": "fruit à pain",
           "id": "92c49402-2ce5-4c5e-b068-c10422e039a0",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -1250,11 +1174,7 @@
           "displayName": "Fève",
           "id": "0189ad7e-3075-4c73-bd8f-9e9f95b9715d",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -1305,11 +1225,7 @@
           "displayName": "Brocoli",
           "id": "e06f4aee-8b7d-44da-9c08-deb1bad6f850",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Brocoli UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -1359,12 +1275,8 @@
           "defaultOrigin": "France",
           "displayName": "Poulet de chair",
           "id": "4b9bdfd9-9012-452a-8525-150947e75981",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -1508,12 +1420,8 @@
           "defaultOrigin": "France",
           "displayName": "Capelan, filet",
           "id": "3579c5db-3056-4d4b-8003-9bfc0879d6ac",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Capelin",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -1554,11 +1462,7 @@
           "displayName": "Carambole",
           "id": "1611c1ce-c88f-451d-be55-6596139b52d6",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Mandarine par défaut",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -1604,12 +1508,8 @@
           "defaultOrigin": "France",
           "displayName": "Cardoon",
           "id": "5db0769c-7e1a-4eb7-959c-5c5769137fdd",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -1649,12 +1549,8 @@
           "defaultOrigin": "France",
           "displayName": "Carottes",
           "id": "6dec67e1-0ed8-4d3c-995c-30b342bcbb90",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -1700,12 +1596,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Noix de cajou",
           "id": "0bffe057-a7f7-403d-b3fa-b2b6eb5245ae",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 0.858
-          },
+          "inediblePart": 0.5,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -1968,11 +1860,7 @@
           "displayName": "Cerise",
           "id": "d38b28a9-195e-44a0-8ec5-e078951d9dbd",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Cerise par défaut",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -2023,11 +1911,7 @@
           "displayName": "Tomates cerises",
           "id": "4cadc696-96d5-4179-acd2-675c09a0a2b8",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Cerise par défaut",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -2078,11 +1962,7 @@
           "displayName": "Châtaigne",
           "id": "689aa228-54f0-4f5a-a39d-7d7d31c46e79",
           "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Châtaigne avec coque Bio",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -2184,11 +2064,7 @@
           "displayName": "Pois chiches",
           "id": "18b8a0cc-15d7-47a4-bfbf-7b22df049b9d",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Pois chiche par défaut",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh",
             "organic"
@@ -2345,12 +2221,8 @@
           "defaultOrigin": "France",
           "displayName": "Ciboulette",
           "id": "ae18d80e-3128-4c74-9b91-e2c9f16c0209",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -2396,12 +2268,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cannelle",
           "id": "6c4c4162-1741-40ed-a302-1b95945f844d",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Basil",
-            "confidence": 0.999
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -2452,11 +2320,7 @@
           "displayName": "Clémentine",
           "id": "44b2d28e-d374-4e15-a41f-9201a78cd712",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Clémentine par défaut",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -2503,11 +2367,7 @@
           "displayName": "fève de cacao",
           "id": "be3104c1-22fb-4533-866b-1d749e439a65",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -2558,11 +2418,7 @@
           "displayName": "beurre de cacao",
           "id": "e87c32ad-cfa7-4f33-b88d-b9c6c21cdfa8",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Beurre de cacao par défaut",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_processed"
           ],
@@ -2612,12 +2468,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Poudre de cacao",
           "id": "904dd163-e642-499f-a247-47568726ee1f",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Poudre de cacao par défaut",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -2664,11 +2516,7 @@
           "displayName": "Noix de coco décortiquée",
           "id": "4e84215e-0f02-4e5e-a316-1460835ceb6d",
           "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Amandes en coque UE",
-            "confidence": 0.934
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -2719,11 +2567,7 @@
           "displayName": "Café en grains",
           "id": "8d4c4165-7f0f-4628-b8e5-136c2e25cb64",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Thé (feuilles) UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "misc"
           ],
@@ -2873,12 +2717,8 @@
           "defaultOrigin": "France",
           "displayName": "Maïs",
           "id": "99b46663-7588-4e02-93c5-894e403bd989",
-          "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Maïs doux UE",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -2929,11 +2769,7 @@
           "displayName": "sirop de glucose de maïs",
           "id": "806754d7-1b52-4ab9-ac0b-9685ef9b715c",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Sirop de glucose FR ou UE ou par défaut",
-            "confidence": 0.871
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -2983,12 +2819,8 @@
           "defaultOrigin": "France",
           "displayName": "Vache",
           "id": "1b9f1056-fc8e-4db7-8425-5ff19b52e1c0",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de boeuf sans os - vache de réforme 100% herbe FR",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3032,11 +2864,7 @@
           "displayName": "lait de vache",
           "id": "934cba60-0c76-4722-8244-ac0751813add",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Lait par défaut",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "dairy_product"
           ],
@@ -3079,12 +2907,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Crabe",
           "id": "28fd97b0-fb1e-4bf1-82a7-bffa1690b2f6",
-          "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Crabe UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3128,12 +2952,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Canneberge",
           "id": "acb34ec0-0c0a-46f1-b32f-1cb9ad5ac13a",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3183,12 +3003,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Concombre",
           "id": "4a184d2c-36a7-4f73-addc-01f51d25052e",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Concombre hors saison FR",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3294,11 +3110,7 @@
           "displayName": "Dattes",
           "id": "0b297aac-f58a-4e95-9a21-231ddc1e4497",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3345,11 +3157,7 @@
           "displayName": "Aneth, frais",
           "id": "37066404-4714-43a7-8c89-b08a55f17cb8",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Herbe de prairie temporaire FR",
-            "confidence": 0.904
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -3446,12 +3254,8 @@
           "defaultOrigin": "France",
           "displayName": "Canard",
           "id": "9c9af666-c8cf-4317-bf23-f0034b7141cb",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de veau FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3499,11 +3303,7 @@
           "displayName": "blé dur",
           "id": "df7d64b0-dc27-4a07-bb54-d27253430e32",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -3553,12 +3353,8 @@
           "defaultOrigin": "France",
           "displayName": "Œuf",
           "id": "933f9b34-9fc3-4ec6-865c-5b6562f0fadf",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Oeuf FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3598,12 +3394,8 @@
           "defaultOrigin": "France",
           "displayName": "Aubergine",
           "id": "a711b096-2fff-4e38-8f35-e2cedb3e8256",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Aubergine UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3653,12 +3445,8 @@
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "baies de sureau",
           "id": "014735cf-32a0-41fa-b1bc-8c97859a22e2",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3755,12 +3543,8 @@
           "defaultOrigin": "France",
           "displayName": "Carpe d'élevage, filet",
           "id": "8edd2fa2-ebe3-4b69-8e73-5cf183dd1a89",
-          "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Carp",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3800,12 +3584,8 @@
           "defaultOrigin": "France",
           "displayName": "Turbot d'élevage, filet",
           "id": "b3c38f40-5426-42f7-b427-1dedc86844da",
-          "inediblePart": 0.56,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Turbot",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -3846,11 +3626,7 @@
           "displayName": "Fenouil",
           "id": "f31898ac-2d1c-452d-a0d4-2053d89e9447",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Fenouil FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3896,12 +3672,8 @@
           "defaultOrigin": "France",
           "displayName": "figue",
           "id": "58e423a4-9059-4209-9bd4-add01340bf5f",
-          "inediblePart": 0.3,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Citron UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -3947,12 +3719,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots flageolets verts",
           "id": "4253f429-5420-4e8e-842a-2403fe8adb11",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 0.934
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4002,12 +3770,8 @@
           "defaultOrigin": "France",
           "displayName": "graines de lin",
           "id": "47539f71-add8-411f-911b-92e2444bff9a",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Pomme de terre industrie FR",
-            "confidence": 0.919
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4057,12 +3821,8 @@
           "defaultOrigin": "France",
           "displayName": "haricots verts",
           "id": "020de598-20d2-4924-b7f0-92095246039a",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.1,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "misc"
           ],
@@ -4157,12 +3917,8 @@
           "defaultOrigin": "France",
           "displayName": "Gadidés",
           "id": "f0d5a656-7989-4ec4-ae3b-07c15839fbbf",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -4202,12 +3958,8 @@
           "defaultOrigin": "France",
           "displayName": "Cornichon",
           "id": "dfb460cc-e9da-464f-a1b6-c89b5785f394",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Brussels sprout",
-            "confidence": 0.894
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_processed"
           ],
@@ -4257,12 +4009,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Gingembre",
           "id": "e1ce3104-1452-4416-bbf8-633e985aa6e2",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Coriander",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -4308,12 +4056,8 @@
           "defaultOrigin": "France",
           "displayName": "Chèvre",
           "id": "12a1a5be-418e-4e59-83e1-3ddfb2833113",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Lait de chèvre FR",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -4358,11 +4102,7 @@
           "displayName": "Groseille",
           "id": "e55bda0c-d87b-40e3-94e6-59743e15be48",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Mandarine par défaut",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4460,11 +4200,7 @@
           "displayName": "Raisins (noirs ou blancs)",
           "id": "745e0b21-d9f9-43a7-9746-fb78d1b4d7e8",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4511,11 +4247,7 @@
           "displayName": "chou vert",
           "id": "a584a5e8-5572-4e40-a8b8-b92d2a32b743",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Chou vert FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4566,11 +4298,7 @@
           "displayName": "Prune reine-claude",
           "id": "70d7bf49-c19e-41a5-807b-bc78e89bfc7d",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Prune UE",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4620,12 +4348,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Goyave",
           "id": "fd1c87b2-d325-46c3-9d5d-4f97486666d6",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4720,12 +4444,8 @@
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Noisettes décortiquées",
           "id": "ef3ad915-61a8-422c-bbd8-af5769c25d56",
-          "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Noix avec coque UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -4772,11 +4492,7 @@
           "displayName": "Chanvre",
           "id": "99c1eebd-7b65-4f51-9674-278c4483f114",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Riz basmati UE",
-            "confidence": 0.928
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -4871,12 +4587,8 @@
           "defaultOrigin": "France",
           "displayName": "Raifort frais",
           "id": "6d62ef81-68f2-44be-9275-201ec5ac5fa0",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 0.916
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4922,12 +4634,8 @@
           "defaultOrigin": "France",
           "displayName": "topinambour",
           "id": "0b975a9e-c9cf-4173-8ab6-5989fa05aa80",
-          "inediblePart": 0.6,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Artichaut FR",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -4973,12 +4681,8 @@
           "defaultOrigin": "France",
           "displayName": "Chou frisé",
           "id": "1f7399ff-39f9-47f5-a4a9-5883663f1143",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Cassava",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5079,12 +4783,8 @@
           "defaultOrigin": "France",
           "displayName": "Chou-rave",
           "id": "8e4cdf11-660c-4bfa-8d86-487e3d21f24d",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Cassava",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5130,12 +4830,8 @@
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Kumquat",
           "id": "4724fa11-599a-48ba-ba80-570ff0b09558",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5181,12 +4877,8 @@
           "defaultOrigin": "France",
           "displayName": "Agneau",
           "id": "64891845-79c8-4225-bd27-a9cd094d2008",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Viande d'agneau (désossée) par défaut",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -5288,12 +4980,8 @@
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Citron",
           "id": "42867c20-149c-4ee0-be0d-625f384bedd9",
-          "inediblePart": 0.3,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Citron UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5343,12 +5031,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lentille",
           "id": "3e9f3117-b76e-4474-883a-5cfe47988135",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Brussels sprout",
-            "confidence": 0.921
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5398,12 +5082,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lentilles",
           "id": "ca01658f-bfdc-4565-aca3-427fc3904508",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 0.88
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5453,12 +5133,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots de Lima",
           "id": "2336500f-942b-4d9a-8685-3f8e9e17f9c9",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Chinese or Japanese artichokes",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5504,12 +5180,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Homard",
           "id": "0bab7b7e-10db-458d-a4b3-9bd81cf87256",
-          "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Homard UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -5553,12 +5225,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lupin",
           "id": "5575adb9-473d-4f4e-9248-b9acc85417db",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Cassava",
-            "confidence": 0.935
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5660,11 +5328,7 @@
           "displayName": "Litchi",
           "id": "c6437bdc-b1d2-484b-9111-3351badc9a4a",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Abricot UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5715,11 +5379,7 @@
           "displayName": "noix de macadamia",
           "id": "14079411-8b21-4f3c-99f9-83a6ce6dabb5",
           "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "inedible_part.csv",
-            "name": "nut",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -5815,11 +5475,7 @@
           "displayName": "mangue",
           "id": "4832e951-a67e-4664-95b4-1207d7f970f3",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Mangue par défaut",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -5870,11 +5526,7 @@
           "displayName": "sirop d'érable",
           "id": "9355d83d-2871-4a25-97fe-09672aa85589",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Miel FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -5979,12 +5631,8 @@
           "defaultOrigin": "France",
           "displayName": "Millet",
           "id": "521e9b52-0af2-4881-b842-d1388ab01cca",
-          "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Ensilage maïs FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -6085,12 +5733,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Poudre de Molokhia",
           "id": "1d93c754-3c88-41d3-8b05-6ef7aba11944",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Mâche FR",
-            "confidence": 0.997
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -6137,11 +5781,7 @@
           "displayName": "cerise griotte",
           "id": "02a3ef7b-1e11-4d88-b429-53fec316e532",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Cerise par défaut",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -6192,11 +5832,7 @@
           "displayName": "Haricot mungo",
           "id": "c483723e-0110-46cf-9c26-dbe501c43640",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -6297,12 +5933,8 @@
           "defaultOrigin": "France",
           "displayName": "Moules, avec coquille",
           "id": "7fe2f654-bfc7-4250-a2d4-7b3501c9365d",
-          "inediblePart": 0.75,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Mussels",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.5,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -6342,12 +5974,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Graines de moutarde",
           "id": "79eb70ab-f661-4d5b-8bfc-0ca475dcef14",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Moutarde FR",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -6397,12 +6025,8 @@
           "defaultOrigin": "France",
           "displayName": "Nectarine",
           "id": "cc4ab79f-6398-4884-8014-ecb2e7eb94b9",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -6448,12 +6072,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Épinards de Nouvelle-Zélande",
           "id": "03bc1907-d0e4-4acf-871f-8b9748f9f214",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Epinard par défaut",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -6503,12 +6123,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "perche du Nil",
           "id": "c5ec1f39-485c-4ee8-a3ed-c6a3aa46085a",
-          "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Nile perch",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -6552,12 +6168,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Noix de muscade",
           "id": "bec87111-d4ab-4a81-8938-4eeca078a18e",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Basil",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -6604,11 +6216,7 @@
           "displayName": "Avoine",
           "id": "3ebc1c30-c2c2-479b-9a7b-d4cb6d2067c6",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Avoine UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -6659,11 +6267,7 @@
           "displayName": "Gombo",
           "id": "24223584-5948-4cb5-bfdc-cadf73afe33c",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -6818,11 +6422,7 @@
           "displayName": "Oranges",
           "id": "d23089c5-19f9-4226-9c7f-5b38fd3a9ae5",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -6868,12 +6468,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "fruit du palmier",
           "id": "238bed2d-6fd7-4c97-9fae-c96af94e16ce",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Huile de palme (raffinée) UE",
-            "confidence": 0.924
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -6920,11 +6516,7 @@
           "displayName": "Papaye",
           "id": "7e1a3717-3ba0-4b0d-a991-b2f7b023b881",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Abricot UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -7021,12 +6613,8 @@
           "defaultOrigin": "France",
           "displayName": "panais",
           "id": "2507d6ff-f260-4f1a-992f-70469ad4ba83",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.1,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "misc"
           ],
@@ -7071,11 +6659,7 @@
           "displayName": "Fruit de la passion",
           "id": "b1bc51b8-be9c-4afd-ad86-4abd141125f7",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Prune UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -7121,12 +6705,8 @@
           "defaultOrigin": "France",
           "displayName": "Pêches",
           "id": "fd6dbe64-1a61-4fab-9c2d-9c0917923141",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -7172,12 +6752,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Arachide",
           "id": "0a8f7f80-da3d-4829-83bb-6a578b92aa5e",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Huile d'arachide (raffinée) par défaut",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.5,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -7283,11 +6859,7 @@
           "displayName": "Poires",
           "id": "77e23d91-b495-4d27-9686-3832e85b9053",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -7334,11 +6906,7 @@
           "displayName": "Pois, avec leurs cosses",
           "id": "f5484cd3-64d1-4136-9132-dcfb430c0508",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -7384,12 +6952,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "kaki",
           "id": "b41700b3-e362-448d-b6cb-74a33c976f3e",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -7435,12 +6999,8 @@
           "defaultOrigin": "France",
           "displayName": "Cochon",
           "id": "33bb88c2-37fd-41bc-95af-6efa9ec1e60d",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Foie de porc cru FR",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -7484,11 +7044,7 @@
           "displayName": "pignons de pin",
           "id": "17083a5e-1823-4609-89a3-575edc1b5d3d",
           "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Noix avec coque UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -7594,11 +7150,7 @@
           "displayName": "Pistaches",
           "id": "70034c8f-5a72-4b25-863f-acb5cec725c2",
           "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Noix avec coque UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -7645,11 +7197,7 @@
           "displayName": "Plantain",
           "id": "29718535-b2e7-4b74-8e2c-c99fc2b5e124",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -7746,12 +7294,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "graines de pavot",
           "id": "9a3d4df3-c162-49fe-a207-06d074d85741",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Poitrine de porc FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -7791,12 +7335,8 @@
           "defaultOrigin": "France",
           "displayName": "Pomme de terre",
           "id": "a6a6fc71-7897-4916-bf46-c639e68790a8",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Pomme de terre de table Bio",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -7902,11 +7442,7 @@
           "displayName": "Citrouille",
           "id": "9883f325-5f3c-4fb9-807c-fff40f25a251",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Citrouille FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -7957,11 +7493,7 @@
           "displayName": "Coing",
           "id": "68242949-2480-46fe-ab69-fe7790d89217",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -8008,11 +7540,7 @@
           "displayName": "Quinoa",
           "id": "338a492a-4fd2-4ef7-9c15-58bad0820499",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -8058,12 +7586,8 @@
           "defaultOrigin": "France",
           "displayName": "Lapin",
           "id": "f43966cb-73b5-4208-acf3-2803c4e92b42",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de veau FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -8162,12 +7686,8 @@
           "defaultOrigin": "France",
           "displayName": "colza",
           "id": "6de5743b-368d-42e4-af56-e221081eb415",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Huile de colza Bio",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.5,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -8217,12 +7737,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Framboise",
           "id": "cdd16e9a-9de7-4c45-989b-6374b2f97e5b",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Framboise UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -8328,11 +7844,7 @@
           "displayName": "Haricots rouges",
           "id": "be65b735-2b43-4cf7-ae78-187e306e3dc2",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Red endive",
-            "confidence": 0.931
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -8526,11 +8038,7 @@
           "displayName": "Rhubarbe",
           "id": "e13796f3-3e4c-48af-a25e-7d8e39c8cb30",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -8576,12 +8084,8 @@
           "defaultOrigin": "France",
           "displayName": "Rutabaga",
           "id": "4c6ecc58-fb49-4b6a-a72a-0200349a5482",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Brussels sprout",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -8627,12 +8131,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Safran",
           "id": "f14b64f2-1314-465e-a769-aaf14d2d660b",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Coriander",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -8723,12 +8223,8 @@
           "defaultOrigin": "France",
           "displayName": "Salade, laitue",
           "id": "690b0eec-110a-4f0b-bb58-8b71d2cbdd09",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Laitue UE",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -8778,12 +8274,8 @@
           "defaultOrigin": "France",
           "displayName": "Salicorne, fraîche",
           "id": "c62d3065-d784-46a6-9d59-14218c18c9d1",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Champignon frais UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -8934,11 +8426,7 @@
           "displayName": "Sardines",
           "id": "b687f2a3-1b5e-45dd-b5d5-d5acca79ae47",
           "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Crevalle jack",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -8978,12 +8466,8 @@
           "defaultOrigin": "France",
           "displayName": "Coquilles saint-jacques",
           "id": "5ced06c2-2304-4157-bbb6-ca51eb3c9ee7",
-          "inediblePart": 0.75,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Mussels",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -9023,12 +8507,8 @@
           "defaultOrigin": "France",
           "displayName": "Bar",
           "id": "d3ed86fe-fc22-4108-890f-12235522fce4",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Sardine FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -9121,12 +8601,8 @@
           "defaultOrigin": "France",
           "displayName": "Algue",
           "id": "2fb3420f-1a0e-4366-81ff-dcf2647a2309",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Mâche FR",
-            "confidence": 0.989
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -9228,11 +8704,7 @@
           "displayName": "Graines de sésame",
           "id": "2aeb443a-8d2c-4d0c-930b-9b57dfa5686a",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Huile de tournesol par défaut",
-            "confidence": 0.896
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -9279,11 +8751,7 @@
           "displayName": "Échalotes",
           "id": "75ffcfa7-c3f2-429f-a142-c2de40367402",
           "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Echalote FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "misc"
           ],
@@ -9328,11 +8796,7 @@
           "displayName": "lait de brebis",
           "id": "b95a6eca-4cbb-47bc-912b-2dad7fe8c1f0",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Lait par défaut",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "dairy_product"
           ],
@@ -9424,12 +8888,8 @@
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Escargot",
           "id": "052d9405-a261-479e-8047-71a694e76448",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -9469,12 +8929,8 @@
           "defaultOrigin": "France",
           "displayName": "pois mange-tout",
           "id": "6c6aea36-b30a-405b-9ca8-817e2e205b7e",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Fécule de pomme de terre par défaut",
-            "confidence": 0.916
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -9521,11 +8977,7 @@
           "displayName": "blé tendre",
           "id": "38190f03-ee9e-43db-b55e-16c8b7018bcb",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "inedible_part.csv",
-            "name": "cereal",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -9576,11 +9028,7 @@
           "displayName": "Sorgho",
           "id": "3efbd1a3-2f01-49f6-bd22-2c569a1a0cd3",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -9630,12 +9078,8 @@
           "defaultOrigin": "France",
           "displayName": "Protéines de soja texturées",
           "id": "585ab745-87ea-4efd-8e0c-ac1a0ffd6159",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Chinese or Japanese artichokes",
-            "confidence": 0.914
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_processed"
           ],
@@ -9685,12 +9129,8 @@
           "defaultOrigin": "France",
           "displayName": "Soja",
           "id": "0389fa44-b97f-4b9b-ab1a-122131a8a975",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Soja (non déforestant) par défaut",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.5,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -9741,11 +9181,7 @@
           "displayName": "Epeautre",
           "id": "d6c265f1-65fd-449c-aea3-21db0f616508",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -9791,12 +9227,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Épinard",
           "id": "c8819ecc-14db-400c-af11-1600872a854d",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Epinard par défaut",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -9846,12 +9278,8 @@
           "defaultOrigin": "France",
           "displayName": "Spiritueux (pastis, brandy, gin, rhum, vodka, whisky, armagnac, cognac, saké, calvados)",
           "id": "ee9d9027-6118-4f57-b4ae-94bfa0eb9261",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Raisin de cuve FR",
-            "confidence": 0.887
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "misc"
           ],
@@ -9899,12 +9327,8 @@
           "defaultOrigin": "France",
           "displayName": "pois cassés",
           "id": "fe6c6111-249d-4ce7-827e-e31ac5935149",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Salad",
-            "confidence": 0.869
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -9950,12 +9374,8 @@
           "defaultOrigin": "France",
           "displayName": "fèves printanières",
           "id": "247da146-d975-4c8d-b5c4-3512eff88804",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -10002,11 +9422,7 @@
           "displayName": "pois de printemps",
           "id": "f74a7956-2730-4d90-80c4-f9249f0fc993",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Haricot flageolet UE",
-            "confidence": 0.942
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -10053,11 +9469,7 @@
           "displayName": "eau de source",
           "id": "8568b849-734b-4f4e-b867-04eac526ca80",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Autres eaux et autres boissons (non encore répertoriées)",
-            "confidence": 0.997
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "misc"
           ],
@@ -10106,11 +9518,7 @@
           "displayName": "Courge crue, avec la peau",
           "id": "4231e12b-61d9-4359-8629-4fcc48d68beb",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Courge UE",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -10206,11 +9614,7 @@
           "displayName": "Fécule de maïs",
           "id": "22f4914a-6b31-4343-b4fb-242dd389bed1",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 0.996
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_processed"
           ],
@@ -10260,12 +9664,8 @@
           "defaultOrigin": "France",
           "displayName": "Fraise",
           "id": "c4cc1674-ca0e-4d28-9541-f7e8b49b43ff",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Fraise UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -10315,12 +9715,8 @@
           "defaultOrigin": "France",
           "displayName": "Betterave à sucre",
           "id": "9f3fbc34-7406-4a22-baa6-436979db0e28",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Betterave sucrière Bio",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -10426,11 +9822,7 @@
           "displayName": "tournesol, graine",
           "id": "4de03a94-d7ed-4998-8e52-f67583bc91d7",
           "inediblePart": 0.5,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Tournesol UE",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
@@ -10480,12 +9872,8 @@
           "defaultOrigin": "France",
           "displayName": "Patate douce",
           "id": "453e8b2b-9f81-4d40-8299-e43f08bcc89b",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Ail FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -10535,12 +9923,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Blette",
           "id": "2d18af29-39a3-4b6c-b2f6-3e93ac216c60",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Cassava",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -10631,12 +10015,8 @@
           "defaultOrigin": "France",
           "displayName": "Tamarin",
           "id": "8cabdfda-7ae8-4af0-942b-c2b80d561762",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.4,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -10680,12 +10060,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tapioca",
           "id": "148f3a1c-eff9-4425-bbda-c6d0f694e9bf",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Tarragon",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -10731,12 +10107,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Taro, tubercule",
           "id": "906dd2bf-4601-4767-af5a-fb3278d0fb16",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -10834,11 +10206,7 @@
           "displayName": "Thé, feuilles fraîches",
           "id": "c9505df7-d447-493b-a2f5-d9ae88c9e917",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Thé (feuilles) UE",
-            "confidence": 0.928
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "misc"
           ],
@@ -10878,12 +10246,8 @@
           "defaultOrigin": "France",
           "displayName": "Tomate",
           "id": "8476ef47-14ed-4806-80f9-8c84749a7475",
-          "inediblePart": 0.03,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Tomate UE",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -10934,11 +10298,7 @@
           "displayName": "Triticale",
           "id": "cae1da29-f716-4f90-808c-e3b1a82fa8fc",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Mélange de céréales FR",
-            "confidence": 0.999
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_processed"
           ],
@@ -10984,12 +10344,8 @@
           "defaultOrigin": "France",
           "displayName": "Thon",
           "id": "88709af5-3dec-4130-8428-a6e48c31c5fb",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Tuna",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -11034,11 +10390,7 @@
           "displayName": "Navet",
           "id": "dadf11d4-4a4a-4fe7-89e2-8ea2ddd297ec",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Brocoli UE",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -11084,12 +10436,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Extrait de vanille, alcoolique ou aqueux",
           "id": "93b1fc9c-df8d-4038-a681-d93aad47a183",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Basil",
-            "confidence": 0.997
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
@@ -11135,12 +10483,8 @@
           "defaultOrigin": "France",
           "displayName": "Veau",
           "id": "bb6c0fa5-68f8-4025-a2e7-51b5cbb4dccf",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de veau FR",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.05,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "animal_product"
           ],
@@ -11238,12 +10582,8 @@
           "defaultOrigin": "France",
           "displayName": "Pastèque",
           "id": "f0c1fdfb-597d-4f5a-be59-d558733397f8",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Pastèque Bio",
-            "confidence": 0.95
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -11294,11 +10634,7 @@
           "displayName": "gluten de blé",
           "id": "7356ac26-7c44-4293-927d-1e39cca2219d",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 0.999
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_processed"
           ],
@@ -11348,12 +10684,8 @@
           "defaultOrigin": "France",
           "displayName": "Haricots blancs séchés",
           "id": "62021732-76ee-4358-8d3b-d886aa91e7a3",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Chinese or Japanese artichokes",
-            "confidence": 0.914
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -11400,11 +10732,7 @@
           "displayName": "chou blanc",
           "id": "2bb15886-2a54-4285-8fcf-f233b3ca21cc",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Chou blanc FR",
-            "confidence": 1.0
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -11455,11 +10783,7 @@
           "displayName": "Orge entière",
           "id": "e7b2fef8-bd5c-4b86-90e5-0eb16628c0e8",
           "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Orge UE",
-            "confidence": 0.95
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -11509,12 +10833,8 @@
           "defaultOrigin": "France",
           "displayName": "millet entier",
           "id": "454a4aa2-1ad5-4fd7-b40a-32a687e6bcaf",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Pâtes FR",
-            "confidence": 0.993
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -11564,12 +10884,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "seigle entier",
           "id": "0f384e4b-0cea-4c19-9d8e-336a48fae584",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Pâtes FR",
-            "confidence": 0.993
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_raw"
           ],
@@ -11616,11 +10932,7 @@
           "displayName": "pois d'hiver",
           "id": "470922f2-f860-4fb7-8657-1264e7f296a7",
           "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Haricot flageolet UE",
-            "confidence": 0.942
-          },
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -11666,12 +10978,8 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "patate douce",
           "id": "215b4ff3-107a-4034-984e-f17bc46e0a33",
-          "inediblePart": 0.1,
-          "inediblePartMatch": {
-            "file": "agb_inedible.csv",
-            "name": "Cassava",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
@@ -11717,12 +11025,8 @@
           "defaultOrigin": "France",
           "displayName": "Levure (comestible, chimique ou de boulangerie)",
           "id": "0210a04e-003d-46f9-be57-22a64ce11114",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Mâche FR",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.0,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "grain_processed"
           ],
@@ -11772,12 +11076,8 @@
           "defaultOrigin": "France",
           "displayName": "Courgettes",
           "id": "6aa3f25e-afab-443d-a9e8-2b664475a11d",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "file": "ingredients.json",
-            "name": "Concentré de tomates par défaut",
-            "confidence": 1.0
-          },
+          "inediblePart": 0.2,
+          "inediblePartMatch": null,
           "ingredientCategories": [
             "vegetable_fresh"
           ],
