@@ -850,6 +850,33 @@ class Predictor:
 
         return None  # fallback to matcher for edge cases
 
+    def _get_default_density(self, food_type: str) -> float:
+        """Return default density for food type (from FAO averages).
+
+        Used as fallback when matcher confidence is too low.
+        """
+        FOODTYPE_DENSITIES = {
+            "vegetable": 0.90,
+            "fruit": 0.85,
+            "grain": 0.75,
+            "meat": 1.05,
+            "fish_seafood": 1.05,
+            "dairy": 1.03,
+            "nut_oilseed": 0.60,
+            "spice_condiment": 0.50,
+        }
+        return FOODTYPE_DENSITIES.get(food_type, 0.90)
+
+    def _is_related_match(self, query: str, match: str) -> bool:
+        """Check if query and match share a significant word (>3 chars).
+
+        This catches false positives from sparse feature vectors where
+        unrelated items (e.g., 'Amaranth' and 'Lard') get identical vectors.
+        """
+        query_words = set(w.lower() for w in re.split(r'\W+', query) if len(w) > 3)
+        match_words = set(w.lower() for w in re.split(r'\W+', match) if len(w) > 3)
+        return bool(query_words & match_words)
+
     def _detect_packaging(self, text: str) -> tuple[str | None, str | None]:
         """
         Detect packaging type from text and return (packaging, transportCooling).
@@ -1414,12 +1441,19 @@ class Predictor:
         # 7. defaultOrigin (by rules)
         predictions["defaultOrigin"] = _extract_origin(activity)
 
-        # 8. Continuous values (nearest neighbor)
+        # 8. Continuous values (nearest neighbor with foodType fallback)
         density_val, conf, match, source = self.density_matcher.predict(
             name, translate_fn=self._translate
         )
+        # Use foodType default unless it's a real text match (exact or word boundary)
+        # Feature similarity can give 1.0 for unrelated items with sparse vectors
+        is_text_match = conf >= 0.95 and self._is_related_match(name, match)
+        if is_text_match:
+            predictions["densityMatch"] = _match(source, match, conf)
+        else:
+            density_val = self._get_default_density(food_type)
+            predictions["densityMatch"] = None
         predictions["density"] = round(density_val, 3)
-        predictions["densityMatch"] = _match(source, match, conf)
 
         inedible_val, conf, match, source = self.inedible_matcher.predict(
             name, translate_fn=self._translate

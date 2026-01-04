@@ -181,3 +181,21 @@ teff,grain
 kamut,grain
 farro,grain
 freekeh,grain
+walnuts,nut_oilseed
+hazelnuts,nut_oilseed
+almonds,nut_oilseed
+pistachios,nut_oilseed
+brazil nuts,nut_oilseed
+pine nuts,nut_oilseed
+# Poultry
+broiler,meat
+# Vegetables with sparse features
+okra,vegetable
+rhubarb,vegetable
+quince,fruit
+peas,vegetable
+# Fruits commonly mismatched
+oranges,fruit
+grapes,fruit
+pears,fruit
+peaches,fruit

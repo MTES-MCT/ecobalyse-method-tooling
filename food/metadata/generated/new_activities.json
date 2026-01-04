@@ -23,12 +23,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.26,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Nutella",
-            "confidence": 0.995
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -133,12 +129,8 @@
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.75,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -188,12 +180,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.043,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": 0.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -292,12 +280,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Guava nectar, canned",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -347,12 +331,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.245,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Jelly ",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -561,12 +541,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.45,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cauliflower, boiled",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -726,12 +702,8 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 2.165,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Salt, sodium chloride",
-            "confidence": 0.551
-          },
+          "ingredientDensity": 0.5,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -833,12 +805,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "mustard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -943,12 +911,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -992,12 +956,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "blueberry",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -1047,12 +1007,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -1151,12 +1107,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.043,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": 0.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -1255,12 +1207,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -1420,12 +1368,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -1522,12 +1466,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "mustard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -1577,12 +1517,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.933,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Tuna noodle casserole",
-            "confidence": 0.919
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -1626,12 +1562,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.5,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Chili, green",
-            "confidence": 0.998
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -1681,12 +1613,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -1730,12 +1658,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.45,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cauliflower, boiled",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -1950,12 +1874,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.6,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Loquat",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -2005,12 +1925,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.6,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "radish",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -2170,12 +2086,8 @@
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.46,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Almonds",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.6,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -2336,12 +2248,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.23,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Alfalfa, leaf, meal",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -2446,12 +2354,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.043,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": 0.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -2556,12 +2460,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "blueberry",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -2721,12 +2621,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.26,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Nutella",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -2884,12 +2780,8 @@
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.61,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Millet flour, finger",
-            "confidence": 0.914
-          },
+          "ingredientDensity": 0.75,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -2940,11 +2832,7 @@
             "spice_condiment_additive"
           ],
           "ingredientDensity": 0.5,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "spice",
-            "confidence": 0.999
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3105,11 +2993,7 @@
             "animal_product"
           ],
           "ingredientDensity": 1.05,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "cow",
-            "confidence": 1.0
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.792,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3156,12 +3040,8 @@
           "ingredientCategories": [
             "dairy_product"
           ],
-          "ingredientDensity": 1.05,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "cow",
-            "confidence": 0.95
-          },
+          "ingredientDensity": 1.03,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3422,12 +3302,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Guava nectar, canned",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3477,12 +3353,8 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.3,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "aromatic herb",
-            "confidence": 0.904
-          },
+          "ingredientDensity": 0.5,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3532,12 +3404,8 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 2.165,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Salt, sodium chloride",
-            "confidence": 0.694
-          },
+          "ingredientDensity": 0.5,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3694,12 +3562,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "egg",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.974,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3798,12 +3662,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.043,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": 0.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3853,12 +3713,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.23,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Alfalfa, leaf, meal",
-            "confidence": 0.998
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3908,12 +3764,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.933,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Tuna noodle casserole",
-            "confidence": 0.919
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -3957,12 +3809,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.933,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Tuna noodle casserole",
-            "confidence": 0.919
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4006,12 +3854,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.3,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "lettuce",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4061,12 +3905,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "fig",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4224,14 +4064,10 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "misc"
           ],
-          "ingredientDensity": 0.55,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cassava,flour",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4239,15 +4075,13 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
-          "transportCoolingMatch": null,
-          "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
-          "cropGroupMatch": {
+          "transportCooling": "none",
+          "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oignons déshydratés par défaut",
             "confidence": 1.0
-          }
+          },
+          "visible": true
         }
       ]
     },
@@ -4281,12 +4115,8 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.73,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Fresh green peas (minji)",
-            "confidence": 0.854
-          },
+          "ingredientDensity": 0.5,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4336,12 +4166,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.043,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": 0.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4385,12 +4211,8 @@
           "ingredientCategories": [
             "vegetable_processed"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "mustard",
-            "confidence": 0.894
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -4445,11 +4267,7 @@
             "spice_condiment_additive"
           ],
           "ingredientDensity": 0.5,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "spice",
-            "confidence": 0.999
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4548,12 +4366,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.5,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Chili, green",
-            "confidence": 0.998
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4603,12 +4417,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "blueberry",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4658,12 +4468,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Guava nectar, canned",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4879,11 +4685,7 @@
             "animal_product"
           ],
           "ingredientDensity": 1.05,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "tuna",
-            "confidence": 1.0
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4927,12 +4729,8 @@
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.5,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cashews",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.6,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -4982,12 +4780,8 @@
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.535,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Sorghum, seed",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.75,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -5086,12 +4880,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.45,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cauliflower, boiled",
-            "confidence": 0.916
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -5141,12 +4931,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.1,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Salad dressing",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -5197,11 +4983,7 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "cauliflower",
-            "confidence": 1.0
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -5307,11 +5089,7 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "cauliflower",
-            "confidence": 1.0
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -5361,12 +5139,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "blueberry",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -5688,12 +5462,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.01,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Green chartreuse",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -5793,11 +5563,7 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "cauliflower",
-            "confidence": 0.935
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -5958,11 +5724,7 @@
             "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.6,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "nut",
-            "confidence": 0.95
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -6281,12 +6043,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.12,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Green crème de menthe",
-            "confidence": 0.95
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -6336,12 +6094,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.225,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Powders",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -6501,12 +6255,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.45,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cauliflower, boiled",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -6556,12 +6306,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.79,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Kidney beans, dry, boiled",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -6660,12 +6406,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "blueberry",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -6770,12 +6512,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -6823,12 +6561,8 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 2.165,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Salt, sodium chloride",
-            "confidence": 0.983
-          },
+          "ingredientDensity": 0.5,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -6931,14 +6665,10 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "animal_product"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -6948,7 +6678,13 @@
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
-          "visible": true
+          "visible": true,
+          "cropGroup": "AUTRES CEREALES",
+          "cropGroupMatch": {
+            "file": "cropgroup.csv",
+            "name": "amaranth",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -7035,7 +6771,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "misc"
           ],
           "ingredientDensity": 0.22,
           "ingredientDensityMatch": {
@@ -7050,15 +6786,13 @@
             "confidence": 0.95
           },
           "scenario": "reference",
-          "transportCooling": "always",
-          "transportCoolingMatch": null,
-          "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
-          "cropGroupMatch": {
+          "transportCooling": "none",
+          "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oignons déshydratés par défaut",
             "confidence": 0.95
-          }
+          },
+          "visible": true
         }
       ]
     },
@@ -7092,12 +6826,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Guava nectar, canned",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -7147,12 +6877,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.77,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Rapeseed",
-            "confidence": 0.92
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -7202,12 +6928,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "lychee",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -7257,12 +6979,8 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.3,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "aromatic herb",
-            "confidence": 0.904
-          },
+          "ingredientDensity": 0.5,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -7310,14 +7028,10 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "misc"
           ],
-          "ingredientDensity": 0.55,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cassava,flour",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -7325,15 +7039,13 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
-          "transportCoolingMatch": null,
-          "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
-          "cropGroupMatch": {
+          "transportCooling": "none",
+          "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Oignons déshydratés par défaut",
             "confidence": 1.0
-          }
+          },
+          "visible": true
         }
       ]
     },
@@ -7367,12 +7079,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "raspberry",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -7422,12 +7130,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.043,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": 0.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -7587,12 +7291,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Guava nectar, canned",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -7640,14 +7340,10 @@
             "confidence": 0.95
           },
           "ingredientCategories": [
-            "animal_product"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.018,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Guanabana nectar, canned",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -7657,7 +7353,13 @@
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
-          "visible": true
+          "visible": true,
+          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroupMatch": {
+            "file": "ingredients.json",
+            "name": "Petit pois FR",
+            "confidence": 0.95
+          }
         }
       ]
     },
@@ -7691,12 +7393,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "blueberry",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -7747,11 +7445,7 @@
             "animal_product"
           ],
           "ingredientDensity": 1.05,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "pig",
-            "confidence": 1.0
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.73,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -7908,12 +7602,8 @@
           "ingredientCategories": [
             "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.5,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cashews",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.6,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -7963,12 +7653,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8018,12 +7704,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "lychee",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8073,12 +7755,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.018,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Guanabana nectar, canned",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8285,14 +7963,10 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "animal_product"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8302,7 +7976,13 @@
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
-          "visible": true
+          "visible": true,
+          "cropGroup": "AUTRES CEREALES",
+          "cropGroupMatch": {
+            "file": "cropgroup.csv",
+            "name": "amaranth",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -8336,12 +8016,8 @@
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.72,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Rye",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.75,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8660,12 +8336,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "grape",
-            "confidence": 0.931
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8715,12 +8387,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8770,12 +8438,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "grape",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8825,12 +8489,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8872,14 +8532,10 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "animal_product"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -8889,7 +8545,13 @@
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
-          "visible": true
+          "visible": true,
+          "cropGroup": "AUTRES CEREALES",
+          "cropGroupMatch": {
+            "file": "cropgroup.csv",
+            "name": "amaranth",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -8923,12 +8585,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "mustard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -8979,11 +8637,7 @@
             "spice_condiment_additive"
           ],
           "ingredientDensity": 0.5,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "spice",
-            "confidence": 0.999
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9033,12 +8687,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9241,12 +8891,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.6,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Loquat",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9296,12 +8942,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.933,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Tuna noodle casserole",
-            "confidence": 0.919
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9345,12 +8987,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.79,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Kidney beans, dry, boiled",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9395,11 +9033,7 @@
             "animal_product"
           ],
           "ingredientDensity": 1.05,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "tuna",
-            "confidence": 1.0
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9496,12 +9130,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.58,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Casein",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -9606,12 +9236,8 @@
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.4,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "sunflower",
-            "confidence": 0.896
-          },
+          "ingredientDensity": 0.75,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9659,14 +9285,10 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "misc"
           ],
-          "ingredientDensity": 0.55,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cassava,flour",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9675,14 +9297,12 @@
           },
           "scenario": "reference",
           "transportCooling": "always",
-          "transportCoolingMatch": null,
-          "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
-          "cropGroupMatch": {
+          "transportCoolingMatch": {
             "file": "ingredients.json",
             "name": "Echalote FR",
             "confidence": 1.0
-          }
+          },
+          "visible": true
         }
       ]
     },
@@ -9716,12 +9336,8 @@
           "ingredientCategories": [
             "dairy_product"
           ],
-          "ingredientDensity": 0.911,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Butter",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.03,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9817,12 +9433,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -9866,12 +9478,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.8,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "pea",
-            "confidence": 0.95
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -10031,12 +9639,8 @@
           "ingredientCategories": [
             "vegetable_processed"
           ],
-          "ingredientDensity": 0.7,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Soy, flour ",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -10145,12 +9749,8 @@
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.72,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Rye",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.75,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -10308,12 +9908,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.8,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "pea",
-            "confidence": 0.95
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -10363,12 +9959,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.043,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
-            "confidence": 0.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -10418,12 +10010,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.8,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "pea",
-            "confidence": 0.95
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -10526,12 +10114,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.023,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Guava nectar, canned",
-            "confidence": 0.944
-          },
+          "ingredientDensity": 0.85,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -10961,11 +10545,7 @@
             "vegetable_fresh"
           ],
           "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "cauliflower",
-            "confidence": 1.0
-          },
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -11015,12 +10595,8 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -11064,11 +10640,11 @@
           "ingredientCategories": [
             "animal_product"
           ],
-          "ingredientDensity": 1.013,
+          "ingredientDensity": 1.3,
           "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Tamarind nectar, canned",
-            "confidence": 0.95
+            "file": "density.csv",
+            "name": "tamarind",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
@@ -11113,12 +10689,8 @@
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 1.05,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Soup, mixed",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.75,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 12.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -11168,12 +10740,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.45,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Cauliflower, boiled",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -11223,12 +10791,8 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 1.04,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Peppermint schnapps",
-            "confidence": 0.883
-          },
+          "ingredientDensity": 0.5,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -11278,12 +10842,8 @@
           "ingredientCategories": [
             "misc"
           ],
-          "ingredientDensity": 1.0,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Coffee, brewed",
-            "confidence": 0.928
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -11382,12 +10942,8 @@
           "ingredientCategories": [
             "grain_processed"
           ],
-          "ingredientDensity": 0.56,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Bran",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.75,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -11486,12 +11042,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.6,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "radish",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -11541,12 +11093,8 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 2.165,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Salt, sodium chloride",
-            "confidence": 0.992
-          },
+          "ingredientDensity": 0.5,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -11646,14 +11194,10 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "animal_product"
+            "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.919,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Lard",
-            "confidence": 1.0
-          },
+          "ingredientDensity": 0.6,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.33,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -11663,7 +11207,13 @@
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
-          "visible": true
+          "visible": true,
+          "cropGroup": "AUTRES CEREALES",
+          "cropGroupMatch": {
+            "file": "cropgroup.csv",
+            "name": "amaranth",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -11807,12 +11357,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 1.01,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Green chartreuse",
-            "confidence": 0.914
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -12027,12 +11573,8 @@
           "ingredientCategories": [
             "grain_raw"
           ],
-          "ingredientDensity": 0.72,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Rye",
-            "confidence": 0.95
-          },
+          "ingredientDensity": 0.75,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
@@ -12082,12 +11624,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.8,
-          "ingredientDensityMatch": {
-            "file": "density.csv",
-            "name": "pea",
-            "confidence": 0.95
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "cooked_to_raw.csv",
@@ -12137,12 +11675,8 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.79,
-          "ingredientDensityMatch": {
-            "file": "fao_density.csv",
-            "name": "Yam, boiled",
-            "confidence": 0.95
-          },
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
             "file": "ingredients.json",
