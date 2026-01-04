@@ -269,6 +269,22 @@ DETECTION_PATTERNS = {
 | Word boundary match | 0.95 |
 | FoodOn + regex similarity | 0.0 - 1.0 (cosine) |
 
+## Field Prediction Summary
+
+Each field uses a specific prediction strategy:
+
+| Field | Strategy | Fallback |
+|-------|----------|----------|
+| **foodType** | Text match on food_type.csv | Feature similarity |
+| **novaGroup** | Rule-based (see NOVA section) | Nearest neighbor |
+| **processingState** | Derived from novaGroup | - |
+| **categories** | Computed from foodType + novaGroup | - |
+| **transportCooling** | Rules based on foodType + novaGroup | Nearest neighbor |
+| **cropGroup** | Text match, feature similarity | None (animal products) |
+| **density** | Text match with word verification | FoodType default |
+| **inediblePart** | Text match, feature similarity | - |
+| **rawToCookedRatio** | Text match, feature similarity | - |
+
 ## Category Computation
 
 Categories are computed directly from `foodType + novaGroup`:
@@ -306,6 +322,42 @@ transportCooling is determined by rules based on `foodType + novaGroup`:
 
 This rule-based approach handles ~97% of items (220/228), with only edge cases falling back to the matcher.
 
+## Density Prediction
+
+Density uses a hybrid approach to avoid false matches:
+
+```
+1. Text Match (exact or word boundary)
+   ├─ "Apple" matches "apple" in density.csv → 0.9
+   └─ Verify: query and match share a word → accept
+
+2. Feature Similarity (cosine on 48-dim vector)
+   ├─ "Amaranth" matches "Lard" with similarity 1.0
+   └─ Verify: "amaranth" ∩ "lard" = ∅ → reject!
+
+3. FoodType Default (when no valid text match)
+   └─ "Amaranth" → grain → 0.75
+```
+
+### The Sparse Vector Problem
+
+Items without FoodOn/regex matches get identical sparse feature vectors (only 2 dimensions non-zero). This causes unrelated items to match with 1.0 cosine similarity.
+
+**Solution**: Before accepting a match, verify that query and match share at least one significant word (>3 chars). If not, fall back to foodType-based defaults:
+
+| FoodType | Default Density |
+|----------|-----------------|
+| vegetable | 0.90 |
+| fruit | 0.85 |
+| grain | 0.75 |
+| meat | 1.05 |
+| fish_seafood | 1.05 |
+| dairy | 1.03 |
+| nut_oilseed | 0.60 |
+| spice_condiment | 0.50 |
+
+Current distribution: ~46% direct matches, ~54% foodType defaults.
+
 ## Example
 
 Input: `{"name": "Salmon fillet", "activityName": "Salmon, fillet, at plant {NO}"}`
@@ -314,12 +366,13 @@ Input: `{"name": "Salmon fillet", "activityName": "Salmon, fillet, at plant {NO}
 Step 1: Translate → "Salmon fillet" (already English)
 
 Step 2: For each field, find best match:
-  ├─ foodType:         fish_seafood (rule: is_fish pattern)
-  ├─ novaGroup:        1 (fresh_at_plant: fish at plant = minimal processing)
+  ├─ foodType:         fish_seafood (regex: is_fish pattern)
+  ├─ novaGroup:        1 (rule: fresh_at_plant = minimal processing)
   ├─ processingState:  raw (derived from NOVA 1)
+  ├─ categories:       animal_product (computed from foodType)
   ├─ cropGroup:        N/A (animal product)
-  ├─ transportCooling: always (rule: fresh fish)
-  ├─ density:          1.05 (nearest neighbor)
+  ├─ transportCooling: always (rule: NOVA 1 + fish = perishable)
+  ├─ density:          1.05 (text match: "salmon" in "salmon")
   ├─ inediblePart:     0.0 (nearest neighbor)
   └─ rawToCookedRatio: 0.75 (nearest neighbor)
 
@@ -333,4 +386,24 @@ Output: {
   "inediblePart": 0.0,
   "rawToCookedRatio": 0.75
 }
+```
+
+### Example: Sparse Vector Fallback
+
+Input: `{"name": "Amaranth", "activityName": "Durum wheat grain, at farm gate {FR}"}`
+
+```
+Step 1: Translate → "Amaranth" (already English)
+
+Step 2: For each field:
+  ├─ foodType:         grain (from food_type.csv)
+  ├─ novaGroup:        1 (rule: at_farm = unprocessed)
+  ├─ processingState:  raw (derived from NOVA 1)
+  ├─ categories:       grain_raw (computed)
+  ├─ cropGroup:        AUTRES CEREALES (text match)
+  ├─ transportCooling: none (rule: grain = non-perishable)
+  ├─ density:          0.75 (foodType default - no text match found)
+  │                    ↳ Matcher returned "Lard" but no shared words!
+  ├─ inediblePart:     0.20 (nearest neighbor)
+  └─ rawToCookedRatio: 2.33 (nearest neighbor)
 ```
