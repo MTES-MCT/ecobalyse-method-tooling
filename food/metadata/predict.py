@@ -939,6 +939,52 @@ class Predictor:
         }
         return FOODTYPE_INEDIBLE.get(food_type, 0.10)
 
+    def _detect_ratio_from_keywords(self, name: str, activity: str) -> float | None:
+        """Detect cooking ratio from processing keywords.
+
+        Returns a value for special cases (poultry, offal, dried),
+        None otherwise to fall back to foodType default.
+        """
+        text = f"{name} {activity}".lower()
+
+        # Dried items absorb water when cooked
+        if re.search(r"\b(dried|séché|dehydrated|déshydraté)\b", text):
+            return 4.0  # Approximate rehydration factor
+
+        # Poultry detection (more specific than generic meat)
+        if re.search(
+            r"\b(chicken|poulet|turkey|dinde|duck|canard|poultry|volaille|"
+            r"goose|oie|pigeon|rabbit|lapin|broiler)\b",
+            text,
+        ):
+            return 0.755
+
+        # Offal detection
+        if re.search(r"\b(liver|foie|kidney|rein|offal|abat)\b", text):
+            return 0.730
+
+        return None  # Fall back to foodType default
+
+    def _get_default_ratio(self, food_type: str) -> float:
+        """Return cooking ratio default by food type (Agribalyse/CIQUAL values).
+
+        Values represent cooked weight / raw weight:
+        - < 1: weight loss (water evaporation during cooking)
+        - > 1: weight gain (water absorption, e.g., cereals/legumes)
+        """
+        AGRIBALYSE_RATIOS = {
+            "vegetable": 0.856,  # Lose ~14% weight
+            "fruit": 0.856,
+            "grain": 2.259,  # Absorb water, gain ~126%
+            "fish_seafood": 0.819,  # Lose ~18% weight
+            "meat": 0.792,  # Red meat, lose ~21%
+            "dairy": 1.0,  # No cooking weight change
+            "nut_oilseed": 1.0,
+            "spice_condiment": 1.0,
+            "beverage": 1.0,
+        }
+        return AGRIBALYSE_RATIOS.get(food_type, 1.0)
+
     def _detect_packaging(self, text: str) -> tuple[str | None, str | None]:
         """
         Detect packaging type from text and return (packaging, transportCooling).
@@ -1538,11 +1584,26 @@ class Predictor:
                 predictions["inediblePart"] = round(default_inedible, 2)
                 predictions["inediblePartMatch"] = None
 
-        ratio_val, conf, match, source = self.ratio_matcher.predict(
-            name, translate_fn=self._translate
-        )
-        predictions["rawToCookedRatio"] = round(ratio_val, 3)
-        predictions["rawToCookedRatioMatch"] = _match(source, match, conf)
+        # 10. rawToCookedRatio (keywords first, then matcher with validation, then default)
+        keyword_ratio = self._detect_ratio_from_keywords(name, activity)
+        if keyword_ratio is not None:
+            # Keyword-based (poultry, offal, dried) - high confidence
+            predictions["rawToCookedRatio"] = round(keyword_ratio, 3)
+            predictions["rawToCookedRatioMatch"] = None
+        else:
+            ratio_val, conf, match, source = self.ratio_matcher.predict(
+                name, translate_fn=self._translate
+            )
+            # Validate matcher result (must share words to avoid sparse vector issues)
+            is_valid = conf >= 0.95 and self._is_related_match(name, match)
+            if is_valid:
+                predictions["rawToCookedRatio"] = round(ratio_val, 3)
+                predictions["rawToCookedRatioMatch"] = _match(source, match, conf)
+            else:
+                # Fall back to foodType default (Agribalyse values)
+                default_ratio = self._get_default_ratio(food_type)
+                predictions["rawToCookedRatio"] = round(default_ratio, 3)
+                predictions["rawToCookedRatioMatch"] = None
 
         return predictions
 

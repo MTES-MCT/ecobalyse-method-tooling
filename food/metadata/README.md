@@ -400,6 +400,37 @@ Processed items (NOVA 2-4) typically have inedible parts removed:
 
 Current distribution: ~23% matcher matches, ~77% rules/defaults.
 
+## rawToCookedRatio Prediction
+
+rawToCookedRatio (cooked weight / raw weight) uses a 3-tier approach:
+
+```
+1. Keyword Detection (special cases)
+   ├─ "dried", "dehydrated" → 4.0 (absorbs water)
+   ├─ poultry (chicken, turkey, duck, broiler) → 0.755
+   └─ offal (liver, kidney) → 0.730
+
+2. Matcher with Semantic Validation
+   └─ Only accept if query and match share a word
+
+3. FoodType Defaults (Agribalyse/CIQUAL values)
+```
+
+### Default Values by FoodType
+
+| FoodType | Ratio | Meaning | Source |
+|----------|-------|---------|--------|
+| vegetable | 0.856 | -14% weight | Agribalyse |
+| fruit | 0.856 | -14% weight | Agribalyse |
+| fish_seafood | 0.819 | -18% weight | Agribalyse |
+| meat | 0.792 | -21% weight | Agribalyse (red meat) |
+| grain | 2.259 | +126% weight | Agribalyse (cereals) |
+| dairy | 1.0 | No change | - |
+| nut_oilseed | 1.0 | No change | - |
+| spice_condiment | 1.0 | No change | - |
+
+Current distribution: ~15% matcher matches, ~85% rules/defaults.
+
 ## Example
 
 Input: `{"name": "Salmon fillet", "activityName": "Salmon, fillet, at plant {NO}"}`
@@ -416,7 +447,7 @@ Step 2: For each field, find best match:
   ├─ transportCooling: always (rule: NOVA 1 + fish = perishable)
   ├─ density:          1.05 (text match: "salmon" in "salmon")
   ├─ inediblePart:     0.0 (keyword: "fillet" detected)
-  └─ rawToCookedRatio: 0.75 (nearest neighbor)
+  └─ rawToCookedRatio: 0.819 (foodType default: fish_seafood)
 
 Output: {
   "foodType": "fish_seafood",
@@ -426,7 +457,7 @@ Output: {
   "transportCooling": "always",
   "density": 1.05,
   "inediblePart": 0.0,
-  "rawToCookedRatio": 0.75
+  "rawToCookedRatio": 0.819
 }
 ```
 
@@ -447,5 +478,5 @@ Step 2: For each field:
   ├─ density:          0.75 (foodType default - no text match found)
   │                    ↳ Matcher returned "Lard" but no shared words!
   ├─ inediblePart:     0.0 (foodType+NOVA default: grain=0.0)
-  └─ rawToCookedRatio: 2.33 (nearest neighbor)
+  └─ rawToCookedRatio: 2.259 (foodType default: grain absorbs water)
 ```

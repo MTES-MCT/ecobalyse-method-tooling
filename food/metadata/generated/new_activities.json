@@ -21,12 +21,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poudre de cacao par défaut",
-            "confidence": 0.995
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -73,11 +69,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Amandes en coque UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -119,12 +111,8 @@
           ],
           "ingredientDensity": 0.75,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 2.259,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -167,11 +155,7 @@
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Anchois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -212,11 +196,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Pomme par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -259,11 +239,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -305,12 +281,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poitrine de porc FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -355,11 +327,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Brocoli UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -406,11 +374,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Prune UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -504,11 +468,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -555,11 +515,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Banane par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -657,11 +613,7 @@
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
-            "confidence": 0.551
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -708,11 +660,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.792,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de veau FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -803,11 +751,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Betterave rouge FR",
-            "confidence": 0.939
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -853,12 +797,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -899,11 +839,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -945,12 +881,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -991,11 +923,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1041,12 +969,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1087,11 +1011,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Noix avec coque UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -1133,12 +1053,8 @@
           ],
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1184,12 +1100,8 @@
             "name": "bean",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1236,11 +1148,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Brocoli UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1282,12 +1190,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.755,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1381,11 +1285,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "beetroot",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1428,11 +1328,7 @@
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Truite d'élevage FR",
-            "confidence": 0.919
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1469,11 +1365,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Mandarine par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1515,12 +1407,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1557,11 +1445,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1608,11 +1492,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "hazelnut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -1662,12 +1542,8 @@
             "name": "Cassava,flour",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1717,12 +1593,8 @@
             "name": "cauliflower",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1768,12 +1640,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Vinaigre balsamique FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1871,11 +1739,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Cerise par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1922,11 +1786,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Cerise par défaut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -1968,12 +1828,8 @@
           ],
           "ingredientDensity": 0.6,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "chestnut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2023,12 +1879,8 @@
             "name": "seed",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "seed",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2075,12 +1927,8 @@
             "name": "Cowpeas, dried, boiled",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Pois chiche par défaut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2127,11 +1975,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Endive FR",
-            "confidence": 0.997
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -2182,11 +2026,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Mandarine par défaut",
-            "confidence": 0.998
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -2228,12 +2068,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -2280,11 +2116,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
-            "confidence": 0.99
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2327,11 +2159,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Clémentine par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -2377,12 +2205,8 @@
             "name": "bean",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2429,11 +2253,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Beurre de cacao par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2475,12 +2295,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poudre de cacao par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -2527,11 +2343,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Amandes en coque UE",
-            "confidence": 0.934
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2627,11 +2439,7 @@
           "ingredientDensity": 0.75,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Mélange de céréales FR",
-            "confidence": 0.914
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2678,11 +2486,7 @@
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Curcuma par défaut",
-            "confidence": 0.999
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2729,11 +2533,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Maïs doux UE",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -2827,11 +2627,7 @@
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.792,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de boeuf sans os - vache de réforme 100% herbe FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -2871,11 +2667,7 @@
           "ingredientDensity": 1.03,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Lait par défaut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -2919,11 +2711,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.819,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Crabe UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -2964,11 +2752,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3015,11 +2799,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Concombre hors saison FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3116,12 +2896,8 @@
           ],
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -3164,11 +2940,7 @@
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Herbe de prairie temporaire FR",
-            "confidence": 0.904
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -3214,12 +2986,8 @@
           ],
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Autres fruits secs (non encore répertoriés)",
-            "confidence": 0.893
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -3265,12 +3033,8 @@
             "name": "duck",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.792,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de veau FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.755,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3314,11 +3078,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -3360,12 +3120,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 0.974,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oeuf FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.792,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3406,11 +3162,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Aubergine UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3452,12 +3204,8 @@
           ],
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3551,11 +3299,7 @@
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Truite d'élevage FR",
-            "confidence": 0.919
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3592,11 +3336,7 @@
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Truite d'élevage FR",
-            "confidence": 0.919
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3633,11 +3373,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Fenouil FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3680,11 +3416,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Citron UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3730,12 +3462,8 @@
             "name": "Cowpeas, dried, boiled",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 0.934
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -3782,11 +3510,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Pomme de terre industrie FR",
-            "confidence": 0.919
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3829,11 +3553,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
@@ -3877,12 +3597,8 @@
           ],
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Champignon frais UE",
-            "confidence": 0.854
-          },
+          "rawToCookedRatio": 1.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -3924,12 +3640,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -3966,11 +3678,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "beetroot",
-            "confidence": 0.894
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
@@ -4017,11 +3725,7 @@
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Curcuma par défaut",
-            "confidence": 0.999
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -4067,12 +3771,8 @@
             "name": "goat",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Lait de chèvre FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.792,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4109,11 +3809,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Mandarine par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4160,11 +3856,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4207,11 +3899,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4258,11 +3946,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Chou vert FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4309,11 +3993,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Prune UE",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4360,11 +4040,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4410,12 +4086,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Sardine FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4452,11 +4124,7 @@
           "ingredientDensity": 0.6,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Noix avec coque UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -4499,11 +4167,7 @@
           "ingredientDensity": 0.75,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Riz basmati UE",
-            "confidence": 0.928
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -4553,12 +4217,8 @@
             "name": "herring",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4595,11 +4255,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 0.916
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4642,11 +4298,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Artichaut FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4688,12 +4340,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4790,12 +4438,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4838,11 +4482,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4889,11 +4529,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.792,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Viande d'agneau (désossée) par défaut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4941,11 +4577,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Brocoli UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -4992,11 +4624,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Citron UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5093,12 +4721,8 @@
             "name": "lentil",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "lentil",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -5141,11 +4765,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5192,11 +4812,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.819,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Homard UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5232,12 +4848,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 0.935
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5386,11 +4998,7 @@
           "ingredientDensity": 0.6,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "nut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -5440,12 +5048,8 @@
             "name": "mackerel",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Sardine FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5486,11 +5090,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Mangue par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5643,11 +5243,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Ensilage maïs FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -5694,11 +5290,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "beetroot",
-            "confidence": 0.921
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5792,11 +5384,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Cerise par défaut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5842,12 +5430,8 @@
             "name": "bean",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Fève FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5894,11 +5478,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5940,12 +5520,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Fraise UE",
-            "confidence": 0.898
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -5985,12 +5561,8 @@
             "name": "mustard",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Moutarde FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 1.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -6033,11 +5605,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -6084,11 +5652,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Epinard par défaut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -6130,12 +5694,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
@@ -6176,11 +5736,7 @@
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
-            "confidence": 0.983
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -6227,11 +5783,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Avoine UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -6273,12 +5825,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -6329,11 +5877,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -6384,11 +5928,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
@@ -6429,11 +5969,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -6574,11 +6110,7 @@
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Herbe de prairie temporaire FR",
-            "confidence": 0.904
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -6621,11 +6153,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
@@ -6712,12 +6240,8 @@
           ],
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -6764,11 +6288,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Huile d'arachide (raffinée) par défaut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -6866,11 +6386,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poireau FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -6912,12 +6428,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -6960,11 +6472,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Myrtille FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7006,12 +6514,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 0.73,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Foie de porc cru FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.792,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7055,11 +6559,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Noix avec coque UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -7157,11 +6657,7 @@
           "ingredientDensity": 0.6,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Noix avec coque UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -7203,12 +6699,8 @@
           ],
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7255,11 +6747,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Abricot UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7301,12 +6789,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Poitrine de porc FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7401,12 +6885,8 @@
             "name": "pear",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Mélange de céréales FR",
-            "confidence": 0.914
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7453,11 +6933,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Citrouille FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7499,12 +6975,8 @@
           ],
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7547,11 +7019,7 @@
           "ingredientDensity": 0.75,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -7597,12 +7065,8 @@
             "name": "rabbit",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.792,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de veau FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.755,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7749,11 +7213,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Framboise UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -7850,12 +7310,8 @@
           ],
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Mandarine par défaut",
-            "confidence": 0.928
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -7901,12 +7357,8 @@
           ],
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8003,12 +7455,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8044,12 +7492,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8092,11 +7536,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "beetroot",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8138,12 +7578,8 @@
           ],
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Curcuma par défaut",
-            "confidence": 0.999
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -8189,12 +7625,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8235,11 +7667,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Laitue UE",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8286,11 +7714,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Champignon frais UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8340,12 +7764,8 @@
             "name": "salmon",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Saumon cru UE",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8385,12 +7805,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Vinaigre balsamique FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8433,11 +7849,7 @@
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.819,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Truite d'élevage FR",
-            "confidence": 0.919
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8473,12 +7885,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Fraise UE",
-            "confidence": 0.898
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8514,12 +7922,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Sardine FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8608,12 +8012,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "powder",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8710,12 +8110,8 @@
           ],
           "ingredientDensity": 0.75,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Huile de tournesol par défaut",
-            "confidence": 0.896
-          },
+          "rawToCookedRatio": 2.259,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -8757,12 +8153,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Echalote FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 1.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
@@ -8803,11 +8195,7 @@
           "ingredientDensity": 1.03,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Lait par défaut",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8895,12 +8283,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8936,12 +8320,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "pea",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -8988,11 +8368,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "cereal",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -9039,11 +8415,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -9085,12 +8457,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "lentil",
-            "confidence": 0.996
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
@@ -9140,12 +8508,8 @@
             "name": "Soybean",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "soybean",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -9188,11 +8552,7 @@
           "ingredientDensity": 0.75,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -9239,11 +8599,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Epinard par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -9289,12 +8645,8 @@
             "name": "Brandy",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Raisin de cuve FR",
-            "confidence": 0.887
-          },
+          "rawToCookedRatio": 1.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
@@ -9334,12 +8686,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "pea",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -9381,12 +8729,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Radis FR",
-            "confidence": 0.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -9428,12 +8772,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "pea",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -9480,11 +8820,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Autres eaux et autres boissons (non encore répertoriées)",
-            "confidence": 0.997
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
@@ -9525,11 +8861,7 @@
           "ingredientDensity": 0.85,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Courge UE",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -9625,11 +8957,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 0.996
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -9676,11 +9004,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Fraise UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -9726,12 +9050,8 @@
             "name": "Sugar",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Betterave sucrière Bio",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -9833,11 +9153,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Tournesol UE",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -9930,12 +9246,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -9981,12 +9293,8 @@
           ],
           "ingredientDensity": 1.05,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -10026,12 +9334,8 @@
             "name": "tamarind",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -10067,12 +9371,8 @@
           ],
           "ingredientDensity": 0.75,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 12.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Soupe déshydratée ES",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 2.259,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10115,11 +9415,7 @@
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -10166,11 +9462,7 @@
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Autres huiles (non encore répertoriées)",
-            "confidence": 0.883
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10212,12 +9504,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Thé (feuilles) UE",
-            "confidence": 0.928
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10258,11 +9546,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Tomate UE",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -10355,12 +9639,8 @@
             "name": "tuna",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Sardine FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -10444,11 +9724,7 @@
           "ingredientDensity": 0.5,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Sel",
-            "confidence": 0.992
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10495,11 +9771,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.792,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Viande de veau FR",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -10542,12 +9814,8 @@
           ],
           "ingredientDensity": 0.6,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 2.33,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Petit pois FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10594,11 +9862,7 @@
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Pastèque Bio",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -10645,11 +9909,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Blé dur UE",
-            "confidence": 0.999
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10691,12 +9951,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Carotte UE",
-            "confidence": 0.914
-          },
+          "rawToCookedRatio": 4.0,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10743,11 +9999,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Chou blanc FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -10794,11 +10046,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Orge UE",
-            "confidence": 0.95
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10845,11 +10093,7 @@
             "confidence": 0.95
           },
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Pâtes FR",
-            "confidence": 0.993
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10892,11 +10136,7 @@
           "ingredientDensity": 0.75,
           "ingredientDensityMatch": null,
           "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Pâtes FR",
-            "confidence": 0.993
-          },
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
@@ -10938,12 +10178,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "cooked_to_raw.csv",
-            "name": "pea",
-            "confidence": 0.95
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -10985,12 +10221,8 @@
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": null,
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Oignons déshydratés par défaut",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": null,
@@ -11036,12 +10268,8 @@
             "name": "Yeast",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "file": "ingredients.json",
-            "name": "Mâche FR",
-            "confidence": 1.0
-          },
+          "rawToCookedRatio": 2.259,
+          "rawToCookedRatioMatch": null,
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": null,
