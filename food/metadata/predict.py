@@ -319,6 +319,45 @@ def _load_nova_data() -> tuple[list, list, list]:
     )
 
 
+def _load_food_type_density() -> dict[str, tuple[float, str]]:
+    """Load food_type_density.csv, return {food_type: (density, source)}."""
+    path = REFERENCE_DIR / "food_type_density.csv"
+    if not path.exists():
+        return {}
+    df = pd.read_csv(path, sep=";")
+    return {
+        row["food_type"]: (row["density"], row["source"]) for _, row in df.iterrows()
+    }
+
+
+def _load_food_type_inedible() -> dict[tuple[str, int], tuple[float, str]]:
+    """Load food_type_inedible_part.csv, return {(food_type, nova): (value, source)}."""
+    path = REFERENCE_DIR / "food_type_inedible_part.csv"
+    if not path.exists():
+        return {}
+    df = pd.read_csv(path, sep=";")
+    return {
+        (row["food_type"], row["nova_group"]): (row["inedible_part"], row["source"])
+        for _, row in df.iterrows()
+    }
+
+
+def _load_food_type_ratio() -> dict[str, tuple[float, str]]:
+    """Load food_type_cooked_to_raw.csv, return {food_type: (ratio, source)}."""
+    path = REFERENCE_DIR / "food_type_cooked_to_raw.csv"
+    if not path.exists():
+        return {}
+    df = pd.read_csv(path, sep=";")
+    return {
+        row["food_type"]: (row["ratio"], row["source"]) for _, row in df.iterrows()
+    }
+
+
+def _match(rule: str, conf: float) -> dict:
+    """Build a Match dict with rule explanation and confidence."""
+    return {"rule": rule, "confidence": round(conf, 3)}
+
+
 def _build_cropgroup_data(ingredients: list) -> tuple[list, list, list]:
     """Build (names, cropGroups, sources) from training ingredients + cropGroup labels themselves."""
     names = []
@@ -694,6 +733,11 @@ class Predictor:
         self.inedible_matcher = None
         self.ratio_matcher = None
 
+        # FoodType default tables (loaded from CSV)
+        self.food_type_density = _load_food_type_density()
+        self.food_type_inedible = _load_food_type_inedible()
+        self.food_type_ratio = _load_food_type_ratio()
+
         # Training data (for evaluation)
         self.training_features = None
         self.training_ingredients = None
@@ -850,106 +894,104 @@ class Predictor:
 
         return None  # fallback to matcher for edge cases
 
-    def _get_default_density(self, food_type: str) -> float:
-        """Return default density for food type (from FAO averages).
+    def _get_default_density(self, food_type: str) -> tuple[float, str]:
+        """Return (density, source_file) for food type from CSV.
 
         Used as fallback when matcher confidence is too low.
         """
-        FOODTYPE_DENSITIES = {
-            "vegetable": 0.90,
-            "fruit": 0.85,
-            "grain": 0.75,
-            "meat": 1.05,
-            "fish_seafood": 1.05,
-            "dairy": 1.03,
-            "nut_oilseed": 0.60,
-            "spice_condiment": 0.50,
-        }
-        return FOODTYPE_DENSITIES.get(food_type, 0.90)
+        if food_type in self.food_type_density:
+            density, _ = self.food_type_density[food_type]
+            return density, "food_type_density.csv"
+        return 0.90, "predict.py"
 
     def _is_related_match(self, query: str, match: str) -> bool:
         """Check if query and match share a significant word (>3 chars).
 
         This catches false positives from sparse feature vectors where
         unrelated items (e.g., 'Amaranth' and 'Lard') get identical vectors.
+
+        Also tries translated versions to handle French/English mismatches
+        (e.g., 'White cabbage' vs 'chou blanc').
         """
         query_words = set(w.lower() for w in re.split(r'\W+', query) if len(w) > 3)
         match_words = set(w.lower() for w in re.split(r'\W+', match) if len(w) > 3)
-        return bool(query_words & match_words)
+        if query_words & match_words:
+            return True
 
-    def _detect_inedible_from_keywords(self, name: str, activity: str) -> float | None:
+        # Try with translation (handles French/English mismatches)
+        query_translated = self._translate(query)
+        match_translated = self._translate(match)
+        query_trans_words = set(w.lower() for w in re.split(r'\W+', query_translated) if len(w) > 3)
+        match_trans_words = set(w.lower() for w in re.split(r'\W+', match_translated) if len(w) > 3)
+
+        # Check all combinations
+        return bool(
+            (query_words & match_trans_words) or
+            (query_trans_words & match_words) or
+            (query_trans_words & match_trans_words)
+        )
+
+    def _detect_inedible_from_keywords(
+        self, name: str, activity: str
+    ) -> tuple[float, str] | None:
         """Detect inedible part from processing keywords.
 
-        Returns a value if keywords indicate definitive processing state,
+        Returns (value, keyword_description) if keywords indicate processing state,
         None otherwise to fall back to matcher.
         """
         text = f"{name} {activity}".lower()
 
         # Fillet/boneless = 0 (bones removed by definition)
         if re.search(r"\b(fillet|filet|filé|boneless|désossé)\b", text):
-            return 0.0
+            return 0.0, "fillet/boneless"
 
         # Shelled/peeled = 0 (shell/peel removed)
         if re.search(r"\b(shelled|peeled|décortiqué|pelé)\b", text):
-            return 0.0
+            return 0.0, "shelled/peeled"
 
         # Canned/frozen processed = 0 (pre-processed)
         if re.search(r"\b(canned|conserve|frozen|surgelé)\b", text):
-            return 0.0
+            return 0.0, "canned/frozen"
 
         # With shell = high (shell is inedible)
         if re.search(r"\b(with\s+shell|avec\s+coquille|in\s+shell)\b", text):
-            return 0.50
+            return 0.50, "with shell"
 
         # With bone = medium (bone is inedible)
         if re.search(r"\b(with\s+bone|avec\s+os)\b", text):
-            return 0.20
+            return 0.20, "with bone"
 
         return None  # No keyword found, fall back to matcher
 
-    def _get_default_inedible_part(self, food_type: str, nova_group: int) -> float:
-        """Return sensible default inedible part by foodType and processing level.
+    def _get_default_inedible_part(
+        self, food_type: str, nova_group: int
+    ) -> tuple[float, str]:
+        """Return (inedible_part, source_file) for foodType + novaGroup from CSV.
 
         Uses novaGroup to adjust: processed items (NOVA 2-4) typically have
         lower inedible parts since processing removes waste.
         """
-        # Processed items (NOVA 2-4) typically have 0 inedible
-        if nova_group >= 2:
-            if food_type in {"dairy", "grain", "spice_condiment", "beverage"}:
-                return 0.0
-            if food_type == "nut_oilseed":
-                return 0.0  # Assume shelled if processed
-            if food_type == "fish_seafood":
-                return 0.0  # Assume fillet if processed
-            if food_type == "meat":
-                return 0.0  # Assume boneless if processed
+        # NOVA 2-4 all use nova_group=2 in the CSV
+        lookup_nova = 1 if nova_group == 1 else 2
+        key = (food_type, lookup_nova)
+        if key in self.food_type_inedible:
+            inedible, _ = self.food_type_inedible[key]
+            return inedible, "food_type_inedible_part.csv"
+        return 0.10, "predict.py"
 
-        # Raw items (NOVA 1) have varying inedible parts
-        # Values from inedible_part.csv and AGB reference data
-        FOODTYPE_INEDIBLE = {
-            "meat": 0.05,  # Mostly boneless (AGB boneless ~0)
-            "fish_seafood": 0.40,  # Whole fish at landing (AGB average)
-            "dairy": 0.0,
-            "grain": 0.0,
-            "vegetable": 0.20,  # From inedible_part.csv "fresh vegetable"
-            "fruit": 0.20,  # From inedible_part.csv "fresh fruit"
-            "nut_oilseed": 0.50,  # In shell (AGB nuts)
-            "spice_condiment": 0.0,
-            "beverage": 0.0,
-        }
-        return FOODTYPE_INEDIBLE.get(food_type, 0.10)
-
-    def _detect_ratio_from_keywords(self, name: str, activity: str) -> float | None:
+    def _detect_ratio_from_keywords(
+        self, name: str, activity: str
+    ) -> tuple[float, str] | None:
         """Detect cooking ratio from processing keywords.
 
-        Returns a value for special cases (poultry, offal, dried),
+        Returns (value, keyword_description) for special cases (poultry, offal, dried),
         None otherwise to fall back to foodType default.
         """
         text = f"{name} {activity}".lower()
 
         # Dried items absorb water when cooked
         if re.search(r"\b(dried|séché|dehydrated|déshydraté)\b", text):
-            return 4.0  # Approximate rehydration factor
+            return 4.0, "dried/dehydrated"
 
         # Poultry detection (more specific than generic meat)
         if re.search(
@@ -957,33 +999,25 @@ class Predictor:
             r"goose|oie|pigeon|rabbit|lapin|broiler)\b",
             text,
         ):
-            return 0.755
+            return 0.755, "poultry"
 
         # Offal detection
         if re.search(r"\b(liver|foie|kidney|rein|offal|abat)\b", text):
-            return 0.730
+            return 0.730, "offal"
 
         return None  # Fall back to foodType default
 
-    def _get_default_ratio(self, food_type: str) -> float:
-        """Return cooking ratio default by food type (Agribalyse/CIQUAL values).
+    def _get_default_ratio(self, food_type: str) -> tuple[float, str]:
+        """Return (ratio, source_file) for food type from CSV.
 
         Values represent cooked weight / raw weight:
         - < 1: weight loss (water evaporation during cooking)
         - > 1: weight gain (water absorption, e.g., cereals/legumes)
         """
-        AGRIBALYSE_RATIOS = {
-            "vegetable": 0.856,  # Lose ~14% weight
-            "fruit": 0.856,
-            "grain": 2.259,  # Absorb water, gain ~126%
-            "fish_seafood": 0.819,  # Lose ~18% weight
-            "meat": 0.792,  # Red meat, lose ~21%
-            "dairy": 1.0,  # No cooking weight change
-            "nut_oilseed": 1.0,
-            "spice_condiment": 1.0,
-            "beverage": 1.0,
-        }
-        return AGRIBALYSE_RATIOS.get(food_type, 1.0)
+        if food_type in self.food_type_ratio:
+            ratio, _ = self.food_type_ratio[food_type]
+            return ratio, "food_type_cooked_to_raw.csv"
+        return 1.0, "predict.py"
 
     def _detect_packaging(self, text: str) -> tuple[str | None, str | None]:
         """
@@ -1357,16 +1391,21 @@ class Predictor:
         # Each matcher combines ingredients.json + reference CSV data
 
         def build_value_matcher(field, ref_loader, allow_zero=False, name=None):
-            """Helper to build a matcher combining ingredients + reference data."""
+            """Helper to build a matcher combining reference + ingredients data.
+
+            Reference data comes FIRST so it has priority in word matches.
+            """
             if verbose:
                 timed_print(f"Building {name or field} matcher...")
-            names, vals, sources = _extract_ingredient_values(
+            # Reference data first (has priority in matches)
+            names, vals, sources = ref_loader()
+            # Then training ingredients
+            ing_names, ing_vals, ing_sources = _extract_ingredient_values(
                 ingredients, field, allow_zero=allow_zero
             )
-            ref_names, ref_vals, ref_sources = ref_loader()
-            names.extend(ref_names)
-            vals.extend(ref_vals)
-            sources.extend(ref_sources)
+            names.extend(ing_names)
+            vals.extend(ing_vals)
+            sources.extend(ing_sources)
             return self._build_matcher(names, vals, sources)
 
         self.density_matcher = build_value_matcher(
@@ -1456,25 +1495,27 @@ class Predictor:
         # Extract binary features for rules
         binary_features = self._extract_binary_from_features(features)
 
-        def _match(file: str, name: str, conf: float) -> dict:
-            """Build match info dict with confidence."""
-            return {"file": file, "name": name, "confidence": round(conf, 3)}
-
         # 1. FoodType - Check food_type.csv exact match FIRST, then FoodOn, then fallback
-        food_type, conf, match, source = self.food_type_matcher.predict(
+        food_type, conf, match_name, source = self.food_type_matcher.predict(
             name, translate_fn=self._translate
         )
         if conf == 1.0:  # Only trust exact match from food_type.csv (cosine can be 0.95+)
-            predictions["foodTypeMatch"] = _match(source, match, conf)
+            predictions["foodTypeMatch"] = _match(
+                f"{match_name} found in {source}", conf
+            )
         else:
             # Try FoodOn features
             foodon_type = self._get_foodtype_from_foodon_features(features.flatten())
             if foodon_type:
                 food_type = foodon_type
-                predictions["foodTypeMatch"] = _match("FoodOn", "ontology", 1.0)
+                predictions["foodTypeMatch"] = _match(
+                    f"FoodOn ontology: {food_type} features detected", 1.0
+                )
             else:
                 # Keep the matcher result (cosine similarity fallback)
-                predictions["foodTypeMatch"] = _match(source, match, conf)
+                predictions["foodTypeMatch"] = _match(
+                    f"Matched with {match_name} in {source}", conf
+                )
         predictions["foodType"] = food_type
 
         # 2. NOVA Classification (determines processingState)
@@ -1482,8 +1523,7 @@ class Predictor:
             name, activity, food_type, binary_features
         )
         predictions["novaGroup"] = nova_group
-        predictions["novaGroupReason"] = nova_reason
-        predictions["novaGroupConfidence"] = round(nova_confidence, 3)
+        predictions["novaGroupMatch"] = _match(f"{nova_reason} → NOVA {nova_group}", nova_confidence)
 
         # Derive processingState from NOVA
         # NOVA 1 = raw (unprocessed/minimally processed)
@@ -1491,12 +1531,18 @@ class Predictor:
         processing_state = "raw" if nova_group == 1 else "processed"
         predictions["processingState"] = processing_state
         predictions["processingStateMatch"] = _match(
-            "nova_derived", f"NOVA_{nova_group}", nova_confidence
+            f"Derived from NOVA {nova_group} → {processing_state}", 1.0
         )
 
-        # Keep packaging detection for transportCooling (unchanged)
+        # Packaging detection
         packaging, _ = self._detect_packaging(full_text)
         predictions["packaging"] = packaging
+        if packaging:
+            predictions["packagingMatch"] = _match(
+                f"{packaging} keyword found in {name}", 1.0
+            )
+        else:
+            predictions["packagingMatch"] = _match("No packaging keyword detected", 1.0)
 
         # 3. Additive labels (by rules)
         labels = []
@@ -1519,91 +1565,147 @@ class Predictor:
             "spice_condiment",
         }
         if food_type in vegetal_types and self.cropgroup_matcher is not None:
-            cropgroup_val, conf, match, source = self.cropgroup_matcher.predict(
+            cropgroup_val, conf, match_name, source = self.cropgroup_matcher.predict(
                 name, translate_fn=self._translate
             )
             predictions["cropGroup"] = cropgroup_val
-            predictions["cropGroupMatch"] = _match(source, match, conf)
+            if conf == 1.0:
+                predictions["cropGroupMatch"] = _match(
+                    f"{match_name} found in {source}", conf
+                )
+            else:
+                predictions["cropGroupMatch"] = _match(
+                    f"Matched with {match_name} in {source}", conf
+                )
         else:
             predictions["cropGroup"] = None
-            predictions["cropGroupMatch"] = None
+            predictions["cropGroupMatch"] = _match("Not applicable (animal product)", 1.0)
 
         # 6. transportCooling (packaging first, then rules, then nearest neighbor)
         if packaging and packaging != "fresh":
             _, transport_cooling = PACKAGING_PATTERNS.get(packaging, (None, None))
             transport_cooling = transport_cooling or "none"
-            predictions["transportCoolingMatch"] = None
+            predictions["transportCoolingMatch"] = _match(
+                f"{packaging} packaging → {transport_cooling}", 1.0
+            )
         else:
             transport_cooling = self._predict_transport_by_rules(
                 binary_features, food_type, nova_group
             )
             if transport_cooling:
-                predictions["transportCoolingMatch"] = None
+                # Rule-based prediction
+                perishable = food_type in {"meat", "fish_seafood", "dairy", "vegetable", "fruit"}
+                if nova_group == 1 and perishable:
+                    predictions["transportCoolingMatch"] = _match(
+                        f"{food_type} NOVA 1 → {transport_cooling} (perishable)", 1.0
+                    )
+                else:
+                    predictions["transportCoolingMatch"] = _match(
+                        f"{food_type} → {transport_cooling} (non-perishable)", 1.0
+                    )
             else:
-                transport_cooling, conf, match, source = self.transport_matcher.predict(
+                transport_cooling, conf, match_name, source = self.transport_matcher.predict(
                     name, translate_fn=self._translate
                 )
-                predictions["transportCoolingMatch"] = _match(source, match, conf)
+                predictions["transportCoolingMatch"] = _match(
+                    f"Matched with {match_name} in {source}", conf
+                )
         predictions["transportCooling"] = transport_cooling
 
         # 7. defaultOrigin (by rules)
-        predictions["defaultOrigin"] = _extract_origin(activity)
+        origin = _extract_origin(activity)
+        predictions["defaultOrigin"] = origin
+        # Find the origin code from activity
+        origin_match = re.search(r"\{([A-Z]{2,3})\}", activity)
+        if origin_match:
+            code = origin_match.group(1)
+            predictions["defaultOriginMatch"] = _match(
+                f"{{{code}}} in activity → {origin}", 1.0
+            )
+        else:
+            predictions["defaultOriginMatch"] = _match(
+                f"No origin code → {origin} (default)", 0.5
+            )
 
         # 8. Continuous values (nearest neighbor with foodType fallback)
-        density_val, conf, match, source = self.density_matcher.predict(
+        density_val, conf, match_name, source = self.density_matcher.predict(
             name, translate_fn=self._translate
         )
         # Use foodType default unless it's a real text match (exact or word boundary)
         # Feature similarity can give 1.0 for unrelated items with sparse vectors
-        is_text_match = conf >= 0.95 and self._is_related_match(name, match)
-        if is_text_match:
-            predictions["densityMatch"] = _match(source, match, conf)
+        is_exact = conf == 1.0 and self._is_related_match(name, match_name)
+        is_text_match = conf >= 0.95 and self._is_related_match(name, match_name)
+        if is_exact:
+            predictions["densityMatch"] = _match(f"{match_name} found in {source}", conf)
+        elif is_text_match:
+            predictions["densityMatch"] = _match(
+                f"Matched with {match_name} in {source}", conf
+            )
         else:
-            density_val = self._get_default_density(food_type)
-            predictions["densityMatch"] = None
+            density_val, source_file = self._get_default_density(food_type)
+            predictions["densityMatch"] = _match(
+                f"{food_type} default from {source_file}", 1.0
+            )
         predictions["density"] = round(density_val, 3)
 
         # 9. InediblePart (keywords first, then matcher with validation, then default)
-        keyword_inedible = self._detect_inedible_from_keywords(name, activity)
-        if keyword_inedible is not None:
+        keyword_result = self._detect_inedible_from_keywords(name, activity)
+        if keyword_result is not None:
             # Keyword-based (fillet, shelled, etc.) - high confidence
-            predictions["inediblePart"] = round(keyword_inedible, 2)
-            predictions["inediblePartMatch"] = None
+            inedible_val, keyword = keyword_result
+            predictions["inediblePart"] = round(inedible_val, 2)
+            predictions["inediblePartMatch"] = _match(
+                f"{keyword} keyword found in {name}", 1.0
+            )
         else:
-            inedible_val, conf, match, source = self.inedible_matcher.predict(
+            inedible_val, conf, match_name, source = self.inedible_matcher.predict(
                 name, translate_fn=self._translate
             )
             # Validate matcher result (must share words to avoid sparse vector issues)
-            is_valid = conf >= 0.95 and self._is_related_match(name, match)
+            is_valid = conf >= 0.95 and self._is_related_match(name, match_name)
             if is_valid:
                 predictions["inediblePart"] = round(inedible_val, 2)
-                predictions["inediblePartMatch"] = _match(source, match, conf)
+                predictions["inediblePartMatch"] = _match(
+                    f"Matched with {match_name} in {source}", conf
+                )
             else:
                 # Fall back to foodType/novaGroup default
-                default_inedible = self._get_default_inedible_part(food_type, nova_group)
+                default_inedible, source_file = self._get_default_inedible_part(
+                    food_type, nova_group
+                )
+                nova_desc = "NOVA 1" if nova_group == 1 else "NOVA 2-4"
                 predictions["inediblePart"] = round(default_inedible, 2)
-                predictions["inediblePartMatch"] = None
+                predictions["inediblePartMatch"] = _match(
+                    f"{food_type} {nova_desc} default from {source_file}", 1.0
+                )
 
         # 10. rawToCookedRatio (keywords first, then matcher with validation, then default)
-        keyword_ratio = self._detect_ratio_from_keywords(name, activity)
-        if keyword_ratio is not None:
+        keyword_result = self._detect_ratio_from_keywords(name, activity)
+        if keyword_result is not None:
             # Keyword-based (poultry, offal, dried) - high confidence
-            predictions["rawToCookedRatio"] = round(keyword_ratio, 3)
-            predictions["rawToCookedRatioMatch"] = None
+            ratio_val, keyword = keyword_result
+            predictions["rawToCookedRatio"] = round(ratio_val, 3)
+            predictions["rawToCookedRatioMatch"] = _match(
+                f"{keyword} keyword found in {name}", 1.0
+            )
         else:
-            ratio_val, conf, match, source = self.ratio_matcher.predict(
+            ratio_val, conf, match_name, source = self.ratio_matcher.predict(
                 name, translate_fn=self._translate
             )
             # Validate matcher result (must share words to avoid sparse vector issues)
-            is_valid = conf >= 0.95 and self._is_related_match(name, match)
+            is_valid = conf >= 0.95 and self._is_related_match(name, match_name)
             if is_valid:
                 predictions["rawToCookedRatio"] = round(ratio_val, 3)
-                predictions["rawToCookedRatioMatch"] = _match(source, match, conf)
+                predictions["rawToCookedRatioMatch"] = _match(
+                    f"Matched with {match_name} in {source}", conf
+                )
             else:
                 # Fall back to foodType default (Agribalyse values)
-                default_ratio = self._get_default_ratio(food_type)
+                default_ratio, source_file = self._get_default_ratio(food_type)
                 predictions["rawToCookedRatio"] = round(default_ratio, 3)
-                predictions["rawToCookedRatioMatch"] = None
+                predictions["rawToCookedRatioMatch"] = _match(
+                    f"{food_type} default from {source_file}", 1.0
+                )
 
         return predictions
 

@@ -23,7 +23,10 @@ metadata/
 │   ├── fao_density.csv            # FAO density reference (do not modify)
 │   ├── agb_inedible.csv           # AGB inedible reference (do not modify)
 │   ├── cooked_to_raw.csv          # custom cooked/raw ratios
-│   └── transport_cooling.csv      # custom transport cooling
+│   ├── transport_cooling.csv      # custom transport cooling
+│   ├── food_type_density.csv      # foodType default densities
+│   ├── food_type_inedible_part.csv # foodType×NOVA default inedible parts
+│   └── food_type_cooked_to_raw.csv # foodType default cooking ratios
 ├── export.py                      # Main export script
 ├── predict.py                     # Predictor class
 ├── validate_nova.py               # NOVA classification validation
@@ -191,31 +194,36 @@ Current performance (5-fold CV on 93 reference items):
 |--------|-------------|
 | name | Ingredient name |
 | categories | Predicted categories (comma-separated) |
-| foodType | Food type + match name + confidence |
+| foodType | Food type + match rule + confidence |
 | **novaGroup** | NOVA 1-4 classification |
-| **novaGroupReason** | Detection method used |
-| **novaGroupConf** | Confidence score |
+| **novaGroupMatch** | Detection rule + confidence |
 | processingState | Derived from NOVA (raw/processed) |
-| transportCooling | Transport cooling + match |
-| cropGroup | Crop group + match + confidence |
-| density | Density value + match + confidence |
-| inediblePart | Inedible part + match + confidence |
-| rawToCookedRatio | Raw-to-cooked ratio + match + confidence |
+| transportCooling | Transport cooling + match rule |
+| cropGroup | Crop group + match rule + confidence |
+| density | Density value + match rule + confidence |
+| inediblePart | Inedible part + match rule + confidence |
+| rawToCookedRatio | Raw-to-cooked ratio + match rule + confidence |
 
 ### new_activities.json
 
-Match info includes source file and confidence:
+Match info includes a human-readable rule explanation and confidence:
 
 ```json
 {
   "ingredientDensity": 0.9,
   "ingredientDensityMatch": {
-    "file": "density.csv",
-    "name": "bell pepper",
+    "rule": "Matched with bell pepper in density.csv",
+    "confidence": 0.95
+  },
+  "novaGroup": 1,
+  "novaGroupMatch": {
+    "rule": "at_farm_source → NOVA 1",
     "confidence": 0.95
   }
 }
 ```
+
+All Match fields follow the same format: `{"rule": "...", "confidence": float}`. The rule explains how the value was determined (text match, keyword detection, or default fallback).
 
 ## Feature Extraction
 
@@ -452,7 +460,7 @@ Step 2: For each field, find best match:
 Output: {
   "foodType": "fish_seafood",
   "novaGroup": 1,
-  "novaGroupReason": "fresh_at_plant",
+  "novaGroupMatch": {"rule": "fresh_at_plant → NOVA 1", "confidence": 0.85},
   "processingState": "raw",
   "transportCooling": "always",
   "density": 1.05,
