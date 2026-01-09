@@ -138,10 +138,10 @@ def load_existing_uuids(output_path: str) -> dict:
 
 
 def _format_match(match_info: dict | None) -> str:
-    """Format match name for CSV output."""
+    """Format match rule for CSV output."""
     if match_info is None:
         return ""
-    return match_info.get("name", "")
+    return match_info.get("rule", "")
 
 
 def _format_conf(match_info: dict | None) -> str:
@@ -232,16 +232,20 @@ def write_csv(results: list, output_path: str):
         "foodTypeMatch",
         "foodTypeConf",
         "novaGroup",
-        "novaGroupReason",
+        "novaGroupMatch",
         "novaGroupConf",
         "processingState",
         "processingStateMatch",
         "processingStateConf",
+        "packaging",
+        "packagingMatch",
         "transportCooling",
         "transportCoolingMatch",
         "cropGroup",
         "cropGroupMatch",
         "cropGroupConf",
+        "defaultOrigin",
+        "defaultOriginMatch",
         "density",
         "densityMatch",
         "densityConf",
@@ -269,8 +273,8 @@ def write_csv(results: list, output_path: str):
                     "foodTypeMatch": _format_match(pred.get("foodTypeMatch")),
                     "foodTypeConf": _format_conf(pred.get("foodTypeMatch")),
                     "novaGroup": pred.get("novaGroup", ""),
-                    "novaGroupReason": pred.get("novaGroupReason", ""),
-                    "novaGroupConf": f"{pred.get('novaGroupConfidence', 0):.3f}",
+                    "novaGroupMatch": _format_match(pred.get("novaGroupMatch")),
+                    "novaGroupConf": _format_conf(pred.get("novaGroupMatch")),
                     "processingState": pred.get("processingState", ""),
                     "processingStateMatch": _format_match(
                         pred.get("processingStateMatch")
@@ -278,13 +282,17 @@ def write_csv(results: list, output_path: str):
                     "processingStateConf": _format_conf(
                         pred.get("processingStateMatch")
                     ),
+                    "packaging": pred.get("packaging") or "",
+                    "packagingMatch": _format_match(pred.get("packagingMatch")),
                     "transportCooling": pred.get("transportCooling", ""),
                     "transportCoolingMatch": _format_match(
                         pred.get("transportCoolingMatch")
                     ),
-                    "cropGroup": pred.get("cropGroup", ""),
+                    "cropGroup": pred.get("cropGroup") or "",
                     "cropGroupMatch": _format_match(pred.get("cropGroupMatch")),
                     "cropGroupConf": _format_conf(pred.get("cropGroupMatch")),
+                    "defaultOrigin": pred.get("defaultOrigin", ""),
+                    "defaultOriginMatch": _format_match(pred.get("defaultOriginMatch")),
                     "density": f"{pred.get('density', 0):.3f}",
                     "densityMatch": _format_match(pred.get("densityMatch")),
                     "densityConf": _format_conf(pred.get("densityMatch")),
