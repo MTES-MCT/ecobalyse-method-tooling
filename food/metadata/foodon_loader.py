@@ -53,6 +53,22 @@ FOODON_CATEGORIES = {
     "plant": "FOODON:00001015",  # plant food product (parent of veg/fruit)
 }
 
+# Additional seafood IDs (shellfish, molluscs, etc. - not under "fish food product")
+FOODON_SEAFOOD_EXTRA = {
+    "FOODON:00001046",  # animal seafood product (parent of shellfish)
+    "FOODON:00001293",  # shellfish food product
+    "FOODON:00005702",  # mollusk material
+    "FOODON:00005522",  # invertebrate material
+}
+
+# Material hierarchy IDs (for organism-derived terms like "swordfish", "chicken")
+# These catch items that match organism terms rather than food product terms
+FOODON_MATERIAL_CATEGORIES = {
+    "fish_seafood": "FOODON:03000165",  # fish material
+    "plant": "FOODON:00004331",  # plant material
+    "vertebrate": "FOODON:00005502",  # vertebrate material (for meat detection)
+}
+
 # FoodOn processing classes mapped to NOVA groups
 # NOVA 2: Culinary ingredients (oils, butter, sugar, salt, flour, starch)
 # NOVA 3: Processed foods (fermented, cured, canned)
@@ -294,12 +310,27 @@ class FoodOnFeatureExtractor:
         ancestors = set(a.id for a in term.superclasses())
 
         # Binary type features (0-8)
-        features[0] = 1.0 if FOODON_CATEGORIES["vegetable"] in ancestors else 0.0
+        # Check BOTH food product hierarchy AND material hierarchy
+        is_fish_material = FOODON_MATERIAL_CATEGORIES["fish_seafood"] in ancestors
+        is_fish_product = FOODON_CATEGORIES["fish_seafood"] in ancestors
+        is_other_seafood = bool(ancestors & FOODON_SEAFOOD_EXTRA)  # shellfish, molluscs
+        is_fish = is_fish_material or is_fish_product or is_other_seafood
+        is_vertebrate = FOODON_MATERIAL_CATEGORIES["vertebrate"] in ancestors
+        is_plant_material = FOODON_MATERIAL_CATEGORIES["plant"] in ancestors
+
+        features[0] = (
+            1.0
+            if (
+                FOODON_CATEGORIES["vegetable"] in ancestors
+                or is_plant_material  # plant material → vegetable fallback
+            )
+            else 0.0
+        )
         features[1] = 1.0 if FOODON_CATEGORIES["fruit"] in ancestors else 0.0
         features[2] = 1.0 if FOODON_CATEGORIES["grain"] in ancestors else 0.0
-        # Note: meat is detected via animal source feature below
-        features[3] = 0.0  # is_meat (placeholder - FoodOn structure varies)
-        features[4] = 1.0 if FOODON_CATEGORIES["fish_seafood"] in ancestors else 0.0
+        # Meat: vertebrate material but NOT fish (check both hierarchies)
+        features[3] = 1.0 if (is_vertebrate and not is_fish) else 0.0  # is_meat
+        features[4] = 1.0 if is_fish else 0.0  # is_fish
         features[5] = 1.0 if FOODON_CATEGORIES["dairy"] in ancestors else 0.0
         features[6] = 1.0 if FOODON_CATEGORIES["nut_oilseed"] in ancestors else 0.0
         features[7] = 1.0 if FOODON_CATEGORIES["spice"] in ancestors else 0.0
@@ -331,7 +362,9 @@ class FoodOnFeatureExtractor:
 
         # Source features (14-17) - check ancestors
         features[14] = (
-            1.0 if FOODON_CATEGORIES["plant"] in ancestors else 0.0
+            1.0
+            if (FOODON_CATEGORIES["plant"] in ancestors or is_plant_material)
+            else 0.0
         )  # source_plant
         # Animal source: check for animal-related ancestors
         animal_keywords = ["animal", "meat", "poultry", "beef", "pork", "chicken"]

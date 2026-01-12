@@ -1448,7 +1448,7 @@ class Predictor:
         Returns None if no clear FoodOn signal.
 
         Features layout (from foodon_loader.py):
-        - [0]=vegetable, [1]=fruit, [2]=grain, [3]=meat(placeholder),
+        - [0]=vegetable, [1]=fruit, [2]=grain, [3]=meat,
         - [4]=fish, [5]=dairy, [6]=nut_oilseed, [7]=spice, [8]=beverage
         - [19]=match_confidence
         """
@@ -1462,6 +1462,7 @@ class Predictor:
         priority_order = [
             (1, "fruit"),         # Check fruit BEFORE vegetable
             (2, "grain"),
+            (3, "meat"),          # Meat (vertebrate material, excluding fish)
             (4, "fish_seafood"),
             (5, "dairy"),
             (6, "nut_oilseed"),
@@ -1515,9 +1516,17 @@ class Predictor:
         food_type, conf, match_name, source = self.food_type_matcher.predict(
             name, translate_fn=self._translate
         )
-        if conf == 1.0:  # Only trust exact match from food_type.csv (cosine can be 0.95+)
+        # Validate high-confidence match (sparse vectors can give 1.0 for unrelated items)
+        is_exact = conf == 1.0 and self._is_related_match(name, match_name)
+        is_text_match = conf >= 0.95 and self._is_related_match(name, match_name)
+
+        if is_exact:
             predictions["foodTypeMatch"] = _match(
                 f"{match_name} found in {source}", conf
+            )
+        elif is_text_match:
+            predictions["foodTypeMatch"] = _match(
+                f"Matched with {match_name} in {source}", conf
             )
         else:
             # Try FoodOn features
@@ -1528,9 +1537,10 @@ class Predictor:
                     f"FoodOn ontology: {food_type} features detected", 1.0
                 )
             else:
-                # Keep the matcher result (cosine similarity fallback)
+                # Default fallback (no trusted match)
+                food_type = "vegetable"
                 predictions["foodTypeMatch"] = _match(
-                    f"Matched with {match_name} in {source}", conf
+                    f"Default: {food_type} (no trusted match for {match_name})", 0.5
                 )
         predictions["foodType"] = food_type
 
