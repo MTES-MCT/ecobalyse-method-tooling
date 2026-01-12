@@ -388,20 +388,36 @@ def _extract_ingredient_values(
     """
     Extract (names, values, sources) from ingredients with a given field.
 
+    Only extracts ground truth values - skips ingredients that have a *Match
+    attribute for this field (indicating the value was predicted, not curated).
+
     Args:
         ingredients: List of ingredient dicts
         field: Field name to extract (e.g., "ingredientDensity", "inediblePart")
         allow_zero: If True, include zero values (use "is not None" check).
                    If False, exclude zero/falsy values (use truthiness check).
     """
-    if allow_zero:
-        # Use "is not None" check to include zero values
-        names = [ing["name"] for ing in ingredients if ing.get(field) is not None]
-        values = [ing[field] for ing in ingredients if ing.get(field) is not None]
-    else:
-        # Use truthiness check to exclude zero/falsy values
-        names = [ing["name"] for ing in ingredients if ing.get(field)]
-        values = [ing[field] for ing in ingredients if ing.get(field)]
+    match_field = f"{field}Match"
+    names, values = [], []
+
+    for ing in ingredients:
+        # Skip predicted values (has Match attribute = not ground truth)
+        if ing.get(match_field) is not None:
+            continue
+
+        val = ing.get(field)
+        if allow_zero:
+            # Use "is not None" check to include zero values
+            if val is None:
+                continue
+        else:
+            # Use truthiness check to exclude zero/falsy values
+            if not val:
+                continue
+
+        names.append(ing["name"])
+        values.append(val)
+
     sources = ["ingredients.json"] * len(names)
     return names, values, sources
 
