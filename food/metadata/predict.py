@@ -100,6 +100,35 @@ MT_MODEL = "Helsinki-NLP/opus-mt-fr-en"  # FR → EN Machine Translation
 # Embedding model (used for evaluation cross-validation only)
 MODEL = "all-MiniLM-L6-v2"
 
+# English terms that should NOT be translated (pass-through)
+# These are English words that the FR→EN model mistranslates
+TRANSLATION_PASSTHROUGH = {
+    # Grains
+    "millet",
+    "barley",
+    "rye",
+    "oats",
+    "wheat",
+    "corn",
+    "maize",
+    "sorghum",
+    "quinoa",
+    # Fish
+    "char",
+    "arctic char",
+    "trout",
+    "salmon",
+    "cod",
+    "haddock",
+    "halibut",
+    "bass",
+    "perch",
+    # Other foods
+    "starch",
+    "gluten",
+    "syrup",
+}
+
 # Base categories (legacy - kept for backward compatibility during training)
 BASE_CATEGORIES = [
     "misc",
@@ -826,6 +855,18 @@ class Predictor:
         if text in self._translation_cache:
             return self._translation_cache[text]
 
+        # Check if text is an English term that should not be translated
+        text_lower = text.lower()
+        if text_lower in TRANSLATION_PASSTHROUGH:
+            self._translation_cache[text] = text
+            return text
+
+        # Check if all significant words are English passthrough terms
+        words = text_lower.split()
+        if all(w in TRANSLATION_PASSTHROUGH for w in words if len(w) > 2):
+            self._translation_cache[text] = text
+            return text
+
         inputs = self.mt_tokenizer(text, return_tensors="pt").to(self.device)
         with torch.no_grad():
             outputs = self.mt_model.generate(**inputs, max_length=40)
@@ -1138,6 +1179,7 @@ class Predictor:
             (r"\b(salt|sel)\b(?!.*fish)", "salt"),  # exclude salted fish
             (r"\b(farine|flour)\b(?!.*seed)", "flour"),
             (r"\b(f[ée]cule|starch)\b", "starch"),
+            (r"\bwheat\s+gluten\b", "gluten"),  # refined gluten extract
             (r"\b(maple\s+syrup|sirop\s+d[''e]\s*[ée]rable)\b", "syrup"),  # only maple syrup is NOVA 2
             (r"\b(vinegar|vinaigre)\b", "vinegar"),
             (r"\b(molasses|m[ée]lasse)\b", "molasses"),
@@ -1145,6 +1187,18 @@ class Predictor:
         for pattern, ingredient_type in nova2_patterns:
             if re.search(pattern, text, re.IGNORECASE):
                 return 2, f"nova2_{ingredient_type}", 0.95
+
+        # Priority 0.6: FoodOn refined food product detection
+        # Items classified as "refined food product" in FoodOn are typically NOVA 2
+        if self.foodon_extractor:
+            term_id = self.foodon_extractor.lookup_foodon_term(name)
+            if term_id:
+                from foodon_loader import FOODON_REFINED_CATEGORIES
+
+                ancestors = self.foodon_extractor.get_ancestors(term_id)
+                for refined_id, nova in FOODON_REFINED_CATEGORIES.items():
+                    if refined_id in ancestors:
+                        return nova, f"FoodOn refined: {refined_id}", 0.90
 
         # Priority 1: Activity name location keywords (highest priority - explicit source)
         # "at farm gate", "at farm", "at orchard", "at landing", "at greenhouse", "production" → NOVA 1

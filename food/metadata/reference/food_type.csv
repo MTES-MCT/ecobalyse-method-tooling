@@ -203,3 +203,15 @@ mulberry,fruit
 tamarind,fruit
 # Vegetables commonly mismatched
 cardoon,vegetable
+lettuce,vegetable
+salad,vegetable
+# Herbs and leaves
+bay leaves,spice_condiment
+chive,vegetable
+# Seeds (FoodOn has generic "seed (raw)" without category)
+poppy seeds,nut_oilseed
+# Starches (FoodOn classifies as "starch food product" not grain)
+starch,grain
+corn starch,grain
+# Miscellaneous (fungi, etc.)
+yeast,misc

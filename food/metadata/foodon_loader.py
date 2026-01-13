@@ -10,6 +10,7 @@ FoodOn: https://foodon.org/
 
 import warnings
 from pathlib import Path
+from typing import Optional
 
 import numpy as np
 
@@ -17,8 +18,27 @@ import numpy as np
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 warnings.filterwarnings("ignore", category=UnicodeWarning)
 
+import re
+
 FOODON_PATH = Path(__file__).parent / "data" / "foodon.owl"
 FOODON_URL = "http://purl.obolibrary.org/obo/foodon.owl"
+
+# Prefix words to skip in lookup (quality/state/seasonal terms that match generic FoodOn entries)
+SKIP_PREFIX_WORDS = {"whole", "raw", "fresh", "dried", "frozen", "canned", "cooked", "spring"}
+
+# Regional food synonyms (British/American variants not captured by embeddings)
+# Maps US English → British/international English (FoodOn uses British)
+FOOD_SYNONYMS = {
+    "corn": "maize",
+    "eggplant": "aubergine",
+    "zucchini": "courgette",
+    "cilantro": "coriander",
+    "chickpea": "garbanzo",
+    "arugula": "rocket",
+    "scallion": "spring onion",
+    "bell pepper": "capsicum",
+    "faba": "broad bean",  # faba bean = fava bean = broad bean
+}
 
 
 def _download_foodon(destination: Path) -> None:
@@ -51,6 +71,14 @@ FOODON_CATEGORIES = {
     "spice": "FOODON:03303380",  # spice food product
     "beverage": "FOODON:03301977",  # beverage food product
     "plant": "FOODON:00001015",  # plant food product (parent of veg/fruit)
+    "legume": "FOODON:00001264",  # legume food product (peas, beans, lentils)
+    "egg": "FOODON:00001274",  # egg food product
+}
+
+# Additional grain IDs (FoodOn ontology doesn't classify maize under cereal grain)
+FOODON_GRAIN_EXTRA = {
+    "FOODON:00001142",  # maize (corn) food product
+    "FOODON:00001089",  # milled corn food product
 }
 
 # Additional seafood IDs (shellfish, molluscs, etc. - not under "fish food product")
@@ -67,6 +95,16 @@ FOODON_MATERIAL_CATEGORIES = {
     "fish_seafood": "FOODON:03000165",  # fish material
     "plant": "FOODON:00004331",  # plant material
     "vertebrate": "FOODON:00005502",  # vertebrate material (for meat detection)
+}
+
+# FoodOn refined food product categories for NOVA detection
+# Items under "refined or partially-refined food product" are typically NOVA 2 (culinary ingredients)
+FOODON_REFINED_CATEGORIES = {
+    "FOODON:00001595": 2,  # refined or partially-refined food product → NOVA 2
+    "FOODON:00002131": 2,  # plant-based refined food product
+    "FOODON:00002196": 2,  # animal-based refined food product
+    "FOODON:00001907": 2,  # gluten refined food product
+    "FOODON:00002274": 2,  # starch refined food product
 }
 
 # FoodOn processing classes mapped to NOVA groups
@@ -129,6 +167,7 @@ class FoodOnFeatureExtractor:
         """Build lookup indices for fast matching.
 
         Prioritizes FOODON terms over NCBITaxon (organism) terms.
+        Also parses parenthetical synonyms from term names (e.g., "maize (corn)").
         """
         self.label_to_term = {}
         self.food_product_terms = {}  # Separate index for food product terms
@@ -138,22 +177,53 @@ class FoodOnFeatureExtractor:
                 continue
 
             label = term.name.lower()
-            is_food_term = term.id.startswith("FOODON:")
+            is_foodon_term = term.id.startswith("FOODON:")
+            # True food products have "food product" in name or specific patterns
+            is_food_product = is_foodon_term and (
+                "food product" in label
+                or label.endswith("(raw)")
+                or label.endswith("(cooked)")
+                or label.endswith("(dried)")
+                or label.endswith("(frozen)")
+                or label.endswith("(canned)")
+            )
 
-            # Always index food terms, only index non-food if no collision
-            if is_food_term:
+            # Always index FOODON terms in label_to_term
+            if is_foodon_term:
                 self.label_to_term[label] = term
-                self.food_product_terms[label] = term
             elif label not in self.label_to_term:
                 self.label_to_term[label] = term
 
-            # Index by synonyms (prefer food terms)
+            # Only put true food products in food_product_terms
+            if is_food_product:
+                self.food_product_terms[label] = term
+
+                # Parse parenthetical synonyms like "maize (corn) food product"
+                paren_match = re.search(r"^(\w+)\s*\((\w+)\)", label)
+                if paren_match:
+                    main_word = paren_match.group(1)
+                    synonym = paren_match.group(2)
+                    # Index the synonym (e.g., "corn" from "maize (corn)")
+                    if synonym not in self.food_product_terms:
+                        self.food_product_terms[synonym] = term
+                    # Index "corn food product" variant
+                    suffix = label[paren_match.end() :].strip()
+                    if suffix:
+                        synonym_variant = f"{synonym} {suffix}"
+                        if synonym_variant not in self.food_product_terms:
+                            self.food_product_terms[synonym_variant] = term
+
+            elif label not in self.label_to_term:
+                self.label_to_term[label] = term
+
+            # Index by synonyms (prefer food products)
             for syn in getattr(term, "synonyms", []):
                 if hasattr(syn, "description") and syn.description:
                     syn_label = syn.description.lower()
-                    if is_food_term:
+                    if is_foodon_term:
                         self.label_to_term[syn_label] = term
-                        self.food_product_terms[syn_label] = term
+                        if is_food_product:
+                            self.food_product_terms[syn_label] = term
                     elif syn_label not in self.label_to_term:
                         self.label_to_term[syn_label] = term
 
@@ -163,6 +233,7 @@ class FoodOnFeatureExtractor:
 
         Prioritizes FOODON: terms (food products) over NCBITaxon (organisms).
         Uses fast dictionary lookups instead of slow fuzzy matching.
+        Handles prefix words (whole, raw, etc.) and regional synonyms.
 
         Args:
             name: Ingredient name to look up
@@ -177,6 +248,32 @@ class FoodOnFeatureExtractor:
         if len(name_lower) < 3:
             return None, 0.0
 
+        # Skip prefix words like "whole", "raw", "fresh" FIRST to avoid matching
+        # quality terms (e.g., "whole barley" matching "whole" instead of "barley")
+        words = name_lower.split()
+        if len(words) > 1 and words[0] in SKIP_PREFIX_WORDS:
+            stripped_name = " ".join(words[1:])
+            result = self._lookup_core(stripped_name)
+            if result[0] is not None:
+                return result
+
+        # Try lookup with the original name
+        result = self._lookup_core(name_lower)
+        if result[0] is not None:
+            return result
+
+        # Try regional synonyms (corn → maize, eggplant → aubergine, etc.)
+        for us_term, intl_term in FOOD_SYNONYMS.items():
+            if us_term in name_lower:
+                synonym_name = name_lower.replace(us_term, intl_term)
+                result = self._lookup_core(synonym_name)
+                if result[0] is not None:
+                    return result
+
+        return None, 0.0
+
+    def _lookup_core(self, name_lower: str):
+        """Core lookup logic without prefix/synonym handling."""
         # 1. Exact match in food product terms first (highest priority)
         if name_lower in self.food_product_terms:
             return self.food_product_terms[name_lower], 1.0
@@ -281,6 +378,32 @@ class FoodOnFeatureExtractor:
         # No match found
         return None, 0.0
 
+    def lookup_foodon_term(self, name: str) -> Optional[str]:
+        """Look up FoodOn term ID for ingredient name.
+
+        Returns:
+            FoodOn term ID (e.g., "FOODON:00001142") or None if not found
+        """
+        term, confidence = self.lookup(name)
+        return term.id if term else None
+
+    def get_ancestors(self, term_id: str) -> set:
+        """Get all ancestor IDs for a FoodOn term.
+
+        Args:
+            term_id: FoodOn term ID (e.g., "FOODON:00001142")
+
+        Returns:
+            Set of ancestor term IDs
+        """
+        try:
+            term = self.ontology.get(term_id)
+            if term:
+                return set(a.id for a in term.superclasses())
+        except Exception:
+            pass
+        return set()
+
     def extract_features(self, name: str) -> np.ndarray:
         """
         Extract FoodOn feature vector for ingredient name.
@@ -317,19 +440,31 @@ class FoodOnFeatureExtractor:
         is_fish = is_fish_material or is_fish_product or is_other_seafood
         is_vertebrate = FOODON_MATERIAL_CATEGORIES["vertebrate"] in ancestors
         is_plant_material = FOODON_MATERIAL_CATEGORIES["plant"] in ancestors
+        is_legume = FOODON_CATEGORIES["legume"] in ancestors
+        is_egg = FOODON_CATEGORIES["egg"] in ancestors
 
+        # Vegetable: includes legumes (peas, beans, lentils → vegetable in Ecobalyse)
         features[0] = (
             1.0
             if (
                 FOODON_CATEGORIES["vegetable"] in ancestors
                 or is_plant_material  # plant material → vegetable fallback
+                or is_legume  # legumes → vegetable category
             )
             else 0.0
         )
         features[1] = 1.0 if FOODON_CATEGORIES["fruit"] in ancestors else 0.0
-        features[2] = 1.0 if FOODON_CATEGORIES["grain"] in ancestors else 0.0
-        # Meat: vertebrate material but NOT fish (check both hierarchies)
-        features[3] = 1.0 if (is_vertebrate and not is_fish) else 0.0  # is_meat
+        # Grain: check both main grain category AND extra grain IDs (maize not under cereal in FoodOn)
+        is_grain = (
+            FOODON_CATEGORIES["grain"] in ancestors
+            or bool(ancestors & FOODON_GRAIN_EXTRA)
+            or term.id in FOODON_GRAIN_EXTRA  # Also check if term itself is a grain
+        )
+        features[2] = 1.0 if is_grain else 0.0
+        # Meat: vertebrate material (NOT fish), OR egg (eggs → meat in Ecobalyse)
+        features[3] = (
+            1.0 if ((is_vertebrate and not is_fish) or is_egg) else 0.0
+        )  # is_meat
         features[4] = 1.0 if is_fish else 0.0  # is_fish
         features[5] = 1.0 if FOODON_CATEGORIES["dairy"] in ancestors else 0.0
         features[6] = 1.0 if FOODON_CATEGORIES["nut_oilseed"] in ancestors else 0.0

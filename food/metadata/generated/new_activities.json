@@ -490,13 +490,13 @@
           "defaultOrigin": "France",
           "displayName": "Levure chimique",
           "id": "da2fa6ae-0079-4b49-b2c2-cecb4b1957f6",
-          "inediblePart": 0.2,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with Poudre de Molokhia in ingredients.json",
+            "rule": "meat NOVA 2-4 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_processed"
+            "animal_product"
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": {
@@ -514,12 +514,7 @@
             "rule": "Matched with Poudre de Molokhia in ingredients.json",
             "confidence": 1.0
           },
-          "visible": true,
-          "cropGroup": "BLE TENDRE",
-          "cropGroupMatch": {
-            "rule": "Matched with Poudre de Molokhia in ingredients.json",
-            "confidence": 1.0
-          }
+          "visible": true
         }
       ]
     },
@@ -706,28 +701,28 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "feuilles de laurier",
           "id": "0855a178-312e-4076-8443-11cd9efcab12",
-          "inediblePart": 0.2,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.5,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "spice_condiment default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
+            "rule": "spice_condiment default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "spice_condiment → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -1048,9 +1043,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "beetroot found in cropgroup.csv",
+            "rule": "Matched with clementine in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1524,9 +1519,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "beetroot found in cropgroup.csv",
+            "rule": "soybean found in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1681,9 +1676,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "beetroot found in cropgroup.csv",
+            "rule": "teff found in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -2367,9 +2362,9 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.5,
+          "ingredientDensity": 0.85,
           "ingredientDensityMatch": {
-            "rule": "Matched with Chili, green in fao_density.csv",
+            "rule": "fruit default from food_type_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
@@ -2473,7 +2468,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "spice_condiment_additive"
           ],
           "ingredientDensity": 0.56,
           "ingredientDensityMatch": {
@@ -2486,9 +2481,9 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "spice_condiment → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -2791,17 +2786,17 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Café en grains",
           "id": "8d4c4165-7f0f-4628-b8e5-136c2e25cb64",
-          "inediblePart": 0.0,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "beverage NOVA 1 default from food_type_inedible_part.csv",
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "misc"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.0,
+          "ingredientDensity": 0.98,
           "ingredientDensityMatch": {
-            "rule": "Matched with Coffee, brewed in fao_density.csv",
+            "rule": "Matched with Githeri plain (muthugo + beans + water) in fao_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
@@ -2810,12 +2805,17 @@
             "confidence": 0.95
           },
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "Matched with Thé (feuilles) UE in ingredients.json",
+            "rule": "vegetable NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
-          "visible": true
+          "visible": true,
+          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroupMatch": {
+            "rule": "Matched with beetroot in cropgroup.csv",
+            "confidence": 0.934
+          }
         }
       ]
     },
@@ -2949,7 +2949,7 @@
             "confidence": 0.95
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_raw"
           ],
           "ingredientDensity": 0.72,
           "ingredientDensityMatch": {
@@ -2962,9 +2962,9 @@
             "confidence": 0.95
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -3003,7 +3003,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_processed"
+            "grain_processed"
           ],
           "ingredientDensity": 0.72,
           "ingredientDensityMatch": {
@@ -3018,7 +3018,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "Matched with sirop de glucose de maïs in ingredients.json",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -3420,9 +3420,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Aneth, frais",
           "id": "37066404-4714-43a7-8c89-b08a55f17cb8",
-          "inediblePart": 0.2,
+          "inediblePart": 0.1,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "rule": "Matched with Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) in ingredients.json",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -3433,9 +3433,9 @@
             "rule": "vegetable default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
+            "rule": "Matched with Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) in ingredients.json",
             "confidence": 1.0
           },
           "scenario": "reference",
@@ -3586,7 +3586,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_raw"
           ],
           "ingredientDensity": 0.77,
           "ingredientDensityMatch": {
@@ -3599,9 +3599,9 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -3634,36 +3634,31 @@
           "defaultOrigin": "France",
           "displayName": "Œuf",
           "id": "933f9b34-9fc3-4ec6-865c-5b6562f0fadf",
-          "inediblePart": 0.2,
+          "inediblePart": 0.05,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "animal_product"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 1.05,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "meat default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 0.792,
           "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
+            "rule": "meat default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "meat NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
-          "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
-          "cropGroupMatch": {
-            "rule": "Matched with tapioca in cropgroup.csv",
-            "confidence": 0.835
-          }
+          "visible": true
         }
       ]
     },
@@ -4191,7 +4186,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Oignons déshydratés par défaut found in ingredients.json",
+            "rule": "beetroot found in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4233,8 +4228,8 @@
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "rule": "Matched with Persil frais in ingredients.json",
-            "confidence": 1.0
+            "rule": "Matched with Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) in ingredients.json",
+            "confidence": 0.999
           },
           "scenario": "reference",
           "transportCooling": "always",
@@ -4340,16 +4335,16 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "Matched with Soja in ingredients.json",
-            "confidence": 0.894
+            "rule": "Matched with Petit pois FR in ingredients.json",
+            "confidence": 0.882
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "Matched with beetroot in cropgroup.csv",
-            "confidence": 0.894
+            "rule": "Matched with teff in cropgroup.csv",
+            "confidence": 0.882
           }
         }
       ]
@@ -4876,9 +4871,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "FRUITS A COQUES",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "Matched with Noix avec coque UE in ingredients.json",
+            "rule": "Matched with pignons de pin in ingredients.json",
             "confidence": 1.0
           }
         }
@@ -5010,21 +5005,21 @@
           "id": "6d62ef81-68f2-44be-9275-201ec5ac5fa0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-            "confidence": 1.0
+            "rule": "Matched with Estragon frais in ingredients.json",
+            "confidence": 0.997
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.73,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
-            "confidence": 1.0
+            "rule": "Matched with Fresh green peas (minji) in fao_density.csv",
+            "confidence": 0.996
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
-            "confidence": 1.0
+            "rule": "Matched with Estragon frais in ingredients.json",
+            "confidence": 0.997
           },
           "scenario": "reference",
           "transportCooling": "always",
@@ -5033,10 +5028,10 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Matched with pousses de bambou in ingredients.json",
-            "confidence": 0.916
+            "rule": "Matched with Estragon frais in ingredients.json",
+            "confidence": 0.997
           }
         }
       ]
@@ -5143,7 +5138,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "cauliflower found in cropgroup.csv",
+            "rule": "shallot found in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5251,7 +5246,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "cauliflower found in cropgroup.csv",
+            "rule": "shallot found in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6030,10 +6025,10 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 1.28,
+          "ingredientDensity": 0.5,
           "ingredientDensityMatch": {
-            "rule": "Matched with Syrup, blackcurrant, undiluted in fao_density.csv",
-            "confidence": 0.998
+            "rule": "spice_condiment default from food_type_density.csv",
+            "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
@@ -6136,7 +6131,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_raw"
           ],
           "ingredientDensity": 0.64,
           "ingredientDensityMatch": {
@@ -6149,9 +6144,9 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -6244,11 +6239,11 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "animal_product"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 1.05,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "meat default from food_type_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
@@ -6259,15 +6254,10 @@
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "meat NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
-          "visible": true,
-          "cropGroup": "BLE TENDRE",
-          "cropGroupMatch": {
-            "rule": "Poudre de Molokhia found in ingredients.json",
-            "confidence": 1.0
-          }
+          "visible": true
         }
       ]
     },
@@ -6720,11 +6710,11 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.5,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "spice_condiment default from food_type_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 1.0,
@@ -6733,9 +6723,9 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "spice_condiment → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -6847,9 +6837,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "beetroot found in cropgroup.csv",
+            "rule": "Matched with clementine in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7159,9 +7149,9 @@
             "rule": "vegetable default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
+            "rule": "Matched with Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) in ingredients.json",
             "confidence": 1.0
           },
           "scenario": "reference",
@@ -7227,7 +7217,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Oignons déshydratés par défaut found in ingredients.json",
+            "rule": "beetroot found in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7927,7 +7917,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Matched with apricot in cropgroup.csv",
+            "rule": "pear found in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7960,11 +7950,11 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "nut_oilseed_raw"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.6,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "nut_oilseed default from food_type_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.819,
@@ -7973,15 +7963,15 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "nut_oilseed → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "pousses de bambou found in ingredients.json",
+            "rule": "Matched with Graines de Cucurbitacées in ingredients.json",
             "confidence": 1.0
           }
         }
@@ -8195,9 +8185,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "beetroot found in cropgroup.csv",
+            "rule": "Matched with clementine in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -8230,11 +8220,11 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_raw"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.75,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "grain default from food_type_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 2.259,
@@ -8243,9 +8233,9 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -8711,25 +8701,30 @@
             "confidence": 0.95
           },
           "ingredientCategories": [
-            "animal_product"
+            "vegetable_fresh"
           ],
-          "ingredientDensity": 1.05,
+          "ingredientDensity": 0.85,
           "ingredientDensityMatch": {
-            "rule": "fish_seafood default from food_type_density.csv",
+            "rule": "fruit default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.819,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "fish_seafood default from food_type_cooked_to_raw.csv",
+            "rule": "fruit default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "fish_seafood NOVA 1 → always (perishable)",
+            "rule": "fruit NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
-          "visible": true
+          "visible": true,
+          "cropGroup": "VERGERS",
+          "cropGroupMatch": {
+            "rule": "Matched with mandarin in cropgroup.csv",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -9021,20 +9016,20 @@
           "id": "c62d3065-d784-46a6-9d59-14218c18c9d1",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Estragon frais in ingredients.json",
+            "rule": "Matched with Raifort frais in ingredients.json",
             "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.73,
+          "ingredientDensity": 0.9,
           "ingredientDensityMatch": {
-            "rule": "Matched with Fresh green peas (minji) in fao_density.csv",
+            "rule": "vegetable default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "Matched with Estragon frais in ingredients.json",
+            "rule": "Matched with Raifort frais in ingredients.json",
             "confidence": 1.0
           },
           "scenario": "reference",
@@ -9044,9 +9039,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Matched with Estragon frais in ingredients.json",
+            "rule": "Matched with Raifort frais in ingredients.json",
             "confidence": 1.0
           }
         }
@@ -9149,7 +9144,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Matched with celeriac in cropgroup.csv",
+            "rule": "Endive found in ingredients.json",
             "confidence": 1.0
           }
         }
@@ -9274,9 +9269,9 @@
           "defaultOrigin": "France",
           "displayName": "Bar",
           "id": "d3ed86fe-fc22-4108-890f-12235522fce4",
-          "inediblePart": 0.4,
+          "inediblePart": 0.56,
           "inediblePartMatch": {
-            "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
+            "rule": "Matched with Atlantic bass in agb_inedible.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -9404,8 +9399,8 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Matched with Protéines de soja texturées in ingredients.json",
-            "confidence": 1.0
+            "rule": "Matched with Algue in ingredients.json",
+            "confidence": 0.993
           }
         }
       ]
@@ -9743,36 +9738,31 @@
           "defaultOrigin": "France",
           "displayName": "pois mange-tout",
           "id": "6c6aea36-b30a-405b-9ca8-817e2e205b7e",
-          "inediblePart": 0.2,
+          "inediblePart": 0.4,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "animal_product"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 1.05,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "fish_seafood default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 0.819,
           "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
+            "rule": "fish_seafood default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "fish_seafood NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
-          "visible": true,
-          "cropGroup": "AUTRES CEREALES",
-          "cropGroupMatch": {
-            "rule": "Matched with pea in cropgroup.csv",
-            "confidence": 0.95
-          }
+          "visible": true
         }
       ]
     },
@@ -9927,13 +9917,13 @@
           "transportCooling": "always",
           "transportCoolingMatch": {
             "rule": "Matched with Lentille in ingredients.json",
-            "confidence": 0.996
+            "confidence": 0.998
           },
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
             "rule": "Matched with lentil in cropgroup.csv",
-            "confidence": 0.996
+            "confidence": 0.998
           }
         }
       ]
@@ -10013,28 +10003,28 @@
           "defaultOrigin": "France",
           "displayName": "Epeautre",
           "id": "d6c265f1-65fd-449c-aea3-21db0f616508",
-          "inediblePart": 0.2,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_raw"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.75,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "grain default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
+            "rule": "grain default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -10249,10 +10239,10 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Matched with apple in cropgroup.csv",
-            "confidence": 0.0
+            "rule": "Matched with Haricots de Lima in ingredients.json",
+            "confidence": 1.0
           }
         }
       ]
@@ -10486,27 +10476,27 @@
           "id": "22f4914a-6b31-4343-b4fb-242dd389bed1",
           "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 2-4 default from food_type_inedible_part.csv",
+            "rule": "grain NOVA 2-4 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_processed"
+            "grain_processed"
           ],
           "ingredientDensity": 0.72,
           "ingredientDensityMatch": {
             "rule": "Matched with corn in density.csv",
             "confidence": 0.95
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
+            "rule": "grain default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "Matched with seigle entier in ingredients.json",
-            "confidence": 0.998
+            "rule": "grain → none (non-perishable)",
+            "confidence": 1.0
           },
           "visible": true,
           "cropGroup": "MAIS GRAIN ET ENSILAGE",
@@ -10835,7 +10825,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "cauliflower found in cropgroup.csv",
+            "rule": "shallot found in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -10936,9 +10926,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "beetroot found in cropgroup.csv",
+            "rule": "Matched with clementine in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -10971,7 +10961,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "grain_raw"
+            "grain_processed"
           ],
           "ingredientDensity": 0.75,
           "ingredientDensityMatch": {
@@ -11081,15 +11071,15 @@
           "ingredientCategories": [
             "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.5,
+          "ingredientDensity": 0.73,
           "ingredientDensityMatch": {
-            "rule": "spice_condiment default from food_type_density.csv",
-            "confidence": 1.0
+            "rule": "Matched with Fresh green peas (minji) in fao_density.csv",
+            "confidence": 0.999
           },
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "spice_condiment default from food_type_cooked_to_raw.csv",
-            "confidence": 1.0
+            "rule": "Matched with Champignon frais UE in ingredients.json",
+            "confidence": 0.999
           },
           "scenario": "reference",
           "transportCooling": "none",
@@ -11387,28 +11377,28 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Extrait de vanille, alcoolique ou aqueux",
           "id": "93b1fc9c-df8d-4038-a681-d93aad47a183",
-          "inediblePart": 0.2,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "rule": "Matched with Extrait de vanille, alcoolique ou aqueux in ingredients.json",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.5,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "spice_condiment default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 0.856,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
+            "rule": "Matched with Extrait de vanille, alcoolique ou aqueux in ingredients.json",
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "spice_condiment → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -11518,9 +11508,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "beetroot found in cropgroup.csv",
+            "rule": "Matched with Amandes en coque UE in ingredients.json",
             "confidence": 1.0
           }
         }
@@ -11607,7 +11597,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_processed"
+            "grain_processed"
           ],
           "ingredientDensity": 0.77,
           "ingredientDensityMatch": {
@@ -11622,7 +11612,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "Matched with gluten de blé in ingredients.json",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -11657,15 +11647,15 @@
           "id": "62021732-76ee-4358-8d3b-d886aa91e7a3",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "rule": "Matched with Haricots blancs séchés in ingredients.json",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "spice_condiment_additive"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.5,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "spice_condiment default from food_type_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 4.0,
@@ -11682,8 +11672,8 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Matched with Haricots de Lima in ingredients.json",
-            "confidence": 0.914
+            "rule": "Haricots blancs séchés found in ingredients.json",
+            "confidence": 1.0
           }
         }
       ]
@@ -11769,7 +11759,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_raw"
           ],
           "ingredientDensity": 0.62,
           "ingredientDensityMatch": {
@@ -11782,9 +11772,9 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -11823,7 +11813,7 @@
             "confidence": 0.95
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_raw"
           ],
           "ingredientDensity": 0.64,
           "ingredientDensityMatch": {
@@ -11836,9 +11826,9 @@
             "confidence": 0.95
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -11877,11 +11867,11 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh"
+            "grain_raw"
           ],
-          "ingredientDensity": 0.9,
+          "ingredientDensity": 0.75,
           "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
+            "rule": "grain default from food_type_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 2.259,
@@ -11890,9 +11880,9 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
+            "rule": "grain → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -12039,7 +12029,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_processed"
+            "misc"
           ],
           "ingredientDensity": 0.95,
           "ingredientDensityMatch": {
@@ -12057,12 +12047,7 @@
             "rule": "Matched with Levure (comestible, chimique ou de boulangerie) in ingredients.json",
             "confidence": 1.0
           },
-          "visible": true,
-          "cropGroup": "BLE TENDRE",
-          "cropGroupMatch": {
-            "rule": "Levure (comestible, chimique ou de boulangerie) found in ingredients.json",
-            "confidence": 1.0
-          }
+          "visible": true
         }
       ]
     },
