@@ -113,6 +113,8 @@ TRANSLATION_PASSTHROUGH = {
     "maize",
     "sorghum",
     "quinoa",
+    "rice",
+    "basmati",
     # Fish
     "char",
     "arctic char",

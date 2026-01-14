@@ -443,23 +443,27 @@ class FoodOnFeatureExtractor:
         is_legume = FOODON_CATEGORIES["legume"] in ancestors
         is_egg = FOODON_CATEGORIES["egg"] in ancestors
 
-        # Vegetable: includes legumes (peas, beans, lentils → vegetable in Ecobalyse)
+        # Compute specific plant categories first (grain, fruit, nut) before vegetable fallback
+        is_grain = (
+            FOODON_CATEGORIES["grain"] in ancestors
+            or bool(ancestors & FOODON_GRAIN_EXTRA)
+            or term.id in FOODON_GRAIN_EXTRA
+        )
+        is_fruit = FOODON_CATEGORIES["fruit"] in ancestors
+        is_nut_oilseed = FOODON_CATEGORIES["nut_oilseed"] in ancestors
+
+        # Vegetable: plant material that's NOT grain/fruit/nut, OR explicit vegetable, OR legume
         features[0] = (
             1.0
             if (
                 FOODON_CATEGORIES["vegetable"] in ancestors
-                or is_plant_material  # plant material → vegetable fallback
                 or is_legume  # legumes → vegetable category
+                # plant material fallback only if not a more specific category
+                or (is_plant_material and not is_grain and not is_fruit and not is_nut_oilseed)
             )
             else 0.0
         )
-        features[1] = 1.0 if FOODON_CATEGORIES["fruit"] in ancestors else 0.0
-        # Grain: check both main grain category AND extra grain IDs (maize not under cereal in FoodOn)
-        is_grain = (
-            FOODON_CATEGORIES["grain"] in ancestors
-            or bool(ancestors & FOODON_GRAIN_EXTRA)
-            or term.id in FOODON_GRAIN_EXTRA  # Also check if term itself is a grain
-        )
+        features[1] = 1.0 if is_fruit else 0.0
         features[2] = 1.0 if is_grain else 0.0
         # Meat: vertebrate material (NOT fish), OR egg (eggs → meat in Ecobalyse)
         features[3] = (
@@ -467,7 +471,7 @@ class FoodOnFeatureExtractor:
         )  # is_meat
         features[4] = 1.0 if is_fish else 0.0  # is_fish
         features[5] = 1.0 if FOODON_CATEGORIES["dairy"] in ancestors else 0.0
-        features[6] = 1.0 if FOODON_CATEGORIES["nut_oilseed"] in ancestors else 0.0
+        features[6] = 1.0 if is_nut_oilseed else 0.0
         features[7] = 1.0 if FOODON_CATEGORIES["spice"] in ancestors else 0.0
         features[8] = 1.0 if FOODON_CATEGORIES["beverage"] in ancestors else 0.0
 
