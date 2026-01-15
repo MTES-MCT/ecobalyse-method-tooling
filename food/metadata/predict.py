@@ -239,6 +239,18 @@ ORIGIN_MAPPING = {
     "US": "OutOfEuropeAndMaghreb",
 }
 
+# FoodType to CropGroup default mapping
+# Used as fallback when specific patterns don't match
+FOODTYPE_TO_CROPGROUP = {
+    "fruit": "VERGERS",
+    "vegetable": "LEGUMES-FLEURS",
+    "grain": "AUTRES CEREALES",  # Override for wheat, rice, corn, barley
+    "nut_oilseed": "FRUITS A COQUES",  # Override for specific oilseeds
+    "spice_condiment": "DIVERS",
+    "beverage": "DIVERS",
+    "legume": "LEGUMINEUSES A GRAIN",
+}
+
 
 # =============================================================================
 # REFERENCE DATA FOR VALUE CLASSIFIERS
@@ -996,6 +1008,73 @@ class Predictor:
             return "dairy_product"
         return None
 
+    def _infer_cropgroup_from_foodtype(
+        self, name: str, activity: str, food_type: str
+    ) -> tuple[str, str] | None:
+        """Infer cropGroup from foodType and keyword patterns.
+
+        Returns (cropGroup, match_description) or None to fall back to matcher.
+        """
+        text = f"{name} {activity}".lower()
+
+        # Edge cases: items often misclassified by foodType prediction
+        # These patterns take priority over foodType-based logic
+        if any(w in text for w in ["cocoa", "cacao", "coffee", "café"]):
+            return "DIVERS", "cocoa/coffee pattern"
+        if "prickly pear" in text or "figue de barbarie" in text:
+            return "VERGERS", "prickly pear pattern"
+
+        # Specific grains override default
+        if food_type == "grain":
+            if any(w in text for w in ["wheat", "flour", "bread", "pasta", "biscuit", "cake", "semolina", "couscous"]):
+                return "BLE TENDRE", "wheat/flour pattern"
+            if any(w in text for w in ["rice", "basmati", "riz"]):
+                return "RIZ", "rice pattern"
+            if any(w in text for w in ["corn", "maize", "maïs", "polenta", "popcorn"]):
+                return "MAIS GRAIN ET ENSILAGE", "corn pattern"
+            if any(w in text for w in ["barley", "orge", "malt", "beer", "bière"]):
+                return "ORGE", "barley pattern"
+            return "AUTRES CEREALES", "grain default"
+
+        # Specific oilseeds/nuts override default
+        if food_type == "nut_oilseed":
+            if any(w in text for w in ["sunflower", "tournesol"]):
+                return "TOURNESOL", "sunflower pattern"
+            if any(w in text for w in ["rapeseed", "canola", "colza"]):
+                return "COLZA", "rapeseed pattern"
+            if any(w in text for w in ["olive"]):
+                return "OLIVIERS", "olive pattern"
+            if any(w in text for w in ["grape", "wine", "vin", "vinegar", "vinaigre", "raisin"]):
+                return "VIGNES", "grape/wine pattern"
+            if any(w in text for w in ["soy", "soja", "sesame", "sésame", "flax", "lin", "palm", "palme"]):
+                return "AUTRES OLEAGINEUX", "oilseed pattern"
+            # Default: nuts (almond, walnut, hazelnut, etc.)
+            return "FRUITS A COQUES", "nut default"
+
+        # Legumes (can have foodType=legume or foodType=vegetable)
+        if food_type == "legume":
+            return "LEGUMINEUSES A GRAIN", "legume default"
+
+        # Legume patterns (for items classified as vegetable but are actually legumes)
+        # Use word boundary matching to avoid false positives (peaches, coffee beans)
+        legume_patterns = [
+            r"\blentil", r"\blentille", r"\bchickpea", r"\bpois chiche",
+            r"\b(red|white|lima|mung|broad|french|flageolet|fava|kidney)\s*(bean|haricot)",
+            r"\bharicot", r"\bfève\b", r"\bflageolet",
+            r"\b(split|spring|winter|snow|garden)\s*pea",
+            r"\bpeas\b",  # "peas" but not "peaches"
+            r"\blupin",
+        ]
+        if any(re.search(p, text) for p in legume_patterns):
+            return "LEGUMINEUSES A GRAIN", "legume pattern"
+
+        # Use foodType default for fruit, vegetable, spice, beverage
+        default = FOODTYPE_TO_CROPGROUP.get(food_type)
+        if default:
+            return default, f"{food_type} default"
+
+        return None  # Fall back to matcher
+
     def _predict_transport_by_rules(
         self, binary_features: dict, food_type: str, nova_group: int
     ) -> str | None:
@@ -1743,27 +1822,42 @@ class Predictor:
         base_category = self._compute_category(food_type, nova_group)
         predictions["categories"] = [base_category] + labels
 
-        # 5. cropGroup (for vegetal types) - nearest neighbor matching
+        # 5. cropGroup (for vegetal types) - pattern-based inference with matcher fallback
         vegetal_types = {
             "vegetable",
             "fruit",
             "grain",
             "nut_oilseed",
             "spice_condiment",
+            "legume",
+            "beverage",
         }
-        if food_type in vegetal_types and self.cropgroup_matcher is not None:
-            cropgroup_val, conf, match_name, source = self.cropgroup_matcher.predict(
-                name, translate_fn=self._translate
-            )
+        # Try pattern-based inference first (catches misclassified items like snow pea)
+        pattern_result = self._infer_cropgroup_from_foodtype(name, activity, food_type)
+        if pattern_result:
+            cropgroup_val, pattern_desc = pattern_result
             predictions["cropGroup"] = cropgroup_val
-            if conf == 1.0:
-                predictions["cropGroupMatch"] = _match(
-                    f"{match_name} found in {source}", conf
+            predictions["cropGroupMatch"] = _match(f"{pattern_desc}", 1.0)
+        elif food_type in vegetal_types:
+            if self.cropgroup_matcher is not None:
+                # Fall back to nearest neighbor matcher
+                cropgroup_val, conf, match_name, source = self.cropgroup_matcher.predict(
+                    name, translate_fn=self._translate
                 )
+                predictions["cropGroup"] = cropgroup_val
+                if conf == 1.0:
+                    predictions["cropGroupMatch"] = _match(
+                        f"{match_name} found in {source}", conf
+                    )
+                else:
+                    predictions["cropGroupMatch"] = _match(
+                        f"Matched with {match_name} in {source}", conf
+                    )
             else:
-                predictions["cropGroupMatch"] = _match(
-                    f"Matched with {match_name} in {source}", conf
-                )
+                # No matcher available, use foodType default
+                default = FOODTYPE_TO_CROPGROUP.get(food_type, "DIVERS")
+                predictions["cropGroup"] = default
+                predictions["cropGroupMatch"] = _match(f"{food_type} fallback", 0.5)
         else:
             predictions["cropGroup"] = None
             predictions["cropGroupMatch"] = _match("Not applicable (animal product)", 1.0)

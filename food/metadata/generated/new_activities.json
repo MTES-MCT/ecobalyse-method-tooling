@@ -41,7 +41,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Agave found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -95,7 +95,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "Almonds, in shell found in ingredients.json",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -147,9 +147,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "BLE TENDRE",
           "cropGroupMatch": {
-            "rule": "amaranth found in cropgroup.csv",
+            "rule": "wheat/flour pattern",
             "confidence": 1.0
           }
         }
@@ -203,7 +203,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "apple found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -255,9 +255,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Apricots found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -311,7 +311,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "asparagus found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -365,7 +365,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Avocado found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -419,7 +419,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Bamboo shoots found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -473,7 +473,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "banana found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -527,7 +527,7 @@
           "visible": true,
           "cropGroup": "RIZ",
           "cropGroupMatch": {
-            "rule": "basmati rice found in cropgroup.csv",
+            "rule": "rice pattern",
             "confidence": 1.0
           }
         }
@@ -581,7 +581,7 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Bay leaves found in ingredients.json",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -635,7 +635,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "beetroot found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -689,7 +689,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Bell pepper, green, yellow or red found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -741,9 +741,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Black currant found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -797,7 +797,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Black mulberry found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -849,9 +849,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "blueberry found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -905,7 +905,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "Brazil nuts found in ingredients.json",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -959,7 +959,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "breadfruit found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -1011,9 +1011,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "PROTEAGINEUX",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Broad bean found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -1067,7 +1067,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "broccoli found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1121,7 +1121,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "brussels sprout found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1175,7 +1175,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "carambola found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -1229,7 +1229,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "cardoon found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1283,7 +1283,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Carotte UE found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1337,7 +1337,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "cashew found in cropgroup.csv",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -1391,7 +1391,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "cassava found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1445,7 +1445,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "cauliflower found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1499,7 +1499,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "celeriac found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1553,7 +1553,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "celery found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1607,7 +1607,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "cherry found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -1659,9 +1659,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Cherry tomato found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1715,7 +1715,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "chestnut found in cropgroup.csv",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -1767,9 +1767,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES OLEAGINEUX",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Chia seed, dried found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1824,7 +1824,7 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Chickpeas, dried found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -1878,7 +1878,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Chicory root found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1930,9 +1930,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VIGNES",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Chili peppers found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -1984,9 +1984,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "chive found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -2040,7 +2040,7 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "cinnamon found in cropgroup.csv",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -2094,7 +2094,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "clementine found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -2146,9 +2146,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "PROTEAGINEUX",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Cocoa bean found in ingredients.json",
+            "rule": "cocoa/coffee pattern",
             "confidence": 1.0
           }
         }
@@ -2200,9 +2200,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "FRUITS A COQUES",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Cocoa powder found in ingredients.json",
+            "rule": "cocoa/coffee pattern",
             "confidence": 1.0
           }
         }
@@ -2256,7 +2256,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "Coconut, dehusked found in ingredients.json",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -2308,9 +2308,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Coffee beans found in ingredients.json",
+            "rule": "cocoa/coffee pattern",
             "confidence": 1.0
           }
         }
@@ -2364,7 +2364,7 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "coriander found in cropgroup.csv",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -2418,7 +2418,7 @@
           "visible": true,
           "cropGroup": "MAIS GRAIN ET ENSILAGE",
           "cropGroupMatch": {
-            "rule": "corn found in cropgroup.csv",
+            "rule": "corn pattern",
             "confidence": 1.0
           }
         }
@@ -2522,9 +2522,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "cranberry found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -2576,9 +2576,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "cucumber found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -2630,9 +2630,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES OLEAGINEUX",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Cucurbitacea seed found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -2684,9 +2684,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Dates found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -2738,9 +2738,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Dill, fresh found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -2794,7 +2794,7 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage) found in ingredients.json",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -2846,9 +2846,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "BLE TENDRE",
           "cropGroupMatch": {
-            "rule": "durum wheat found in cropgroup.csv",
+            "rule": "wheat/flour pattern",
             "confidence": 1.0
           }
         }
@@ -2949,9 +2949,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "eggplant found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -3005,7 +3005,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Elderberries found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -3059,7 +3059,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Endive found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -3113,7 +3113,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "fennel found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -3167,7 +3167,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Fig found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -3221,7 +3221,7 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Flageolet beans, green, dried found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -3273,9 +3273,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES OLEAGINEUX",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Flaxseed found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -3327,9 +3327,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "French beans found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -3381,9 +3381,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Fresh herbs (dill, basil, chervil, rosemary, sage, thyme) found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -3437,7 +3437,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "gherkin found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -3491,7 +3491,7 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "ginger found in cropgroup.csv",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -3543,9 +3543,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "gooseberry found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -3599,7 +3599,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "grapefruit found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -3651,9 +3651,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Grapes (black or white) found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -3707,7 +3707,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Green cabbage found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -3761,7 +3761,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Greengage plum found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -3815,7 +3815,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "guava found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -3867,9 +3867,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "Hazelnuts, in shell found in ingredients.json",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -3921,9 +3921,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "BLE TENDRE",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "Hemp grain found in ingredients.json",
+            "rule": "grain default",
             "confidence": 1.0
           }
         }
@@ -3975,9 +3975,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Horseradish, fresh found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -4031,7 +4031,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Jerusalem artichoke found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -4085,7 +4085,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Kale found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -4139,7 +4139,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "kiwi found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -4193,7 +4193,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Kohlrabi found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -4247,7 +4247,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Kumquat found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -4301,7 +4301,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "leek found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -4355,7 +4355,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "lemon found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -4409,7 +4409,7 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "lentil found in cropgroup.csv",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -4463,7 +4463,7 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Lentil dried found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -4515,9 +4515,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Lima beans found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -4569,9 +4569,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Lupin found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -4623,9 +4623,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "Lupin seed found in ingredients.json",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -4679,7 +4679,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "lychee found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -4733,7 +4733,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "Macadamia nut found in ingredients.json",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -4787,7 +4787,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "mango found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -4839,9 +4839,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Melon (honeydew, Charentais, Cataloupe, Cavaillon) found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -4893,9 +4893,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "BLE TENDRE",
           "cropGroupMatch": {
-            "rule": "millet found in cropgroup.csv",
+            "rule": "wheat/flour pattern",
             "confidence": 1.0
           }
         }
@@ -4947,9 +4947,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "mint found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5052,7 +5052,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Morello cherry found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -5104,9 +5104,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "PROTEAGINEUX",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Mung bean, sprouted found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -5160,7 +5160,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Mushroom, morel found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5212,9 +5212,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMINEUSES A GRAIN",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Mustard seed found in ingredients.json",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -5268,7 +5268,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "nectarine found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -5322,7 +5322,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "New Zealand spinach found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5376,7 +5376,7 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "nutmeg found in cropgroup.csv",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -5430,7 +5430,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "Oats found in ingredients.json",
+            "rule": "grain default",
             "confidence": 1.0
           }
         }
@@ -5484,7 +5484,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "okra found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5536,9 +5536,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "OLIVIERS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Olives found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -5592,7 +5592,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Onions found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5644,9 +5644,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Oranges found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -5698,9 +5698,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Palm fruit found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5754,7 +5754,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "papaya found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -5806,9 +5806,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Parsley, fresh found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5862,7 +5862,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Parsnips found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5916,7 +5916,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "passion fruit found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -5970,7 +5970,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Peaches found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -6024,7 +6024,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "peanut found in cropgroup.csv",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -6076,9 +6076,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Poireau FR found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -6130,9 +6130,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Peas, with pods found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -6186,7 +6186,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Persimmon found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -6240,7 +6240,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "Pine nuts found in ingredients.json",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -6294,7 +6294,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "pineapple found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -6348,7 +6348,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "Pistachios found in ingredients.json",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -6400,9 +6400,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Plantain found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -6456,7 +6456,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Pomegranate found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -6510,7 +6510,7 @@
           "visible": true,
           "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "Poppy seeds found in ingredients.json",
+            "rule": "oilseed pattern",
             "confidence": 1.0
           }
         }
@@ -6564,7 +6564,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "potato found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -6618,7 +6618,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Prickly pear found in ingredients.json",
+            "rule": "prickly pear pattern",
             "confidence": 1.0
           }
         }
@@ -6672,7 +6672,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "pumpkin found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -6726,7 +6726,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Quince found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -6780,7 +6780,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "quinoa found in cropgroup.csv",
+            "rule": "grain default",
             "confidence": 1.0
           }
         }
@@ -6834,7 +6834,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "radish found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -6888,7 +6888,7 @@
           "visible": true,
           "cropGroup": "COLZA",
           "cropGroupMatch": {
-            "rule": "rapeseed found in cropgroup.csv",
+            "rule": "rapeseed pattern",
             "confidence": 1.0
           }
         }
@@ -6940,9 +6940,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "raspberry found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -6996,7 +6996,7 @@
           "visible": true,
           "cropGroup": "RIZ",
           "cropGroupMatch": {
-            "rule": "Raw rice, all varieties (white, wild, c Thai or basmati rice, raw) found in ingredients.json",
+            "rule": "rice pattern",
             "confidence": 1.0
           }
         }
@@ -7048,9 +7048,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VIGNES",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Red beans, dried found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -7102,9 +7102,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "Red currant found in ingredients.json",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -7158,7 +7158,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Red endive found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7212,7 +7212,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "rhubarb found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7266,7 +7266,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Rutabaga found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7320,7 +7320,7 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "saffron found in cropgroup.csv",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -7374,7 +7374,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Salad, lettuce found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7426,9 +7426,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Salicornia, fresh found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7482,7 +7482,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Salsify found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7583,9 +7583,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "seaweed found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7637,9 +7637,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES OLEAGINEUX",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "Sesame seeds found in ingredients.json",
+            "rule": "grain default",
             "confidence": 1.0
           }
         }
@@ -7693,7 +7693,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Shallots found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7796,7 +7796,12 @@
             "rule": "fish_seafood NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
-          "visible": true
+          "visible": true,
+          "cropGroup": "LEGUMINEUSES A GRAIN",
+          "cropGroupMatch": {
+            "rule": "legume pattern",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -7848,7 +7853,7 @@
           "visible": true,
           "cropGroup": "BLE TENDRE",
           "cropGroupMatch": {
-            "rule": "soft wheat found in cropgroup.csv",
+            "rule": "wheat/flour pattern",
             "confidence": 1.0
           }
         }
@@ -7902,7 +7907,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "sorghum found in cropgroup.csv",
+            "rule": "grain default",
             "confidence": 1.0
           }
         }
@@ -7956,7 +7961,7 @@
           "visible": true,
           "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "soybean found in cropgroup.csv",
+            "rule": "oilseed pattern",
             "confidence": 1.0
           }
         }
@@ -8008,9 +8013,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "BLE TENDRE",
           "cropGroupMatch": {
-            "rule": "spelt found in cropgroup.csv",
+            "rule": "wheat/flour pattern",
             "confidence": 1.0
           }
         }
@@ -8064,7 +8069,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "spinach found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -8118,7 +8123,7 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "split pea found in cropgroup.csv",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -8172,7 +8177,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Spring faba found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -8224,9 +8229,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Spring pea found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -8277,7 +8282,12 @@
             "rule": "Matched with Spring water in ingredients.json",
             "confidence": 1.0
           },
-          "visible": true
+          "visible": true,
+          "cropGroup": "DIVERS",
+          "cropGroupMatch": {
+            "rule": "beverage default",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -8329,7 +8339,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Squash, raw, with skin found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -8381,9 +8391,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "strawberry found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -8435,9 +8445,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Sugar beet found in ingredients.json",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -8491,7 +8501,7 @@
           "visible": true,
           "cropGroup": "TOURNESOL",
           "cropGroupMatch": {
-            "rule": "Sunflower, seed found in ingredients.json",
+            "rule": "sunflower pattern",
             "confidence": 1.0
           }
         }
@@ -8545,7 +8555,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "sweet potato found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -8599,7 +8609,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Swiss chard found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -8651,9 +8661,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Tamarind found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -8705,9 +8715,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "tapioca found in cropgroup.csv",
+            "rule": "grain default",
             "confidence": 1.0
           }
         }
@@ -8761,7 +8771,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Taro, tuber found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -8815,7 +8825,7 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Tarragon fresh found in ingredients.json",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -8866,7 +8876,12 @@
             "rule": "dried packaging → none",
             "confidence": 1.0
           },
-          "visible": true
+          "visible": true,
+          "cropGroup": "DIVERS",
+          "cropGroupMatch": {
+            "rule": "beverage default",
+            "confidence": 1.0
+          }
         }
       ]
     },
@@ -8918,7 +8933,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "tomato found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -8972,7 +8987,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "triticale found in cropgroup.csv",
+            "rule": "grain default",
             "confidence": 1.0
           }
         }
@@ -9026,7 +9041,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "turnip found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -9080,7 +9095,7 @@
           "visible": true,
           "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "Vanilla, alcoholic or aqueous extract found in ingredients.json",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -9134,7 +9149,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "Walnuts found in ingredients.json",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -9186,9 +9201,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "watermelon found in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -9240,9 +9255,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "White beans, dried found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -9296,7 +9311,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "Chou blanc FR found in ingredients.json",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -9350,7 +9365,7 @@
           "visible": true,
           "cropGroup": "ORGE",
           "cropGroupMatch": {
-            "rule": "Whole barley found in ingredients.json",
+            "rule": "barley pattern",
             "confidence": 1.0
           }
         }
@@ -9402,9 +9417,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "BLE TENDRE",
           "cropGroupMatch": {
-            "rule": "Whole millet found in ingredients.json",
+            "rule": "wheat/flour pattern",
             "confidence": 1.0
           }
         }
@@ -9458,7 +9473,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "Whole rye found in ingredients.json",
+            "rule": "grain default",
             "confidence": 1.0
           }
         }
@@ -9510,9 +9525,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "Winter pea found in ingredients.json",
+            "rule": "legume pattern",
             "confidence": 1.0
           }
         }
@@ -9566,7 +9581,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "yam found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -9620,7 +9635,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "zucchini found in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
