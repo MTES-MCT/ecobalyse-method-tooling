@@ -6,14 +6,14 @@
       "ingredient"
     ],
     "displayName": "Agave",
-    "id": "323667b6-ef32-4769-99ce-73502ef04b5f",
+    "id": "846481bc-b40e-56be-949d-d8af1a97dc63",
     "metadata": {
       "food": [
         {
           "alias": "agave",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Agave",
-          "id": "8b0e13cc-a518-46d1-9877-5a2d5fc8ad5e",
+          "id": "1820a666-82e5-5cd8-a68d-e5262cee67f8",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Agave in ingredients.json",
@@ -60,14 +60,14 @@
       "ingredient"
     ],
     "displayName": "Almonds, in shell",
-    "id": "04cc29f4-086c-4821-bb1b-05ebb9a8a339",
+    "id": "5eeb10eb-8069-5b0f-aadc-d68c0175d21f",
     "metadata": {
       "food": [
         {
           "alias": "almonds-in-shell",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Almonds, in shell",
-          "id": "9d84dc37-a9b2-40d0-96a5-80769181c03d",
+          "id": "5a9ee11a-8a87-5af3-9116-7eb839ab9f3d",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "with shell keyword found in Almonds, in shell",
@@ -114,14 +114,14 @@
       "ingredient"
     ],
     "displayName": "Amaranth",
-    "id": "5b956f82-06b4-42ee-bcb6-67bcaf01f447",
+    "id": "13d1c4ec-7f1f-5de4-8d70-282799b695af",
     "metadata": {
       "food": [
         {
           "alias": "amaranth",
           "defaultOrigin": "France",
           "displayName": "Amaranth",
-          "id": "10fbac27-282f-4b9d-a503-4e950b4ce45a",
+          "id": "0412f66f-64a3-56c5-9f7d-b350d2dc8914",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -168,14 +168,14 @@
       "ingredient"
     ],
     "displayName": "Apple",
-    "id": "4ce2af6f-c2b8-4bdb-b29a-67278e12e316",
+    "id": "d2106f1e-191f-5ba4-9dcf-8742a6e0d5cc",
     "metadata": {
       "food": [
         {
           "alias": "apple",
           "defaultOrigin": "France",
           "displayName": "Apple",
-          "id": "a8ed188b-ad18-45a8-b276-afda6b0df5ca",
+          "id": "cd3e8e4f-7281-551b-9a25-9b8bd617d210",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Apple in agb_inedible.csv",
@@ -222,14 +222,14 @@
       "ingredient"
     ],
     "displayName": "Apricots",
-    "id": "812fe38c-6466-4d38-8d7e-d37e1eba31f4",
+    "id": "addf4ee7-d9e5-5332-826f-c93e5df59084",
     "metadata": {
       "food": [
         {
           "alias": "apricots",
           "defaultOrigin": "France",
           "displayName": "Apricots",
-          "id": "36dadc2a-487b-4944-a863-721e6367e888",
+          "id": "5d5ce407-6a61-51f3-9867-e3ccad51c483",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with abricots in ingredients.json",
@@ -276,14 +276,14 @@
       "ingredient"
     ],
     "displayName": "Asparagus",
-    "id": "d43713b9-9afa-4424-b2ea-6a6b0599ca99",
+    "id": "79f8ac09-8e20-56d8-a652-9e33a6cd8076",
     "metadata": {
       "food": [
         {
           "alias": "asparagus",
           "defaultOrigin": "France",
           "displayName": "Asparagus",
-          "id": "2d082e8c-9967-4dbf-bb8f-7bbf1370b9e2",
+          "id": "bd864adc-6ffa-5b73-bd61-7e0eb462c0a3",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "Matched with Asparagus in agb_inedible.csv",
@@ -330,14 +330,14 @@
       "ingredient"
     ],
     "displayName": "Avocado",
-    "id": "8128734b-3098-479f-94aa-7ca6f2955d7d",
+    "id": "bc4e3c45-c593-5bd5-b553-41574d323793",
     "metadata": {
       "food": [
         {
           "alias": "avocado",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Avocado",
-          "id": "05033dfe-840c-45ca-9a87-53b718e0162a",
+          "id": "09868284-a284-5c68-85e9-83a5388feb43",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -384,14 +384,14 @@
       "ingredient"
     ],
     "displayName": "Bamboo shoots",
-    "id": "cb04382d-cca9-4d70-a691-0f854d64bf2c",
+    "id": "92653f45-2264-58ed-a751-3e03dd6a67b7",
     "metadata": {
       "food": [
         {
           "alias": "bamboo-shoots",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Bamboo shoots",
-          "id": "59856fb9-87d6-423f-b517-ca910b8b9b8b",
+          "id": "4df0b11b-c029-52a6-9596-90d422fd8924",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with pousses de bambou in ingredients.json",
@@ -438,14 +438,14 @@
       "ingredient"
     ],
     "displayName": "Banana",
-    "id": "a74f4e2a-14e5-4387-bbc9-c4efaa4e3010",
+    "id": "a9b46625-746a-571f-bf3f-ff0b91496921",
     "metadata": {
       "food": [
         {
           "alias": "banana",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Banana",
-          "id": "051522f9-b742-4594-9ff5-cb52459eb57e",
+          "id": "fa6f1d23-0787-5488-9fb6-e14b1ccafb28",
           "inediblePart": 0.3,
           "inediblePartMatch": {
             "rule": "Matched with Banana in agb_inedible.csv",
@@ -492,14 +492,14 @@
       "ingredient"
     ],
     "displayName": "Basmati rice",
-    "id": "801bef33-4ee8-4549-a123-44cdd20c93d1",
+    "id": "c41e579a-26b0-5fab-a367-b81d58f31ea4",
     "metadata": {
       "food": [
         {
           "alias": "basmati-rice",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Basmati rice",
-          "id": "3b138309-952b-42f0-ac48-70c339df3f57",
+          "id": "aa5e9cb5-d8db-5064-b132-27a87a15899c",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Riz basmati UE in ingredients.json",
@@ -546,14 +546,14 @@
       "ingredient"
     ],
     "displayName": "Bay leaves",
-    "id": "8436080a-cb66-4e24-a17a-c0f6969e85ce",
+    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
     "metadata": {
       "food": [
         {
           "alias": "bay-leaves",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Bay leaves",
-          "id": "0855a178-312e-4076-8443-11cd9efcab12",
+          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -600,14 +600,14 @@
       "ingredient"
     ],
     "displayName": "Beetroot",
-    "id": "9a384bfb-85a1-4334-bce4-32eced40cea6",
+    "id": "f1aafaac-2682-5681-822f-0f788f1aef92",
     "metadata": {
       "food": [
         {
           "alias": "beetroot",
           "defaultOrigin": "France",
           "displayName": "Beetroot",
-          "id": "e18e292a-6c2c-4991-9069-6dbf1b6efbc8",
+          "id": "02da0d24-5977-5c09-8fd2-574c9db89cf3",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -654,14 +654,14 @@
       "ingredient"
     ],
     "displayName": "Bell pepper, green, yellow or red",
-    "id": "0eba2d3d-81c3-4d25-8ee3-f7e3a69b0a73",
+    "id": "0cd7b5ec-c78d-5aef-b4fc-feafd18167e4",
     "metadata": {
       "food": [
         {
           "alias": "bell-pepper-green-yellow-or-red",
           "defaultOrigin": "France",
           "displayName": "Bell pepper, green, yellow or red",
-          "id": "cea14297-a875-4b63-8cf1-0e87beff2526",
+          "id": "3339a5d2-f355-560a-b0e6-fa6eba1b64ab",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Poivron, vert, jaune ou rouge in ingredients.json",
@@ -708,14 +708,14 @@
       "ingredient"
     ],
     "displayName": "Black currant",
-    "id": "c6eeb413-0699-4d29-9030-b8f8d6b35111",
+    "id": "084cc43d-117e-5054-bb8f-0ee6dd54c559",
     "metadata": {
       "food": [
         {
           "alias": "black-currant",
           "defaultOrigin": "France",
           "displayName": "Black currant",
-          "id": "72080a60-d0bd-40de-9247-5799d3ac0fff",
+          "id": "0ca33764-9f94-541e-afc5-4917d62bec37",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Currant in agb_inedible.csv",
@@ -762,14 +762,14 @@
       "ingredient"
     ],
     "displayName": "Black mulberry",
-    "id": "99b2ad3e-cf47-42fd-ad95-ea741f58e961",
+    "id": "2da0a329-049f-5a09-aa9d-3b19cc93e5f5",
     "metadata": {
       "food": [
         {
           "alias": "black-mulberry",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Black mulberry",
-          "id": "8df69b42-5730-4a13-9d19-13e2c1fa0fb8",
+          "id": "8f32ef8d-6e10-5634-8e55-09f514c8e1f7",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -816,14 +816,14 @@
       "ingredient"
     ],
     "displayName": "Blueberry",
-    "id": "4b6ed2be-faaf-492f-9acb-af08da89674d",
+    "id": "5ce5e418-7672-5c55-96e6-1091b801e202",
     "metadata": {
       "food": [
         {
           "alias": "blueberry",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Blueberry",
-          "id": "3106023d-52f1-4f46-924b-8302ab211f7c",
+          "id": "098f0a17-e943-53a4-b4e8-dc93313d078f",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Myrtille FR in ingredients.json",
@@ -870,14 +870,14 @@
       "ingredient"
     ],
     "displayName": "Brazil nuts",
-    "id": "f940e38b-ef7d-4e85-b59d-1ce12b112a74",
+    "id": "a08ea909-cf83-564d-a11b-b0deacc66985",
     "metadata": {
       "food": [
         {
           "alias": "brazil-nuts",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Brazil nuts",
-          "id": "309ccd84-b06f-488f-a0fa-0f581ec47d6e",
+          "id": "b6742434-e86a-5ea2-8027-c3cf5bf823ed",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with noix du Brésil in ingredients.json",
@@ -924,14 +924,14 @@
       "ingredient"
     ],
     "displayName": "Breadfruit",
-    "id": "892a5704-b963-4623-ac73-e2fca4a47cec",
+    "id": "927e2082-399d-540d-baba-1c0339745a6b",
     "metadata": {
       "food": [
         {
           "alias": "breadfruit",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Breadfruit",
-          "id": "92c49402-2ce5-4c5e-b068-c10422e039a0",
+          "id": "e860cff8-da06-5fa5-9608-c3b4e91197e2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -978,14 +978,14 @@
       "ingredient"
     ],
     "displayName": "Broad bean",
-    "id": "db11c5f1-8906-41cc-9883-9ed4355aca35",
+    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
     "metadata": {
       "food": [
         {
           "alias": "broad-bean",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Broad bean",
-          "id": "0189ad7e-3075-4c73-bd8f-9e9f95b9715d",
+          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Fève in ingredients.json",
@@ -1032,14 +1032,14 @@
       "ingredient"
     ],
     "displayName": "Broccoli",
-    "id": "33874618-b0fe-4176-b494-f68bb57691ac",
+    "id": "862e1e69-5e81-59aa-aeb4-0565621f7c09",
     "metadata": {
       "food": [
         {
           "alias": "broccoli",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Broccoli",
-          "id": "e06f4aee-8b7d-44da-9c08-deb1bad6f850",
+          "id": "1b7da44d-8296-5748-8efe-78c2e792068b",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Broccoli in agb_inedible.csv",
@@ -1086,14 +1086,14 @@
       "ingredient"
     ],
     "displayName": "Brussels sprout",
-    "id": "c29efacb-0e5c-48f4-a4e3-3fcb742d6dbb",
+    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
     "metadata": {
       "food": [
         {
           "alias": "brussels-sprout",
           "defaultOrigin": "France",
           "displayName": "Brussels sprout",
-          "id": "3ef9b6f5-df87-4d5a-afd2-d9930e59849b",
+          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Brussels sprout in agb_inedible.csv",
@@ -1140,14 +1140,14 @@
       "ingredient"
     ],
     "displayName": "Carambola",
-    "id": "241dcfea-4ca6-458d-b2ed-3d5659fab600",
+    "id": "adf9fcee-1e5c-5706-b5f5-053ae3bb3ae9",
     "metadata": {
       "food": [
         {
           "alias": "carambola",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Carambola",
-          "id": "c51ccf43-db29-4cee-908b-7879c7fcc076",
+          "id": "686928dd-0db4-5ef3-a1e0-5689dacd3ca5",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -1194,14 +1194,14 @@
       "ingredient"
     ],
     "displayName": "Cardoon",
-    "id": "97cfb633-b49d-4b48-97c2-6a88b40338be",
+    "id": "e8565e53-fe5f-57a0-bfe2-d914363febc4",
     "metadata": {
       "food": [
         {
           "alias": "cardoon",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cardoon",
-          "id": "0724fc30-f584-498d-8517-f8cbfa0d2bd1",
+          "id": "2c377a2f-e7af-54b0-93b5-223b46d1c9a7",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "Matched with Cardoon in ingredients.json",
@@ -1248,14 +1248,14 @@
       "ingredient"
     ],
     "displayName": "Carrots",
-    "id": "908145d3-6dbc-4375-896b-a195b7786c4a",
+    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
     "metadata": {
       "food": [
         {
           "alias": "carrots",
           "defaultOrigin": "France",
           "displayName": "Carrots",
-          "id": "6dec67e1-0ed8-4d3c-995c-30b342bcbb90",
+          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Carrots in agb_inedible.csv",
@@ -1302,14 +1302,14 @@
       "ingredient"
     ],
     "displayName": "Cashew",
-    "id": "11f3bd01-1d7f-491c-b9da-e90c8d9e78cb",
+    "id": "c81e59e7-2d9e-5726-b4fb-e78c119e2b17",
     "metadata": {
       "food": [
         {
           "alias": "cashew",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cashew",
-          "id": "fe1d93cb-d1cb-4ccd-a4a3-f13ce26b65c7",
+          "id": "54244720-b96b-5810-8869-c03bb0d99ab2",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Noix de cajou in ingredients.json",
@@ -1356,14 +1356,14 @@
       "ingredient"
     ],
     "displayName": "Cassava",
-    "id": "8ed38c3b-5e88-40a4-9b99-f71c2511b453",
+    "id": "f51780dc-f35f-56e6-b15d-8f624deffe8a",
     "metadata": {
       "food": [
         {
           "alias": "cassava",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cassava",
-          "id": "9572742d-f1a1-4015-a946-25e70053db88",
+          "id": "a9be64dc-b3f5-5816-a280-88546ab931e9",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Cassava in agb_inedible.csv",
@@ -1410,14 +1410,14 @@
       "ingredient"
     ],
     "displayName": "Cauliflower",
-    "id": "ccb5b406-eaf8-435b-ad84-1110cf9516b7",
+    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
     "metadata": {
       "food": [
         {
           "alias": "cauliflower",
           "defaultOrigin": "France",
           "displayName": "Cauliflower",
-          "id": "f24b4f48-c607-4500-9952-061d18719b20",
+          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cauliflower in agb_inedible.csv",
@@ -1464,14 +1464,14 @@
       "ingredient"
     ],
     "displayName": "Celeriac",
-    "id": "02851847-2e77-4fb0-82da-582174eabe06",
+    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
     "metadata": {
       "food": [
         {
           "alias": "celeriac",
           "defaultOrigin": "France",
           "displayName": "Celeriac",
-          "id": "bda81a3a-d732-4f49-94c9-55081cc76a1b",
+          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Celeriac in agb_inedible.csv",
@@ -1518,14 +1518,14 @@
       "ingredient"
     ],
     "displayName": "Celery",
-    "id": "da93993d-d871-4216-b173-17141c4fb371",
+    "id": "24fa5b39-117a-5b47-8f9c-4c8b93ed2240",
     "metadata": {
       "food": [
         {
           "alias": "celery",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Celery",
-          "id": "876b9386-f587-4d75-97a8-9212573f4598",
+          "id": "47eba85d-60ea-542a-9547-a8e706ac29b6",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Celery in agb_inedible.csv",
@@ -1572,14 +1572,14 @@
       "ingredient"
     ],
     "displayName": "Cherry",
-    "id": "31214ecc-5140-498b-af8f-c5db9bf56267",
+    "id": "12038cc6-06bf-5520-af7f-017d0974aef6",
     "metadata": {
       "food": [
         {
           "alias": "cherry",
           "defaultOrigin": "France",
           "displayName": "Cherry",
-          "id": "d38b28a9-195e-44a0-8ec5-e078951d9dbd",
+          "id": "d6051468-e7b3-59a3-8064-04d5a35713d2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cherry in agb_inedible.csv",
@@ -1626,14 +1626,14 @@
       "ingredient"
     ],
     "displayName": "Cherry tomato",
-    "id": "6e269e8b-5237-42dd-ac54-87decbb09b77",
+    "id": "2ea07f0e-de31-581e-b852-6f031d4dd862",
     "metadata": {
       "food": [
         {
           "alias": "cherry-tomato",
           "defaultOrigin": "France",
           "displayName": "Cherry tomato",
-          "id": "4cadc696-96d5-4179-acd2-675c09a0a2b8",
+          "id": "a5a41d4b-f32c-5db1-bfa3-f546a353f8a6",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cherry in agb_inedible.csv",
@@ -1680,14 +1680,14 @@
       "ingredient"
     ],
     "displayName": "Chestnut",
-    "id": "a3204753-edd0-4284-b7e4-4e6a409be7f6",
+    "id": "c815d273-6106-56d8-af79-e3c0d97a560a",
     "metadata": {
       "food": [
         {
           "alias": "chestnut",
           "defaultOrigin": "France",
           "displayName": "Chestnut",
-          "id": "689aa228-54f0-4f5a-a39d-7d7d31c46e79",
+          "id": "16ea752c-a21e-5ad2-9cfc-971e2e057948",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Châtaigne in ingredients.json",
@@ -1734,14 +1734,14 @@
       "ingredient"
     ],
     "displayName": "Chia seed, dried",
-    "id": "e8543418-111f-4524-9d8a-1e22cc19369a",
+    "id": "3b61f523-d57b-5f04-82a1-51909db94f73",
     "metadata": {
       "food": [
         {
           "alias": "chia-seed-dried",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Chia seed, dried",
-          "id": "007da44e-8394-4bab-a4b7-ef85f1b79e58",
+          "id": "0b0dde87-6d84-56cb-92a5-fe028432357e",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with seed in inedible_part.csv",
@@ -1788,14 +1788,14 @@
       "ingredient"
     ],
     "displayName": "Chickpeas, dried",
-    "id": "3a254583-71ef-4c84-abe8-d69cdad8a6ae",
+    "id": "f032d4fe-4eef-5bab-a1ae-86fcc62138b2",
     "metadata": {
       "food": [
         {
           "alias": "chickpeas-dried",
           "defaultOrigin": "France",
           "displayName": "Chickpeas, dried",
-          "id": "18b8a0cc-15d7-47a4-bfbf-7b22df049b9d",
+          "id": "66b8218a-57df-5ba7-a7f3-b1fefb793f68",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Pois chiches in ingredients.json",
@@ -1843,14 +1843,14 @@
       "ingredient"
     ],
     "displayName": "Chicory root",
-    "id": "5f4d385b-5c96-4ac4-8ce4-4df3dad0e849",
+    "id": "f33cdc81-c285-5289-b4e6-9a62ac62f365",
     "metadata": {
       "food": [
         {
           "alias": "chicory-root",
           "defaultOrigin": "France",
           "displayName": "Chicory root",
-          "id": "83dd9ce2-5d44-4f4a-a133-ff25bbf6fc7c",
+          "id": "461607c1-60a9-5954-81fb-2a218fb42495",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Racine de chicorée in ingredients.json",
@@ -1897,14 +1897,14 @@
       "ingredient"
     ],
     "displayName": "Chili peppers",
-    "id": "298abbb0-e432-498f-a949-11488824533f",
+    "id": "0cd7b5ec-c78d-5aef-b4fc-feafd18167e4",
     "metadata": {
       "food": [
         {
           "alias": "chili-peppers",
           "defaultOrigin": "France",
           "displayName": "Chili peppers",
-          "id": "ba477e68-5494-4847-9d80-5711aee0216f",
+          "id": "3339a5d2-f355-560a-b0e6-fa6eba1b64ab",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Peppers in agb_inedible.csv",
@@ -1951,14 +1951,14 @@
       "ingredient"
     ],
     "displayName": "Chive",
-    "id": "f2880553-35c9-41e2-9c36-691374625915",
+    "id": "7af8af5a-06e5-53e9-8645-b1897c0dc91b",
     "metadata": {
       "food": [
         {
           "alias": "chive",
           "defaultOrigin": "France",
           "displayName": "Chive",
-          "id": "ae18d80e-3128-4c74-9b91-e2c9f16c0209",
+          "id": "0a74e485-a34a-5472-9c74-c04a8ba74f21",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2005,14 +2005,14 @@
       "ingredient"
     ],
     "displayName": "Cinnamon",
-    "id": "3f96737a-8595-4898-9a69-12a2e8ad220b",
+    "id": "4b6c328a-4a2c-5fbf-88f9-391c809db971",
     "metadata": {
       "food": [
         {
           "alias": "cinnamon",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cinnamon",
-          "id": "6c4c4162-1741-40ed-a302-1b95945f844d",
+          "id": "75bb5a27-4164-598a-8e96-ba86e35db10d",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Cannelle in ingredients.json",
@@ -2059,14 +2059,14 @@
       "ingredient"
     ],
     "displayName": "Clementine",
-    "id": "7114315d-8f72-4e61-a2ac-353094078eed",
+    "id": "85a7e85f-3744-56a3-96ad-37e762e6dad2",
     "metadata": {
       "food": [
         {
           "alias": "clementine",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Clementine",
-          "id": "44b2d28e-d374-4e15-a41f-9201a78cd712",
+          "id": "6b46a367-cbbb-5542-a2e6-b2b7504f80f5",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Clémentine par défaut in ingredients.json",
@@ -2113,14 +2113,14 @@
       "ingredient"
     ],
     "displayName": "Cocoa bean",
-    "id": "a9422c40-717c-4b23-82aa-27b88dfce10d",
+    "id": "199ebd09-f291-527a-8153-5b9cb550ba6f",
     "metadata": {
       "food": [
         {
           "alias": "cocoa-bean",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cocoa bean",
-          "id": "d78dae3e-df67-4956-a650-3851f872b4a4",
+          "id": "4d22bdca-b02a-5868-82c6-abb714252fab",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with fève de cacao in ingredients.json",
@@ -2167,14 +2167,14 @@
       "ingredient"
     ],
     "displayName": "Cocoa powder",
-    "id": "bcae48b4-9fc8-4b96-8cc3-90160dd6b61f",
+    "id": "524f4977-8e1e-5f52-93b3-4d81f00a4606",
     "metadata": {
       "food": [
         {
           "alias": "cocoa-powder",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cocoa powder",
-          "id": "904dd163-e642-499f-a247-47568726ee1f",
+          "id": "2595f6b4-387c-5470-a65f-e39b6d3103af",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Poudre de cacao par défaut in ingredients.json",
@@ -2221,14 +2221,14 @@
       "ingredient"
     ],
     "displayName": "Coconut, dehusked",
-    "id": "daf39125-5b1c-4e2b-bc3b-5821c63b5cfc",
+    "id": "a381a502-494a-5dc9-ba80-5dc00d3da859",
     "metadata": {
       "food": [
         {
           "alias": "coconut-dehusked",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Coconut, dehusked",
-          "id": "4e84215e-0f02-4e5e-a316-1460835ceb6d",
+          "id": "0bb3b1e6-628b-5f68-8081-fbed3ca5bc29",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Noix de coco décortiquée in ingredients.json",
@@ -2275,14 +2275,14 @@
       "ingredient"
     ],
     "displayName": "Coffee beans",
-    "id": "ec5e754e-c7bc-4853-a1cb-a36eb4b96972",
+    "id": "44429f10-18cc-5171-ba06-46986c9ab63a",
     "metadata": {
       "food": [
         {
           "alias": "coffee-beans",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Coffee beans",
-          "id": "8d4c4165-7f0f-4628-b8e5-136c2e25cb64",
+          "id": "e5afde60-5828-5da7-96cf-0de4cb1f1b4d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2329,14 +2329,14 @@
       "ingredient"
     ],
     "displayName": "Coriander",
-    "id": "904512aa-df7a-409c-a9b1-24e0e3afb3f0",
+    "id": "1670c7c9-6d85-523a-951a-c1634b746153",
     "metadata": {
       "food": [
         {
           "alias": "coriander",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Coriander",
-          "id": "9ce1d12c-f83c-4170-9e21-6f0e177f8927",
+          "id": "31c745d3-b6f1-501a-b9ed-adefa505469a",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Coriander in agb_inedible.csv",
@@ -2383,14 +2383,14 @@
       "ingredient"
     ],
     "displayName": "Corn",
-    "id": "980d0609-b3af-40a1-838f-f0bf3141324d",
+    "id": "b76b41b6-38cb-55b2-88f5-65b62f7331f3",
     "metadata": {
       "food": [
         {
           "alias": "corn",
           "defaultOrigin": "France",
           "displayName": "Corn",
-          "id": "99b46663-7588-4e02-93c5-894e403bd989",
+          "id": "2a77fa5a-e875-533c-9ad6-90c38f0aee84",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Maïs doux UE in ingredients.json",
@@ -2437,14 +2437,14 @@
       "ingredient"
     ],
     "displayName": "Cow milk",
-    "id": "436bd96d-96b6-48e2-a79a-e9a0835f7dec",
+    "id": "16943989-15b9-534b-aaf2-7b5602fbf5c6",
     "metadata": {
       "food": [
         {
           "alias": "cow-milk",
           "defaultOrigin": "France",
           "displayName": "Cow milk",
-          "id": "934cba60-0c76-4722-8244-ac0751813add",
+          "id": "402c5f9c-5ff6-54b7-914a-cca35840d33a",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Lait par défaut in ingredients.json",
@@ -2489,14 +2489,14 @@
       "ingredient"
     ],
     "displayName": "Cranberry",
-    "id": "93fe2f52-2a62-4d09-8fe0-a40eec1dc5e4",
+    "id": "d8d07fe6-9214-55cc-a269-5351f0f66ff9",
     "metadata": {
       "food": [
         {
           "alias": "cranberry",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cranberry",
-          "id": "acb34ec0-0c0a-46f1-b32f-1cb9ad5ac13a",
+          "id": "7fa53757-c0e5-506d-985f-e73db4d067d0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -2543,14 +2543,14 @@
       "ingredient"
     ],
     "displayName": "Cucumber",
-    "id": "24cd4bd2-e722-47a7-8dce-c175d9ded677",
+    "id": "19b8300a-e1d9-5bb6-8cd1-526fbc6fd0c3",
     "metadata": {
       "food": [
         {
           "alias": "cucumber",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cucumber",
-          "id": "4a184d2c-36a7-4f73-addc-01f51d25052e",
+          "id": "37c5d6f1-9e5f-57a0-b5bf-9e53bfced56d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Concombre in ingredients.json",
@@ -2597,14 +2597,14 @@
       "ingredient"
     ],
     "displayName": "Cucurbitacea seed",
-    "id": "83e9c7c6-e644-49a5-a243-fb566c338edc",
+    "id": "3b61f523-d57b-5f04-82a1-51909db94f73",
     "metadata": {
       "food": [
         {
           "alias": "cucurbitacea-seed",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cucurbitacea seed",
-          "id": "b1bd0324-1855-4fad-be5e-d908da70bbcd",
+          "id": "0b0dde87-6d84-56cb-92a5-fe028432357e",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with seed in inedible_part.csv",
@@ -2651,14 +2651,14 @@
       "ingredient"
     ],
     "displayName": "Dates",
-    "id": "4f0fe739-74e8-4913-83fb-fc77d7e33d09",
+    "id": "3ed97f62-f0e6-50dc-b7e7-f02a4a05442e",
     "metadata": {
       "food": [
         {
           "alias": "dates",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Dates",
-          "id": "0b297aac-f58a-4e95-9a21-231ddc1e4497",
+          "id": "df67a44a-8102-546c-aab2-59831b2321f0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Dattes in ingredients.json",
@@ -2705,14 +2705,14 @@
       "ingredient"
     ],
     "displayName": "Dill, fresh",
-    "id": "3a4e42d3-1de3-4f71-bb12-ad2d8d00559c",
+    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
     "metadata": {
       "food": [
         {
           "alias": "dill-fresh",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Dill, fresh",
-          "id": "37066404-4714-43a7-8c89-b08a55f17cb8",
+          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) in ingredients.json",
@@ -2759,14 +2759,14 @@
       "ingredient"
     ],
     "displayName": "Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage)",
-    "id": "d378abba-7dd3-476c-8998-d79379102a27",
+    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
     "metadata": {
       "food": [
         {
           "alias": "dried-herbs-marjoram-oregano-savory-thyme-basil-rosemary-sage",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage)",
-          "id": "4d42d2bc-07dd-4718-b519-ed937ae6a684",
+          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Basil in agb_inedible.csv",
@@ -2813,14 +2813,14 @@
       "ingredient"
     ],
     "displayName": "Durum wheat",
-    "id": "e232f8c0-1c7e-42a1-b889-bb3c7b411951",
+    "id": "13d1c4ec-7f1f-5de4-8d70-282799b695af",
     "metadata": {
       "food": [
         {
           "alias": "durum-wheat",
           "defaultOrigin": "France",
           "displayName": "Durum wheat",
-          "id": "df7d64b0-dc27-4a07-bb54-d27253430e32",
+          "id": "0412f66f-64a3-56c5-9f7d-b350d2dc8914",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Blé dur UE in ingredients.json",
@@ -2867,14 +2867,14 @@
       "ingredient"
     ],
     "displayName": "Egg",
-    "id": "791753e3-8c43-4a8d-88d5-0507aaef0739",
+    "id": "a677d40b-1432-5c30-add9-20c9a9d94210",
     "metadata": {
       "food": [
         {
           "alias": "egg",
           "defaultOrigin": "France",
           "displayName": "Egg",
-          "id": "933f9b34-9fc3-4ec6-865c-5b6562f0fadf",
+          "id": "8deb200a-7aa2-54d0-80f5-2ae2ab6cc6c7",
           "inediblePart": 0.05,
           "inediblePartMatch": {
             "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
@@ -2916,14 +2916,14 @@
       "ingredient"
     ],
     "displayName": "Eggplant",
-    "id": "a931d60c-a510-403d-91ba-6a7a3164364f",
+    "id": "2a8bda8c-617c-54ff-b8e6-d7bb49ed1f93",
     "metadata": {
       "food": [
         {
           "alias": "eggplant",
           "defaultOrigin": "France",
           "displayName": "Eggplant",
-          "id": "a711b096-2fff-4e38-8f35-e2cedb3e8256",
+          "id": "00635e86-36c0-5008-88a5-f967b9e15ae6",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Eggplant in agb_inedible.csv",
@@ -2970,14 +2970,14 @@
       "ingredient"
     ],
     "displayName": "Elderberries",
-    "id": "13c3655f-097e-4173-b011-1dfbae69037b",
+    "id": "ca78ce59-263b-50b8-93d4-6b1910812dd1",
     "metadata": {
       "food": [
         {
           "alias": "elderberries",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Elderberries",
-          "id": "014735cf-32a0-41fa-b1bc-8c97859a22e2",
+          "id": "0a4e6e9c-43a3-5b1d-b0fe-8ed8500d6054",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -3024,14 +3024,14 @@
       "ingredient"
     ],
     "displayName": "Endive",
-    "id": "20615c36-a498-488a-807a-4377bec49a82",
+    "id": "9d825d4a-be09-5ba3-bd8d-dc6792759be5",
     "metadata": {
       "food": [
         {
           "alias": "endive",
           "defaultOrigin": "France",
           "displayName": "Endive",
-          "id": "05e3dbb0-1d34-473c-b410-7383e899e2a8",
+          "id": "8c10c6ca-b930-5d7f-8962-146793ae7be0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Endive in agb_inedible.csv",
@@ -3078,14 +3078,14 @@
       "ingredient"
     ],
     "displayName": "Fennel",
-    "id": "ac5b3f7f-5116-40dc-8c05-75cb941e125b",
+    "id": "1670c7c9-6d85-523a-951a-c1634b746153",
     "metadata": {
       "food": [
         {
           "alias": "fennel",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Fennel",
-          "id": "f31898ac-2d1c-452d-a0d4-2053d89e9447",
+          "id": "31c745d3-b6f1-501a-b9ed-adefa505469a",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Fennel in agb_inedible.csv",
@@ -3132,14 +3132,14 @@
       "ingredient"
     ],
     "displayName": "Fig",
-    "id": "aa5d7073-7faf-4328-bc70-8b746b5b9dc1",
+    "id": "ee2ca29a-1be0-54ea-9028-bfa09d406c10",
     "metadata": {
       "food": [
         {
           "alias": "fig",
           "defaultOrigin": "France",
           "displayName": "Fig",
-          "id": "58e423a4-9059-4209-9bd4-add01340bf5f",
+          "id": "6147ce97-ce05-5206-87ae-d95ae4e8b17d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -3186,14 +3186,14 @@
       "ingredient"
     ],
     "displayName": "Flageolet beans, green, dried",
-    "id": "e7822de1-8e36-4da8-b8c4-e51a3f76ce28",
+    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
     "metadata": {
       "food": [
         {
           "alias": "flageolet-beans-green-dried",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Flageolet beans, green, dried",
-          "id": "4253f429-5420-4e8e-842a-2403fe8adb11",
+          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -3240,14 +3240,14 @@
       "ingredient"
     ],
     "displayName": "Flaxseed",
-    "id": "323198a0-5962-4ed4-a152-bf6a6d241101",
+    "id": "af31cec1-f8a7-528a-9e79-40fc584858a9",
     "metadata": {
       "food": [
         {
           "alias": "flaxseed",
           "defaultOrigin": "France",
           "displayName": "Flaxseed",
-          "id": "47539f71-add8-411f-911b-92e2444bff9a",
+          "id": "c3435641-05ca-5ed3-8d47-c72e78bc83ed",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with graines de lin in ingredients.json",
@@ -3294,14 +3294,14 @@
       "ingredient"
     ],
     "displayName": "French beans",
-    "id": "fa0b2dfb-a628-48e8-8e77-1e161cc60993",
+    "id": "4271d520-24c9-50f5-8bbe-a434c7517b02",
     "metadata": {
       "food": [
         {
           "alias": "french-beans",
           "defaultOrigin": "France",
           "displayName": "French beans",
-          "id": "020de598-20d2-4924-b7f0-92095246039a",
+          "id": "94fb1eec-7454-5092-b962-9768dcb4b6dc",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -3348,14 +3348,14 @@
       "ingredient"
     ],
     "displayName": "Fresh herbs (dill, basil, chervil, rosemary, sage, thyme)",
-    "id": "ed5b2b6c-88b5-4880-9827-27b42326b24f",
+    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
     "metadata": {
       "food": [
         {
           "alias": "fresh-herbs-dill-basil-chervil-rosemary-sage-thyme",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Fresh herbs (dill, basil, chervil, rosemary, sage, thyme)",
-          "id": "46333b45-25aa-4ee2-93a3-3187fb1c4f44",
+          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Basil in agb_inedible.csv",
@@ -3402,14 +3402,14 @@
       "ingredient"
     ],
     "displayName": "Gherkin",
-    "id": "71c4834d-a867-470a-a15a-b1e513185016",
+    "id": "642d5325-efe2-5e99-8d6e-bd169e9d3b0f",
     "metadata": {
       "food": [
         {
           "alias": "gherkin",
           "defaultOrigin": "France",
           "displayName": "Gherkin",
-          "id": "dfb460cc-e9da-464f-a1b6-c89b5785f394",
+          "id": "c803175e-8145-562c-a270-941c19185815",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 2-4 default from food_type_inedible_part.csv",
@@ -3456,14 +3456,14 @@
       "ingredient"
     ],
     "displayName": "Ginger",
-    "id": "d9a3b677-d642-4d44-b39e-11a111a91a2a",
+    "id": "4dfdee74-9de2-53b8-a9e0-7cfbf54938ad",
     "metadata": {
       "food": [
         {
           "alias": "ginger",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Ginger",
-          "id": "e1ce3104-1452-4416-bbf8-633e985aa6e2",
+          "id": "2bc67877-6470-51f9-87a1-8f8c9b1a5ba0",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Gingembre in ingredients.json",
@@ -3510,14 +3510,14 @@
       "ingredient"
     ],
     "displayName": "Gooseberry",
-    "id": "1d3de3af-5596-46b4-83de-ec09167df80d",
+    "id": "084cc43d-117e-5054-bb8f-0ee6dd54c559",
     "metadata": {
       "food": [
         {
           "alias": "gooseberry",
           "defaultOrigin": "France",
           "displayName": "Gooseberry",
-          "id": "e55bda0c-d87b-40e3-94e6-59743e15be48",
+          "id": "0ca33764-9f94-541e-afc5-4917d62bec37",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Groseille rouge in ingredients.json",
@@ -3564,14 +3564,14 @@
       "ingredient"
     ],
     "displayName": "Grapefruit",
-    "id": "3c4ab658-33da-48ca-8681-a484c234c96f",
+    "id": "396a97a2-46cf-5ce2-a4e6-955111210a18",
     "metadata": {
       "food": [
         {
           "alias": "grapefruit",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Grapefruit",
-          "id": "853d2cce-e6c0-4dd0-9b7b-e2e27e8505d0",
+          "id": "f25b71f6-8ede-596f-9655-08f9187fa00e",
           "inediblePart": 0.3,
           "inediblePartMatch": {
             "rule": "Matched with Grapefruit in agb_inedible.csv",
@@ -3618,14 +3618,14 @@
       "ingredient"
     ],
     "displayName": "Grapes (black or white)",
-    "id": "e042db23-0b6a-498e-b954-0d61fa345cac",
+    "id": "69be6155-d0d3-5707-9b45-fb6bd76c3672",
     "metadata": {
       "food": [
         {
           "alias": "grapes-black-or-white",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Grapes (black or white)",
-          "id": "745e0b21-d9f9-43a7-9746-fb78d1b4d7e8",
+          "id": "4a7b94d5-55a1-5abf-917c-5f070b7c6700",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -3672,14 +3672,14 @@
       "ingredient"
     ],
     "displayName": "Green cabbage",
-    "id": "7147465d-eb75-44bd-9348-72aa76aaf052",
+    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
     "metadata": {
       "food": [
         {
           "alias": "green-cabbage",
           "defaultOrigin": "France",
           "displayName": "Green cabbage",
-          "id": "a584a5e8-5572-4e40-a8b8-b92d2a32b743",
+          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with chou vert in ingredients.json",
@@ -3726,14 +3726,14 @@
       "ingredient"
     ],
     "displayName": "Greengage plum",
-    "id": "c0104079-aebe-4c6c-abf9-a98055851ed4",
+    "id": "12038cc6-06bf-5520-af7f-017d0974aef6",
     "metadata": {
       "food": [
         {
           "alias": "greengage-plum",
           "defaultOrigin": "France",
           "displayName": "Greengage plum",
-          "id": "70d7bf49-c19e-41a5-807b-bc78e89bfc7d",
+          "id": "d6051468-e7b3-59a3-8064-04d5a35713d2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Plum in agb_inedible.csv",
@@ -3780,14 +3780,14 @@
       "ingredient"
     ],
     "displayName": "Guava",
-    "id": "2e9612e5-a6d7-431d-b1c6-eedcbcc7251e",
+    "id": "3a05284f-ed9e-574c-84ec-09e142141ae5",
     "metadata": {
       "food": [
         {
           "alias": "guava",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Guava",
-          "id": "fd1c87b2-d325-46c3-9d5d-4f97486666d6",
+          "id": "98680a2e-54b4-580c-b0a5-c50f5a9c5689",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -3834,14 +3834,14 @@
       "ingredient"
     ],
     "displayName": "Hazelnuts, in shell",
-    "id": "0a500bdc-fefb-4448-a4ba-c37bd3a8711d",
+    "id": "75194b15-2a32-5062-bdfb-e5d56f205f5a",
     "metadata": {
       "food": [
         {
           "alias": "hazelnuts-in-shell",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Hazelnuts, in shell",
-          "id": "c9797449-8718-4106-a30a-f42bd4b6c3b1",
+          "id": "a5fba30e-3b91-5795-9295-7d50cc7cc964",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "with shell keyword found in Hazelnuts, in shell",
@@ -3888,14 +3888,14 @@
       "ingredient"
     ],
     "displayName": "Hemp grain",
-    "id": "d004a41c-71b2-49fc-b388-2cea02d95b98",
+    "id": "f7482411-8ba5-5f03-9a99-82e81b41e385",
     "metadata": {
       "food": [
         {
           "alias": "hemp-grain",
           "defaultOrigin": "France",
           "displayName": "Hemp grain",
-          "id": "99c1eebd-7b65-4f51-9674-278c4483f114",
+          "id": "c0ae8b38-f523-5bd4-aa7f-759b5703e0fb",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Chanvre in ingredients.json",
@@ -3942,14 +3942,14 @@
       "ingredient"
     ],
     "displayName": "Horseradish, fresh",
-    "id": "11cbcac5-7da5-44f0-af01-5fe561669ef0",
+    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
     "metadata": {
       "food": [
         {
           "alias": "horseradish-fresh",
           "defaultOrigin": "France",
           "displayName": "Horseradish, fresh",
-          "id": "6d62ef81-68f2-44be-9275-201ec5ac5fa0",
+          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Estragon frais in ingredients.json",
@@ -3996,14 +3996,14 @@
       "ingredient"
     ],
     "displayName": "Jerusalem artichoke",
-    "id": "4aacc422-4c8a-47c4-badb-116c003d09c1",
+    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
     "metadata": {
       "food": [
         {
           "alias": "jerusalem-artichoke",
           "defaultOrigin": "France",
           "displayName": "Jerusalem artichoke",
-          "id": "0b975a9e-c9cf-4173-8ab6-5989fa05aa80",
+          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
           "inediblePart": 0.6,
           "inediblePartMatch": {
             "rule": "Matched with Artichaut FR in ingredients.json",
@@ -4050,14 +4050,14 @@
       "ingredient"
     ],
     "displayName": "Kale",
-    "id": "6c1ee425-2f06-411e-bd9c-c5c9ee7c42eb",
+    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
     "metadata": {
       "food": [
         {
           "alias": "kale",
           "defaultOrigin": "France",
           "displayName": "Kale",
-          "id": "1f7399ff-39f9-47f5-a4a9-5883663f1143",
+          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -4104,14 +4104,14 @@
       "ingredient"
     ],
     "displayName": "Kiwi",
-    "id": "a186aa46-878b-478b-bcfc-9fe2270d03eb",
+    "id": "e6b2f59d-c429-5fbb-bc44-ad8488449f9b",
     "metadata": {
       "food": [
         {
           "alias": "kiwi",
           "defaultOrigin": "France",
           "displayName": "Kiwi",
-          "id": "5e6eeb56-7b8e-4250-ac0e-c1cf570864b6",
+          "id": "5a4b42b8-c30e-5ca2-9f67-dc3572f323f8",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Kiwi par défaut in ingredients.json",
@@ -4158,14 +4158,14 @@
       "ingredient"
     ],
     "displayName": "Kohlrabi",
-    "id": "eeb95895-d004-43ca-9fdb-516cadedf003",
+    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
     "metadata": {
       "food": [
         {
           "alias": "kohlrabi",
           "defaultOrigin": "France",
           "displayName": "Kohlrabi",
-          "id": "8e4cdf11-660c-4bfa-8d86-487e3d21f24d",
+          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -4212,14 +4212,14 @@
       "ingredient"
     ],
     "displayName": "Kumquat",
-    "id": "c991c627-20eb-4192-9dc4-4bd8f982ae42",
+    "id": "80ae03ce-246a-515c-8468-82d831ea0f31",
     "metadata": {
       "food": [
         {
           "alias": "kumquat",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Kumquat",
-          "id": "4724fa11-599a-48ba-ba80-570ff0b09558",
+          "id": "5bcf0a38-10dd-534d-8ae5-fe85565802d5",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Kumquat in ingredients.json",
@@ -4266,14 +4266,14 @@
       "ingredient"
     ],
     "displayName": "Leek",
-    "id": "6f3683c1-ee91-4508-95ee-0f9c7b12a3a3",
+    "id": "c9610e36-a83c-55d7-9a66-5a9c5d0e75d9",
     "metadata": {
       "food": [
         {
           "alias": "leek",
           "defaultOrigin": "France",
           "displayName": "Leek",
-          "id": "dd3d849f-87e1-43ca-90dc-6e88ca36733c",
+          "id": "52e9b06e-26f1-5ded-abe4-b9a88750f006",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Leek in agb_inedible.csv",
@@ -4320,14 +4320,14 @@
       "ingredient"
     ],
     "displayName": "Lemon",
-    "id": "85d481fe-5c89-464d-8893-b76d3236c660",
+    "id": "1f315d1b-2022-5246-9c85-5289bfb8d8a6",
     "metadata": {
       "food": [
         {
           "alias": "lemon",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Lemon",
-          "id": "42867c20-149c-4ee0-be0d-625f384bedd9",
+          "id": "8d18b4f6-4411-546b-b531-4c793cb5817a",
           "inediblePart": 0.3,
           "inediblePartMatch": {
             "rule": "Matched with Lemon in agb_inedible.csv",
@@ -4374,14 +4374,14 @@
       "ingredient"
     ],
     "displayName": "Lentil",
-    "id": "38f5cb1f-74fd-4fb9-96aa-2a6effb314e8",
+    "id": "90369a4e-a87b-5f6b-bcd8-a70006d1b37a",
     "metadata": {
       "food": [
         {
           "alias": "lentil",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lentil",
-          "id": "3e9f3117-b76e-4474-883a-5cfe47988135",
+          "id": "f6ac2bcc-2a4c-56fe-b1cb-922fbf4ee9b0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Lentille in ingredients.json",
@@ -4428,14 +4428,14 @@
       "ingredient"
     ],
     "displayName": "Lentil dried",
-    "id": "0a613e97-a5e6-4d33-bc2c-ed0a4588b061",
+    "id": "90369a4e-a87b-5f6b-bcd8-a70006d1b37a",
     "metadata": {
       "food": [
         {
           "alias": "lentil-dried",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lentil dried",
-          "id": "ca01658f-bfdc-4565-aca3-427fc3904508",
+          "id": "f6ac2bcc-2a4c-56fe-b1cb-922fbf4ee9b0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Lentille in ingredients.json",
@@ -4482,14 +4482,14 @@
       "ingredient"
     ],
     "displayName": "Lima beans",
-    "id": "18d520cd-b617-494f-ba07-c84f79daf7cb",
+    "id": "31c8c01a-045e-52b8-9905-89ac924d5844",
     "metadata": {
       "food": [
         {
           "alias": "lima-beans",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lima beans",
-          "id": "6a639018-30eb-4e65-939d-68c9460df16a",
+          "id": "7c899317-8dd5-5a47-a041-39121b67ef94",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Haricots de Lima in ingredients.json",
@@ -4536,14 +4536,14 @@
       "ingredient"
     ],
     "displayName": "Lupin",
-    "id": "158c8303-7519-4611-aeb1-27244bb4dada",
+    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
     "metadata": {
       "food": [
         {
           "alias": "lupin",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lupin",
-          "id": "5575adb9-473d-4f4e-9248-b9acc85417db",
+          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Lupin in ingredients.json",
@@ -4590,14 +4590,14 @@
       "ingredient"
     ],
     "displayName": "Lupin seed",
-    "id": "35ebcf71-a540-48b5-b514-6145be29023e",
+    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
     "metadata": {
       "food": [
         {
           "alias": "lupin-seed",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lupin seed",
-          "id": "77c67251-f437-40af-858b-3fb6aa623b8f",
+          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Lupin in ingredients.json",
@@ -4644,14 +4644,14 @@
       "ingredient"
     ],
     "displayName": "Lychee",
-    "id": "0b10b197-a981-4ee7-9bc8-2d349be2a3d4",
+    "id": "927e2082-399d-540d-baba-1c0339745a6b",
     "metadata": {
       "food": [
         {
           "alias": "lychee",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lychee",
-          "id": "c6437bdc-b1d2-484b-9111-3351badc9a4a",
+          "id": "e860cff8-da06-5fa5-9608-c3b4e91197e2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -4698,14 +4698,14 @@
       "ingredient"
     ],
     "displayName": "Macadamia nut",
-    "id": "0072ca1e-e0a9-42e3-af8d-e9130ea222bd",
+    "id": "a46959f5-cec7-5623-a78b-b10dbda660a2",
     "metadata": {
       "food": [
         {
           "alias": "macadamia-nut",
           "defaultOrigin": "France",
           "displayName": "Macadamia nut",
-          "id": "14079411-8b21-4f3c-99f9-83a6ce6dabb5",
+          "id": "862be62a-653b-57d2-8067-a800c3c94e42",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -4752,14 +4752,14 @@
       "ingredient"
     ],
     "displayName": "Mango",
-    "id": "6127a7f4-013d-49f5-bb07-b71ea7a74f48",
+    "id": "927e2082-399d-540d-baba-1c0339745a6b",
     "metadata": {
       "food": [
         {
           "alias": "mango",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Mango",
-          "id": "4832e951-a67e-4664-95b4-1207d7f970f3",
+          "id": "e860cff8-da06-5fa5-9608-c3b4e91197e2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Mango in agb_inedible.csv",
@@ -4806,14 +4806,14 @@
       "ingredient"
     ],
     "displayName": "Melon (honeydew, Charentais, Cataloupe, Cavaillon)",
-    "id": "98aa585e-9a77-47df-96eb-bc9ecfa20f8f",
+    "id": "be06d45f-7449-5cc4-a9a2-c4abbf44db61",
     "metadata": {
       "food": [
         {
           "alias": "melon-honeydew-charentais-cataloupe-cavaillon",
           "defaultOrigin": "France",
           "displayName": "Melon (honeydew, Charentais, Cataloupe, Cavaillon)",
-          "id": "539f572f-59b3-4f0b-8a58-c210674905e1",
+          "id": "c4348af7-4c43-58f1-be77-e2a8921d90ce",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "Matched with Melon in agb_inedible.csv",
@@ -4860,14 +4860,14 @@
       "ingredient"
     ],
     "displayName": "Millet",
-    "id": "e0e22bfb-0cc3-44fa-8dcf-8098ec604f9e",
+    "id": "d5ceb4f4-a940-52fc-91bb-2798c8772190",
     "metadata": {
       "food": [
         {
           "alias": "millet",
           "defaultOrigin": "France",
           "displayName": "Millet",
-          "id": "521e9b52-0af2-4881-b842-d1388ab01cca",
+          "id": "aaf1d6a7-3879-5198-a67a-bdef32769fe1",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Millet in ingredients.json",
@@ -4914,14 +4914,14 @@
       "ingredient"
     ],
     "displayName": "Mint",
-    "id": "ae442682-f992-480a-b537-c23175f4be57",
+    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
     "metadata": {
       "food": [
         {
           "alias": "mint",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Mint",
-          "id": "9f5212d1-10c5-4e44-916f-44c66c8431f1",
+          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Mint in agb_inedible.csv",
@@ -4968,14 +4968,14 @@
       "ingredient"
     ],
     "displayName": "Molokhia powder",
-    "id": "447219ce-3c9b-41e8-89eb-e916c3318b2b",
+    "id": "363b265f-46e8-5010-bc72-d986486fd597",
     "metadata": {
       "food": [
         {
           "alias": "molokhia-powder",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Molokhia powder",
-          "id": "1d93c754-3c88-41d3-8b05-6ef7aba11944",
+          "id": "7debf221-2d94-51a8-8edb-f4e5a70e14b1",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Poudre de Molokhia in ingredients.json",
@@ -5017,14 +5017,14 @@
       "ingredient"
     ],
     "displayName": "Morello cherry",
-    "id": "35c38119-8ce3-47d7-a96c-6cfcec2b62f9",
+    "id": "12038cc6-06bf-5520-af7f-017d0974aef6",
     "metadata": {
       "food": [
         {
           "alias": "morello-cherry",
           "defaultOrigin": "France",
           "displayName": "Morello cherry",
-          "id": "02a3ef7b-1e11-4d88-b429-53fec316e532",
+          "id": "d6051468-e7b3-59a3-8064-04d5a35713d2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cherry in agb_inedible.csv",
@@ -5071,14 +5071,14 @@
       "ingredient"
     ],
     "displayName": "Mung bean, sprouted",
-    "id": "821ce2ed-b835-4ddb-b63d-13bcaa38a770",
+    "id": "31c8c01a-045e-52b8-9905-89ac924d5844",
     "metadata": {
       "food": [
         {
           "alias": "mung-bean-sprouted",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Mung bean, sprouted",
-          "id": "c54fbc0a-040b-441a-95e7-bc55bcbd0a9b",
+          "id": "7c899317-8dd5-5a47-a041-39121b67ef94",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Fève in ingredients.json",
@@ -5125,14 +5125,14 @@
       "ingredient"
     ],
     "displayName": "Mushroom, morel",
-    "id": "7f61794b-2229-4ca7-b5ed-1b646c6ef139",
+    "id": "391d607c-1d4e-592b-8d6c-0ba058693e54",
     "metadata": {
       "food": [
         {
           "alias": "mushroom-morel",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Mushroom, morel",
-          "id": "7964dea2-df56-4e0f-85f8-c9684ecada65",
+          "id": "5628338a-e928-59b7-8a29-02bab54662cc",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Mushroom in agb_inedible.csv",
@@ -5179,14 +5179,14 @@
       "ingredient"
     ],
     "displayName": "Mustard seed",
-    "id": "f4bbc834-393e-4967-8d1e-ff2e39dddf3f",
+    "id": "2924750a-5ef4-5815-b195-8616335c37d0",
     "metadata": {
       "food": [
         {
           "alias": "mustard-seed",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Mustard seed",
-          "id": "79eb70ab-f661-4d5b-8bfc-0ca475dcef14",
+          "id": "5bd1bb72-47dd-5c0d-9e7e-76c2ae9f2ebb",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with mustard in inedible_part.csv",
@@ -5233,14 +5233,14 @@
       "ingredient"
     ],
     "displayName": "Nectarine",
-    "id": "13c7ad51-fe1c-4efa-8a57-ceccccb0ae04",
+    "id": "ee2ca29a-1be0-54ea-9028-bfa09d406c10",
     "metadata": {
       "food": [
         {
           "alias": "nectarine",
           "defaultOrigin": "France",
           "displayName": "Nectarine",
-          "id": "cc4ab79f-6398-4884-8014-ecb2e7eb94b9",
+          "id": "6147ce97-ce05-5206-87ae-d95ae4e8b17d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Nectarine in ingredients.json",
@@ -5287,14 +5287,14 @@
       "ingredient"
     ],
     "displayName": "New Zealand spinach",
-    "id": "58c1aead-8940-44d1-99ef-cd2f6de0ce30",
+    "id": "e35abd13-4d86-58dc-8a27-d42dd9ab4ceb",
     "metadata": {
       "food": [
         {
           "alias": "new-zealand-spinach",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "New Zealand spinach",
-          "id": "03bc1907-d0e4-4acf-871f-8b9748f9f214",
+          "id": "d347c23a-8ff1-5a99-963f-777baba39960",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Épinards de Nouvelle-Zélande in ingredients.json",
@@ -5341,14 +5341,14 @@
       "ingredient"
     ],
     "displayName": "Nutmeg",
-    "id": "1c8cf032-9cf9-4604-b54d-ff4cd4846f48",
+    "id": "590651e5-1508-584b-8de0-f7ad802c42d2",
     "metadata": {
       "food": [
         {
           "alias": "nutmeg",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Nutmeg",
-          "id": "bec87111-d4ab-4a81-8938-4eeca078a18e",
+          "id": "cf1f0dff-4e7a-5214-b496-8ebb59cbfd00",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Noix de muscade in ingredients.json",
@@ -5395,14 +5395,14 @@
       "ingredient"
     ],
     "displayName": "Oats",
-    "id": "ab27d695-d94d-4428-a58a-c074a9b00567",
+    "id": "93688b36-b016-5004-951f-9fbab6beab4a",
     "metadata": {
       "food": [
         {
           "alias": "oats",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Oats",
-          "id": "3ebc1c30-c2c2-479b-9a7b-d4cb6d2067c6",
+          "id": "215121de-d9ed-5d3f-ab4e-8eaa1a153659",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Avoine in ingredients.json",
@@ -5449,14 +5449,14 @@
       "ingredient"
     ],
     "displayName": "Okra",
-    "id": "9a4923db-b41f-47fe-b406-3e3fa005f5b6",
+    "id": "590651e5-1508-584b-8de0-f7ad802c42d2",
     "metadata": {
       "food": [
         {
           "alias": "okra",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Okra",
-          "id": "24223584-5948-4cb5-bfdc-cadf73afe33c",
+          "id": "cf1f0dff-4e7a-5214-b496-8ebb59cbfd00",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -5503,14 +5503,14 @@
       "ingredient"
     ],
     "displayName": "Olives",
-    "id": "c210c047-3025-44a5-b028-ebd0e1e2187a",
+    "id": "5e24c099-1339-5600-9885-a0d2c6235799",
     "metadata": {
       "food": [
         {
           "alias": "olives",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Olives",
-          "id": "2f646af8-e184-4883-bfe4-8f20f30ef56f",
+          "id": "5b4dcac2-8efd-5241-8c99-c1fc99fca115",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Olives in agb_inedible.csv",
@@ -5557,14 +5557,14 @@
       "ingredient"
     ],
     "displayName": "Onions",
-    "id": "2def31da-ec85-4625-9ae4-4bbcbb54c75d",
+    "id": "7af8af5a-06e5-53e9-8645-b1897c0dc91b",
     "metadata": {
       "food": [
         {
           "alias": "onions",
           "defaultOrigin": "France",
           "displayName": "Onions",
-          "id": "04b4c201-4a9c-4f57-9711-a0b30c366eb1",
+          "id": "0a74e485-a34a-5472-9c74-c04a8ba74f21",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Onions in agb_inedible.csv",
@@ -5611,14 +5611,14 @@
       "ingredient"
     ],
     "displayName": "Oranges",
-    "id": "9209d943-9bde-48d3-b69e-e90ab50691c6",
+    "id": "396a97a2-46cf-5ce2-a4e6-955111210a18",
     "metadata": {
       "food": [
         {
           "alias": "oranges",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Oranges",
-          "id": "d23089c5-19f9-4226-9c7f-5b38fd3a9ae5",
+          "id": "f25b71f6-8ede-596f-9655-08f9187fa00e",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Oranges in ingredients.json",
@@ -5665,14 +5665,14 @@
       "ingredient"
     ],
     "displayName": "Palm fruit",
-    "id": "3f4aa690-8cad-4934-af51-33c83b6aa1ff",
+    "id": "e1ce58a7-cc82-587a-b04b-5a613211c62b",
     "metadata": {
       "food": [
         {
           "alias": "palm-fruit",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Palm fruit",
-          "id": "238bed2d-6fd7-4c97-9fae-c96af94e16ce",
+          "id": "89796ca4-408e-552a-af9e-003afd8d84ad",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with fruit du palmier in ingredients.json",
@@ -5719,14 +5719,14 @@
       "ingredient"
     ],
     "displayName": "Papaya",
-    "id": "a8cb0d8b-0e6a-420c-ae9e-6ee69c53bc34",
+    "id": "66b01ac6-bb51-5678-a655-d00abd5d93c2",
     "metadata": {
       "food": [
         {
           "alias": "papaya",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Papaya",
-          "id": "7e1a3717-3ba0-4b0d-a991-b2f7b023b881",
+          "id": "01d3b820-20e9-5576-8f8f-f4c7b2bb167d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -5773,14 +5773,14 @@
       "ingredient"
     ],
     "displayName": "Parsley, fresh",
-    "id": "9cad1cde-5c58-4bf6-9d52-b3e9df90d2d1",
+    "id": "114108bb-c070-567f-acb0-3e2fe8cb42bc",
     "metadata": {
       "food": [
         {
           "alias": "parsley-fresh",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Parsley, fresh",
-          "id": "01244a42-0e5b-4eb8-b615-dfb7c2900123",
+          "id": "3a5cf7ce-fd10-5ca7-8fd1-fac5a6bbc7f8",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Parsley in agb_inedible.csv",
@@ -5827,14 +5827,14 @@
       "ingredient"
     ],
     "displayName": "Parsnips",
-    "id": "c0b0e208-98f0-4ce1-9131-00a11b292223",
+    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
     "metadata": {
       "food": [
         {
           "alias": "parsnips",
           "defaultOrigin": "France",
           "displayName": "Parsnips",
-          "id": "2507d6ff-f260-4f1a-992f-70469ad4ba83",
+          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -5881,14 +5881,14 @@
       "ingredient"
     ],
     "displayName": "Passion fruit",
-    "id": "9b580039-bc71-45c4-9208-cf61c166e185",
+    "id": "cd618846-6455-5604-90ec-9be0ac80e024",
     "metadata": {
       "food": [
         {
           "alias": "passion-fruit",
           "defaultOrigin": "France",
           "displayName": "Passion fruit",
-          "id": "b1bc51b8-be9c-4afd-ad86-4abd141125f7",
+          "id": "1e0da048-2b5d-5cfb-80ac-9fb511f38cb3",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -5935,14 +5935,14 @@
       "ingredient"
     ],
     "displayName": "Peaches",
-    "id": "f5d9999b-d981-4ade-a6b0-da12d5bb36e3",
+    "id": "ee2ca29a-1be0-54ea-9028-bfa09d406c10",
     "metadata": {
       "food": [
         {
           "alias": "peaches",
           "defaultOrigin": "France",
           "displayName": "Peaches",
-          "id": "fd6dbe64-1a61-4fab-9c2d-9c0917923141",
+          "id": "6147ce97-ce05-5206-87ae-d95ae4e8b17d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Pêches in ingredients.json",
@@ -5989,14 +5989,14 @@
       "ingredient"
     ],
     "displayName": "Peanut",
-    "id": "74f388a6-24ba-41aa-a99c-400c7b3dd688",
+    "id": "fd321917-d0f8-5390-b9f4-ea1ea625d273",
     "metadata": {
       "food": [
         {
           "alias": "peanut",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Peanut",
-          "id": "0a8f7f80-da3d-4829-83bb-6a578b92aa5e",
+          "id": "dff6cd3e-558f-5d14-9b3f-74836bd1f6e7",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with peanut butter in inedible_part.csv",
@@ -6043,14 +6043,14 @@
       "ingredient"
     ],
     "displayName": "Pears",
-    "id": "8c8bb7c5-9eaf-4584-b4d9-5750b4d2551c",
+    "id": "2f548ea2-d1b5-5ac0-bc99-46e7a779f43a",
     "metadata": {
       "food": [
         {
           "alias": "pears",
           "defaultOrigin": "France",
           "displayName": "Pears",
-          "id": "77e23d91-b495-4d27-9686-3832e85b9053",
+          "id": "f2a0e541-b1fe-5632-93b9-0fe7d5b2bcfb",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Poireau FR in ingredients.json",
@@ -6097,14 +6097,14 @@
       "ingredient"
     ],
     "displayName": "Peas, with pods",
-    "id": "204b69c9-5db2-407d-b87e-9336626b090e",
+    "id": "15753e38-884b-5823-a774-76281618d74f",
     "metadata": {
       "food": [
         {
           "alias": "peas-with-pods",
           "defaultOrigin": "France",
           "displayName": "Peas, with pods",
-          "id": "f5484cd3-64d1-4136-9132-dcfb430c0508",
+          "id": "1787b556-bcdd-5bef-8b19-1dec0c4bb155",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Petit pois FR in ingredients.json",
@@ -6151,14 +6151,14 @@
       "ingredient"
     ],
     "displayName": "Persimmon",
-    "id": "b0a0aa7b-f6a6-4550-a244-a05e82c411ed",
+    "id": "1670c7c9-6d85-523a-951a-c1634b746153",
     "metadata": {
       "food": [
         {
           "alias": "persimmon",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Persimmon",
-          "id": "b41700b3-e362-448d-b6cb-74a33c976f3e",
+          "id": "31c745d3-b6f1-501a-b9ed-adefa505469a",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -6205,14 +6205,14 @@
       "ingredient"
     ],
     "displayName": "Pine nuts",
-    "id": "3c77e008-363e-4e98-a49a-3efc62d1026c",
+    "id": "fd321917-d0f8-5390-b9f4-ea1ea625d273",
     "metadata": {
       "food": [
         {
           "alias": "pine-nuts",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pine nuts",
-          "id": "17083a5e-1823-4609-89a3-575edc1b5d3d",
+          "id": "dff6cd3e-558f-5d14-9b3f-74836bd1f6e7",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Noix in ingredients.json",
@@ -6259,14 +6259,14 @@
       "ingredient"
     ],
     "displayName": "Pineapple",
-    "id": "7b89bc3a-3c19-42b3-b519-94b1a2fa0b4e",
+    "id": "9ec2a35c-23cc-5246-aebc-585c1b35ef6b",
     "metadata": {
       "food": [
         {
           "alias": "pineapple",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pineapple",
-          "id": "73f1b1f1-49f1-41fb-b433-30f8283da6f6",
+          "id": "aeaf8f56-7789-5505-8c73-f38677afffd2",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Pineapple in agb_inedible.csv",
@@ -6313,14 +6313,14 @@
       "ingredient"
     ],
     "displayName": "Pistachios",
-    "id": "eb5b2733-419a-4372-a314-443caeb4dfe6",
+    "id": "6cab88c1-6928-5586-8f72-1d5dec82d343",
     "metadata": {
       "food": [
         {
           "alias": "pistachios",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pistachios",
-          "id": "70034c8f-5a72-4b25-863f-acb5cec725c2",
+          "id": "780faf43-699c-51c7-b016-8f2f5637f277",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Pistaches in ingredients.json",
@@ -6367,14 +6367,14 @@
       "ingredient"
     ],
     "displayName": "Plantain",
-    "id": "42a9c406-4e00-482f-9779-47c688c231ab",
+    "id": "52b21ba2-2343-5fb5-92b2-d3fac104d052",
     "metadata": {
       "food": [
         {
           "alias": "plantain",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Plantain",
-          "id": "29718535-b2e7-4b74-8e2c-c99fc2b5e124",
+          "id": "197ab3cd-b5f6-5bc8-b41e-8d496a09ed09",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Plantain in ingredients.json",
@@ -6421,14 +6421,14 @@
       "ingredient"
     ],
     "displayName": "Pomegranate",
-    "id": "3c3808d4-2fca-409a-a73f-96900a061381",
+    "id": "d2106f1e-191f-5ba4-9dcf-8742a6e0d5cc",
     "metadata": {
       "food": [
         {
           "alias": "pomegranate",
           "defaultOrigin": "France",
           "displayName": "Pomegranate",
-          "id": "206d2c98-27dc-425a-a87e-0626d8e0f8ad",
+          "id": "cd3e8e4f-7281-551b-9a25-9b8bd617d210",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Pomegranate in agb_inedible.csv",
@@ -6475,14 +6475,14 @@
       "ingredient"
     ],
     "displayName": "Poppy seeds",
-    "id": "a2c1991e-8ce9-4d80-a618-b188f7abe294",
+    "id": "152cac7c-3668-5448-8ae2-6e98b82accd6",
     "metadata": {
       "food": [
         {
           "alias": "poppy-seeds",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Poppy seeds",
-          "id": "9a3d4df3-c162-49fe-a207-06d074d85741",
+          "id": "6e078c82-6bea-5f6e-9363-a2f93d76ea91",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "Matched with graines de pavot in ingredients.json",
@@ -6529,14 +6529,14 @@
       "ingredient"
     ],
     "displayName": "Potato",
-    "id": "626e9b7d-71c6-4f8a-abb8-b096c019fdff",
+    "id": "0c10197f-5da8-5117-abff-88071bcbb3bb",
     "metadata": {
       "food": [
         {
           "alias": "potato",
           "defaultOrigin": "France",
           "displayName": "Potato",
-          "id": "a6a6fc71-7897-4916-bf46-c639e68790a8",
+          "id": "dea2e534-db2a-50f2-acb0-29d413c482bd",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Pomme de terre in ingredients.json",
@@ -6583,14 +6583,14 @@
       "ingredient"
     ],
     "displayName": "Prickly pear",
-    "id": "c5039204-49a5-49e1-82ba-b31ae30bb229",
+    "id": "2f548ea2-d1b5-5ac0-bc99-46e7a779f43a",
     "metadata": {
       "food": [
         {
           "alias": "prickly-pear",
           "defaultOrigin": "France",
           "displayName": "Prickly pear",
-          "id": "fdb56ae5-41e4-4754-84b0-9ccda5f67221",
+          "id": "f2a0e541-b1fe-5632-93b9-0fe7d5b2bcfb",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Pear in agb_inedible.csv",
@@ -6637,14 +6637,14 @@
       "ingredient"
     ],
     "displayName": "Pumpkin",
-    "id": "44e7bb31-ccde-4fd5-b2eb-397347cb070f",
+    "id": "2a8bda8c-617c-54ff-b8e6-d7bb49ed1f93",
     "metadata": {
       "food": [
         {
           "alias": "pumpkin",
           "defaultOrigin": "France",
           "displayName": "Pumpkin",
-          "id": "9883f325-5f3c-4fb9-807c-fff40f25a251",
+          "id": "00635e86-36c0-5008-88a5-f967b9e15ae6",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Pumpkin in agb_inedible.csv",
@@ -6691,14 +6691,14 @@
       "ingredient"
     ],
     "displayName": "Quince",
-    "id": "ecc4330a-bb8a-4c08-b948-23e71393175c",
+    "id": "d2106f1e-191f-5ba4-9dcf-8742a6e0d5cc",
     "metadata": {
       "food": [
         {
           "alias": "quince",
           "defaultOrigin": "France",
           "displayName": "Quince",
-          "id": "68242949-2480-46fe-ab69-fe7790d89217",
+          "id": "cd3e8e4f-7281-551b-9a25-9b8bd617d210",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -6745,14 +6745,14 @@
       "ingredient"
     ],
     "displayName": "Quinoa",
-    "id": "feb463ca-7c8c-4a88-b954-3de3a6c1a3b0",
+    "id": "cf011114-3b63-5eda-9bb0-536c8edb6b1f",
     "metadata": {
       "food": [
         {
           "alias": "quinoa",
           "defaultOrigin": "France",
           "displayName": "Quinoa",
-          "id": "338a492a-4fd2-4ef7-9c15-58bad0820499",
+          "id": "f8a57143-c768-5dce-bf65-4bdcf295e036",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Quinoa in ingredients.json",
@@ -6799,14 +6799,14 @@
       "ingredient"
     ],
     "displayName": "Radish",
-    "id": "ae5a973f-ebf8-4be7-8e05-7f91594e1407",
+    "id": "c69fe07b-1e8e-51e5-b002-b0fb9377cf3c",
     "metadata": {
       "food": [
         {
           "alias": "radish",
           "defaultOrigin": "France",
           "displayName": "Radish",
-          "id": "42e52f44-8583-46d7-a1c9-6abd5d0e955f",
+          "id": "423bd45c-f4bb-5500-8317-a9f650fbed62",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Radish in agb_inedible.csv",
@@ -6853,14 +6853,14 @@
       "ingredient"
     ],
     "displayName": "Rapeseed",
-    "id": "80be2555-6266-4b76-9e68-d601484e12b4",
+    "id": "011f0da1-112c-54b5-ab9e-ae1b727707b8",
     "metadata": {
       "food": [
         {
           "alias": "rapeseed",
           "defaultOrigin": "France",
           "displayName": "Rapeseed",
-          "id": "6de5743b-368d-42e4-af56-e221081eb415",
+          "id": "cc168c15-ac1d-56b6-9472-319874154188",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with colza in ingredients.json",
@@ -6907,14 +6907,14 @@
       "ingredient"
     ],
     "displayName": "Raspberry",
-    "id": "3c084660-9ce8-40b3-9a33-ac6bbbac3c56",
+    "id": "11f14633-66b6-54ab-bbf1-4b131067dc80",
     "metadata": {
       "food": [
         {
           "alias": "raspberry",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Raspberry",
-          "id": "cdd16e9a-9de7-4c45-989b-6374b2f97e5b",
+          "id": "77cb21fd-fa0c-56a9-8561-d114322a1e9d",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Framboise UE in ingredients.json",
@@ -6961,14 +6961,14 @@
       "ingredient"
     ],
     "displayName": "Raw rice, all varieties (white, wild, c Thai or basmati rice, raw)",
-    "id": "7c6ab83e-4c87-4a5d-b11f-4bb9c40670ba",
+    "id": "63e88b92-5d2d-591b-bb3d-526738b10e38",
     "metadata": {
       "food": [
         {
           "alias": "raw-rice-all-varieties-white-wild-c-thai-or-basmati-rice-raw",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Raw rice, all varieties (white, wild, c Thai or basmati rice, raw)",
-          "id": "29291014-fc9b-461e-8246-d6dc7f9cb555",
+          "id": "fa84590d-3a9b-59c6-ab08-f1bfda404ff4",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with rice in inedible_part.csv",
@@ -7015,14 +7015,14 @@
       "ingredient"
     ],
     "displayName": "Red beans, dried",
-    "id": "b7c97e7f-f0a1-46cd-9460-990a62a74f4c",
+    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
     "metadata": {
       "food": [
         {
           "alias": "red-beans-dried",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Red beans, dried",
-          "id": "be65b735-2b43-4cf7-ae78-187e306e3dc2",
+          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Haricots rouges in ingredients.json",
@@ -7069,14 +7069,14 @@
       "ingredient"
     ],
     "displayName": "Red currant",
-    "id": "4f50d95e-6589-40db-ba98-d7edbc11d015",
+    "id": "084cc43d-117e-5054-bb8f-0ee6dd54c559",
     "metadata": {
       "food": [
         {
           "alias": "red-currant",
           "defaultOrigin": "France",
           "displayName": "Red currant",
-          "id": "f69388be-7410-418c-ba61-d2ba5122bfd5",
+          "id": "0ca33764-9f94-541e-afc5-4917d62bec37",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Currant in agb_inedible.csv",
@@ -7123,14 +7123,14 @@
       "ingredient"
     ],
     "displayName": "Red endive",
-    "id": "eedd5daf-a44e-460b-bfbf-2b048c9f3aee",
+    "id": "9d825d4a-be09-5ba3-bd8d-dc6792759be5",
     "metadata": {
       "food": [
         {
           "alias": "red-endive",
           "defaultOrigin": "France",
           "displayName": "Red endive",
-          "id": "97d0f213-ecbb-47a4-8cf4-791c72037969",
+          "id": "8c10c6ca-b930-5d7f-8962-146793ae7be0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Red endive in agb_inedible.csv",
@@ -7177,14 +7177,14 @@
       "ingredient"
     ],
     "displayName": "Rhubarb",
-    "id": "dc270f31-72ae-459e-b64a-3acd75eecdbb",
+    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
     "metadata": {
       "food": [
         {
           "alias": "rhubarb",
           "defaultOrigin": "France",
           "displayName": "Rhubarb",
-          "id": "e13796f3-3e4c-48af-a25e-7d8e39c8cb30",
+          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Rhubarbe in ingredients.json",
@@ -7231,14 +7231,14 @@
       "ingredient"
     ],
     "displayName": "Rutabaga",
-    "id": "fd9e4eed-c3ea-4af7-849d-ae776bf0ab0a",
+    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
     "metadata": {
       "food": [
         {
           "alias": "rutabaga",
           "defaultOrigin": "France",
           "displayName": "Rutabaga",
-          "id": "4c6ecc58-fb49-4b6a-a72a-0200349a5482",
+          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Rutabaga in ingredients.json",
@@ -7285,14 +7285,14 @@
       "ingredient"
     ],
     "displayName": "Saffron",
-    "id": "f8ba6c4b-1f3c-4fbe-9fb8-a5edd4192819",
+    "id": "740948d1-dd30-51ed-a4ee-12aed25264bd",
     "metadata": {
       "food": [
         {
           "alias": "saffron",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Saffron",
-          "id": "f14b64f2-1314-465e-a769-aaf14d2d660b",
+          "id": "01eb72ac-bcc6-55ee-9ff2-eae1e292fde0",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -7339,14 +7339,14 @@
       "ingredient"
     ],
     "displayName": "Salad, lettuce",
-    "id": "5dddc241-795c-4345-b3dd-331f8b13a76e",
+    "id": "9d825d4a-be09-5ba3-bd8d-dc6792759be5",
     "metadata": {
       "food": [
         {
           "alias": "salad-lettuce",
           "defaultOrigin": "France",
           "displayName": "Salad, lettuce",
-          "id": "690b0eec-110a-4f0b-bb58-8b71d2cbdd09",
+          "id": "8c10c6ca-b930-5d7f-8962-146793ae7be0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Salade, laitue in ingredients.json",
@@ -7393,14 +7393,14 @@
       "ingredient"
     ],
     "displayName": "Salicornia, fresh",
-    "id": "aa6ce6e0-a8f5-41c7-b48e-46e7fc7177ad",
+    "id": "4aae434f-b812-5014-9dcb-a69ae470a430",
     "metadata": {
       "food": [
         {
           "alias": "salicornia-fresh",
           "defaultOrigin": "France",
           "displayName": "Salicornia, fresh",
-          "id": "c62d3065-d784-46a6-9d59-14218c18c9d1",
+          "id": "3d3412e2-4f59-5ea9-b93b-d588b60a3145",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Raifort frais in ingredients.json",
@@ -7447,14 +7447,14 @@
       "ingredient"
     ],
     "displayName": "Salsify",
-    "id": "0f302b4d-b450-4d9e-9fc0-660a2b1f8782",
+    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
     "metadata": {
       "food": [
         {
           "alias": "salsify",
           "defaultOrigin": "France",
           "displayName": "Salsify",
-          "id": "9d29f04f-3f4f-4f5b-ace6-6c9434730e1b",
+          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Salsify in agb_inedible.csv",
@@ -7501,14 +7501,14 @@
       "ingredient"
     ],
     "displayName": "Sea salt, celery salt, or fleur de sel",
-    "id": "c5fd3c4e-4e8b-4842-98e3-4808124149a0",
+    "id": "a58c7d7c-0bda-517e-9864-1290aa450678",
     "metadata": {
       "food": [
         {
           "alias": "sea-salt-celery-salt-or-fleur-de-sel",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sea salt, celery salt, or fleur de sel",
-          "id": "f7ea1bec-e5b2-4653-a964-ac82eccf7501",
+          "id": "7ce3c515-c605-5e22-a32a-bba959f2848d",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Celery in agb_inedible.csv",
@@ -7555,14 +7555,14 @@
       "ingredient"
     ],
     "displayName": "Seaweed",
-    "id": "6258e048-8d8d-4e6d-beec-45e967d09efd",
+    "id": "42255833-613f-5122-b24d-9a9ffeb7cc05",
     "metadata": {
       "food": [
         {
           "alias": "seaweed",
           "defaultOrigin": "France",
           "displayName": "Seaweed",
-          "id": "2fb3420f-1a0e-4366-81ff-dcf2647a2309",
+          "id": "82b7b5aa-60a6-5bc7-8c48-665e446a3884",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -7609,14 +7609,14 @@
       "ingredient"
     ],
     "displayName": "Sesame seeds",
-    "id": "1abc9a66-6fba-4abf-a3e4-b36ecb329658",
+    "id": "6cab88c1-6928-5586-8f72-1d5dec82d343",
     "metadata": {
       "food": [
         {
           "alias": "sesame-seeds",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sesame seeds",
-          "id": "2aeb443a-8d2c-4d0c-930b-9b57dfa5686a",
+          "id": "780faf43-699c-51c7-b016-8f2f5637f277",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Graines de sésame in ingredients.json",
@@ -7663,14 +7663,14 @@
       "ingredient"
     ],
     "displayName": "Shallots",
-    "id": "cd479feb-38db-42e8-9117-1cd6b3b07d9d",
+    "id": "7af8af5a-06e5-53e9-8645-b1897c0dc91b",
     "metadata": {
       "food": [
         {
           "alias": "shallots",
           "defaultOrigin": "France",
           "displayName": "Shallots",
-          "id": "75ffcfa7-c3f2-429f-a142-c2de40367402",
+          "id": "0a74e485-a34a-5472-9c74-c04a8ba74f21",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Échalotes in ingredients.json",
@@ -7717,14 +7717,14 @@
       "ingredient"
     ],
     "displayName": "Sheep milk",
-    "id": "ee9ae361-07e6-4841-8932-0090fe5c34ef",
+    "id": "9269dd2b-69a0-5be1-ab86-5a31989c4424",
     "metadata": {
       "food": [
         {
           "alias": "sheep-milk",
           "defaultOrigin": "France",
           "displayName": "Sheep milk",
-          "id": "b95a6eca-4cbb-47bc-912b-2dad7fe8c1f0",
+          "id": "0f852019-a405-5993-baf6-baada29a4d07",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Lait par défaut in ingredients.json",
@@ -7769,14 +7769,14 @@
       "ingredient"
     ],
     "displayName": "Snow pea",
-    "id": "8f6ddf9d-c13b-46e1-a5a7-61930f90fa57",
+    "id": "15753e38-884b-5823-a774-76281618d74f",
     "metadata": {
       "food": [
         {
           "alias": "snow-pea",
           "defaultOrigin": "France",
           "displayName": "Snow pea",
-          "id": "6c6aea36-b30a-405b-9ca8-817e2e205b7e",
+          "id": "1787b556-bcdd-5bef-8b19-1dec0c4bb155",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
@@ -7818,14 +7818,14 @@
       "ingredient"
     ],
     "displayName": "Soft wheat",
-    "id": "288ff991-3b09-48cb-8b44-7e63f812c771",
+    "id": "1aa09a6c-7c77-5afc-95c5-33382cea4126",
     "metadata": {
       "food": [
         {
           "alias": "soft-wheat",
           "defaultOrigin": "France",
           "displayName": "Soft wheat",
-          "id": "38190f03-ee9e-43db-b55e-16c8b7018bcb",
+          "id": "0dcee701-aeb1-547e-acac-04a621340bf7",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -7872,14 +7872,14 @@
       "ingredient"
     ],
     "displayName": "Sorghum",
-    "id": "4b0b46e3-9806-416a-834f-358ef1fafb8e",
+    "id": "cd0f1d45-2efe-53f1-83be-3f65b0fb00fa",
     "metadata": {
       "food": [
         {
           "alias": "sorghum",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sorghum",
-          "id": "3efbd1a3-2f01-49f6-bd22-2c569a1a0cd3",
+          "id": "3c70f785-2afa-5260-aea6-2fc1f824eb5a",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Sorgho in ingredients.json",
@@ -7926,14 +7926,14 @@
       "ingredient"
     ],
     "displayName": "Soybean",
-    "id": "39f6f931-944e-4a0a-866e-041dbf8a5a78",
+    "id": "6a4ebfbf-ffe6-594f-a613-2c65edaca04a",
     "metadata": {
       "food": [
         {
           "alias": "soybean",
           "defaultOrigin": "France",
           "displayName": "Soybean",
-          "id": "0389fa44-b97f-4b9b-ab1a-122131a8a975",
+          "id": "beb3e02c-1884-523e-a223-32b75c366954",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Soja (non déforestant) par défaut in ingredients.json",
@@ -7980,14 +7980,14 @@
       "ingredient"
     ],
     "displayName": "Spelt",
-    "id": "568fe6c2-4c59-429c-97df-8916aa84b08c",
+    "id": "13d1c4ec-7f1f-5de4-8d70-282799b695af",
     "metadata": {
       "food": [
         {
           "alias": "spelt",
           "defaultOrigin": "France",
           "displayName": "Spelt",
-          "id": "d6c265f1-65fd-449c-aea3-21db0f616508",
+          "id": "0412f66f-64a3-56c5-9f7d-b350d2dc8914",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -8034,14 +8034,14 @@
       "ingredient"
     ],
     "displayName": "Spinach",
-    "id": "9d135e87-ffab-4e57-ae99-2d49816fe2fa",
+    "id": "dca85092-7133-5e5a-bf38-f4851e0a435c",
     "metadata": {
       "food": [
         {
           "alias": "spinach",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Spinach",
-          "id": "c8819ecc-14db-400c-af11-1600872a854d",
+          "id": "6e775c8a-0d05-5f33-98e2-c7cccc65a87c",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Spinach in agb_inedible.csv",
@@ -8088,14 +8088,14 @@
       "ingredient"
     ],
     "displayName": "Split pea",
-    "id": "76af7d5e-d11f-4b25-a277-a1e2edf6cbdf",
+    "id": "15753e38-884b-5823-a774-76281618d74f",
     "metadata": {
       "food": [
         {
           "alias": "split-pea",
           "defaultOrigin": "France",
           "displayName": "Split pea",
-          "id": "fe6c6111-249d-4ce7-827e-e31ac5935149",
+          "id": "1787b556-bcdd-5bef-8b19-1dec0c4bb155",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -8142,14 +8142,14 @@
       "ingredient"
     ],
     "displayName": "Spring faba",
-    "id": "a86fc1cf-e647-4ca3-91a4-ddbdd7f619f9",
+    "id": "e07b066a-2b00-5c4b-841b-5a7cdfd5f449",
     "metadata": {
       "food": [
         {
           "alias": "spring-faba",
           "defaultOrigin": "France",
           "displayName": "Spring faba",
-          "id": "247da146-d975-4c8d-b5c4-3512eff88804",
+          "id": "bc3d778a-d833-53ab-be41-03552a3a0a55",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -8196,14 +8196,14 @@
       "ingredient"
     ],
     "displayName": "Spring pea",
-    "id": "fc02862b-ed6a-439a-9baf-09fe3e7333aa",
+    "id": "0654d5f7-76c2-58d8-836e-9b3fb4b9732f",
     "metadata": {
       "food": [
         {
           "alias": "spring-pea",
           "defaultOrigin": "France",
           "displayName": "Spring pea",
-          "id": "f74a7956-2730-4d90-80c4-f9249f0fc993",
+          "id": "e223bf15-8967-5a00-a35c-de6b9a377e26",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -8250,14 +8250,14 @@
       "ingredient"
     ],
     "displayName": "Spring water",
-    "id": "d3492679-a5a4-4ead-9dd9-b621f5465af2",
+    "id": "72170ce2-c05f-58cc-bcd0-52e27838dcb5",
     "metadata": {
       "food": [
         {
           "alias": "spring-water",
           "defaultOrigin": "France",
           "displayName": "Spring water",
-          "id": "8568b849-734b-4f4e-b867-04eac526ca80",
+          "id": "cbed9015-7be1-5830-a172-c73b9a3c903b",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Autres eaux et autres boissons (non encore répertoriées) in ingredients.json",
@@ -8299,14 +8299,14 @@
       "ingredient"
     ],
     "displayName": "Squash, raw, with skin",
-    "id": "472c76bc-0e52-4174-bed7-5b3e90a8cb86",
+    "id": "2a8bda8c-617c-54ff-b8e6-d7bb49ed1f93",
     "metadata": {
       "food": [
         {
           "alias": "squash-raw-with-skin",
           "defaultOrigin": "France",
           "displayName": "Squash, raw, with skin",
-          "id": "4231e12b-61d9-4359-8629-4fcc48d68beb",
+          "id": "00635e86-36c0-5008-88a5-f967b9e15ae6",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Courge UE in ingredients.json",
@@ -8353,14 +8353,14 @@
       "ingredient"
     ],
     "displayName": "Strawberry",
-    "id": "8c326a40-8c3b-44de-a781-93abb3fbc823",
+    "id": "365e3fb1-73de-5c15-9fc2-e2f4bf6e32c1",
     "metadata": {
       "food": [
         {
           "alias": "strawberry",
           "defaultOrigin": "France",
           "displayName": "Strawberry",
-          "id": "c4cc1674-ca0e-4d28-9541-f7e8b49b43ff",
+          "id": "4fa942ab-41a8-5d8f-9cfc-1c5158045b00",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Fraise in ingredients.json",
@@ -8407,14 +8407,14 @@
       "ingredient"
     ],
     "displayName": "Sugar beet",
-    "id": "4a0517b7-7b46-4319-8bbb-9320de793868",
+    "id": "b013c14c-db4e-5e26-862e-b44902772173",
     "metadata": {
       "food": [
         {
           "alias": "sugar-beet",
           "defaultOrigin": "France",
           "displayName": "Sugar beet",
-          "id": "9f3fbc34-7406-4a22-baa6-436979db0e28",
+          "id": "c64a4241-7363-5984-9621-4e376d05c66b",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Betterave à sucre in ingredients.json",
@@ -8461,14 +8461,14 @@
       "ingredient"
     ],
     "displayName": "Sunflower, seed",
-    "id": "600340d4-03b4-4502-9d73-225304c17be9",
+    "id": "03edd573-d6b2-5a7d-a70b-2a73bbbbe230",
     "metadata": {
       "food": [
         {
           "alias": "sunflower-seed",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sunflower, seed",
-          "id": "4de03a94-d7ed-4998-8e52-f67583bc91d7",
+          "id": "efb3b897-2d24-53d0-b48f-84b6d6a4a1a7",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with tournesol, graine in ingredients.json",
@@ -8515,14 +8515,14 @@
       "ingredient"
     ],
     "displayName": "Sweet potato",
-    "id": "83836274-4ee7-42c7-aacc-91a7d579bd58",
+    "id": "0c10197f-5da8-5117-abff-88071bcbb3bb",
     "metadata": {
       "food": [
         {
           "alias": "sweet-potato",
           "defaultOrigin": "France",
           "displayName": "Sweet potato",
-          "id": "453e8b2b-9f81-4d40-8299-e43f08bcc89b",
+          "id": "dea2e534-db2a-50f2-acb0-29d413c482bd",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with patate douce in ingredients.json",
@@ -8569,14 +8569,14 @@
       "ingredient"
     ],
     "displayName": "Swiss chard",
-    "id": "ec7a974e-b095-4265-9a29-491fbea2f818",
+    "id": "dca85092-7133-5e5a-bf38-f4851e0a435c",
     "metadata": {
       "food": [
         {
           "alias": "swiss-chard",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Swiss chard",
-          "id": "2d18af29-39a3-4b6c-b2f6-3e93ac216c60",
+          "id": "6e775c8a-0d05-5f33-98e2-c7cccc65a87c",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -8623,14 +8623,14 @@
       "ingredient"
     ],
     "displayName": "Tamarind",
-    "id": "9cb28807-4439-454c-bff9-165736fe83b7",
+    "id": "4271d520-24c9-50f5-8bbe-a434c7517b02",
     "metadata": {
       "food": [
         {
           "alias": "tamarind",
           "defaultOrigin": "France",
           "displayName": "Tamarind",
-          "id": "8cabdfda-7ae8-4af0-942b-c2b80d561762",
+          "id": "94fb1eec-7454-5092-b962-9768dcb4b6dc",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -8677,14 +8677,14 @@
       "ingredient"
     ],
     "displayName": "Tapioca",
-    "id": "96fdf23f-bde5-4f38-b181-ace49f0b9251",
+    "id": "f51780dc-f35f-56e6-b15d-8f624deffe8a",
     "metadata": {
       "food": [
         {
           "alias": "tapioca",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tapioca",
-          "id": "148f3a1c-eff9-4425-bbda-c6d0f694e9bf",
+          "id": "a9be64dc-b3f5-5816-a280-88546ab931e9",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Tapioca in ingredients.json",
@@ -8731,14 +8731,14 @@
       "ingredient"
     ],
     "displayName": "Taro, tuber",
-    "id": "cf59b078-f780-47e6-aa9e-e145a1ea69d7",
+    "id": "3d7eb0d8-57a4-5ac6-8858-c9c0d8b61a87",
     "metadata": {
       "food": [
         {
           "alias": "taro-tuber",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Taro, tuber",
-          "id": "906dd2bf-4601-4767-af5a-fb3278d0fb16",
+          "id": "6fa2cb02-144c-502b-a165-6e0b1ac2d079",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Taro, tubercule in ingredients.json",
@@ -8785,14 +8785,14 @@
       "ingredient"
     ],
     "displayName": "Tarragon fresh",
-    "id": "0f05269f-bbc4-49fa-b98f-387945f96278",
+    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
     "metadata": {
       "food": [
         {
           "alias": "tarragon-fresh",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tarragon fresh",
-          "id": "0d6b2f10-2642-4eba-8722-98a16b2ec469",
+          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Tarragon in agb_inedible.csv",
@@ -8839,14 +8839,14 @@
       "ingredient"
     ],
     "displayName": "Tea, fresh leaf",
-    "id": "f884d8dc-6d21-4408-ac73-944b5ca9b334",
+    "id": "5223d47a-9f2a-5c12-ad73-5ed20a2de8ff",
     "metadata": {
       "food": [
         {
           "alias": "tea-fresh-leaf",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tea, fresh leaf",
-          "id": "c9505df7-d447-493b-a2f5-d9ae88c9e917",
+          "id": "19f596f2-a88a-533d-96bb-ebb286e52045",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Thé, feuilles fraîches in ingredients.json",
@@ -8888,14 +8888,14 @@
       "ingredient"
     ],
     "displayName": "Tomato",
-    "id": "864ab858-b497-4544-b9eb-d9e55e84b5b6",
+    "id": "4ba77dfa-eb41-59d8-a9d4-383151d1fd6d",
     "metadata": {
       "food": [
         {
           "alias": "tomato",
           "defaultOrigin": "France",
           "displayName": "Tomato",
-          "id": "8476ef47-14ed-4806-80f9-8c84749a7475",
+          "id": "a4f054dd-fb84-5355-b706-f3e5974eee4d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Tomate in ingredients.json",
@@ -8942,14 +8942,14 @@
       "ingredient"
     ],
     "displayName": "Triticale",
-    "id": "6d3c8528-bafa-4327-a0d1-ed5d8545bc58",
+    "id": "b2c978f7-0948-5a84-95fc-4f8daaa8a461",
     "metadata": {
       "food": [
         {
           "alias": "triticale",
           "defaultOrigin": "France",
           "displayName": "Triticale",
-          "id": "cae1da29-f716-4f90-808c-e3b1a82fa8fc",
+          "id": "bab133f6-f3b1-5396-83a2-21b37301a0f7",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Triticale in ingredients.json",
@@ -8996,14 +8996,14 @@
       "ingredient"
     ],
     "displayName": "Turnip",
-    "id": "06697790-2659-487a-861c-be8ba715038d",
+    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
     "metadata": {
       "food": [
         {
           "alias": "turnip",
           "defaultOrigin": "France",
           "displayName": "Turnip",
-          "id": "dadf11d4-4a4a-4fe7-89e2-8ea2ddd297ec",
+          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -9050,14 +9050,14 @@
       "ingredient"
     ],
     "displayName": "Vanilla, alcoholic or aqueous extract",
-    "id": "89302301-3697-4f8a-aa08-c5cb6b38789e",
+    "id": "aa986802-2877-569d-8d7c-7b4111be5d4e",
     "metadata": {
       "food": [
         {
           "alias": "vanilla-alcoholic-or-aqueous-extract",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Vanilla, alcoholic or aqueous extract",
-          "id": "93b1fc9c-df8d-4038-a681-d93aad47a183",
+          "id": "a25b14b2-5339-53da-a873-c917e31d41fd",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Extrait de vanille, alcoolique ou aqueux in ingredients.json",
@@ -9104,14 +9104,14 @@
       "ingredient"
     ],
     "displayName": "Walnuts",
-    "id": "913c41ad-b407-4cb0-a251-500daf7e6677",
+    "id": "c815d273-6106-56d8-af79-e3c0d97a560a",
     "metadata": {
       "food": [
         {
           "alias": "walnuts",
           "defaultOrigin": "France",
           "displayName": "Walnuts",
-          "id": "747cce1e-af35-43e6-96eb-98b60aafb86f",
+          "id": "16ea752c-a21e-5ad2-9cfc-971e2e057948",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Walnuts in agb_inedible.csv",
@@ -9158,14 +9158,14 @@
       "ingredient"
     ],
     "displayName": "Watermelon",
-    "id": "96f0c463-e1f0-47f6-a495-604fb050d0e6",
+    "id": "be06d45f-7449-5cc4-a9a2-c4abbf44db61",
     "metadata": {
       "food": [
         {
           "alias": "watermelon",
           "defaultOrigin": "France",
           "displayName": "Watermelon",
-          "id": "f0c1fdfb-597d-4f5a-be59-d558733397f8",
+          "id": "c4348af7-4c43-58f1-be77-e2a8921d90ce",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Pastèque in ingredients.json",
@@ -9212,14 +9212,14 @@
       "ingredient"
     ],
     "displayName": "White beans, dried",
-    "id": "68db54d3-e740-4ddf-b9c6-3c9a9ac13fa8",
+    "id": "4271d520-24c9-50f5-8bbe-a434c7517b02",
     "metadata": {
       "food": [
         {
           "alias": "white-beans-dried",
           "defaultOrigin": "France",
           "displayName": "White beans, dried",
-          "id": "62021732-76ee-4358-8d3b-d886aa91e7a3",
+          "id": "94fb1eec-7454-5092-b962-9768dcb4b6dc",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Haricots blancs séchés in ingredients.json",
@@ -9266,14 +9266,14 @@
       "ingredient"
     ],
     "displayName": "White cabbage",
-    "id": "5136225f-5ece-4393-aa66-ef5c87b5ce99",
+    "id": "c53934f4-fd62-5c9e-9ee8-5eb0e8d40225",
     "metadata": {
       "food": [
         {
           "alias": "white-cabbage",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "White cabbage",
-          "id": "2bb15886-2a54-4285-8fcf-f233b3ca21cc",
+          "id": "955e4406-c775-5887-aa2c-2c9b67c87936",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with chou blanc in ingredients.json",
@@ -9320,14 +9320,14 @@
       "ingredient"
     ],
     "displayName": "Whole barley",
-    "id": "9b77259b-f008-4dc5-ae97-f5f44ce8a9d3",
+    "id": "bac5cd2b-a6fc-5140-9658-22b018e088f1",
     "metadata": {
       "food": [
         {
           "alias": "whole-barley",
           "defaultOrigin": "France",
           "displayName": "Whole barley",
-          "id": "e7b2fef8-bd5c-4b86-90e5-0eb16628c0e8",
+          "id": "a42d8d67-291e-56ac-9fc8-16d074026fac",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Orge entière in ingredients.json",
@@ -9374,14 +9374,14 @@
       "ingredient"
     ],
     "displayName": "Whole millet",
-    "id": "6891449b-31cf-49c1-975d-c492beaa13da",
+    "id": "d5ceb4f4-a940-52fc-91bb-2798c8772190",
     "metadata": {
       "food": [
         {
           "alias": "whole-millet",
           "defaultOrigin": "France",
           "displayName": "Whole millet",
-          "id": "454a4aa2-1ad5-4fd7-b40a-32a687e6bcaf",
+          "id": "aaf1d6a7-3879-5198-a67a-bdef32769fe1",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with Millet in ingredients.json",
@@ -9428,14 +9428,14 @@
       "ingredient"
     ],
     "displayName": "Whole rye",
-    "id": "772a8e89-3921-4a1a-8ae6-699b08a23e34",
+    "id": "adf30df7-ea21-54ea-abc7-0b517e932829",
     "metadata": {
       "food": [
         {
           "alias": "whole-rye",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Whole rye",
-          "id": "0f384e4b-0cea-4c19-9d8e-336a48fae584",
+          "id": "d9b7afec-32ee-5df8-a6a5-054f414d33bf",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with seigle entier in ingredients.json",
@@ -9482,14 +9482,14 @@
       "ingredient"
     ],
     "displayName": "Winter pea",
-    "id": "9dce2c7c-fed2-48a5-a8e8-18bda39842eb",
+    "id": "15753e38-884b-5823-a774-76281618d74f",
     "metadata": {
       "food": [
         {
           "alias": "winter-pea",
           "defaultOrigin": "France",
           "displayName": "Winter pea",
-          "id": "470922f2-f860-4fb7-8657-1264e7f296a7",
+          "id": "1787b556-bcdd-5bef-8b19-1dec0c4bb155",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -9536,14 +9536,14 @@
       "ingredient"
     ],
     "displayName": "Yam",
-    "id": "e0195160-dc78-43d6-be30-41cec5d5d3c8",
+    "id": "3d7eb0d8-57a4-5ac6-8858-c9c0d8b61a87",
     "metadata": {
       "food": [
         {
           "alias": "yam",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Yam",
-          "id": "215b4ff3-107a-4034-984e-f17bc46e0a33",
+          "id": "6fa2cb02-144c-502b-a165-6e0b1ac2d079",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -9590,14 +9590,14 @@
       "ingredient"
     ],
     "displayName": "Zucchini",
-    "id": "544e91fb-490f-4be3-ab94-ea17c7a60dda",
+    "id": "2a8bda8c-617c-54ff-b8e6-d7bb49ed1f93",
     "metadata": {
       "food": [
         {
           "alias": "zucchini",
           "defaultOrigin": "France",
           "displayName": "Zucchini",
-          "id": "6aa3f25e-afab-443d-a9e8-2b664475a11d",
+          "id": "00635e86-36c0-5008-88a5-f967b9e15ae6",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",

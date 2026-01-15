@@ -19,6 +19,9 @@ import re
 import uuid
 from pathlib import Path
 
+# Namespace UUID for deterministic UUID generation (generated once, never changes)
+ECOBALYSE_NAMESPACE = uuid.UUID("a4e1d123-5c67-4b89-9def-1234567890ab")
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -112,29 +115,6 @@ def generate_alias(name: str) -> str:
     alias = re.sub(r"[^a-z0-9-]", "", alias)
     alias = re.sub(r"-+", "-", alias)
     return alias.strip("-")
-
-
-def load_existing_uuids(output_path: str) -> dict:
-    """Load existing UUIDs from output file to preserve them on re-export."""
-    existing = {}
-    path = Path(output_path)
-    if path.exists():
-        try:
-            with open(path, encoding="utf-8") as f:
-                activities = json.load(f)
-            for activity in activities:
-                alias = activity.get("alias", "")
-                activity_name = activity.get("activityName", "")
-                activity_id = activity.get("id")
-                ingredient_id = None
-                food_list = activity.get("metadata", {}).get("food", [])
-                if food_list:
-                    ingredient_id = food_list[0].get("id")
-                if alias and activity_id:
-                    existing[(alias, activity_name)] = (activity_id, ingredient_id)
-        except (json.JSONDecodeError, KeyError):
-            pass
-    return existing
 
 
 def _format_match(match_info: dict | None) -> str:
@@ -324,18 +304,14 @@ def build_activity_entry(
     source: str,
     unit: str,
     predictions: dict,
-    existing_uuids: dict = None,
 ) -> dict:
     """Build an activity entry in the activities.json format."""
     alias = generate_alias(name)
 
-    if existing_uuids and (alias, activity_name) in existing_uuids:
-        activity_id, ingredient_id = existing_uuids[(alias, activity_name)]
-        if not ingredient_id:
-            ingredient_id = str(uuid.uuid4())
-    else:
-        activity_id = str(uuid.uuid4())
-        ingredient_id = str(uuid.uuid4())
+    # Generate deterministic UUIDs based on activity_name
+    # This ensures the same activity always gets the same UUID
+    activity_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{activity_name}"))
+    ingredient_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"ingredient:{activity_name}"))
 
     display_name = french_name if french_name else name
 
@@ -382,10 +358,6 @@ def build_activity_entry(
 
 def write_json(results: list, output_path: str):
     """Write activities to JSON file."""
-    existing_uuids = load_existing_uuids(output_path)
-    if existing_uuids:
-        print(f"Loaded {len(existing_uuids)} existing UUIDs from {output_path}")
-
     activities = []
     for r in results:
         activity = build_activity_entry(
@@ -395,7 +367,6 @@ def write_json(results: list, output_path: str):
             r["source"],
             r["unit"],
             r["predictions"],
-            existing_uuids,
         )
         activities.append(activity)
 
@@ -409,14 +380,136 @@ def write_json(results: list, output_path: str):
 # CLI
 # =============================================================================
 
-INPUT_CSV = "source/new_ingredient_FR.csv"
-OUTPUT_CSV = "generated/predictions.csv"
-OUTPUT_JSON = "generated/new_activities.json"
+INPUT_CSV = Path(__file__).parent / "source/new_ingredient_FR.csv"
+OUTPUT_CSV = Path(__file__).parent / "generated/predictions.csv"
+OUTPUT_JSON = Path(__file__).parent / "generated/new_activities.json"
+FINAL_OUTPUT_CSV = Path(__file__).parent / "generated/new_ingredients.csv"
+
+# Impact columns to extract from processes_impacts.json
+IMPACT_COLUMNS = [
+    "acd", "cch", "etf-c", "fru", "fwe", "htc-c", "htn-c",
+    "ior", "ldu", "mru", "ozd", "pco", "pma", "swe", "tre", "wtu", "ecs"
+]
+
+
+def merge_activities(new_activities_path: Path, target_activities_path: Path):
+    """Merge new_activities.json into target activities.json.
+
+    Uses 'id' (UUID) as merge key:
+    - If activity exists in target, overwrite it
+    - If activity doesn't exist, add it
+    """
+    # Load new activities
+    with open(new_activities_path) as f:
+        new_activities = json.load(f)
+
+    # Load existing activities
+    with open(target_activities_path) as f:
+        existing_activities = json.load(f)
+
+    # Build dict by id for fast lookup
+    existing_by_id = {a["id"]: a for a in existing_activities}
+
+    # Merge: update existing or add new
+    for activity in new_activities:
+        existing_by_id[activity["id"]] = activity
+
+    # Write back
+    merged = list(existing_by_id.values())
+    with open(target_activities_path, "w") as f:
+        json.dump(merged, f, indent=2, ensure_ascii=False)
+
+    print(f"Merged {len(new_activities)} activities into {target_activities_path}")
+    print(f"Total activities: {len(merged)}")
+
+
+def generate_final_data():
+    """Generate final CSV with all ingredient data and impacts.
+
+    Combines:
+    - source/new_ingredient_FR.csv (base data)
+    - new_activities.json (predicted metadata)
+    - processes_impacts.json (environmental impacts, matched by activityName)
+    """
+    # Load source CSV
+    print(f"Loading {INPUT_CSV}...")
+    source_df = pd.read_csv(INPUT_CSV)
+
+    # Load processes_impacts.json - key by activityName for direct matching
+    processes_path = Path(os.environ["PROCESSES"])
+    print(f"Loading {processes_path}...")
+    with open(processes_path) as f:
+        processes_list = json.load(f)
+    processes_by_name = {p["activityName"]: p for p in processes_list}
+
+    # Load new_activities.json to get predicted metadata
+    print(f"Loading {OUTPUT_JSON}...")
+    with open(OUTPUT_JSON) as f:
+        new_activities = json.load(f)
+    # Map activityName to full activity (which contains metadata)
+    activities_by_name = {a["activityName"]: a for a in new_activities}
+
+    print(f"\nLoaded: {len(new_activities)} activities, {len(processes_by_name)} processes")
+
+    # Process each row
+    print(f"Processing {len(source_df)} ingredients...")
+    results = []
+    matched_processes = 0
+
+    for _, row in source_df.iterrows():
+        result = dict(row)  # Copy all source columns
+        activity_name = row["icv final"]
+
+        # Get predicted metadata from new_activities.json
+        activity = activities_by_name.get(activity_name)
+        if activity:
+            food_meta = activity.get("metadata", {}).get("food", [{}])[0]
+            result["categories"] = ";".join(food_meta.get("ingredientCategories", []))
+            result["transportCooling"] = food_meta.get("transportCooling", "")
+            result["cropGroup"] = food_meta.get("cropGroup", "")
+            result["defaultOrigin"] = food_meta.get("defaultOrigin", "")
+            result["density"] = food_meta.get("ingredientDensity", "")
+            result["inediblePart"] = food_meta.get("inediblePart", "")
+            result["rawToCookedRatio"] = food_meta.get("rawToCookedRatio", "")
+        else:
+            result["categories"] = ""
+            result["transportCooling"] = ""
+            result["cropGroup"] = ""
+            result["defaultOrigin"] = ""
+            result["density"] = ""
+            result["inediblePart"] = ""
+            result["rawToCookedRatio"] = ""
+
+        # Get impacts directly from processes_impacts.json by activityName
+        process = processes_by_name.get(activity_name)
+        if process:
+            matched_processes += 1
+            impacts = process.get("impacts", {})
+            for col in IMPACT_COLUMNS:
+                result[col] = impacts.get(col, "")
+        else:
+            for col in IMPACT_COLUMNS:
+                result[col] = ""
+
+        results.append(result)
+
+    # Write output
+    output_df = pd.DataFrame(results)
+    output_df.to_csv(FINAL_OUTPUT_CSV, index=False)
+    print(f"\nMatched: {matched_processes}/{len(results)} processes with impacts")
+    print(f"Final data written to {FINAL_OUTPUT_CSV}")
 
 
 def main():
     parser = argparse.ArgumentParser(
         description="Export predicted ingredients to CSV and JSON"
+    )
+    parser.add_argument(
+        "command",
+        nargs="?",
+        default="metadata",
+        choices=["metadata", "final_data"],
+        help="metadata: export predictions + merge activities. final_data: generate final CSV with impacts",
     )
     parser.add_argument(
         "--clear-cache",
@@ -425,14 +518,18 @@ def main():
     )
     args = parser.parse_args()
 
+    if args.command == "final_data":
+        generate_final_data()
+        return
+
     if args.clear_cache:
         Predictor.clear_translation_cache()
         print("Translation cache cleared")
 
     # Load training data
-    training_data_path = Path(__file__).parent / os.environ["TRAINING_DATA"]
-    print("Loading training data...")
-    with open(training_data_path) as f:
+    ingredients_path = Path(os.environ["INGREDIENTS"])
+    print(f"Loading training data from {ingredients_path}...")
+    with open(ingredients_path) as f:
         training_data = json.load(f)
 
     # Train predictor
@@ -455,6 +552,16 @@ def main():
     print(f"\nWriting {len(results)} results...")
     write_csv(results, OUTPUT_CSV)
     write_json(results, OUTPUT_JSON)
+
+    # Merge into activities.json if configured
+    activities_path = os.environ.get("ACTIVITIES")
+    if activities_path:
+        activities_path = Path(activities_path)
+        if activities_path.exists():
+            merge_activities(OUTPUT_JSON, activities_path)
+            print("\nNext step: run 'just export-all' in ecobalyse-data to regenerate ingredients.json")
+        else:
+            print(f"\nWarning: ACTIVITIES path does not exist: {activities_path}")
 
     print("\nDone!")
 
