@@ -541,6 +541,32 @@ class NearestNeighborMatcher:
                     value = float(value)
                 return value, 1.0, self.names[i], self.sources[i]
 
+        # 1.5 Try semantic near-exact match (handles plurals like "Avocado" ≈ "Avocados")
+        # This uses sentence_transformers to find semantically very similar names
+        # Reference data is loaded first, so return FIRST match above threshold
+        try:
+            from sentence_transformers import SentenceTransformer
+
+            if not hasattr(self, "_embedding_model"):
+                self._embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+            # Encode query and all reference names
+            query_emb = self._embedding_model.encode([query_lower])[0]
+            ref_embs = self._embedding_model.encode(self.names_lower)
+            # Compute cosine similarities
+            similarities = np.dot(ref_embs, query_emb) / (
+                np.linalg.norm(ref_embs, axis=1) * np.linalg.norm(query_emb) + 1e-8
+            )
+            # Return FIRST match above threshold (reference data comes first in the list)
+            # This ensures reference data (agb_inedible.csv) is preferred over ingredients.json
+            for idx in range(len(similarities)):
+                if similarities[idx] > 0.9:  # High threshold for near-exact
+                    value = self.values[idx]
+                    if isinstance(value, (int, float, np.number)):
+                        value = float(value)
+                    return value, 0.98, self.names[idx], self.sources[idx]
+        except ImportError:
+            pass  # sentence_transformers not available, skip semantic matching
+
         # 2. Try word match (reference word appears as complete word in query, or vice versa)
         # Uses word boundaries to avoid false positives like "bread" matching "breadfruit"
         def is_word_match(word: str, text: str) -> bool:
@@ -549,20 +575,62 @@ class NearestNeighborMatcher:
                 return False
             return bool(re.search(r'\b' + re.escape(word) + r'\b', text))
 
+        def get_plural_forms(word: str) -> list:
+            """Generate common plural/singular variations of a word."""
+            forms = [word]
+            # Singular to plural
+            if word.endswith("y") and len(word) > 2 and word[-2] not in "aeiou":
+                forms.append(word[:-1] + "ies")  # berry → berries
+            elif word.endswith("s") or word.endswith("x") or word.endswith("ch"):
+                forms.append(word + "es")
+            else:
+                forms.append(word + "s")
+            # Plural to singular
+            if word.endswith("ies") and len(word) > 3:
+                forms.append(word[:-3] + "y")  # berries → berry
+            elif word.endswith("es") and len(word) > 2:
+                forms.append(word[:-2])  # tomatoes → tomato
+            elif word.endswith("s") and len(word) > 1:
+                forms.append(word[:-1])  # apples → apple
+            return forms
+
         word_matches = []
         for i, (name_low, trans_low) in enumerate(
             zip(self.names_lower, self.translated_lower)
         ):
-            # Check if reference name appears as word in query
-            if is_word_match(name_low, query_lower):
-                word_matches.append((i, len(name_low)))
-            elif is_word_match(trans_low, query_translated):
-                word_matches.append((i, len(trans_low)))
-            # Check if query appears as word in reference
-            elif is_word_match(query_lower, name_low):
-                word_matches.append((i, len(query_lower)))
-            elif is_word_match(query_translated, trans_low):
-                word_matches.append((i, len(query_translated)))
+            # Get plural/singular variations for matching
+            query_forms = get_plural_forms(query_lower)
+            name_forms = get_plural_forms(name_low)
+            trans_forms = get_plural_forms(trans_low)
+            matched = False
+            # Check if any reference name form appears as word in any query form
+            for qf in query_forms:
+                for nf in name_forms:
+                    if is_word_match(nf, qf) or is_word_match(qf, nf):
+                        word_matches.append((i, len(nf)))
+                        matched = True
+                        break
+                if matched:
+                    break
+                for tf in trans_forms:
+                    if is_word_match(tf, qf) or is_word_match(qf, tf):
+                        word_matches.append((i, len(tf)))
+                        matched = True
+                        break
+                if matched:
+                    break
+            if not matched:
+                # Original matching logic as fallback
+                # Check if reference name appears as word in query
+                if is_word_match(name_low, query_lower):
+                    word_matches.append((i, len(name_low)))
+                elif is_word_match(trans_low, query_translated):
+                    word_matches.append((i, len(trans_low)))
+                # Check if query appears as word in reference
+                elif is_word_match(query_lower, name_low):
+                    word_matches.append((i, len(query_lower)))
+                elif is_word_match(query_translated, trans_low):
+                    word_matches.append((i, len(query_translated)))
 
         if word_matches:
             # Return the longest word match
@@ -964,31 +1032,48 @@ class Predictor:
         return 0.90, "predict.py"
 
     def _is_related_match(self, query: str, match: str) -> bool:
-        """Check if query and match share a significant word (>3 chars).
+        """Check if query and match are semantically related.
 
         This catches false positives from sparse feature vectors where
         unrelated items (e.g., 'Amaranth' and 'Lard') get identical vectors.
 
-        Also tries translated versions to handle French/English mismatches
-        (e.g., 'White cabbage' vs 'chou blanc').
+        First tries explicit plural matching (handles berry/berries which
+        embedding models handle poorly), then falls back to semantic similarity.
         """
-        query_words = set(w.lower() for w in re.split(r'\W+', query) if len(w) > 3)
-        match_words = set(w.lower() for w in re.split(r'\W+', match) if len(w) > 3)
-        if query_words & match_words:
+
+        def get_plural_forms(word: str) -> set:
+            """Generate common plural/singular variations of a word."""
+            word = word.lower()
+            forms = {word}
+            # Singular to plural
+            if word.endswith("y") and len(word) > 2 and word[-2] not in "aeiou":
+                forms.add(word[:-1] + "ies")  # berry → berries
+            elif word.endswith("s") or word.endswith("x") or word.endswith("ch"):
+                forms.add(word + "es")
+            else:
+                forms.add(word + "s")
+            # Plural to singular
+            if word.endswith("ies") and len(word) > 3:
+                forms.add(word[:-3] + "y")  # berries → berry
+            elif word.endswith("es") and len(word) > 2:
+                forms.add(word[:-2])  # tomatoes → tomato
+            elif word.endswith("s") and len(word) > 1:
+                forms.add(word[:-1])  # apples → apple
+            return forms
+
+        # Check if plural forms overlap (handles berry/berries, tomato/tomatoes)
+        query_forms = get_plural_forms(query)
+        match_forms = get_plural_forms(match)
+        if query_forms & match_forms:
             return True
 
-        # Try with translation (handles French/English mismatches)
-        query_translated = self._translate(query)
-        match_translated = self._translate(match)
-        query_trans_words = set(w.lower() for w in re.split(r'\W+', query_translated) if len(w) > 3)
-        match_trans_words = set(w.lower() for w in re.split(r'\W+', match_translated) if len(w) > 3)
-
-        # Check all combinations
-        return bool(
-            (query_words & match_trans_words) or
-            (query_trans_words & match_words) or
-            (query_trans_words & match_trans_words)
+        # Fall back to semantic similarity for other cases
+        self._load_embedding_model()
+        embeddings = self.model.encode([query, match])
+        similarity = np.dot(embeddings[0], embeddings[1]) / (
+            np.linalg.norm(embeddings[0]) * np.linalg.norm(embeddings[1])
         )
+        return similarity > 0.7
 
     def _detect_inedible_from_keywords(
         self, name: str, activity: str
@@ -1048,9 +1133,12 @@ class Predictor:
         """
         text = f"{name} {activity}".lower()
 
-        # Dried items absorb water when cooked
-        if re.search(r"\b(dried|séché|dehydrated|déshydraté)\b", text):
-            return 4.0, "dried/dehydrated"
+        # Skip dried detection for "at farm" ingredients - dried is natural state, not processing
+        is_at_farm = "at farm" in activity.lower()
+        if not is_at_farm:
+            # Dried items absorb water when cooked
+            if re.search(r"\b(dried|séché|dehydrated|déshydraté)\b", text):
+                return 4.0, "dried/dehydrated"
 
         # Poultry detection (more specific than generic meat)
         if re.search(
@@ -1462,32 +1550,49 @@ class Predictor:
         # 6. Build nearest neighbor matchers for continuous values
         # Each matcher combines ingredients.json + reference CSV data
 
-        def build_value_matcher(field, ref_loader, allow_zero=False, name=None):
+        def build_value_matcher(
+            field, ref_loader, allow_zero=False, name=None, skip_ingredients=False
+        ):
             """Helper to build a matcher combining reference + ingredients data.
 
             Reference data comes FIRST so it has priority in word matches.
+
+            Args:
+                skip_ingredients: If True, don't include ingredients.json data.
+                    Use this for fields where ingredients.json values are generated
+                    (not manually curated) and shouldn't be used for training.
             """
             if verbose:
                 timed_print(f"Building {name or field} matcher...")
             # Reference data first (has priority in matches)
             names, vals, sources = ref_loader()
-            # Then training ingredients
-            ing_names, ing_vals, ing_sources = _extract_ingredient_values(
-                ingredients, field, allow_zero=allow_zero
-            )
-            names.extend(ing_names)
-            vals.extend(ing_vals)
-            sources.extend(ing_sources)
+            # Then training ingredients (unless skipped)
+            if not skip_ingredients:
+                ing_names, ing_vals, ing_sources = _extract_ingredient_values(
+                    ingredients, field, allow_zero=allow_zero
+                )
+                names.extend(ing_names)
+                vals.extend(ing_vals)
+                sources.extend(ing_sources)
             return self._build_matcher(names, vals, sources)
 
         self.density_matcher = build_value_matcher(
             "ingredientDensity", _load_density_data, name="density"
         )
+        # Skip ingredients.json for inediblePart - values are generated, not curated
         self.inedible_matcher = build_value_matcher(
-            "inediblePart", _load_inedible_data, allow_zero=True, name="inedible part"
+            "inediblePart",
+            _load_inedible_data,
+            allow_zero=True,
+            name="inedible part",
+            skip_ingredients=True,
         )
+        # Skip ingredients.json for rawToCookedRatio - values are generated, not curated
         self.ratio_matcher = build_value_matcher(
-            "rawToCookedRatio", _load_ratio_data, name="raw-to-cooked ratio"
+            "rawToCookedRatio",
+            _load_ratio_data,
+            name="raw-to-cooked ratio",
+            skip_ingredients=True,
         )
 
         self.is_fitted = True
@@ -1745,6 +1850,29 @@ class Predictor:
             )
             # Validate matcher result (must share words to avoid sparse vector issues)
             is_valid = conf >= 0.95 and self._is_related_match(name, match_name)
+
+            # If no valid match with name, try with activity name (extract food item)
+            # e.g., "Blackberry" from "Blackberry, at farm {RS} - Adapted..."
+            if not is_valid and activity:
+                activity_food = activity.split(",")[0].split("{")[0].strip()
+                if activity_food and activity_food.lower() != name.lower():
+                    act_val, act_conf, act_match, act_source = (
+                        self.inedible_matcher.predict(
+                            activity_food, translate_fn=self._translate
+                        )
+                    )
+                    act_valid = act_conf >= 0.95 and self._is_related_match(
+                        activity_food, act_match
+                    )
+                    if act_valid:
+                        inedible_val, conf, match_name, source = (
+                            act_val,
+                            act_conf,
+                            act_match,
+                            act_source,
+                        )
+                        is_valid = True
+
             if is_valid:
                 predictions["inediblePart"] = round(inedible_val, 2)
                 predictions["inediblePartMatch"] = _match(
