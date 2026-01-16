@@ -350,7 +350,7 @@ Each field uses a specific prediction strategy:
 | **processingState** | Derived from novaGroup | - |
 | **categories** | Computed from foodType + novaGroup | - |
 | **transportCooling** | Rules based on foodType + novaGroup | Nearest neighbor |
-| **cropGroup** | Text match, feature similarity | None (animal products) |
+| **cropGroup** | Pattern-based (foodType + keywords) | Nearest neighbor matcher |
 | **density** | Text match with word verification | FoodType default |
 | **inediblePart** | Text match, feature similarity | - |
 | **rawToCookedRatio** | Text match, feature similarity | - |
@@ -391,6 +391,59 @@ transportCooling is determined by rules based on `foodType + novaGroup`:
 ```
 
 This rule-based approach handles ~97% of items (220/228), with only edge cases falling back to the matcher.
+
+## cropGroup Prediction
+
+cropGroup assigns French agricultural categories to plant-based ingredients. It uses pattern-based inference with a minimal CSV fallback.
+
+### FoodType to CropGroup Mapping
+
+| FoodType | Default CropGroup |
+|----------|-------------------|
+| fruit | VERGERS |
+| vegetable | LEGUMES-FLEURS |
+| grain | AUTRES CEREALES |
+| nut_oilseed | FRUITS A COQUES |
+| legume | LEGUMINEUSES A GRAIN |
+| spice_condiment | DIVERS |
+| beverage | DIVERS |
+
+### Keyword Pattern Overrides
+
+Specific patterns override the foodType default:
+
+```
+Edge cases (checked first):
+├─ cocoa, cacao, coffee, café → DIVERS
+└─ prickly pear, figue de barbarie → VERGERS
+
+Grains:
+├─ wheat, flour, bread, pasta, biscuit, cake → BLE TENDRE
+├─ rice, basmati → RIZ
+├─ corn, maize, polenta, popcorn → MAIS GRAIN ET ENSILAGE
+├─ barley, malt, beer → ORGE
+└─ (other grains) → AUTRES CEREALES
+
+Oilseeds/Nuts:
+├─ sunflower, tournesol → TOURNESOL
+├─ rapeseed, canola, colza → COLZA
+├─ olive → OLIVIERS
+├─ grape, wine, vinegar, raisin → VIGNES
+├─ soy, sesame, flax, palm → AUTRES OLEAGINEUX
+└─ (other nuts) → FRUITS A COQUES
+
+Legumes (word boundary regex to avoid false positives):
+├─ lentil, chickpea, haricot, fève, flageolet, lupin
+├─ (red|white|lima|mung|broad|french|fava|kidney) bean
+├─ (split|spring|winter|snow|garden) pea
+└─ peas (but not "peaches")
+```
+
+### Reference File
+
+`reference/cropgroup.csv` contains ~30 representative entries for matcher fallback. Most cases (~97%) are handled by pattern-based inference; the matcher is rarely used.
+
+Animal products (meat, fish_seafood, dairy) do not have a cropGroup.
 
 ## Density Prediction
 
