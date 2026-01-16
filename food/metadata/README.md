@@ -59,8 +59,6 @@ The export process has multiple steps to generate complete ingredient data with 
 ### Step 1: Export Metadata and Merge Activities
 
 ```bash
-uv run export.py metadata
-# or simply:
 uv run export.py
 ```
 
@@ -107,7 +105,7 @@ Required columns:
 ## Usage
 
 ```bash
-uv run export.py                   # Export predictions + merge activities
+uv run export.py                   # Export predictions + merge activities (default)
 uv run export.py final_data        # Generate final CSV with impacts
 uv run export.py --clear-cache     # Clear translation cache first
 uv run validate_nova.py --folds 5  # Validate NOVA classification (5-fold CV)
