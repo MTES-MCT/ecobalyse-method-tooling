@@ -1350,20 +1350,20 @@
     "unit": "kg"
   },
   {
-    "activityName": "Carrot {RoW}| carrot production | Cut-off, U - Copied from Ecoinvent U",
+    "activityName": "Carrot {GLO}| 335 production | Cut-off, U",
     "alias": "cassava",
     "categories": [
       "ingredient"
     ],
     "displayName": "Cassava",
-    "id": "f51780dc-f35f-56e6-b15d-8f624deffe8a",
+    "id": "3d7eb0d8-57a4-5ac6-8858-c9c0d8b61a87",
     "metadata": {
       "food": [
         {
           "alias": "cassava",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cassava",
-          "id": "a9be64dc-b3f5-5816-a280-88546ab931e9",
+          "id": "6fa2cb02-144c-502b-a165-6e0b1ac2d079",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Cassava in agb_inedible.csv",
@@ -1400,7 +1400,7 @@
     "scopes": [
       "food"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -2158,60 +2158,6 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cocoa powder, at plant {RER} - Adapted from WFLDB U",
-    "alias": "cocoa-powder",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Cocoa powder",
-    "id": "524f4977-8e1e-5f52-93b3-4d81f00a4606",
-    "metadata": {
-      "food": [
-        {
-          "alias": "cocoa-powder",
-          "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Cocoa powder",
-          "id": "2595f6b4-387c-5470-a65f-e39b6d3103af",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-            "confidence": 1.0
-          },
-          "ingredientCategories": [
-            "vegetable_fresh"
-          ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
-            "confidence": 1.0
-          },
-          "rawToCookedRatio": 1.0,
-          "rawToCookedRatioMatch": {
-            "rule": "Matched with powder in cooked_to_raw.csv",
-            "confidence": 0.95
-          },
-          "scenario": "reference",
-          "transportCooling": "always",
-          "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
-            "confidence": 1.0
-          },
-          "visible": true,
-          "cropGroup": "DIVERS",
-          "cropGroupMatch": {
-            "rule": "cocoa/coffee pattern",
-            "confidence": 1.0
-          }
-        }
-      ]
-    },
-    "scopes": [
-      "food"
-    ],
-    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
@@ -3450,20 +3396,20 @@
     "unit": "kg"
   },
   {
-    "activityName": "Onion {CN}| onion production | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Onion {RoW}| onion production | Cut-off, U",
     "alias": "ginger",
     "categories": [
       "ingredient"
     ],
     "displayName": "Ginger",
-    "id": "4dfdee74-9de2-53b8-a9e0-7cfbf54938ad",
+    "id": "608d53e9-263a-5ec6-9ec8-18ead7c05240",
     "metadata": {
       "food": [
         {
           "alias": "ginger",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Ginger",
-          "id": "2bc67877-6470-51f9-87a1-8f8c9b1a5ba0",
+          "id": "c8e208e5-be44-5322-80f6-1c4249806141",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Onions in agb_inedible.csv",
@@ -3500,7 +3446,7 @@
     "scopes": [
       "food"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -4422,60 +4368,6 @@
     "unit": "kg"
   },
   {
-    "activityName": "Lentil {CA-SK}| lentil production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "lentil-dried",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Lentil dried",
-    "id": "90369a4e-a87b-5f6b-bcd8-a70006d1b37a",
-    "metadata": {
-      "food": [
-        {
-          "alias": "lentil-dried",
-          "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Lentil dried",
-          "id": "f6ac2bcc-2a4c-56fe-b1cb-922fbf4ee9b0",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-            "confidence": 1.0
-          },
-          "ingredientCategories": [
-            "vegetable_fresh"
-          ],
-          "ingredientDensity": 0.8,
-          "ingredientDensityMatch": {
-            "rule": "Matched with lentil in density.csv",
-            "confidence": 0.95
-          },
-          "rawToCookedRatio": 4.0,
-          "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Lentil dried",
-            "confidence": 1.0
-          },
-          "scenario": "reference",
-          "transportCooling": "none",
-          "transportCoolingMatch": {
-            "rule": "dried packaging → none",
-            "confidence": 1.0
-          },
-          "visible": true,
-          "cropGroup": "LEGUMINEUSES A GRAIN",
-          "cropGroupMatch": {
-            "rule": "legume pattern",
-            "confidence": 1.0
-          }
-        }
-      ]
-    },
-    "scopes": [
-      "food"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Fava bean, feed, Swiss integrated production {RoW}| fava bean, feed production, Swiss integrated production | Cut-off, U",
     "alias": "lima-beans",
     "categories": [
@@ -4527,114 +4419,6 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "lupin",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Lupin",
-    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
-    "metadata": {
-      "food": [
-        {
-          "alias": "lupin",
-          "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Lupin",
-          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-            "confidence": 1.0
-          },
-          "ingredientCategories": [
-            "vegetable_fresh"
-          ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
-            "confidence": 1.0
-          },
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "rule": "vegetable default from food_type_cooked_to_raw.csv",
-            "confidence": 1.0
-          },
-          "scenario": "reference",
-          "transportCooling": "always",
-          "transportCoolingMatch": {
-            "rule": "vegetable NOVA 1 → always (perishable)",
-            "confidence": 1.0
-          },
-          "visible": true,
-          "cropGroup": "LEGUMINEUSES A GRAIN",
-          "cropGroupMatch": {
-            "rule": "legume pattern",
-            "confidence": 1.0
-          }
-        }
-      ]
-    },
-    "scopes": [
-      "food"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "lupin-seed",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Lupin seed",
-    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
-    "metadata": {
-      "food": [
-        {
-          "alias": "lupin-seed",
-          "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Lupin seed",
-          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "rule": "Matched with seed in inedible_part.csv",
-            "confidence": 0.95
-          },
-          "ingredientCategories": [
-            "nut_oilseed_raw"
-          ],
-          "ingredientDensity": 0.7,
-          "ingredientDensityMatch": {
-            "rule": "Matched with seed in density.csv",
-            "confidence": 0.95
-          },
-          "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "rule": "Matched with seed in cooked_to_raw.csv",
-            "confidence": 0.95
-          },
-          "scenario": "reference",
-          "transportCooling": "none",
-          "transportCoolingMatch": {
-            "rule": "nut_oilseed → none (non-perishable)",
-            "confidence": 1.0
-          },
-          "visible": true,
-          "cropGroup": "FRUITS A COQUES",
-          "cropGroupMatch": {
-            "rule": "nut default",
-            "confidence": 1.0
-          }
-        }
-      ]
-    },
-    "scopes": [
-      "food"
-    ],
-    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
@@ -4959,55 +4743,6 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Lettuce {GLO}| lettuce production, in heated greenhouse | Cut-off, U",
-    "alias": "molokhia-powder",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Molokhia powder",
-    "id": "363b265f-46e8-5010-bc72-d986486fd597",
-    "metadata": {
-      "food": [
-        {
-          "alias": "molokhia-powder",
-          "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Molokhia powder",
-          "id": "7debf221-2d94-51a8-8edb-f4e5a70e14b1",
-          "inediblePart": 0.4,
-          "inediblePartMatch": {
-            "rule": "Matched with Lettuce in agb_inedible.csv",
-            "confidence": 1.0
-          },
-          "ingredientCategories": [
-            "animal_product"
-          ],
-          "ingredientDensity": 1.05,
-          "ingredientDensityMatch": {
-            "rule": "meat default from food_type_density.csv",
-            "confidence": 1.0
-          },
-          "rawToCookedRatio": 0.792,
-          "rawToCookedRatioMatch": {
-            "rule": "meat default from food_type_cooked_to_raw.csv",
-            "confidence": 1.0
-          },
-          "scenario": "reference",
-          "transportCooling": "always",
-          "transportCoolingMatch": {
-            "rule": "meat NOVA 1 → always (perishable)",
-            "confidence": 1.0
-          },
-          "visible": true
-        }
-      ]
-    },
-    "scopes": [
-      "food"
-    ],
-    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -5497,20 +5232,20 @@
     "unit": "kg"
   },
   {
-    "activityName": "Olive {IT}| olive production | Cut-off, U",
+    "activityName": "Olive {ES}| olive production | Cut-off, U",
     "alias": "olives",
     "categories": [
       "ingredient"
     ],
     "displayName": "Olives",
-    "id": "5e24c099-1339-5600-9885-a0d2c6235799",
+    "id": "788ba9e2-e484-5d58-8e74-4459c8ff2e66",
     "metadata": {
       "food": [
         {
           "alias": "olives",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Olives",
-          "id": "5b4dcac2-8efd-5241-8c99-c1fc99fca115",
+          "id": "3d7b7419-42a8-5cf3-82c9-d3fb80058c66",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Olives in agb_inedible.csv",
@@ -5983,20 +5718,20 @@
     "unit": "kg"
   },
   {
-    "activityName": "Peanut {RoW}| peanut production | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Peanut {IN}| peanut production | Cut-off, U",
     "alias": "peanut",
     "categories": [
       "ingredient"
     ],
     "displayName": "Peanut",
-    "id": "fd321917-d0f8-5390-b9f4-ea1ea625d273",
+    "id": "a08ea909-cf83-564d-a11b-b0deacc66985",
     "metadata": {
       "food": [
         {
           "alias": "peanut",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Peanut",
-          "id": "dff6cd3e-558f-5d14-9b3f-74836bd1f6e7",
+          "id": "b6742434-e86a-5ea2-8027-c3cf5bf823ed",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with peanut butter in inedible_part.csv",
@@ -6033,7 +5768,7 @@
     "scopes": [
       "food"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -6307,20 +6042,20 @@
     "unit": "kg"
   },
   {
-    "activityName": "Peanut {AR}| peanut production | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Peanut {IN}| peanut production | Cut-off, U",
     "alias": "pistachios",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pistachios",
-    "id": "6cab88c1-6928-5586-8f72-1d5dec82d343",
+    "id": "a08ea909-cf83-564d-a11b-b0deacc66985",
     "metadata": {
       "food": [
         {
           "alias": "pistachios",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pistachios",
-          "id": "780faf43-699c-51c7-b016-8f2f5637f277",
+          "id": "b6742434-e86a-5ea2-8027-c3cf5bf823ed",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with peanut butter in inedible_part.csv",
@@ -6357,7 +6092,7 @@
     "scopes": [
       "food"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -7598,24 +7333,24 @@
     "unit": "kg"
   },
   {
-    "activityName": "Peanut {AR}| peanut production | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Sesame seed {RoW}| sesame seed production | Cut-off, U",
     "alias": "sesame-seeds",
     "categories": [
       "ingredient"
     ],
     "displayName": "Sesame seeds",
-    "id": "6cab88c1-6928-5586-8f72-1d5dec82d343",
+    "id": "8a200906-8770-56b7-9ad4-67535421034a",
     "metadata": {
       "food": [
         {
           "alias": "sesame-seeds",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sesame seeds",
-          "id": "780faf43-699c-51c7-b016-8f2f5637f277",
+          "id": "6c5846ae-9fd2-5a98-92cb-bbfc7c9ec440",
           "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with peanut butter in inedible_part.csv",
-            "confidence": 0.95
+            "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "grain_raw"
@@ -7648,7 +7383,7 @@
     "scopes": [
       "food"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -8676,20 +8411,20 @@
     "unit": "kg"
   },
   {
-    "activityName": "Carrot {RoW}| carrot production | Cut-off, U - Copied from Ecoinvent U",
+    "activityName": "Carrot {GLO}| 335 production | Cut-off, U",
     "alias": "tapioca",
     "categories": [
       "ingredient"
     ],
     "displayName": "Tapioca",
-    "id": "f51780dc-f35f-56e6-b15d-8f624deffe8a",
+    "id": "3d7eb0d8-57a4-5ac6-8858-c9c0d8b61a87",
     "metadata": {
       "food": [
         {
           "alias": "tapioca",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tapioca",
-          "id": "a9be64dc-b3f5-5816-a280-88546ab931e9",
+          "id": "6fa2cb02-144c-502b-a165-6e0b1ac2d079",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Carrots in agb_inedible.csv",
@@ -8726,7 +8461,7 @@
     "scopes": [
       "food"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -8838,20 +8573,20 @@
     "unit": "kg"
   },
   {
-    "activityName": "Tea, dried {CN}| tea production, dried | Cut-off, U",
+    "activityName": "Tea, fresh leaves, at farm (WFLDB)",
     "alias": "tea-fresh-leaf",
     "categories": [
       "ingredient"
     ],
     "displayName": "Tea, fresh leaf",
-    "id": "5223d47a-9f2a-5c12-ad73-5ed20a2de8ff",
+    "id": "0168da8e-a8b6-5904-9b30-04e6da7fd2dc",
     "metadata": {
       "food": [
         {
           "alias": "tea-fresh-leaf",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tea, fresh leaf",
-          "id": "19f596f2-a88a-533d-96bb-ebb286e52045",
+          "id": "ef0f367e-eaae-5daa-8577-07413d1dbd5d",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "beverage NOVA 1 default from food_type_inedible_part.csv",
@@ -8865,15 +8600,15 @@
             "rule": "beverage default from predict.py",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 4.0,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Tea, fresh leaf",
+            "rule": "beverage default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "Matched with Tea, fresh leaf in ingredients.json",
             "confidence": 1.0
           },
           "visible": true,
@@ -8888,7 +8623,7 @@
     "scopes": [
       "food"
     ],
-    "source": "Ecoinvent 3.11",
+    "source": "WFLDB",
     "unit": "kg"
   },
   {
@@ -8934,60 +8669,6 @@
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
             "rule": "vegetable default",
-            "confidence": 1.0
-          }
-        }
-      ]
-    },
-    "scopes": [
-      "food"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Triticale straw, animal feed, average practices {FR} U",
-    "alias": "triticale",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Triticale",
-    "id": "b2c978f7-0948-5a84-95fc-4f8daaa8a461",
-    "metadata": {
-      "food": [
-        {
-          "alias": "triticale",
-          "defaultOrigin": "France",
-          "displayName": "Triticale",
-          "id": "bab133f6-f3b1-5396-83a2-21b37301a0f7",
-          "inediblePart": 0.0,
-          "inediblePartMatch": {
-            "rule": "grain NOVA 2-4 default from food_type_inedible_part.csv",
-            "confidence": 1.0
-          },
-          "ingredientCategories": [
-            "grain_processed"
-          ],
-          "ingredientDensity": 0.75,
-          "ingredientDensityMatch": {
-            "rule": "grain default from food_type_density.csv",
-            "confidence": 1.0
-          },
-          "rawToCookedRatio": 2.259,
-          "rawToCookedRatioMatch": {
-            "rule": "Matched with triticale in cooked_to_raw.csv",
-            "confidence": 1.0
-          },
-          "scenario": "reference",
-          "transportCooling": "none",
-          "transportCoolingMatch": {
-            "rule": "grain → none (non-perishable)",
-            "confidence": 1.0
-          },
-          "visible": true,
-          "cropGroup": "AUTRES CEREALES",
-          "cropGroupMatch": {
-            "rule": "grain default",
             "confidence": 1.0
           }
         }
