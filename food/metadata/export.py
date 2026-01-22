@@ -3,8 +3,13 @@
 Export predicted ingredients to CSV and activities.json format.
 
 Usage:
-    python export.py                    # Export all new ingredients
-    python export.py --clear-cache      # Clear translation cache first
+    python export.py metadata --variant FR     # Export FR variant
+    python export.py metadata --variant ORG    # Export organic variant
+    python export.py final_data                # Generate final CSV with impacts
+    python export.py metadata --variant FR --add-old-prefix     # Add (old) prefix to existing
+    python export.py metadata --variant FR --remove-old-prefix  # Remove (old) prefix
+
+Variants: FR, ORG, UE, DEF, NUE
 
 Outputs:
     - generated/predictions.csv: CSV with all predictions and confidence scores
@@ -17,10 +22,36 @@ import json
 import os
 import re
 import uuid
+from enum import Enum
 from pathlib import Path
 
 # Namespace UUID for deterministic UUID generation (generated once, never changes)
 ECOBALYSE_NAMESPACE = uuid.UUID("a4e1d123-5c67-4b89-9def-1234567890ab")
+
+
+class Variant(Enum):
+    FR = "FR"
+    ORG = "ORG"
+    UE = "UE"
+    DEF = "DEF"
+    NUE = "NUE"
+
+
+VARIANT_SUFFIX = {
+    Variant.FR: " FR",
+    Variant.ORG: " Bio",
+    Variant.UE: " UE",
+    Variant.DEF: " par défaut",
+    Variant.NUE: " HORS UE",
+}
+
+VARIANT_SCENARIO = {
+    Variant.FR: "reference",
+    Variant.ORG: "organic",
+    Variant.UE: "import",
+    Variant.DEF: "import",
+    Variant.NUE: "import",
+}
 
 from dotenv import load_dotenv
 
@@ -157,11 +188,11 @@ def fix_unit(unit):
 # =============================================================================
 
 
-def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
+def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) -> list:
     """
     Predict metadata for all ingredients in the DataFrame.
 
-    Returns list of dicts with: name, french_name, activity_name, source, predictions
+    Returns list of dicts with: name, french_name, activity_name, source, predictions, variant
     """
     results = []
 
@@ -170,8 +201,8 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
     ):
         name = str(row["item"]).strip()
         french_name = (
-            str(row["nom"]).strip()
-            if pd.notna(row.get("nom"))
+            str(row["Liste 4.2 Trad"]).strip()
+            if pd.notna(row.get("Liste 4.2 Trad"))
             else ""
         )
         activity_name = (
@@ -192,6 +223,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
             "source": source,
             "unit": fix_unit(unit),
             "predictions": predictions,
+            "variant": variant,
         })
 
     return results
@@ -295,16 +327,23 @@ def build_activity_entry(
     source: str,
     unit: str,
     predictions: dict,
+    variant: Variant,
 ) -> dict:
     """Build an activity entry in the activities.json format."""
-    alias = generate_alias(french_name if french_name else name)
+    # Alias from English name + variant suffix (lowercase)
+    alias = generate_alias(name) + "-" + variant.value.lower()
 
-    # Generate deterministic UUIDs based on activity_name
-    # This ensures the same activity always gets the same UUID
-    activity_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{activity_name}"))
-    ingredient_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"ingredient:{activity_name}"))
+    # DisplayName from French name + variant suffix
+    variant_suffix = VARIANT_SUFFIX[variant]
+    display_name = (french_name if french_name else name) + variant_suffix
 
-    display_name = french_name if french_name else name
+    # Generate deterministic UUIDs based on displayName
+    # This ensures each unique displayName gets a unique UUID
+    activity_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{display_name}"))
+    ingredient_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"ingredient:{display_name}"))
+
+    # Scenario from variant
+    scenario = VARIANT_SCENARIO[variant]
 
     ingredient = {
         "alias": alias,
@@ -318,7 +357,7 @@ def build_activity_entry(
         "ingredientDensityMatch": predictions.get("densityMatch"),
         "rawToCookedRatio": predictions.get("rawToCookedRatio", 1.0),
         "rawToCookedRatioMatch": predictions.get("rawToCookedRatioMatch"),
-        "scenario": "reference",
+        "scenario": scenario,
         "transportCooling": predictions.get("transportCooling", "none"),
         "transportCoolingMatch": predictions.get("transportCoolingMatch"),
         "visible": True,
@@ -358,6 +397,7 @@ def write_json(results: list, output_path: str):
             r["source"],
             r["unit"],
             r["predictions"],
+            r["variant"],
         )
         activities.append(activity)
 
@@ -398,17 +438,26 @@ IMPACT_COLUMNS = [
 ]
 
 
-def merge_activities(new_activities_path: Path, target_activities_path: Path):
+def merge_activities(
+    new_activities_path: Path,
+    target_activities_path: Path,
+    add_old_prefix: bool = False,
+    remove_old_prefix: bool = False,
+):
     """Merge new_activities.json into target activities.json.
 
     Two-level merge with global ingredient uniqueness:
-    1. Process level: merge by activityName (preserve existing UUIDs)
+    1. Process level: merge by displayName (preserve existing UUIDs)
     2. Ingredient level: globally unique by displayName
        - If ingredient exists anywhere: preserve UUID, move to new activity
        - If ingredient is new: add with generated UUID
 
     Ingredients are globally unique: if an ingredient moves from one activity
     to another, it is removed from the old activity and added to the new one.
+
+    Options:
+    - add_old_prefix: Add "(old) " prefix to pre-existing ingredients
+    - remove_old_prefix: Remove "(old) " prefix from all ingredients
     """
     with open(new_activities_path) as f:
         new_activities = json.load(f)
@@ -416,66 +465,103 @@ def merge_activities(new_activities_path: Path, target_activities_path: Path):
     with open(target_activities_path) as f:
         existing_activities = json.load(f)
 
-    # Separate activities with/without activityName (e.g. textile materials)
-    existing_by_name = {a["activityName"]: a for a in existing_activities if "activityName" in a}
-    other_activities = [a for a in existing_activities if "activityName" not in a]
+    # Separate activities with/without displayName (e.g. textile materials)
+    existing_by_display = {a["displayName"]: a for a in existing_activities if "displayName" in a}
+    other_activities = [a for a in existing_activities if "displayName" not in a]
 
-    # Build global ingredient index: displayName -> {ingredient, activity_name}
+    # Apply old prefix modifications to existing activities
+    if add_old_prefix:
+        count = 0
+        for activity in existing_by_display.values():
+            for ing in activity.get("metadata", {}).get("food", []):
+                if not ing["displayName"].startswith("(old) "):
+                    ing["displayName"] = "(old) " + ing["displayName"]
+                    count += 1
+        print(f"Added '(old)' prefix to {count} ingredients")
+
+    if remove_old_prefix:
+        for activity in existing_by_display.values():
+            for ing in activity.get("metadata", {}).get("food", []):
+                if ing["displayName"].startswith("(old) "):
+                    ing["displayName"] = ing["displayName"][6:]  # Remove "(old) "
+
+    # Build global ingredient index: displayName -> {ingredient, activity_display_name}
     global_ingredients = {}
-    for activity in existing_by_name.values():
+    for activity in existing_by_display.values():
         for ing in activity.get("metadata", {}).get("food", []):
             global_ingredients[ing["displayName"]] = {
                 "ingredient": ing,
-                "activity_name": activity["activityName"],
+                "activity_display_name": activity["displayName"],
             }
 
     # Track which ingredients to remove from old activities
-    ingredients_to_remove = {}  # activity_name -> set of displayNames to remove
+    ingredients_to_remove = {}  # activity_display_name -> set of displayNames to remove
 
     # Process new activities
     for new_activity in new_activities:
-        activity_name = new_activity["activityName"]
+        display_name = new_activity["displayName"]
 
         # Preserve activity UUID if it exists
-        if activity_name in existing_by_name:
-            new_activity["id"] = existing_by_name[activity_name]["id"]
+        if display_name in existing_by_display:
+            new_activity["id"] = existing_by_display[display_name]["id"]
 
         # Process ingredients
         new_ingredients = new_activity.get("metadata", {}).get("food", [])
         for new_ing in new_ingredients:
-            display_name = new_ing["displayName"]
+            ing_display_name = new_ing["displayName"]
 
-            if display_name in global_ingredients:
-                existing_entry = global_ingredients[display_name]
+            if ing_display_name in global_ingredients:
+                existing_entry = global_ingredients[ing_display_name]
                 # Preserve existing ingredient UUID
                 new_ing["id"] = existing_entry["ingredient"]["id"]
 
                 # Mark for removal from old activity (if different)
-                old_activity_name = existing_entry["activity_name"]
-                if old_activity_name != activity_name:
-                    if old_activity_name not in ingredients_to_remove:
-                        ingredients_to_remove[old_activity_name] = set()
-                    ingredients_to_remove[old_activity_name].add(display_name)
+                old_activity_display_name = existing_entry["activity_display_name"]
+                if old_activity_display_name != display_name:
+                    if old_activity_display_name not in ingredients_to_remove:
+                        ingredients_to_remove[old_activity_display_name] = set()
+                    ingredients_to_remove[old_activity_display_name].add(ing_display_name)
 
             # Update global index to point to new location
-            global_ingredients[display_name] = {
+            global_ingredients[ing_display_name] = {
                 "ingredient": new_ing,
-                "activity_name": activity_name,
+                "activity_display_name": display_name,
             }
 
         # Update activity in index
-        existing_by_name[activity_name] = new_activity
+        if display_name in existing_by_display:
+            # Merge ingredients: keep existing ones not in new, add all new ones
+            existing_activity = existing_by_display[display_name]
+            existing_ings = existing_activity.get("metadata", {}).get("food", [])
+            new_ing_names = {ing["displayName"] for ing in new_ingredients}
+            # Keep existing ingredients that aren't being replaced
+            kept_ings = [ing for ing in existing_ings if ing["displayName"] not in new_ing_names]
+            # Combine: kept existing + new
+            merged_ings = kept_ings + new_ingredients
+            new_activity["metadata"]["food"] = merged_ings
+            if kept_ings:
+                print(f"Merged activity '{display_name}': kept {len(kept_ings)} existing + {len(new_ingredients)} new ingredients")
+        existing_by_display[display_name] = new_activity
 
     # Remove moved ingredients from old activities
-    for activity_name, display_names in ingredients_to_remove.items():
-        activity = existing_by_name.get(activity_name)
+    for activity_display_name, ing_display_names in ingredients_to_remove.items():
+        activity = existing_by_display.get(activity_display_name)
         if activity and "metadata" in activity and "food" in activity["metadata"]:
             activity["metadata"]["food"] = [
                 ing for ing in activity["metadata"]["food"]
-                if ing["displayName"] not in display_names
+                if ing["displayName"] not in ing_display_names
             ]
 
-    merged = list(existing_by_name.values()) + other_activities
+    merged = list(existing_by_display.values()) + other_activities
+
+    # Count "(old)" ingredients in final output
+    old_count = sum(
+        1 for a in merged
+        for ing in a.get("metadata", {}).get("food", [])
+        if ing.get("displayName", "").startswith("(old) ")
+    )
+    print(f"Final output has {old_count} '(old)' ingredients")
+
     with open(target_activities_path, "w") as f:
         json.dump(merged, f, indent=2, ensure_ascii=False)
 
@@ -591,17 +677,40 @@ def main():
     )
     parser.add_argument(
         "command",
-        nargs="?",
-        default="metadata",
         choices=["metadata", "final_data"],
         help="metadata: export predictions + merge activities. final_data: generate final CSV with impacts",
+    )
+    parser.add_argument(
+        "--variant",
+        type=lambda v: Variant[v.upper()],
+        choices=list(Variant),
+        metavar="{FR,ORG,UE,DEF,NUE}",
+        help="Variant: FR, ORG, UE, DEF, NUE (required for metadata command)",
     )
     parser.add_argument(
         "--clear-cache",
         action="store_true",
         help="Clear translation cache before running",
     )
+    parser.add_argument(
+        "--add-old-prefix",
+        action="store_true",
+        help="Add '(old) ' prefix to pre-existing ingredients",
+    )
+    parser.add_argument(
+        "--remove-old-prefix",
+        action="store_true",
+        help="Remove '(old) ' prefix from all ingredients",
+    )
     args = parser.parse_args()
+
+    # Validate mutually exclusive options
+    if args.add_old_prefix and args.remove_old_prefix:
+        parser.error("--add-old-prefix and --remove-old-prefix are mutually exclusive")
+
+    # Validate --variant is required for metadata command
+    if args.command == "metadata" and args.variant is None:
+        parser.error("--variant is required for the metadata command")
 
     if args.command == "final_data":
         generate_final_data()
@@ -631,7 +740,7 @@ def main():
 
     # Predict for all ingredients
     print(f"\nProcessing {len(df)} ingredients...")
-    results = predict_all(predictor, df)
+    results = predict_all(predictor, df, args.variant)
 
     # Write outputs
     print(f"\nWriting {len(results)} results...")
@@ -643,7 +752,12 @@ def main():
     if activities_path:
         activities_path = Path(activities_path)
         if activities_path.exists():
-            merge_activities(OUTPUT_JSON, activities_path)
+            merge_activities(
+                OUTPUT_JSON,
+                activities_path,
+                args.add_old_prefix,
+                args.remove_old_prefix,
+            )
             print(
                 "\nNext step: run 'just export-all' in ecobalyse-data to regenerate ingredients.json"
             )
