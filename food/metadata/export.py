@@ -170,8 +170,8 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame) -> list:
     ):
         name = str(row["item"]).strip()
         french_name = (
-            str(row["Liste 4.1 Trad"]).strip()
-            if pd.notna(row.get("Liste 4.1 Trad"))
+            str(row["nom"]).strip()
+            if pd.notna(row.get("nom"))
             else ""
         )
         activity_name = (
@@ -297,7 +297,7 @@ def build_activity_entry(
     predictions: dict,
 ) -> dict:
     """Build an activity entry in the activities.json format."""
-    alias = generate_alias(name)
+    alias = generate_alias(french_name if french_name else name)
 
     # Generate deterministic UUIDs based on activity_name
     # This ensures the same activity always gets the same UUID
@@ -401,27 +401,81 @@ IMPACT_COLUMNS = [
 def merge_activities(new_activities_path: Path, target_activities_path: Path):
     """Merge new_activities.json into target activities.json.
 
-    Uses 'id' (UUID) as merge key:
-    - If activity exists in target, overwrite it
-    - If activity doesn't exist, add it
+    Two-level merge with global ingredient uniqueness:
+    1. Process level: merge by activityName (preserve existing UUIDs)
+    2. Ingredient level: globally unique by displayName
+       - If ingredient exists anywhere: preserve UUID, move to new activity
+       - If ingredient is new: add with generated UUID
+
+    Ingredients are globally unique: if an ingredient moves from one activity
+    to another, it is removed from the old activity and added to the new one.
     """
-    # Load new activities
     with open(new_activities_path) as f:
         new_activities = json.load(f)
 
-    # Load existing activities
     with open(target_activities_path) as f:
         existing_activities = json.load(f)
 
-    # Build dict by id for fast lookup
-    existing_by_id = {a["id"]: a for a in existing_activities}
+    # Separate activities with/without activityName (e.g. textile materials)
+    existing_by_name = {a["activityName"]: a for a in existing_activities if "activityName" in a}
+    other_activities = [a for a in existing_activities if "activityName" not in a]
 
-    # Merge: update existing or add new
-    for activity in new_activities:
-        existing_by_id[activity["id"]] = activity
+    # Build global ingredient index: displayName -> {ingredient, activity_name}
+    global_ingredients = {}
+    for activity in existing_by_name.values():
+        for ing in activity.get("metadata", {}).get("food", []):
+            global_ingredients[ing["displayName"]] = {
+                "ingredient": ing,
+                "activity_name": activity["activityName"],
+            }
 
-    # Write back
-    merged = list(existing_by_id.values())
+    # Track which ingredients to remove from old activities
+    ingredients_to_remove = {}  # activity_name -> set of displayNames to remove
+
+    # Process new activities
+    for new_activity in new_activities:
+        activity_name = new_activity["activityName"]
+
+        # Preserve activity UUID if it exists
+        if activity_name in existing_by_name:
+            new_activity["id"] = existing_by_name[activity_name]["id"]
+
+        # Process ingredients
+        new_ingredients = new_activity.get("metadata", {}).get("food", [])
+        for new_ing in new_ingredients:
+            display_name = new_ing["displayName"]
+
+            if display_name in global_ingredients:
+                existing_entry = global_ingredients[display_name]
+                # Preserve existing ingredient UUID
+                new_ing["id"] = existing_entry["ingredient"]["id"]
+
+                # Mark for removal from old activity (if different)
+                old_activity_name = existing_entry["activity_name"]
+                if old_activity_name != activity_name:
+                    if old_activity_name not in ingredients_to_remove:
+                        ingredients_to_remove[old_activity_name] = set()
+                    ingredients_to_remove[old_activity_name].add(display_name)
+
+            # Update global index to point to new location
+            global_ingredients[display_name] = {
+                "ingredient": new_ing,
+                "activity_name": activity_name,
+            }
+
+        # Update activity in index
+        existing_by_name[activity_name] = new_activity
+
+    # Remove moved ingredients from old activities
+    for activity_name, display_names in ingredients_to_remove.items():
+        activity = existing_by_name.get(activity_name)
+        if activity and "metadata" in activity and "food" in activity["metadata"]:
+            activity["metadata"]["food"] = [
+                ing for ing in activity["metadata"]["food"]
+                if ing["displayName"] not in display_names
+            ]
+
+    merged = list(existing_by_name.values()) + other_activities
     with open(target_activities_path, "w") as f:
         json.dump(merged, f, indent=2, ensure_ascii=False)
 
