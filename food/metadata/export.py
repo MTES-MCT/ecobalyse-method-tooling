@@ -481,9 +481,15 @@ def merge_activities(
 
     if remove_old_prefix:
         for activity in existing_by_display.values():
+            # Remove "new-" prefix from activity alias
+            if activity.get("alias", "").startswith("new-"):
+                activity["alias"] = activity["alias"][4:]
             for ing in activity.get("metadata", {}).get("food", []):
                 if ing["displayName"].startswith("(old) "):
                     ing["displayName"] = ing["displayName"][6:]  # Remove "(old) "
+                # Remove "new-" prefix from ingredient alias
+                if ing.get("alias", "").startswith("new-"):
+                    ing["alias"] = ing["alias"][4:]
 
     # Build global ingredient index: displayName -> {ingredient, activity_display_name}
     global_ingredients = {}
@@ -507,6 +513,17 @@ def merge_activities(
 
         # Process ingredients
         new_ingredients = new_activity.get("metadata", {}).get("food", [])
+
+        # Add "new-" prefix to aliases when add_old_prefix is True
+        if add_old_prefix:
+            # Add "new-" prefix to activity alias
+            if not new_activity["alias"].startswith("new-"):
+                new_activity["alias"] = "new-" + new_activity["alias"]
+            # Add "new-" prefix to ingredient aliases
+            for new_ing in new_ingredients:
+                if not new_ing["alias"].startswith("new-"):
+                    new_ing["alias"] = "new-" + new_ing["alias"]
+
         for new_ing in new_ingredients:
             ing_display_name = new_ing["displayName"]
 
