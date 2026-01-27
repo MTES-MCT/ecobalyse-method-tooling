@@ -213,6 +213,9 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
         if not name or not activity_name:
             continue
 
+        # Extract production location for FR variant handling
+        production_fr = str(row.get("Production_FR", "")).strip()
+
         ingredient = {"name": name, "activityName": activity_name}
         predictions = predictor.predict(ingredient)
 
@@ -224,6 +227,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
             "unit": fix_unit(unit),
             "predictions": predictions,
             "variant": variant,
+            "production_fr": production_fr,
         })
 
     return results
@@ -328,13 +332,21 @@ def build_activity_entry(
     unit: str,
     predictions: dict,
     variant: Variant,
+    production_fr: str = "",
 ) -> dict:
     """Build an activity entry in the activities.json format."""
+    # Determine suffix based on variant and production location
+    if variant == Variant.FR and production_fr == "DOM":
+        variant_suffix = " FR Outre-Mer"
+        alias_suffix = "-fr-overseas"
+    else:
+        variant_suffix = VARIANT_SUFFIX[variant]
+        alias_suffix = "-" + variant.value.lower()
+
     # Alias from English name + variant suffix (lowercase)
-    alias = generate_alias(name) + "-" + variant.value.lower()
+    alias = generate_alias(name) + alias_suffix
 
     # DisplayName from French name + variant suffix
-    variant_suffix = VARIANT_SUFFIX[variant]
     display_name = (french_name if french_name else name) + variant_suffix
 
     # Generate deterministic UUIDs based on displayName
@@ -398,6 +410,7 @@ def write_json(results: list, output_path: str):
             r["unit"],
             r["predictions"],
             r["variant"],
+            r.get("production_fr", ""),
         )
         activities.append(activity)
 
@@ -456,8 +469,8 @@ def merge_activities(
     to another, it is removed from the old activity and added to the new one.
 
     Options:
-    - add_old_prefix: Add "(old) " prefix to pre-existing ingredients
-    - remove_old_prefix: Remove "(old) " prefix from all ingredients
+    - add_old_prefix: Add " (old)" suffix to pre-existing ingredients
+    - remove_old_prefix: Remove " (old)" suffix from all ingredients
     """
     with open(new_activities_path) as f:
         new_activities = json.load(f)
@@ -469,15 +482,15 @@ def merge_activities(
     existing_by_display = {a["displayName"]: a for a in existing_activities if "displayName" in a}
     other_activities = [a for a in existing_activities if "displayName" not in a]
 
-    # Apply old prefix modifications to existing activities
+    # Apply old suffix modifications to existing activities
     if add_old_prefix:
         count = 0
         for activity in existing_by_display.values():
             for ing in activity.get("metadata", {}).get("food", []):
-                if not ing["displayName"].startswith("(old) "):
-                    ing["displayName"] = "(old) " + ing["displayName"]
+                if not ing["displayName"].endswith(" (old)"):
+                    ing["displayName"] = ing["displayName"] + " (old)"
                     count += 1
-        print(f"Added '(old)' prefix to {count} ingredients")
+        print(f"Added '(old)' suffix to {count} ingredients")
 
     if remove_old_prefix:
         for activity in existing_by_display.values():
@@ -485,8 +498,8 @@ def merge_activities(
             if activity.get("alias", "").startswith("new-"):
                 activity["alias"] = activity["alias"][4:]
             for ing in activity.get("metadata", {}).get("food", []):
-                if ing["displayName"].startswith("(old) "):
-                    ing["displayName"] = ing["displayName"][6:]  # Remove "(old) "
+                if ing["displayName"].endswith(" (old)"):
+                    ing["displayName"] = ing["displayName"][:-6]  # Remove " (old)"
                 # Remove "new-" prefix from ingredient alias
                 if ing.get("alias", "").startswith("new-"):
                     ing["alias"] = ing["alias"][4:]
@@ -575,7 +588,7 @@ def merge_activities(
     old_count = sum(
         1 for a in merged
         for ing in a.get("metadata", {}).get("food", [])
-        if ing.get("displayName", "").startswith("(old) ")
+        if ing.get("displayName", "").endswith(" (old)")
     )
     print(f"Final output has {old_count} '(old)' ingredients")
 
