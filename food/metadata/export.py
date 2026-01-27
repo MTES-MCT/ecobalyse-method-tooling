@@ -478,6 +478,13 @@ def merge_activities(
     with open(target_activities_path) as f:
         existing_activities = json.load(f)
 
+    # Load keep list (ingredients that should not get "(old)" suffix)
+    keep_csv_path = Path(__file__).parent / "source/keep.csv"
+    keep_set = set()
+    if keep_csv_path.exists():
+        with open(keep_csv_path, encoding="utf-8") as f:
+            keep_set = {line.strip() for line in f if line.strip()}
+
     # Separate activities with/without displayName (e.g. textile materials)
     existing_by_display = {a["displayName"]: a for a in existing_activities if "displayName" in a}
     other_activities = [a for a in existing_activities if "displayName" not in a]
@@ -485,12 +492,16 @@ def merge_activities(
     # Apply old suffix modifications to existing activities
     if add_old_prefix:
         count = 0
+        skipped = 0
         for activity in existing_by_display.values():
             for ing in activity.get("metadata", {}).get("food", []):
+                if ing["displayName"] in keep_set:
+                    skipped += 1
+                    continue
                 if not ing["displayName"].endswith(" (old)"):
                     ing["displayName"] = ing["displayName"] + " (old)"
                     count += 1
-        print(f"Added '(old)' suffix to {count} ingredients")
+        print(f"Added '(old)' suffix to {count} ingredients (skipped {skipped} from keep.csv)")
 
     if remove_old_prefix:
         for activity in existing_by_display.values():
