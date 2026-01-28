@@ -6,8 +6,8 @@ Usage:
     python export.py metadata --variant FR     # Export FR variant
     python export.py metadata --variant ORG    # Export organic variant
     python export.py final_data                # Generate final CSV with impacts
-    python export.py metadata --variant FR --add-old-prefix     # Add (old) prefix to existing
-    python export.py metadata --variant FR --remove-old-prefix  # Remove (old) prefix
+    python export.py metadata --variant FR --add-old-prefix     # Add (2025) prefix to existing
+    python export.py metadata --variant FR --remove-old-prefix  # Remove (2025) prefix
 
 Variants: FR, ORG, UE, DEF, NUE
 
@@ -469,8 +469,8 @@ def merge_activities(
     to another, it is removed from the old activity and added to the new one.
 
     Options:
-    - add_old_prefix: Add " (old)" suffix to pre-existing ingredients
-    - remove_old_prefix: Remove " (old)" suffix from all ingredients
+    - add_old_prefix: Add " (2025)" suffix to pre-existing ingredients
+    - remove_old_prefix: Remove " (2025)" suffix from all ingredients
     """
     with open(new_activities_path) as f:
         new_activities = json.load(f)
@@ -478,7 +478,7 @@ def merge_activities(
     with open(target_activities_path) as f:
         existing_activities = json.load(f)
 
-    # Load keep list (ingredients that should not get "(old)" suffix)
+    # Load keep list (ingredients that should not get "(2025)" suffix)
     keep_csv_path = Path(__file__).parent / "source/keep.csv"
     keep_set = set()
     if keep_csv_path.exists():
@@ -498,10 +498,10 @@ def merge_activities(
                 if ing["displayName"] in keep_set:
                     skipped += 1
                     continue
-                if not ing["displayName"].endswith(" (old)"):
-                    ing["displayName"] = ing["displayName"] + " (old)"
+                if not ing["displayName"].endswith(" (2025)"):
+                    ing["displayName"] = ing["displayName"] + " (2025)"
                     count += 1
-        print(f"Added '(old)' suffix to {count} ingredients (skipped {skipped} from keep.csv)")
+        print(f"Added '(2025)' suffix to {count} ingredients (skipped {skipped} from keep.csv)")
 
     if remove_old_prefix:
         for activity in existing_by_display.values():
@@ -509,8 +509,8 @@ def merge_activities(
             if activity.get("alias", "").startswith("new-"):
                 activity["alias"] = activity["alias"][4:]
             for ing in activity.get("metadata", {}).get("food", []):
-                if ing["displayName"].endswith(" (old)"):
-                    ing["displayName"] = ing["displayName"][:-6]  # Remove " (old)"
+                if ing["displayName"].endswith(" (2025)"):
+                    ing["displayName"] = ing["displayName"][:-7]  # Remove " (2025)"
                 # Remove "new-" prefix from ingredient alias
                 if ing.get("alias", "").startswith("new-"):
                     ing["alias"] = ing["alias"][4:]
@@ -595,13 +595,13 @@ def merge_activities(
 
     merged = list(existing_by_display.values()) + other_activities
 
-    # Count "(old)" ingredients in final output
+    # Count "(2025)" ingredients in final output
     old_count = sum(
         1 for a in merged
         for ing in a.get("metadata", {}).get("food", [])
-        if ing.get("displayName", "").endswith(" (old)")
+        if ing.get("displayName", "").endswith(" (2025)")
     )
-    print(f"Final output has {old_count} '(old)' ingredients")
+    print(f"Final output has {old_count} '(2025)' ingredients")
 
     with open(target_activities_path, "w") as f:
         json.dump(merged, f, indent=2, ensure_ascii=False)
@@ -736,12 +736,12 @@ def main():
     parser.add_argument(
         "--add-old-prefix",
         action="store_true",
-        help="Add '(old) ' prefix to pre-existing ingredients",
+        help="Add '(2025)' suffix to pre-existing ingredients",
     )
     parser.add_argument(
         "--remove-old-prefix",
         action="store_true",
-        help="Remove '(old) ' prefix from all ingredients",
+        help="Remove '(2025)' suffix from all ingredients",
     )
     args = parser.parse_args()
 
