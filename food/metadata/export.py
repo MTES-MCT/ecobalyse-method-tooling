@@ -6,8 +6,8 @@ Usage:
     python export.py metadata --variant FR     # Export FR variant
     python export.py metadata --variant ORG    # Export organic variant
     python export.py final_data                # Generate final CSV with impacts
-    python export.py metadata --variant FR --add-old-prefix     # Add (2025) prefix to existing
-    python export.py metadata --variant FR --remove-old-prefix  # Remove (2025) prefix
+    python export.py metadata --variant FR --add-2025-suffix     # Add (2025) suffix to existing
+    python export.py metadata --variant FR --remove-2025-suffix  # Remove (2025) suffix
 
 Variants: FR, ORG, UE, DEF, NUE
 
@@ -454,8 +454,8 @@ IMPACT_COLUMNS = [
 def merge_activities(
     new_activities_path: Path,
     target_activities_path: Path,
-    add_old_prefix: bool = False,
-    remove_old_prefix: bool = False,
+    add_2025_suffix: bool = False,
+    remove_2025_suffix: bool = False,
 ):
     """Merge new_activities.json into target activities.json.
 
@@ -469,8 +469,8 @@ def merge_activities(
     to another, it is removed from the old activity and added to the new one.
 
     Options:
-    - add_old_prefix: Add " (2025)" suffix to pre-existing ingredients
-    - remove_old_prefix: Remove " (2025)" suffix from all ingredients
+    - add_2025_suffix: Add " (2025)" suffix to pre-existing ingredients
+    - remove_2025_suffix: Remove " (2025)" suffix from all ingredients
     """
     with open(new_activities_path) as f:
         new_activities = json.load(f)
@@ -490,7 +490,7 @@ def merge_activities(
     other_activities = [a for a in existing_activities if "displayName" not in a]
 
     # Apply old suffix modifications to existing activities
-    if add_old_prefix:
+    if add_2025_suffix:
         count = 0
         skipped = 0
         for activity in existing_by_display.values():
@@ -503,7 +503,7 @@ def merge_activities(
                     count += 1
         print(f"Added '(2025)' suffix to {count} ingredients (skipped {skipped} from keep.csv)")
 
-    if remove_old_prefix:
+    if remove_2025_suffix:
         for activity in existing_by_display.values():
             # Remove "new-" prefix from activity alias
             if activity.get("alias", "").startswith("new-"):
@@ -538,8 +538,8 @@ def merge_activities(
         # Process ingredients
         new_ingredients = new_activity.get("metadata", {}).get("food", [])
 
-        # Add "new-" prefix to aliases when add_old_prefix is True
-        if add_old_prefix:
+        # Add "new-" prefix to aliases when add_2025_suffix is True
+        if add_2025_suffix:
             # Add "new-" prefix to activity alias
             if not new_activity["alias"].startswith("new-"):
                 new_activity["alias"] = "new-" + new_activity["alias"]
@@ -734,20 +734,20 @@ def main():
         help="Clear translation cache before running",
     )
     parser.add_argument(
-        "--add-old-prefix",
+        "--add-2025-suffix",
         action="store_true",
         help="Add '(2025)' suffix to pre-existing ingredients",
     )
     parser.add_argument(
-        "--remove-old-prefix",
+        "--remove-2025-suffix",
         action="store_true",
         help="Remove '(2025)' suffix from all ingredients",
     )
     args = parser.parse_args()
 
     # Validate mutually exclusive options
-    if args.add_old_prefix and args.remove_old_prefix:
-        parser.error("--add-old-prefix and --remove-old-prefix are mutually exclusive")
+    if args.add_2025_suffix and args.remove_2025_suffix:
+        parser.error("--add-2025-suffix and --remove-2025-suffix are mutually exclusive")
 
     # Validate --variant is required for metadata command
     if args.command == "metadata" and args.variant is None:
@@ -796,8 +796,8 @@ def main():
             merge_activities(
                 OUTPUT_JSON,
                 activities_path,
-                args.add_old_prefix,
-                args.remove_old_prefix,
+                args.add_2025_suffix,
+                args.remove_2025_suffix,
             )
             print(
                 "\nNext step: run 'just export-all' in ecobalyse-data to regenerate ingredients.json"
