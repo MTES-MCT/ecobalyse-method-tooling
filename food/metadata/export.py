@@ -473,7 +473,24 @@ def merge_activities(
     - remove_2025_suffix: Remove " (2025)" suffix from all ingredients
     """
     with open(new_activities_path) as f:
-        new_activities = json.load(f)
+        new_activities_raw = json.load(f)
+
+    # Consolidate activities with the same activityName
+    # (multiple ingredients may use the same underlying Agribalyse activity as proxy)
+    consolidated = {}
+    for activity in new_activities_raw:
+        activity_name = activity["activityName"]
+        if activity_name in consolidated:
+            # Add ingredients to existing activity
+            existing = consolidated[activity_name]
+            existing_ings = existing.get("metadata", {}).get("food", [])
+            new_ings = activity.get("metadata", {}).get("food", [])
+            existing_ings.extend(new_ings)
+        else:
+            consolidated[activity_name] = activity
+    new_activities = list(consolidated.values())
+    if len(new_activities) < len(new_activities_raw):
+        print(f"Consolidated {len(new_activities_raw)} activities into {len(new_activities)} (by activityName)")
 
     with open(target_activities_path) as f:
         existing_activities = json.load(f)
@@ -486,8 +503,32 @@ def merge_activities(
             keep_set = {line.strip() for line in f if line.strip()}
 
     # Separate activities with/without displayName (e.g. textile materials)
-    existing_by_display = {a["displayName"]: a for a in existing_activities if "displayName" in a}
+    existing_by_display = {}
     other_activities = [a for a in existing_activities if "displayName" not in a]
+
+    # Consolidate existing activities that share the same activityName
+    existing_by_activity_name = {}  # activityName -> displayName of first occurrence
+    for a in existing_activities:
+        if "displayName" not in a:
+            continue
+        act_name = a.get("activityName")
+        if act_name and act_name in existing_by_activity_name:
+            # Merge into the first activity with this activityName
+            target_display = existing_by_activity_name[act_name]
+            target = existing_by_display[target_display]
+            target_ings = target.get("metadata", {}).get("food", [])
+            existing_ing_names = {ing["displayName"] for ing in target_ings}
+            new_ings = [
+                ing for ing in a.get("metadata", {}).get("food", [])
+                if ing["displayName"] not in existing_ing_names
+            ]
+            target_ings.extend(new_ings)
+            if new_ings:
+                print(f"Pre-consolidated existing '{a['displayName']}' into '{target_display}' ({len(new_ings)} ingredients moved)")
+        else:
+            existing_by_display[a["displayName"]] = a
+            if act_name:
+                existing_by_activity_name[act_name] = a["displayName"]
 
     # Apply old suffix modifications to existing activities
     if add_2025_suffix:
@@ -530,22 +571,30 @@ def merge_activities(
     # Process new activities
     for new_activity in new_activities:
         display_name = new_activity["displayName"]
+        activity_name = new_activity.get("activityName")
+
+        # Check if an existing activity shares the same activityName
+        target_display_name = display_name
+        if activity_name in existing_by_activity_name and existing_by_activity_name[activity_name] != display_name:
+            target_display_name = existing_by_activity_name[activity_name]
+            print(f"Consolidating '{display_name}' into existing '{target_display_name}' (same activityName)")
 
         # Preserve activity UUID if it exists
-        if display_name in existing_by_display:
-            new_activity["id"] = existing_by_display[display_name]["id"]
+        if target_display_name in existing_by_display:
+            new_activity["id"] = existing_by_display[target_display_name]["id"]
 
         # Process ingredients
         new_ingredients = new_activity.get("metadata", {}).get("food", [])
 
         # Add "new-" prefix to aliases when add_2025_suffix is True
+        # (skip ingredients in keep_set — they replace the existing version as-is)
         if add_2025_suffix:
             # Add "new-" prefix to activity alias
             if not new_activity["alias"].startswith("new-"):
                 new_activity["alias"] = "new-" + new_activity["alias"]
             # Add "new-" prefix to ingredient aliases
             for new_ing in new_ingredients:
-                if not new_ing["alias"].startswith("new-"):
+                if new_ing["displayName"] not in keep_set and not new_ing["alias"].startswith("new-"):
                     new_ing["alias"] = "new-" + new_ing["alias"]
 
         for new_ing in new_ingredients:
@@ -558,7 +607,7 @@ def merge_activities(
 
                 # Mark for removal from old activity (if different)
                 old_activity_display_name = existing_entry["activity_display_name"]
-                if old_activity_display_name != display_name:
+                if old_activity_display_name != target_display_name:
                     if old_activity_display_name not in ingredients_to_remove:
                         ingredients_to_remove[old_activity_display_name] = set()
                     ingredients_to_remove[old_activity_display_name].add(ing_display_name)
@@ -566,23 +615,33 @@ def merge_activities(
             # Update global index to point to new location
             global_ingredients[ing_display_name] = {
                 "ingredient": new_ing,
-                "activity_display_name": display_name,
+                "activity_display_name": target_display_name,
             }
 
-        # Update activity in index
-        if display_name in existing_by_display:
+        # Update activity in index using target_display_name
+        if target_display_name in existing_by_display:
             # Merge ingredients: keep existing ones not in new, add all new ones
-            existing_activity = existing_by_display[display_name]
+            existing_activity = existing_by_display[target_display_name]
             existing_ings = existing_activity.get("metadata", {}).get("food", [])
-            new_ing_names = {ing["displayName"] for ing in new_ingredients}
+            new_ing_names = set()
+            for ing in new_ingredients:
+                new_ing_names.add(ing["displayName"])
+                if not add_2025_suffix:
+                    # Also match the (2025)-suffixed version for idempotency
+                    # (but not with --add-2025-suffix where both versions should coexist)
+                    new_ing_names.add(ing["displayName"] + " (2025)")
             # Keep existing ingredients that aren't being replaced
             kept_ings = [ing for ing in existing_ings if ing["displayName"] not in new_ing_names]
             # Combine: kept existing + new
             merged_ings = kept_ings + new_ingredients
-            new_activity["metadata"]["food"] = merged_ings
+            existing_activity["metadata"]["food"] = merged_ings
             if kept_ings:
-                print(f"Merged activity '{display_name}': kept {len(kept_ings)} existing + {len(new_ingredients)} new ingredients")
-        existing_by_display[display_name] = new_activity
+                print(f"Merged activity '{target_display_name}': kept {len(kept_ings)} existing + {len(new_ingredients)} new ingredients")
+        else:
+            existing_by_display[target_display_name] = new_activity
+        # Update activityName index
+        if activity_name:
+            existing_by_activity_name[activity_name] = target_display_name
 
     # Remove moved ingredients from old activities
     for activity_display_name, ing_display_names in ingredients_to_remove.items():
