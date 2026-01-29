@@ -21,6 +21,7 @@ import csv
 import json
 import os
 import re
+import shutil
 import uuid
 from enum import Enum
 from pathlib import Path
@@ -681,8 +682,11 @@ def generate_final_data():
     print(f"Loading {INPUT_CSV}...")
     source_df = pd.read_csv(INPUT_CSV)
 
+    ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
+    ECOBALYSE = Path(os.environ["ECOBALYSE"])
+
     # Load processes_impacts.json - key by activityName for direct matching
-    processes_path = Path(os.environ["PROCESSES"])
+    processes_path = ECOBALYSE_DATA / "public/data/processes_impacts.json"
     print(f"Loading {processes_path}...")
     with open(processes_path) as f:
         processes_list = json.load(f)
@@ -696,7 +700,7 @@ def generate_final_data():
     activities_by_name = {a["activityName"]: a for a in new_activities}
 
     # Load ingredients.json to get ecosystemicServices
-    ingredients_path = Path(os.environ["INGREDIENTS"])
+    ingredients_path = ECOBALYSE / "public/data/food/ingredients.json"
     print(f"Loading {ingredients_path}...")
     with open(ingredients_path) as f:
         ingredients_list = json.load(f)
@@ -820,8 +824,11 @@ def main():
         Predictor.clear_translation_cache()
         print("Translation cache cleared")
 
+    ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
+    ECOBALYSE = Path(os.environ["ECOBALYSE"])
+
     # Load training data
-    ingredients_path = Path(os.environ["INGREDIENTS"])
+    ingredients_path = ECOBALYSE / "public/data/food/ingredients.json"
     print(f"Loading training data from {ingredients_path}...")
     with open(ingredients_path) as f:
         training_data = json.load(f)
@@ -847,22 +854,29 @@ def main():
     write_csv(results, OUTPUT_CSV)
     write_json(results, OUTPUT_JSON)
 
-    # Merge into activities.json if configured
-    activities_path = os.environ.get("ACTIVITIES")
-    if activities_path:
-        activities_path = Path(activities_path)
-        if activities_path.exists():
-            merge_activities(
-                OUTPUT_JSON,
-                activities_path,
-                args.add_2025_suffix,
-                args.remove_2025_suffix,
-            )
-            print(
-                "\nNext step: run 'just export-all' in ecobalyse-data to regenerate ingredients.json"
-            )
-        else:
-            print(f"\nWarning: ACTIVITIES path does not exist: {activities_path}")
+    # Merge into activities.json
+    activities_path = ECOBALYSE_DATA / "activities.json"
+    if activities_path.exists():
+        merge_activities(
+            OUTPUT_JSON,
+            activities_path,
+            args.add_2025_suffix,
+            args.remove_2025_suffix,
+        )
+
+        # Copy reference CSVs to ecobalyse-data
+        ref_src = Path(__file__).parent / "reference"
+        ref_dst = ECOBALYSE_DATA / "food/metadata"
+        ref_dst.mkdir(parents=True, exist_ok=True)
+        for csv_file in sorted(ref_src.glob("*.csv")):
+            shutil.copy2(csv_file, ref_dst / csv_file.name)
+        print(f"Copied reference files to {ref_dst}")
+
+        print(
+            "\nNext step: run 'just export-all' in ecobalyse-data to regenerate ingredients.json"
+        )
+    else:
+        print(f"\nWarning: ACTIVITIES path does not exist: {activities_path}")
 
     print("\nDone!")
 
