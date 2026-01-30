@@ -471,10 +471,11 @@ def extract_activities_and_ingredients(
     new_prefix: str,
 ) -> tuple[dict[str, dict], dict[str, dict], list[dict]]:
     """Extract and normalize flat dicts from nested activities.json.
-    Consolidates by activityName. Deduplicates ingredients by id (last wins).
+    Consolidates by activityName. Deduplicates ingredients by displayName (last wins).
     """
     activities, ingredients, other = {}, {}, []
     by_activity_name = {}
+    ing_id_by_display = {}  # displayName -> id, to deduplicate across different ids
 
     for a in activities_list:
         if "displayName" not in a:
@@ -498,6 +499,11 @@ def extract_activities_and_ingredients(
                 ing["displayName"], old_suffix
             )
             ing["alias"] = normalize_alias(ing.get("alias", ""), new_prefix)
+            display = ing["displayName"]
+            # Remove previous entry with same displayName but different id
+            if display in ing_id_by_display and ing_id_by_display[display] != ing["id"]:
+                ingredients.pop(ing_id_by_display[display], None)
+            ing_id_by_display[display] = ing["id"]
             ingredients[ing["id"]] = ing
 
     return activities, ingredients, other
@@ -594,6 +600,12 @@ def merge_activities(
 
     # Merge: new overrides existing
     merged_acts = {**existing_acts, **new_acts}
+    # Deduplicate ingredients by displayName across files (new wins)
+    existing_by_display = {ing["displayName"]: iid for iid, ing in existing_ings.items()}
+    for ing in new_ings.values():
+        old_id = existing_by_display.get(ing["displayName"])
+        if old_id and old_id != ing["id"]:
+            existing_ings.pop(old_id, None)
     merged_ings = {**existing_ings, **new_ings}
 
     # Apply suffix logic
