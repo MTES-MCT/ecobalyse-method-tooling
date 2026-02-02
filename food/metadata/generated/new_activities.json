@@ -1,19 +1,19 @@
 [
   {
     "activityName": "Almonds, in shell, at farm {CN} - Adapted from WFLDB U",
-    "alias": "amandes-en-coquille-fr",
+    "alias": "almonds-in-shell-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Amandes en coquille FR",
-    "id": "5eeb10eb-8069-5b0f-aadc-d68c0175d21f",
+    "id": "5f29f62d-78b1-50cd-a109-6c3ed1804a85",
     "metadata": {
       "food": [
         {
-          "alias": "amandes-en-coquille-fr",
+          "alias": "almonds-in-shell-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Amandes en coquille FR",
-          "id": "5a9ee11a-8a87-5af3-9116-7eb839ab9f3d",
+          "id": "732d5150-b572-5ba4-aeb3-c715e2babb57",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "with shell keyword found in Almonds, in shell",
@@ -41,7 +41,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "nut default",
+            "rule": "matched 'almond' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -55,19 +55,19 @@
   },
   {
     "activityName": "Durum wheat grain, conventional, national average, at farm gate {FR} U",
-    "alias": "amarante-fr",
+    "alias": "amaranth-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Amarante FR",
-    "id": "13d1c4ec-7f1f-5de4-8d70-282799b695af",
+    "id": "c5b42016-d701-541a-b65d-214f12a5c946",
     "metadata": {
       "food": [
         {
-          "alias": "amarante-fr",
+          "alias": "amaranth-fr",
           "defaultOrigin": "France",
           "displayName": "Amarante FR",
-          "id": "0412f66f-64a3-56c5-9f7d-b350d2dc8914",
+          "id": "29794e32-f506-59a5-a8cd-4cdf16d7048d",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -93,9 +93,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "BLE TENDRE",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "wheat/flour pattern",
+            "rule": "matched 'chicorée à inuline' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -109,19 +109,19 @@
   },
   {
     "activityName": "Apple, conventional, national average, at orchard {FR} U",
-    "alias": "pomme-fr",
+    "alias": "apple-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pomme FR",
-    "id": "d2106f1e-191f-5ba4-9dcf-8742a6e0d5cc",
+    "id": "660030f4-4d5a-5ea9-b02c-5bf1a104dadb",
     "metadata": {
       "food": [
         {
-          "alias": "pomme-fr",
+          "alias": "apple-fr",
           "defaultOrigin": "France",
           "displayName": "Pomme FR",
-          "id": "cd3e8e4f-7281-551b-9a25-9b8bd617d210",
+          "id": "4a0f5cda-7428-580a-9af2-d7b67ef6ef02",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Apple in agb_inedible.csv",
@@ -149,7 +149,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'apple' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -163,19 +163,19 @@
   },
   {
     "activityName": "Apricot, conventional, national average, at orchard {FR} U",
-    "alias": "abricot-fr",
+    "alias": "apricots-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Abricot FR",
-    "id": "addf4ee7-d9e5-5332-826f-c93e5df59084",
+    "id": "27963cf9-10af-5456-9a28-96a33fa1ea5c",
     "metadata": {
       "food": [
         {
-          "alias": "abricot-fr",
+          "alias": "apricots-fr",
           "defaultOrigin": "France",
           "displayName": "Abricot FR",
-          "id": "5d5ce407-6a61-51f3-9867-e3ccad51c483",
+          "id": "a680757b-a909-51a5-b42d-a0d27f0a9816",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Apricot in agb_inedible.csv",
@@ -217,19 +217,19 @@
   },
   {
     "activityName": "White asparagus {FR}| white asparagus production | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "asperge-fr",
+    "alias": "asparagus-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Asperge FR",
-    "id": "79f8ac09-8e20-56d8-a652-9e33a6cd8076",
+    "id": "292e6a05-0265-53c1-87a0-fe1ba0469d34",
     "metadata": {
       "food": [
         {
-          "alias": "asperge-fr",
+          "alias": "asparagus-fr",
           "defaultOrigin": "France",
           "displayName": "Asperge FR",
-          "id": "bd864adc-6ffa-5b73-bd61-7e0eb462c0a3",
+          "id": "99549acf-9987-59a9-b5de-98b5b1dd830a",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "Matched with Asparagus in agb_inedible.csv",
@@ -257,7 +257,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'carrot' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -271,19 +271,19 @@
   },
   {
     "activityName": "Banana, mixed production, West Indies, at farm gate {WI} U",
-    "alias": "banane-fr",
+    "alias": "banana-fr-overseas",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Banane FR",
-    "id": "a9b46625-746a-571f-bf3f-ff0b91496921",
+    "displayName": "Banane FR Outre-Mer",
+    "id": "05798cff-3090-5a2b-bf1f-636d61fc70c7",
     "metadata": {
       "food": [
         {
-          "alias": "banane-fr",
+          "alias": "banana-fr-overseas",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Banane FR",
-          "id": "fa6f1d23-0787-5488-9fb6-e14b1ccafb28",
+          "displayName": "Banane FR Outre-Mer",
+          "id": "ed59e002-178b-5132-9df5-6883261dfa1c",
           "inediblePart": 0.3,
           "inediblePartMatch": {
             "rule": "Matched with Banana in agb_inedible.csv",
@@ -309,9 +309,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "ARBORICULTURE",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'banana' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -325,19 +325,19 @@
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "feuilles-de-laurier-fr",
+    "alias": "bay-leaves-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Feuilles de laurier FR",
-    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
+    "id": "32e87acc-19ec-5c76-98c6-68a37ff0183e",
     "metadata": {
       "food": [
         {
-          "alias": "feuilles-de-laurier-fr",
+          "alias": "bay-leaves-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Feuilles de laurier FR",
-          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
+          "id": "a7984dfe-8c9d-5880-9122-ae277de30640",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Mint in agb_inedible.csv",
@@ -379,19 +379,19 @@
   },
   {
     "activityName": "Beetroot for juice, conventional, at farm gate {FR} U",
-    "alias": "betterave-fr",
+    "alias": "beetroot-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Betterave FR",
-    "id": "f1aafaac-2682-5681-822f-0f788f1aef92",
+    "id": "aa3256c1-36e1-50f6-9034-4811203014d6",
     "metadata": {
       "food": [
         {
-          "alias": "betterave-fr",
+          "alias": "beetroot-fr",
           "defaultOrigin": "France",
           "displayName": "Betterave FR",
-          "id": "02da0d24-5977-5c09-8fd2-574c9db89cf3",
+          "id": "02106d98-e7e7-5884-905e-fc6d194c4fdb",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Beetroots in agb_inedible.csv",
@@ -417,9 +417,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'beetroot' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -433,19 +433,19 @@
   },
   {
     "activityName": "Bell pepper {FR}| bell pepper production, in unheated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "poivron-vert-jaune-ou-rouge-fr",
+    "alias": "bell-pepper-green-yellow-or-red-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Poivron, vert, jaune ou rouge FR",
-    "id": "0cd7b5ec-c78d-5aef-b4fc-feafd18167e4",
+    "id": "39a7921d-5273-5afb-9403-adf080a32780",
     "metadata": {
       "food": [
         {
-          "alias": "poivron-vert-jaune-ou-rouge-fr",
+          "alias": "bell-pepper-green-yellow-or-red-fr",
           "defaultOrigin": "France",
           "displayName": "Poivron, vert, jaune ou rouge FR",
-          "id": "3339a5d2-f355-560a-b0e6-fa6eba1b64ab",
+          "id": "835930b4-a388-588f-aff2-bc7cbe2a17eb",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Peppers in agb_inedible.csv",
@@ -473,7 +473,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'bell pepper' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -487,19 +487,19 @@
   },
   {
     "activityName": "Strawberry, conventional, national average, at farm gate {FR} U",
-    "alias": "cassis-fr",
+    "alias": "black-currant-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Cassis FR",
-    "id": "084cc43d-117e-5054-bb8f-0ee6dd54c559",
+    "id": "6f6ab521-c7d4-58f9-b051-2b7cd11be4b4",
     "metadata": {
       "food": [
         {
-          "alias": "cassis-fr",
+          "alias": "black-currant-fr",
           "defaultOrigin": "France",
           "displayName": "Cassis FR",
-          "id": "0ca33764-9f94-541e-afc5-4917d62bec37",
+          "id": "b82105f7-7b1c-59e5-93e4-4dede0bfb07a",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Currant in agb_inedible.csv",
@@ -541,19 +541,19 @@
   },
   {
     "activityName": "Blueberry, at farm {CA} - Adapted from WFLDB U",
-    "alias": "myrtille-fr",
+    "alias": "blueberry-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Myrtille FR",
-    "id": "5ce5e418-7672-5c55-96e6-1091b801e202",
+    "id": "47cf10fc-851d-5814-bd7d-09a0916d2a01",
     "metadata": {
       "food": [
         {
-          "alias": "myrtille-fr",
+          "alias": "blueberry-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Myrtille FR",
-          "id": "098f0a17-e943-53a4-b4e8-dc93313d078f",
+          "id": "19722e73-15d3-506f-a171-f1e723775eae",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Blueberries in agb_inedible.csv",
@@ -595,19 +595,19 @@
   },
   {
     "activityName": "Mango, conventional, Val de San Francisco, at orchard {BR} U",
-    "alias": "fruit-pain-fr",
+    "alias": "breadfruit-fr-overseas",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Fruit à pain FR",
-    "id": "927e2082-399d-540d-baba-1c0339745a6b",
+    "displayName": "Fruit à pain FR Outre-Mer",
+    "id": "b03b4854-6e20-5fbb-9ef0-88ed6cf0da15",
     "metadata": {
       "food": [
         {
-          "alias": "fruit-pain-fr",
+          "alias": "breadfruit-fr-overseas",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Fruit à pain FR",
-          "id": "e860cff8-da06-5fa5-9608-c3b4e91197e2",
+          "displayName": "Fruit à pain FR Outre-Mer",
+          "id": "5912afe2-4eaf-5676-b83e-8635066f8359",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Mango in agb_inedible.csv",
@@ -649,19 +649,19 @@
   },
   {
     "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "fve-fr",
+    "alias": "broad-bean-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Fève FR",
-    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
+    "id": "8eb0d005-8bff-5d1b-ab96-a863be0f44d3",
     "metadata": {
       "food": [
         {
-          "alias": "fve-fr",
+          "alias": "broad-bean-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Fève FR",
-          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
+          "id": "a8b7b3f3-6ec1-529c-89a7-6cbfb153c7d8",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -687,9 +687,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMINEUSES A GRAIN",
+          "cropGroup": "PROTEAGINEUX",
           "cropGroupMatch": {
-            "rule": "legume pattern",
+            "rule": "matched 'broad bean' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -703,19 +703,19 @@
   },
   {
     "activityName": "Broccoli {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "brocoli-fr",
+    "alias": "broccoli-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Brocoli FR",
-    "id": "862e1e69-5e81-59aa-aeb4-0565621f7c09",
+    "id": "4d5e0a31-3f73-5957-87eb-1d2a6b7c7ca5",
     "metadata": {
       "food": [
         {
-          "alias": "brocoli-fr",
+          "alias": "broccoli-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Brocoli FR",
-          "id": "1b7da44d-8296-5748-8efe-78c2e792068b",
+          "id": "c130b70f-7791-5b6c-a80d-93f7cd9866ff",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Broccoli in agb_inedible.csv",
@@ -757,19 +757,19 @@
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "chou-de-bruxelles-fr",
+    "alias": "brussels-sprout-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Chou de Bruxelles FR",
-    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
+    "id": "d156f6e7-3287-5c34-a254-30bd040a72ae",
     "metadata": {
       "food": [
         {
-          "alias": "chou-de-bruxelles-fr",
+          "alias": "brussels-sprout-fr",
           "defaultOrigin": "France",
           "displayName": "Chou de Bruxelles FR",
-          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
+          "id": "8fc6fb30-e27f-5c02-90dd-9843da296055",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Brussels sprout in agb_inedible.csv",
@@ -795,9 +795,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'soybean' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -811,19 +811,19 @@
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
-    "alias": "carottes-fr",
+    "alias": "carrots-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Carottes FR",
-    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
+    "id": "fe384e82-6e85-5b9d-8afa-c18b08de4909",
     "metadata": {
       "food": [
         {
-          "alias": "carottes-fr",
+          "alias": "carrots-fr",
           "defaultOrigin": "France",
           "displayName": "Carottes FR",
-          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
+          "id": "bdae4e7c-3215-53b7-9e30-65e16253a0a3",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Carrots in agb_inedible.csv",
@@ -865,19 +865,19 @@
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "chou-fleur-fr",
+    "alias": "cauliflower-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Chou-fleur FR",
-    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
+    "id": "afef1d48-7932-564a-967c-b7235e7bd427",
     "metadata": {
       "food": [
         {
-          "alias": "chou-fleur-fr",
+          "alias": "cauliflower-fr",
           "defaultOrigin": "France",
           "displayName": "Chou-fleur FR",
-          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
+          "id": "3e68bade-67f1-5264-9cde-c1b390f1d0c6",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cauliflower in agb_inedible.csv",
@@ -905,7 +905,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'chou-fleur' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -919,19 +919,19 @@
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
-    "alias": "cleri-rave-fr",
+    "alias": "celeriac-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Céleri-rave FR",
-    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
+    "id": "b3377bf5-d06d-5641-a573-e9a12771dc26",
     "metadata": {
       "food": [
         {
-          "alias": "cleri-rave-fr",
+          "alias": "celeriac-fr",
           "defaultOrigin": "France",
           "displayName": "Céleri-rave FR",
-          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
+          "id": "1b9c6807-08a8-54b5-8500-dcc51efee1f0",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Celeriac in agb_inedible.csv",
@@ -957,9 +957,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'soybean' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -973,19 +973,19 @@
   },
   {
     "activityName": "Celery {GLO}| 675 production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "cleri-fr",
+    "alias": "celery-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Céleri FR",
-    "id": "24fa5b39-117a-5b47-8f9c-4c8b93ed2240",
+    "id": "450243af-ab2f-5b84-a5b1-a438607e98d6",
     "metadata": {
       "food": [
         {
-          "alias": "cleri-fr",
+          "alias": "celery-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Céleri FR",
-          "id": "47eba85d-60ea-542a-9547-a8e706ac29b6",
+          "id": "0a65872d-3305-5755-8059-3ea0f577e86a",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Celery in agb_inedible.csv",
@@ -1027,19 +1027,19 @@
   },
   {
     "activityName": "Cherry, conventional, national average, at orchard {FR} U",
-    "alias": "cerise-fr",
+    "alias": "cherry-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Cerise FR",
-    "id": "12038cc6-06bf-5520-af7f-017d0974aef6",
+    "id": "ff65f4bc-ba46-5ae0-a8fa-f032058ff3d3",
     "metadata": {
       "food": [
         {
-          "alias": "cerise-fr",
+          "alias": "cherry-fr",
           "defaultOrigin": "France",
           "displayName": "Cerise FR",
-          "id": "d6051468-e7b3-59a3-8064-04d5a35713d2",
+          "id": "28b90140-88e1-5135-8be7-437dcbed9b19",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cherry in agb_inedible.csv",
@@ -1081,19 +1081,19 @@
   },
   {
     "activityName": "Tomato, medium size, conventional, soil based, non-heated greenhouse, at greenhouse {FR} U",
-    "alias": "tomates-cerises-fr",
+    "alias": "cherry-tomato-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Tomates cerises FR",
-    "id": "2ea07f0e-de31-581e-b852-6f031d4dd862",
+    "id": "92f2dd3d-5a46-5227-ac36-2393292efd45",
     "metadata": {
       "food": [
         {
-          "alias": "tomates-cerises-fr",
+          "alias": "cherry-tomato-fr",
           "defaultOrigin": "France",
           "displayName": "Tomates cerises FR",
-          "id": "a5a41d4b-f32c-5db1-bfa3-f546a353f8a6",
+          "id": "4f9c7d93-2258-5e4a-8075-c5f0015e823b",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Tomatoes in agb_inedible.csv",
@@ -1121,7 +1121,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'tomato' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1135,19 +1135,19 @@
   },
   {
     "activityName": "Walnut, dried inshell, conventional, national average, at farm gate {FR} U",
-    "alias": "chtaigne-fr",
+    "alias": "chestnut-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Châtaigne FR",
-    "id": "c815d273-6106-56d8-af79-e3c0d97a560a",
+    "id": "a44d4b99-22cd-578b-90bf-98451d0e899a",
     "metadata": {
       "food": [
         {
-          "alias": "chtaigne-fr",
+          "alias": "chestnut-fr",
           "defaultOrigin": "France",
           "displayName": "Châtaigne FR",
-          "id": "16ea752c-a21e-5ad2-9cfc-971e2e057948",
+          "id": "dec29776-2b90-5238-9ebc-ebc924c70bd4",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Walnuts in agb_inedible.csv",
@@ -1189,19 +1189,19 @@
   },
   {
     "activityName": "Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "graines-de-chia-fr",
+    "alias": "chia-seed-dried-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Graines de chia FR",
-    "id": "3b61f523-d57b-5f04-82a1-51909db94f73",
+    "id": "bc1ad095-db0a-5389-a97a-a5406236da97",
     "metadata": {
       "food": [
         {
-          "alias": "graines-de-chia-fr",
+          "alias": "chia-seed-dried-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Graines de chia FR",
-          "id": "0b0dde87-6d84-56cb-92a5-fe028432357e",
+          "id": "b0428172-de77-5feb-a486-187a9f8a96c6",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -1227,9 +1227,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "SEMENCES",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'semences epeautre' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1243,19 +1243,19 @@
   },
   {
     "activityName": "Chickpea seed, organic, at farm gate {FR} U",
-    "alias": "pois-chiches-fr",
+    "alias": "chickpeas-dried-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pois chiches FR",
-    "id": "f032d4fe-4eef-5bab-a1ae-86fcc62138b2",
+    "id": "911fb4f9-0b9e-5730-b093-778bc6e5af1e",
     "metadata": {
       "food": [
         {
-          "alias": "pois-chiches-fr",
+          "alias": "chickpeas-dried-fr",
           "defaultOrigin": "France",
           "displayName": "Pois chiches FR",
-          "id": "66b8218a-57df-5ba7-a7f3-b1fefb793f68",
+          "id": "e1abc8f3-a037-53c1-8c1f-cc0cb45c098a",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -1284,7 +1284,7 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "legume pattern",
+            "rule": "matched 'chickpea' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1298,19 +1298,19 @@
   },
   {
     "activityName": "Chicory roots, conventional, at farm gate {FR} U",
-    "alias": "racine-de-chicore-fr",
+    "alias": "chicory-root-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Racine de chicorée FR",
-    "id": "f33cdc81-c285-5289-b4e6-9a62ac62f365",
+    "id": "6413fe1d-c1d1-50de-8c93-fa65dcc5e067",
     "metadata": {
       "food": [
         {
-          "alias": "racine-de-chicore-fr",
+          "alias": "chicory-root-fr",
           "defaultOrigin": "France",
           "displayName": "Racine de chicorée FR",
-          "id": "461607c1-60a9-5954-81fb-2a218fb42495",
+          "id": "980571f0-c174-5822-a5bd-94d0d7ae47a6",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Chicory in agb_inedible.csv",
@@ -1336,9 +1336,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'chicory' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1352,19 +1352,19 @@
   },
   {
     "activityName": "Bell pepper {FR}| bell pepper production, in unheated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "piment-fr",
+    "alias": "chili-peppers-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Piment FR",
-    "id": "0cd7b5ec-c78d-5aef-b4fc-feafd18167e4",
+    "id": "1c7a5ab5-1cb1-5664-83c4-79c6cedf1791",
     "metadata": {
       "food": [
         {
-          "alias": "piment-fr",
+          "alias": "chili-peppers-fr",
           "defaultOrigin": "France",
           "displayName": "Piment FR",
-          "id": "3339a5d2-f355-560a-b0e6-fa6eba1b64ab",
+          "id": "56ad04c8-9dd7-5b3c-966f-446f6f88a5d2",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Peppers in agb_inedible.csv",
@@ -1373,26 +1373,26 @@
           "ingredientCategories": [
             "vegetable_fresh"
           ],
-          "ingredientDensity": 0.85,
+          "ingredientDensity": 0.9,
           "ingredientDensityMatch": {
-            "rule": "fruit default from food_type_density.csv",
+            "rule": "vegetable default from food_type_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "fruit default from food_type_cooked_to_raw.csv",
+            "rule": "vegetable default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "fruit NOVA 1 → always (perishable)",
+            "rule": "vegetable NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'chili pepper' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1406,19 +1406,19 @@
   },
   {
     "activityName": "Onion, conventional, national average, at farm {FR} U",
-    "alias": "ciboulette-fr",
+    "alias": "chive-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Ciboulette FR",
-    "id": "7af8af5a-06e5-53e9-8645-b1897c0dc91b",
+    "id": "55aea170-b0f4-5ef7-adea-4b0a65890beb",
     "metadata": {
       "food": [
         {
-          "alias": "ciboulette-fr",
+          "alias": "chive-fr",
           "defaultOrigin": "France",
           "displayName": "Ciboulette FR",
-          "id": "0a74e485-a34a-5472-9c74-c04a8ba74f21",
+          "id": "428ba132-7f01-5494-bf08-b1057dd6aaa8",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Onions in agb_inedible.csv",
@@ -1460,19 +1460,19 @@
   },
   {
     "activityName": "Clementine, export quality, Souss, at orchard {MA} U",
-    "alias": "clmentine-fr",
+    "alias": "clementine-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Clémentine FR",
-    "id": "85a7e85f-3744-56a3-96ad-37e762e6dad2",
+    "id": "cec28f2d-be7a-53cd-a803-4656bfdc375d",
     "metadata": {
       "food": [
         {
-          "alias": "clmentine-fr",
+          "alias": "clementine-fr",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Clémentine FR",
-          "id": "6b46a367-cbbb-5542-a2e6-b2b7504f80f5",
+          "id": "51449c25-4b72-5a49-b86a-d46d296bd47b",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -1514,19 +1514,19 @@
   },
   {
     "activityName": "Coconut, dehusked {ID}| coconut production, dehusked | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "noix-de-coco-dcortique-fr",
+    "alias": "coconut-dehusked-fr-overseas",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Noix de coco décortiquée FR",
-    "id": "a381a502-494a-5dc9-ba80-5dc00d3da859",
+    "displayName": "Noix de coco décortiquée FR Outre-Mer",
+    "id": "165ee2e7-f4a7-556b-a965-32c7ae320c53",
     "metadata": {
       "food": [
         {
-          "alias": "noix-de-coco-dcortique-fr",
+          "alias": "coconut-dehusked-fr-overseas",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Noix de coco décortiquée FR",
-          "id": "0bb3b1e6-628b-5f68-8081-fbed3ca5bc29",
+          "displayName": "Noix de coco décortiquée FR Outre-Mer",
+          "id": "79109cbe-e78f-5c83-8140-169b550bf068",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -1568,19 +1568,19 @@
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "coriandre-fr",
+    "alias": "coriander-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Coriandre FR",
-    "id": "1670c7c9-6d85-523a-951a-c1634b746153",
+    "id": "3e78b7a9-0eac-5383-b019-121b8abc5bf6",
     "metadata": {
       "food": [
         {
-          "alias": "coriandre-fr",
+          "alias": "coriander-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Coriandre FR",
-          "id": "31c745d3-b6f1-501a-b9ed-adefa505469a",
+          "id": "c1e011cb-7b76-566c-a64b-8a7f9bbb97b2",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Coriander in agb_inedible.csv",
@@ -1606,9 +1606,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "spice_condiment default",
+            "rule": "matched 'coriander' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1622,19 +1622,19 @@
   },
   {
     "activityName": "Maize grain, conventional, 28% moisture, national average, animal feed, at farm gate {FR} U",
-    "alias": "mas-fr",
+    "alias": "corn-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Maïs FR",
-    "id": "b76b41b6-38cb-55b2-88f5-65b62f7331f3",
+    "id": "dd07df76-bbf8-5ed0-b7f0-7cfd01127ef2",
     "metadata": {
       "food": [
         {
-          "alias": "mas-fr",
+          "alias": "corn-fr",
           "defaultOrigin": "France",
           "displayName": "Maïs FR",
-          "id": "2a77fa5a-e875-533c-9ad6-90c38f0aee84",
+          "id": "2d48fa6b-180f-59f8-9b08-c2d3663fec10",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -1662,7 +1662,7 @@
           "visible": true,
           "cropGroup": "MAIS GRAIN ET ENSILAGE",
           "cropGroupMatch": {
-            "rule": "corn pattern",
+            "rule": "matched 'corn' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1676,19 +1676,19 @@
   },
   {
     "activityName": "Cow milk, conventional, national average, at farm gate {FR} U",
-    "alias": "lait-de-vache-fr",
+    "alias": "cow-milk-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Lait de vache FR",
-    "id": "16943989-15b9-534b-aaf2-7b5602fbf5c6",
+    "id": "a1c17e12-7951-5d37-b55d-95518107d72f",
     "metadata": {
       "food": [
         {
-          "alias": "lait-de-vache-fr",
+          "alias": "cow-milk-fr",
           "defaultOrigin": "France",
           "displayName": "Lait de vache FR",
-          "id": "402c5f9c-5ff6-54b7-914a-cca35840d33a",
+          "id": "b757094f-7cb1-58ea-9d3d-b6d7e0e0d471",
           "inediblePart": 0.05,
           "inediblePartMatch": {
             "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
@@ -1728,19 +1728,19 @@
   },
   {
     "activityName": "Cranberry, at farm {CL} - Adapted from WFLDB U",
-    "alias": "canneberge-fr",
+    "alias": "cranberry-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Canneberge FR",
-    "id": "d8d07fe6-9214-55cc-a269-5351f0f66ff9",
+    "id": "6c1700db-d7ef-5307-933d-8dc73b6fcc94",
     "metadata": {
       "food": [
         {
-          "alias": "canneberge-fr",
+          "alias": "cranberry-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Canneberge FR",
-          "id": "7fa53757-c0e5-506d-985f-e73db4d067d0",
+          "id": "7caede7e-3d4f-5c6a-b90c-d85f0f3c3e0d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -1782,19 +1782,19 @@
   },
   {
     "activityName": "Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "concombre-fr",
+    "alias": "cucumber-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Concombre FR",
-    "id": "19b8300a-e1d9-5bb6-8cd1-526fbc6fd0c3",
+    "id": "cd3c0c6e-38bb-5f9c-a75c-7453d5c273e0",
     "metadata": {
       "food": [
         {
-          "alias": "concombre-fr",
+          "alias": "cucumber-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Concombre FR",
-          "id": "37c5d6f1-9e5f-57a0-b5bf-9e53bfced56d",
+          "id": "4a99833f-f8f7-5d11-9ec8-bd997ab09158",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Cucumbers in agb_inedible.csv",
@@ -1806,60 +1806,6 @@
           "ingredientDensity": 1.0,
           "ingredientDensityMatch": {
             "rule": "cucumber found in density.csv",
-            "confidence": 1.0
-          },
-          "rawToCookedRatio": 0.856,
-          "rawToCookedRatioMatch": {
-            "rule": "fruit default from food_type_cooked_to_raw.csv",
-            "confidence": 1.0
-          },
-          "scenario": "reference",
-          "transportCooling": "always",
-          "transportCoolingMatch": {
-            "rule": "fruit NOVA 1 → always (perishable)",
-            "confidence": 1.0
-          },
-          "visible": true,
-          "cropGroup": "VERGERS",
-          "cropGroupMatch": {
-            "rule": "fruit default",
-            "confidence": 1.0
-          }
-        }
-      ]
-    },
-    "scopes": [
-      "food"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "graines-de-cucurbitaces-fr",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Graines de Cucurbitacées FR",
-    "id": "3b61f523-d57b-5f04-82a1-51909db94f73",
-    "metadata": {
-      "food": [
-        {
-          "alias": "graines-de-cucurbitaces-fr",
-          "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Graines de Cucurbitacées FR",
-          "id": "0b0dde87-6d84-56cb-92a5-fe028432357e",
-          "inediblePart": 0.2,
-          "inediblePartMatch": {
-            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-            "confidence": 1.0
-          },
-          "ingredientCategories": [
-            "vegetable_fresh"
-          ],
-          "ingredientDensity": 0.9,
-          "ingredientDensityMatch": {
-            "rule": "vegetable default from food_type_density.csv",
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
@@ -1876,7 +1822,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'cucumber' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1890,19 +1836,19 @@
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "aneth-frais-fr",
+    "alias": "dill-fresh-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Aneth, frais FR",
-    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
+    "id": "3a7bd094-bcc8-5a16-a1a8-cbb618ece5d7",
     "metadata": {
       "food": [
         {
-          "alias": "aneth-frais-fr",
+          "alias": "dill-fresh-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Aneth, frais FR",
-          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
+          "id": "2be86df2-76cd-5cea-8f9b-73e46fe5e1dd",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Mint in agb_inedible.csv",
@@ -1944,19 +1890,19 @@
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "herbes-sches-marjolaine-origan-sarriette-thym-basilic-romarin-sauge-fr",
+    "alias": "dried-herbs-marjoram-oregano-savory-thyme-basil-rosemary-sage-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) FR",
-    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
+    "id": "ab307043-6b08-578b-b2bd-7633eb9a6f9d",
     "metadata": {
       "food": [
         {
-          "alias": "herbes-sches-marjolaine-origan-sarriette-thym-basilic-romarin-sauge-fr",
+          "alias": "dried-herbs-marjoram-oregano-savory-thyme-basil-rosemary-sage-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) FR",
-          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
+          "id": "311a8023-5db1-5594-91ac-6f350740a538",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Mint in agb_inedible.csv",
@@ -1982,9 +1928,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "spice_condiment default",
+            "rule": "matched 'rosemary' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -1998,19 +1944,19 @@
   },
   {
     "activityName": "Durum wheat grain, conventional, national average, at farm gate {FR} U",
-    "alias": "bl-dur-fr",
+    "alias": "durum-wheat-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Blé dur FR",
-    "id": "13d1c4ec-7f1f-5de4-8d70-282799b695af",
+    "id": "b0d19e84-316a-5b0f-ae2d-8200011725c8",
     "metadata": {
       "food": [
         {
-          "alias": "bl-dur-fr",
+          "alias": "durum-wheat-fr",
           "defaultOrigin": "France",
           "displayName": "Blé dur FR",
-          "id": "0412f66f-64a3-56c5-9f7d-b350d2dc8914",
+          "id": "8649256a-41b6-53fc-910a-29bf0ae9476a",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -2052,19 +1998,19 @@
   },
   {
     "activityName": "Egg, conventionnal, national average, at farm gate {FR} U",
-    "alias": "uf-fr",
+    "alias": "egg-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Œuf FR",
-    "id": "a677d40b-1432-5c30-add9-20c9a9d94210",
+    "id": "40a540cb-7e26-5ab4-9c90-6ea98c37f1a4",
     "metadata": {
       "food": [
         {
-          "alias": "uf-fr",
+          "alias": "egg-fr",
           "defaultOrigin": "France",
           "displayName": "Œuf FR",
-          "id": "8deb200a-7aa2-54d0-80f5-2ae2ab6cc6c7",
+          "id": "c8059352-939c-5f66-8648-ff1234cd1052",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Egg in agb_inedible.csv",
@@ -2101,19 +2047,19 @@
   },
   {
     "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
-    "alias": "aubergine-fr",
+    "alias": "eggplant-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Aubergine FR",
-    "id": "2a8bda8c-617c-54ff-b8e6-d7bb49ed1f93",
+    "id": "aae8e5b3-caff-53b9-82d0-ebe4ea063098",
     "metadata": {
       "food": [
         {
-          "alias": "aubergine-fr",
+          "alias": "eggplant-fr",
           "defaultOrigin": "France",
           "displayName": "Aubergine FR",
-          "id": "00635e86-36c0-5008-88a5-f967b9e15ae6",
+          "id": "a17fb7c6-17c5-557a-94ec-4230431c3114",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Eggplant in agb_inedible.csv",
@@ -2129,19 +2075,19 @@
           },
           "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "fruit default from food_type_cooked_to_raw.csv",
+            "rule": "vegetable default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "fruit NOVA 1 → always (perishable)",
+            "rule": "vegetable NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'eggplant' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -2155,19 +2101,19 @@
   },
   {
     "activityName": "Elderberry, at farm {PL} - Adapted from WFLDB U",
-    "alias": "baies-de-sureau-fr",
+    "alias": "elderberries-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Baies de sureau FR",
-    "id": "ca78ce59-263b-50b8-93d4-6b1910812dd1",
+    "id": "c98d1b38-5fd0-55ff-b3f3-71a07be11a18",
     "metadata": {
       "food": [
         {
-          "alias": "baies-de-sureau-fr",
+          "alias": "elderberries-fr",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Baies de sureau FR",
-          "id": "0a4e6e9c-43a3-5b1d-b0fe-8ed8500d6054",
+          "id": "3f173115-e441-5341-846b-e3a33957c35c",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -2214,14 +2160,14 @@
       "ingredient"
     ],
     "displayName": "Endive FR",
-    "id": "9d825d4a-be09-5ba3-bd8d-dc6792759be5",
+    "id": "6f6519c3-d74f-5d22-839e-605a1680edbc",
     "metadata": {
       "food": [
         {
           "alias": "endive-fr",
           "defaultOrigin": "France",
           "displayName": "Endive FR",
-          "id": "8c10c6ca-b930-5d7f-8962-146793ae7be0",
+          "id": "cc371490-a5a4-5431-9ba7-9e70e80d3f0e",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Endive in agb_inedible.csv",
@@ -2249,7 +2195,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'endive' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -2263,19 +2209,19 @@
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "fenouil-fr",
+    "alias": "fennel-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Fenouil FR",
-    "id": "1670c7c9-6d85-523a-951a-c1634b746153",
+    "id": "acfcaa37-454a-57e1-877a-3374b8047502",
     "metadata": {
       "food": [
         {
-          "alias": "fenouil-fr",
+          "alias": "fennel-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Fenouil FR",
-          "id": "31c745d3-b6f1-501a-b9ed-adefa505469a",
+          "id": "ff84bfef-8b24-50e2-86f5-1e2bbbd3662b",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Fennel in agb_inedible.csv",
@@ -2303,7 +2249,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'fennel' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -2317,19 +2263,19 @@
   },
   {
     "activityName": "Peach, conventional, national average, at orchard {FR} U",
-    "alias": "figue-fr",
+    "alias": "fig-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Figue FR",
-    "id": "ee2ca29a-1be0-54ea-9028-bfa09d406c10",
+    "id": "517dfbb5-abc8-59bd-b0a0-f315a22fdaab",
     "metadata": {
       "food": [
         {
-          "alias": "figue-fr",
+          "alias": "fig-fr",
           "defaultOrigin": "France",
           "displayName": "Figue FR",
-          "id": "6147ce97-ce05-5206-87ae-d95ae4e8b17d",
+          "id": "c273baca-8341-5d48-932e-ed8507cfddfd",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Peach in agb_inedible.csv",
@@ -2355,9 +2301,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "ARBORICULTURE",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'banana' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -2371,19 +2317,19 @@
   },
   {
     "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "haricots-flageolets-verts-fr",
+    "alias": "flageolet-beans-green-dried-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Haricots flageolets verts FR",
-    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
+    "id": "35a6a437-19e6-5523-a9d0-b592d38b3032",
     "metadata": {
       "food": [
         {
-          "alias": "haricots-flageolets-verts-fr",
+          "alias": "flageolet-beans-green-dried-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots flageolets verts FR",
-          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
+          "id": "c797468e-8020-58d2-aae9-2e0f956af969",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2425,19 +2371,19 @@
   },
   {
     "activityName": "Flaxseed, straw, ret, Normandie, at farm gate {FR} U",
-    "alias": "graines-de-lin-fr",
+    "alias": "flaxseed-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Graines de lin FR",
-    "id": "af31cec1-f8a7-528a-9e79-40fc584858a9",
+    "id": "cfdfa6e8-fd0c-51f9-89e4-2beccb0b66bc",
     "metadata": {
       "food": [
         {
-          "alias": "graines-de-lin-fr",
+          "alias": "flaxseed-fr",
           "defaultOrigin": "France",
           "displayName": "Graines de lin FR",
-          "id": "c3435641-05ca-5ed3-8d47-c72e78bc83ed",
+          "id": "07fe355e-70c5-5294-8f27-46d8d01e7047",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2463,9 +2409,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'flaxseed' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -2479,19 +2425,19 @@
   },
   {
     "activityName": "French bean, conventional, national average, at farm gate {FR} U",
-    "alias": "haricots-verts-fr",
+    "alias": "french-beans-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Haricots verts FR",
-    "id": "4271d520-24c9-50f5-8bbe-a434c7517b02",
+    "id": "90ee9213-1c0a-55b5-8a84-c0faa9a6d427",
     "metadata": {
       "food": [
         {
-          "alias": "haricots-verts-fr",
+          "alias": "french-beans-fr",
           "defaultOrigin": "France",
           "displayName": "Haricots verts FR",
-          "id": "94fb1eec-7454-5092-b962-9768dcb4b6dc",
+          "id": "57554a46-e732-58e0-913a-236a55091e1a",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with French bean in agb_inedible.csv",
@@ -2533,19 +2479,19 @@
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "herbes-fraches-aneth-basilic-cerfeuil-romarin-sauge-thym-fr",
+    "alias": "fresh-herbs-dill-basil-chervil-rosemary-sage-thyme-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) FR",
-    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
+    "id": "7aaf1df8-05ab-59f9-88f6-b4c4b4c2bc92",
     "metadata": {
       "food": [
         {
-          "alias": "herbes-fraches-aneth-basilic-cerfeuil-romarin-sauge-thym-fr",
+          "alias": "fresh-herbs-dill-basil-chervil-rosemary-sage-thyme-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) FR",
-          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
+          "id": "eb1ec96a-d923-599a-97c0-fccb20d48cb2",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Mint in agb_inedible.csv",
@@ -2571,9 +2517,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'rosemary' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -2587,19 +2533,19 @@
   },
   {
     "activityName": "Onion, conventional, national average, at farm {FR} U",
-    "alias": "ail-fr",
+    "alias": "garlic-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Ail FR",
-    "id": "7af8af5a-06e5-53e9-8645-b1897c0dc91b",
+    "id": "c03816c8-9022-5c40-93ed-8cb4b31d541f",
     "metadata": {
       "food": [
         {
-          "alias": "ail-fr",
+          "alias": "garlic-fr",
           "defaultOrigin": "France",
           "displayName": "Ail FR",
-          "id": "0a74e485-a34a-5472-9c74-c04a8ba74f21",
+          "id": "ed105d1a-b85e-5aa5-9e22-8fa74103aaef",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Onions in agb_inedible.csv",
@@ -2641,19 +2587,19 @@
   },
   {
     "activityName": "[Dummy] Gherkin, pickled in vinegar, at plant {FR} U",
-    "alias": "cornichon-fr",
+    "alias": "gherkin-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Cornichon FR",
-    "id": "642d5325-efe2-5e99-8d6e-bd169e9d3b0f",
+    "id": "5443e3e8-4378-52f3-ac06-2b73be3b110a",
     "metadata": {
       "food": [
         {
-          "alias": "cornichon-fr",
+          "alias": "gherkin-fr",
           "defaultOrigin": "France",
           "displayName": "Cornichon FR",
-          "id": "c803175e-8145-562c-a270-941c19185815",
+          "id": "1ecdafd6-925b-5a5a-9ff4-bf0d64c795fe",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 2-4 default from food_type_inedible_part.csv",
@@ -2679,9 +2625,9 @@
             "confidence": 0.882
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VIGNES",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "grape/wine pattern",
             "confidence": 1.0
           }
         }
@@ -2695,19 +2641,19 @@
   },
   {
     "activityName": "Strawberry, conventional, national average, at farm gate {FR} U",
-    "alias": "groseille-fr",
+    "alias": "gooseberry-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Groseille FR",
-    "id": "084cc43d-117e-5054-bb8f-0ee6dd54c559",
+    "id": "55ba2bd0-5389-5e6d-8d00-ce18b113adb1",
     "metadata": {
       "food": [
         {
-          "alias": "groseille-fr",
+          "alias": "gooseberry-fr",
           "defaultOrigin": "France",
           "displayName": "Groseille FR",
-          "id": "0ca33764-9f94-541e-afc5-4917d62bec37",
+          "id": "70d96026-a534-5854-8716-7c0ff3f11ef2",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Strawberries in agb_inedible.csv",
@@ -2733,9 +2679,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "VIGNES",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'grape' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -2749,19 +2695,19 @@
   },
   {
     "activityName": "Orange, fresh grade, at farm {ES} - Adapted from WFLDB U",
-    "alias": "pamplemousse-fr",
+    "alias": "grapefruit-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pamplemousse FR",
-    "id": "396a97a2-46cf-5ce2-a4e6-955111210a18",
+    "id": "72deba05-927c-5b23-b56b-777a2c00657e",
     "metadata": {
       "food": [
         {
-          "alias": "pamplemousse-fr",
+          "alias": "grapefruit-fr",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Pamplemousse FR",
-          "id": "f25b71f6-8ede-596f-9655-08f9187fa00e",
+          "id": "88d15d59-12da-5fc7-a90d-3de0436d9237",
           "inediblePart": 0.3,
           "inediblePartMatch": {
             "rule": "Matched with Grapefruit in agb_inedible.csv",
@@ -2787,9 +2733,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "VIGNES",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "grape/wine pattern",
             "confidence": 1.0
           }
         }
@@ -2803,19 +2749,19 @@
   },
   {
     "activityName": "Grape {RoW}| grape production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "raisins-noirs-ou-blancs-fr",
+    "alias": "grapes-black-or-white-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Raisins (noirs ou blancs) FR",
-    "id": "69be6155-d0d3-5707-9b45-fb6bd76c3672",
+    "id": "5f9b2c9d-9fd2-55d5-8731-6e375302d146",
     "metadata": {
       "food": [
         {
-          "alias": "raisins-noirs-ou-blancs-fr",
+          "alias": "grapes-black-or-white-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Raisins (noirs ou blancs) FR",
-          "id": "4a7b94d5-55a1-5abf-917c-5f070b7c6700",
+          "id": "0746b057-6331-5cc5-a3b2-532e3ddaecdf",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Grape in agb_inedible.csv",
@@ -2841,9 +2787,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "VIGNES",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'grape' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -2857,19 +2803,19 @@
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "chou-vert-fr",
+    "alias": "green-cabbage-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Chou vert FR",
-    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
+    "id": "32054b2e-9047-58ba-b42c-82d29d8d0644",
     "metadata": {
       "food": [
         {
-          "alias": "chou-vert-fr",
+          "alias": "green-cabbage-fr",
           "defaultOrigin": "France",
           "displayName": "Chou vert FR",
-          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
+          "id": "a190ba77-bbb8-50de-84cc-e2cbb8f43612",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cabbage in agb_inedible.csv",
@@ -2911,19 +2857,19 @@
   },
   {
     "activityName": "Cherry, conventional, national average, at orchard {FR} U",
-    "alias": "prune-reine-claude-fr",
+    "alias": "greengage-plum-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Prune reine-claude FR",
-    "id": "12038cc6-06bf-5520-af7f-017d0974aef6",
+    "id": "9c2a18c0-b779-5dab-aa73-f339d24ea75c",
     "metadata": {
       "food": [
         {
-          "alias": "prune-reine-claude-fr",
+          "alias": "greengage-plum-fr",
           "defaultOrigin": "France",
           "displayName": "Prune reine-claude FR",
-          "id": "d6051468-e7b3-59a3-8064-04d5a35713d2",
+          "id": "4fb30602-4b14-5c96-9b81-8d5a4ff404e5",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Plum in agb_inedible.csv",
@@ -2965,19 +2911,19 @@
   },
   {
     "activityName": "Kiwi {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "goyave-fr",
+    "alias": "guava-fr-overseas",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Goyave FR",
-    "id": "3a05284f-ed9e-574c-84ec-09e142141ae5",
+    "displayName": "Goyave FR Outre-Mer",
+    "id": "1460243e-edad-5400-ba18-9fd83633598d",
     "metadata": {
       "food": [
         {
-          "alias": "goyave-fr",
+          "alias": "guava-fr-overseas",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Goyave FR",
-          "id": "98680a2e-54b4-580c-b0a5-c50f5a9c5689",
+          "displayName": "Goyave FR Outre-Mer",
+          "id": "9843e808-978d-5e45-89b2-1c076851386c",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -3019,19 +2965,19 @@
   },
   {
     "activityName": "Hazelnut, in shell, at farm {IT} - Adapted from WFLDB U",
-    "alias": "noisettes-en-coquille-fr",
+    "alias": "hazelnuts-in-shell-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Noisettes en coquille FR",
-    "id": "75194b15-2a32-5062-bdfb-e5d56f205f5a",
+    "id": "a724c5d1-689d-545e-99e4-6f9b50fbd8eb",
     "metadata": {
       "food": [
         {
-          "alias": "noisettes-en-coquille-fr",
+          "alias": "hazelnuts-in-shell-fr",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Noisettes en coquille FR",
-          "id": "a5fba30e-3b91-5795-9295-7d50cc7cc964",
+          "id": "dff414b5-b55f-5ed4-b066-6cc89bea5b7b",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "with shell keyword found in Hazelnuts, in shell",
@@ -3059,7 +3005,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "nut default",
+            "rule": "matched 'noisettes' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3073,19 +3019,19 @@
   },
   {
     "activityName": "Hemp, grain, Champagne, at farm gate {FR} U",
-    "alias": "chanvre-fr",
+    "alias": "hemp-grain-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Chanvre FR",
-    "id": "f7482411-8ba5-5f03-9a99-82e81b41e385",
+    "id": "3e9aef8c-ece2-5fa8-bf95-f3451df9b541",
     "metadata": {
       "food": [
         {
-          "alias": "chanvre-fr",
+          "alias": "hemp-grain-fr",
           "defaultOrigin": "France",
           "displayName": "Chanvre FR",
-          "id": "c0ae8b38-f523-5bd4-aa7f-759b5703e0fb",
+          "id": "7c34dada-b082-5ca5-8bb1-23247f4ce81e",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -3111,9 +3057,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CEREALES",
+          "cropGroup": "PLANTES A FIBRES",
           "cropGroupMatch": {
-            "rule": "grain default",
+            "rule": "matched 'chanvre' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3127,19 +3073,19 @@
   },
   {
     "activityName": "Honey, raw, small-scale production, unpackaged, at farm {CH} - Adapted from WFLDB U",
-    "alias": "miel-fr",
+    "alias": "honey-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Miel FR",
-    "id": "6a535ef0-359f-57ea-a6d5-f952963e703f",
+    "id": "f76d7bbd-3bb5-5258-9b9c-f9653613627b",
     "metadata": {
       "food": [
         {
-          "alias": "miel-fr",
+          "alias": "honey-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Miel FR",
-          "id": "2de379ce-19d2-538f-a216-096491cd40e3",
+          "id": "8cd38280-9fd9-50a3-8495-4263af50ce7d",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
@@ -3176,19 +3122,19 @@
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
-    "alias": "raifort-frais-fr",
+    "alias": "horseradish-fresh-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Raifort frais FR",
-    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
+    "id": "8a0fd108-32f2-5315-9f06-557b1e30eee5",
     "metadata": {
       "food": [
         {
-          "alias": "raifort-frais-fr",
+          "alias": "horseradish-fresh-fr",
           "defaultOrigin": "France",
           "displayName": "Raifort frais FR",
-          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
+          "id": "8339ac2c-0487-51a1-82e7-29e8898fed30",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Carrots in agb_inedible.csv",
@@ -3230,19 +3176,19 @@
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "topinambour-fr",
+    "alias": "jerusalem-artichoke-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Topinambour FR",
-    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
+    "id": "95b60be0-d8dc-5f00-8f5f-8a4ccbf3b667",
     "metadata": {
       "food": [
         {
-          "alias": "topinambour-fr",
+          "alias": "jerusalem-artichoke-fr",
           "defaultOrigin": "France",
           "displayName": "Topinambour FR",
-          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
+          "id": "dd97d0a6-dcac-5dee-8af0-bbbe28a47bcf",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Jerusalemen artichoke in agb_inedible.csv",
@@ -3284,19 +3230,19 @@
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "chou-fris-fr",
+    "alias": "kale-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Chou frisé FR",
-    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
+    "id": "48b6761e-1f99-5a3c-99f1-ddb3891bb376",
     "metadata": {
       "food": [
         {
-          "alias": "chou-fris-fr",
+          "alias": "kale-fr",
           "defaultOrigin": "France",
           "displayName": "Chou frisé FR",
-          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
+          "id": "dc586e5a-7d5b-5e9c-b6ba-d8a0d5a81187",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cauliflower in agb_inedible.csv",
@@ -3324,7 +3270,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'chou-fleur' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3343,14 +3289,14 @@
       "ingredient"
     ],
     "displayName": "Kiwi FR",
-    "id": "e6b2f59d-c429-5fbb-bc44-ad8488449f9b",
+    "id": "d36bde22-7310-5a17-ad1a-b11d89f5685f",
     "metadata": {
       "food": [
         {
           "alias": "kiwi-fr",
           "defaultOrigin": "France",
           "displayName": "Kiwi FR",
-          "id": "5a4b42b8-c30e-5ca2-9f67-dc3572f323f8",
+          "id": "f6a70025-1b92-5d98-9b4c-dac4056c2642",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -3392,19 +3338,19 @@
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "chou-rave-fr",
+    "alias": "kohlrabi-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Chou-rave FR",
-    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
+    "id": "d95867ac-187c-5cdc-b7cf-0ba256bd54c5",
     "metadata": {
       "food": [
         {
-          "alias": "chou-rave-fr",
+          "alias": "kohlrabi-fr",
           "defaultOrigin": "France",
           "displayName": "Chou-rave FR",
-          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
+          "id": "87f793a0-de4e-5819-91bb-b67d7c2b52b2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cauliflower in agb_inedible.csv",
@@ -3432,7 +3378,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'chou-fleur' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3451,14 +3397,14 @@
       "ingredient"
     ],
     "displayName": "Kumquat FR",
-    "id": "80ae03ce-246a-515c-8468-82d831ea0f31",
+    "id": "86e21e49-df5f-5d4d-bff0-30f392f35c41",
     "metadata": {
       "food": [
         {
           "alias": "kumquat-fr",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Kumquat FR",
-          "id": "5bcf0a38-10dd-534d-8ae5-fe85565802d5",
+          "id": "6caaa004-8117-50c2-9977-8511cbb3e23f",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Orange in agb_inedible.csv",
@@ -3500,19 +3446,19 @@
   },
   {
     "activityName": "Leek, conventional, national average, at plant {FR} U",
-    "alias": "poireau-fr",
+    "alias": "leek-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Poireau FR",
-    "id": "c9610e36-a83c-55d7-9a66-5a9c5d0e75d9",
+    "id": "3d4d3d90-ea3d-540b-b1b0-11512cc6d7ea",
     "metadata": {
       "food": [
         {
-          "alias": "poireau-fr",
+          "alias": "leek-fr",
           "defaultOrigin": "France",
           "displayName": "Poireau FR",
-          "id": "52e9b06e-26f1-5ded-abe4-b9a88750f006",
+          "id": "66fbf518-bca1-5222-9f59-27e205d58974",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Leek in agb_inedible.csv",
@@ -3540,7 +3486,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'carrot' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3554,19 +3500,19 @@
   },
   {
     "activityName": "Lemon {ES}| lemon production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "citron-fr",
+    "alias": "lemon-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Citron FR",
-    "id": "1f315d1b-2022-5246-9c85-5289bfb8d8a6",
+    "id": "2d37e08f-31ad-527b-b042-d4a336b6c03e",
     "metadata": {
       "food": [
         {
-          "alias": "citron-fr",
+          "alias": "lemon-fr",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Citron FR",
-          "id": "8d18b4f6-4411-546b-b531-4c793cb5817a",
+          "id": "f9596969-4a5c-589c-915f-263a1e4e01ba",
           "inediblePart": 0.3,
           "inediblePartMatch": {
             "rule": "Matched with Lemon in agb_inedible.csv",
@@ -3608,19 +3554,19 @@
   },
   {
     "activityName": "Lentil {CA-SK}| lentil production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "lentille-fr",
+    "alias": "lentil-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Lentille FR",
-    "id": "90369a4e-a87b-5f6b-bcd8-a70006d1b37a",
+    "id": "4b851160-f659-55ce-8e9a-f7b94093d745",
     "metadata": {
       "food": [
         {
-          "alias": "lentille-fr",
+          "alias": "lentil-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Lentille FR",
-          "id": "f6ac2bcc-2a4c-56fe-b1cb-922fbf4ee9b0",
+          "id": "661934eb-d2ca-5768-ac5e-9916e24cb036",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -3648,7 +3594,7 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "legume pattern",
+            "rule": "matched 'lentil' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3662,19 +3608,19 @@
   },
   {
     "activityName": "Mango, conventional, Val de San Francisco, at orchard {BR} U",
-    "alias": "litchi-fr",
+    "alias": "lychee-fr-overseas",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Litchi FR",
-    "id": "927e2082-399d-540d-baba-1c0339745a6b",
+    "displayName": "Litchi FR Outre-Mer",
+    "id": "9d82775c-702a-5ce3-97a6-edec310b9bfa",
     "metadata": {
       "food": [
         {
-          "alias": "litchi-fr",
+          "alias": "lychee-fr-overseas",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Litchi FR",
-          "id": "e860cff8-da06-5fa5-9608-c3b4e91197e2",
+          "displayName": "Litchi FR Outre-Mer",
+          "id": "d28fd59a-ae07-5813-b707-c9329ffc39ed",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Mango in agb_inedible.csv",
@@ -3700,9 +3646,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "ARBORICULTURE",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'banana' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3716,19 +3662,19 @@
   },
   {
     "activityName": "Walnuts, unshelled, at processing {FR} U",
-    "alias": "noix-de-macadamia-fr",
+    "alias": "macadamia-nut-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Noix de macadamia FR",
-    "id": "a46959f5-cec7-5623-a78b-b10dbda660a2",
+    "id": "eb4ac2b9-7c8d-5c66-99b9-cfb3613bfa10",
     "metadata": {
       "food": [
         {
-          "alias": "noix-de-macadamia-fr",
+          "alias": "macadamia-nut-fr",
           "defaultOrigin": "France",
           "displayName": "Noix de macadamia FR",
-          "id": "862be62a-653b-57d2-8067-a800c3c94e42",
+          "id": "9519cadf-178f-5d87-bbb0-8c1ebae84f41",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Walnuts in agb_inedible.csv",
@@ -3756,7 +3702,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "nut default",
+            "rule": "matched 'noix' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3770,19 +3716,19 @@
   },
   {
     "activityName": "Mango, conventional, Val de San Francisco, at orchard {BR} U",
-    "alias": "mangue-fr",
+    "alias": "mango-fr-overseas",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Mangue FR",
-    "id": "927e2082-399d-540d-baba-1c0339745a6b",
+    "displayName": "Mangue FR Outre-Mer",
+    "id": "3ac2cffb-be57-58c0-b77d-562256325e1e",
     "metadata": {
       "food": [
         {
-          "alias": "mangue-fr",
+          "alias": "mango-fr-overseas",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Mangue FR",
-          "id": "e860cff8-da06-5fa5-9608-c3b4e91197e2",
+          "displayName": "Mangue FR Outre-Mer",
+          "id": "5d39ed23-3000-54af-9c47-6954802a3cf5",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Mango in agb_inedible.csv",
@@ -3810,7 +3756,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'mango' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3824,19 +3770,19 @@
   },
   {
     "activityName": "Melon, conventional, national average, at farm gate {FR} U",
-    "alias": "melon-miellat-charentais-cataloupe-cavaillon-fr",
+    "alias": "melon-honeydew-charentais-cataloupe-cavaillon-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Melon (miellat, Charentais, Cataloupe, Cavaillon) FR",
-    "id": "be06d45f-7449-5cc4-a9a2-c4abbf44db61",
+    "id": "190c6f77-a6c9-5bc6-958b-fef19b403890",
     "metadata": {
       "food": [
         {
-          "alias": "melon-miellat-charentais-cataloupe-cavaillon-fr",
+          "alias": "melon-honeydew-charentais-cataloupe-cavaillon-fr",
           "defaultOrigin": "France",
           "displayName": "Melon (miellat, Charentais, Cataloupe, Cavaillon) FR",
-          "id": "c4348af7-4c43-58f1-be77-e2a8921d90ce",
+          "id": "35ea48ae-0063-5789-8648-cc8560eabfd9",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "Matched with Melon in agb_inedible.csv",
@@ -3862,9 +3808,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'melon' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3883,14 +3829,14 @@
       "ingredient"
     ],
     "displayName": "Millet FR",
-    "id": "d5ceb4f4-a940-52fc-91bb-2798c8772190",
+    "id": "931c0ecb-f370-5bf6-a99a-9f02b7d42af1",
     "metadata": {
       "food": [
         {
           "alias": "millet-fr",
           "defaultOrigin": "France",
           "displayName": "Millet FR",
-          "id": "aaf1d6a7-3879-5198-a67a-bdef32769fe1",
+          "id": "31cf3e17-96ee-5f09-9606-5c44382cd88d",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -3916,9 +3862,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "BLE TENDRE",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "wheat/flour pattern",
+            "rule": "matched 'millet' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3932,19 +3878,19 @@
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "menthe-fr",
+    "alias": "mint-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Menthe FR",
-    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
+    "id": "248e0ce2-4083-5115-bc5e-0b91e902eb2f",
     "metadata": {
       "food": [
         {
-          "alias": "menthe-fr",
+          "alias": "mint-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Menthe FR",
-          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
+          "id": "fea15bdb-4ecd-5ce8-8783-9fd6ba06aa41",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Mint in agb_inedible.csv",
@@ -3970,9 +3916,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'mint' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3986,19 +3932,19 @@
   },
   {
     "activityName": "Cherry, conventional, national average, at orchard {FR} U",
-    "alias": "cerise-griotte-fr",
+    "alias": "morello-cherry-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Cerise griotte FR",
-    "id": "12038cc6-06bf-5520-af7f-017d0974aef6",
+    "id": "eb42817d-71f4-56d2-ab80-7713435d0c10",
     "metadata": {
       "food": [
         {
-          "alias": "cerise-griotte-fr",
+          "alias": "morello-cherry-fr",
           "defaultOrigin": "France",
           "displayName": "Cerise griotte FR",
-          "id": "d6051468-e7b3-59a3-8064-04d5a35713d2",
+          "id": "1a7fe5d4-8858-58a3-b049-9ab05520bc13",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cherry in agb_inedible.csv",
@@ -4040,19 +3986,19 @@
   },
   {
     "activityName": "Agaricus bisporus mushroom, fresh, at plant {NL} - Adapted from WFLDB U",
-    "alias": "champignon-morille-fr",
+    "alias": "mushroom-morel-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Champignon, morille FR",
-    "id": "391d607c-1d4e-592b-8d6c-0ba058693e54",
+    "id": "2f8e4621-1767-5192-bb92-d253122f0ea0",
     "metadata": {
       "food": [
         {
-          "alias": "champignon-morille-fr",
+          "alias": "mushroom-morel-fr",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Champignon, morille FR",
-          "id": "5628338a-e928-59b7-8a29-02bab54662cc",
+          "id": "cb04bbd1-4b45-5e5d-8e6a-508d350b6487",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Mushroom in agb_inedible.csv",
@@ -4094,19 +4040,19 @@
   },
   {
     "activityName": "Mustard, proxy from Rape seed {Canada without Quebec}| rape seed production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "graines-de-moutarde-fr",
+    "alias": "mustard-seed-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Graines de moutarde FR",
-    "id": "2924750a-5ef4-5815-b195-8616335c37d0",
+    "id": "ec36830b-8a31-5d13-a5c1-072a4428c788",
     "metadata": {
       "food": [
         {
-          "alias": "graines-de-moutarde-fr",
+          "alias": "mustard-seed-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Graines de moutarde FR",
-          "id": "5bd1bb72-47dd-5c0d-9e7e-76c2ae9f2ebb",
+          "id": "c54d2b99-33f7-5b69-b18e-61f15c17b6e9",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with mustard in inedible_part.csv",
@@ -4132,9 +4078,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "spice_condiment default",
+            "rule": "matched 'moutarde' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4153,14 +4099,14 @@
       "ingredient"
     ],
     "displayName": "Nectarine FR",
-    "id": "ee2ca29a-1be0-54ea-9028-bfa09d406c10",
+    "id": "7af5e940-1909-5544-aca1-41189c863fd0",
     "metadata": {
       "food": [
         {
           "alias": "nectarine-fr",
           "defaultOrigin": "France",
           "displayName": "Nectarine FR",
-          "id": "6147ce97-ce05-5206-87ae-d95ae4e8b17d",
+          "id": "7cd66c2a-0af8-538c-82fb-cbb4242fbb0f",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Peach in agb_inedible.csv",
@@ -4202,19 +4148,19 @@
   },
   {
     "activityName": "Oat grain {RoW}| oat production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "avoine-fr",
+    "alias": "oats-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Avoine FR",
-    "id": "93688b36-b016-5004-951f-9fbab6beab4a",
+    "id": "475387dc-a0c3-5c43-bb0e-7c6de1cc7db1",
     "metadata": {
       "food": [
         {
-          "alias": "avoine-fr",
+          "alias": "oats-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Avoine FR",
-          "id": "215121de-d9ed-5d3f-ab4e-8eaa1a153659",
+          "id": "55147267-9677-534a-ae6b-dae3bcb0b741",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -4242,7 +4188,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "grain default",
+            "rule": "matched 'avoine' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4261,14 +4207,14 @@
       "ingredient"
     ],
     "displayName": "Olives FR",
-    "id": "788ba9e2-e484-5d58-8e74-4459c8ff2e66",
+    "id": "c80b7dbb-26fb-5bb1-b8a6-6ddc6dc3afc1",
     "metadata": {
       "food": [
         {
           "alias": "olives-fr",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Olives FR",
-          "id": "3d7b7419-42a8-5cf3-82c9-d3fb80058c66",
+          "id": "0286cb19-9aa6-57aa-925c-5dcf2620c080",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Olives in agb_inedible.csv",
@@ -4310,19 +4256,19 @@
   },
   {
     "activityName": "Onion, conventional, national average, at farm {FR} U",
-    "alias": "oignons-fr",
+    "alias": "onions-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Oignons FR",
-    "id": "7af8af5a-06e5-53e9-8645-b1897c0dc91b",
+    "id": "3bb923f3-8dfe-5947-804e-bb06112ccc1f",
     "metadata": {
       "food": [
         {
-          "alias": "oignons-fr",
+          "alias": "onions-fr",
           "defaultOrigin": "France",
           "displayName": "Oignons FR",
-          "id": "0a74e485-a34a-5472-9c74-c04a8ba74f21",
+          "id": "7052cac4-36b5-537f-8a94-f13f30bca235",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Onions in agb_inedible.csv",
@@ -4350,7 +4296,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'oignons' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4369,14 +4315,14 @@
       "ingredient"
     ],
     "displayName": "Oranges FR",
-    "id": "396a97a2-46cf-5ce2-a4e6-955111210a18",
+    "id": "e31f0dce-bed1-54ff-9642-7bc6391bf5c6",
     "metadata": {
       "food": [
         {
           "alias": "oranges-fr",
           "defaultOrigin": "EuropeAndMaghreb",
           "displayName": "Oranges FR",
-          "id": "f25b71f6-8ede-596f-9655-08f9187fa00e",
+          "id": "397bf2f0-6fd1-5e02-9a6f-d99f5cdcdd61",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Orange in agb_inedible.csv",
@@ -4418,19 +4364,19 @@
   },
   {
     "activityName": "Papaya {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "papaye-fr",
+    "alias": "papaya-fr-overseas",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Papaye FR",
-    "id": "66b01ac6-bb51-5678-a655-d00abd5d93c2",
+    "displayName": "Papaye FR Outre-Mer",
+    "id": "18a2531b-63ac-53fa-95a9-d9f957364901",
     "metadata": {
       "food": [
         {
-          "alias": "papaye-fr",
+          "alias": "papaya-fr-overseas",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Papaye FR",
-          "id": "01d3b820-20e9-5576-8f8f-f4c7b2bb167d",
+          "displayName": "Papaye FR Outre-Mer",
+          "id": "d570f7df-ca64-505b-ac16-da2685b71722",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -4458,7 +4404,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'orange' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4472,19 +4418,19 @@
   },
   {
     "activityName": "Parsley, fresh, at farm {US} - Adapted from WFLDB U",
-    "alias": "persil-frais-fr",
+    "alias": "parsley-fresh-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Persil frais FR",
-    "id": "114108bb-c070-567f-acb0-3e2fe8cb42bc",
+    "id": "323cc6b7-04c5-5510-9123-4c8b0a1dee51",
     "metadata": {
       "food": [
         {
-          "alias": "persil-frais-fr",
+          "alias": "parsley-fresh-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Persil frais FR",
-          "id": "3a5cf7ce-fd10-5ca7-8fd1-fac5a6bbc7f8",
+          "id": "07179a3e-019e-50f7-8b71-d059895236d6",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Parsley in agb_inedible.csv",
@@ -4510,9 +4456,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'parsley' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4526,19 +4472,19 @@
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
-    "alias": "panais-fr",
+    "alias": "parsnips-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Panais FR",
-    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
+    "id": "8ed7b167-ef5e-5c75-bd92-cc3016f90539",
     "metadata": {
       "food": [
         {
-          "alias": "panais-fr",
+          "alias": "parsnips-fr",
           "defaultOrigin": "France",
           "displayName": "Panais FR",
-          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
+          "id": "e5fb4837-d90a-531f-a827-313c4cae60e2",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Carrots in agb_inedible.csv",
@@ -4564,9 +4510,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'autres oleagineux' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4580,19 +4526,19 @@
   },
   {
     "activityName": "Peach, conventional, national average, at orchard {FR} U",
-    "alias": "pches-fr",
+    "alias": "peaches-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pêches FR",
-    "id": "ee2ca29a-1be0-54ea-9028-bfa09d406c10",
+    "id": "8c806295-a449-58d3-9cb0-8a7121738365",
     "metadata": {
       "food": [
         {
-          "alias": "pches-fr",
+          "alias": "peaches-fr",
           "defaultOrigin": "France",
           "displayName": "Pêches FR",
-          "id": "6147ce97-ce05-5206-87ae-d95ae4e8b17d",
+          "id": "74b8e366-049c-54ee-b6de-29b5496d317d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Peach in agb_inedible.csv",
@@ -4634,19 +4580,19 @@
   },
   {
     "activityName": "Pear, conventional, national average, at orchard {FR} U",
-    "alias": "poires-fr",
+    "alias": "pears-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Poires FR",
-    "id": "2f548ea2-d1b5-5ac0-bc99-46e7a779f43a",
+    "id": "219ceec5-078d-5f08-a976-fc684327e1be",
     "metadata": {
       "food": [
         {
-          "alias": "poires-fr",
+          "alias": "pears-fr",
           "defaultOrigin": "France",
           "displayName": "Poires FR",
-          "id": "f2a0e541-b1fe-5632-93b9-0fe7d5b2bcfb",
+          "id": "30393713-e95d-5610-8fe8-ccd139933d37",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Pear in agb_inedible.csv",
@@ -4688,19 +4634,19 @@
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
-    "alias": "pois-avec-leurs-cosses-fr",
+    "alias": "peas-with-pods-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pois, avec leurs cosses FR",
-    "id": "15753e38-884b-5823-a774-76281618d74f",
+    "id": "c75d7b27-7d4e-5eaf-92c2-b964a536943a",
     "metadata": {
       "food": [
         {
-          "alias": "pois-avec-leurs-cosses-fr",
+          "alias": "peas-with-pods-fr",
           "defaultOrigin": "France",
           "displayName": "Pois, avec leurs cosses FR",
-          "id": "1787b556-bcdd-5bef-8b19-1dec0c4bb155",
+          "id": "b1c0fd5d-f4d3-5fea-a83b-199157a1662e",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -4728,7 +4674,7 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "legume pattern",
+            "rule": "matched 'pea' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4742,19 +4688,19 @@
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "kaki-fr",
+    "alias": "persimmon-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Kaki FR",
-    "id": "1670c7c9-6d85-523a-951a-c1634b746153",
+    "id": "72d2adb0-ec5d-52cc-a0a3-2839e23f3c81",
     "metadata": {
       "food": [
         {
-          "alias": "kaki-fr",
+          "alias": "persimmon-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Kaki FR",
-          "id": "31c745d3-b6f1-501a-b9ed-adefa505469a",
+          "id": "3f7a6caa-bff4-5e47-8469-095613e8439f",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Fennel in agb_inedible.csv",
@@ -4796,19 +4742,19 @@
   },
   {
     "activityName": "Peanut {RoW}| peanut production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "pignons-de-pin-fr",
+    "alias": "pine-nuts-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pignons de pin FR",
-    "id": "fd321917-d0f8-5390-b9f4-ea1ea625d273",
+    "id": "08244c00-866e-56a4-ba1f-1049763f13cd",
     "metadata": {
       "food": [
         {
-          "alias": "pignons-de-pin-fr",
+          "alias": "pine-nuts-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pignons de pin FR",
-          "id": "dff6cd3e-558f-5d14-9b3f-74836bd1f6e7",
+          "id": "8f5b923f-8a1c-5216-85e8-be470d51dfbe",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with peanut butter in inedible_part.csv",
@@ -4836,7 +4782,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "nut default",
+            "rule": "matched 'noix' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4850,19 +4796,19 @@
   },
   {
     "activityName": "Pineapple, at farm {CR} - Adapted from WFLDB U",
-    "alias": "ananas-fr",
+    "alias": "pineapple-fr-overseas",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Ananas FR",
-    "id": "9ec2a35c-23cc-5246-aebc-585c1b35ef6b",
+    "displayName": "Ananas FR Outre-Mer",
+    "id": "049e074f-f883-5aa9-a303-83fb4baf0df7",
     "metadata": {
       "food": [
         {
-          "alias": "ananas-fr",
+          "alias": "pineapple-fr-overseas",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Ananas FR",
-          "id": "aeaf8f56-7789-5505-8c73-f38677afffd2",
+          "displayName": "Ananas FR Outre-Mer",
+          "id": "d3c1b683-ba25-5bbb-a249-c4cb6b3331bb",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Pineapple in agb_inedible.csv",
@@ -4888,9 +4834,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "ARBORICULTURE",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'pineapple' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -4909,14 +4855,14 @@
       "ingredient"
     ],
     "displayName": "Plantain FR",
-    "id": "52b21ba2-2343-5fb5-92b2-d3fac104d052",
+    "id": "1600286c-6efd-558e-b54e-04769a3738e4",
     "metadata": {
       "food": [
         {
           "alias": "plantain-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Plantain FR",
-          "id": "197ab3cd-b5f6-5bc8-b41e-8d496a09ed09",
+          "id": "e69b0ddf-f912-5bd7-9f29-bc5e018d730e",
           "inediblePart": 0.3,
           "inediblePartMatch": {
             "rule": "Matched with Banana in agb_inedible.csv",
@@ -4958,19 +4904,19 @@
   },
   {
     "activityName": "Apple, conventional, national average, at orchard {FR} U",
-    "alias": "grenade-fr",
+    "alias": "pomegranate-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Grenade FR",
-    "id": "d2106f1e-191f-5ba4-9dcf-8742a6e0d5cc",
+    "id": "e328a6b1-0d8e-5081-945a-3033f68c37cf",
     "metadata": {
       "food": [
         {
-          "alias": "grenade-fr",
+          "alias": "pomegranate-fr",
           "defaultOrigin": "France",
           "displayName": "Grenade FR",
-          "id": "cd3e8e4f-7281-551b-9a25-9b8bd617d210",
+          "id": "2c07298e-51fd-52a2-9ee9-4bd1d53cb997",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Pomegranate in agb_inedible.csv",
@@ -4998,7 +4944,7 @@
           "visible": true,
           "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'orange' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5012,19 +4958,19 @@
   },
   {
     "activityName": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U",
-    "alias": "pomme-de-terre-fr",
+    "alias": "potato-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pomme de terre FR",
-    "id": "0c10197f-5da8-5117-abff-88071bcbb3bb",
+    "id": "b46880a2-f5ef-51ca-bdf9-46ca878b4086",
     "metadata": {
       "food": [
         {
-          "alias": "pomme-de-terre-fr",
+          "alias": "potato-fr",
           "defaultOrigin": "France",
           "displayName": "Pomme de terre FR",
-          "id": "dea2e534-db2a-50f2-acb0-29d413c482bd",
+          "id": "0528ba96-12c6-5f56-8b9f-a2343fc8e12b",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Potatoes in agb_inedible.csv",
@@ -5052,7 +4998,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'potato' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5066,19 +5012,19 @@
   },
   {
     "activityName": "Pear, conventional, national average, at orchard {FR} U",
-    "alias": "figue-de-barbarie-fr",
+    "alias": "prickly-pear-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Figue de barbarie FR",
-    "id": "2f548ea2-d1b5-5ac0-bc99-46e7a779f43a",
+    "id": "f689efca-f6e6-5498-8e43-0cf80cf2dde8",
     "metadata": {
       "food": [
         {
-          "alias": "figue-de-barbarie-fr",
+          "alias": "prickly-pear-fr",
           "defaultOrigin": "France",
           "displayName": "Figue de barbarie FR",
-          "id": "f2a0e541-b1fe-5632-93b9-0fe7d5b2bcfb",
+          "id": "4e4a0a80-f053-5707-aa73-29e4f6c83213",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Pear in agb_inedible.csv",
@@ -5120,19 +5066,19 @@
   },
   {
     "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
-    "alias": "citrouille-fr",
+    "alias": "pumpkin-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Citrouille FR",
-    "id": "2a8bda8c-617c-54ff-b8e6-d7bb49ed1f93",
+    "id": "9cf087f2-f7c9-58ff-971a-fe29c8d6132d",
     "metadata": {
       "food": [
         {
-          "alias": "citrouille-fr",
+          "alias": "pumpkin-fr",
           "defaultOrigin": "France",
           "displayName": "Citrouille FR",
-          "id": "00635e86-36c0-5008-88a5-f967b9e15ae6",
+          "id": "cb11c94d-bae0-5eb4-885e-90168481d4fc",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Pumpkin in agb_inedible.csv",
@@ -5174,19 +5120,19 @@
   },
   {
     "activityName": "Apple, conventional, national average, at orchard {FR} U",
-    "alias": "coing-fr",
+    "alias": "quince-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Coing FR",
-    "id": "d2106f1e-191f-5ba4-9dcf-8742a6e0d5cc",
+    "id": "f73abdef-e329-56c8-a00d-6198ef32d4db",
     "metadata": {
       "food": [
         {
-          "alias": "coing-fr",
+          "alias": "quince-fr",
           "defaultOrigin": "France",
           "displayName": "Coing FR",
-          "id": "cd3e8e4f-7281-551b-9a25-9b8bd617d210",
+          "id": "b2f5c800-a8e0-57d4-b681-d36350f12daa",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Apple in agb_inedible.csv",
@@ -5233,14 +5179,14 @@
       "ingredient"
     ],
     "displayName": "Quinoa FR",
-    "id": "cf011114-3b63-5eda-9bb0-536c8edb6b1f",
+    "id": "6ae3a729-3ffc-5981-bfc4-3d081fc34ca6",
     "metadata": {
       "food": [
         {
           "alias": "quinoa-fr",
           "defaultOrigin": "France",
           "displayName": "Quinoa FR",
-          "id": "f8a57143-c768-5dce-bf65-4bdcf295e036",
+          "id": "5adf35b2-34ce-56eb-a983-28d7af1b5ca1",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -5268,7 +5214,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "grain default",
+            "rule": "matched 'quinoa' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5282,19 +5228,19 @@
   },
   {
     "activityName": "Radish {FR}| radish production, in unheated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "radis-fr",
+    "alias": "radish-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Radis FR",
-    "id": "c69fe07b-1e8e-51e5-b002-b0fb9377cf3c",
+    "id": "c736c068-df13-5972-9f89-18fda9f7e050",
     "metadata": {
       "food": [
         {
-          "alias": "radis-fr",
+          "alias": "radish-fr",
           "defaultOrigin": "France",
           "displayName": "Radis FR",
-          "id": "423bd45c-f4bb-5500-8317-a9f650fbed62",
+          "id": "8a300a67-0fa3-5cf8-916b-0d4182a38b48",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Radish in agb_inedible.csv",
@@ -5336,19 +5282,19 @@
   },
   {
     "activityName": "Rapeseed, conventional, 9% moisture, national average, animal feed, at farm gate, production {FR} U",
-    "alias": "colza-fr",
+    "alias": "rapeseed-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Colza FR",
-    "id": "011f0da1-112c-54b5-ab9e-ae1b727707b8",
+    "id": "ae71503a-ec6e-555c-a152-1421984a576c",
     "metadata": {
       "food": [
         {
-          "alias": "colza-fr",
+          "alias": "rapeseed-fr",
           "defaultOrigin": "France",
           "displayName": "Colza FR",
-          "id": "cc168c15-ac1d-56b6-9472-319874154188",
+          "id": "fbdcd182-0dbf-59ae-82f2-4d925496baad",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -5376,7 +5322,7 @@
           "visible": true,
           "cropGroup": "COLZA",
           "cropGroupMatch": {
-            "rule": "rapeseed pattern",
+            "rule": "matched 'rapeseed' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5390,19 +5336,19 @@
   },
   {
     "activityName": "Raspberry, at farm {RS} - Adapted from WFLDB U",
-    "alias": "framboise-fr",
+    "alias": "raspberry-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Framboise FR",
-    "id": "11f14633-66b6-54ab-bbf1-4b131067dc80",
+    "id": "9550a90a-69fc-5be2-8dbe-5d8e713ef503",
     "metadata": {
       "food": [
         {
-          "alias": "framboise-fr",
+          "alias": "raspberry-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Framboise FR",
-          "id": "77cb21fd-fa0c-56a9-8561-d114322a1e9d",
+          "id": "59dadebf-dedf-5343-a087-ab05f1c70947",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Raspberries in agb_inedible.csv",
@@ -5444,19 +5390,19 @@
   },
   {
     "activityName": "Rice, non-basmati {CN}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "riz-cru-toutes-varits-blanc-sauvage-riz-tha-ou-basmati-cru-fr",
+    "alias": "raw-rice-all-varieties-white-wild-c-thai-or-basmati-rice-raw-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Riz cru, toutes variétés (blanc, sauvage, riz thaï ou basmati, cru) FR",
-    "id": "63e88b92-5d2d-591b-bb3d-526738b10e38",
+    "id": "fd82f2d0-0857-5328-9307-9273102d36fa",
     "metadata": {
       "food": [
         {
-          "alias": "riz-cru-toutes-varits-blanc-sauvage-riz-tha-ou-basmati-cru-fr",
+          "alias": "raw-rice-all-varieties-white-wild-c-thai-or-basmati-rice-raw-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Riz cru, toutes variétés (blanc, sauvage, riz thaï ou basmati, cru) FR",
-          "id": "fa84590d-3a9b-59c6-ab08-f1bfda404ff4",
+          "id": "12653456-9e3f-5909-9c94-b020e2530138",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with rice in inedible_part.csv",
@@ -5498,19 +5444,19 @@
   },
   {
     "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "haricots-rouges-fr",
+    "alias": "red-beans-dried-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Haricots rouges FR",
-    "id": "da3c6436-fa27-53d9-9248-d786bb62e85e",
+    "id": "b68af3c0-7734-5ba0-977d-9383eb33f753",
     "metadata": {
       "food": [
         {
-          "alias": "haricots-rouges-fr",
+          "alias": "red-beans-dried-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots rouges FR",
-          "id": "7eb1bb3a-a4c9-531d-815a-7f6bfd964159",
+          "id": "04d08216-6cc1-532c-86a8-3c17f94a6db5",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -5552,19 +5498,19 @@
   },
   {
     "activityName": "Strawberry, conventional, national average, at farm gate {FR} U",
-    "alias": "groseille-rouge-fr",
+    "alias": "red-currant-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Groseille rouge FR",
-    "id": "084cc43d-117e-5054-bb8f-0ee6dd54c559",
+    "id": "2eb1dd64-ecd3-5eda-ad39-3f8eed463da7",
     "metadata": {
       "food": [
         {
-          "alias": "groseille-rouge-fr",
+          "alias": "red-currant-fr",
           "defaultOrigin": "France",
           "displayName": "Groseille rouge FR",
-          "id": "0ca33764-9f94-541e-afc5-4917d62bec37",
+          "id": "14e98f81-16a7-5516-b295-125219a2c1c0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Currant in agb_inedible.csv",
@@ -5606,19 +5552,19 @@
   },
   {
     "activityName": "Lettuce, conventional, national average, at farm gate {FR} U",
-    "alias": "endive-rouge-fr",
+    "alias": "red-endive-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Endive rouge FR",
-    "id": "9d825d4a-be09-5ba3-bd8d-dc6792759be5",
+    "id": "638fa000-49be-59ea-947c-88567d88447e",
     "metadata": {
       "food": [
         {
-          "alias": "endive-rouge-fr",
+          "alias": "red-endive-fr",
           "defaultOrigin": "France",
           "displayName": "Endive rouge FR",
-          "id": "8c10c6ca-b930-5d7f-8962-146793ae7be0",
+          "id": "83a79131-1285-5622-94d6-f48c0103756f",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Red endive in agb_inedible.csv",
@@ -5646,7 +5592,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'endive' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5660,19 +5606,19 @@
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "rhubarbe-fr",
+    "alias": "rhubarb-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Rhubarbe FR",
-    "id": "30f169be-dcff-566c-96ec-5697d26500b2",
+    "id": "431fd4f6-8800-57ee-b2ba-c99216176d5f",
     "metadata": {
       "food": [
         {
-          "alias": "rhubarbe-fr",
+          "alias": "rhubarb-fr",
           "defaultOrigin": "France",
           "displayName": "Rhubarbe FR",
-          "id": "c5554693-6492-509c-ac68-8fc1cdfad65d",
+          "id": "fd136b75-ba0f-5a69-8d66-25d7770533e0",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cauliflower in agb_inedible.csv",
@@ -5719,14 +5665,14 @@
       "ingredient"
     ],
     "displayName": "Rutabaga FR",
-    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
+    "id": "e6ef8389-d229-5d88-a665-3ed75938a865",
     "metadata": {
       "food": [
         {
           "alias": "rutabaga-fr",
           "defaultOrigin": "France",
           "displayName": "Rutabaga FR",
-          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
+          "id": "1c00ec30-0696-5078-b3c2-889918ff3bd9",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Carrots in agb_inedible.csv",
@@ -5752,9 +5698,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'soybean' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5768,19 +5714,19 @@
   },
   {
     "activityName": "Black pepper, dried, conventional, at plant {VN} U",
-    "alias": "safran-fr",
+    "alias": "saffron-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Safran FR",
-    "id": "740948d1-dd30-51ed-a4ee-12aed25264bd",
+    "id": "f2980556-9478-53d5-af64-447c76fa94bb",
     "metadata": {
       "food": [
         {
-          "alias": "safran-fr",
+          "alias": "saffron-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Safran FR",
-          "id": "01eb72ac-bcc6-55ee-9ff2-eae1e292fde0",
+          "id": "17a1fb76-b185-58e9-b054-55a618d5ef73",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Peppers in agb_inedible.csv",
@@ -5806,9 +5752,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "spice_condiment default",
+            "rule": "matched 'ginger' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5822,19 +5768,19 @@
   },
   {
     "activityName": "Lettuce, conventional, national average, at farm gate {FR} U",
-    "alias": "salade-laitue-fr",
+    "alias": "salad-lettuce-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Salade, laitue FR",
-    "id": "9d825d4a-be09-5ba3-bd8d-dc6792759be5",
+    "id": "677d2784-d1d6-56fc-8f38-3f29c16f4f77",
     "metadata": {
       "food": [
         {
-          "alias": "salade-laitue-fr",
+          "alias": "salad-lettuce-fr",
           "defaultOrigin": "France",
           "displayName": "Salade, laitue FR",
-          "id": "8c10c6ca-b930-5d7f-8962-146793ae7be0",
+          "id": "84dd103a-c90d-5318-814c-737c019ea78c",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "Matched with Lettuce in agb_inedible.csv",
@@ -5876,19 +5822,19 @@
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
-    "alias": "salsifi-fr",
+    "alias": "salsify-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Salsifi FR",
-    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
+    "id": "634107ae-0657-5137-b512-9069dfccb516",
     "metadata": {
       "food": [
         {
-          "alias": "salsifi-fr",
+          "alias": "salsify-fr",
           "defaultOrigin": "France",
           "displayName": "Salsifi FR",
-          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
+          "id": "edcb17f2-c167-57fc-b74f-08126036647d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Salsify in agb_inedible.csv",
@@ -5916,7 +5862,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'endive' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5930,19 +5876,19 @@
   },
   {
     "activityName": "Sodium chloride, powder {GLO}| market for | Cut-off, S - Copied from Ecoinvent U",
-    "alias": "sel-de-mer-sel-de-cleri-ou-fleur-de-sel-fr",
+    "alias": "sea-salt-celery-salt-or-fleur-de-sel-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Sel de mer, sel de céleri ou fleur de sel FR",
-    "id": "a58c7d7c-0bda-517e-9864-1290aa450678",
+    "id": "e32ce795-0af6-5d90-8fed-2ed0e249baad",
     "metadata": {
       "food": [
         {
-          "alias": "sel-de-mer-sel-de-cleri-ou-fleur-de-sel-fr",
+          "alias": "sea-salt-celery-salt-or-fleur-de-sel-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sel de mer, sel de céleri ou fleur de sel FR",
-          "id": "7ce3c515-c605-5e22-a32a-bba959f2848d",
+          "id": "64e82939-f3fe-52f4-8611-29b245c0e66e",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "fish_seafood NOVA 2-4 default from food_type_inedible_part.csv",
@@ -5962,9 +5908,9 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "always",
+          "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "Matched with Céleri FR in ingredients.json",
+            "rule": "Matched with salt in transport_cooling.csv",
             "confidence": 0.95
           },
           "visible": true
@@ -5979,19 +5925,19 @@
   },
   {
     "activityName": "Seaweed optimized production, 1kg algae (Laminaria), fresh weight {FR} U",
-    "alias": "algue-fr",
+    "alias": "seaweed-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Algue FR",
-    "id": "42255833-613f-5122-b24d-9a9ffeb7cc05",
+    "id": "bb57f10a-3dfe-581b-a984-8d8fe0603d3b",
     "metadata": {
       "food": [
         {
-          "alias": "algue-fr",
+          "alias": "seaweed-fr",
           "defaultOrigin": "France",
           "displayName": "Algue FR",
-          "id": "82b7b5aa-60a6-5bc7-8c48-665e446a3884",
+          "id": "0463062b-6142-53f5-abfe-f3dce79b5579",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -6017,9 +5963,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'seaweed' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6033,19 +5979,19 @@
   },
   {
     "activityName": "Onion, conventional, national average, at farm {FR} U",
-    "alias": "chalotes-fr",
+    "alias": "shallots-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Échalotes FR",
-    "id": "7af8af5a-06e5-53e9-8645-b1897c0dc91b",
+    "id": "4638b9cc-edc9-59a2-94ec-8a634caf0e2d",
     "metadata": {
       "food": [
         {
-          "alias": "chalotes-fr",
+          "alias": "shallots-fr",
           "defaultOrigin": "France",
           "displayName": "Échalotes FR",
-          "id": "0a74e485-a34a-5472-9c74-c04a8ba74f21",
+          "id": "7f663810-6423-501f-b004-5045eae8176b",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Shallot in agb_inedible.csv",
@@ -6087,19 +6033,19 @@
   },
   {
     "activityName": "Sheep milk, conventional, Roquefort system, at farm gate {FR} U",
-    "alias": "lait-de-brebis-fr",
+    "alias": "sheep-milk-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Lait de brebis FR",
-    "id": "9269dd2b-69a0-5be1-ab86-5a31989c4424",
+    "id": "4461cfce-0540-526a-b994-e3fdb175af26",
     "metadata": {
       "food": [
         {
-          "alias": "lait-de-brebis-fr",
+          "alias": "sheep-milk-fr",
           "defaultOrigin": "France",
           "displayName": "Lait de brebis FR",
-          "id": "0f852019-a405-5993-baf6-baada29a4d07",
+          "id": "6f944dbb-8808-546a-b63e-75678c2e2531",
           "inediblePart": 0.05,
           "inediblePartMatch": {
             "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
@@ -6139,19 +6085,19 @@
   },
   {
     "activityName": "Soft wheat grain, conventional, breadmaking quality, 15% moisture, at farm gate {FR} U",
-    "alias": "bl-tendre-fr",
+    "alias": "soft-wheat-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Blé tendre FR",
-    "id": "1aa09a6c-7c77-5afc-95c5-33382cea4126",
+    "id": "759ad276-1be6-50d7-97f9-c94c5694aa28",
     "metadata": {
       "food": [
         {
-          "alias": "bl-tendre-fr",
+          "alias": "soft-wheat-fr",
           "defaultOrigin": "France",
           "displayName": "Blé tendre FR",
-          "id": "0dcee701-aeb1-547e-acac-04a621340bf7",
+          "id": "48a380e8-2a83-5cac-bf22-4e032bbc3ef1",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -6179,7 +6125,7 @@
           "visible": true,
           "cropGroup": "BLE TENDRE",
           "cropGroupMatch": {
-            "rule": "wheat/flour pattern",
+            "rule": "matched 'wheat' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6193,19 +6139,19 @@
   },
   {
     "activityName": "Sweet sorghum grain {RoW}| sweet sorghum production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "sorgho-fr",
+    "alias": "sorghum-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Sorgho FR",
-    "id": "cd0f1d45-2efe-53f1-83be-3f65b0fb00fa",
+    "id": "2171b416-da21-57f2-b2e3-98060e941fee",
     "metadata": {
       "food": [
         {
-          "alias": "sorgho-fr",
+          "alias": "sorghum-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Sorgho FR",
-          "id": "3c70f785-2afa-5260-aea6-2fc1f824eb5a",
+          "id": "dd76552e-2cf6-5ec6-9ea8-1a3c3bd9a38f",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -6233,7 +6179,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "grain default",
+            "rule": "matched 'sorgho' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6247,19 +6193,19 @@
   },
   {
     "activityName": "Soybean grain dried, stored and transported, processing {FR} U",
-    "alias": "soja-fr",
+    "alias": "soybean-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Soja FR",
-    "id": "6a4ebfbf-ffe6-594f-a613-2c65edaca04a",
+    "id": "e8e4f090-d325-5c6b-89ab-62095639a9c2",
     "metadata": {
       "food": [
         {
-          "alias": "soja-fr",
+          "alias": "soybean-fr",
           "defaultOrigin": "France",
           "displayName": "Soja FR",
-          "id": "beb3e02c-1884-523e-a223-32b75c366954",
+          "id": "4feadd59-3abe-553f-9b15-c34db2b2bdda",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -6287,7 +6233,7 @@
           "visible": true,
           "cropGroup": "AUTRES OLEAGINEUX",
           "cropGroupMatch": {
-            "rule": "oilseed pattern",
+            "rule": "matched 'soybean' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6301,19 +6247,19 @@
   },
   {
     "activityName": "Durum wheat grain, conventional, national average, at farm gate {FR} U",
-    "alias": "epeautre-fr",
+    "alias": "spelt-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Epeautre FR",
-    "id": "13d1c4ec-7f1f-5de4-8d70-282799b695af",
+    "id": "c5766715-59f5-5050-8974-1b2b2ddfb257",
     "metadata": {
       "food": [
         {
-          "alias": "epeautre-fr",
+          "alias": "spelt-fr",
           "defaultOrigin": "France",
           "displayName": "Epeautre FR",
-          "id": "0412f66f-64a3-56c5-9f7d-b350d2dc8914",
+          "id": "919683c4-82c7-5ff3-90f2-a8c6666af83a",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -6339,9 +6285,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "BLE TENDRE",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "wheat/flour pattern",
+            "rule": "matched 'spelt' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6355,19 +6301,19 @@
   },
   {
     "activityName": "Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "pinard-fr",
+    "alias": "spinach-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Épinard FR",
-    "id": "dca85092-7133-5e5a-bf38-f4851e0a435c",
+    "id": "8896f7eb-94b2-53fc-93b4-142e314ad5e0",
     "metadata": {
       "food": [
         {
-          "alias": "pinard-fr",
+          "alias": "spinach-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Épinard FR",
-          "id": "6e775c8a-0d05-5f33-98e2-c7cccc65a87c",
+          "id": "909b8c8d-19a1-5a77-8e56-4b4c366fcbd0",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Spinach in agb_inedible.csv",
@@ -6409,19 +6355,19 @@
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
-    "alias": "pois-casss-fr",
+    "alias": "split-pea-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pois cassés FR",
-    "id": "15753e38-884b-5823-a774-76281618d74f",
+    "id": "a543a87c-255b-5797-a724-6d9cb6d3f499",
     "metadata": {
       "food": [
         {
-          "alias": "pois-casss-fr",
+          "alias": "split-pea-fr",
           "defaultOrigin": "France",
           "displayName": "Pois cassés FR",
-          "id": "1787b556-bcdd-5bef-8b19-1dec0c4bb155",
+          "id": "f8b44ef8-85c0-5d07-9d70-4ab03382ba36",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -6449,7 +6395,7 @@
           "visible": true,
           "cropGroup": "LEGUMINEUSES A GRAIN",
           "cropGroupMatch": {
-            "rule": "legume pattern",
+            "rule": "matched 'pea' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6463,19 +6409,19 @@
   },
   {
     "activityName": "Spring faba bean, conventional, reduced protection, at farm gate {FR} U",
-    "alias": "fves-printanires-fr",
+    "alias": "spring-faba-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Fèves printanières FR",
-    "id": "e07b066a-2b00-5c4b-841b-5a7cdfd5f449",
+    "id": "c84a6762-5814-51e4-9a1d-86579b5c8c61",
     "metadata": {
       "food": [
         {
-          "alias": "fves-printanires-fr",
+          "alias": "spring-faba-fr",
           "defaultOrigin": "France",
           "displayName": "Fèves printanières FR",
-          "id": "bc3d778a-d833-53ab-be41-03552a3a0a55",
+          "id": "1f60064a-d421-5a13-a61e-0d7faad30f12",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -6501,9 +6447,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "PROTEAGINEUX",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'spring faba' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6517,19 +6463,19 @@
   },
   {
     "activityName": "Spring pea, conventional, 15% moisture, animal feed, at farm gate, production {FR} U",
-    "alias": "pois-de-printemps-fr",
+    "alias": "spring-pea-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pois de printemps FR",
-    "id": "0654d5f7-76c2-58d8-836e-9b3fb4b9732f",
+    "id": "bc099e32-c3fa-5008-8d0f-97c91e49792c",
     "metadata": {
       "food": [
         {
-          "alias": "pois-de-printemps-fr",
+          "alias": "spring-pea-fr",
           "defaultOrigin": "France",
           "displayName": "Pois de printemps FR",
-          "id": "e223bf15-8967-5a00-a35c-de6b9a377e26",
+          "id": "03a180e3-3f09-5459-8397-bdbd10c1c934",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -6555,9 +6501,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMINEUSES A GRAIN",
+          "cropGroup": "PROTEAGINEUX",
           "cropGroupMatch": {
-            "rule": "legume pattern",
+            "rule": "matched 'pois de printemps' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6571,19 +6517,19 @@
   },
   {
     "activityName": "Mineral water, still, PET one-way, 1.5 L, at water factory {FR} - Adapted from WFLDB U",
-    "alias": "eau-de-source-fr",
+    "alias": "spring-water-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Eau de source FR",
-    "id": "72170ce2-c05f-58cc-bcd0-52e27838dcb5",
+    "id": "86c135b5-3be1-539b-8abc-1a4ecb83f793",
     "metadata": {
       "food": [
         {
-          "alias": "eau-de-source-fr",
+          "alias": "spring-water-fr",
           "defaultOrigin": "France",
           "displayName": "Eau de source FR",
-          "id": "cbed9015-7be1-5830-a172-c73b9a3c903b",
+          "id": "2fac59fd-a81c-5a10-9401-93a4abaace0c",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "beverage NOVA 1 default from food_type_inedible_part.csv",
@@ -6625,19 +6571,19 @@
   },
   {
     "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
-    "alias": "courge-crue-avec-la-peau-fr",
+    "alias": "squash-raw-with-skin-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Courge crue, avec la peau FR",
-    "id": "2a8bda8c-617c-54ff-b8e6-d7bb49ed1f93",
+    "id": "001e48ef-3b92-5f20-8f70-2256e751c2d9",
     "metadata": {
       "food": [
         {
-          "alias": "courge-crue-avec-la-peau-fr",
+          "alias": "squash-raw-with-skin-fr",
           "defaultOrigin": "France",
           "displayName": "Courge crue, avec la peau FR",
-          "id": "00635e86-36c0-5008-88a5-f967b9e15ae6",
+          "id": "2017dfef-852b-5717-9f38-c0964cff7adc",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -6679,19 +6625,19 @@
   },
   {
     "activityName": "Strawberry, open field, conventional, at farm gate {FR} U",
-    "alias": "fraise-fr",
+    "alias": "strawberry-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Fraise FR",
-    "id": "365e3fb1-73de-5c15-9fc2-e2f4bf6e32c1",
+    "id": "8439bd98-5578-5d8d-a4ad-94337c9f38d5",
     "metadata": {
       "food": [
         {
-          "alias": "fraise-fr",
+          "alias": "strawberry-fr",
           "defaultOrigin": "France",
           "displayName": "Fraise FR",
-          "id": "4fa942ab-41a8-5d8f-9cfc-1c5158045b00",
+          "id": "8ad09e31-6b20-56d1-b059-f871361a16d7",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Strawberries in agb_inedible.csv",
@@ -6717,9 +6663,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'strawberry' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6733,19 +6679,19 @@
   },
   {
     "activityName": "Sugar beet, at farm {FR} - Adapted from WFLDB U",
-    "alias": "betterave-sucre-fr",
+    "alias": "sugar-beet-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Betterave à sucre FR",
-    "id": "b013c14c-db4e-5e26-862e-b44902772173",
+    "id": "00de38d2-b735-5ce9-be8d-bf0d40d6a1fc",
     "metadata": {
       "food": [
         {
-          "alias": "betterave-sucre-fr",
+          "alias": "sugar-beet-fr",
           "defaultOrigin": "France",
           "displayName": "Betterave à sucre FR",
-          "id": "c64a4241-7363-5984-9621-4e376d05c66b",
+          "id": "adff0f93-f19f-55fc-b58e-4a217495770f",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with sugar in inedible_part.csv",
@@ -6771,9 +6717,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "spice_condiment default",
+            "rule": "matched 'betteraves sucrières' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6787,19 +6733,19 @@
   },
   {
     "activityName": "Sunflower grain, conventional, national average, animal feed, at farm gate {UA} U",
-    "alias": "tournesol-graine-fr",
+    "alias": "sunflower-seed-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Tournesol, graine FR",
-    "id": "03edd573-d6b2-5a7d-a70b-2a73bbbbe230",
+    "id": "9e357717-0a62-567b-93e1-ae01ca0d5b05",
     "metadata": {
       "food": [
         {
-          "alias": "tournesol-graine-fr",
+          "alias": "sunflower-seed-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tournesol, graine FR",
-          "id": "efb3b897-2d24-53d0-b48f-84b6d6a4a1a7",
+          "id": "1929b7c8-7e92-5ddd-b5ef-9b4321b72940",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "Matched with sunflower seed in inedible_part.csv",
@@ -6827,7 +6773,7 @@
           "visible": true,
           "cropGroup": "TOURNESOL",
           "cropGroupMatch": {
-            "rule": "sunflower pattern",
+            "rule": "matched 'sunflower' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6841,19 +6787,19 @@
   },
   {
     "activityName": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U",
-    "alias": "patate-douce-fr",
+    "alias": "sweet-potato-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Patate douce FR",
-    "id": "0c10197f-5da8-5117-abff-88071bcbb3bb",
+    "id": "1ef7c4ec-715e-53a0-bb1b-dae585d87f28",
     "metadata": {
       "food": [
         {
-          "alias": "patate-douce-fr",
+          "alias": "sweet-potato-fr",
           "defaultOrigin": "France",
           "displayName": "Patate douce FR",
-          "id": "dea2e534-db2a-50f2-acb0-29d413c482bd",
+          "id": "d9093a6d-594e-50da-a3ae-afc0b614ba19",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with Potatoes in agb_inedible.csv",
@@ -6881,7 +6827,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'potato' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6895,19 +6841,19 @@
   },
   {
     "activityName": "Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "blette-fr",
+    "alias": "swiss-chard-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Blette FR",
-    "id": "dca85092-7133-5e5a-bf38-f4851e0a435c",
+    "id": "504a5e16-cc33-5aa8-992d-f117a6b0dc31",
     "metadata": {
       "food": [
         {
-          "alias": "blette-fr",
+          "alias": "swiss-chard-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Blette FR",
-          "id": "6e775c8a-0d05-5f33-98e2-c7cccc65a87c",
+          "id": "b3205dc4-822f-5e12-9a93-39dda9ddb948",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Spinach in agb_inedible.csv",
@@ -6935,7 +6881,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'chou-fleur' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -6949,19 +6895,19 @@
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "estragon-frais-fr",
+    "alias": "tarragon-fresh-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Estragon frais FR",
-    "id": "d15076f3-e7ab-5825-8de5-4f52c733dc14",
+    "id": "d34a7ffd-5f08-54ac-b867-9f6236b0cde7",
     "metadata": {
       "food": [
         {
-          "alias": "estragon-frais-fr",
+          "alias": "tarragon-fresh-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Estragon frais FR",
-          "id": "65d8fc8d-8989-51d5-875b-7c13e454a311",
+          "id": "ad8bbde9-e11c-5302-ab26-4a354f0e90ba",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Tarragon in agb_inedible.csv",
@@ -6987,9 +6933,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "spice_condiment default",
+            "rule": "matched 'tarragon' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7003,19 +6949,19 @@
   },
   {
     "activityName": "Tomato, average basket, conventional, heated greenhouse, national average, at greenhouse {FR} U",
-    "alias": "tomate-fr",
+    "alias": "tomato-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Tomate FR",
-    "id": "4ba77dfa-eb41-59d8-a9d4-383151d1fd6d",
+    "id": "c06c48b5-cc64-55e0-b066-473f15640175",
     "metadata": {
       "food": [
         {
-          "alias": "tomate-fr",
+          "alias": "tomato-fr",
           "defaultOrigin": "France",
           "displayName": "Tomate FR",
-          "id": "a4f054dd-fb84-5355-b706-f3e5974eee4d",
+          "id": "b94d40bd-3394-59d3-9397-fe097a5f7138",
           "inediblePart": 0.03,
           "inediblePartMatch": {
             "rule": "Matched with Tomatoes in agb_inedible.csv",
@@ -7043,7 +6989,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'tomato' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7057,19 +7003,19 @@
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
-    "alias": "navet-fr",
+    "alias": "turnip-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Navet FR",
-    "id": "aa1a4fa3-257e-5d8b-8c44-d6243c074f68",
+    "id": "aa8fc668-db9b-519c-b9de-23714beec727",
     "metadata": {
       "food": [
         {
-          "alias": "navet-fr",
+          "alias": "turnip-fr",
           "defaultOrigin": "France",
           "displayName": "Navet FR",
-          "id": "f7de3203-a50c-52ab-a0fc-5198525c7370",
+          "id": "b472fe73-7b7c-5b77-a37a-ebae0a05f6ba",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Turnips in agb_inedible.csv",
@@ -7097,7 +7043,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'carrot' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7111,19 +7057,19 @@
   },
   {
     "activityName": "Vanilla {MG}| vanilla production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "extrait-de-vanille-alcoolique-ou-aqueux-fr",
+    "alias": "vanilla-alcoholic-or-aqueous-extract-fr-overseas",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Extrait de vanille, alcoolique ou aqueux FR",
-    "id": "aa986802-2877-569d-8d7c-7b4111be5d4e",
+    "displayName": "Extrait de vanille, alcoolique ou aqueux FR Outre-Mer",
+    "id": "1d960b87-5360-543c-afb3-592f217fe6cd",
     "metadata": {
       "food": [
         {
-          "alias": "extrait-de-vanille-alcoolique-ou-aqueux-fr",
+          "alias": "vanilla-alcoholic-or-aqueous-extract-fr-overseas",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
-          "displayName": "Extrait de vanille, alcoolique ou aqueux FR",
-          "id": "a25b14b2-5339-53da-a873-c917e31d41fd",
+          "displayName": "Extrait de vanille, alcoolique ou aqueux FR Outre-Mer",
+          "id": "56776050-b4f4-5db7-a878-2e2003fff390",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -7149,9 +7095,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "DIVERS",
+          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
           "cropGroupMatch": {
-            "rule": "spice_condiment default",
+            "rule": "matched 'vanille' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7165,19 +7111,19 @@
   },
   {
     "activityName": "Walnut, dried inshell, conventional, national average, at farm gate {FR} U",
-    "alias": "noix-fr",
+    "alias": "walnuts-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Noix FR",
-    "id": "c815d273-6106-56d8-af79-e3c0d97a560a",
+    "id": "eee3a00f-79a3-51a0-9e43-c43a5ffe1d5b",
     "metadata": {
       "food": [
         {
-          "alias": "noix-fr",
+          "alias": "walnuts-fr",
           "defaultOrigin": "France",
           "displayName": "Noix FR",
-          "id": "16ea752c-a21e-5ad2-9cfc-971e2e057948",
+          "id": "402e65f9-9bb2-5670-8ab4-62668dd2ce81",
           "inediblePart": 0.5,
           "inediblePartMatch": {
             "rule": "Matched with Walnuts in agb_inedible.csv",
@@ -7205,7 +7151,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "nut default",
+            "rule": "matched 'walnut' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7219,19 +7165,19 @@
   },
   {
     "activityName": "Melon, conventional, national average, at farm gate {FR} U",
-    "alias": "pastque-fr",
+    "alias": "watermelon-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pastèque FR",
-    "id": "be06d45f-7449-5cc4-a9a2-c4abbf44db61",
+    "id": "225c28c4-a5e4-5d5d-b840-f43746d69505",
     "metadata": {
       "food": [
         {
-          "alias": "pastque-fr",
+          "alias": "watermelon-fr",
           "defaultOrigin": "France",
           "displayName": "Pastèque FR",
-          "id": "c4348af7-4c43-58f1-be77-e2a8921d90ce",
+          "id": "a00cdec5-26d5-54f1-8fc1-ab386434d9d5",
           "inediblePart": 0.4,
           "inediblePartMatch": {
             "rule": "Matched with Melon in agb_inedible.csv",
@@ -7257,9 +7203,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'pastèque' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7273,19 +7219,19 @@
   },
   {
     "activityName": "French bean, conventional, national average, at farm gate {FR} U",
-    "alias": "haricots-blancs-schs-fr",
+    "alias": "white-beans-dried-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Haricots blancs séchés FR",
-    "id": "4271d520-24c9-50f5-8bbe-a434c7517b02",
+    "id": "faaf8513-b31b-5583-8090-9ee727242679",
     "metadata": {
       "food": [
         {
-          "alias": "haricots-blancs-schs-fr",
+          "alias": "white-beans-dried-fr",
           "defaultOrigin": "France",
           "displayName": "Haricots blancs séchés FR",
-          "id": "94fb1eec-7454-5092-b962-9768dcb4b6dc",
+          "id": "4aec2ecb-6f87-5501-a22a-a06ab4842fca",
           "inediblePart": 0.1,
           "inediblePartMatch": {
             "rule": "Matched with French bean in agb_inedible.csv",
@@ -7327,19 +7273,19 @@
   },
   {
     "activityName": "Cabbage white {RoW}| cabbage white production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "chou-blanc-fr",
+    "alias": "white-cabbage-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Chou blanc FR",
-    "id": "c53934f4-fd62-5c9e-9ee8-5eb0e8d40225",
+    "id": "18a2d18a-1adb-57a5-9751-7c22177d5bab",
     "metadata": {
       "food": [
         {
-          "alias": "chou-blanc-fr",
+          "alias": "white-cabbage-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Chou blanc FR",
-          "id": "955e4406-c775-5887-aa2c-2c9b67c87936",
+          "id": "7cae229b-b50e-5dfc-af99-c4fa093e6f15",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "Matched with Cabbage in agb_inedible.csv",
@@ -7381,19 +7327,19 @@
   },
   {
     "activityName": "Barley grain {FR}| barley production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "orge-entire-fr",
+    "alias": "whole-barley-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Orge entière FR",
-    "id": "bac5cd2b-a6fc-5140-9658-22b018e088f1",
+    "id": "a3ea35c9-a1c7-56d4-a745-35f09d44d44b",
     "metadata": {
       "food": [
         {
-          "alias": "orge-entire-fr",
+          "alias": "whole-barley-fr",
           "defaultOrigin": "France",
           "displayName": "Orge entière FR",
-          "id": "a42d8d67-291e-56ac-9fc8-16d074026fac",
+          "id": "00150a93-dea5-55d1-ba56-990d4fa43592",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -7421,7 +7367,7 @@
           "visible": true,
           "cropGroup": "ORGE",
           "cropGroupMatch": {
-            "rule": "barley pattern",
+            "rule": "matched 'barley' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7435,19 +7381,19 @@
   },
   {
     "activityName": "Wheat grain {FR}| wheat production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "millet-entier-fr",
+    "alias": "whole-millet-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Millet entier FR",
-    "id": "d5ceb4f4-a940-52fc-91bb-2798c8772190",
+    "id": "ef78c003-0bcf-5358-8fc0-0b30b338e4d2",
     "metadata": {
       "food": [
         {
-          "alias": "millet-entier-fr",
+          "alias": "whole-millet-fr",
           "defaultOrigin": "France",
           "displayName": "Millet entier FR",
-          "id": "aaf1d6a7-3879-5198-a67a-bdef32769fe1",
+          "id": "de28a618-cac8-539e-8f08-0548c88f56f6",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -7473,9 +7419,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "BLE TENDRE",
+          "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "wheat/flour pattern",
+            "rule": "matched 'millet' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7489,19 +7435,19 @@
   },
   {
     "activityName": "Rye grain, feed, Swiss integrated production {CH}| production | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "seigle-entier-fr",
+    "alias": "whole-rye-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Seigle entier FR",
-    "id": "adf30df7-ea21-54ea-abc7-0b517e932829",
+    "id": "86150d85-24d2-5636-96c2-9ef02a14ca2b",
     "metadata": {
       "food": [
         {
-          "alias": "seigle-entier-fr",
+          "alias": "whole-rye-fr",
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Seigle entier FR",
-          "id": "d9b7afec-32ee-5df8-a6a5-054f414d33bf",
+          "id": "404e758a-d98b-5cb5-9483-ef18232cf0bf",
           "inediblePart": 0.0,
           "inediblePartMatch": {
             "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -7529,7 +7475,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "grain default",
+            "rule": "matched 'seigle' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7543,19 +7489,19 @@
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
-    "alias": "pois-dhiver-fr",
+    "alias": "winter-pea-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Pois d'hiver FR",
-    "id": "15753e38-884b-5823-a774-76281618d74f",
+    "id": "43229a1b-c840-5bcb-b5dc-e8c46d8c1183",
     "metadata": {
       "food": [
         {
-          "alias": "pois-dhiver-fr",
+          "alias": "winter-pea-fr",
           "defaultOrigin": "France",
           "displayName": "Pois d'hiver FR",
-          "id": "1787b556-bcdd-5bef-8b19-1dec0c4bb155",
+          "id": "249f84b7-7705-5cc2-98b0-990574168968",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -7581,9 +7527,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMINEUSES A GRAIN",
+          "cropGroup": "PROTEAGINEUX",
           "cropGroupMatch": {
-            "rule": "legume pattern",
+            "rule": "matched 'pois d'hiver' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -7597,19 +7543,19 @@
   },
   {
     "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
-    "alias": "courgettes-fr",
+    "alias": "zucchini-fr",
     "categories": [
       "ingredient"
     ],
     "displayName": "Courgettes FR",
-    "id": "2a8bda8c-617c-54ff-b8e6-d7bb49ed1f93",
+    "id": "e7d9a8e2-d44c-548e-8f72-3c9045166e3e",
     "metadata": {
       "food": [
         {
-          "alias": "courgettes-fr",
+          "alias": "zucchini-fr",
           "defaultOrigin": "France",
           "displayName": "Courgettes FR",
-          "id": "00635e86-36c0-5008-88a5-f967b9e15ae6",
+          "id": "e80c6317-8593-570e-ae3c-53d12f441a10",
           "inediblePart": 0.2,
           "inediblePartMatch": {
             "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -7637,7 +7583,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'zucchini' in cropgroup.csv",
             "confidence": 1.0
           }
         }

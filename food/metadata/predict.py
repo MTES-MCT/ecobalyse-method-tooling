@@ -1017,12 +1017,24 @@ class Predictor:
         """
         text = f"{name} {activity}".lower()
 
+        # Check cropgroup reference data FIRST (before pattern inference)
+        # This gives CSV data priority over hardcoded patterns
+        if self.cropgroup_matcher is not None:
+            cropgroup_val, conf, match_name, source = self.cropgroup_matcher.predict(
+                name, translate_fn=self._translate
+            )
+            # Only use matches from reference CSV, not ingredients.json
+            if conf >= 0.95 and source == "cropgroup.csv":
+                return cropgroup_val, f"matched '{match_name}' in cropgroup.csv"
+
         # Edge cases: items often misclassified by foodType prediction
         # These patterns take priority over foodType-based logic
         if any(w in text for w in ["cocoa", "cacao", "coffee", "café"]):
             return "DIVERS", "cocoa/coffee pattern"
         if "prickly pear" in text or "figue de barbarie" in text:
             return "VERGERS", "prickly pear pattern"
+        if any(w in text for w in ["grape", "raisin", "wine", "vin"]):
+            return "VIGNES", "grape/wine pattern"
 
         # Specific grains override default
         if food_type == "grain":
