@@ -481,7 +481,7 @@ def extract_activities_and_ingredients(
             other.append(a)
             continue
         act_name = a.get("activityName")
-        act_display = a["displayName"]
+        act_display = normalize_display_name(a["displayName"], old_suffix)
 
         if act_name and act_name in by_activity_name:
             act_display = by_activity_name[act_name]
@@ -489,6 +489,7 @@ def extract_activities_and_ingredients(
             if act_name:
                 by_activity_name[act_name] = act_display
             activities[act_display] = {k: v for k, v in a.items() if k != "metadata"}
+            activities[act_display]["displayName"] = act_display
             activities[act_display]["alias"] = normalize_alias(
                 a.get("alias", ""), new_prefix
             )
@@ -507,17 +508,28 @@ def apply_suffixes(
     ingredients: dict[str, dict],
     new_act_names: set[str],
     new_ing_names: set[str],
+    kept_act_names: set[str],
     keep_set: set[str],
     old_suffix: str,
     new_prefix: str,
 ) -> tuple[dict[str, dict], dict[str, dict]]:
-    """Add old_suffix to old ingredient displayNames, new_prefix to new aliases."""
-    new_acts = {
-        dn: {**act, "alias": new_prefix + act["alias"]}
-        if dn in new_act_names and act.get("alias")
-        else act
-        for dn, act in activities.items()
-    }
+    """Add old_suffix to old activity/ingredient displayNames, new_prefix to new aliases.
+
+    - New activities/ingredients get new_prefix on their alias.
+    - Old activities get old_suffix on their displayName, unless they are in
+      kept_act_names (existing activities reused by new ingredients).
+    - Old ingredients get old_suffix on their displayName, unless in keep_set.
+    """
+    new_acts = {}
+    for dn, act in activities.items():
+        act = {**act}
+        if dn in new_act_names:
+            if act.get("alias"):
+                act["alias"] = new_prefix + act["alias"]
+        elif dn not in kept_act_names and "ingredient" in act.get("categories", []):
+            act["displayName"] = act["displayName"] + old_suffix
+        new_acts[dn] = act
+
     new_ings = {}
     for dn, ing in ingredients.items():
         ing = {**ing}
@@ -618,6 +630,14 @@ def merge_activities(
             if existing_dn and existing_dn != act_display:
                 ing["activity_display"] = existing_dn
 
+    # Existing activities whose activityName is shared with a new activity
+    # are "kept" (they hold new ingredients and will survive the future release).
+    kept_act_names = set()
+    for dn, act in new_acts.items():
+        act_name = act.get("activityName")
+        if act_name and act_name in existing_act_by_name:
+            kept_act_names.add(existing_act_by_name[act_name])
+
     merged_acts = {**existing_acts, **added_acts}
     # Existing ingredients win on displayName collision to avoid cross-activity overwrites
     merged_ings = {**new_ings, **existing_ings}
@@ -629,6 +649,7 @@ def merge_activities(
             merged_ings,
             set(added_acts),
             set(new_ings),
+            kept_act_names,
             keep_set,
             old_suffix,
             new_prefix,
