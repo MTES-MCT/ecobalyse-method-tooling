@@ -488,7 +488,15 @@ def extract_activities_and_ingredients(
         else:
             if act_name:
                 by_activity_name[act_name] = act_display
+            # Preserve non-food metadata (textile, etc.) on the activity dict
+            non_food_meta = {
+                k: v
+                for k, v in a.get("metadata", {}).items()
+                if k != "food"
+            }
             activities[act_display] = {k: v for k, v in a.items() if k != "metadata"}
+            if non_food_meta:
+                activities[act_display]["_non_food_metadata"] = non_food_meta
             activities[act_display]["displayName"] = act_display
             activities[act_display]["alias"] = normalize_alias(
                 a.get("alias", ""), new_prefix
@@ -558,9 +566,13 @@ def reassemble(
     result = []
     for dn, act in activities.items():
         entry = {**act}
+        non_food_meta = entry.pop("_non_food_metadata", {})
         ings = by_activity.get(dn, [])
-        if ings:
-            entry["metadata"] = {"food": ings}
+        if ings or non_food_meta:
+            metadata = {**non_food_meta}
+            if ings:
+                metadata["food"] = ings
+            entry["metadata"] = metadata
         result.append(entry)
     return result + other
 
