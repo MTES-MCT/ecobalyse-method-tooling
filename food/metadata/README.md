@@ -1,5 +1,3 @@
-This is a separated experiment to compute metadata from a list of new ingredients
-
 # Ingredient Metadata Prediction System
 
 ## Directory Structure
@@ -41,15 +39,8 @@ Create a `.env` file with required environment variables:
 
 ```bash
 BRIGHTWAY2_DIR=/path/to/brightway-dirs/main
-
-# Path to ingredients.json (used for training the predictor)
-INGREDIENTS=../../../ecobalyse/public/data/food/ingredients.json
-
-# Path to activities.json in ecobalyse-data (for merging new activities)
-ACTIVITIES=../../../ecobalyse-data/activities.json
-
-# Path to processes_impacts.json in ecobalyse-data (for impact data)
-PROCESSES=../../../ecobalyse-data/public/data/processes_impacts.json
+ECOBALYSE_DATA=../../../ecobalyse-data
+ECOBALYSE=../../../ecobalyse
 ```
 
 ## Export Workflow
@@ -59,15 +50,20 @@ The export process has multiple steps to generate complete ingredient data with 
 ### Step 1: Export Metadata and Merge Activities
 
 ```bash
-uv run export.py
+uv run export.py metadata --variant FR --add-old-suffix
 ```
 
 This will:
-1. Train the predictor on existing ingredients from `INGREDIENTS`
+1. Train the predictor on existing ingredients from `$ECOBALYSE/public/data/food/ingredients.json`
 2. Predict metadata for ingredients in `source/new_ingredient_FR.csv`
 3. Generate `generated/predictions.csv` (detailed predictions with confidence)
 4. Generate `generated/new_activities.json` (Ecobalyse format)
-5. Merge new activities into the configured `ACTIVITIES` file
+5. Merge new activities into `$ECOBALYSE_DATA/activities.json`
+6. Copy reference CSVs to `$ECOBALYSE_DATA/food/metadata/`
+
+The `--add-old-suffix` flag adds a `(2025)` suffix to pre-existing activity and ingredient displayNames. Activities reused by new ingredients keep their original displayName.
+
+Variants: `FR`, `ORG`, `UE`, `DEF`, `NUE`.
 
 ### Step 2: Regenerate Ingredients in ecobalyse-data
 
@@ -87,8 +83,8 @@ uv run export.py final_data
 
 This will:
 1. Read `source/new_ingredient_FR.csv`
-2. Add metadata from `ingredients.json` (via activity UUID matching)
-3. Add environmental impacts from `processes_impacts.json` (via processId)
+2. Add metadata from `new_activities.json` (via activityName matching)
+3. Add environmental impacts from `processes_impacts.json` (via activityName)
 4. Generate `generated/new_ingredients.csv`
 
 ### Input File: `source/new_ingredient_FR.csv`
@@ -105,10 +101,12 @@ Required columns:
 ## Usage
 
 ```bash
-uv run export.py                   # Export predictions + merge activities (default)
-uv run export.py final_data        # Generate final CSV with impacts
-uv run export.py --clear-cache     # Clear translation cache first
-uv run validate_nova.py --folds 5  # Validate NOVA classification (5-fold CV)
+uv run export.py metadata --variant FR                    # Export + merge (no suffix)
+uv run export.py metadata --variant FR --add-old-suffix   # Export + merge + add (2025) suffix
+uv run export.py metadata --variant FR --remove-old-suffix # Export + merge + remove (2025) suffix
+uv run export.py metadata --variant FR --clear-cache      # Clear translation cache first
+uv run export.py final_data                               # Generate final CSV with impacts
+uv run validate_nova.py --folds 5                         # Validate NOVA classification (5-fold CV)
 ```
 
 ## Architecture
