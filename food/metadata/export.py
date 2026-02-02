@@ -471,40 +471,33 @@ def extract_activities_and_ingredients(
     new_prefix: str,
 ) -> tuple[dict[str, dict], dict[str, dict], list[dict]]:
     """Extract and normalize flat dicts from nested activities.json.
-    Consolidates by activityName. Deduplicates ingredients by displayName (last wins).
+    Keyed by displayName. Consolidates by activityName. Last wins.
     """
     activities, ingredients, other = {}, {}, []
-    by_activity_name = {}
-    ing_id_by_display = {}  # displayName -> id, to deduplicate across different ids
+    by_activity_name = {}  # activityName -> activity displayName
 
     for a in activities_list:
         if "displayName" not in a:
             other.append(a)
             continue
         act_name = a.get("activityName")
-        act_id = a["id"]
+        act_display = a["displayName"]
 
-        if act_name in by_activity_name:
-            act_id = by_activity_name[act_name]
+        if act_name and act_name in by_activity_name:
+            act_display = by_activity_name[act_name]
         else:
-            by_activity_name[act_name] = act_id
-            activities[act_id] = {k: v for k, v in a.items() if k != "metadata"}
-            activities[act_id]["alias"] = normalize_alias(
+            if act_name:
+                by_activity_name[act_name] = act_display
+            activities[act_display] = {k: v for k, v in a.items() if k != "metadata"}
+            activities[act_display]["alias"] = normalize_alias(
                 a.get("alias", ""), new_prefix
             )
 
         for ing in a.get("metadata", {}).get("food", []):
-            ing = {**ing, "activity_id": act_id}
-            ing["displayName"] = normalize_display_name(
-                ing["displayName"], old_suffix
-            )
+            ing = {**ing, "activity_display": act_display}
+            ing["displayName"] = normalize_display_name(ing["displayName"], old_suffix)
             ing["alias"] = normalize_alias(ing.get("alias", ""), new_prefix)
-            display = ing["displayName"]
-            # Remove previous entry with same displayName but different id
-            if display in ing_id_by_display and ing_id_by_display[display] != ing["id"]:
-                ingredients.pop(ing_id_by_display[display], None)
-            ing_id_by_display[display] = ing["id"]
-            ingredients[ing["id"]] = ing
+            ingredients[ing["displayName"]] = ing
 
     return activities, ingredients, other
 
@@ -512,28 +505,28 @@ def extract_activities_and_ingredients(
 def apply_suffixes(
     activities: dict[str, dict],
     ingredients: dict[str, dict],
-    new_act_ids: set[str],
-    new_ing_ids: set[str],
+    new_act_names: set[str],
+    new_ing_names: set[str],
     keep_set: set[str],
     old_suffix: str,
     new_prefix: str,
 ) -> tuple[dict[str, dict], dict[str, dict]]:
     """Add old_suffix to old ingredient displayNames, new_prefix to new aliases."""
     new_acts = {
-        aid: {**act, "alias": new_prefix + act["alias"]}
-        if aid in new_act_ids and act.get("alias")
+        dn: {**act, "alias": new_prefix + act["alias"]}
+        if dn in new_act_names and act.get("alias")
         else act
-        for aid, act in activities.items()
+        for dn, act in activities.items()
     }
     new_ings = {}
-    for iid, ing in ingredients.items():
+    for dn, ing in ingredients.items():
         ing = {**ing}
-        if iid in new_ing_ids:
-            if ing["displayName"] not in keep_set and ing.get("alias"):
+        if dn in new_ing_names:
+            if dn not in keep_set and ing.get("alias"):
                 ing["alias"] = new_prefix + ing["alias"]
-        elif ing["displayName"] not in keep_set:
+        elif dn not in keep_set:
             ing["displayName"] += old_suffix
-        new_ings[iid] = ing
+        new_ings[dn] = ing
     return new_acts, new_ings
 
 
@@ -545,15 +538,15 @@ def reassemble(
     """Reassemble flat dicts back into nested activities.json format."""
     by_activity = {}
     for ing in ingredients.values():
-        aid = ing["activity_id"]
-        by_activity.setdefault(aid, []).append(
-            {k: v for k, v in ing.items() if k != "activity_id"}
+        ad = ing["activity_display"]
+        by_activity.setdefault(ad, []).append(
+            {k: v for k, v in ing.items() if k != "activity_display"}
         )
 
     result = []
-    for aid, act in activities.items():
+    for dn, act in activities.items():
         entry = {**act}
-        ings = by_activity.get(aid, [])
+        ings = by_activity.get(dn, [])
         if ings:
             entry["metadata"] = {"food": ings}
         result.append(entry)
@@ -598,22 +591,43 @@ def merge_activities(
         new_list, old_suffix, new_prefix
     )
 
-    # Merge: new overrides existing
-    merged_acts = {**existing_acts, **new_acts}
-    # Deduplicate ingredients by displayName across files (new wins)
-    existing_by_display = {ing["displayName"]: iid for iid, ing in existing_ings.items()}
-    for ing in new_ings.values():
-        old_id = existing_by_display.get(ing["displayName"])
-        if old_id and old_id != ing["id"]:
-            existing_ings.pop(old_id, None)
-    merged_ings = {**existing_ings, **new_ings}
+    # Build activityName -> displayName map from existing
+    existing_act_by_name = {
+        act["activityName"]: dn
+        for dn, act in existing_acts.items()
+        if "activityName" in act
+    }
+
+    # For new activities: only add if activityName is genuinely new.
+    # For new ingredients mapping to existing activityNames: remap activity_display.
+    added_acts = {}
+    for dn, act in new_acts.items():
+        act_name = act.get("activityName")
+        if act_name not in existing_act_by_name:
+            added_acts[dn] = act
+            existing_act_by_name[act_name] = dn
+
+    # Remap new ingredients to existing activity displayNames where applicable
+    for ing_dn, ing in new_ings.items():
+        act_display = ing["activity_display"]
+        # Find the activityName for this ingredient's activity
+        source_act = new_acts.get(act_display)
+        if source_act:
+            act_name = source_act["activityName"]
+            existing_dn = existing_act_by_name.get(act_name)
+            if existing_dn and existing_dn != act_display:
+                ing["activity_display"] = existing_dn
+
+    merged_acts = {**existing_acts, **added_acts}
+    # Existing ingredients win on displayName collision to avoid cross-activity overwrites
+    merged_ings = {**new_ings, **existing_ings}
 
     # Apply suffix logic
     if add_old_suffix:
         merged_acts, merged_ings = apply_suffixes(
             merged_acts,
             merged_ings,
-            set(new_acts),
+            set(added_acts),
             set(new_ings),
             keep_set,
             old_suffix,
@@ -624,7 +638,7 @@ def merge_activities(
 
     with open(target_activities_path, "w") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
-    print(f"Merged {len(new_acts)} new into {len(merged_acts)} total activities")
+    print(f"Merged {len(added_acts)} new activities into {len(merged_acts)} total activities")
 
 
 def generate_final_data():
