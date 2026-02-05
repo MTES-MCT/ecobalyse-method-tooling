@@ -257,7 +257,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'carrot' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -473,7 +473,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'bell pepper' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1121,7 +1121,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'tomato' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1227,9 +1227,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "SEMENCES",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'semences epeautre' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -1336,9 +1336,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'chicory' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -2301,9 +2301,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "ARBORICULTURE",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "matched 'banana' in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -2621,7 +2621,7 @@
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "Matched with Petit pois FR in ingredients.json",
+            "rule": "Matched with Pois de printemps FR in ingredients.json",
             "confidence": 0.882
           },
           "visible": true,
@@ -2679,9 +2679,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VIGNES",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "matched 'grape' in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -2789,7 +2789,7 @@
           "visible": true,
           "cropGroup": "VIGNES",
           "cropGroupMatch": {
-            "rule": "matched 'grape' in cropgroup.csv",
+            "rule": "grape/wine pattern",
             "confidence": 1.0
           }
         }
@@ -2895,9 +2895,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VERGERS",
+          "cropGroup": "ARBORICULTURE",
           "cropGroupMatch": {
-            "rule": "fruit default",
+            "rule": "matched 'banane export' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3216,7 +3216,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'carrot' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -3702,7 +3702,7 @@
           "visible": true,
           "cropGroup": "FRUITS A COQUES",
           "cropGroupMatch": {
-            "rule": "matched 'noix' in cropgroup.csv",
+            "rule": "nut default",
             "confidence": 1.0
           }
         }
@@ -3808,9 +3808,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroup": "VERGERS",
           "cropGroupMatch": {
-            "rule": "matched 'melon' in cropgroup.csv",
+            "rule": "fruit default",
             "confidence": 1.0
           }
         }
@@ -4078,9 +4078,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+          "cropGroup": "DIVERS",
           "cropGroupMatch": {
-            "rule": "matched 'moutarde' in cropgroup.csv",
+            "rule": "spice_condiment default",
             "confidence": 1.0
           }
         }
@@ -5268,7 +5268,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "vegetable default",
+            "rule": "matched 'carrot' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5430,7 +5430,7 @@
           "visible": true,
           "cropGroup": "RIZ",
           "cropGroupMatch": {
-            "rule": "rice pattern",
+            "rule": "matched 'rice' in cropgroup.csv",
             "confidence": 1.0
           }
         }
@@ -5592,7 +5592,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'endive' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5698,9 +5698,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "AUTRES OLEAGINEUX",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'soybean' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -5908,9 +5908,9 @@
             "confidence": 1.0
           },
           "scenario": "reference",
-          "transportCooling": "none",
+          "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "Matched with salt in transport_cooling.csv",
+            "rule": "Matched with Céleri FR in ingredients.json",
             "confidence": 0.95
           },
           "visible": true
@@ -6551,7 +6551,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "Matched with Autres eaux et autres boissons (non encore répertoriées) in ingredients.json",
+            "rule": "Matched with Autres eaux et autres boissons (non encore répertoriées) (2025) in ingredients.json",
             "confidence": 0.997
           },
           "visible": true,
@@ -6773,7 +6773,7 @@
           "visible": true,
           "cropGroup": "TOURNESOL",
           "cropGroupMatch": {
-            "rule": "matched 'sunflower' in cropgroup.csv",
+            "rule": "sunflower pattern",
             "confidence": 1.0
           }
         }
@@ -6827,7 +6827,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'potato' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7367,7 +7367,7 @@
           "visible": true,
           "cropGroup": "ORGE",
           "cropGroupMatch": {
-            "rule": "matched 'barley' in cropgroup.csv",
+            "rule": "barley pattern",
             "confidence": 1.0
           }
         }
@@ -7475,7 +7475,7 @@
           "visible": true,
           "cropGroup": "AUTRES CEREALES",
           "cropGroupMatch": {
-            "rule": "matched 'seigle' in cropgroup.csv",
+            "rule": "grain default",
             "confidence": 1.0
           }
         }
