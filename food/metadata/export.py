@@ -452,23 +452,23 @@ IMPACT_COLUMNS = [
 ]
 
 OLD_DISPLAY_SUFFIX = " (2025)"
-NEW_ALIAS_PREFIX = "new-"
+OLD_ALIAS_SUFFIX = "-2025"
 
 
 def normalize_display_name(name: str, old_suffix: str) -> str:
     return name[: -len(old_suffix)] if name.endswith(old_suffix) else name
 
 
-def normalize_alias(alias: str | None, new_prefix: str) -> str | None:
+def normalize_alias(alias: str | None, old_suffix: str) -> str | None:
     if alias is None:
         return None
-    return alias[len(new_prefix) :] if alias.startswith(new_prefix) else alias
+    return alias[: -len(old_suffix)] if alias.endswith(old_suffix) else alias
 
 
 def extract_activities_and_ingredients(
     activities_list: list[dict],
-    old_suffix: str,
-    new_prefix: str,
+    old_display_suffix: str,
+    old_alias_suffix: str,
 ) -> tuple[dict[str, dict], dict[str, dict], list[dict]]:
     """Extract and normalize flat dicts from nested activities.json.
     Keyed by displayName. Consolidates by activityName. Last wins.
@@ -481,7 +481,7 @@ def extract_activities_and_ingredients(
             other.append(a)
             continue
         act_name = a.get("activityName")
-        act_display = normalize_display_name(a["displayName"], old_suffix)
+        act_display = normalize_display_name(a["displayName"], old_display_suffix)
 
         if act_name and act_name in by_activity_name:
             act_display = by_activity_name[act_name]
@@ -499,13 +499,13 @@ def extract_activities_and_ingredients(
                 activities[act_display]["_non_food_metadata"] = non_food_meta
             activities[act_display]["displayName"] = act_display
             activities[act_display]["alias"] = normalize_alias(
-                a.get("alias", ""), new_prefix
+                a.get("alias", ""), old_alias_suffix
             )
 
         for ing in a.get("metadata", {}).get("food", []):
             ing = {**ing, "activity_display": act_display}
-            ing["displayName"] = normalize_display_name(ing["displayName"], old_suffix)
-            ing["alias"] = normalize_alias(ing.get("alias", ""), new_prefix)
+            ing["displayName"] = normalize_display_name(ing["displayName"], old_display_suffix)
+            ing["alias"] = normalize_alias(ing.get("alias", ""), old_alias_suffix)
             ingredients[ing["displayName"]] = ing
 
     return activities, ingredients, other
@@ -518,34 +518,38 @@ def apply_suffixes(
     new_ing_names: set[str],
     kept_act_names: set[str],
     keep_set: set[str],
-    old_suffix: str,
-    new_prefix: str,
+    old_display_suffix: str,
+    old_alias_suffix: str,
 ) -> tuple[dict[str, dict], dict[str, dict]]:
-    """Add old_suffix to old activity/ingredient displayNames, new_prefix to new aliases.
+    """Add old_display_suffix and old_alias_suffix to old activity/ingredient names.
 
-    - New activities/ingredients get new_prefix on their alias.
-    - Old activities get old_suffix on their displayName, unless they are in
-      kept_act_names (existing activities reused by new ingredients).
-    - Old ingredients get old_suffix on their displayName, unless in keep_set.
+    - Old activities get old_display_suffix on their displayName and old_alias_suffix
+      on their alias, unless they are in kept_act_names (existing activities reused
+      by new ingredients).
+    - Old ingredients get old_display_suffix on their displayName and old_alias_suffix
+      on their alias, unless in keep_set.
+    - New activities/ingredients keep their clean names (no suffix).
     """
     new_acts = {}
     for dn, act in activities.items():
         act = {**act}
-        if dn in new_act_names:
-            if act.get("alias"):
-                act["alias"] = new_prefix + act["alias"]
-        elif dn not in kept_act_names and "ingredient" in act.get("categories", []):
-            act["displayName"] = act["displayName"] + old_suffix
+        if dn not in new_act_names:
+            # OLD activity
+            if dn not in kept_act_names and "ingredient" in act.get("categories", []):
+                act["displayName"] = act["displayName"] + old_display_suffix
+                if act.get("alias"):
+                    act["alias"] = act["alias"] + old_alias_suffix
         new_acts[dn] = act
 
     new_ings = {}
     for dn, ing in ingredients.items():
         ing = {**ing}
-        if dn in new_ing_names:
-            if dn not in keep_set and ing.get("alias"):
-                ing["alias"] = new_prefix + ing["alias"]
-        elif dn not in keep_set:
-            ing["displayName"] += old_suffix
+        if dn not in new_ing_names:
+            # OLD ingredient
+            if dn not in keep_set:
+                ing["displayName"] += old_display_suffix
+                if ing.get("alias"):
+                    ing["alias"] = ing["alias"] + old_alias_suffix
         new_ings[dn] = ing
     return new_acts, new_ings
 
@@ -590,8 +594,9 @@ def merge_activities(
     with new overriding existing, and optionally applies suffixes.
 
     Options:
-    - add_old_suffix: Add " (2025)" suffix to pre-existing ingredients
-    - remove_old_suffix: Remove " (2025)" suffix (normalization already does this)
+    - add_old_suffix: Add " (2025)" suffix to pre-existing ingredient displayNames
+      and "-2025" suffix to their aliases
+    - remove_old_suffix: Remove suffixes (normalization already does this)
     """
     with open(new_activities_path) as f:
         new_list = json.load(f)
@@ -604,15 +609,15 @@ def merge_activities(
         with open(keep_csv_path, encoding="utf-8") as f:
             keep_set = {line.strip() for line in f if line.strip()}
 
-    old_suffix = OLD_DISPLAY_SUFFIX
-    new_prefix = NEW_ALIAS_PREFIX
+    old_display_suffix = OLD_DISPLAY_SUFFIX
+    old_alias_suffix = OLD_ALIAS_SUFFIX
 
     # Extract into flat dicts (normalizing on load)
     existing_acts, existing_ings, other = extract_activities_and_ingredients(
-        existing_list, old_suffix, new_prefix
+        existing_list, old_display_suffix, old_alias_suffix
     )
     new_acts, new_ings, _ = extract_activities_and_ingredients(
-        new_list, old_suffix, new_prefix
+        new_list, old_display_suffix, old_alias_suffix
     )
 
     # Build activityName -> displayName map from existing
@@ -663,8 +668,8 @@ def merge_activities(
             set(new_ings),
             kept_act_names,
             keep_set,
-            old_suffix,
-            new_prefix,
+            old_display_suffix,
+            old_alias_suffix,
         )
 
     result = reassemble(merged_acts, merged_ings, other)
@@ -803,12 +808,12 @@ def main():
     parser.add_argument(
         "--add-old-suffix",
         action="store_true",
-        help="Add '(2025)' suffix to pre-existing ingredients",
+        help="Add '(2025)' suffix to pre-existing ingredient displayNames and '-2025' suffix to their aliases",
     )
     parser.add_argument(
         "--remove-old-suffix",
         action="store_true",
-        help="Remove '(2025)' suffix from all ingredients",
+        help="Remove '(2025)' and '-2025' suffixes from all ingredients",
     )
     args = parser.parse_args()
 
