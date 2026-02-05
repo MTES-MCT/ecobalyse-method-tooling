@@ -293,6 +293,26 @@ class FoodOnFeatureExtractor:
         if fruit_key in self.food_product_terms:
             return self.food_product_terms[fruit_key], 0.95
 
+        # 5. For dairy-related names (e.g., "cow milk"), prioritize "milk" over animal name
+        # This prevents "cow milk" from matching "cow food product" (meat) instead of dairy
+        words_for_dairy = name_lower.replace(",", " ").split()
+        dairy_keywords = {"milk", "lait", "cream", "crème", "creme", "yogurt", "yoghurt"}
+        if dairy_keywords & set(words_for_dairy):
+            # Try milk-related lookups first
+            for dairy_word in ["milk", "cream"]:
+                if dairy_word in words_for_dairy:
+                    # Try "(raw)" suffix (common in FoodOn for dairy)
+                    raw_key = f"cow {dairy_word} (raw)"
+                    if raw_key in self.food_product_terms:
+                        return self.food_product_terms[raw_key], 0.95
+                    raw_key = f"{dairy_word} (raw)"
+                    if raw_key in self.food_product_terms:
+                        return self.food_product_terms[raw_key], 0.9
+                    # Try "food product" suffix
+                    food_key = f"{dairy_word} food product"
+                    if food_key in self.food_product_terms:
+                        return self.food_product_terms[food_key], 0.9
+
         # Extract main words from name (skip common words)
         skip_words = {
             "de",
@@ -442,6 +462,8 @@ class FoodOnFeatureExtractor:
         is_plant_material = FOODON_MATERIAL_CATEGORIES["plant"] in ancestors
         is_legume = FOODON_CATEGORIES["legume"] in ancestors
         is_egg = FOODON_CATEGORIES["egg"] in ancestors
+        # Dairy check (needed because FoodOn hierarchy puts dairy under vertebrate material)
+        is_dairy = FOODON_CATEGORIES["dairy"] in ancestors
 
         # Compute specific plant categories first (grain, fruit, nut) before vegetable fallback
         is_grain = (
@@ -465,9 +487,10 @@ class FoodOnFeatureExtractor:
         )
         features[1] = 1.0 if is_fruit else 0.0
         features[2] = 1.0 if is_grain else 0.0
-        # Meat: vertebrate material (NOT fish), OR egg (eggs → meat in Ecobalyse)
+        # Meat: vertebrate material (NOT fish, NOT dairy), OR egg (eggs → meat in Ecobalyse)
+        # Dairy excluded because FoodOn hierarchy puts dairy under vertebrate material
         features[3] = (
-            1.0 if ((is_vertebrate and not is_fish) or is_egg) else 0.0
+            1.0 if ((is_vertebrate and not is_fish and not is_dairy) or is_egg) else 0.0
         )  # is_meat
         features[4] = 1.0 if is_fish else 0.0  # is_fish
         features[5] = 1.0 if FOODON_CATEGORIES["dairy"] in ancestors else 0.0
