@@ -426,9 +426,17 @@ def write_json(results: list, output_path: str):
 # =============================================================================
 
 INPUT_CSV = Path(__file__).parent / "source/new_ingredient_FR.csv"
-OUTPUT_CSV = Path(__file__).parent / "generated/predictions.csv"
-OUTPUT_JSON = Path(__file__).parent / "generated/new_activities.json"
-FINAL_OUTPUT_CSV = Path(__file__).parent / "generated/new_ingredients.csv"
+GENERATED_DIR = Path(__file__).parent / "generated"
+
+
+def get_output_paths(variant: Variant) -> tuple[Path, Path, Path]:
+    """Generate output paths with variant suffix."""
+    suffix = f"_{variant.value}"
+    return (
+        GENERATED_DIR / f"predictions{suffix}.csv",
+        GENERATED_DIR / f"new_activities{suffix}.json",
+        GENERATED_DIR / f"new_ingredients{suffix}.csv",
+    )
 
 # Impact columns to extract from processes_impacts.json
 IMPACT_COLUMNS = [
@@ -679,7 +687,7 @@ def merge_activities(
     print(f"Merged {len(added_acts)} new activities into {len(merged_acts)} total activities")
 
 
-def generate_final_data():
+def generate_final_data(variant: Variant):
     """Generate final CSV with all ingredient data and impacts.
 
     Combines:
@@ -687,6 +695,8 @@ def generate_final_data():
     - new_activities.json (predicted metadata)
     - processes_impacts.json (environmental impacts, matched by activityName)
     """
+    output_csv, output_json, final_output_csv = get_output_paths(variant)
+
     # Load source CSV
     print(f"Loading {INPUT_CSV}...")
     source_df = pd.read_csv(INPUT_CSV)
@@ -702,8 +712,8 @@ def generate_final_data():
     processes_by_name = {p["activityName"]: p for p in processes_list}
 
     # Load new_activities.json to get predicted metadata
-    print(f"Loading {OUTPUT_JSON}...")
-    with open(OUTPUT_JSON) as f:
+    print(f"Loading {output_json}...")
+    with open(output_json) as f:
         new_activities = json.load(f)
     # Map activityName to full activity (which contains metadata)
     activities_by_name = {a["activityName"]: a for a in new_activities}
@@ -779,9 +789,9 @@ def generate_final_data():
 
     # Write output
     output_df = pd.DataFrame(results)
-    output_df.to_csv(FINAL_OUTPUT_CSV, index=False)
+    output_df.to_csv(final_output_csv, index=False)
     print(f"\nMatched: {matched_processes}/{len(results)} processes with impacts")
-    print(f"Final data written to {FINAL_OUTPUT_CSV}")
+    print(f"Final data written to {final_output_csv}")
 
 
 def main():
@@ -798,7 +808,7 @@ def main():
         type=lambda v: Variant[v.upper()],
         choices=list(Variant),
         metavar="{FR,ORG,UE,DEF,NUE}",
-        help="Variant: FR, ORG, UE, DEF, NUE (required for metadata command)",
+        help="Variant: FR, ORG, UE, DEF, NUE (required, used in output file names)",
     )
     parser.add_argument(
         "--clear-cache",
@@ -821,12 +831,15 @@ def main():
     if args.add_old_suffix and args.remove_old_suffix:
         parser.error("--add-old-suffix and --remove-old-suffix are mutually exclusive")
 
-    # Validate --variant is required for metadata command
-    if args.command == "metadata" and args.variant is None:
-        parser.error("--variant is required for the metadata command")
+    # Validate --variant is required
+    if args.variant is None:
+        parser.error("--variant is required")
+
+    # Get output paths for this variant
+    output_csv, output_json, final_output_csv = get_output_paths(args.variant)
 
     if args.command == "final_data":
-        generate_final_data()
+        generate_final_data(args.variant)
         return
 
     if args.clear_cache:
@@ -860,14 +873,14 @@ def main():
 
     # Write outputs
     print(f"\nWriting {len(results)} results...")
-    write_csv(results, OUTPUT_CSV)
-    write_json(results, OUTPUT_JSON)
+    write_csv(results, output_csv)
+    write_json(results, output_json)
 
     # Merge into activities.json
     activities_path = ECOBALYSE_DATA / "activities.json"
     if activities_path.exists():
         merge_activities(
-            OUTPUT_JSON,
+            output_json,
             activities_path,
             args.add_old_suffix,
             args.remove_old_suffix,
