@@ -528,7 +528,7 @@ def apply_suffixes(
     keep_set: set[str],
     old_display_suffix: str,
     old_alias_suffix: str,
-) -> tuple[dict[str, dict], dict[str, dict]]:
+) -> tuple[dict[str, dict], dict[str, dict], dict[str, str]]:
     """Add old_display_suffix and old_alias_suffix to old activity/ingredient names.
 
     - Old activities get old_display_suffix on their displayName and old_alias_suffix
@@ -537,8 +537,12 @@ def apply_suffixes(
     - Old ingredients get old_display_suffix on their displayName and old_alias_suffix
       on their alias, unless in keep_set.
     - New activities/ingredients keep their clean names (no suffix).
+
+    Returns (activities, ingredients, alias_renames) where alias_renames maps
+    old_alias -> new_alias for every activity alias that was suffixed.
     """
     new_acts = {}
+    alias_renames = {}
     for dn, act in activities.items():
         act = {**act}
         if dn not in new_act_names:
@@ -546,7 +550,9 @@ def apply_suffixes(
             if dn not in kept_act_names and "ingredient" in act.get("categories", []):
                 act["displayName"] = act["displayName"] + old_display_suffix
                 if act.get("alias"):
-                    act["alias"] = act["alias"] + old_alias_suffix
+                    old_alias = act["alias"]
+                    act["alias"] = old_alias + old_alias_suffix
+                    alias_renames[old_alias] = act["alias"]
         new_acts[dn] = act
 
     new_ings = {}
@@ -559,7 +565,7 @@ def apply_suffixes(
                 if ing.get("alias"):
                     ing["alias"] = ing["alias"] + old_alias_suffix
         new_ings[dn] = ing
-    return new_acts, new_ings
+    return new_acts, new_ings, alias_renames
 
 
 def reassemble(
@@ -668,8 +674,9 @@ def merge_activities(
     merged_ings = {**new_ings, **existing_ings}
 
     # Apply suffix logic
+    alias_renames = {}
     if add_old_suffix:
-        merged_acts, merged_ings = apply_suffixes(
+        merged_acts, merged_ings, alias_renames = apply_suffixes(
             merged_acts,
             merged_ings,
             set(added_acts),
@@ -679,6 +686,39 @@ def merge_activities(
             old_display_suffix,
             old_alias_suffix,
         )
+
+    # Update feed.json keys to match renamed activity aliases
+    feed_path = target_activities_path.parent / "food/ecosystemic_services/feed.json"
+    if feed_path.exists():
+        with open(feed_path, encoding="utf-8") as f:
+            feed_data = json.load(f)
+
+        if add_old_suffix and alias_renames:
+            updated_feed = {}
+            renamed_count = 0
+            for key, value in feed_data.items():
+                if key in alias_renames:
+                    updated_feed[alias_renames[key]] = value
+                    renamed_count += 1
+                else:
+                    updated_feed[key] = value
+            feed_data = updated_feed
+            print(f"feed.json: renamed {renamed_count} keys")
+
+        if remove_old_suffix:
+            updated_feed = {}
+            stripped_count = 0
+            for key, value in feed_data.items():
+                if key.endswith(old_alias_suffix):
+                    updated_feed[key[: -len(old_alias_suffix)]] = value
+                    stripped_count += 1
+                else:
+                    updated_feed[key] = value
+            feed_data = updated_feed
+            print(f"feed.json: stripped suffix from {stripped_count} keys")
+
+        with open(feed_path, "w", encoding="utf-8") as f:
+            json.dump(feed_data, f, indent=2, ensure_ascii=False)
 
     result = reassemble(merged_acts, merged_ings, other)
 
