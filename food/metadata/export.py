@@ -7,7 +7,7 @@ Usage:
     python export.py metadata --variant ORG    # Export organic variant
     python export.py final_data                # Generate final CSV with impacts
     python export.py metadata --variant FR --add-old-suffix     # Add (2025) suffix to existing
-    python export.py metadata --variant FR --remove-old-suffix  # Remove (2025) suffix
+    python export.py remove-old                                # Remove suffixed entries entirely
 
 Variants: FR, ORG, UE, DEF, NUE
 
@@ -599,7 +599,6 @@ def merge_activities(
     new_activities_path: Path,
     target_activities_path: Path,
     add_old_suffix: bool = False,
-    remove_old_suffix: bool = False,
 ):
     """Merge new_activities.json into target activities.json.
 
@@ -610,7 +609,6 @@ def merge_activities(
     Options:
     - add_old_suffix: Add " (2025)" suffix to pre-existing ingredient displayNames
       and "-2025" suffix to their aliases
-    - remove_old_suffix: Remove suffixes (normalization already does this)
     """
     with open(new_activities_path) as f:
         new_list = json.load(f)
@@ -697,25 +695,13 @@ def merge_activities(
             updated_feed = {}
             renamed_count = 0
             for key, value in feed_data.items():
-                if key in alias_renames:
-                    updated_feed[alias_renames[key]] = value
+                new_key = alias_renames.get(key, key)
+                new_value = {alias_renames.get(k, k): v for k, v in value.items()}
+                updated_feed[new_key] = new_value
+                if new_key != key:
                     renamed_count += 1
-                else:
-                    updated_feed[key] = value
             feed_data = updated_feed
-            print(f"feed.json: renamed {renamed_count} keys")
-
-        if remove_old_suffix:
-            updated_feed = {}
-            stripped_count = 0
-            for key, value in feed_data.items():
-                if key.endswith(old_alias_suffix):
-                    updated_feed[key[: -len(old_alias_suffix)]] = value
-                    stripped_count += 1
-                else:
-                    updated_feed[key] = value
-            feed_data = updated_feed
-            print(f"feed.json: stripped suffix from {stripped_count} keys")
+            print(f"feed.json: renamed {renamed_count} top-level keys")
 
         with open(feed_path, "w", encoding="utf-8") as f:
             json.dump(feed_data, f, indent=2, ensure_ascii=False)
@@ -834,14 +820,86 @@ def generate_final_data(variant: Variant):
     print(f"Final data written to {final_output_csv}")
 
 
+def remove_old(target_activities_path: Path):
+    """Remove activities/ingredients whose alias ends with '-2025' or displayName ends with ' (2025)'.
+
+    Also removes feed.json entries whose top-level key ends with '-2025'.
+    """
+    old_alias_suffix = OLD_ALIAS_SUFFIX
+    old_display_suffix = OLD_DISPLAY_SUFFIX
+
+    # Load and filter activities.json
+    with open(target_activities_path) as f:
+        activities_list = json.load(f)
+
+    filtered = []
+    removed_activities = 0
+    removed_ingredients = 0
+    for activity in activities_list:
+        alias = activity.get("alias", "")
+        display = activity.get("displayName", "")
+        if alias.endswith(old_alias_suffix) or display.endswith(old_display_suffix):
+            removed_activities += 1
+            continue
+
+        # Filter food ingredients within the activity
+        metadata = activity.get("metadata", {})
+        food_ings = metadata.get("food", [])
+        if food_ings:
+            new_food = []
+            for ing in food_ings:
+                ing_alias = ing.get("alias", "")
+                ing_display = ing.get("displayName", "")
+                if ing_alias.endswith(old_alias_suffix) or ing_display.endswith(old_display_suffix):
+                    removed_ingredients += 1
+                else:
+                    new_food.append(ing)
+            if new_food:
+                activity = {**activity, "metadata": {**metadata, "food": new_food}}
+            else:
+                # No food ingredients left, remove food key from metadata
+                new_meta = {k: v for k, v in metadata.items() if k != "food"}
+                if new_meta:
+                    activity = {**activity, "metadata": new_meta}
+                else:
+                    activity = {k: v for k, v in activity.items() if k != "metadata"}
+
+        filtered.append(activity)
+
+    with open(target_activities_path, "w") as f:
+        json.dump(filtered, f, indent=2, ensure_ascii=False)
+    print(f"activities.json: removed {removed_activities} activities, {removed_ingredients} ingredients")
+
+    # Load and filter feed.json
+    feed_path = target_activities_path.parent / "food/ecosystemic_services/feed.json"
+    if feed_path.exists():
+        with open(feed_path, encoding="utf-8") as f:
+            feed_data = json.load(f)
+
+        removed_feed = 0
+        filtered_feed = {}
+        for key, value in feed_data.items():
+            if key.endswith(old_alias_suffix):
+                removed_feed += 1
+            else:
+                filtered_feed[key] = value
+        feed_data = filtered_feed
+
+        with open(feed_path, "w", encoding="utf-8") as f:
+            json.dump(feed_data, f, indent=2, ensure_ascii=False)
+        print(f"feed.json: removed {removed_feed} entries")
+
+    print("Done!")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Export predicted ingredients to CSV and JSON"
     )
     parser.add_argument(
         "command",
-        choices=["metadata", "final_data"],
-        help="metadata: export predictions + merge activities. final_data: generate final CSV with impacts",
+        choices=["metadata", "final_data", "remove-old"],
+        help="metadata: export predictions + merge activities. final_data: generate final CSV with impacts. remove-old: remove suffixed entries",
     )
     parser.add_argument(
         "--variant",
@@ -860,20 +918,18 @@ def main():
         action="store_true",
         help="Add '(2025)' suffix to pre-existing ingredient displayNames and '-2025' suffix to their aliases",
     )
-    parser.add_argument(
-        "--remove-old-suffix",
-        action="store_true",
-        help="Remove '(2025)' and '-2025' suffixes from all ingredients",
-    )
     args = parser.parse_args()
 
-    # Validate mutually exclusive options
-    if args.add_old_suffix and args.remove_old_suffix:
-        parser.error("--add-old-suffix and --remove-old-suffix are mutually exclusive")
+    # Handle remove-old command (no variant needed)
+    if args.command == "remove-old":
+        ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
+        activities_path = ECOBALYSE_DATA / "activities.json"
+        remove_old(activities_path)
+        return
 
-    # Validate --variant is required
+    # Validate --variant is required for metadata and final_data commands
     if args.variant is None:
-        parser.error("--variant is required")
+        parser.error("--variant is required for metadata and final_data commands")
 
     # Get output paths for this variant
     output_csv, output_json, final_output_csv = get_output_paths(args.variant)
@@ -923,7 +979,6 @@ def main():
             output_json,
             activities_path,
             args.add_old_suffix,
-            args.remove_old_suffix,
         )
 
         # Copy reference CSVs to ecobalyse-data
