@@ -542,7 +542,6 @@ def apply_suffixes(
     old_alias -> new_alias for every activity alias that was suffixed.
     """
     new_acts = {}
-    alias_renames = {}
     for dn, act in activities.items():
         act = {**act}
         if dn not in new_act_names:
@@ -550,12 +549,11 @@ def apply_suffixes(
             if dn not in kept_act_names and "ingredient" in act.get("categories", []):
                 act["displayName"] = act["displayName"] + old_display_suffix
                 if act.get("alias"):
-                    old_alias = act["alias"]
-                    act["alias"] = old_alias + old_alias_suffix
-                    alias_renames[old_alias] = act["alias"]
+                    act["alias"] = act["alias"] + old_alias_suffix
         new_acts[dn] = act
 
     new_ings = {}
+    ing_alias_renames = {}
     for dn, ing in ingredients.items():
         ing = {**ing}
         if dn not in new_ing_names:
@@ -563,9 +561,11 @@ def apply_suffixes(
             if dn not in keep_set:
                 ing["displayName"] += old_display_suffix
                 if ing.get("alias"):
-                    ing["alias"] = ing["alias"] + old_alias_suffix
+                    old_ing_alias = ing["alias"]
+                    ing["alias"] = old_ing_alias + old_alias_suffix
+                    ing_alias_renames[old_ing_alias] = ing["alias"]
         new_ings[dn] = ing
-    return new_acts, new_ings, alias_renames
+    return new_acts, new_ings, ing_alias_renames
 
 
 def reassemble(
@@ -685,7 +685,7 @@ def merge_activities(
             old_alias_suffix,
         )
 
-    # Update feed.json keys to match renamed activity aliases
+    # Update feed.json keys to match renamed ingredient aliases
     feed_path = target_activities_path.parent / "food/ecosystemic_services/feed.json"
     if feed_path.exists():
         with open(feed_path, encoding="utf-8") as f:
