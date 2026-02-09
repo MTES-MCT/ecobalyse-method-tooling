@@ -1,5 +1,6 @@
 # Local config
 .env
+.envrc
 
 # FoodOn ontology (auto-downloaded, ~200MB)
 foodon.owl
