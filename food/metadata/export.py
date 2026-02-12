@@ -26,8 +26,21 @@ import uuid
 from enum import Enum
 from pathlib import Path
 
+import inflect
+
 # Namespace UUID for deterministic UUID generation (generated once, never changes)
 ECOBALYSE_NAMESPACE = uuid.UUID("a4e1d123-5c67-4b89-9def-1234567890ab")
+
+_inflect_engine = inflect.engine()
+
+PROCESSING_QUALIFIERS = {
+    "dried", "fresh", "raw", "frozen", "smoked", "canned", "cooked", "uncooked",
+    "roasted", "ground", "blanched", "peeled", "shelled", "dehusked", "pickled",
+    "fermented", "salted", "dehydrated", "pasteurized", "refined", "whole",
+    "concentrated",
+}
+
+PLURAL_EXCEPTIONS = {"oats", "french-fries"}
 
 
 class Variant(Enum):
@@ -44,6 +57,14 @@ VARIANT_SUFFIX = {
     Variant.UE: " UE",
     Variant.DEF: " par défaut",
     Variant.NUE: " HORS UE",
+}
+
+VARIANT_ALIAS_SUFFIX = {
+    Variant.FR: "-fr",
+    Variant.ORG: "-organic",
+    Variant.UE: "-eu",
+    Variant.DEF: "-default",
+    Variant.NUE: "-non-eu",
 }
 
 VARIANT_SCENARIO = {
@@ -142,12 +163,37 @@ def detect_animal_fields(name: str, activity_name: str) -> dict:
 
 
 def generate_alias(name: str) -> str:
-    """Generate alias from English name."""
+    """Generate alias from English name.
+
+    Singularizes base words, moves processing qualifiers to the end.
+    """
     alias = name.lower()
     alias = re.sub(r"[\s_]+", "-", alias)
     alias = re.sub(r"[^a-z0-9-]", "", alias)
     alias = re.sub(r"-+", "-", alias)
-    return alias.strip("-")
+    alias = alias.strip("-")
+
+    if alias in PLURAL_EXCEPTIONS:
+        return alias
+
+    words = alias.split("-")
+
+    # Separate processing qualifiers from base words (order-preserving)
+    base_words = []
+    qualifier_words = []
+    for w in words:
+        if w in PROCESSING_QUALIFIERS:
+            qualifier_words.append(w)
+        else:
+            base_words.append(w)
+
+    # Singularize base words
+    singularized = []
+    for w in base_words:
+        singular = _inflect_engine.singular_noun(w)
+        singularized.append(singular if singular else w)
+
+    return "-".join(singularized + qualifier_words)
 
 
 def _format_match(match_info: dict | None) -> str:
@@ -342,7 +388,7 @@ def build_activity_entry(
         alias_suffix = "-fr-overseas"
     else:
         variant_suffix = VARIANT_SUFFIX[variant]
-        alias_suffix = "-" + variant.value.lower()
+        alias_suffix = VARIANT_ALIAS_SUFFIX[variant]
 
     # Alias from English name + variant suffix (lowercase)
     alias = generate_alias(name) + alias_suffix

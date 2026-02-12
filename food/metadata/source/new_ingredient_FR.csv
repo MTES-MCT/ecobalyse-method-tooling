@@ -123,7 +123,7 @@ EB_id0199,Spring water,Eau de source,"Mineral water, still, PET one-way, 1.5 L, 
 EB_id0200,"Squash, raw, with skin","Courge crue, avec la peau","Zucchini, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine
 EB_id0203,Strawberry,Fraise,"Strawberry, open field, conventional, at farm gate {FR} U",FR,FR,Pas de proxy origine
 EB_id0204,Sugar beet,Betterave à sucre,"Sugar beet, at farm {FR} - Adapted from WFLDB U",FR,FR,Pas de proxy origine
-EB_id0206,"Sunflower, seed","Tournesol, graine","Sunflower grain, conventional, national average, animal feed, at farm gate {UA} U",FR,UA,Proxy origine
+EB_id0206,"Sunflower, seed","Tournesol, graine","Sunflower grain, conventional, 9% moisture, national average, animal feed, at farm gate, production {FR} U",FR,UA,Proxy origine
 EB_id0207,Sweet potato,Patate douce,"Ware potato, conventional, variety mix, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine
 EB_id0208,Swiss chard,Blette,"Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",FR,GLO,Proxy origine
 EB_id0213,Tarragon fresh,Estragon frais,"Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine
