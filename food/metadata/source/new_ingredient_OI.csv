@@ -1,0 +1,176 @@
+Id unique,item,item trad,icv final,database,location,ecs
+EB_id0001,Agave,Agave,"Agave tequilana, at farm {MX} U",Agribalyse 3.2,MX,150
+EB_id0002,"Almonds, in shell",Amandes en coquille,"Almonds, in shell, at farm {CN} - Adapted from WFLDB U",Agribalyse 3.2,CN,760
+EB_id0003,Amaranth,Amarante,"Durum wheat grain, at farm {AU} - Adapted from WFLDB U",Agribalyse 3.2,AU,
+EB_id0005,Apple,Pomme,"Apple, at farm (WFLDB)",WFLDB,CN,174
+EB_id0006,Apricots,Abricot,"Apricot, at farm (WFLDB)",WFLDB,ES,291
+EB_id0008,Asparagus,Asperge,"Asparagus, at farm (WFLDB)",WFLDB,CN,273
+EB_id0009,Avocado,Avocat,"Avocado {GLO}| avocado production | Cut-off, U",Ecoinvent 3.11,GLO,137
+EB_id0011,Bamboo shoots,Pousses de bambou,"White asparagus {CN}| white asparagus production | Cut-off, U",Ecoinvent 3.11,CN,175
+EB_id0012,Banana,Banane,"Banana, at farm (WFLDB)",WFLDB,CR,189
+EB_id0013,Basmati rice,Riz basmati,"Rice, basmati {IN}| rice production, basmati | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,IN,664
+EB_id0014,Bay leaves,Feuilles de laurier,"Mint, at farm (WFLDB)",WFLDB,IN,63
+EB_id0016,Beetroot,Betterave,"Beetroot for juice, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,
+EB_id0017,"Bell pepper, green, yellow or red","Poivron, vert, jaune ou rouge","Bell pepper {IN-UP}| bell pepper production, open field | Cut-off, U",Ecoinvent 3.11,IN-UP,644
+EB_id0019,Black currant,Cassis,"Strawberry, open field, macro tunnel, at farm (WFLDB)",WFLDB,MA,"4,363"
+EB_id0020,Black mulberry,Mûre noire,"Blackberry, at farm {RS} - Adapted from WFLDB U",Agribalyse 3.2,RS,386
+EB_id0021,Black pepper,Poivre noir,"Black pepper, conventional, at farm gate {VN} U",Agribalyse 3.2,VN,265
+EB_id0022,Blueberry,Myrtille,"Blueberry, at farm {CA} - Adapted from WFLDB U",Agribalyse 3.2,CA,921
+EB_id0024,Brazil nuts,Noix du Brésil,"Peanut, in shell, at farm (WFLDB)",WFLDB,IN,743
+EB_id0025,Breadfruit,Fruit à pain,"Mango, at farm (WFLDB)",WFLDB,IN,320
+EB_id0026,Broad bean,Fève,"Fava bean {CA-AB}| fava bean production | Cut-off, U",Ecoinvent 3.11,CA-AB,377.16
+EB_id0027,Broccoli,Brocoli,"Broccoli {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,47
+EB_id0030,Brussels sprout,Chou de Bruxelles,"Cauliflower {GLO}| cauliflower production | Cut-off, U",Ecoinvent 3.11,GLO,
+EB_id0032,Carambola,Carambole,"Mango, at farm (WFLDB)",WFLDB,IN,320
+EB_id0033,Cardoon,Cardoon,"Cauliflower {GLO}| cauliflower production | Cut-off, U",Ecoinvent 3.11,GLO,
+EB_id0034,Carrots,Carottes,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0035,Cashew,Noix de cajou,"Cashew, in-shell, at farm (WFLDB)",WFLDB,CI,"3,831"
+EB_id0036,Cassava,Manioc,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0037,Cauliflower,Chou-fleur,"Cauliflower {GLO}| cauliflower production | Cut-off, U",Ecoinvent 3.11,GLO,
+EB_id0038,Celeriac,Céleri-rave,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0039,Celery,Céleri,"Celery {GLO}| 675 production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,45
+EB_id0040,Cherry,Cerise,"Cherry, at farm (WFLDB)",WFLDB,CL,984
+EB_id0041,Cherry tomato,Tomates cerises,"Tomato, fresh grade, open field, at farm (WFLDB)",WFLDB,MX,207
+EB_id0042,Chestnut,Châtaigne,"Walnut, in shell, dried, at farm (WFLDB)",WFLDB,US,705
+EB_id0043,"Chia seed, dried",Graines de chia,"Linseed seed, at regional storehouse (WFLDB)",WFLDB,GLO,735
+EB_id0044,"Chickpeas, dried",Pois chiches,"Chickpea {RoW}| chickpea production | Cut-off, U",Ecoinvent 3.11,RoW,
+EB_id0045,Chicory root,Racine de chicorée,"Chicory witloof, early, conventional, root production, at farm gate {FR} U",Agribalyse 3.2,FR,54
+EB_id0046,Chili peppers,Piments,"Bell pepper {IN-UP}| bell pepper production, open field | Cut-off, U",Ecoinvent 3.11,IN-UP,644
+EB_id0047,Chive,Ciboulette,"Onion, at farm (WFLDB)",WFLDB,NZ,137
+EB_id0048,Cinnamon,Cannelle,"Black pepper, conventional, at farm gate {VN} U",Agribalyse 3.2,VN,265
+EB_id0049,Clementine,Clémentine,"Clementine, export quality, Souss, at orchard {MA} U",Agribalyse 3.2,MA,799
+EB_id0050,Cocoa bean,Fève de cacao,"Cocoa bean {ID}| cocoa bean production, sun-dried | Cut-off, U",Ecoinvent 3.11,ID,"2,430"
+EB_id0053,"Coconut, dehusked",Noix de coco décortiquée,"Coconut, dehusked, at farm (WFLDB)",WFLDB,PH,260.29
+EB_id0054,Coffee beans,Café en grains,"Coffee, green bean {IN}| coffee green bean production, arabica | Cut-off, U - Copied from Ecoinvent U",Agribalyse 3.2,IN,"3,811"
+EB_id0056,Coriander,Coriandre,"Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,109
+EB_id0057,Corn,Maïs,"Sweet corn {US-MN}| sweet corn production | Cut-off, U",Ecoinvent 3.11,US-MN,597
+EB_id0060,Cow milk,Lait de vache,"Cow milk {RoW}| milk production, from cow | Cut-off, U {RoW}",Ecoinvent 3.11,RoW,
+EB_id0062,Cranberry,Canneberge,"Cranberry, at farm {CL} - Adapted from WFLDB U",Agribalyse 3.2,CL,"1,134"
+EB_id0063,Cucumber,Concombre,"Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,193
+EB_id0064,Cucurbitacea seed,Graines de Cucurbitacées,"Linseed seed, at regional storehouse (WFLDB)",WFLDB,GLO,735
+EB_id0065,Dates,Dattes,"Palm date, conditioned and dried {GLO}| palm date production, conditioned and dried | Cut-off, U - Copied from Ecoinvent U",Agribalyse 3.2,GLO,179
+EB_id0066,"Dill, fresh","Aneth, frais","Mint, at farm (WFLDB)",WFLDB,IN,63
+EB_id0067,"Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage)","Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge)","Mint, at farm (WFLDB)",WFLDB,IN,63
+EB_id0069,Durum wheat,Blé dur,"Durum wheat grain, at farm {AU} - Adapted from WFLDB U",Agribalyse 3.2,AU,124
+EB_id0070,Egg,Œuf,"Chicken egg, poultry industrial laying systems, at farm (WFLDB)",WFLDB,CN,"1,236"
+EB_id0071,Eggplant,Aubergine,"Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,36
+EB_id0072,Elderberries,Baies de sureau,"Elderberry, at farm {PL} - Adapted from WFLDB U",Agribalyse 3.2,PL,105
+EB_id0073,Endive,Endive,"Lettuce {GLO}| lettuce production, in heated greenhouse | Cut-off, U",Ecoinvent 3.11,GLO,370
+EB_id0076,Fennel,Fenouil,"Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,109
+EB_id0077,Fig,Figue,"Peach, at farm (WFLDB)",WFLDB,CN,242
+EB_id0078,"Flageolet beans, green, dried",Haricots flageolets verts,"Fava bean {CA-AB}| fava bean production | Cut-off, U",Ecoinvent 3.11,CA-AB,377.16
+EB_id0079,Flaxseed,Graines de lin,"Flaxseed, national average, animal feed, at farm gate {FR} U",Agribalyse 3.2,FR,179
+EB_id0080,French beans,Haricots verts,"French bean, conventional, national average, at farm gate {FR} U",Agribalyse 3.2,FR,67
+EB_id0081,"Fresh herbs (dill, basil, chervil, rosemary, sage, thyme)","Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym)","Mint, at farm (WFLDB)",WFLDB,IN,63
+EB_id0083,Garlic,Ail,"Garlic, fresh, at farm (WFLDB)",WFLDB,US,68
+EB_id0084,Gherkin,Cornichon,"Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,193
+EB_id0085,Ginger,Gingembre,"Ginger, fresh, at farm (WFLDB)",WFLDB,CN,221
+EB_id0088,Gooseberry,Groseille,"Strawberry, open field, macro tunnel, at farm (WFLDB)",WFLDB,MA,"4,363"
+EB_id0089,Grapefruit,Pamplemousse,"Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,ES,96
+EB_id0090,Grapes (black or white),Raisins (noirs ou blancs),"Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,ES,96
+EB_id0091,Green cabbage,Chou vert,"Cauliflower {GLO}| cauliflower production | Cut-off, U",Ecoinvent 3.11,GLO,
+EB_id0092,Greengage plum,Prune reine-claude,"Cherry, at farm (WFLDB)",WFLDB,CL,984
+EB_id0093,Guava,Goyave,"Kiwi FR, conventional, national average, at orchard {FR} U",Agribalyse 3.2,FR,53
+EB_id0095,"Hazelnuts, in shell",Noisettes en coquille,"Hazelnut, in shell, at farm (WFLDB)",WFLDB,US,"1,698"
+EB_id0096,Hemp grain,Chanvre,"Hemp, grain, Champagne, at farm gate {FR} U",Agribalyse 3.2,FR,134
+EB_id0096,Honey,Miel,"Honey, raw, large-scale production, unpackaged, at farm {US} - Adapted from WFLDB U",Agribalyse 3.2,US,190
+EB_id0099,"Horseradish, fresh",Raifort frais,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0100,Jerusalem artichoke,Topinambour,"Cauliflower {GLO}| cauliflower production | Cut-off, U",Ecoinvent 3.11,GLO,
+EB_id0101,Kale,Chou frisé,"Cauliflower {GLO}| cauliflower production | Cut-off, U",Ecoinvent 3.11,GLO,
+EB_id0102,Kiwi,Kiwi,"Kiwi FR, conventional, national average, at orchard {FR} U",Agribalyse 3.2,FR,53
+EB_id0103,Kohlrabi,Chou-rave,"Cauliflower {GLO}| cauliflower production | Cut-off, U",Ecoinvent 3.11,GLO,
+EB_id0104,Kumquat,Kumquat,"Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,ES,96
+EB_id0107,Leek,Poireau,"Leek, early sown, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,112
+EB_id0108,Lemon,Citron,"Lemon, at farm (WFLDB)",WFLDB,MX,550
+EB_id0109,Lentil,Lentille,"Lentil {CA-SK}| lentil production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,CA-SK,633
+EB_id0111,Lima beans,Haricots de Lima,"Fava bean, feed, Swiss integrated production {RoW}| fava bean, feed production, Swiss integrated production | Cut-off, U",,RoW,
+EB_id0115,Lychee,Litchi,"Mango, at farm (WFLDB)",WFLDB,IN,320
+EB_id0116,Macadamia nut,Noix de macadamia,"Walnut, in shell, dried, at farm (WFLDB)",WFLDB,US,705
+EB_id0118,Mango,Mangue,"Mango, at farm (WFLDB)",WFLDB,IN,320
+EB_id0120,"Melon (honeydew, Charentais, Cataloupe, Cavaillon)","Melon (miellat, Charentais, Cataloupe, Cavaillon)","Melon, under low tunnel, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,40
+EB_id0122,Mint,Menthe,"Mint, at farm (WFLDB)",WFLDB,IN,63
+EB_id0124,Morello cherry,Cerise griotte,"Cherry, at farm (WFLDB)",WFLDB,CL,984
+EB_id0125,"Mung bean, sprouted",Haricot mungo,"Fava bean {CA-AB}| fava bean production | Cut-off, U",Ecoinvent 3.11,CA-AB,377.16
+EB_id0126,"Mushroom, morel","Champignon, morille","Agaricus bisporus mushroom, fresh, at plant {NL} - Adapted from WFLDB U",Agribalyse 3.2,NL,
+EB_id0128,Mustard seed,Graines de moutarde,"Mustard, proxy from Rape seed {Canada without Quebec}| rape seed production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,CA-QC,229
+EB_id0129,Nectarine,Nectarine,"Peach, at farm (WFLDB)",WFLDB,CN,242
+EB_id0130,New Zealand spinach,Épinards de Nouvelle-Zélande,"Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,44
+EB_id0132,Nutmeg,Noix de muscade,"Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,109
+EB_id0133,Oats,Avoine,"Oats, at farm {FI} - Adapted from WFLDB U",Agribalyse 3.2,FI,300
+EB_id0134,Okra,Gombo,"Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,109
+EB_id0135,Olives,Olives,"Olive, at farm (WFLDB)",WFLDB,IT,"1,887"
+EB_id0136,Onions,Oignons,"Onion, at farm (WFLDB)",WFLDB,NZ,137
+EB_id0137,Oranges,Oranges,"Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,ES,96
+EB_id0138,Palm fruit,Fruit du palmier,"Palm fruit bunch, with deforestation, on land recently transformed, animal feed, at farm gate {MY} U",Agribalyse 3.2,MY,102
+EB_id0139,Papaya,Papaye,"Papaya {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,27
+EB_id0140,"Parsley, fresh",Persil frais,"Parsley, fresh, at farm {US} - Adapted from WFLDB U",Agribalyse 3.2,US,104
+EB_id0141,Parsnips,Panais,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0142,Passion fruit,Fruit de la passion,"Kiwi FR, conventional, national average, at orchard {FR} U",Agribalyse 3.2,FR,53
+EB_id0143,Peaches,Pêches,"Peach, at farm (WFLDB)",WFLDB,CN,242
+EB_id0144,Peanut,Arachide,"Peanut, in shell, at farm (WFLDB)",WFLDB,IN,743
+EB_id0146,Pears,Poires,"Pear, at farm (WFLDB)",WFLDB,CN,222
+EB_id0147,"Peas, with pods","Pois, avec leurs cosses","Winter pea, conventional, 15% moisture, at farm gate {FR} U",Agribalyse 3.2,FR,124
+EB_id0148,Persimmon,Kaki,"Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,109
+EB_id0150,Pine nuts,Pignons de pin,"Peanut, in shell, at farm (WFLDB)",WFLDB,IN,743
+EB_id0151,Pineapple,Ananas,"Pineapple, at farm {TH} U",Agribalyse 3.2,TH,162
+EB_id0152,Pistachios,Pistaches,"Peanut, in shell, at farm (WFLDB)",WFLDB,IN,743
+EB_id0153,Plantain,Plantain,"Banana, at farm (WFLDB)",WFLDB,CR,189
+EB_id0154,Pomegranate,Grenade,"Pomegranate {RoW}| pomegranate production | Cut-off, U",Ecoinvent 3.11,RoW,104
+EB_id0155,Poppy seeds,Graines de pavot,"Linseed seed, at regional storehouse (WFLDB)",WFLDB,GLO,735
+EB_id0156,Potato,Pomme de terre,"Potato {US}| potato production | Cut-off, U",Ecoinvent 3.11,US,118
+EB_id0157,Prickly pear,Figue de barbarie,"Pear, at farm (WFLDB)",WFLDB,CN,222
+EB_id0158,Pumpkin,Citrouille,"Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,36
+EB_id0159,Quince,Coing,"Apple, at farm (WFLDB)",WFLDB,CN,174
+EB_id0160,Quinoa,Quinoa,"Quinoa, intensive production, at farm {PE} - Adapted from WFLDB U",Agribalyse 3.2,PE,983
+EB_id0162,Radish,Radis,"Radish {GLO}| radish production, in heated greenhouse | Cut-off, U",Ecoinvent 3.11,GLO,422
+EB_id0163,Rapeseed,Colza,"Rapeseed, at farm {GLO} - Adapted from WFLDB U",Agribalyse 3.2,GLO,
+EB_id0164,Raspberry,Framboise,"Raspberry, at farm {RS} - Adapted from WFLDB U",Agribalyse 3.2,RS,442
+EB_id0165,"Raw rice, all varieties (white, wild, c Thai or basmati rice, raw)","Riz cru, toutes variétés (blanc, sauvage, riz thaï ou basmati, cru)","Rice, basmati {IN}| rice production, basmati | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,IN,664
+EB_id0166,"Red beans, dried",Haricots rouges,"Red kidney bean {CA-ON}| red kidney bean production | Cut-off, U",Ecoinvent 3.11,CA-ON,553
+EB_id0167,Red currant,Groseille rouge,"Strawberry, open field, macro tunnel, at farm (WFLDB)",WFLDB,MA,"4,363"
+EB_id0168,Red endive,Endive rouge,"Lettuce {GLO}| lettuce production, in heated greenhouse | Cut-off, U",Ecoinvent 3.11,GLO,370
+EB_id0170,Rhubarb,Rhubarbe,"Cauliflower {GLO}| cauliflower production | Cut-off, U",Ecoinvent 3.11,GLO,
+EB_id0171,Rutabaga,Rutabaga,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0172,Saffron,Safran,"Black pepper, conventional, at farm gate {VN} U",Agribalyse 3.2,VN,265
+EB_id0174,"Salad, lettuce","Salade, laitue","Lettuce {GLO}| lettuce production, in heated greenhouse | Cut-off, U",Ecoinvent 3.11,GLO,370
+EB_id0175,"Salicornia, fresh","Salicorne, fraîche","Seaweed non-optimized production, 1kg algae (Laminaria), fresh weight {FR} U",Agribalyse 3.2,FR,110
+EB_id0177,Salsify,Salsifi,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0181,"Sea salt, celery salt, or fleur de sel","Sel de mer, sel de céleri ou fleur de sel","Sodium chloride, powder {GLO}| market for | Cut-off, S - Copied from Ecoinvent U {GLO}",Agribalyse 3.2,GLO,
+EB_id0182,Seaweed,Algue,"Seaweed non-optimized production, 1kg algae (Laminaria), fresh weight {FR} U",Agribalyse 3.2,FR,110
+EB_id0183,Sesame seeds,Graines de sésame,"Peanut {IN}| peanut production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.3,IN,383
+EB_id0184,Shallots,Échalotes,"Onion, at farm (WFLDB)",WFLDB,NZ,137
+EB_id0185,Sheep milk,Lait de brebis,"Sheep milk, conventional, Roquefort system, at farm gate {FR} U",Agribalyse 3.2,FR,215
+EB_id0188,Snow pea,Pois mange-tout,"Winter pea, conventional, 15% moisture, at farm gate {FR} U",Agribalyse 3.2,FR,124
+EB_id0189,Soft wheat,Blé tendre,"Wheat grain {US}| wheat production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,US,223.37
+EB_id0190,Sorghum,Sorgho,"Silage sorghum, national average, animal feed, at farm gate {FR} U",Agribalyse 3.2,FR,38
+EB_id0192,Soybean,Soja,"Soybean {BR-RS}| soybean production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,BR-RS,"1,313"
+EB_id0193,Spelt,Epeautre,"Durum wheat grain, at farm {AU} - Adapted from WFLDB U",Agribalyse 3.2,AU,
+EB_id0194,Spinach,Épinard,"Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,44
+EB_id0196,Split pea,Pois cassés,"Winter pea, conventional, 15% moisture, at farm gate {FR} U",Agribalyse 3.2,FR,124
+EB_id0197,Spring faba,Fèves printanières,"Spring faba bean, conventional, national average, at farm gate {FR} U",Agribalyse 3.2,FR,108
+EB_id0198,Spring pea,Pois de printemps,"Spring pea, conventional, 15% moisture, animal feed, at farm gate, production {FR} U",Agribalyse 3.2,FR,119
+EB_id0199,Spring water,Eau de source,"Tap water {ZA}| market for tap water | Cut-off, S - Copied from Ecoinvent U",Agribalyse 3.2,ZA,
+EB_id0200,"Squash, raw, with skin","Courge crue, avec la peau","Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,36
+EB_id0203,Strawberry,Fraise,"Strawberry, open field, macro tunnel, at farm (WFLDB)",WFLDB,MA,"4,363"
+EB_id0204,Sugar beet,Betterave à sucre,"Sugar beet, at farm {CA} - Adapted from WFLDB U",Agribalyse 3.2,CA,142
+EB_id0206,"Sunflower, seed","Tournesol, graine","Sunflower, at farm (WFLDB)",WFLDB,RU,471
+EB_id0207,Sweet potato,Patate douce,"Ware potato, conventional, for fresh market, firm flesh varieties, at farm gate {FR} U",Agribalyse 3.2,FR,21
+EB_id0208,Swiss chard,Blette,"Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,44
+EB_id0210,Tamarind,Tamarin,"French bean, conventional, national average, at farm gate {FR} U",Agribalyse 3.2,FR,67
+EB_id0211,Tapioca,Tapioca,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0212,"Taro, tuber","Taro, tubercule","Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0213,Tarragon fresh,Estragon frais,"Mint, at farm (WFLDB)",WFLDB,IN,63
+EB_id0214,"Tea, dried","Thé, feuilles séchées","Tea, dried {CN}| tea production, dried | Cut-off, U",Ecoinvent 3.11,CN,"2,387"
+EB_id0215,Tomato,Tomate,"Tomato, fresh grade, open field, at farm (WFLDB)",WFLDB,MX,207
+EB_id0219,Turnip,Navet,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0220,"Vanilla, alcoholic or aqueous extract","Extrait de vanille, alcoolique ou aqueux","Vanilla, cured and dried beans, at farm (WFLDB)",WFLDB,MG,"1,364"
+EB_id0222,Walnuts,Noix,"Walnut, in shell, dried, at farm (WFLDB)",WFLDB,US,705
+EB_id0223,Watermelon,Pastèque,"Melon, under low tunnel, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,40
+EB_id0225,"White beans, dried",Haricots blancs séchés,"French bean, conventional, national average, at farm gate {FR} U",Agribalyse 3.2,FR,67
+EB_id0226,White cabbage,Chou blanc,"Cabbage white {RoW}| cabbage white production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,RoW,39
+EB_id0227,Whole barley,Orge entière,"Barley grain, non-irrigated, at farm (WFLDB)",WFLDB,UA,248.14
+EB_id0228,Whole millet,Millet entier,"Wheat grain {US}| wheat grain production | Cut-off, U",Ecoinvent 3.11,US,223.37
+EB_id0229,Whole rye,Seigle entier,"Rye grain {GLO}| market for rye grain | Cut-off, U",Ecoinvent 3.11,GLO,
+EB_id0230,Winter pea,Pois d'hiver,"Winter pea, conventional, 15% moisture, at farm gate {FR} U",Agribalyse 3.2,FR,124
+EB_id0231,Yam,Igname,"Carrot, at farm (WFLDB)",WFLDB,IL,71
+EB_id0233,Zucchini,Courgettes,"Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,36

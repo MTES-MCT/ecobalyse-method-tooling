@@ -9,7 +9,7 @@ Usage:
     python export.py metadata --variant FR --add-old-suffix     # Add (2025) suffix to existing
     python export.py remove-old                                # Remove suffixed entries entirely
 
-Variants: FR, ORG, UE, DEF, NUE
+Variants: FR, ORG, UE, OI, NUE
 
 Outputs:
     - generated/predictions.csv: CSV with all predictions and confidence scores
@@ -47,7 +47,7 @@ class Variant(Enum):
     FR = "FR"
     ORG = "ORG"
     UE = "UE"
-    DEF = "DEF"
+    OI = "OI"
     NUE = "NUE"
 
 
@@ -55,7 +55,7 @@ VARIANT_SUFFIX = {
     Variant.FR: " FR",
     Variant.ORG: " Bio",
     Variant.UE: " UE",
-    Variant.DEF: " par défaut",
+    Variant.OI: " Origine Inconnue",
     Variant.NUE: " HORS UE",
 }
 
@@ -63,7 +63,7 @@ VARIANT_ALIAS_SUFFIX = {
     Variant.FR: "-fr",
     Variant.ORG: "-organic",
     Variant.UE: "-eu",
-    Variant.DEF: "-default",
+    Variant.OI: "-default",
     Variant.NUE: "-non-eu",
 }
 
@@ -71,7 +71,7 @@ VARIANT_SCENARIO = {
     Variant.FR: "reference",
     Variant.ORG: "organic",
     Variant.UE: "import",
-    Variant.DEF: "import",
+    Variant.OI: "import",
     Variant.NUE: "import",
 }
 
@@ -248,8 +248,8 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
     ):
         name = str(row["item"]).strip()
         french_name = (
-            str(row["Liste 4.2 Trad"]).strip()
-            if pd.notna(row.get("Liste 4.2 Trad"))
+            str(row["item trad"]).strip()
+            if pd.notna(row.get("item trad"))
             else ""
         )
         activity_name = (
@@ -471,8 +471,12 @@ def write_json(results: list, output_path: str):
 # CLI
 # =============================================================================
 
-INPUT_CSV = Path(__file__).parent / "source/new_ingredient_FR.csv"
+INPUT_CSV_DIR = Path(__file__).parent / "source"
 GENERATED_DIR = Path(__file__).parent / "generated"
+
+
+def get_input_csv(variant: Variant) -> Path:
+    return INPUT_CSV_DIR / f"new_ingredient_{variant.value}.csv"
 
 
 def get_output_paths(variant: Variant) -> tuple[Path, Path, Path]:
@@ -510,12 +514,16 @@ OLD_ALIAS_SUFFIX = "-2025"
 
 
 def normalize_display_name(name: str, old_suffix: str) -> str:
+    if not old_suffix:
+        return name
     return name[: -len(old_suffix)] if name.endswith(old_suffix) else name
 
 
 def normalize_alias(alias: str | None, old_suffix: str) -> str | None:
     if alias is None:
         return None
+    if not old_suffix:
+        return alias
     return alias[: -len(old_suffix)] if alias.endswith(old_suffix) else alias
 
 
@@ -667,15 +675,16 @@ def merge_activities(
         with open(keep_csv_path, encoding="utf-8") as f:
             keep_set = {line.strip() for line in f if line.strip()}
 
-    old_display_suffix = OLD_DISPLAY_SUFFIX
-    old_alias_suffix = OLD_ALIAS_SUFFIX
+    # Only strip old suffixes when we intend to re-apply them
+    strip_display = OLD_DISPLAY_SUFFIX if add_old_suffix else ""
+    strip_alias = OLD_ALIAS_SUFFIX if add_old_suffix else ""
 
     # Extract into flat dicts (normalizing on load)
     existing_acts, existing_ings, other = extract_activities_and_ingredients(
-        existing_list, old_display_suffix, old_alias_suffix
+        existing_list, strip_display, strip_alias
     )
     new_acts, new_ings, _ = extract_activities_and_ingredients(
-        new_list, old_display_suffix, old_alias_suffix
+        new_list, strip_display, strip_alias
     )
 
     # Build activityName -> displayName map from existing
@@ -727,8 +736,8 @@ def merge_activities(
             set(new_ings),
             kept_act_names,
             keep_set,
-            old_display_suffix,
-            old_alias_suffix,
+            OLD_DISPLAY_SUFFIX,
+            OLD_ALIAS_SUFFIX,
         )
 
     # Update feed.json keys to match renamed ingredient aliases
@@ -763,15 +772,16 @@ def generate_final_data(variant: Variant):
     """Generate final CSV with all ingredient data and impacts.
 
     Combines:
-    - source/new_ingredient_FR.csv (base data)
+    - source/new_ingredient_{variant}.csv (base data)
     - new_activities.json (predicted metadata)
     - processes_impacts.json (environmental impacts, matched by activityName)
     """
     output_csv, output_json, final_output_csv = get_output_paths(variant)
 
     # Load source CSV
-    print(f"Loading {INPUT_CSV}...")
-    source_df = pd.read_csv(INPUT_CSV)
+    input_csv = get_input_csv(variant)
+    print(f"Loading {input_csv}...")
+    source_df = pd.read_csv(input_csv)
 
     ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
     ECOBALYSE = Path(os.environ["ECOBALYSE"])
@@ -951,8 +961,8 @@ def main():
         "--variant",
         type=lambda v: Variant[v.upper()],
         choices=list(Variant),
-        metavar="{FR,ORG,UE,DEF,NUE}",
-        help="Variant: FR, ORG, UE, DEF, NUE (required, used in output file names)",
+        metavar="{FR,ORG,UE,OI,NUE}",
+        help="Variant: FR, ORG, UE, OI, NUE (required, used in output file names)",
     )
     parser.add_argument(
         "--clear-cache",
@@ -1003,8 +1013,9 @@ def main():
     predictor.fit(training_data)
 
     # Load input CSV
-    print(f"\nLoading {INPUT_CSV}...")
-    df = pd.read_csv(INPUT_CSV)
+    input_csv = get_input_csv(args.variant)
+    print(f"\nLoading {input_csv}...")
+    df = pd.read_csv(input_csv)
 
     if "item" not in df.columns or "icv final" not in df.columns:
         raise ValueError("CSV must have 'item' and 'icv final' columns")
