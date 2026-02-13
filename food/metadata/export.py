@@ -262,6 +262,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
 
         # Extract production location for FR variant handling
         production_fr = str(row.get("Production_FR", "")).strip()
+        location = str(row.get("location", "")).strip() if pd.notna(row.get("location")) else ""
 
         ingredient = {"name": name, "activityName": activity_name}
         predictions = predictor.predict(ingredient)
@@ -275,6 +276,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
             "predictions": predictions,
             "variant": variant,
             "production_fr": production_fr,
+            "location": location,
         })
 
     return results
@@ -380,6 +382,7 @@ def build_activity_entry(
     predictions: dict,
     variant: Variant,
     production_fr: str = "",
+    location: str = "",
 ) -> dict:
     """Build an activity entry in the activities.json format."""
     # Determine suffix based on variant and production location
@@ -432,7 +435,7 @@ def build_activity_entry(
         ingredient["animalGroup2"] = animal_fields["animalGroup2"]
         ingredient["animalProduct"] = animal_fields["animalProduct"]
 
-    return {
+    entry = {
         "activityName": activity_name,
         "alias": alias,
         "categories": ["ingredient"],
@@ -443,6 +446,9 @@ def build_activity_entry(
         "source": source,
         "unit": unit,
     }
+    if location:
+        entry["location"] = location
+    return entry
 
 
 def write_json(results: list, output_path: str):
@@ -458,6 +464,7 @@ def write_json(results: list, output_path: str):
             r["predictions"],
             r["variant"],
             r.get("production_fr", ""),
+            r.get("location", ""),
         )
         activities.append(activity)
 
