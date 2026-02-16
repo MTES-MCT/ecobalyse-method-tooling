@@ -492,7 +492,7 @@ def get_output_paths(variant: Variant) -> tuple[Path, Path, Path]:
     return (
         GENERATED_DIR / f"predictions{suffix}.csv",
         GENERATED_DIR / f"new_activities{suffix}.json",
-        GENERATED_DIR / f"new_ingredients{suffix}.csv",
+        GENERATED_DIR / f"fichier_final{suffix}.csv",
     )
 
 # Impact columns to extract from processes_impacts.json

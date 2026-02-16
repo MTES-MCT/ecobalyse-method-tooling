@@ -5,11 +5,13 @@
 ```
 metadata/
 ├── source/
-│   └── new_ingredient_FR.csv      # Input: new ingredients to predict
+│   ├── new_ingredient_FR.csv      # Input: FR ingredients to predict
+│   ├── new_ingredient_OI.csv      # Input: OI ingredients to predict
+│   └── keep.csv                   # DisplayNames to keep unsuffixed during merge
 ├── generated/
-│   ├── predictions.csv            # Output: CSV with predictions + confidence
-│   ├── new_activities.json        # Output: activities.json format
-│   └── new_ingredients.csv        # Output: final CSV with metadata + impacts
+│   ├── predictions_{variant}.csv       # Output: CSV with predictions + confidence
+│   ├── new_activities_{variant}.json   # Output: activities.json format
+│   └── fichier_final_{variant}.csv     # Output: final CSV with metadata + impacts
 ├── data/
 │   └── foodon.owl                 # FoodOn ontology (auto-downloaded)
 ├── reference/
@@ -55,15 +57,15 @@ uv run export.py metadata --variant FR --add-old-suffix
 
 This will:
 1. Train the predictor on existing ingredients from `$ECOBALYSE/public/data/food/ingredients.json`
-2. Predict metadata for ingredients in `source/new_ingredient_FR.csv`
-3. Generate `generated/predictions.csv` (detailed predictions with confidence)
-4. Generate `generated/new_activities.json` (Ecobalyse format)
+2. Predict metadata for ingredients in `source/new_ingredient_{variant}.csv`
+3. Generate `generated/predictions_{variant}.csv` (detailed predictions with confidence)
+4. Generate `generated/new_activities_{variant}.json` (Ecobalyse format)
 5. Merge new activities into `$ECOBALYSE_DATA/activities.json`
 6. Copy reference CSVs to `$ECOBALYSE_DATA/food/metadata/`
 
 The `--add-old-suffix` flag adds a `(2025)` suffix to pre-existing activity and ingredient displayNames. Activities reused by new ingredients keep their original displayName.
 
-Variants: `FR`, `ORG`, `UE`, `DEF`, `NUE`.
+Variants: `FR`, `ORG`, `UE`, `OI`, `NUE`.
 
 ### Step 2: Regenerate Ingredients in ecobalyse-data
 
@@ -78,34 +80,43 @@ This regenerates `ingredients.json` with the new activities.
 ### Step 3: Generate Final Data with Impacts
 
 ```bash
-uv run export.py final_data
+uv run export.py final_data --variant FR
+uv run export.py final_data --variant OI
 ```
 
 This will:
-1. Read `source/new_ingredient_FR.csv`
-2. Add metadata from `new_activities.json` (via activityName matching)
+1. Read `source/new_ingredient_{variant}.csv`
+2. Add metadata from `new_activities_{variant}.json` (via activityName matching)
 3. Add environmental impacts from `processes_impacts.json` (via activityName)
-4. Generate `generated/new_ingredients.csv`
+4. Generate `generated/fichier_final_{variant}.csv`
 
-### Input File: `source/new_ingredient_FR.csv`
+### Input Files: `source/new_ingredient_{variant}.csv`
 
-Required columns:
+Common columns (both FR and OI):
 - `Id unique`: Unique identifier (e.g., EB_id0001)
 - `item`: English ingredient name
-- `Liste 4.2 Trad`: French translation
-- `icv final`: LCA activity name (used for UUID matching)
+- `item trad`: French translation
+- `icv final`: LCA activity name (used for matching)
+- `location`: Geographic code (e.g., FR, CN, GLO)
+
+FR-specific columns:
 - `Production_FR`: FR/NON FR/DOM
-- `location`: Geographic code
 - `proxy`: Proxy strategy
+
+OI-specific columns:
+- `database`: Source database name
+- `ecs`: Ecosystemic services code
 
 ## Usage
 
 ```bash
 uv run export.py metadata --variant FR                    # Export + merge (no suffix)
+uv run export.py metadata --variant OI                    # Export OI variant
 uv run export.py metadata --variant FR --add-old-suffix   # Export + merge + add (2025) suffix
-uv run export.py metadata --variant FR --remove-old-suffix # Export + merge + remove (2025) suffix
 uv run export.py metadata --variant FR --clear-cache      # Clear translation cache first
-uv run export.py final_data                               # Generate final CSV with impacts
+uv run export.py final_data --variant FR                  # Generate final CSV with impacts
+uv run export.py final_data --variant OI                  # Generate final CSV with impacts (OI)
+uv run export.py remove-old                               # Remove (2025)-suffixed entries from activities.json
 uv run validate_nova.py --folds 5                         # Validate NOVA classification (5-fold CV)
 ```
 
@@ -173,6 +184,13 @@ New Ingredient
 │   └─────────────────────────────────────────────────────────┘     │
 │                          │                                        │
 │                          ▼ (if no exact match)                    │
+│   PRIORITY 1.5: Semantic Near-Exact Match (confidence = 0.98)     │
+│   ┌─────────────────────────────────────────────────────────┐     │
+│   │ Sentence-transformer embedding similarity > 0.9         │     │
+│   │ Handles plurals like "Avocado" ≈ "Avocados"            │     │
+│   └─────────────────────────────────────────────────────────┘     │
+│                          │                                        │
+│                          ▼ (if no semantic match)                 │
 │   PRIORITY 2: Word Boundary Match (confidence = 0.95)             │
 │   ┌─────────────────────────────────────────────────────────┐     │
 │   │ Uses regex \b word boundaries to match complete words   │     │
@@ -332,6 +350,7 @@ DETECTION_PATTERNS = {
 | Match Type | Confidence |
 |------------|------------|
 | Exact match | 1.0 |
+| Semantic near-exact match | 0.98 |
 | Word boundary match | 0.95 |
 | FoodOn + regex similarity | 0.0 - 1.0 (cosine) |
 
