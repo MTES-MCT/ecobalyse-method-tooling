@@ -1,4 +1,4 @@
-Id unique,item,Liste 4.2 Trad,icv final,Production_FR,location,proxy
+Id unique,item,item trad,icv final,Production_FR,location,proxy
 EB_id0002,"Almonds, in shell",Amandes en coquille,"Almonds, in shell, at farm {CN} - Adapted from WFLDB U",FR,CN,Proxy origine
 EB_id0003,Amaranth,Amarante,"Durum wheat grain, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine
 EB_id0005,Apple,Pomme,"Apple, conventional, national average, at orchard {FR} U",FR,FR,Pas de proxy origine
@@ -75,7 +75,7 @@ EB_id0124,Morello cherry,Cerise griotte,"Cherry, conventional, national average,
 EB_id0126,"Mushroom, morel","Champignon, morille","Agaricus bisporus mushroom, fresh, at plant {NL} - Adapted from WFLDB U",FR,NL,Proxy origine
 EB_id0128,Mustard seed,Graines de moutarde,"Mustard, proxy from Rape seed {Canada without Quebec}| rape seed production | Cut-off, U - Adapted from Ecoinvent U",FR,Canada without Quebec,Proxy origine
 EB_id0129,Nectarine,Nectarine,"Peach, conventional, national average, at orchard {FR} U",FR,FR,Pas de proxy origine
-EB_id0133,Oats,Avoine,"Oat grain {RoW}| oat production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine
+EB_id0133,Oats,Avoine,"Oat grain, national average, animal feed, at farm gate {FR} U",FR,FR,Pas de proxy origine
 EB_id0135,Olives,Olives,"Olive {ES}| olive production | Cut-off, U",FR,ES,Proxy origine
 EB_id0136,Onions,Oignons,"Onion, conventional, national average, at farm {FR} U",FR,FR,Pas de proxy origine
 EB_id0137,Oranges,Oranges,"Orange, fresh grade, at farm {ES} - Adapted from WFLDB U",FR,ES,Proxy origine
@@ -123,7 +123,7 @@ EB_id0199,Spring water,Eau de source,"Mineral water, still, PET one-way, 1.5 L, 
 EB_id0200,"Squash, raw, with skin","Courge crue, avec la peau","Zucchini, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine
 EB_id0203,Strawberry,Fraise,"Strawberry, open field, conventional, at farm gate {FR} U",FR,FR,Pas de proxy origine
 EB_id0204,Sugar beet,Betterave à sucre,"Sugar beet, at farm {FR} - Adapted from WFLDB U",FR,FR,Pas de proxy origine
-EB_id0206,"Sunflower, seed","Tournesol, graine","Sunflower grain, conventional, 9% moisture, national average, animal feed, at farm gate, production {FR} U",FR,UA,Proxy origine
+EB_id0206,"Sunflower, seed","Tournesol, graine","Sunflower grain, conventional, 9% moisture, national average, animal feed, at farm gate, production {FR} U",FR,FR,Pas de proxy origine
 EB_id0207,Sweet potato,Patate douce,"Ware potato, conventional, variety mix, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine
 EB_id0208,Swiss chard,Blette,"Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",FR,GLO,Proxy origine
 EB_id0213,Tarragon fresh,Estragon frais,"Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine

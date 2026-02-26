@@ -44,7 +44,7 @@ EB_id0053,"Coconut, dehusked",Noix de coco décortiquée,"Coconut, dehusked, at 
 EB_id0054,Coffee beans,Café en grains,"Coffee, green bean {IN}| coffee green bean production, arabica | Cut-off, U - Copied from Ecoinvent U",Agribalyse 3.2,IN,"3,811"
 EB_id0056,Coriander,Coriandre,"Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,109
 EB_id0057,Corn,Maïs,"Sweet corn {US-MN}| sweet corn production | Cut-off, U",Ecoinvent 3.11,US-MN,597
-EB_id0060,Cow milk,Lait de vache,"Cow milk {RoW}| milk production, from cow | Cut-off, U {RoW}",Ecoinvent 3.11,RoW,
+EB_id0060,Cow milk,Lait de vache,"Cow milk {RoW}| milk production, from cow | Cut-off, U",Ecoinvent 3.11,RoW,
 EB_id0062,Cranberry,Canneberge,"Cranberry, at farm {CL} - Adapted from WFLDB U",Agribalyse 3.2,CL,"1,134"
 EB_id0063,Cucumber,Concombre,"Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,193
 EB_id0064,Cucurbitacea seed,Graines de Cucurbitacées,"Linseed seed, at regional storehouse (WFLDB)",WFLDB,GLO,735
@@ -135,7 +135,7 @@ EB_id0172,Saffron,Safran,"Black pepper, conventional, at farm gate {VN} U",Agrib
 EB_id0174,"Salad, lettuce","Salade, laitue","Lettuce {GLO}| lettuce production, in heated greenhouse | Cut-off, U",Ecoinvent 3.11,GLO,370
 EB_id0175,"Salicornia, fresh","Salicorne, fraîche","Seaweed non-optimized production, 1kg algae (Laminaria), fresh weight {FR} U",Agribalyse 3.2,FR,110
 EB_id0177,Salsify,Salsifi,"Carrot, at farm (WFLDB)",WFLDB,IL,71
-EB_id0181,"Sea salt, celery salt, or fleur de sel","Sel de mer, sel de céleri ou fleur de sel","Sodium chloride, powder {GLO}| market for | Cut-off, S - Copied from Ecoinvent U {GLO}",Agribalyse 3.2,GLO,
+EB_id0181,"Sea salt, celery salt, or fleur de sel","Sel de mer, sel de céleri ou fleur de sel","Sodium chloride, powder {GLO}| market for | Cut-off, S - Copied from Ecoinvent U",Agribalyse 3.2,GLO,
 EB_id0182,Seaweed,Algue,"Seaweed non-optimized production, 1kg algae (Laminaria), fresh weight {FR} U",Agribalyse 3.2,FR,110
 EB_id0183,Sesame seeds,Graines de sésame,"Peanut {IN}| peanut production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.3,IN,383
 EB_id0184,Shallots,Échalotes,"Onion, at farm (WFLDB)",WFLDB,NZ,137
