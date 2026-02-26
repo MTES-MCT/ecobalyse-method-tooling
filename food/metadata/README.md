@@ -105,7 +105,6 @@ FR-specific columns:
 - `proxy`: Proxy strategy
 
 OI-specific columns:
-- `database`: Source database name
 - `ecs`: Ecosystemic services code
 
 ## Usage

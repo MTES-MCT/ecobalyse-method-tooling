@@ -730,8 +730,8 @@ def merge_activities(
             kept_act_names.add(existing_act_by_name[act_name])
 
     merged_acts = {**existing_acts, **added_acts}
-    # Existing ingredients win on displayName collision to avoid cross-activity overwrites
-    merged_ings = {**new_ings, **existing_ings}
+    # New ingredients override existing on displayName collision (allows re-exporting updates)
+    merged_ings = {**existing_ings, **new_ings}
 
     # Apply suffix logic
     alias_renames = {}
