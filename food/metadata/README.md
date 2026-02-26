@@ -53,6 +53,7 @@ The export process has multiple steps to generate complete ingredient data with 
 
 ```bash
 uv run export.py metadata --variant FR --add-old-suffix
+uv run export.py metadata --variant OI
 ```
 
 This will:
@@ -63,7 +64,7 @@ This will:
 5. Merge new activities into `$ECOBALYSE_DATA/activities.json`
 6. Copy reference CSVs to `$ECOBALYSE_DATA/food/metadata/`
 
-The `--add-old-suffix` flag adds a `(2025)` suffix to pre-existing activity and ingredient displayNames. Activities reused by new ingredients keep their original displayName.
+The `--add-old-suffix` flag adds a `(2025)` suffix to pre-existing activity and ingredient displayNames. Activities reused by new ingredients keep their original displayName. **Use it only on the first variant merge** — subsequent variants would incorrectly suffix the previously merged ingredients.
 
 Variants: `FR`, `ORG`, `UE`, `OI`, `NUE`.
 
