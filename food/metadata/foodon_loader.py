@@ -137,7 +137,7 @@ NOVA_PROCESSING_CLASSES = {
 }
 
 # Number of features extracted
-FOODON_FEATURE_DIM = 20
+FOODON_FEATURE_DIM = 21
 
 
 class FoodOnFeatureExtractor:
@@ -428,21 +428,21 @@ class FoodOnFeatureExtractor:
         """
         Extract FoodOn feature vector for ingredient name.
 
-        Features (20 dimensions):
-        - 0-8: Binary type features (vegetable, fruit, grain, meat, fish, dairy, nut, spice, beverage)
-        - 9-13: Processing features (raw, cooked, preserved, fermented, processed)
-        - 14-17: Source features (plant, animal, fungus, mineral)
-        - 18-19: Numeric features (hierarchy_depth, match_confidence)
+        Features (21 dimensions):
+        - 0-9: Binary type features (vegetable, fruit, grain, meat, fish, dairy, nut, spice, beverage, legume)
+        - 10-14: Processing features (raw, cooked, preserved, fermented, processed)
+        - 15-18: Source features (plant, animal, fungus, mineral)
+        - 19-20: Numeric features (hierarchy_depth, match_confidence)
 
         Args:
             name: Ingredient name
 
         Returns:
-            Feature vector of shape (20,)
+            Feature vector of shape (21,)
         """
         term, confidence = self.lookup(name)
 
-        # Initialize feature vector (20 dims)
+        # Initialize feature vector (21 dims)
         features = np.zeros(FOODON_FEATURE_DIM, dtype=np.float32)
 
         if term is None:
@@ -474,14 +474,13 @@ class FoodOnFeatureExtractor:
         is_fruit = FOODON_CATEGORIES["fruit"] in ancestors
         is_nut_oilseed = FOODON_CATEGORIES["nut_oilseed"] in ancestors
 
-        # Vegetable: plant material that's NOT grain/fruit/nut, OR explicit vegetable, OR legume
+        # Vegetable: plant material that's NOT grain/fruit/nut/legume, OR explicit vegetable
         features[0] = (
             1.0
             if (
                 FOODON_CATEGORIES["vegetable"] in ancestors
-                or is_legume  # legumes → vegetable category
                 # plant material fallback only if not a more specific category
-                or (is_plant_material and not is_grain and not is_fruit and not is_nut_oilseed)
+                or (is_plant_material and not is_grain and not is_fruit and not is_nut_oilseed and not is_legume)
             )
             else 0.0
         )
@@ -497,50 +496,51 @@ class FoodOnFeatureExtractor:
         features[6] = 1.0 if is_nut_oilseed else 0.0
         features[7] = 1.0 if FOODON_CATEGORIES["spice"] in ancestors else 0.0
         features[8] = 1.0 if FOODON_CATEGORIES["beverage"] in ancestors else 0.0
+        features[9] = 1.0 if is_legume else 0.0
 
-        # Processing features (9-13) - detect from term name
+        # Processing features (10-14) - detect from term name
         term_name_lower = (term.name or "").lower()
-        features[9] = 1.0 if "raw" in term_name_lower else 0.0  # is_raw
-        features[10] = (
+        features[10] = 1.0 if "raw" in term_name_lower else 0.0  # is_raw
+        features[11] = (
             1.0
             if any(
                 w in term_name_lower for w in ["cooked", "roasted", "fried", "boiled"]
             )
             else 0.0
         )  # is_cooked
-        features[11] = (
+        features[12] = (
             1.0
             if any(
                 w in term_name_lower for w in ["canned", "frozen", "dried", "preserved"]
             )
             else 0.0
         )  # is_preserved
-        features[12] = (
+        features[13] = (
             1.0 if any(w in term_name_lower for w in ["fermented", "pickled"]) else 0.0
         )  # is_fermented
-        features[13] = (
+        features[14] = (
             1.0 if any(w in term_name_lower for w in ["processed", "prepared"]) else 0.0
         )  # is_processed
 
-        # Source features (14-17) - check ancestors
-        features[14] = (
+        # Source features (15-18) - check ancestors
+        features[15] = (
             1.0
             if (FOODON_CATEGORIES["plant"] in ancestors or is_plant_material)
             else 0.0
         )  # source_plant
         # Animal source: check for animal-related ancestors
         animal_keywords = ["animal", "meat", "poultry", "beef", "pork", "chicken"]
-        features[15] = (
+        features[16] = (
             1.0 if any(kw in str(ancestors).lower() for kw in animal_keywords) else 0.0
         )  # source_animal
-        features[16] = (
+        features[17] = (
             1.0 if "fungus" in str(ancestors).lower() else 0.0
         )  # source_fungus
-        features[17] = 0.0  # source_mineral (salt, etc.) - rare
+        features[18] = 0.0  # source_mineral (salt, etc.) - rare
 
-        # Numeric features (18-19)
-        features[18] = min(len(ancestors) / 10.0, 1.0)  # hierarchy depth normalized
-        features[19] = confidence  # match confidence
+        # Numeric features (19-20)
+        features[19] = min(len(ancestors) / 10.0, 1.0)  # hierarchy depth normalized
+        features[20] = confidence  # match confidence
 
         return features
 

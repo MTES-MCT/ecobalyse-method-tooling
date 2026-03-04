@@ -708,7 +708,7 @@ DETECTION_PATTERNS = {
     "is_vegetable": r"\b(légume|legume|vegetable|carotte|carrot|tomate|tomato|courgette|zucchini|aubergine|eggplant|poivron|pepper|oignon|onion|ail|garlic|pomme.{0,3}terre|potato|haricot|bean|petit.{0,3}pois|pea|épinard|spinach|salade|salad|laitue|lettuce|chou|cabbage|brocoli|broccoli|céleri|celery|concombre|cucumber|radis|radish|navet|turnip|betterave|beet|artichaut|artichoke|asperge|asparagus|fenouil|fennel|poireau|leek)\b",
     "is_fruit": r"\b(fruit|pomme|apple|poire|pear|orange|citron|lemon|banane|banana|fraise|strawberry|framboise|raspberry|cerise|cherry|pêche|peche|peach|abricot|apricot|prune|plum|raisin|grape|melon|pastèque|watermelon|mangue|mango|ananas|pineapple|kiwi|figue|fig|datte|date|grenade|pomegranate|papaye|papaya|litchi|lychee|avocat|avocado)\b",
     "is_grain": r"\b(céréale|cereale|cereal|grain|blé|ble|wheat|riz|rice|maïs|mais|corn|orge|barley|avoine|oat|seigle|rye|épeautre|epeautre|spelt|sarrasin|buckwheat|quinoa|millet|sorgho|sorghum|farine|flour|semoule|semolina|pâte|pate|pasta)\b",
-    "is_legume": r"\b(légumineuse|legumineuse|legume|légume.{0,3}sec|lentille|lentil|pois|pea|haricot.{0,3}sec|dried.{0,3}bean|fève|feve|fava|pois.{0,3}chiche|chickpea|soja|soy|lupin)\b",
+    "is_legume": r"\b(légumineuse|legumineuse|legume|légume.{0,3}sec|lentille|lentil|pois|pea|bean|haricot|fève|feve|fava|pois.{0,3}chiche|chickpea|soja|soy|lupin)\b",
     "is_nut_seed": r"\b(noix|nut|walnut|amande|almond|noisette|hazelnut|pistache|pistachio|cacahuète|cacahuete|peanut|cajou|cashew|pécan|pecan|macadamia|graine|seed|tournesol|sunflower|sésame|sesame|lin|flax|chia|courge|pumpkin|chanvre|hemp|pignon|pine.{0,3}nut)\b",
     "is_oil_fat": r"\b(huile|oil|graisse|fat|margarine|olive|colza|rapeseed|tournesol|sunflower|arachide|peanut|palme|palm|coco|coconut|noix|walnut|sésame|sesame)\b",
     "is_spice": r"\b(épice|epice|spice|herbe|herb|aromate|poivre|pepper|sel|salt|sucre|sugar|cannelle|cinnamon|curcuma|turmeric|gingembre|ginger|paprika|curry|cumin|coriandre|coriander|basilic|basil|thym|thyme|romarin|rosemary|persil|parsley|menthe|mint|aneth|dill|origan|oregano|laurier|bay|muscade|nutmeg|clou.{0,3}girofle|clove|safran|saffron|vanille|vanilla)\b",
@@ -726,7 +726,7 @@ DETECTION_PATTERNS = {
 BINARY_FEATURE_NAMES = list(DETECTION_PATTERNS.keys())
 
 # FoodOn feature dimension (loaded from foodon_loader)
-FOODON_DIM = 20
+FOODON_DIM = 21
 
 # Scale factors to balance FoodOn and regex features
 
@@ -778,8 +778,8 @@ def extract_features(
     Extract feature vector combining FoodOn ontology + regex pattern features.
 
     Features vector structure:
-    - [0:20] FoodOn ontology features (scaled)
-    - [20:45] Regex binary features (scaled)
+    - [0:21] FoodOn ontology features (scaled)
+    - [21:46] Regex binary features (scaled)
 
     Args:
         name: Ingredient name (potentially French)
@@ -788,12 +788,12 @@ def extract_features(
         foodon_extractor: Optional FoodOnFeatureExtractor for ontology features
 
     Returns:
-        np.ndarray of dimension (20 + nb_patterns) = 45 dims
+        np.ndarray of dimension (21 + nb_patterns) = 46 dims
     """
     # Combine name + activity for regex matching
     full_text = f"{name} {activity_name}".lower()
 
-    # 1. FoodOn features (20 dims) - uses translated name for English ontology
+    # 1. FoodOn features (21 dims) - uses translated name for English ontology
     if foodon_extractor is not None:
         # Translate name for FoodOn (English-based ontology)
         name_for_foodon = translate_fn(name) if translate_fn else name
@@ -986,8 +986,8 @@ class Predictor:
 
     def _extract_binary_from_features(self, features: np.ndarray) -> dict:
         """Extract binary regex features from the feature vector."""
-        # Features: [0:20] FoodOn, [20:45] regex
-        regex_start = FOODON_DIM  # 20
+        # Features: [0:21] FoodOn, [21:46] regex
+        regex_start = FOODON_DIM  # 21
         binary_values = features[0, regex_start:]  # Skip FoodOn to get regex features
         # Unscale to get original binary values
         binary_values = binary_values / REGEX_SCALE
@@ -1101,7 +1101,7 @@ class Predictor:
             return "none"
 
         # NOVA 1 (raw/fresh) + perishable foodType → needs cooling
-        perishable_types = {"vegetable", "fruit", "meat", "fish_seafood", "dairy"}
+        perishable_types = {"vegetable", "fruit", "legume", "meat", "fish_seafood", "dairy"}
         if nova_group == 1 and food_type in perishable_types:
             return "always"
 
@@ -1215,21 +1215,22 @@ class Predictor:
         return 0.10, "predict.py"
 
     def _detect_ratio_from_keywords(
-        self, name: str, activity: str
+        self, name: str, activity: str, food_type: str
     ) -> tuple[float, str] | None:
         """Detect cooking ratio from processing keywords.
 
-        Returns (value, keyword_description) for special cases (poultry, offal, dried),
-        None otherwise to fall back to foodType default.
+        Returns (value, keyword_description) for special cases (dried, poultry,
+        offal), None otherwise to fall back to foodType default.
         """
         text = f"{name} {activity}".lower()
 
-        # Skip dried detection for "at farm" ingredients - dried is natural state, not processing
+        # Dried items absorb water when cooked — ratio depends on food type
         is_at_farm = "at farm" in activity.lower()
         if not is_at_farm:
-            # Dried items absorb water when cooked
-            if re.search(r"\b(dried|séché|dehydrated|déshydraté)\b", text):
-                return 4.0, "dried/dehydrated"
+            if re.search(r"\b(dried|séchée?s?|dehydrated|déshydratée?s?)\b", text):
+                dried_ratios = {"legume": 2.33, "grain": 2.259, "fruit": 1.0, "vegetable": 3.33}
+                ratio = dried_ratios.get(food_type, 4.0)
+                return ratio, "dried/dehydrated"
 
         # Poultry detection (more specific than generic meat)
         if re.search(
@@ -1240,7 +1241,7 @@ class Predictor:
             return 0.755, "poultry"
 
         # Offal detection
-        if re.search(r"\b(liver|foie|kidney|rein|offal|abat)\b", text):
+        if re.search(r"\b(liver|foie|kidney(?!\s*bean)|rein|offal|abat)\b", text):
             return 0.730, "offal"
 
         return None  # Fall back to foodType default
@@ -1287,7 +1288,7 @@ class Predictor:
                 return transport
 
         # Fresh or unknown packaging: use foodType
-        perishable_types = {"meat", "fish_seafood", "dairy", "vegetable", "fruit"}
+        perishable_types = {"meat", "fish_seafood", "dairy", "vegetable", "fruit", "legume"}
         if food_type in perishable_types:
             return "always"
         return "none"
@@ -1300,7 +1301,7 @@ class Predictor:
         """
         is_raw = nova_group == 1
 
-        if food_type in {"vegetable", "fruit"}:
+        if food_type in {"vegetable", "fruit", "legume"}:
             return "vegetable_fresh" if is_raw else "vegetable_processed"
         elif food_type == "grain":
             return "grain_raw" if is_raw else "grain_processed"
@@ -1668,7 +1669,7 @@ class Predictor:
             return self._build_matcher(names, vals, sources)
 
         self.density_matcher = build_value_matcher(
-            "ingredientDensity", _load_density_data, name="density"
+            "density", _load_density_data, name="density"
         )
         # Skip ingredients.json for inediblePart - values are generated, not curated
         self.inedible_matcher = build_value_matcher(
@@ -1696,23 +1697,24 @@ class Predictor:
 
     def _get_foodtype_from_foodon_features(self, features: np.ndarray) -> str | None:
         """
-        Get food type directly from FoodOn features (indices 0-8).
+        Get food type directly from FoodOn features (indices 0-9).
         Returns None if no clear FoodOn signal.
 
         Features layout (from foodon_loader.py):
         - [0]=vegetable, [1]=fruit, [2]=grain, [3]=meat,
-        - [4]=fish, [5]=dairy, [6]=nut_oilseed, [7]=spice, [8]=beverage
-        - [19]=match_confidence
+        - [4]=fish, [5]=dairy, [6]=nut_oilseed, [7]=spice, [8]=beverage, [9]=legume
+        - [20]=match_confidence
         """
-        # Check confidence threshold (FoodOn match confidence is at features[19])
-        foodon_confidence = features[19] if len(features) > 19 else 0
+        # Check confidence threshold (FoodOn match confidence is at features[20])
+        foodon_confidence = features[20] if len(features) > 20 else 0
         if foodon_confidence < 0.7:  # Require decent FoodOn match
             return None
 
         # Check in priority order: more specific types first
-        # (fruit before vegetable, since fruits are a subtype of plant food in FoodOn)
+        # (fruit/legume before vegetable, since they are subtypes of plant food in FoodOn)
         priority_order = [
             (1, "fruit"),         # Check fruit BEFORE vegetable
+            (9, "legume"),        # Check legume BEFORE vegetable
             (2, "grain"),
             (3, "meat"),          # Meat (vertebrate material, excluding fish)
             (4, "fish_seafood"),
@@ -1887,7 +1889,7 @@ class Predictor:
             )
             if transport_cooling:
                 # Rule-based prediction
-                perishable = food_type in {"meat", "fish_seafood", "dairy", "vegetable", "fruit"}
+                perishable = food_type in {"meat", "fish_seafood", "dairy", "vegetable", "fruit", "legume"}
                 if nova_group == 1 and perishable:
                     predictions["transportCoolingMatch"] = _match(
                         f"{food_type} NOVA 1 → {transport_cooling} (perishable)", 1.0
@@ -1996,7 +1998,7 @@ class Predictor:
                 )
 
         # 10. rawToCookedRatio (keywords first, then matcher with validation, then default)
-        keyword_result = self._detect_ratio_from_keywords(name, activity)
+        keyword_result = self._detect_ratio_from_keywords(name, activity, food_type)
         if keyword_result is not None:
             # Keyword-based (poultry, offal, dried) - high confidence
             ratio_val, keyword = keyword_result

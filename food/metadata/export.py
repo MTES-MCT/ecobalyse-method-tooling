@@ -75,6 +75,14 @@ VARIANT_SCENARIO = {
     Variant.NUE: "import",
 }
 
+VARIANT_ORIGIN = {
+    Variant.FR: "France",
+    Variant.ORG: "France",
+    Variant.UE: "EuropeAndMaghreb",
+    Variant.OI: "OutOfEuropeAndMaghreb",
+    Variant.NUE: "OutOfEuropeAndMaghreb",
+}
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -409,7 +417,7 @@ def build_activity_entry(
 
     ingredient = {
         "alias": alias,
-        "defaultOrigin": predictions.get("defaultOrigin", "OutOfEuropeAndMaghreb"),
+        "defaultOrigin": VARIANT_ORIGIN[variant],
         "displayName": display_name,
         "id": ingredient_id,
         "inediblePart": predictions.get("inediblePart", 0),
