@@ -9607,5 +9607,275 @@
     "source": "Agribalyse 3.2",
     "unit": "kg",
     "location": "FR"
+  },
+  {
+    "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
+    "alias": "artichoke-default",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Artichaut Origine Inconnue",
+    "id": "a3caf7df-3f16-55cc-8179-b9c5a6526d2e",
+    "metadata": {
+      "food": [
+        {
+          "alias": "artichoke-default",
+          "defaultOrigin": "OutOfEuropeAndMaghreb",
+          "displayName": "Artichaut Origine Inconnue",
+          "id": "cbcf4992-133c-56e7-b741-7056813729b5",
+          "inediblePart": 0.6,
+          "inediblePartMatch": {
+            "rule": "Matched with Artichokes in agb_inedible.csv",
+            "confidence": 0.98
+          },
+          "ingredientCategories": [
+            "vegetable_fresh"
+          ],
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": {
+            "rule": "vegetable default from food_type_density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": {
+            "rule": "Matched with artichoke in cooked_to_raw.csv",
+            "confidence": 1.0
+          },
+          "scenario": "import",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "vegetable NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": true,
+          "cropGroup": "LEGUMES-FLEURS",
+          "cropGroupMatch": {
+            "rule": "vegetable default",
+            "confidence": 1.0
+          }
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Ecoinvent 3.11",
+    "unit": "kg",
+    "location": "GLO"
+  },
+  {
+    "activityName": "Snail, wild {HU} U",
+    "alias": "snail-default",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Escargot Origine Inconnue",
+    "id": "0d8d138b-9a55-530a-ba1a-9f9c06c4381b",
+    "metadata": {
+      "food": [
+        {
+          "alias": "snail-default",
+          "defaultOrigin": "OutOfEuropeAndMaghreb",
+          "displayName": "Escargot Origine Inconnue",
+          "id": "3bd5db8a-ef5a-5d51-ba4c-9f71c7875405",
+          "inediblePart": 0.4,
+          "inediblePartMatch": {
+            "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "animal_product"
+          ],
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": {
+            "rule": "fish_seafood default from food_type_density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.819,
+          "rawToCookedRatioMatch": {
+            "rule": "fish_seafood default from food_type_cooked_to_raw.csv",
+            "confidence": 1.0
+          },
+          "scenario": "import",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "fish_seafood NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": true
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg",
+    "location": "HU"
+  },
+  {
+    "activityName": "Seed-cotton {BD}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "cotton-seed-default",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Graine de coton Origine Inconnue",
+    "id": "c46bb388-7429-50a4-aafa-6d2017097530",
+    "metadata": {
+      "food": [
+        {
+          "alias": "cotton-seed-default",
+          "defaultOrigin": "OutOfEuropeAndMaghreb",
+          "displayName": "Graine de coton Origine Inconnue",
+          "id": "d7c78f73-0688-5813-8181-1ab09cc70e44",
+          "inediblePart": 0.2,
+          "inediblePartMatch": {
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "vegetable_fresh"
+          ],
+          "ingredientDensity": 0.9,
+          "ingredientDensityMatch": {
+            "rule": "vegetable default from food_type_density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": {
+            "rule": "vegetable default from food_type_cooked_to_raw.csv",
+            "confidence": 1.0
+          },
+          "scenario": "import",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "vegetable NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": true,
+          "cropGroup": "SEMENCES",
+          "cropGroupMatch": {
+            "rule": "matched 'semences epeautre' in cropgroup.csv",
+            "confidence": 1.0
+          }
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg",
+    "location": "BD"
+  },
+  {
+    "activityName": "Lupin, conventional, national average, at farm gate, production {FR} U",
+    "alias": "lupin-default",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Lupin Origine Inconnue",
+    "id": "c7c8c8b3-456e-5d69-b77b-1039686d3b80",
+    "metadata": {
+      "food": [
+        {
+          "alias": "lupin-default",
+          "defaultOrigin": "OutOfEuropeAndMaghreb",
+          "displayName": "Lupin Origine Inconnue",
+          "id": "83804056-27f7-5a8e-a1fe-0958ab01a46a",
+          "inediblePart": 0.2,
+          "inediblePartMatch": {
+            "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "vegetable_fresh"
+          ],
+          "ingredientDensity": 0.8,
+          "ingredientDensityMatch": {
+            "rule": "legume default from food_type_density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": {
+            "rule": "legume default from food_type_cooked_to_raw.csv",
+            "confidence": 1.0
+          },
+          "scenario": "import",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "legume NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": true,
+          "cropGroup": "PROTEAGINEUX",
+          "cropGroupMatch": {
+            "rule": "matched 'lupin' in cropgroup.csv",
+            "confidence": 1.0
+          }
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg",
+    "location": "FR"
+  },
+  {
+    "activityName": "Linseed seed, at regional storehouse (WFLDB)",
+    "alias": "alfalfa-default",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Luzerne Origine Inconnue",
+    "id": "a1613216-5f12-56a3-9834-61c3cd809a8f",
+    "metadata": {
+      "food": [
+        {
+          "alias": "alfalfa-default",
+          "defaultOrigin": "OutOfEuropeAndMaghreb",
+          "displayName": "Luzerne Origine Inconnue",
+          "id": "e28278da-bbdc-5176-b388-2556e7295340",
+          "inediblePart": 0.0,
+          "inediblePartMatch": {
+            "rule": "legume NOVA 2-4 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "vegetable_processed"
+          ],
+          "ingredientDensity": 0.8,
+          "ingredientDensityMatch": {
+            "rule": "legume default from food_type_density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.856,
+          "rawToCookedRatioMatch": {
+            "rule": "legume default from food_type_cooked_to_raw.csv",
+            "confidence": 1.0
+          },
+          "scenario": "import",
+          "transportCooling": "none",
+          "transportCoolingMatch": {
+            "rule": "Matched with Mélange de céréales FR (2025) in ingredients.json",
+            "confidence": 0.891
+          },
+          "visible": true,
+          "cropGroup": "LEGUMINEUSES A GRAIN",
+          "cropGroupMatch": {
+            "rule": "legume default",
+            "confidence": 1.0
+          }
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "WFLDB",
+    "unit": "kg",
+    "location": "GLO"
   }
 ]
