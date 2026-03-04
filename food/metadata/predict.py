@@ -436,7 +436,7 @@ def _extract_ingredient_values(
 
     Args:
         ingredients: List of ingredient dicts
-        field: Field name to extract (e.g., "ingredientDensity", "inediblePart")
+        field: Field name to extract (e.g., "density", "inediblePart")
         allow_zero: If True, include zero values (use "is not None" check).
                    If False, exclude zero/falsy values (use truthiness check).
     """
