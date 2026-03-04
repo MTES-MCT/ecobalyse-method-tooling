@@ -660,6 +660,8 @@ def reassemble(
             if ings:
                 metadata["food"] = ings
             entry["metadata"] = metadata
+        elif entry.get("categories") == ["ingredient"]:
+            continue  # Skip orphaned ingredient activities with no metadata
         result.append(entry)
     return result + other
 
