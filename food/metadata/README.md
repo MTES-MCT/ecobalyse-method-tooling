@@ -49,6 +49,17 @@ ECOBALYSE=../../../ecobalyse
 
 The export process has multiple steps to generate complete ingredient data with environmental impacts.
 
+**Data flow:**
+```
+source/new_ingredient_{variant}.csv          (input: base ingredient data)
+    ↓ Step 1: metadata
+generated/predictions_{variant}.csv          (detailed predictions + confidence)
+generated/new_activities_{variant}.json      (Ecobalyse-format activities)
+    ↓ Step 2: regenerate in ecobalyse-data
+    ↓ Step 3: final_data
+generated/fichier_final_{variant}.csv        (final CSV = source + metadata + impacts)
+```
+
 ### Step 1: Export Metadata and Merge Activities
 
 ```bash
@@ -143,7 +154,7 @@ ingredients.json ──────┐
             │  ┌────────────────┐  │      │  • processing_state.csv     │
             │  │ FoodOn Ontology│  │      │  • cropgroup.csv            │
             │  │ (52K terms)    │  │      │  • density.csv              │
-            │  │ → 20 dims      │  │      │  • inedible_part.csv        │
+            │  │ → 21 dims      │  │      │  • inedible_part.csv        │
             │  └────────────────┘  │      │  • cooked_to_raw.csv        │
             │  ┌────────────────┐  │      │  • transport_cooling.csv    │
             │  │ Regex Patterns │  │      └─────────────┬───────────────┘
@@ -160,8 +171,8 @@ ingredients.json ──────┐
             │   cropGroup_matcher ←── ingredients + CSV               │
             │   transportCooling_matcher ←── ingredients + CSV        │
             │   density_matcher ←── ingredients + CSV                 │
-            │   inediblePart_matcher ←── ingredients + CSV            │
-            │   rawToCookedRatio_matcher ←── ingredients + CSV        │
+            │   inediblePart_matcher ←── CSV only (skip_ingredients)  │
+            │   rawToCookedRatio_matcher ←── CSV only (skip_ingredients) │
             └─────────────────────────────────────────────────────────┘
 ```
 
@@ -200,7 +211,7 @@ New Ingredient
 │                          ▼ (if no word match)                     │
 │   PRIORITY 3: FoodOn + Regex Similarity (confidence = cosine)     │
 │   ┌─────────────────────────────────────────────────────────┐     │
-│   │ 48-dim feature vector: 20 FoodOn + 28 regex             │     │
+│   │ 49-dim feature vector: 21 FoodOn + 28 regex             │     │
 │   │ Cosine similarity with all reference items              │     │
 │   └─────────────────────────────────────────────────────────┘     │
 └───────────────────────────────────────────────────────────────────┘
@@ -233,14 +244,23 @@ The system classifies ingredients into NOVA 4-group categories:
 ### NOVA Detection Priority
 
 ```
-1. Distilled spirits (brandy, vodka, etc.) → NOVA 4
-2. NOVA 2 culinary ingredients (oil, butter, sugar, salt, flour)
-3. NOVA 3 processed indicators (jam, pickled, cured, smoked, ham, bacon)
-4. NOVA 4 ultra-processed (textured, hydrolyzed, corn syrup, maltodextrin)
-5. Activity name patterns ("at farm", "at plant", "production")
-6. FoodType-based defaults (fruit/vegetable/fish → NOVA 1)
-7. Nearest neighbor matching on reference data
-8. Default: NOVA 1
+ 1. Distilled spirits (brandy, vodka, etc.) → NOVA 4
+ 2. NOVA 2 culinary ingredients (oil, butter, fat, sugar, salt, flour,
+    starch, gluten, maple syrup, vinegar, molasses)
+ 3. FoodOn refined food product → NOVA 2
+ 4. Activity name location keywords (at farm, at orchard, production,
+    market for) → NOVA 1
+ 5. NOVA 3 processed indicators (jam, pickled, cured, smoked, canned,
+    ham, bacon, sausage)
+ 6. NOVA 4 ultra-processed (textured, rehydrated, instant, isolate,
+    industrial sugars)
+ 7. "at plant" processing (recipe→4, minimal→1, fresh→1, extracted→2,
+    default→3)
+ 8. Packaging/preservation (canned, smoked → NOVA 3)
+ 9. Minimal processing (frozen/dried without other processing) → NOVA 1
+10. FoodType-based defaults (fruit/vegetable/fish → NOVA 1, etc.)
+11. Nearest neighbor matching on reference data
+12. Default: NOVA 1
 ```
 
 ### Validation
@@ -270,15 +290,18 @@ Current performance (5-fold CV on 93 reference items):
 |--------|-------------|
 | name | Ingredient name |
 | categories | Predicted categories (comma-separated) |
-| foodType | Food type + match rule + confidence |
-| **novaGroup** | NOVA 1-4 classification |
-| **novaGroupMatch** | Detection rule + confidence |
-| processingState | Derived from NOVA (raw/processed) |
-| transportCooling | Transport cooling + match rule |
-| cropGroup | Crop group + match rule + confidence |
-| density | Density value + match rule + confidence |
-| inediblePart | Inedible part + match rule + confidence |
-| rawToCookedRatio | Raw-to-cooked ratio + match rule + confidence |
+| foodType, foodTypeMatch, foodTypeConf | Food type + match rule + confidence |
+| novaGroup, novaGroupMatch, novaGroupConf | NOVA 1-4 classification + detection rule |
+| processingState, processingStateMatch, processingStateConf | Derived from NOVA (raw/processed) |
+| packaging, packagingMatch | Detected packaging type (frozen/canned/dried/smoked/fresh) |
+| transportCooling, transportCoolingMatch | Transport cooling requirement |
+| cropGroup, cropGroupMatch, cropGroupConf | Crop group assignment |
+| defaultOrigin, defaultOriginMatch | Default origin extracted from activity name |
+| density, densityMatch, densityConf | Density value |
+| inediblePart, inediblePartMatch, inediblePartConf | Inedible part fraction |
+| rawToCookedRatio, rawToCookedRatioMatch, rawToCookedRatioConf | Raw-to-cooked ratio |
+
+Each predicted field has companion `Match` (human-readable rule) and `Conf` (confidence score) columns. The `packaging` and `transportCooling` fields have only a `Match` column (no separate `Conf`).
 
 ### new_activities.json
 
@@ -301,11 +324,13 @@ Match info includes a human-readable rule explanation and confidence:
 
 All Match fields follow the same format: `{"rule": "...", "confidence": float}`. The rule explains how the value was determined (text match, keyword detection, or default fallback).
 
+For animal-based ingredients, `detect_animal_fields()` in `export.py` also adds `animalGroup1`, `animalGroup2`, and `animalProduct` fields to the activity entry.
+
 ## Feature Extraction
 
-Each ingredient is represented as a 48-dimensional feature vector (20 FoodOn + 28 regex).
+Each ingredient is represented as a 49-dimensional feature vector (21 FoodOn + 28 regex).
 
-### FoodOn Ontology Features (20 dimensions)
+### FoodOn Ontology Features (21 dimensions)
 
 The FoodOn ontology (~50K food terms) provides structured semantic features:
 
@@ -316,11 +341,11 @@ Query: "Watermelon"
          ↓
    Extract ancestor categories from ontology graph
          ↓
-   20-dim feature vector:
-     - dims 0-8:  Type flags (vegetable, fruit, grain, meat, fish, dairy, nut, spice, beverage)
-     - dims 9-13: Processing flags (raw, cooked, preserved, fermented, processed)
-     - dims 14-17: Source flags (plant, animal, fungus, mineral)
-     - dims 18-19: Numeric (hierarchy_depth, match_confidence)
+   21-dim feature vector:
+     - dims 0-9:  Type flags (vegetable, fruit, grain, meat, fish, dairy, nut, spice, beverage, legume)
+     - dims 10-14: Processing flags (raw, cooked, preserved, fermented, processed)
+     - dims 15-18: Source flags (plant, animal, fungus, mineral)
+     - dims 19-20: Numeric (hierarchy_depth, match_confidence)
 ```
 
 ### Regex Binary Features (28 dimensions)
@@ -364,11 +389,13 @@ Each field uses a specific prediction strategy:
 | **novaGroup** | Rule-based (see NOVA section) | Nearest neighbor |
 | **processingState** | Derived from novaGroup | - |
 | **categories** | Computed from foodType + novaGroup | - |
-| **transportCooling** | Rules based on foodType + novaGroup | Nearest neighbor |
+| **packaging** | Keyword detection (frozen/canned/dried/smoked/fresh) | None |
+| **transportCooling** | Packaging first, then rules on foodType + novaGroup | Nearest neighbor |
 | **cropGroup** | Pattern-based (foodType + keywords) | Nearest neighbor matcher |
+| **defaultOrigin** | Extracted from `{XX}` code in activityName | EuropeanMix |
 | **density** | Text match with word verification | FoodType default |
-| **inediblePart** | Text match, feature similarity | - |
-| **rawToCookedRatio** | Text match, feature similarity | - |
+| **inediblePart** | Text match, feature similarity | FoodType + NOVA default |
+| **rawToCookedRatio** | Text match, feature similarity | FoodType default |
 
 ## Category Computation
 
@@ -469,7 +496,7 @@ Density uses a hybrid approach to avoid false matches:
    ├─ "Apple" matches "apple" in density.csv → 0.9
    └─ Verify: query and match share a word → accept
 
-2. Feature Similarity (cosine on 48-dim vector)
+2. Feature Similarity (cosine on 49-dim vector)
    ├─ "Amaranth" matches "Lard" with similarity 1.0
    └─ Verify: "amaranth" ∩ "lard" = ∅ → reject!
 
@@ -544,7 +571,8 @@ rawToCookedRatio (cooked weight / raw weight) uses a 3-tier approach:
 
 ```
 1. Keyword Detection (special cases)
-   ├─ "dried", "dehydrated" → 4.0 (absorbs water)
+   ├─ "dried", "dehydrated" → depends on foodType:
+   │     legume=2.33, grain=2.259, fruit=1.0, vegetable=3.33, default=4.0
    ├─ poultry (chicken, turkey, duck, broiler) → 0.755
    └─ offal (liver, kidney) → 0.730
 
