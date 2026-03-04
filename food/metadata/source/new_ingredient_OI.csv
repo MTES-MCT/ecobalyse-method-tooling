@@ -62,7 +62,7 @@ EB_id0078,"Flageolet beans, green, dried",Haricots flageolets verts,"Fava bean {
 EB_id0079,Flaxseed,Graines de lin,"Flaxseed, national average, animal feed, at farm gate {FR} U",Agribalyse 3.2,FR,179
 EB_id0080,French beans,Haricots verts,"French bean, conventional, national average, at farm gate {FR} U",Agribalyse 3.2,FR,67
 EB_id0081,"Fresh herbs (dill, basil, chervil, rosemary, sage, thyme)","Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym)","Mint, at farm (WFLDB)",WFLDB,IN,63
-EB_id0083,Garlic,Ail,"Garlic, fresh, at farm (WFLDB)",WFLDB,US,68
+EB2_id001,Garlic,Ail,"Garlic, fresh, at farm (WFLDB)",WFLDB,US,68
 EB_id0084,Gherkin,Cornichon,"Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,193
 EB_id0085,Ginger,Gingembre,"Ginger, fresh, at farm (WFLDB)",WFLDB,CN,221
 EB_id0088,Gooseberry,Groseille,"Strawberry, open field, macro tunnel, at farm (WFLDB)",WFLDB,MA,"4,363"
@@ -174,3 +174,8 @@ EB_id0229,Whole rye,Seigle entier,"Rye grain {GLO}| market for rye grain | Cut-o
 EB_id0230,Winter pea,Pois d'hiver,"Winter pea, conventional, 15% moisture, at farm gate {FR} U",Agribalyse 3.2,FR,124
 EB_id0231,Yam,Igname,"Carrot, at farm (WFLDB)",WFLDB,IL,71
 EB_id0233,Zucchini,Courgettes,"Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,36
+EB2_id002,Artichoke,Artichaut,"Cauliflower {GLO}| cauliflower production | Cut-off, U",Ecoinvent 3.11,GLO,
+EB2_id003,Snail,Escargot,"Snail, wild {HU} U",Agribalyse 3.2,HU,16.846
+EB2_id004,Cotton seed,Graine de coton,"Seed-cotton {BD}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,BD,5457.41
+EB2_id005,Lupin,Lupin,"Lupin, conventional, national average, at farm gate, production {FR} U",Agribalyse 3.2,FR,114.05
+EB2_id006,Alfalfa,Luzerne,"Linseed seed, at regional storehouse (WFLDB)",WFLDB,GLO,735
