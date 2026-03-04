@@ -142,6 +142,6 @@ EB_id0233,Zucchini,Courgettes,"Zucchini, conventional, national average, at farm
 EB2_id001,Garlic,Ail,"Onion, conventional, national average, at farm {FR} U",FR,FR,Pas de proxy origine
 EB2_id002,Artichoke,Artichaut,"Cauliflower, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine
 EB2_id003,Snail,Escargot,"Snail, wild {BE} U",FR,BE,Proxy origine
-EB2_id004,Cotton seed,Graine de coton,"Seed-cotton {RoW}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U {RoW}",FR,RoW,Proxy origine
+EB2_id004,Cotton seed,Graine de coton,"Seed-cotton {RoW}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine
 EB2_id005,Lupin,Lupin,"Lupin, conventional, national average, at farm gate, production {FR} U",FR,FR,Pas de proxy origine
-EB2_id006,Alfalfa,Luzerne,"Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U {RoW}",FR,RoW,Proxy origine
+EB2_id006,Alfalfa,Luzerne,"Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine
