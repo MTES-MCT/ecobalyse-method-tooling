@@ -51,8 +51,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CN"
+    "unit": "kg"
   },
   {
     "activityName": "Durum wheat grain, conventional, national average, at farm gate {FR} U",
@@ -106,8 +105,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Apple, conventional, national average, at orchard {FR} U",
@@ -161,8 +159,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Apricot, conventional, national average, at orchard {FR} U",
@@ -216,8 +213,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "White asparagus {FR}| white asparagus production | Cut-off, U - Copied from Ecoinvent U",
@@ -271,8 +267,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Banana, mixed production, West Indies, at farm gate {WI} U",
@@ -326,8 +321,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "WI"
+    "unit": "kg"
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
@@ -381,8 +375,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Beetroot for juice, conventional, at farm gate {FR} U",
@@ -436,8 +429,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Bell pepper {FR}| bell pepper production, in unheated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
@@ -491,8 +483,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Strawberry, conventional, national average, at farm gate {FR} U",
@@ -546,8 +537,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Blueberry, at farm {CA} - Adapted from WFLDB U",
@@ -601,8 +591,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CA"
+    "unit": "kg"
   },
   {
     "activityName": "Mango, conventional, Val de San Francisco, at orchard {BR} U",
@@ -656,8 +645,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "BR"
+    "unit": "kg"
   },
   {
     "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
@@ -711,8 +699,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Broccoli {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -766,8 +753,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
@@ -821,8 +807,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
@@ -876,8 +861,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
@@ -931,8 +915,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
@@ -986,8 +969,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Celery {GLO}| 675 production | Cut-off, U - Adapted from Ecoinvent U",
@@ -1041,8 +1023,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Cherry, conventional, national average, at orchard {FR} U",
@@ -1096,8 +1077,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Tomato, medium size, conventional, soil based, non-heated greenhouse, at greenhouse {FR} U",
@@ -1151,8 +1131,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Walnut, dried inshell, conventional, national average, at farm gate {FR} U",
@@ -1206,8 +1185,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",
@@ -1261,8 +1239,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Chickpea seed, organic, at farm gate {FR} U",
@@ -1317,8 +1294,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Chicory roots, conventional, at farm gate {FR} U",
@@ -1372,8 +1348,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Bell pepper {FR}| bell pepper production, in unheated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
@@ -1427,8 +1402,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, conventional, national average, at farm {FR} U",
@@ -1482,8 +1456,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Clementine, export quality, Souss, at orchard {MA} U",
@@ -1537,8 +1510,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "MA"
+    "unit": "kg"
   },
   {
     "activityName": "Coconut, dehusked {ID}| coconut production, dehusked | Cut-off, U - Adapted from Ecoinvent U",
@@ -1592,8 +1564,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "ID"
+    "unit": "kg"
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -1647,8 +1618,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Maize grain, conventional, 28% moisture, national average, animal feed, at farm gate {FR} U",
@@ -1702,8 +1672,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cow milk, conventional, national average, at farm gate {FR} U",
@@ -1755,8 +1724,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cranberry, at farm {CL} - Adapted from WFLDB U",
@@ -1810,8 +1778,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CL"
+    "unit": "kg"
   },
   {
     "activityName": "Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
@@ -1865,8 +1832,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
@@ -1920,8 +1886,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
@@ -1975,8 +1940,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Durum wheat grain, conventional, national average, at farm gate {FR} U",
@@ -2030,8 +1994,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Egg, conventionnal, national average, at farm gate {FR} U",
@@ -2080,8 +2043,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
@@ -2135,8 +2097,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Elderberry, at farm {PL} - Adapted from WFLDB U",
@@ -2190,8 +2151,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "PL"
+    "unit": "kg"
   },
   {
     "activityName": "Lettuce, conventional, national average, at farm gate {FR} U",
@@ -2245,8 +2205,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -2300,8 +2259,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Peach, conventional, national average, at orchard {FR} U",
@@ -2355,8 +2313,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
@@ -2410,8 +2367,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Flaxseed, straw, ret, Normandie, at farm gate {FR} U",
@@ -2465,8 +2421,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "French bean, conventional, national average, at farm gate {FR} U",
@@ -2520,8 +2475,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
@@ -2575,8 +2529,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, conventional, national average, at farm {FR} U",
@@ -2630,8 +2583,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "[Dummy] Gherkin, pickled in vinegar, at plant {FR} U",
@@ -2685,8 +2637,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Strawberry, conventional, national average, at farm gate {FR} U",
@@ -2740,8 +2691,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Orange, fresh grade, at farm {ES} - Adapted from WFLDB U",
@@ -2795,8 +2745,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "ES"
+    "unit": "kg"
   },
   {
     "activityName": "Grape {RoW}| grape production | Cut-off, U - Adapted from Ecoinvent U",
@@ -2850,8 +2799,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
@@ -2905,8 +2853,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cherry, conventional, national average, at orchard {FR} U",
@@ -2960,8 +2907,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
@@ -3015,8 +2961,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Hazelnut, in shell, at farm {IT} - Adapted from WFLDB U",
@@ -3070,8 +3015,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "IT"
+    "unit": "kg"
   },
   {
     "activityName": "Hemp, grain, Champagne, at farm gate {FR} U",
@@ -3125,8 +3069,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Honey, raw, small-scale production, unpackaged, at farm {CH} - Adapted from WFLDB U",
@@ -3175,8 +3118,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
@@ -3230,8 +3172,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
@@ -3275,7 +3216,7 @@
           "visible": true,
           "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'carrot' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -3285,8 +3226,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
@@ -3340,8 +3280,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
@@ -3395,8 +3334,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
@@ -3450,8 +3388,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",
@@ -3505,8 +3442,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "ES"
+    "unit": "kg"
   },
   {
     "activityName": "Leek, conventional, national average, at plant {FR} U",
@@ -3560,8 +3496,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Lemon {ES}| lemon production | Cut-off, U - Adapted from Ecoinvent U",
@@ -3615,8 +3550,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "ES"
+    "unit": "kg"
   },
   {
     "activityName": "Lentil {CA-SK}| lentil production | Cut-off, U - Adapted from Ecoinvent U",
@@ -3670,8 +3604,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CA-SK"
+    "unit": "kg"
   },
   {
     "activityName": "Mango, conventional, Val de San Francisco, at orchard {BR} U",
@@ -3725,8 +3658,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "BR"
+    "unit": "kg"
   },
   {
     "activityName": "Walnut, dried inshell, conventional, national average, at farm gate {FR} U",
@@ -3780,8 +3712,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Mango, conventional, Val de San Francisco, at orchard {BR} U",
@@ -3835,8 +3766,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "BR"
+    "unit": "kg"
   },
   {
     "activityName": "Melon, conventional, national average, at farm gate {FR} U",
@@ -3890,8 +3820,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
@@ -3945,8 +3874,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Cherry, conventional, national average, at orchard {FR} U",
@@ -4000,8 +3928,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Agaricus bisporus mushroom, fresh, at plant {NL} - Adapted from WFLDB U",
@@ -4055,8 +3982,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "NL"
+    "unit": "kg"
   },
   {
     "activityName": "Mustard, proxy from Rape seed {Canada without Quebec}| rape seed production | Cut-off, U - Adapted from Ecoinvent U",
@@ -4110,8 +4036,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "Canada without Quebec"
+    "unit": "kg"
   },
   {
     "activityName": "Peach, conventional, national average, at orchard {FR} U",
@@ -4165,8 +4090,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Oat grain {RoW}| oat production | Cut-off, U - Adapted from Ecoinvent U",
@@ -4220,8 +4144,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Olive {ES}| olive production | Cut-off, U",
@@ -4275,8 +4198,7 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg",
-    "location": "ES"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, conventional, national average, at farm {FR} U",
@@ -4330,8 +4252,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Orange, fresh grade, at farm {ES} - Adapted from WFLDB U",
@@ -4385,8 +4306,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "ES"
+    "unit": "kg"
   },
   {
     "activityName": "Papaya {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -4440,8 +4360,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Parsley, fresh, at farm {US} - Adapted from WFLDB U",
@@ -4495,8 +4414,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "US"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
@@ -4550,8 +4468,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Peach, conventional, national average, at orchard {FR} U",
@@ -4605,8 +4522,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Pear, conventional, national average, at orchard {FR} U",
@@ -4660,8 +4576,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
@@ -4715,8 +4630,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -4770,8 +4684,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Peanut {RoW}| peanut production | Cut-off, U - Adapted from Ecoinvent U",
@@ -4825,8 +4738,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Pineapple, at farm {CR} - Adapted from WFLDB U",
@@ -4880,8 +4792,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CR"
+    "unit": "kg"
   },
   {
     "activityName": "Banana {RoW}| banana production | Cut-off, U - Adapted from Ecoinvent U",
@@ -4935,8 +4846,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Apple, conventional, national average, at orchard {FR} U",
@@ -4990,8 +4900,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U",
@@ -5045,8 +4954,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Pear, conventional, national average, at orchard {FR} U",
@@ -5100,8 +5008,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
@@ -5155,8 +5062,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Apple, conventional, national average, at orchard {FR} U",
@@ -5210,8 +5116,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Quinoa FR, conventional, at farm gate {FR} U",
@@ -5265,8 +5170,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Radish {FR}| radish production, in unheated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
@@ -5320,8 +5224,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Rapeseed, conventional, 9% moisture, national average, animal feed, at farm gate, production {FR} U",
@@ -5375,8 +5278,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Raspberry, at farm {RS} - Adapted from WFLDB U",
@@ -5430,8 +5332,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RS"
+    "unit": "kg"
   },
   {
     "activityName": "Rice, non-basmati {CN}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U",
@@ -5485,8 +5386,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CN"
+    "unit": "kg"
   },
   {
     "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
@@ -5540,8 +5440,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Strawberry, conventional, national average, at farm gate {FR} U",
@@ -5595,8 +5494,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Lettuce, conventional, national average, at farm gate {FR} U",
@@ -5650,8 +5548,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
@@ -5705,8 +5602,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
@@ -5760,8 +5656,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Black pepper, conventional, at farm gate {VN} U",
@@ -5815,8 +5710,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "VN"
+    "unit": "kg"
   },
   {
     "activityName": "Lettuce, conventional, national average, at farm gate {FR} U",
@@ -5870,8 +5764,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
@@ -5925,8 +5818,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Sodium chloride, powder {GLO}| market for | Cut-off, S - Copied from Ecoinvent U",
@@ -5975,8 +5867,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Seaweed optimized production, 1kg algae (Laminaria), fresh weight {FR} U",
@@ -6030,8 +5921,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, conventional, national average, at farm {FR} U",
@@ -6085,8 +5975,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Sheep milk, conventional, Roquefort system, at farm gate {FR} U",
@@ -6138,8 +6027,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Soft wheat grain, conventional, breadmaking quality, 15% moisture, at farm gate {FR} U",
@@ -6193,8 +6081,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Sweet sorghum grain {RoW}| sweet sorghum production | Cut-off, U - Adapted from Ecoinvent U",
@@ -6248,8 +6135,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Soybean grain dried, stored and transported, processing {FR} U",
@@ -6303,8 +6189,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Durum wheat grain, conventional, national average, at farm gate {FR} U",
@@ -6358,8 +6243,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -6413,8 +6297,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
@@ -6468,8 +6351,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Spring faba bean, conventional, reduced protection, at farm gate {FR} U",
@@ -6523,8 +6405,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Spring pea, conventional, 15% moisture, animal feed, at farm gate, production {FR} U",
@@ -6578,8 +6459,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Mineral water, still, PET one-way, 1.5 L, at water factory {FR} - Adapted from WFLDB U",
@@ -6633,8 +6513,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "L",
-    "location": "FR"
+    "unit": "L"
   },
   {
     "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
@@ -6688,8 +6567,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Strawberry, open field, conventional, at farm gate {FR} U",
@@ -6743,8 +6621,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Sugar beet, at farm {FR} - Adapted from WFLDB U",
@@ -6798,8 +6675,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Sunflower grain, conventional, 9% moisture, national average, animal feed, at farm gate, production {FR} U",
@@ -6853,8 +6729,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U",
@@ -6908,8 +6783,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -6963,8 +6837,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",
@@ -7018,8 +6891,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Tomato, medium size, conventional, soil based, non-heated greenhouse, at greenhouse {FR} U",
@@ -7073,8 +6945,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, conventional, national average, at farm gate {FR} U",
@@ -7128,8 +6999,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Vanilla {MG}| vanilla production | Cut-off, U - Adapted from Ecoinvent U",
@@ -7183,8 +7053,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "MG"
+    "unit": "kg"
   },
   {
     "activityName": "Walnut, dried inshell, conventional, national average, at farm gate {FR} U",
@@ -7238,8 +7107,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Melon, conventional, national average, at farm gate {FR} U",
@@ -7293,8 +7161,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "French bean, conventional, national average, at farm gate {FR} U",
@@ -7348,8 +7215,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cabbage white {RoW}| cabbage white production | Cut-off, U - Adapted from Ecoinvent U",
@@ -7403,8 +7269,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Barley grain {FR}| barley production | Cut-off, U - Adapted from Ecoinvent U",
@@ -7458,8 +7323,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Wheat grain {FR}| wheat production | Cut-off, U - Adapted from Ecoinvent U",
@@ -7513,8 +7377,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Rye grain, feed, Swiss integrated production {CH}| production | Cut-off, U - Copied from Ecoinvent U",
@@ -7568,8 +7431,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
@@ -7623,8 +7485,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
@@ -7678,8 +7539,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, conventional, national average, at farm {FR} U",
@@ -7733,8 +7593,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
@@ -7788,8 +7647,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Snail, wild {BE} U",
@@ -7838,8 +7696,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "BE"
+    "unit": "kg"
   },
   {
     "activityName": "Seed-cotton {RoW}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",
@@ -7881,9 +7738,9 @@
             "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "SEMENCES",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "matched 'semences epeautre' in cropgroup.csv",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }
@@ -7893,8 +7750,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Lupin, conventional, national average, at farm gate, production {FR} U",
@@ -7921,7 +7777,7 @@
           ],
           "ingredientDensity": 0.8,
           "ingredientDensityMatch": {
-            "rule": "legume default from food_type_density.csv",
+            "rule": "Lupin FR found in ingredients.json",
             "confidence": 1.0
           },
           "rawToCookedRatio": 0.856,
@@ -7948,8 +7804,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",
@@ -8003,7 +7858,317 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
+  },
+  {
+    "activityName": "Beef cattle, conventional, national average, at farm gate {FR} U",
+    "alias": "beef-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Boeuf FR",
+    "id": "a72ad133-407d-5a41-8c33-ccbb0d989069",
+    "metadata": {
+      "food": [
+        {
+          "alias": "beef-fr",
+          "defaultOrigin": "France",
+          "displayName": "Boeuf FR",
+          "id": "83dd3304-48b4-524a-ac85-de5402385fa3",
+          "inediblePart": 0.05,
+          "inediblePartMatch": {
+            "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "animal_product"
+          ],
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": {
+            "rule": "beef found in density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.792,
+          "rawToCookedRatioMatch": {
+            "rule": "Matched with ground beef in cooked_to_raw.csv",
+            "confidence": 0.95
+          },
+          "scenario": "reference",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "meat NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": false,
+          "animalGroup1": "cattle",
+          "animalGroup2": "cow",
+          "animalProduct": "meat"
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Broiler, conventional, at farm gate {FR} U",
+    "alias": "broiler-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Poulet FR",
+    "id": "6a4bf7d8-c0f5-55cd-b6ea-d3d3a52574de",
+    "metadata": {
+      "food": [
+        {
+          "alias": "broiler-fr",
+          "defaultOrigin": "France",
+          "displayName": "Poulet FR",
+          "id": "5b787acc-bc8d-5c7a-907c-09441b47151d",
+          "inediblePart": 0.05,
+          "inediblePartMatch": {
+            "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "animal_product"
+          ],
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": {
+            "rule": "meat default from food_type_density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.755,
+          "rawToCookedRatioMatch": {
+            "rule": "poultry keyword found in Broiler",
+            "confidence": 1.0
+          },
+          "scenario": "reference",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "meat NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": false,
+          "cropGroup": "PRAIRIES PERMANENTES",
+          "cropGroupMatch": {
+            "rule": "matched 'prairies naturelles' in cropgroup.csv",
+            "confidence": 1.0
+          }
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Broiler, conventional, at farm gate {FR} U",
+    "alias": "poultry-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Volaille FR",
+    "id": "adf4d350-6b58-5e7e-b2ef-af123b3f789c",
+    "metadata": {
+      "food": [
+        {
+          "alias": "poultry-fr",
+          "defaultOrigin": "France",
+          "displayName": "Volaille FR",
+          "id": "7fbeb096-3076-55a7-b5e2-341ba3e1d59e",
+          "inediblePart": 0.05,
+          "inediblePartMatch": {
+            "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "animal_product"
+          ],
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": {
+            "rule": "meat default from food_type_density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.755,
+          "rawToCookedRatioMatch": {
+            "rule": "poultry keyword found in Poultry",
+            "confidence": 1.0
+          },
+          "scenario": "reference",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "meat NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": false,
+          "animalGroup1": "poultry",
+          "animalGroup2": "chicken",
+          "animalProduct": "meat"
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Lamb, conventional, indoor production system, at farm gate {FR} U",
+    "alias": "lamb-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Agneau FR",
+    "id": "3df890a5-9e47-5705-badc-ceef67a4bc33",
+    "metadata": {
+      "food": [
+        {
+          "alias": "lamb-fr",
+          "defaultOrigin": "France",
+          "displayName": "Agneau FR",
+          "id": "d769a057-a17c-557f-849a-94cebdeabfa3",
+          "inediblePart": 0.05,
+          "inediblePartMatch": {
+            "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "animal_product"
+          ],
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": {
+            "rule": "lamb found in density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.792,
+          "rawToCookedRatioMatch": {
+            "rule": "meat default from food_type_cooked_to_raw.csv",
+            "confidence": 1.0
+          },
+          "scenario": "reference",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "meat NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": false,
+          "animalGroup1": "sheep",
+          "animalGroup2": "sheep",
+          "animalProduct": "meat"
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Mixt pig, conventional, national average, at farm gate {FR} U",
+    "alias": "pork-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Porc FR",
+    "id": "df49b412-2d28-53ff-8a1d-b359e8d00e63",
+    "metadata": {
+      "food": [
+        {
+          "alias": "pork-fr",
+          "defaultOrigin": "France",
+          "displayName": "Porc FR",
+          "id": "20f23531-773c-5d76-a87e-ad99086f61d8",
+          "inediblePart": 0.05,
+          "inediblePartMatch": {
+            "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "animal_product"
+          ],
+          "ingredientDensity": 1.05,
+          "ingredientDensityMatch": {
+            "rule": "pork found in density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.792,
+          "rawToCookedRatioMatch": {
+            "rule": "Matched with pork in cooked_to_raw.csv",
+            "confidence": 1.0
+          },
+          "scenario": "reference",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "meat NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": false,
+          "animalGroup1": "pig",
+          "animalGroup2": "pig",
+          "animalProduct": "meat"
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Broiler, conventional, at farm gate {FR} U",
+    "alias": "rabbit-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Lapin FR",
+    "id": "7c10a53a-3cbd-5a70-b021-df44b57cda99",
+    "metadata": {
+      "food": [
+        {
+          "alias": "rabbit-fr",
+          "defaultOrigin": "France",
+          "displayName": "Lapin FR",
+          "id": "0d3c6e8c-bd97-5011-9011-1d7771db43b0",
+          "inediblePart": 0.05,
+          "inediblePartMatch": {
+            "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
+          },
+          "ingredientCategories": [
+            "animal_product"
+          ],
+          "ingredientDensity": 1.0,
+          "ingredientDensityMatch": {
+            "rule": "rabbit found in density.csv",
+            "confidence": 1.0
+          },
+          "rawToCookedRatio": 0.755,
+          "rawToCookedRatioMatch": {
+            "rule": "poultry keyword found in Rabbit",
+            "confidence": 1.0
+          },
+          "scenario": "reference",
+          "transportCooling": "always",
+          "transportCoolingMatch": {
+            "rule": "meat NOVA 1 → always (perishable)",
+            "confidence": 1.0
+          },
+          "visible": false
+        }
+      ]
+    },
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
   }
 ]
