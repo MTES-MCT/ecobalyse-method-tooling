@@ -1,0 +1,34 @@
+name,animalGroup1,animalGroup2,animalProduct
+sheep milk,sheep,sheep,milk
+goat milk,poultry,chicken,milk
+cow milk,cattle,cow,milk
+goat cheese,poultry,chicken,milk
+sheep cheese,sheep,sheep,milk
+egg,poultry,chicken,egg
+milk,cattle,cow,milk
+dairy,cattle,cow,milk
+cheese,cattle,cow,milk
+yogurt,cattle,cow,milk
+cream,cattle,cow,milk
+butter,cattle,cow,milk
+beef,cattle,cow,meat
+veal,cattle,cow,meat
+cattle,cattle,cow,meat
+bovine,cattle,cow,meat
+cow,cattle,cow,meat
+pork,pig,pig,meat
+pig,pig,pig,meat
+swine,pig,pig,meat
+ham,pig,pig,meat
+bacon,pig,pig,meat
+sausage,pig,pig,meat
+chicken,poultry,chicken,meat
+broiler,poultry,chicken,meat
+turkey,poultry,chicken,meat
+duck,poultry,chicken,meat
+poultry,poultry,chicken,meat
+hen,poultry,chicken,egg
+rabbit,poultry,chicken,meat
+lamb,sheep,sheep,meat
+sheep,sheep,sheep,meat
+mutton,sheep,sheep,meat

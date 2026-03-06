@@ -96,73 +96,40 @@ from predict import Predictor
 bw2data.projects.set_current("ecobalyse")
 
 # =============================================================================
-# ANIMAL DETECTION
+# ANIMAL DETECTION (from reference/animal.csv)
 # =============================================================================
 
-ANIMAL_PATTERNS = {
-    "cattle": {
-        "patterns": [r"\b(beef|boeuf|veau|veal|cattle|bovine|cow)\b"],
-        "group2": "cow",
-        "product_default": "meat",
-    },
-    "pig": {
-        "patterns": [r"\b(pork|porc|pig|swine|ham|jambon|bacon|saucisse|sausage)\b"],
-        "group2": "pig",
-        "product_default": "meat",
-    },
-    "poultry": {
-        "patterns": [
-            r"\b(chicken|poulet|turkey|dinde|duck|canard|poultry|volaille|hen|poule)\b"
-        ],
-        "group2": "chicken",
-        "product_default": "meat",
-    },
-    "sheep": {
-        "patterns": [r"\b(lamb|agneau|sheep|mouton|mutton)\b"],
-        "group2": "sheep",
-        "product_default": "meat",
-    },
-}
+REFERENCE_DIR = Path(__file__).parent / "reference"
 
-ANIMAL_PRODUCT_PATTERNS = {
-    "egg": r"\b(egg|oeuf|œuf)\b",
-    "milk": r"\b(milk|lait|dairy|cheese|fromage|yogurt|yaourt|cream|crème|butter|beurre)\b",
-    "meat": r"\b(meat|viande|flesh|chair)\b",
-}
+
+def _load_animal_data() -> list[dict]:
+    """Load reference/animal.csv into a list of dicts with a compiled regex."""
+    rows = []
+    with open(REFERENCE_DIR / "animal.csv", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            rows.append({
+                "pattern": re.compile(r"\b" + re.escape(row["name"]) + r"\b", re.IGNORECASE),
+                "animalGroup1": row["animalGroup1"],
+                "animalGroup2": row["animalGroup2"],
+                "animalProduct": row["animalProduct"],
+            })
+    return rows
+
+
+ANIMAL_ENTRIES = _load_animal_data()
 
 
 def detect_animal_fields(name: str, activity_name: str) -> dict:
-    """Detect animalGroup1, animalGroup2, animalProduct from ingredient name."""
-    text = f"{name} {activity_name}".lower()
-
-    animal_group1 = None
-    animal_group2 = None
-    product_default = "meat"
-
-    for group1, config in ANIMAL_PATTERNS.items():
-        for pattern in config["patterns"]:
-            if re.search(pattern, text, re.IGNORECASE):
-                animal_group1 = group1
-                animal_group2 = config["group2"]
-                product_default = config["product_default"]
-                break
-        if animal_group1:
-            break
-
-    if not animal_group1:
-        return {}
-
-    animal_product = product_default
-    for product, pattern in ANIMAL_PRODUCT_PATTERNS.items():
-        if re.search(pattern, text, re.IGNORECASE):
-            animal_product = product
-            break
-
-    return {
-        "animalGroup1": animal_group1,
-        "animalGroup2": animal_group2,
-        "animalProduct": animal_product,
-    }
+    """Detect animalGroup1, animalGroup2, animalProduct from reference CSV."""
+    text = f"{name} {activity_name}"
+    for entry in ANIMAL_ENTRIES:
+        if entry["pattern"].search(text):
+            return {
+                "animalGroup1": entry["animalGroup1"],
+                "animalGroup2": entry["animalGroup2"],
+                "animalProduct": entry["animalProduct"],
+            }
+    return {}
 
 
 # =============================================================================
