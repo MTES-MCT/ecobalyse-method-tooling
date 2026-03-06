@@ -220,7 +220,7 @@ def _format_conf(match_info: dict | None) -> str:
 
 
 def get_db_unit(activity_name):
-    dbs = ("Agribalyse 3.2", "Ecoinvent 3.9.1", "Ecoinvent 3.11", "WFLDB")
+    dbs = ("Agribalyse 3.2", "Ecoinvent 3.9.1", "Ecoinvent 3.11", "WFLDB", "Ecobalyse")
     for db in dbs:
         if (
             len(
@@ -275,6 +275,8 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
         ingredient = {"name": name, "activityName": activity_name}
         predictions = predictor.predict(ingredient)
 
+        visible = str(row.get("visible", "TRUE")).strip().upper() == "TRUE"
+
         results.append({
             "name": name,
             "french_name": french_name,
@@ -285,6 +287,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
             "variant": variant,
             "production_fr": production_fr,
             "location": location,
+            "visible": visible,
         })
 
     return results
@@ -391,6 +394,7 @@ def build_activity_entry(
     variant: Variant,
     production_fr: str = "",
     location: str = "",
+    visible: bool = True,
 ) -> dict:
     """Build an activity entry in the activities.json format."""
     # Determine suffix based on variant and production location
@@ -430,7 +434,7 @@ def build_activity_entry(
         "scenario": scenario,
         "transportCooling": predictions.get("transportCooling", "none"),
         "transportCoolingMatch": predictions.get("transportCoolingMatch"),
-        "visible": True,
+        "visible": visible,
     }
 
     if predictions.get("cropGroup"):
@@ -454,8 +458,6 @@ def build_activity_entry(
         "source": source,
         "unit": unit,
     }
-    if location:
-        entry["location"] = location
     return entry
 
 
@@ -473,6 +475,7 @@ def write_json(results: list, output_path: str):
             r["variant"],
             r.get("production_fr", ""),
             r.get("location", ""),
+            r.get("visible", True),
         )
         activities.append(activity)
 
