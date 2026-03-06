@@ -2035,7 +2035,10 @@
             "rule": "meat NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
-          "visible": true
+          "visible": true,
+          "animalGroup1": "poultry",
+          "animalGroup2": "chicken",
+          "animalProduct": "egg"
         }
       ]
     },
@@ -7956,7 +7959,10 @@
           "cropGroupMatch": {
             "rule": "matched 'prairies naturelles' in cropgroup.csv",
             "confidence": 1.0
-          }
+          },
+          "animalGroup1": "poultry",
+          "animalGroup2": "chicken",
+          "animalProduct": "meat"
         }
       ]
     },
@@ -8161,7 +8167,10 @@
             "rule": "meat NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
-          "visible": false
+          "visible": false,
+          "animalGroup1": "poultry",
+          "animalGroup2": "chicken",
+          "animalProduct": "meat"
         }
       ]
     },
