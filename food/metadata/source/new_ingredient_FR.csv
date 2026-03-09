@@ -113,7 +113,7 @@ EB_id0184,Shallots,Échalotes,"Onion, conventional, national average, at farm {F
 EB_id0185,Sheep milk,Lait de brebis,"Sheep milk, conventional, Roquefort system, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0189,Soft wheat,Blé tendre,"Soft wheat grain, conventional, breadmaking quality, 15% moisture, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0190,Sorghum,Sorgho,"Sweet sorghum grain {RoW}| sweet sorghum production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
-EB_id0192,Soybean,Soja,"Soybean grain dried, stored and transported, processing {FR} U",FR,FR,Pas de proxy origine,TRUE
+EB_id0192,Soybean,Soja,"Soybean, national average, animal feed, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0193,Spelt,Epeautre,"Durum wheat grain, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0194,Spinach,Épinard,"Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",FR,GLO,Proxy origine,TRUE
 EB_id0196,Split pea,Pois cassés,"Winter pea, conventional, 15% moisture, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
