@@ -221,7 +221,7 @@ PACKAGING_PATTERNS = {
     "jar": (r"\b(bocal|jar|pot)\b", "none"),
     "vacuum": (r"\b(sous.?vide|vacuum)\b", "once_transformed"),
     "ambient": (r"\b(ambiant|ambient|shelf.?stable)\b", "none"),
-    "fresh": (r"\b(frais|fra[iî]che|fresh)\b", None),  # None = depends on foodType
+    "fresh": (r"\b(frais|fra[iî]che|fresh)(?!\s+grade)\b", None),  # None = depends on foodType
 }
 
 # Additive labels (can combine with a base category)
