@@ -1186,7 +1186,9 @@ class Predictor:
                 return ratio, "dried/dehydrated"
 
         # Poultry detection (more specific than generic meat)
-        if re.search(
+        # Exclude eggs — "poultry" in activity names like "poultry laying systems"
+        # describes the animal, not the product's cooking behaviour
+        if not re.search(r"\b(egg|[oœ]uf)\b", text) and re.search(
             r"\b(chicken|poulet|turkey|dinde|duck|canard|poultry|volaille|"
             r"goose|oie|pigeon|rabbit|lapin|broiler)\b",
             text,
