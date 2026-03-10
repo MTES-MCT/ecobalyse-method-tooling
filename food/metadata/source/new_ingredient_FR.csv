@@ -47,7 +47,7 @@ EB_id0079,Flaxseed,Graines de lin,"Flaxseed, straw, ret, Normandie, at farm gate
 EB_id0080,French beans,Haricots verts,"French bean, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0081,"Fresh herbs (dill, basil, chervil, rosemary, sage, thyme)","Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym)","Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
 EB_id0083,Garlic,Ail,"Onion, conventional, national average, at farm {FR} U",FR,FR,Pas de proxy origine,TRUE
-EB_id0084,Gherkin,Cornichon,"[Dummy] Gherkin, pickled in vinegar, at plant {FR} U",FR,FR,Pas de proxy origine,TRUE
+EB_id0084,Gherkin,Cornichon,"Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",FR,GLO,Proxy origine,TRUE
 EB_id0088,Gooseberry,Groseille,"Strawberry, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0089,Grapefruit,Pamplemousse,"Orange, fresh grade, at farm {ES} - Adapted from WFLDB U",FR,ES,Proxy origine,TRUE
 EB_id0090,Grapes (black or white),Raisins (noirs ou blancs),"Grape {RoW}| grape production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE

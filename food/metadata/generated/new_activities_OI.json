@@ -1782,7 +1782,7 @@
     "unit": "kg"
   },
   {
-    "activityName": "Linseed seed, at regional storehouse (WFLDB)",
+    "activityName": "Linseed, at farm {CA} - Adapted from WFLDB U",
     "alias": "chia-seed-dried-default",
     "categories": [
       "ingredient"
@@ -1809,9 +1809,9 @@
             "rule": "vegetable default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 3.33,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Chia seed, dried",
+            "rule": "vegetable default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "import",
@@ -1832,7 +1832,7 @@
     "scopes": [
       "food"
     ],
-    "source": "WFLDB",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
@@ -2590,7 +2590,7 @@
     "unit": "kg"
   },
   {
-    "activityName": "Linseed seed, at regional storehouse (WFLDB)",
+    "activityName": "Linseed, at farm {CA} - Adapted from WFLDB U",
     "alias": "cucurbitacea-seed-default",
     "categories": [
       "ingredient"
@@ -2640,7 +2640,7 @@
     "scopes": [
       "food"
     ],
-    "source": "WFLDB",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
@@ -6309,7 +6309,7 @@
     "unit": "kg"
   },
   {
-    "activityName": "Linseed seed, at regional storehouse (WFLDB)",
+    "activityName": "Linseed, at farm {CA} - Adapted from WFLDB U",
     "alias": "poppy-seed-default",
     "categories": [
       "ingredient"
@@ -6329,7 +6329,7 @@
             "confidence": 0.98
           },
           "ingredientCategories": [
-            "nut_oilseed_processed"
+            "nut_oilseed_raw"
           ],
           "ingredientDensity": 0.6,
           "ingredientDensityMatch": {
@@ -6359,7 +6359,7 @@
     "scopes": [
       "food"
     ],
-    "source": "WFLDB",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
@@ -9645,7 +9645,7 @@
     "unit": "kg"
   },
   {
-    "activityName": "Linseed seed, at regional storehouse (WFLDB)",
+    "activityName": "Linseed, at farm {CA} - Adapted from WFLDB U",
     "alias": "alfalfa-default",
     "categories": [
       "ingredient"
@@ -9659,13 +9659,13 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Luzerne Origine Inconnue",
           "id": "e28278da-bbdc-5176-b388-2556e7295340",
-          "inediblePart": 0.0,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "legume NOVA 2-4 default from food_type_inedible_part.csv",
+            "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.8,
           "ingredientDensityMatch": {
@@ -9680,7 +9680,7 @@
           "scenario": "import",
           "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "Matched with Luzerne FR in ingredients.json",
+            "rule": "legume NOVA 1 → always (perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -9695,7 +9695,7 @@
     "scopes": [
       "food"
     ],
-    "source": "WFLDB",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {

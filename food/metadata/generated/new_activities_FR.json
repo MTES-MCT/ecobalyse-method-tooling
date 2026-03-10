@@ -2589,7 +2589,7 @@
     "unit": "kg"
   },
   {
-    "activityName": "[Dummy] Gherkin, pickled in vinegar, at plant {FR} U",
+    "activityName": "Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
     "alias": "gherkin-fr",
     "categories": [
       "ingredient"
@@ -2603,13 +2603,13 @@
           "defaultOrigin": "France",
           "displayName": "Cornichon FR",
           "id": "1ecdafd6-925b-5a5a-9ff4-bf0d64c795fe",
-          "inediblePart": 0.0,
+          "inediblePart": 0.1,
           "inediblePartMatch": {
-            "rule": "vegetable NOVA 2-4 default from food_type_inedible_part.csv",
-            "confidence": 1.0
+            "rule": "Matched with Cucumbers in agb_inedible.csv",
+            "confidence": 0.98
           },
           "ingredientCategories": [
-            "vegetable_processed"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.9,
           "ingredientDensityMatch": {
@@ -2624,13 +2624,13 @@
           "scenario": "reference",
           "transportCooling": "always",
           "transportCoolingMatch": {
-            "rule": "Matched with Pois de printemps FR in ingredients.json",
-            "confidence": 0.882
+            "rule": "vegetable NOVA 1 → always (perishable)",
+            "confidence": 1.0
           },
           "visible": true,
-          "cropGroup": "VIGNES",
+          "cropGroup": "LEGUMES-FLEURS",
           "cropGroupMatch": {
-            "rule": "grape/wine pattern",
+            "rule": "vegetable default",
             "confidence": 1.0
           }
         }

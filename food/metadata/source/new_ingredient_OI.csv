@@ -32,7 +32,7 @@ EB_id0039,Celery,Céleri,"Celery {GLO}| 675 production | Cut-off, U - Adapted fr
 EB_id0040,Cherry,Cerise,"Cherry, at farm (WFLDB)",WFLDB,CL,984,TRUE
 EB_id0041,Cherry tomato,Tomates cerises,"Tomato, fresh grade, open field, at farm (WFLDB)",WFLDB,MX,207,TRUE
 EB_id0042,Chestnut,Châtaigne,"Walnut, in shell, dried, at farm (WFLDB)",WFLDB,US,705,TRUE
-EB_id0043,"Chia seed, dried",Graines de chia,"Linseed seed, at regional storehouse (WFLDB)",WFLDB,GLO,735,TRUE
+EB_id0043,"Chia seed, dried",Graines de chia,"Linseed, at farm {CA} - Adapted from WFLDB U",Agribalyse 3.2,CA,443,TRUE
 EB_id0044,"Chickpeas, dried",Pois chiches,"Chickpea {RoW}| chickpea production | Cut-off, U",Ecoinvent 3.11,RoW,,TRUE
 EB_id0045,Chicory root,Racine de chicorée,"Chicory witloof, early, conventional, root production, at farm gate {FR} U",Agribalyse 3.2,FR,54,TRUE
 EB_id0046,Chili peppers,Piments,"Bell pepper {IN-UP}| bell pepper production, open field | Cut-off, U",Ecoinvent 3.11,IN-UP,644,TRUE
@@ -47,7 +47,7 @@ EB_id0057,Corn,Maïs,"Sweet corn {US-MN}| sweet corn production | Cut-off, U",Ec
 EB_id0060,Cow milk,Lait de vache,"Cow milk {RoW}| milk production, from cow | Cut-off, U",Ecoinvent 3.11,RoW,,TRUE
 EB_id0062,Cranberry,Canneberge,"Cranberry, at farm {CL} - Adapted from WFLDB U",Agribalyse 3.2,CL,1134,TRUE
 EB_id0063,Cucumber,Concombre,"Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,193,TRUE
-EB_id0064,Cucurbitacea seed,Graines de Cucurbitacées,"Linseed seed, at regional storehouse (WFLDB)",WFLDB,GLO,735,TRUE
+EB_id0064,Cucurbitacea seed,Graines de Cucurbitacées,"Linseed, at farm {CA} - Adapted from WFLDB U",Agribalyse 3.2,CA,443,TRUE
 EB_id0065,Dates,Dattes,"Palm date, conditioned and dried {GLO}| palm date production, conditioned and dried | Cut-off, U - Copied from Ecoinvent U",Agribalyse 3.2,GLO,179,TRUE
 EB_id0066,"Dill, fresh","Aneth, frais","Mint, at farm (WFLDB)",WFLDB,IN,63,TRUE
 EB_id0067,"Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage)","Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge)","Mint, at farm (WFLDB)",WFLDB,IN,63,TRUE
@@ -116,7 +116,7 @@ EB_id0151,Pineapple,Ananas,"Pineapple, at farm {TH} U",Agribalyse 3.2,TH,162,TRU
 EB_id0152,Pistachios,Pistaches,"Peanut, in shell, at farm (WFLDB)",WFLDB,IN,743,TRUE
 EB_id0153,Plantain,Plantain,"Banana, at farm (WFLDB)",WFLDB,CR,189,TRUE
 EB_id0154,Pomegranate,Grenade,"Pomegranate {RoW}| pomegranate production | Cut-off, U",Ecoinvent 3.11,RoW,104,TRUE
-EB_id0155,Poppy seeds,Graines de pavot,"Linseed seed, at regional storehouse (WFLDB)",WFLDB,GLO,735,TRUE
+EB_id0155,Poppy seeds,Graines de pavot,"Linseed, at farm {CA} - Adapted from WFLDB U",Agribalyse 3.2,CA,443,TRUE
 EB_id0156,Potato,Pomme de terre,"Potato {US}| potato production | Cut-off, U",Ecoinvent 3.11,US,118,TRUE
 EB_id0157,Prickly pear,Figue de barbarie,"Pear, at farm (WFLDB)",WFLDB,CN,222,TRUE
 EB_id0158,Pumpkin,Citrouille,"Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",Agribalyse 3.2,FR,36,TRUE
@@ -178,7 +178,7 @@ EB2_id002,Artichoke,Artichaut,"Cauliflower {GLO}| cauliflower production | Cut-o
 EB2_id003,Snail,Escargot,"Snail, wild {HU} U",Agribalyse 3.2,HU,16.846,TRUE
 EB2_id004,Cotton seed,Graine de coton,"Seed-cotton {BD}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,BD,5457.41,TRUE
 EB2_id005,Lupin,Lupin,"Lupin, conventional, national average, at farm gate, production {FR} U",Agribalyse 3.2,FR,114.05,TRUE
-EB2_id006,Alfalfa,Luzerne,"Linseed seed, at regional storehouse (WFLDB)",WFLDB,GLO,735,TRUE
+EB2_id006,Alfalfa,Luzerne,"Linseed, at farm {CA} - Adapted from WFLDB U",Agribalyse 3.2,CA,443,TRUE
 EB_idV01,Beef,Boeuf,"Beef cattle, feedlot or intensive system, live weight, at farm {GB} - Adapted from WFLDB U",Agribalyse 3.2,FR,Pas de proxy origine,FALSE
 EB_idV03,Broiler,Poulet,"Broiler, conventional, at farm gate {FR} U meat-without-bone-chicken-direct-consumption-br-max",Ecobalyse,FR,Pas de proxy origine,FALSE
 EB_idV05,Poultry,Volaille,"Broiler, conventional, at farm gate {FR} U meat-without-bone-chicken-direct-consumption-br-max",Ecobalyse,FR,Pas de proxy origine,FALSE
