@@ -229,30 +229,6 @@ ADDITIVE_LABELS = ["organic", "bleublanccoeur"]
 
 TRANSPORT_COOLING_VALUES = ["none", "always", "once_transformed"]
 
-# Mapping location -> origin
-ORIGIN_MAPPING = {
-    "FR": "France",
-    "IT": "EuropeAndMaghreb",
-    "ES": "EuropeAndMaghreb",
-    "DE": "EuropeAndMaghreb",
-    "BE": "EuropeAndMaghreb",
-    "NL": "EuropeAndMaghreb",
-    "PT": "EuropeAndMaghreb",
-    "GR": "EuropeAndMaghreb",
-    "PL": "EuropeAndMaghreb",
-    "AT": "EuropeAndMaghreb",
-    "DZ": "EuropeAndMaghreb",  # Algérie
-    "MA": "EuropeAndMaghreb",  # Maroc
-    "TN": "EuropeAndMaghreb",  # Tunisie
-    "GLO": "OutOfEuropeAndMaghreb",
-    "RoW": "OutOfEuropeAndMaghreb",
-    "WI": "OutOfEuropeAndMaghreb",  # West Indies
-    "BR": "OutOfEuropeAndMaghreb",
-    "CN": "OutOfEuropeAndMaghreb",
-    "IN": "OutOfEuropeAndMaghreb",
-    "US": "OutOfEuropeAndMaghreb",
-}
-
 # FoodType to CropGroup default mapping
 # Used as fallback when specific patterns don't match
 FOODTYPE_TO_CROPGROUP = {
@@ -279,7 +255,6 @@ def _load_csv_data(
     name_col: str = "name",
     value_col: str = None,
     sep: str = ",",
-    comment: str = None,
 ) -> tuple[list, list, list]:
     """
     Generic CSV loader returning (names, values, sources).
@@ -289,11 +264,10 @@ def _load_csv_data(
         name_col: Column name for names
         value_col: Column name for values (if None, uses names as values)
         sep: CSV separator
-        comment: Comment character for CSV parsing
     """
     if not path.exists():
         return [], [], []
-    df = pd.read_csv(path, sep=sep, comment=comment)
+    df = pd.read_csv(path, sep=sep)
     names = df[name_col].tolist()
     values = df[value_col].tolist() if value_col else names
     sources = [path.name] * len(df)
@@ -358,7 +332,7 @@ def _load_processing_state_data() -> tuple[list, list, list]:
 def _load_cropgroup_data() -> tuple[list, list, list]:
     """Load cropgroup.csv, return (names, cropgroups, sources)."""
     return _load_csv_data(
-        REFERENCE_DIR / "cropgroup.csv", "name", "cropGroup", comment="#"
+        REFERENCE_DIR / "cropgroup.csv", "name", "cropGroup"
     )
 
 
@@ -372,7 +346,7 @@ def _load_transport_data() -> tuple[list, list, list]:
 def _load_nova_data() -> tuple[list, list, list]:
     """Load nova_classification.csv, return (names, nova_groups, sources)."""
     return _load_csv_data(
-        REFERENCE_DIR / "nova_classification.csv", "name", "novaGroup", comment="#"
+        REFERENCE_DIR / "nova_classification.csv", "name", "novaGroup"
     )
 
 
@@ -750,41 +724,6 @@ FOODON_SCALE = 1.0
 REGEX_SCALE = math.sqrt(FOODON_DIM / len(DETECTION_PATTERNS))  # ~0.9
 
 
-def _extract_location(activity_name: str) -> Optional[str]:
-    """Extract location code from LCA process name."""
-    # Pattern: {FR}, {RoW}, {GLO}, etc.
-    match = re.search(r"\{([A-Z]{2,3})\}", activity_name)
-    if match:
-        return match.group(1)
-
-    # Pattern alternatif: /FR U, /IT U, etc.
-    match = re.search(r"/([A-Z]{2})\s*U\b", activity_name)
-    if match:
-        return match.group(1)
-
-    return None
-
-
-def _extract_origin(activity_name: str) -> str:
-    """Extract origin from the activity name."""
-    location = _extract_location(activity_name)
-    if location:
-        return ORIGIN_MAPPING.get(location, "OutOfEuropeAndMaghreb")
-
-    # Patterns textuels
-    activity_lower = activity_name.lower()
-    if "by plane" in activity_lower or "by air" in activity_lower:
-        return "OutOfEuropeAndMaghrebByPlane"
-    if any(x in activity_lower for x in ["france", "french"]):
-        return "France"
-    if any(
-        x in activity_lower for x in ["europe", "eu ", "italian", "spanish", "german"]
-    ):
-        return "EuropeAndMaghreb"
-
-    return "OutOfEuropeAndMaghreb"
-
-
 def extract_features(
     name: str, activity_name: str, translate_fn=None, foodon_extractor=None
 ) -> np.ndarray:
@@ -840,7 +779,6 @@ class Predictor:
     Combines:
     - Nearest neighbor matching for foodType, processingState, cropGroup, transportCooling
     - Nearest neighbor matching for density, inediblePart, rawToCookedRatio
-    - Rule-based extraction for defaultOrigin
     """
 
     def __init__(self):
@@ -1912,22 +1850,7 @@ class Predictor:
                 )
         predictions["transportCooling"] = transport_cooling
 
-        # 7. defaultOrigin (by rules)
-        origin = _extract_origin(activity)
-        predictions["defaultOrigin"] = origin
-        # Find the origin code from activity
-        origin_match = re.search(r"\{([A-Z]{2,3})\}", activity)
-        if origin_match:
-            code = origin_match.group(1)
-            predictions["defaultOriginMatch"] = _match(
-                f"{{{code}}} in activity → {origin}", 1.0
-            )
-        else:
-            predictions["defaultOriginMatch"] = _match(
-                f"No origin code → {origin} (default)", 0.5
-            )
-
-        # 8. Continuous values (nearest neighbor with foodType fallback)
+        # 7. Continuous values (nearest neighbor with foodType fallback)
         density_val, conf, match_name, source = self.density_matcher.predict(
             name, translate_fn=self._translate
         )

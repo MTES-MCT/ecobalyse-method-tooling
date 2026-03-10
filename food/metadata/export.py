@@ -286,8 +286,6 @@ def write_csv(results: list, output_path: str):
         "cropGroup",
         "cropGroupMatch",
         "cropGroupConf",
-        "defaultOrigin",
-        "defaultOriginMatch",
         "density",
         "densityMatch",
         "densityConf",
@@ -328,8 +326,6 @@ def write_csv(results: list, output_path: str):
                 "cropGroup": pred.get("cropGroup") or "",
                 "cropGroupMatch": _format_match(pred.get("cropGroupMatch")),
                 "cropGroupConf": _format_conf(pred.get("cropGroupMatch")),
-                "defaultOrigin": pred.get("defaultOrigin", ""),
-                "defaultOriginMatch": _format_match(pred.get("defaultOriginMatch")),
                 "density": f"{pred.get('density', 0):.3f}",
                 "densityMatch": _format_match(pred.get("densityMatch")),
                 "densityConf": _format_conf(pred.get("densityMatch")),
@@ -935,6 +931,58 @@ def remove_old(target_activities_path: Path):
     print("Done!")
 
 
+VARIANT_INDEPENDENT_FIELDS = [
+    "foodType",
+    "novaGroup",
+    "processingState",
+    "transportCooling",
+    "cropGroup",
+    "density",
+    "inediblePart",
+    "rawToCookedRatio",
+    "packaging",
+    "categories",
+]
+
+
+def compare_variants(generated_dir: Path):
+    """Compare predictions across variant CSVs and warn on mismatches."""
+    csv_files = sorted(generated_dir.glob("predictions_*.csv"))
+    if len(csv_files) < 2:
+        return
+
+    variant_data = {}
+    for csv_file in csv_files:
+        variant = csv_file.stem.replace("predictions_", "")
+        with open(csv_file, newline="", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            variant_data[variant] = {row["name"]: row for row in reader}
+
+    variants = list(variant_data.keys())
+    all_names = set()
+    for data in variant_data.values():
+        all_names.update(data.keys())
+
+    mismatches = 0
+    for name in sorted(all_names):
+        present = {v: variant_data[v][name] for v in variants if name in variant_data[v]}
+        if len(present) < 2:
+            continue
+        variant_list = list(present.keys())
+        for field in VARIANT_INDEPENDENT_FIELDS:
+            values = {v: present[v].get(field, "") for v in variant_list}
+            unique = set(values.values())
+            if len(unique) > 1:
+                parts = ", ".join(f"{v}={values[v]}" for v in variant_list)
+                print(f"WARNING: '{name}' has different '{field}' across variants: {parts}")
+                mismatches += 1
+
+    if mismatches:
+        print(f"\n{mismatches} cross-variant mismatches found.")
+    else:
+        print("\nNo cross-variant mismatches found.")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Export predicted ingredients to CSV and JSON"
@@ -1015,6 +1063,9 @@ def main():
     print(f"\nWriting {len(results)} results...")
     write_csv(results, output_csv)
     write_json(results, output_json)
+
+    # Compare predictions across variants
+    compare_variants(GENERATED_DIR)
 
     # Merge into activities.json
     activities_path = ECOBALYSE_DATA / "activities.json"
