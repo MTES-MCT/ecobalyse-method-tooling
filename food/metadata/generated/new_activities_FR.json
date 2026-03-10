@@ -1169,7 +1169,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "nut_oilseed → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -3698,7 +3698,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "nut_oilseed → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -7093,7 +7093,7 @@
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "nut_oilseed → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,

@@ -1759,8 +1759,9 @@ class Predictor:
             f"Derived from NOVA {nova_group} → {processing_state}", 1.0
         )
 
-        # Packaging detection
-        packaging, _ = self._detect_packaging(full_text)
+        # Packaging detection — match ingredient name only,
+        # not activity name (which uses "fresh" as an LCA quality descriptor)
+        packaging, _ = self._detect_packaging(name)
         predictions["packaging"] = packaging
         if packaging:
             predictions["packagingMatch"] = _match(

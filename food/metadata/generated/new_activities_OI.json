@@ -1763,7 +1763,7 @@
           "scenario": "import",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "nut_oilseed → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -2195,7 +2195,7 @@
           "scenario": "import",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "vegetable NOVA 1 → none (perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -2679,7 +2679,7 @@
           "scenario": "import",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "fruit NOVA 1 → none (perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -4670,7 +4670,7 @@
           "scenario": "import",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "nut_oilseed → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -8875,7 +8875,7 @@
           "scenario": "import",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "spice_condiment → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
@@ -8929,7 +8929,7 @@
           "scenario": "import",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "nut_oilseed → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,
