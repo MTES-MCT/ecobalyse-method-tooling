@@ -2550,8 +2550,8 @@
           "id": "ed105d1a-b85e-5aa5-9e22-8fa74103aaef",
           "inediblePart": 0.1,
           "inediblePartMatch": {
-            "rule": "Matched with Onions in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "Matched with Garlic in agb_inedible.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -7560,8 +7560,8 @@
           "id": "ed105d1a-b85e-5aa5-9e22-8fa74103aaef",
           "inediblePart": 0.1,
           "inediblePartMatch": {
-            "rule": "Matched with Onions in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "Matched with Garlic in agb_inedible.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
