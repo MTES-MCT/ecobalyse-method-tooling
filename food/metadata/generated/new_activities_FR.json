@@ -1215,9 +1215,9 @@
             "rule": "vegetable default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 3.33,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Chia seed, dried",
+            "rule": "vegetable default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
@@ -1916,9 +1916,9 @@
             "rule": "Matched with Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) FR in ingredients.json",
             "confidence": 0.999
           },
-          "rawToCookedRatio": 4.0,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage)",
+            "rule": "spice_condiment default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
@@ -6141,7 +6141,7 @@
     "unit": "kg"
   },
   {
-    "activityName": "Soybean grain dried, stored and transported, processing {FR} U",
+    "activityName": "Soybean, national average, animal feed, at farm gate {FR} U",
     "alias": "soybean-fr",
     "categories": [
       "ingredient"
@@ -6168,15 +6168,15 @@
             "rule": "Soybean found in fao_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 4.0,
+          "rawToCookedRatio": 2.259,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Soybean",
+            "rule": "Matched with soybean in cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "reference",
           "transportCooling": "none",
           "transportCoolingMatch": {
-            "rule": "dried packaging → none",
+            "rule": "nut_oilseed → none (non-perishable)",
             "confidence": 1.0
           },
           "visible": true,

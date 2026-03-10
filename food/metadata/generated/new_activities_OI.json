@@ -1863,9 +1863,9 @@
             "rule": "legume default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Chickpeas, dried",
+            "rule": "legume default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "import",
@@ -2187,9 +2187,9 @@
             "rule": "vegetable default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 3.33,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Cocoa bean",
+            "rule": "vegetable default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "import",
@@ -2671,9 +2671,9 @@
             "rule": "fruit default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 1.0,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Dates",
+            "rule": "fruit default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "import",
@@ -3209,9 +3209,9 @@
             "rule": "legume default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Flageolet beans, green, dried",
+            "rule": "legume default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "import",
@@ -6876,9 +6876,9 @@
             "rule": "legume default from food_type_density.csv",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 2.33,
+          "rawToCookedRatio": 0.856,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Red beans, dried",
+            "rule": "legume default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "import",
@@ -8705,9 +8705,9 @@
             "rule": "beverage default from predict.py",
             "confidence": 1.0
           },
-          "rawToCookedRatio": 4.0,
+          "rawToCookedRatio": 1.0,
           "rawToCookedRatioMatch": {
-            "rule": "dried/dehydrated keyword found in Tea, dried",
+            "rule": "beverage default from food_type_cooked_to_raw.csv",
             "confidence": 1.0
           },
           "scenario": "import",

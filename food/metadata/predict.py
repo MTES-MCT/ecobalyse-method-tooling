@@ -60,6 +60,20 @@ warnings.filterwarnings("ignore")
 # =============================================================================
 
 
+# Farm-level activity patterns (shared by _detect_ratio_from_keywords and _classify_nova)
+FARM_PATTERNS = [
+    r"\bat\s+(farm\s+)?gate\b",
+    r"\bat\s+farm\b",
+    r"\bat\s+orchard\b",
+    r"\bat\s+landing\b",
+    r"\bat\s+greenhouse\b",
+    r"\bmarket\s+for\b",
+    r"\|\s*[\w\s]*production\b",
+    r"\bproduction\s*\|",
+    r"//\[[^\]]+\]\s*[\w\s]*production\b",
+    r"\b\w+\s+production[,\s]",
+]
+
 # Noise words to remove from ingredient names before embedding
 # Case-insensitive words
 NAME_NOISE_WORDS_CI = [
@@ -1225,8 +1239,9 @@ class Predictor:
         text = f"{name} {activity}".lower()
 
         # Dried items absorb water when cooked — ratio depends on food type
-        is_at_farm = "at farm" in activity.lower()
+        is_at_farm = any(re.search(p, activity, re.IGNORECASE) for p in FARM_PATTERNS)
         if not is_at_farm:
+            print(f"WARNING: '{name}' activity is not at farm level: '{activity}'")
             if re.search(r"\b(dried|séchée?s?|dehydrated|déshydratée?s?)\b", text):
                 dried_ratios = {"legume": 2.33, "grain": 2.259, "fruit": 1.0, "vegetable": 3.33}
                 ratio = dried_ratios.get(food_type, 4.0)
@@ -1384,19 +1399,7 @@ class Predictor:
 
         # Priority 1: Activity name location keywords (highest priority - explicit source)
         # "at farm gate", "at farm", "at orchard", "at landing", "at greenhouse", "production" → NOVA 1
-        farm_patterns = [
-            r"\bat\s+(farm\s+)?gate\b",
-            r"\bat\s+farm\b",
-            r"\bat\s+orchard\b",
-            r"\bat\s+landing\b",
-            r"\bat\s+greenhouse\b",  # greenhouse production is still farm-level
-            r"\bmarket\s+for\b",  # "market for X" = raw market product
-            r"\|\s*[\w\s]*production\b",  # Ecoinvent "| production" or "| xxx yyy production"
-            r"\bproduction\s*\|",  # "production |" pattern
-            r"//\[[^\]]+\]\s*[\w\s]*production\b",  # "//[RoW] mango production" format
-            r"\b\w+\s+production[,\s]",  # "X production," or "X production " (standalone)
-        ]
-        for pattern in farm_patterns:
+        for pattern in FARM_PATTERNS:
             if re.search(pattern, text, re.IGNORECASE):
                 return 1, "at_farm_source", 0.95
 
@@ -1809,6 +1812,8 @@ class Predictor:
         # NOVA 1 = raw (unprocessed/minimally processed)
         # NOVA 2, 3, 4 = processed
         processing_state = "raw" if nova_group == 1 else "processed"
+        if processing_state == "processed":
+            print(f"WARNING: '{name}' classified as processed (NOVA {nova_group}): '{activity}'")
         predictions["processingState"] = processing_state
         predictions["processingStateMatch"] = _match(
             f"Derived from NOVA {nova_group} → {processing_state}", 1.0
