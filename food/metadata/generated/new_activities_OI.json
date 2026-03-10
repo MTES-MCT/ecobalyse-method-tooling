@@ -392,10 +392,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pousses de bambou Origine Inconnue",
           "id": "b7ef5773-90fa-510a-9d26-06f22046f3b0",
-          "inediblePart": 0.4,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Asparagus in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -554,9 +554,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Feuilles de laurier Origine Inconnue",
           "id": "29b166a8-2590-5e8a-b07c-93aed2ca41e6",
-          "inediblePart": 0.1,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with Mint in agb_inedible.csv",
+            "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -662,10 +662,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Poivron, vert, jaune ou rouge Origine Inconnue",
           "id": "297d24f1-2cb9-5080-b83a-234365c9ddc2",
-          "inediblePart": 0.03,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Peppers in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -770,10 +770,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Mûre noire Origine Inconnue",
           "id": "7be4ce53-6a38-5da7-a227-cfde66b0bae0",
-          "inediblePart": 0.03,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Blackberries in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -934,7 +934,7 @@
           "id": "81a21989-c2e3-5d93-8013-7f13251d7982",
           "inediblePart": 0.5,
           "inediblePartMatch": {
-            "rule": "with shell keyword found in Brazil nuts",
+            "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -988,7 +988,7 @@
           "id": "07e14cc7-4082-569b-8f7c-40a41be901c2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Mango in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -1204,7 +1204,7 @@
           "id": "31b9f2dc-10ac-5cb6-ac45-38240c2b5ecb",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Mango in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -1258,7 +1258,7 @@
           "id": "e06b94ec-a1f6-53f9-8e31-a338e0ddfb29",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Cauliflower in agb_inedible.csv",
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -1744,7 +1744,7 @@
           "id": "6adadee7-7f65-5b0b-9361-386750d7c57f",
           "inediblePart": 0.5,
           "inediblePartMatch": {
-            "rule": "with shell keyword found in Chestnut",
+            "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -2012,10 +2012,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Ciboulette Origine Inconnue",
           "id": "af970b08-d802-5f9f-bff3-42b789fac6cd",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Onions in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -2066,10 +2066,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cannelle Origine Inconnue",
           "id": "7160d46c-8d39-5113-9779-1fd5dcc04d49",
-          "inediblePart": 0.03,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with Peppers in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -2712,9 +2712,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Aneth, frais Origine Inconnue",
           "id": "751a8b5e-d97d-5933-b308-c0d6aeae6c1a",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Mint in agb_inedible.csv",
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -2766,9 +2766,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) Origine Inconnue",
           "id": "8790077d-37a1-5c83-9534-db01d182c8d7",
-          "inediblePart": 0.1,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with Mint in agb_inedible.csv",
+            "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -3144,7 +3144,7 @@
           "id": "260ec040-df10-5ef6-9a02-cc2799b52b78",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Peach in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -3358,9 +3358,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) Origine Inconnue",
           "id": "83a078bb-4e00-5c7e-a8a9-6323213ab606",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Mint in agb_inedible.csv",
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -3466,10 +3466,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Cornichon Origine Inconnue",
           "id": "3630f376-2866-517b-b9ee-fa75fbcb7176",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Cucumbers in agb_inedible.csv",
-            "confidence": 0.98
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -3574,10 +3574,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Groseille Origine Inconnue",
           "id": "ace2f44d-72bf-5727-9dd5-25f29fd32daf",
-          "inediblePart": 0.03,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Strawberries in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -4055,10 +4055,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Raifort frais Origine Inconnue",
           "id": "a4b546fa-a89a-5373-82aa-e94112e3fd48",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Carrots in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -4165,7 +4165,7 @@
           "id": "bb9215ce-cd54-51ea-adda-2e9a73dce44d",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Cauliflower in agb_inedible.csv",
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -4273,7 +4273,7 @@
           "id": "c7474759-1240-566a-bcc7-1f17b26bee50",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Cauliflower in agb_inedible.csv",
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -4327,7 +4327,7 @@
           "id": "6665c6fe-6144-5e7c-82ef-455daf277752",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Orange in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -4597,7 +4597,7 @@
           "id": "0b8fb79c-001f-5e63-942c-cab8bc50e949",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Mango in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -4651,7 +4651,7 @@
           "id": "02a9df90-91c4-5bf0-900a-9efa6ffcfaf6",
           "inediblePart": 0.5,
           "inediblePartMatch": {
-            "rule": "with shell keyword found in Macadamia nut",
+            "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -4757,9 +4757,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Melon (miellat, Charentais, Cataloupe, Cavaillon) Origine Inconnue",
           "id": "85eb0842-4eab-5d67-8385-c91fa1e4f4ea",
-          "inediblePart": 0.4,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Melon in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -5083,7 +5083,7 @@
           "id": "11a8671b-5e76-544d-a42a-3527fa6e6dd1",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Peach in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -5189,9 +5189,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Noix de muscade Origine Inconnue",
           "id": "1be309ce-922f-5ea1-a154-6d64f271dce9",
-          "inediblePart": 0.2,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with Fennel in agb_inedible.csv",
+            "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -5299,7 +5299,7 @@
           "id": "d0535c02-0a57-511e-8ea4-c21a2a1450a6",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Fennel in agb_inedible.csv",
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -5675,10 +5675,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Panais Origine Inconnue",
           "id": "e9444944-a97a-546d-be5e-43ca74efb7e6",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Carrots in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -5837,10 +5837,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Arachide Origine Inconnue",
           "id": "50a3465b-0922-55ec-9732-7423ed8f1c87",
-          "inediblePart": 0.5,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "with shell keyword found in Peanut",
-            "confidence": 1.0
+            "rule": "Matched with peanut butter in inedible_part.csv",
+            "confidence": 0.95
           },
           "ingredientCategories": [
             "nut_oilseed_raw"
@@ -6001,7 +6001,7 @@
           "id": "cc8a6698-0150-5b63-a12a-38a52c2896b2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Fennel in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -6055,7 +6055,7 @@
           "id": "28c098db-c276-5df3-8880-87f302e7ccaf",
           "inediblePart": 0.5,
           "inediblePartMatch": {
-            "rule": "with shell keyword found in Pine nuts",
+            "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -6163,7 +6163,7 @@
           "id": "1cf8f49e-d1a5-5ffe-9af3-8c15988e2353",
           "inediblePart": 0.5,
           "inediblePartMatch": {
-            "rule": "with shell keyword found in Pistachios",
+            "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -6215,9 +6215,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Plantain Origine Inconnue",
           "id": "d42d666d-ec3f-5fa6-a227-45da422ab9c0",
-          "inediblePart": 0.3,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Banana in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -6539,9 +6539,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Coing Origine Inconnue",
           "id": "4f133fae-1737-54c6-9b46-86d2d403dd03",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Apple in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -6811,7 +6811,7 @@
           "id": "cd75bf39-ee3a-5532-9d70-d8b853be0460",
           "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with rice in inedible_part.csv",
+            "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -7027,7 +7027,7 @@
           "id": "3c491005-9181-5140-bddc-5f501016dfb2",
           "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Cauliflower in agb_inedible.csv",
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -7079,10 +7079,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Rutabaga Origine Inconnue",
           "id": "020de0fa-d979-5199-85ee-f29ed211e200",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Carrots in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -7133,10 +7133,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Safran Origine Inconnue",
           "id": "bd475d67-0055-5780-a48e-d94002bfe06a",
-          "inediblePart": 0.03,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with Peppers in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "spice_condiment_additive"
@@ -7454,8 +7454,8 @@
           "id": "33408c9c-e1fd-506c-983c-ff92a6160e4d",
           "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with peanut butter in inedible_part.csv",
-            "confidence": 0.95
+            "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "grain_raw"
@@ -8422,9 +8422,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Blette Origine Inconnue",
           "id": "3af7783a-ddd0-5feb-964f-570f25efcd55",
-          "inediblePart": 0.03,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Spinach in agb_inedible.csv",
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -8476,9 +8476,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tamarin Origine Inconnue",
           "id": "a6916657-8a33-5d6e-8bd3-f388d858fab4",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with French bean in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -8530,10 +8530,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Tapioca Origine Inconnue",
           "id": "dbb74330-9562-5252-8359-8bed45768d0c",
-          "inediblePart": 0.1,
+          "inediblePart": 0.0,
           "inediblePartMatch": {
-            "rule": "Matched with Carrots in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "grain NOVA 2-4 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "grain_processed"
@@ -8584,10 +8584,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Taro, tubercule Origine Inconnue",
           "id": "09fd984b-25db-51cf-8834-ec0757af3f9a",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Carrots in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"
@@ -8910,7 +8910,7 @@
           "id": "dacf5f44-e7d6-53ba-a49e-a109d3610b5a",
           "inediblePart": 0.5,
           "inediblePartMatch": {
-            "rule": "with shell keyword found in Walnuts",
+            "rule": "Matched with Walnuts in agb_inedible.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -8962,9 +8962,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Pastèque Origine Inconnue",
           "id": "7eda0b01-9fe3-52e7-b8f1-4fc434e76d43",
-          "inediblePart": 0.4,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Melon in agb_inedible.csv",
+            "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -9016,9 +9016,9 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Haricots blancs séchés Origine Inconnue",
           "id": "ec4b37fd-34ee-54d7-9283-02344bd529ba",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with French bean in agb_inedible.csv",
+            "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
             "confidence": 1.0
           },
           "ingredientCategories": [
@@ -9340,10 +9340,10 @@
           "defaultOrigin": "OutOfEuropeAndMaghreb",
           "displayName": "Igname Origine Inconnue",
           "id": "e047defb-6364-5dd6-b503-a5ae43a8960d",
-          "inediblePart": 0.1,
+          "inediblePart": 0.2,
           "inediblePartMatch": {
-            "rule": "Matched with Carrots in agb_inedible.csv",
-            "confidence": 0.95
+            "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+            "confidence": 1.0
           },
           "ingredientCategories": [
             "vegetable_fresh"

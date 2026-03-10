@@ -1126,7 +1126,9 @@ class Predictor:
         Returns (value, keyword_description) if keywords indicate processing state,
         None otherwise to fall back to matcher.
         """
-        text = f"{name} {activity}".lower()
+        # Match ingredient name only — activity names use "in shell", "fillet"
+        # etc. as LCA dataset descriptors, not ingredient properties
+        text = name.lower()
 
         # Fillet/boneless = 0 (bones removed by definition)
         if re.search(r"\b(fillet|filet|filé|boneless|désossé)\b", text):
@@ -1888,28 +1890,6 @@ class Predictor:
             )
             # Validate matcher result (must share words to avoid sparse vector issues)
             is_valid = conf >= 0.95 and self._is_related_match(name, match_name)
-
-            # If no valid match with name, try with activity name (extract food item)
-            # e.g., "Blackberry" from "Blackberry, at farm {RS} - Adapted..."
-            if not is_valid and activity:
-                activity_food = activity.split(",")[0].split("{")[0].strip()
-                if activity_food and activity_food.lower() != name.lower():
-                    act_val, act_conf, act_match, act_source = (
-                        self.inedible_matcher.predict(
-                            activity_food, translate_fn=self._translate
-                        )
-                    )
-                    act_valid = act_conf >= 0.95 and self._is_related_match(
-                        activity_food, act_match
-                    )
-                    if act_valid:
-                        inedible_val, conf, match_name, source = (
-                            act_val,
-                            act_conf,
-                            act_match,
-                            act_source,
-                        )
-                        is_valid = True
 
             if is_valid:
                 predictions["inediblePart"] = round(inedible_val, 2)
