@@ -1262,8 +1262,7 @@
             "confidence": 1.0
           },
           "ingredientCategories": [
-            "vegetable_fresh",
-            "organic"
+            "vegetable_fresh"
           ],
           "ingredientDensity": 0.8,
           "ingredientDensityMatch": {

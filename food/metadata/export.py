@@ -389,7 +389,8 @@ def build_activity_entry(
         "id": ingredient_id,
         "inediblePart": predictions.get("inediblePart", 0),
         "inediblePartMatch": predictions.get("inediblePartMatch"),
-        "ingredientCategories": predictions.get("categories", ["misc"]),
+        "ingredientCategories": predictions.get("categories", ["misc"])
+            + (["organic"] if variant == Variant.ORG else []),
         "ingredientDensity": predictions.get("density", 1.0),
         "ingredientDensityMatch": predictions.get("densityMatch"),
         "rawToCookedRatio": predictions.get("rawToCookedRatio", 1.0),

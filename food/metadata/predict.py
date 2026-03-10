@@ -1769,13 +1769,12 @@ class Predictor:
 
         # 3. Additive labels (by rules)
         labels = []
-        if re.search(r"\b(bio|organic)\b", full_text, re.IGNORECASE):
-            labels.append("organic")
-        if re.search(r"\b(bleu.?blanc.?c[oœ]eur)\b", full_text, re.IGNORECASE):
+        if re.search(r"\b(bleu.?blanc.?c[oœ]eur)\b", name, re.IGNORECASE):
             labels.append("bleublanccoeur")
         predictions["labels"] = labels
 
         # 4. Build categories from foodType + novaGroup + labels
+        # Note: "organic" is added at the variant level (ORG), not here
         base_category = self._compute_category(food_type, nova_group)
         predictions["categories"] = [base_category] + labels
 
