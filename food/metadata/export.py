@@ -45,7 +45,7 @@ PLURAL_EXCEPTIONS = {"oats", "french-fries"}
 
 class Variant(Enum):
     FR = "FR"
-    ORG = "ORG"
+    BIO = "BIO"
     UE = "UE"
     OI = "OI"
     NUE = "NUE"
@@ -53,7 +53,7 @@ class Variant(Enum):
 
 VARIANT_SUFFIX = {
     Variant.FR: " FR",
-    Variant.ORG: " Bio",
+    Variant.BIO: " Bio",
     Variant.UE: " UE",
     Variant.OI: " Origine Inconnue",
     Variant.NUE: " HORS UE",
@@ -61,7 +61,7 @@ VARIANT_SUFFIX = {
 
 VARIANT_ALIAS_SUFFIX = {
     Variant.FR: "-fr",
-    Variant.ORG: "-organic",
+    Variant.BIO: "-organic",
     Variant.UE: "-eu",
     Variant.OI: "-default",
     Variant.NUE: "-non-eu",
@@ -69,7 +69,7 @@ VARIANT_ALIAS_SUFFIX = {
 
 VARIANT_SCENARIO = {
     Variant.FR: "reference",
-    Variant.ORG: "organic",
+    Variant.BIO: "organic",
     Variant.UE: "import",
     Variant.OI: "import",
     Variant.NUE: "import",
@@ -77,7 +77,7 @@ VARIANT_SCENARIO = {
 
 VARIANT_ORIGIN = {
     Variant.FR: "France",
-    Variant.ORG: "France",
+    Variant.BIO: "France",
     Variant.UE: "EuropeAndMaghreb",
     Variant.OI: "OutOfEuropeAndMaghreb",
     Variant.NUE: "OutOfEuropeAndMaghreb",
@@ -187,7 +187,7 @@ def _format_conf(match_info: dict | None) -> str:
 
 
 def get_db_unit(activity_name):
-    dbs = ("Agribalyse 3.2", "Ecoinvent 3.9.1", "Ecoinvent 3.11", "WFLDB", "Ecobalyse")
+    dbs = ("Agribalyse 3.2", "Ecoinvent 3.9.1", "Ecoinvent 3.11", "WFLDB", "Ecobalyse", "Ginko 2025")
     for db in dbs:
         if (
             len(
@@ -390,7 +390,7 @@ def build_activity_entry(
         "inediblePart": predictions.get("inediblePart", 0),
         "inediblePartMatch": predictions.get("inediblePartMatch"),
         "ingredientCategories": predictions.get("categories", ["misc"])
-            + (["organic"] if variant == Variant.ORG else []),
+            + (["organic"] if variant == Variant.BIO else []),
         "ingredientDensity": predictions.get("density", 1.0),
         "ingredientDensityMatch": predictions.get("densityMatch"),
         "rawToCookedRatio": predictions.get("rawToCookedRatio", 1.0),
@@ -1054,6 +1054,7 @@ def main():
     input_csv = get_input_csv(args.variant)
     print(f"\nLoading {input_csv}...")
     df = pd.read_csv(input_csv)
+    df.columns = df.columns.str.replace("_", " ")
 
     if "item" not in df.columns or "icv final" not in df.columns:
         raise ValueError("CSV must have 'item' and 'icv final' columns")
