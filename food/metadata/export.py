@@ -417,7 +417,7 @@ def build_activity_entry(
         "categories": ["ingredient"],
         "displayName": display_name,
         "id": activity_id,
-        "metadata": {"food": [ingredient]},
+        "metadata": [{**ingredient, "scopes": ["food"]}],
         "scopes": ["food"],
         "source": source,
         "unit": unit,
@@ -533,11 +533,8 @@ def extract_activities_and_ingredients(
             if act_name:
                 by_activity_name[act_name] = act_display
             # Preserve non-food metadata (textile, etc.) on the activity dict
-            non_food_meta = {
-                k: v
-                for k, v in a.get("metadata", {}).items()
-                if k != "food"
-            }
+            meta_list = a.get("metadata", [])
+            non_food_meta = [m for m in meta_list if "food" not in m.get("scopes", [])]
             activities[act_display] = {k: v for k, v in a.items() if k != "metadata"}
             if non_food_meta:
                 activities[act_display]["_non_food_metadata"] = non_food_meta
@@ -546,7 +543,7 @@ def extract_activities_and_ingredients(
                 a.get("alias", ""), old_alias_suffix
             )
 
-        for ing in a.get("metadata", {}).get("food", []):
+        for ing in (m for m in a.get("metadata", []) if "food" in m.get("scopes", [])):
             ing = {**ing, "activity_display": act_display}
             ing["displayName"] = normalize_display_name(ing["displayName"], old_display_suffix)
             ing["alias"] = normalize_alias(ing.get("alias", ""), old_alias_suffix)
@@ -620,13 +617,12 @@ def reassemble(
     result = []
     for dn, act in activities.items():
         entry = {**act}
-        non_food_meta = entry.pop("_non_food_metadata", {})
+        non_food_meta = entry.pop("_non_food_metadata", [])
         ings = by_activity.get(dn, [])
-        if ings or non_food_meta:
-            metadata = {**non_food_meta}
-            if ings:
-                metadata["food"] = ings
-            entry["metadata"] = metadata
+        food_ings = [{**ing, "scopes": ["food"]} for ing in ings]
+        all_meta = non_food_meta + food_ings
+        if all_meta:
+            entry["metadata"] = all_meta
         elif entry.get("categories") == ["ingredient"]:
             continue  # Skip orphaned ingredient activities with no metadata
         result.append(entry)
@@ -708,7 +704,12 @@ def merge_activities(
 
     merged_acts = {**existing_acts, **added_acts}
     # New ingredients override existing on displayName collision (allows re-exporting updates)
-    merged_ings = {**existing_ings, **new_ings}
+    # but preserve existing UUIDs
+    merged_ings = {**existing_ings}
+    for dn, ing in new_ings.items():
+        if dn in existing_ings and "id" in existing_ings[dn]:
+            ing = {**ing, "id": existing_ings[dn]["id"]}
+        merged_ings[dn] = ing
 
     # Apply suffix logic
     alias_renames = {}
@@ -807,7 +808,7 @@ def generate_final_data(variant: Variant):
         # Get predicted metadata from new_activities.json
         activity = activities_by_name.get(activity_name)
         if activity:
-            food_meta = activity.get("metadata", {}).get("food", [{}])[0]
+            food_meta = next((m for m in activity.get("metadata", []) if "food" in m.get("scopes", [])), {})
             result["categories"] = ";".join(food_meta.get("ingredientCategories", []))
             result["transportCooling"] = food_meta.get("transportCooling", "")
             result["cropGroup"] = food_meta.get("cropGroup", "")
@@ -883,8 +884,8 @@ def remove_old(target_activities_path: Path):
             continue
 
         # Filter food ingredients within the activity
-        metadata = activity.get("metadata", {})
-        food_ings = metadata.get("food", [])
+        meta_list = activity.get("metadata", [])
+        food_ings = [m for m in meta_list if "food" in m.get("scopes", [])]
         if food_ings:
             new_food = []
             for ing in food_ings:
@@ -894,13 +895,12 @@ def remove_old(target_activities_path: Path):
                     removed_ingredients += 1
                 else:
                     new_food.append(ing)
+            non_food = [m for m in meta_list if "food" not in m.get("scopes", [])]
             if new_food:
-                activity = {**activity, "metadata": {**metadata, "food": new_food}}
+                activity = {**activity, "metadata": non_food + new_food}
             else:
-                # No food ingredients left, remove food key from metadata
-                new_meta = {k: v for k, v in metadata.items() if k != "food"}
-                if new_meta:
-                    activity = {**activity, "metadata": new_meta}
+                if non_food:
+                    activity = {**activity, "metadata": non_food}
                 else:
                     activity = {k: v for k, v in activity.items() if k != "metadata"}
 
