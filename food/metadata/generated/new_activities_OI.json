@@ -52,7 +52,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MX"
   },
   {
     "activityName": "Almonds, in shell, at farm {CN} - Adapted from WFLDB U",
@@ -107,7 +108,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Durum wheat grain, at farm {AU} - Adapted from WFLDB U",
@@ -162,7 +164,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "AU"
   },
   {
     "activityName": "Apple, at farm (WFLDB)",
@@ -217,7 +220,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Apricot, at farm (WFLDB)",
@@ -272,7 +276,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "ES"
   },
   {
     "activityName": "Asparagus, at farm (WFLDB)",
@@ -327,7 +332,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Avocado {GLO}| avocado production | Cut-off, U",
@@ -382,7 +388,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "White asparagus {CN}| white asparagus production | Cut-off, U",
@@ -437,7 +444,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Banana, at farm (WFLDB)",
@@ -492,7 +500,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CR"
   },
   {
     "activityName": "Rice, basmati {IN}| rice production, basmati | Cut-off, U - Adapted from Ecoinvent U",
@@ -547,7 +556,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Mint, at farm (WFLDB)",
@@ -602,7 +612,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Beetroot for juice, conventional, at farm gate {FR} U",
@@ -657,7 +668,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Bell pepper {IN-UP}| bell pepper production, open field | Cut-off, U",
@@ -712,7 +724,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN-UP"
   },
   {
     "activityName": "Strawberry, open field, macro tunnel, at farm (WFLDB)",
@@ -767,7 +780,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MA"
   },
   {
     "activityName": "Blackberry, at farm {RS} - Adapted from WFLDB U",
@@ -822,7 +836,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "RS"
   },
   {
     "activityName": "Black pepper, conventional, at farm gate {VN} U",
@@ -877,7 +892,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "VN"
   },
   {
     "activityName": "Blueberry, at farm {CA} - Adapted from WFLDB U",
@@ -932,7 +948,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA"
   },
   {
     "activityName": "Peanut, in shell, at farm (WFLDB)",
@@ -987,7 +1004,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Mango, at farm (WFLDB)",
@@ -1042,7 +1060,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Fava bean {CA-AB}| fava bean production | Cut-off, U",
@@ -1097,7 +1116,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA-AB"
   },
   {
     "activityName": "Broccoli {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -1152,7 +1172,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -1207,7 +1228,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Mango, at farm (WFLDB)",
@@ -1262,7 +1284,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -1317,7 +1340,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -1372,7 +1396,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Cashew, in-shell, at farm (WFLDB)",
@@ -1427,7 +1452,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CI"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -1482,7 +1508,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -1537,7 +1564,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -1592,7 +1620,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Celery {GLO}| 675 production | Cut-off, U - Adapted from Ecoinvent U",
@@ -1647,7 +1676,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Cherry, at farm (WFLDB)",
@@ -1702,7 +1732,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CL"
   },
   {
     "activityName": "Tomato, fresh grade, open field, at farm (WFLDB)",
@@ -1757,7 +1788,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MX"
   },
   {
     "activityName": "Walnut, in shell, dried, at farm (WFLDB)",
@@ -1812,7 +1844,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Linseed, at farm {CA} - Adapted from WFLDB U",
@@ -1867,7 +1900,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA"
   },
   {
     "activityName": "Chickpea {RoW}| chickpea production | Cut-off, U",
@@ -1922,7 +1956,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "RoW"
   },
   {
     "activityName": "Chicory witloof, early, conventional, root production, at farm gate {FR} U",
@@ -1977,7 +2012,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Bell pepper {IN-UP}| bell pepper production, open field | Cut-off, U",
@@ -2032,7 +2068,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN-UP"
   },
   {
     "activityName": "Onion, at farm (WFLDB)",
@@ -2087,7 +2124,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "NZ"
   },
   {
     "activityName": "Black pepper, conventional, at farm gate {VN} U",
@@ -2142,7 +2180,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "VN"
   },
   {
     "activityName": "Clementine, export quality, Souss, at orchard {MA} U",
@@ -2197,7 +2236,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MA"
   },
   {
     "activityName": "Cocoa bean {ID}| cocoa bean production, sun-dried | Cut-off, U",
@@ -2252,7 +2292,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "ID"
   },
   {
     "activityName": "Coconut, dehusked, at farm (WFLDB)",
@@ -2307,7 +2348,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "PH"
   },
   {
     "activityName": "Coffee, green bean {IN}| coffee green bean production, arabica | Cut-off, U - Copied from Ecoinvent U",
@@ -2362,7 +2404,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -2417,7 +2460,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Sweet corn {US-MN}| sweet corn production | Cut-off, U",
@@ -2472,7 +2516,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US-MN"
   },
   {
     "activityName": "Cow milk {RoW}| milk production, from cow | Cut-off, U",
@@ -2525,7 +2570,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "RoW"
   },
   {
     "activityName": "Cranberry, at farm {CL} - Adapted from WFLDB U",
@@ -2580,7 +2626,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CL"
   },
   {
     "activityName": "Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
@@ -2635,7 +2682,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Linseed, at farm {CA} - Adapted from WFLDB U",
@@ -2690,7 +2738,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA"
   },
   {
     "activityName": "Palm date, conditioned and dried {GLO}| palm date production, conditioned and dried | Cut-off, U - Copied from Ecoinvent U",
@@ -2745,7 +2794,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Mint, at farm (WFLDB)",
@@ -2800,7 +2850,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Mint, at farm (WFLDB)",
@@ -2855,7 +2906,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Durum wheat grain, at farm {AU} - Adapted from WFLDB U",
@@ -2910,7 +2962,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "AU"
   },
   {
     "activityName": "Chicken egg, poultry industrial laying systems, at farm (WFLDB)",
@@ -2963,7 +3016,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",
@@ -3018,7 +3072,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Elderberry, at farm {PL} - Adapted from WFLDB U",
@@ -3073,7 +3128,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "PL"
   },
   {
     "activityName": "Lettuce {GLO}| lettuce production, in heated greenhouse | Cut-off, U",
@@ -3128,7 +3184,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -3183,7 +3240,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Peach, at farm (WFLDB)",
@@ -3238,7 +3296,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Fava bean {CA-AB}| fava bean production | Cut-off, U",
@@ -3293,7 +3352,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA-AB"
   },
   {
     "activityName": "Flaxseed, national average, animal feed, at farm gate {FR} U",
@@ -3348,7 +3408,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "French bean, conventional, national average, at farm gate {FR} U",
@@ -3403,7 +3464,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Mint, at farm (WFLDB)",
@@ -3458,7 +3520,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Garlic, fresh, at farm (WFLDB)",
@@ -3513,7 +3576,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
@@ -3568,7 +3632,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Ginger, fresh, at farm (WFLDB)",
@@ -3623,7 +3688,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Strawberry, open field, macro tunnel, at farm (WFLDB)",
@@ -3678,7 +3744,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MA"
   },
   {
     "activityName": "Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",
@@ -3733,7 +3800,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "ES"
   },
   {
     "activityName": "Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",
@@ -3788,7 +3856,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "ES"
   },
   {
     "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -3843,7 +3912,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Cherry, at farm (WFLDB)",
@@ -3898,7 +3968,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CL"
   },
   {
     "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
@@ -3953,7 +4024,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Hazelnut, in shell, at farm (WFLDB)",
@@ -4008,7 +4080,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Hemp, grain, Champagne, at farm gate {FR} U",
@@ -4063,7 +4136,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Honey, raw, large-scale production, unpackaged, at farm {US} - Adapted from WFLDB U",
@@ -4113,7 +4187,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -4168,7 +4243,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -4223,7 +4299,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -4278,7 +4355,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
@@ -4333,7 +4411,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -4388,7 +4467,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",
@@ -4443,7 +4523,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "ES"
   },
   {
     "activityName": "Leek, early sown, conventional, at farm gate {FR} U",
@@ -4498,7 +4579,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Lemon, at farm (WFLDB)",
@@ -4553,7 +4635,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MX"
   },
   {
     "activityName": "Lentil {CA-SK}| lentil production | Cut-off, U - Adapted from Ecoinvent U",
@@ -4608,7 +4691,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA-SK"
   },
   {
     "activityName": "Fava bean, feed, Swiss integrated production {RoW}| fava bean, feed production, Swiss integrated production | Cut-off, U",
@@ -4663,7 +4747,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "RoW"
   },
   {
     "activityName": "Mango, at farm (WFLDB)",
@@ -4718,7 +4803,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Walnut, in shell, dried, at farm (WFLDB)",
@@ -4773,7 +4859,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Mango, at farm (WFLDB)",
@@ -4828,7 +4915,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Melon, under low tunnel, conventional, at farm gate {FR} U",
@@ -4883,7 +4971,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Mint, at farm (WFLDB)",
@@ -4938,7 +5027,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Cherry, at farm (WFLDB)",
@@ -4993,7 +5083,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CL"
   },
   {
     "activityName": "Fava bean {CA-AB}| fava bean production | Cut-off, U",
@@ -5048,7 +5139,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA-AB"
   },
   {
     "activityName": "Agaricus bisporus mushroom, fresh, at plant {NL} - Adapted from WFLDB U",
@@ -5103,7 +5195,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "NL"
   },
   {
     "activityName": "Mustard, proxy from Rape seed {Canada without Quebec}| rape seed production | Cut-off, U - Adapted from Ecoinvent U",
@@ -5158,7 +5251,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA-QC"
   },
   {
     "activityName": "Peach, at farm (WFLDB)",
@@ -5213,7 +5307,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -5268,7 +5363,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -5323,7 +5419,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Oats, at farm {FI} - Adapted from WFLDB U",
@@ -5378,7 +5475,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FI"
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -5433,7 +5531,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Olive, at farm (WFLDB)",
@@ -5488,7 +5587,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IT"
   },
   {
     "activityName": "Onion, at farm (WFLDB)",
@@ -5543,7 +5643,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "NZ"
   },
   {
     "activityName": "Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",
@@ -5598,7 +5699,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "ES"
   },
   {
     "activityName": "Palm fruit bunch, with deforestation, on land recently transformed, animal feed, at farm gate {MY} U",
@@ -5653,7 +5755,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MY"
   },
   {
     "activityName": "Papaya {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -5708,7 +5811,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Parsley, fresh, at farm {US} - Adapted from WFLDB U",
@@ -5763,7 +5867,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -5818,7 +5923,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
@@ -5873,7 +5979,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Peach, at farm (WFLDB)",
@@ -5928,7 +6035,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Peanut, in shell, at farm (WFLDB)",
@@ -5983,7 +6091,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Pear, at farm (WFLDB)",
@@ -6038,7 +6147,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
@@ -6093,7 +6203,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -6148,7 +6259,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Peanut, in shell, at farm (WFLDB)",
@@ -6203,7 +6315,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Pineapple, at farm {TH} U",
@@ -6258,7 +6371,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "TH"
   },
   {
     "activityName": "Peanut, in shell, at farm (WFLDB)",
@@ -6313,7 +6427,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Banana, at farm (WFLDB)",
@@ -6368,7 +6483,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CR"
   },
   {
     "activityName": "Pomegranate {RoW}| pomegranate production | Cut-off, U",
@@ -6423,7 +6539,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "RoW"
   },
   {
     "activityName": "Linseed, at farm {CA} - Adapted from WFLDB U",
@@ -6478,7 +6595,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA"
   },
   {
     "activityName": "Potato {US}| potato production | Cut-off, U",
@@ -6533,7 +6651,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Pear, at farm (WFLDB)",
@@ -6588,7 +6707,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",
@@ -6643,7 +6763,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Apple, at farm (WFLDB)",
@@ -6698,7 +6819,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Quinoa, intensive production, at farm {PE} - Adapted from WFLDB U",
@@ -6753,7 +6875,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "PE"
   },
   {
     "activityName": "Radish {GLO}| radish production, in heated greenhouse | Cut-off, U",
@@ -6808,7 +6931,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Rapeseed, at farm {GLO} - Adapted from WFLDB U",
@@ -6863,7 +6987,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Raspberry, at farm {RS} - Adapted from WFLDB U",
@@ -6918,7 +7043,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "RS"
   },
   {
     "activityName": "Rice, basmati {IN}| rice production, basmati | Cut-off, U - Adapted from Ecoinvent U",
@@ -6973,7 +7099,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Red kidney bean {CA-ON}| red kidney bean production | Cut-off, U",
@@ -7028,7 +7155,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA-ON"
   },
   {
     "activityName": "Strawberry, open field, macro tunnel, at farm (WFLDB)",
@@ -7083,7 +7211,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MA"
   },
   {
     "activityName": "Lettuce {GLO}| lettuce production, in heated greenhouse | Cut-off, U",
@@ -7138,7 +7267,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -7193,7 +7323,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -7248,7 +7379,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Black pepper, conventional, at farm gate {VN} U",
@@ -7303,7 +7435,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "VN"
   },
   {
     "activityName": "Lettuce {GLO}| lettuce production, in heated greenhouse | Cut-off, U",
@@ -7358,7 +7491,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Seaweed non-optimized production, 1kg algae (Laminaria), fresh weight {FR} U",
@@ -7413,7 +7547,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -7468,7 +7603,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Sodium chloride, powder {GLO}| market for | Cut-off, S - Copied from Ecoinvent U",
@@ -7518,7 +7654,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Seaweed non-optimized production, 1kg algae (Laminaria), fresh weight {FR} U",
@@ -7573,7 +7710,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Peanut {IN}| peanut production | Cut-off, U - Adapted from Ecoinvent U",
@@ -7628,7 +7766,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Onion, at farm (WFLDB)",
@@ -7683,7 +7822,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "NZ"
   },
   {
     "activityName": "Sheep milk, conventional, Roquefort system, at farm gate {FR} U",
@@ -7736,7 +7876,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
@@ -7791,7 +7932,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Wheat grain {US}| wheat production | Cut-off, U - Adapted from Ecoinvent U",
@@ -7846,7 +7988,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Silage sorghum, national average, animal feed, at farm gate {FR} U",
@@ -7901,7 +8044,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Soybean {BR-RS}| soybean production | Cut-off, U - Adapted from Ecoinvent U",
@@ -7956,7 +8100,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "BR-RS"
   },
   {
     "activityName": "Durum wheat grain, at farm {AU} - Adapted from WFLDB U",
@@ -8011,7 +8156,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "AU"
   },
   {
     "activityName": "Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -8066,7 +8212,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
@@ -8121,7 +8268,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Spring faba bean, conventional, national average, at farm gate {FR} U",
@@ -8176,7 +8324,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Spring pea, conventional, 15% moisture, animal feed, at farm gate, production {FR} U",
@@ -8231,7 +8380,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Tap water {ZA}| market for tap water | Cut-off, S - Copied from Ecoinvent U",
@@ -8286,7 +8436,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "ZA"
   },
   {
     "activityName": "Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",
@@ -8341,7 +8492,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Strawberry, open field, macro tunnel, at farm (WFLDB)",
@@ -8396,7 +8548,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MA"
   },
   {
     "activityName": "Sugar beet, at farm {CA} - Adapted from WFLDB U",
@@ -8451,7 +8604,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA"
   },
   {
     "activityName": "Sunflower, at farm (WFLDB)",
@@ -8506,7 +8660,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "RU"
   },
   {
     "activityName": "Ware potato, conventional, for fresh market, firm flesh varieties, at farm gate {FR} U",
@@ -8561,7 +8716,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
@@ -8616,7 +8772,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "French bean, conventional, national average, at farm gate {FR} U",
@@ -8671,7 +8828,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -8726,7 +8884,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -8781,7 +8940,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Mint, at farm (WFLDB)",
@@ -8836,7 +8996,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IN"
   },
   {
     "activityName": "Tea, dried {CN}| tea production, dried | Cut-off, U",
@@ -8891,7 +9052,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CN"
   },
   {
     "activityName": "Tomato, fresh grade, open field, at farm (WFLDB)",
@@ -8946,7 +9108,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MX"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -9001,7 +9164,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Vanilla, cured and dried beans, at farm (WFLDB)",
@@ -9056,7 +9220,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "MG"
   },
   {
     "activityName": "Walnut, in shell, dried, at farm (WFLDB)",
@@ -9111,7 +9276,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Melon, under low tunnel, conventional, at farm gate {FR} U",
@@ -9166,7 +9332,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "French bean, conventional, national average, at farm gate {FR} U",
@@ -9221,7 +9388,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Cabbage white {RoW}| cabbage white production | Cut-off, U - Adapted from Ecoinvent U",
@@ -9276,7 +9444,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "RoW"
   },
   {
     "activityName": "Barley grain, non-irrigated, at farm (WFLDB)",
@@ -9331,7 +9500,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "UA"
   },
   {
     "activityName": "Wheat grain {US}| wheat grain production | Cut-off, U",
@@ -9386,7 +9556,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "US"
   },
   {
     "activityName": "Rye grain {GLO}| market for rye grain | Cut-off, U",
@@ -9441,7 +9612,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
@@ -9496,7 +9668,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Carrot, at farm (WFLDB)",
@@ -9551,7 +9724,8 @@
       "food"
     ],
     "source": "WFLDB",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "IL"
   },
   {
     "activityName": "Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",
@@ -9606,7 +9780,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -9661,7 +9836,8 @@
       "food"
     ],
     "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Snail, wild {HU} U",
@@ -9711,7 +9887,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "HU"
   },
   {
     "activityName": "Seed-cotton {BD}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",
@@ -9766,7 +9943,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "BD"
   },
   {
     "activityName": "Lupin, conventional, national average, at farm gate, production {FR} U",
@@ -9821,7 +9999,8 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "FR"
   },
   {
     "activityName": "Linseed, at farm {CA} - Adapted from WFLDB U",
@@ -9876,6 +10055,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "kg",
+    "location": "CA"
   }
 ]

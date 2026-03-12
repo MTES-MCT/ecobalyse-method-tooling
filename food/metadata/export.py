@@ -422,6 +422,8 @@ def build_activity_entry(
         "source": source,
         "unit": unit,
     }
+    if location:
+        entry["location"] = location
     return entry
 
 
