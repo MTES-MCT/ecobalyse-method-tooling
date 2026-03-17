@@ -179,9 +179,3 @@ EB2_id003,Snail,Escargot,"Snail, wild {HU} U",Agribalyse 3.2,HU,16.846,TRUE
 EB2_id004,Cotton seed,Graine de coton,"Seed-cotton {BD}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,BD,5457.41,TRUE
 EB2_id005,Lupin,Lupin,"Lupin, conventional, national average, at farm gate, production {FR} U",Agribalyse 3.2,FR,114.05,TRUE
 EB2_id006,Alfalfa,Luzerne,"Linseed, at farm {CA} - Adapted from WFLDB U",Agribalyse 3.2,CA,443,TRUE
-EB_idV01,Beef,Boeuf,"Beef cattle, feedlot or intensive system, live weight, at farm {GB} - Adapted from WFLDB U",Agribalyse 3.2,FR,Pas de proxy origine,FALSE
-EB_idV03,Broiler,Poulet,"Broiler, conventional, at farm gate {FR} U meat-without-bone-chicken-direct-consumption-br-max",Ecobalyse,FR,Pas de proxy origine,FALSE
-EB_idV05,Poultry,Volaille,"Broiler, conventional, at farm gate {FR} U meat-without-bone-chicken-direct-consumption-br-max",Ecobalyse,FR,Pas de proxy origine,FALSE
-EB_idV06,Lamb,Agneau,"Lamb, conventional, indoor production system, at farm gate {FR} U",Agribalyse 3.2,FR,Pas de proxy origine,FALSE
-EB_idV07,Pork,Porc,"Mixt pig, conventional, national average, at farm gate {FR} U bacon-default",Ecobalyse,FR,Pas de proxy origine,FALSE
-EB_idV08,Rabbit,Lapin,"Broiler, conventional, at farm gate {FR} U meat-without-bone-chicken-direct-consumption-br-max",Ecobalyse,FR,Pas de proxy origine,FALSE

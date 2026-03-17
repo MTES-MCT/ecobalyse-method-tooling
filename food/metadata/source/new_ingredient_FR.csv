@@ -145,9 +145,3 @@ EB2_id003,Snail,Escargot,"Snail, wild {BE} U",FR,BE,Proxy origine,TRUE
 EB2_id004,Cotton seed,Graine de coton,"Seed-cotton {RoW}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
 EB2_id005,Lupin,Lupin,"Lupin, conventional, national average, at farm gate, production {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB2_id006,Alfalfa,Luzerne,"Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
-EB_idV01,Beef,Boeuf,"Beef cattle, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
-EB_idV03,Broiler,Poulet,"Broiler, conventional, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
-EB_idV05,Poultry,Volaille,"Broiler, conventional, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
-EB_idV06,Lamb,Agneau,"Lamb, conventional, indoor production system, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
-EB_idV07,Pork,Porc,"Mixt pig, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
-EB_idV08,Rabbit,Lapin,"Broiler, conventional, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
