@@ -186,18 +186,16 @@ def _format_conf(match_info: dict | None) -> str:
     return f"{conf:.3f}" if conf else ""
 
 
-def get_db_unit(activity_name):
+def get_db_unit(activity_name, location=""):
     dbs = ("Agribalyse 3.2", "Ecoinvent 3.9.1", "Ecoinvent 3.11", "WFLDB", "Ecobalyse", "Ginko 2025")
     for db in dbs:
-        if (
-            len(
-                activities := [
-                    a for a in bw2data.Database(db) if a["name"] == activity_name
-                ]
-            )
-            >= 1
-        ):
-            return activities[0]["unit"], db
+        activities = [a for a in bw2data.Database(db) if a["name"] == activity_name]
+        if len(activities) == 1:
+            return activities[0]["unit"], db, activities[0].get("location", "")
+        if len(activities) > 1 and location:
+            filtered = [a for a in activities if a.get("location") == location]
+            if len(filtered) >= 1:
+                return filtered[0]["unit"], db, filtered[0].get("location", "")
     raise Exception(f"Not found in {str(dbs)}: {activity_name}")
 
 
@@ -230,14 +228,14 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
         activity_name = (
             str(row["icv final"]).strip() if pd.notna(row["icv final"]) else ""
         )
-        unit, source = get_db_unit(activity_name)
+        csv_location = str(row.get("location", "")).strip() if pd.notna(row.get("location")) else ""
+        unit, source, location = get_db_unit(activity_name, csv_location)
 
         if not name or not activity_name:
             continue
 
         # Extract production location for FR variant handling
         production_fr = str(row.get("Production_FR", "")).strip()
-        location = str(row.get("location", "")).strip() if pd.notna(row.get("location")) else ""
 
         ingredient = {"name": name, "activityName": activity_name}
         predictions = predictor.predict(ingredient)
@@ -684,6 +682,14 @@ def merge_activities(
         if act_name not in existing_act_by_name:
             added_acts[dn] = act
             existing_act_by_name[act_name] = dn
+        else:
+            # Update existing activity with fields from new export (location, source, etc.)
+            existing_dn = existing_act_by_name[act_name]
+            for key in ("location", "source"):
+                if key in act:
+                    existing_acts[existing_dn][key] = act[key]
+                elif key in existing_acts[existing_dn]:
+                    del existing_acts[existing_dn][key]
 
     # Remap new ingredients to existing activity displayNames where applicable
     for ing_dn, ing in new_ings.items():

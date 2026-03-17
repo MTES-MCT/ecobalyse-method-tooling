@@ -1,4 +1,4 @@
-Id unique,item,item trad,icv_final,location,Organic,Visible
+Id unique,item,item trad,icv final,location,Organic,Visible
 EB_id0001,Agave,Agave,"Sugarcane, at farm, organic 2025 {MX}",MX,OUI,True
 EB2_id006,Alfalfa,Luzerne,"Linseed, organic 2025 {RoW}| linseed production | Cut-off, U",RoW,OUI,True
 EB_id0002,"Almonds, in shell",Amandes en coquille,"Almonds, in shell, at farm, organic 2025 {CN}",CN,OUI,True
@@ -12,7 +12,7 @@ EB_id0011,Bamboo shoots,Pousses de bambou,"White asparagus, organic 2025 {FR}| w
 EB_id0012,Banana,Banane,"Banana, at farm, organic 2025 {GLO}",GLO,OUI,True
 EB_id0013,Basmati rice,Riz basmati,"Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",IN,OUI,True
 EB_id0016,Beetroot,Betterave,"Beetroot for juice, organic 2025, at farm gate {FR} U",FR,OUI,True
-EB_id0017,"Bell pepper, green, yellow or red","Poivron, vert, jaune ou rouge","Bell pepper, organic 2025 {GLO}| bell pepper production, in unheated greenhouse | Cut-off, U",GLO,OUI,True
+EB_id0017,"Bell pepper, green, yellow or red","Poivron, vert, jaune ou rouge","Bell pepper, organic 2025 {FR}| bell pepper production, in unheated greenhouse | Cut-off, U",GLO,OUI,True
 EB_id0019,Black currant,Cassis,"Strawberry, open field, organic 2025, at farm gate {FR} U",FR,OUI,True
 EB_id0020,Black mulberry,Mûre noire,"Blackberry, at farm, organic 2025 {RS}",RS,OUI,True
 EB_id0022,Blueberry,Myrtille,"Blueberry, at farm, organic 2025 {CA}",CA,OUI,True
@@ -35,7 +35,7 @@ EB_id0042,Chestnut,Châtaigne,"Walnut, dried inshell, organic 2025, national ave
 EB_id0043,"Chia seed, dried",Graines de chia,"Linseed, organic 2025 {RoW}| linseed production | Cut-off, U",RoW,OUI,True
 EB_id0044,"Chickpeas, dried",Pois chiches,"Chickpea seed, organic, at farm gate {FR} U",FR,OUI,True
 EB_id0045,Chicory root,Racine de chicorée,"Chicory roots, organic 2025, at farm gate {FR} U",FR,OUI,True
-EB_id0047,Chive,Ciboulette,"Onion, national average, at farm, organic 2025 {FR} U",FR,OUI,True
+EB_id0047,Chive,Ciboulette,"Onion, organic 2025, national average, at farm {FR} U",FR,OUI,True
 EB_id0049,Clementine,Clémentine,"Clementine, export quality, Souss, at orchard, organic 2025 {MA} U",MA,OUI,True
 EB_id0053,"Coconut, dehusked",Noix de coco décortiquée,"Coconut, dehusked, organic 2025 {RoW}| coconut production, dehusked | Cut-off, U",RoW,OUI,True
 EB_id0054,Coffee beans,Café en grains,"Coffee, green beans (Arabica), at farm, organic 2025 {IN}",IN,OUI,True
@@ -55,7 +55,7 @@ EB_id0077,Fig,Figue,"Peach, organic 2025, national average, at orchard {FR} U",F
 EB_id0078,"Flageolet beans, green, dried",Haricots flageolets verts,"Fava bean, Swiss integrated production, organic 2025 {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U",CH,OUI,True
 EB_id0079,Flaxseed,Graines de lin,"Flaxseed, national average, animal feed, at farm gate, organic 2025 {FR} U",FR,OUI,True
 EB_id0080,French beans,Haricots verts,"French bean, organic 2025, national average, at farm gate {FR} U",FR,OUI,True
-EB2_id001,Garlic,Ail,"Onion, national average, at farm, organic 2025 {FR} U",FR,OUI,True
+EB2_id001,Garlic,Ail,"Onion, organic 2025, national average, at farm {FR} U",FR,OUI,True
 EB_id0085,Ginger,Gingembre,"Onion, organic 2025 {CN}| onion production | Cut-off, U",CN,OUI,True
 EB_id0088,Gooseberry,Groseille,"Strawberry, open field, organic 2025, at farm gate {FR} U",FR,OUI,True
 EB_id0089,Grapefruit,Pamplemousse,"Grapefruit for juice, organic 2025, at farm gate {US} U",US,OUI,True
@@ -120,8 +120,8 @@ EB_id0170,Rhubarb,Rhubarbe,"Cauliflower, organic 2025, national average, at farm
 EB_id0171,Rutabaga,Rutabaga,"Carrot, organic 2025, national average, at farm gate {FR} U",FR,OUI,True
 EB_id0174,"Salad, lettuce","Salade, laitue","Lettuce, organic 2025, national average, at farm gate {FR} U",FR,OUI,True
 EB_id0177,Salsify,Salsifi,"Carrot, organic 2025, national average, at farm gate {FR} U",FR,OUI,True
-EB_id0183,Sesame seeds,Graines de sésame,"Peanut, organic 2025 {IN}| peanut production | Cut-off, U",AR,OUI,True
-EB_id0184,Shallots,Échalotes,"Onion, national average, at farm, organic 2025 {FR} U",FR,OUI,True
+EB_id0183,Sesame seeds,Graines de sésame,"Peanut, organic 2025 {IN}| peanut production | Cut-off, U",IN,OUI,True
+EB_id0184,Shallots,Échalotes,"Onion, organic 2025, national average, at farm {FR} U",FR,OUI,True
 EB_id0188,Snow pea,Pois mange-tout,"Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",FR,OUI,True
 EB_id0189,Soft wheat,Blé tendre,"Soft wheat grain, organic 2025, breadmaking quality, 15% moisture, at farm gate {FR} U",FR,OUI,True
 EB_id0190,Sorghum,Sorgho,"Sweet sorghum grain, organic 2025 {RoW}| sweet sorghum production | Cut-off, U",RoW,OUI,True
@@ -145,7 +145,7 @@ EB_id0222,Walnuts,Noix,"Walnut, dried inshell, organic 2025, national average, a
 EB_id0223,Watermelon,Pastèque,"Melon, organic 2025, national average, at farm gate {FR} U",FR,OUI,True
 EB_id0225,"White beans, dried",Haricots blancs séchés,"French bean, organic 2025, national average, at farm gate {FR} U",FR,OUI,True
 EB_id0226,White cabbage,Chou blanc,"Cabbage white, organic 2025 {RoW}| cabbage white production | Cut-off, U",RoW,OUI,True
-EB_id0228,Whole millet,Millet entier,"Wheat grain, organic {FR}| wheat production | Cut-off, U",FR,OUI,True
+EB_id0228,Whole millet,Millet entier,"Wheat grain, organic 2025 {FR}| wheat production | Cut-off, U",FR,OUI,True
 EB_id0230,Winter pea,Pois d'hiver,"Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",FR,OUI,True
 EB_id0231,Yam,Igname,"Carrot, organic 2025 {RoW}| carrot production | Cut-off, U",RoW,OUI,True
 EB_id0233,Zucchini,Courgettes,"Zucchini, organic 2025, national average, at farm gate {FR} U",FR,OUI,True
