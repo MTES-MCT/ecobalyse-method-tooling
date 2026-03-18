@@ -53,8 +53,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "MX"
+    "unit": "kg"
   },
   {
     "activityName": "Linseed, organic 2025 {RoW}| linseed production | Cut-off, U",
@@ -110,8 +109,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Almonds, in shell, at farm, organic 2025 {CN}",
@@ -167,8 +165,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CN"
+    "unit": "kg"
   },
   {
     "activityName": "Durum wheat grain, organic 2025, national average, at farm gate {FR} U",
@@ -224,8 +221,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Apple, organic 2025, national average, at orchard {FR} U",
@@ -281,8 +277,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Apricot, organic 2025 {FR}| apricot production | Cut-off, U",
@@ -338,8 +333,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -395,8 +389,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "White asparagus, organic 2025 {FR}| white asparagus production | Cut-off, U",
@@ -452,8 +445,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Avocado, organic 2025 {GLO}| production | Cut-off, U",
@@ -509,8 +501,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "White asparagus, organic 2025 {FR}| white asparagus production | Cut-off, U",
@@ -566,8 +557,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Banana, at farm, organic 2025 {GLO}",
@@ -623,8 +613,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
@@ -680,8 +669,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "IN"
+    "unit": "kg"
   },
   {
     "activityName": "Beetroot for juice, organic 2025, at farm gate {FR} U",
@@ -737,8 +725,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Bell pepper, organic 2025 {FR}| bell pepper production, in unheated greenhouse | Cut-off, U",
@@ -794,8 +781,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Strawberry, open field, organic 2025, at farm gate {FR} U",
@@ -851,8 +837,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Blackberry, at farm, organic 2025 {RS}",
@@ -908,8 +893,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RS"
+    "unit": "kg"
   },
   {
     "activityName": "Blueberry, at farm, organic 2025 {CA}",
@@ -965,8 +949,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CA"
+    "unit": "kg"
   },
   {
     "activityName": "Peanut, organic 2025 {AR}| peanut production | Cut-off, U",
@@ -1022,8 +1005,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "AR"
+    "unit": "kg"
   },
   {
     "activityName": "Mango, organic 2025, Val de San Francisco, at orchard {BR} U",
@@ -1079,8 +1061,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "BR"
+    "unit": "kg"
   },
   {
     "activityName": "Fava bean, Swiss integrated production, organic 2025 {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U",
@@ -1136,8 +1117,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Broccoli, organic 2025 {GLO}| production | Cut-off, U",
@@ -1193,8 +1173,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -1250,8 +1229,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Mango, organic 2025, Val de San Francisco, at orchard {BR} U",
@@ -1307,8 +1285,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "BR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -1364,8 +1341,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025, national average, at farm gate {FR} U",
@@ -1421,8 +1397,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Peanut, organic 2025 {CN}| peanut production | Cut-off, U",
@@ -1478,8 +1453,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CN"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025 {RoW}| carrot production | Cut-off, U",
@@ -1535,8 +1509,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -1592,8 +1565,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025, national average, at farm gate {FR} U",
@@ -1649,8 +1621,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Celery, organic 2025 {GLO}| 675 production | Cut-off, U",
@@ -1706,8 +1677,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Cherry, organic 2025, national average, at orchard {FR} U",
@@ -1763,8 +1733,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Tomato, cherry, consumption mix, organic 2025 {FR} U",
@@ -1820,8 +1789,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Walnut, dried inshell, organic 2025, national average, at farm gate {FR} U",
@@ -1877,8 +1845,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Linseed, organic 2025 {RoW}| linseed production | Cut-off, U",
@@ -1934,8 +1901,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Chickpea seed, organic, at farm gate {FR} U",
@@ -1991,8 +1957,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Chicory roots, organic 2025, at farm gate {FR} U",
@@ -2048,8 +2013,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, organic 2025, national average, at farm {FR} U",
@@ -2105,8 +2069,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Clementine, export quality, Souss, at orchard, organic 2025 {MA} U",
@@ -2162,8 +2125,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "MA"
+    "unit": "kg"
   },
   {
     "activityName": "Coconut, dehusked, organic 2025 {RoW}| coconut production, dehusked | Cut-off, U",
@@ -2219,8 +2181,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Coffee, green beans (Arabica), at farm, organic 2025 {IN}",
@@ -2276,8 +2237,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "IN"
+    "unit": "kg"
   },
   {
     "activityName": "Fennel, organic 2025 {GLO}| production | Cut-off, U",
@@ -2333,8 +2293,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Maize grain, organic 2025, 28% moisture, national average, animal feed, at farm gate {FR} U",
@@ -2390,8 +2349,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cranberry, at farm, organic 2025 {CL}",
@@ -2447,8 +2405,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CL"
+    "unit": "kg"
   },
   {
     "activityName": "Tomato, medium size, organic 2025, soil based, non-heated greenhouse, at greenhouse {FR} U",
@@ -2504,8 +2461,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Linseed, organic 2025 {RoW}| linseed production | Cut-off, U",
@@ -2561,8 +2517,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Palm date, organic 2025 {GLO}| palm date production | Cut-off, U",
@@ -2618,8 +2573,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Durum wheat grain, at farm, organic 2025 {GLO}",
@@ -2675,8 +2629,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Egg, organic, at farm gate {FR} U",
@@ -2730,8 +2683,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Zucchini, organic 2025, national average, at farm gate {FR} U",
@@ -2787,8 +2739,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Strawberry for processing, open field, organic 2025, at farm gate {PL} U",
@@ -2844,8 +2795,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "PL"
+    "unit": "kg"
   },
   {
     "activityName": "Lettuce, organic 2025, national average, at farm gate {FR} U",
@@ -2901,8 +2851,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Fennel, organic 2025 {GLO}| production | Cut-off, U",
@@ -2958,8 +2907,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Peach, organic 2025, national average, at orchard {FR} U",
@@ -3015,8 +2963,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Fava bean, Swiss integrated production, organic 2025 {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U",
@@ -3072,8 +3019,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Flaxseed, national average, animal feed, at farm gate, organic 2025 {FR} U",
@@ -3129,8 +3075,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "French bean, organic 2025, national average, at farm gate {FR} U",
@@ -3186,8 +3131,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, organic 2025, national average, at farm {FR} U",
@@ -3243,8 +3187,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, organic 2025 {CN}| onion production | Cut-off, U",
@@ -3300,8 +3243,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CN"
+    "unit": "kg"
   },
   {
     "activityName": "Strawberry, open field, organic 2025, at farm gate {FR} U",
@@ -3357,8 +3299,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Grapefruit for juice, organic 2025, at farm gate {US} U",
@@ -3414,8 +3355,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "US"
+    "unit": "kg"
   },
   {
     "activityName": "Grape, wine grape, at farm, organic 2025 {IT}",
@@ -3471,8 +3411,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "IT"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -3528,8 +3467,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cherry, organic 2025, national average, at orchard {FR} U",
@@ -3585,8 +3523,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Kiwi, organic 2025 {GLO}| production | Cut-off, U",
@@ -3642,8 +3579,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Hazelnut, in shell, at farm, organic 2025 {IT}",
@@ -3699,8 +3635,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "IT"
+    "unit": "kg"
   },
   {
     "activityName": "Hemp, grain, Champagne, at farm gate, organic 2025 {FR} U",
@@ -3756,8 +3691,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025, national average, at farm gate {FR} U",
@@ -3813,8 +3747,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -3870,8 +3803,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -3927,8 +3859,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Kiwi, organic 2025 {GLO}| production | Cut-off, U",
@@ -3984,8 +3915,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -4041,8 +3971,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Orange, fresh grade, organic 2025 {ES}| orange production, fresh grade | Cut-off, U",
@@ -4098,8 +4027,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "ES"
+    "unit": "kg"
   },
   {
     "activityName": "Leek, organic 2025, national average, at plant {FR} U",
@@ -4155,8 +4083,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Lemon, at farm, organic 2025 {IT} U",
@@ -4212,8 +4139,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "IT"
+    "unit": "kg"
   },
   {
     "activityName": "Lentil, organic 2025 {CA-SK}| lentil production | Cut-off, U",
@@ -4269,8 +4195,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CA-SK"
+    "unit": "kg"
   },
   {
     "activityName": "Fava bean, Swiss integrated production, organic 2025 {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U",
@@ -4326,8 +4251,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Lupin, organic 2025, national average, at farm gate, production {FR} U",
@@ -4383,8 +4307,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Mango, organic 2025, Val de San Francisco, at orchard {BR} U",
@@ -4440,8 +4363,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "BR"
+    "unit": "kg"
   },
   {
     "activityName": "Walnut, dried inshell, organic 2025, national average, at farm gate {FR} U",
@@ -4497,8 +4419,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Mango, organic 2025 {BR}| mango production | Cut-off, U",
@@ -4554,8 +4475,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "BR"
+    "unit": "kg"
   },
   {
     "activityName": "Melon, organic 2025, national average, at farm gate {FR} U",
@@ -4611,8 +4531,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cherry, organic 2025, national average, at orchard {FR} U",
@@ -4668,8 +4587,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Fava bean, Swiss integrated production, organic 2025 {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U",
@@ -4725,8 +4643,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Peach, organic 2025, national average, at orchard {FR} U",
@@ -4782,8 +4699,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Spinach, organic 2025 {GLO}| production | Cut-off, U",
@@ -4839,8 +4755,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Fennel, organic 2025 {GLO}| production | Cut-off, U",
@@ -4896,8 +4811,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Oat grain, organic 2025 {RoW}| oat production | Cut-off, U",
@@ -4953,8 +4867,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Fennel, organic 2025 {GLO}| production | Cut-off, U",
@@ -5010,8 +4923,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Olive, organic 2025 {ES}| olive production | Cut-off, U",
@@ -5067,8 +4979,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "ES"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, organic 2025, national average, at farm {FR} U",
@@ -5124,8 +5035,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Orange, processing grade, at farm, organic 2025 {BR}",
@@ -5181,8 +5091,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "BR"
+    "unit": "kg"
   },
   {
     "activityName": "Palm fruit bunch, at farm, organic 2025 {MY}",
@@ -5238,8 +5147,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "MY"
+    "unit": "kg"
   },
   {
     "activityName": "Papaya, organic 2025 {GLO}| production | Cut-off, U",
@@ -5295,8 +5203,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025, national average, at farm gate {FR} U",
@@ -5352,8 +5259,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Kiwi, organic 2025 {GLO}| production | Cut-off, U",
@@ -5409,8 +5315,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Peach, at farm, organic 2025 {ES}",
@@ -5466,8 +5371,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "ES"
+    "unit": "kg"
   },
   {
     "activityName": "Peanut, organic 2025 {RoW}| peanut production | Cut-off, U",
@@ -5523,8 +5427,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Pear, at farm, organic 2025 {NL} U",
@@ -5580,8 +5483,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "NL"
+    "unit": "kg"
   },
   {
     "activityName": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
@@ -5637,8 +5539,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Fennel, organic 2025 {GLO}| production | Cut-off, U",
@@ -5694,8 +5595,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Peanut, organic 2025 {RoW}| peanut production | Cut-off, U",
@@ -5751,8 +5651,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Pineapple, at farm, organic 2025 {CR}",
@@ -5808,8 +5707,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CR"
+    "unit": "kg"
   },
   {
     "activityName": "Peanut, organic 2025 {AR}| peanut production | Cut-off, U",
@@ -5865,8 +5763,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "AR"
+    "unit": "kg"
   },
   {
     "activityName": "Banana, organic 2025 {RoW}| banana production | Cut-off, U",
@@ -5922,8 +5819,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Apple, organic 2025, national average, at orchard {FR} U",
@@ -5979,8 +5875,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Linseed, organic 2025 {RoW}| linseed production | Cut-off, U",
@@ -6036,8 +5931,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Ware potato, organic 2025, variety mix, national average, at farm gate {FR} U",
@@ -6093,8 +5987,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Zucchini, organic 2025, national average, at farm gate {FR} U",
@@ -6150,8 +6043,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Apple, organic 2025, national average, at orchard {FR} U",
@@ -6207,8 +6099,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Quinoa FR, organic 2025, at farm gate {FR} U",
@@ -6264,8 +6155,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Radish, organic 2025 {FR}| radish production, in unheated greenhouse | Cut-off, U",
@@ -6321,8 +6211,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Rapeseed, organic 2025, 9% moisture, national average, animal feed, at farm gate, production {FR} U",
@@ -6378,8 +6267,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Raspberry, at farm, organic 2025 {RS}",
@@ -6435,8 +6323,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RS"
+    "unit": "kg"
   },
   {
     "activityName": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
@@ -6492,8 +6379,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "IN"
+    "unit": "kg"
   },
   {
     "activityName": "Fava bean, Swiss integrated production, organic 2025 {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U",
@@ -6549,8 +6435,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "CH"
+    "unit": "kg"
   },
   {
     "activityName": "Strawberry, open field, organic 2025, at farm gate {FR} U",
@@ -6606,8 +6491,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Lettuce, organic 2025, national average, at farm gate {FR} U",
@@ -6663,8 +6547,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -6720,8 +6603,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025, national average, at farm gate {FR} U",
@@ -6777,8 +6659,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Lettuce, organic 2025, national average, at farm gate {FR} U",
@@ -6834,8 +6715,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025, national average, at farm gate {FR} U",
@@ -6891,8 +6771,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Peanut, organic 2025 {IN}| peanut production | Cut-off, U",
@@ -6948,8 +6827,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "IN"
+    "unit": "kg"
   },
   {
     "activityName": "Onion, organic 2025, national average, at farm {FR} U",
@@ -7005,8 +6883,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
@@ -7062,8 +6939,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Soft wheat grain, organic 2025, breadmaking quality, 15% moisture, at farm gate {FR} U",
@@ -7119,8 +6995,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Sweet sorghum grain, organic 2025 {RoW}| sweet sorghum production | Cut-off, U",
@@ -7176,8 +7051,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Soybean, organic 2025 {BR}| market for soybean | Cut-off, U",
@@ -7233,8 +7107,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "BR"
+    "unit": "kg"
   },
   {
     "activityName": "Durum wheat grain, organic 2025, national average, at farm gate {FR} U",
@@ -7290,8 +7163,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Spinach, organic 2025 {GLO}| production | Cut-off, U",
@@ -7347,8 +7219,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
@@ -7404,8 +7275,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Spring faba bean, organic 2025, reduced protection, at farm gate {FR} U",
@@ -7461,8 +7331,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Spring pea seed, organic, at farm gate {FR} U",
@@ -7518,8 +7387,7 @@
       "food"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Zucchini, organic 2025, national average, at farm gate {FR} U",
@@ -7575,8 +7443,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Strawberry, open field, organic 2025, at farm gate {FR} U",
@@ -7632,8 +7499,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Sugar beet, at farm, organic 2025 {DE}",
@@ -7689,8 +7555,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "DE"
+    "unit": "kg"
   },
   {
     "activityName": "Sunflower, at farm, organic 2025 {FR}",
@@ -7746,8 +7611,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Ware potato, organic 2025, variety mix, national average, at farm gate {FR} U",
@@ -7803,8 +7667,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Spinach, organic 2025 {GLO}| production | Cut-off, U",
@@ -7860,8 +7723,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "GLO"
+    "unit": "kg"
   },
   {
     "activityName": "French bean, organic 2025, national average, at farm gate {FR} U",
@@ -7917,8 +7779,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025 {RoW}| carrot production | Cut-off, U",
@@ -7974,8 +7835,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Tomato, fresh grade, organic 2025 {ES}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U",
@@ -8031,8 +7891,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "ES"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025, national average, at farm gate {FR} U",
@@ -8088,8 +7947,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Walnut, dried inshell, organic 2025, national average, at farm gate {FR} U",
@@ -8145,8 +8003,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Melon, organic 2025, national average, at farm gate {FR} U",
@@ -8202,8 +8059,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "French bean, organic 2025, national average, at farm gate {FR} U",
@@ -8259,8 +8115,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Cabbage white, organic 2025 {RoW}| cabbage white production | Cut-off, U",
@@ -8316,8 +8171,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Wheat grain, organic 2025 {FR}| wheat production | Cut-off, U",
@@ -8373,8 +8227,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
@@ -8430,8 +8283,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   },
   {
     "activityName": "Carrot, organic 2025 {RoW}| carrot production | Cut-off, U",
@@ -8487,8 +8339,7 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "RoW"
+    "unit": "kg"
   },
   {
     "activityName": "Zucchini, organic 2025, national average, at farm gate {FR} U",
@@ -8544,7 +8395,6 @@
       "food"
     ],
     "source": "Ginko 2025",
-    "unit": "kg",
-    "location": "FR"
+    "unit": "kg"
   }
 ]

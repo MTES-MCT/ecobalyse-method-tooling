@@ -187,15 +187,20 @@ def _format_conf(match_info: dict | None) -> str:
 
 
 def get_db_unit(activity_name, location=""):
+    """Return (unit, db_name, location_or_empty).
+
+    The location is only returned when it was needed to disambiguate
+    multiple activities with the same name (e.g. WFLDB).
+    """
     dbs = ("Agribalyse 3.2", "Ecoinvent 3.9.1", "Ecoinvent 3.11", "WFLDB", "Ecobalyse", "Ginko 2025")
     for db in dbs:
         activities = [a for a in bw2data.Database(db) if a["name"] == activity_name]
         if len(activities) == 1:
-            return activities[0]["unit"], db, activities[0].get("location", "")
+            return activities[0]["unit"], db, ""
         if len(activities) > 1 and location:
             filtered = [a for a in activities if a.get("location") == location]
             if len(filtered) >= 1:
-                return filtered[0]["unit"], db, filtered[0].get("location", "")
+                return filtered[0]["unit"], db, location
     raise Exception(f"Not found in {str(dbs)}: {activity_name}")
 
 
