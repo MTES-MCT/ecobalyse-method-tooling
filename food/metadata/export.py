@@ -499,6 +499,14 @@ IMPACT_COLUMNS = [
 OLD_DISPLAY_SUFFIX = " (2025)"
 OLD_ALIAS_SUFFIX = "-2025"
 
+ECOSYSTEMIC_SERVICES_MULTIPLIERS = {
+    "cropDiversity": -1.5,
+    "hedges": -3,
+    "livestockDensity": 3000,
+    "permanentPasture": -7,
+    "plotSize": -4,
+}
+
 
 def normalize_display_name(name: str, old_suffix: str) -> str:
     if not old_suffix:
@@ -804,6 +812,13 @@ def generate_final_data(variant: Variant):
     with open(ingredients_path) as f:
         ingredients_list = json.load(f)
     ingredients_by_alias = {i["alias"]: i for i in ingredients_list}
+    # For ingredients that have no ecosystemicServices, index by activityName as fallback
+    # (a new ingredient may share an activityName with an existing one that has the data)
+    ingredients_es_by_activity = {}
+    for i in ingredients_list:
+        es = i.get("ecosystemicServices")
+        if es and any(v for v in es.values() if v is not None):
+            ingredients_es_by_activity.setdefault(i.get("activityName"), i)
 
     print(
         f"\nLoaded: {len(new_activities)} activities, {len(processes_by_name)} processes, {len(ingredients_list)} ingredients"
@@ -857,14 +872,16 @@ def generate_final_data(variant: Variant):
                 result[col] = ""
 
         # Get ecosystemicServices from ingredients.json
+        # Primary lookup by alias; fall back to activityName when the alias entry has no data
         ingredient = ingredients_by_alias.get(row_alias)
-        if ingredient:
-            es = ingredient.get("ecosystemicServices", {}) or {}
-            result["cropDiversity"] = es.get("cropDiversity") or 0
-            result["hedges"] = es.get("hedges") or 0
-            result["livestockDensity"] = es.get("livestockDensity") or 0
-            result["permanentPasture"] = es.get("permanentPasture") or 0
-            result["plotSize"] = es.get("plotSize") or 0
+        es = (ingredient.get("ecosystemicServices") if ingredient else None) or None
+        if es is None:
+            fallback = ingredients_es_by_activity.get(activity_name)
+            es = (fallback.get("ecosystemicServices") if fallback else None) or {}
+        if ingredient or es:
+            for field, multiplier in ECOSYSTEMIC_SERVICES_MULTIPLIERS.items():
+                raw = es.get(field) or 0
+                result[field] = raw * multiplier if raw else 0
         else:
             result["cropDiversity"] = ""
             result["hedges"] = ""
