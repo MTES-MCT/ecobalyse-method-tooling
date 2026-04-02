@@ -795,15 +795,15 @@ def generate_final_data(variant: Variant):
     print(f"Loading {output_json}...")
     with open(output_json) as f:
         new_activities = json.load(f)
-    # Map activityName to full activity (which contains metadata)
-    activities_by_name = {a["activityName"]: a for a in new_activities}
+    # Map alias to full activity (alias is unique; activityName is not)
+    activities_by_alias = {a["alias"]: a for a in new_activities}
 
     # Load ingredients.json to get ecosystemicServices
     ingredients_path = ECOBALYSE / "public/data/food/ingredients.json"
     print(f"Loading {ingredients_path}...")
     with open(ingredients_path) as f:
         ingredients_list = json.load(f)
-    ingredients_by_name = {i["activityName"]: i for i in ingredients_list}
+    ingredients_by_alias = {i["alias"]: i for i in ingredients_list}
 
     print(
         f"\nLoaded: {len(new_activities)} activities, {len(processes_by_name)} processes, {len(ingredients_list)} ingredients"
@@ -818,8 +818,15 @@ def generate_final_data(variant: Variant):
         result = dict(row)  # Copy all source columns
         activity_name = row["icv final"]
 
+        # Derive alias the same way build_activity_entry does (alias is unique, activityName is not)
+        if variant == Variant.FR and row.get("Production_FR") == "DOM":
+            alias_suffix = "-fr-overseas"
+        else:
+            alias_suffix = VARIANT_ALIAS_SUFFIX[variant]
+        row_alias = generate_alias(row["item"]) + alias_suffix
+
         # Get predicted metadata from new_activities.json
-        activity = activities_by_name.get(activity_name)
+        activity = activities_by_alias.get(row_alias)
         if activity:
             food_meta = next((m for m in activity.get("metadata", []) if "food" in m.get("scopes", [])), {})
             result["categories"] = ";".join(food_meta.get("ingredientCategories", []))
@@ -850,7 +857,7 @@ def generate_final_data(variant: Variant):
                 result[col] = ""
 
         # Get ecosystemicServices from ingredients.json
-        ingredient = ingredients_by_name.get(activity_name)
+        ingredient = ingredients_by_alias.get(row_alias)
         if ingredient:
             es = ingredient.get("ecosystemicServices", {}) or {}
             result["cropDiversity"] = es.get("cropDiversity") or 0
