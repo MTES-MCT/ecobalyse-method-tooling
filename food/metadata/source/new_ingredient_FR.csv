@@ -4,6 +4,7 @@ EB_id0003,Amaranth,Amarante,"Durum wheat grain, conventional, national average, 
 EB_id0005,Apple,Pomme,"Apple, conventional, national average, at orchard {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0006,Apricots,Abricot,"Apricot, conventional, national average, at orchard {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0008,Asparagus,Asperge,"White asparagus {FR}| white asparagus production | Cut-off, U - Copied from Ecoinvent U",FR,FR,Pas de proxy origine,TRUE
+EB_id0011,Bamboo shoots,Pousses de bambou,"White asparagus {FR}| white asparagus production | Cut-off, U - Copied from Ecoinvent U",FR,FR,Pas de proxy origine,TRUE
 EB_id0012,Banana,Banane,"Banana, mixed production, West Indies, at farm gate {WI} U",DOM,WI,Pas de proxy origine,TRUE
 EB_id0014,Bay leaves,Feuilles de laurier,"Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
 EB_id0016,Beetroot,Betterave,"Beetroot for juice, conventional, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
@@ -32,7 +33,7 @@ EB_id0056,Coriander,Coriandre,"Fennel {GLO}| production | Cut-off, U - Adapted f
 EB_id0057,Corn,Maïs,"Maize grain, conventional, 28% moisture, national average, animal feed, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0060,Cow milk,Lait de vache,"Cow milk, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0062,Cranberry,Canneberge,"Cranberry, at farm {CL} - Adapted from WFLDB U",FR,CL,Proxy origine,TRUE
-EB_id0063,Cucumber,Concombre,"Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",FR,GLO,Proxy origine,TRUE
+EB_id0063,Cucumber,Concombre,"Tomato, medium size, conventional, soil based, non-heated greenhouse, at greenhouse {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0066,"Dill, fresh","Aneth, frais","Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
 EB_id0067,"Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage)","Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge)","Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
 EB_id0069,Durum wheat,Blé dur,"Durum wheat grain, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
@@ -50,7 +51,7 @@ EB_id0083,Garlic,Ail,"Onion, conventional, national average, at farm {FR} U",FR,
 EB_id0084,Gherkin,Cornichon,"Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",FR,GLO,Proxy origine,TRUE
 EB_id0088,Gooseberry,Groseille,"Strawberry, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0089,Grapefruit,Pamplemousse,"Orange, fresh grade, at farm {ES} - Adapted from WFLDB U",FR,ES,Proxy origine,TRUE
-EB_id0090,Grapes (black or white),Raisins (noirs ou blancs),"Grape {RoW}| grape production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
+EB_id0090,Grapes (black or white),Raisins (noirs ou blancs),"Grape, integrated, french mix {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0091,Green cabbage,Chou vert,"Cauliflower, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0092,Greengage plum,Prune reine-claude,"Cherry, conventional, national average, at orchard {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0093,Guava,Goyave,"Kiwi FR, conventional, national average, at orchard {FR} U",DOM,FR,Pas de proxy origine,TRUE
@@ -139,9 +140,14 @@ EB_id0228,Whole millet,Millet entier,"Wheat grain {FR}| wheat production | Cut-o
 EB_id0229,Whole rye,Seigle entier,"Rye grain, feed, Swiss integrated production {CH}| production | Cut-off, U - Copied from Ecoinvent U",FR,CH,Proxy origine,TRUE
 EB_id0230,Winter pea,Pois d'hiver,"Winter pea, conventional, 15% moisture, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB_id0233,Zucchini,Courgettes,"Zucchini, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
-EB2_id001,Garlic,Ail,"Onion, conventional, national average, at farm {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB2_id002,Artichoke,Artichaut,"Cauliflower, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB2_id003,Snail,Escargot,"Snail, wild {BE} U",FR,BE,Proxy origine,TRUE
 EB2_id004,Cotton seed,Graine de coton,"Seed-cotton {RoW}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
 EB2_id005,Lupin,Lupin,"Lupin, conventional, national average, at farm gate, production {FR} U",FR,FR,Pas de proxy origine,TRUE
 EB2_id006,Alfalfa,Luzerne,"Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",FR,RoW,Proxy origine,TRUE
+EB_idV01,Beef,Boeuf,"Beef cattle, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
+EB_idV03,Broiler,Poulet,"Broiler, conventional, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
+EB_idV05,Poultry,Volaille,"Broiler, conventional, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
+EB_idV06,Lamb,Agneau,"Lamb, conventional, indoor production system, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
+EB_idV07,Pork,Porc,"Mixt pig, conventional, national average, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE
+EB_idV08,Rabbit,Lapin,"Broiler, conventional, at farm gate {FR} U",FR,FR,Pas de proxy origine,FALSE

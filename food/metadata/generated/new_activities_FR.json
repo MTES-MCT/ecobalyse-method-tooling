@@ -275,19 +275,74 @@
     "unit": "kg"
   },
   {
-    "activityName": "Banana, mixed production, West Indies, at farm gate {WI} U",
-    "alias": "banana-fr-overseas",
+    "activityName": "White asparagus {FR}| white asparagus production | Cut-off, U - Copied from Ecoinvent U",
+    "alias": "bamboo-shoot-fr",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Banane FR Outre-Mer",
-    "id": "05798cff-3090-5a2b-bf1f-636d61fc70c7",
+    "displayName": "Pousses de bambou FR",
+    "id": "508919c1-9048-5e82-b53e-5d86044508fd",
     "metadata": [
       {
-        "alias": "banana-fr-overseas",
+        "alias": "bamboo-shoot-fr",
         "defaultOrigin": "France",
-        "displayName": "Banane FR Outre-Mer",
-        "id": "ed59e002-178b-5132-9df5-6883261dfa1c",
+        "displayName": "Pousses de bambou FR",
+        "id": "dd25d91e-cec8-548c-9041-147b79ff7970",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "reference",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food"
+        ]
+      }
+    ],
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Banana, mixed production, West Indies, at farm gate {WI} U",
+    "alias": "banana-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Banane FR",
+    "id": "e856dc95-9cb8-596a-a339-475a335ff50a",
+    "metadata": [
+      {
+        "alias": "banana-fr",
+        "defaultOrigin": "France",
+        "displayName": "Banane FR",
+        "id": "1cdce07d-e655-5e2c-8020-36162b99aef9",
         "inediblePart": 0.3,
         "inediblePartMatch": {
           "rule": "Matched with Banana in agb_inedible.csv",
@@ -606,18 +661,18 @@
   },
   {
     "activityName": "Mango, conventional, Val de San Francisco, at orchard {BR} U",
-    "alias": "breadfruit-fr-overseas",
+    "alias": "breadfruit-fr",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Fruit à pain FR Outre-Mer",
-    "id": "b03b4854-6e20-5fbb-9ef0-88ed6cf0da15",
+    "displayName": "Fruit à pain FR",
+    "id": "9602e8c8-8d50-539d-9ff2-2a3877957b78",
     "metadata": [
       {
-        "alias": "breadfruit-fr-overseas",
+        "alias": "breadfruit-fr",
         "defaultOrigin": "France",
-        "displayName": "Fruit à pain FR Outre-Mer",
-        "id": "5912afe2-4eaf-5676-b83e-8635066f8359",
+        "displayName": "Fruit à pain FR",
+        "id": "8ba9ef9a-2311-5a41-aa49-273f5ad720fb",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -1541,18 +1596,18 @@
   },
   {
     "activityName": "Coconut, dehusked {ID}| coconut production, dehusked | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "coconut-dehusked-fr-overseas",
+    "alias": "coconut-dehusked-fr",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Noix de coco décortiquée FR Outre-Mer",
-    "id": "165ee2e7-f4a7-556b-a965-32c7ae320c53",
+    "displayName": "Noix de coco décortiquée FR",
+    "id": "e62e1cdd-2fc0-5576-8779-696283e542bf",
     "metadata": [
       {
-        "alias": "coconut-dehusked-fr-overseas",
+        "alias": "coconut-dehusked-fr",
         "defaultOrigin": "France",
-        "displayName": "Noix de coco décortiquée FR Outre-Mer",
-        "id": "79109cbe-e78f-5c83-8140-169b550bf068",
+        "displayName": "Noix de coco décortiquée FR",
+        "id": "f822a925-7754-5933-84a9-82eee0440f9a",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -1813,7 +1868,7 @@
     "unit": "kg"
   },
   {
-    "activityName": "Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Tomato, medium size, conventional, soil based, non-heated greenhouse, at greenhouse {FR} U",
     "alias": "cucumber-fr",
     "categories": [
       "ingredient"
@@ -2801,7 +2856,7 @@
     "unit": "kg"
   },
   {
-    "activityName": "Grape {RoW}| grape production | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Grape, integrated, french mix {FR} U",
     "alias": "grape-black-or-white-fr",
     "categories": [
       "ingredient"
@@ -2967,18 +3022,18 @@
   },
   {
     "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
-    "alias": "guava-fr-overseas",
+    "alias": "guava-fr",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Goyave FR Outre-Mer",
-    "id": "1460243e-edad-5400-ba18-9fd83633598d",
+    "displayName": "Goyave FR",
+    "id": "30b53bca-8695-59e6-ac78-45b787b47b24",
     "metadata": [
       {
-        "alias": "guava-fr-overseas",
+        "alias": "guava-fr",
         "defaultOrigin": "France",
-        "displayName": "Goyave FR Outre-Mer",
-        "id": "9843e808-978d-5e45-89b2-1c076851386c",
+        "displayName": "Goyave FR",
+        "id": "2fb07093-8bbd-5748-bc27-ab3220d5cbc1",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -3677,18 +3732,18 @@
   },
   {
     "activityName": "Mango, conventional, Val de San Francisco, at orchard {BR} U",
-    "alias": "lychee-fr-overseas",
+    "alias": "lychee-fr",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Litchi FR Outre-Mer",
-    "id": "9d82775c-702a-5ce3-97a6-edec310b9bfa",
+    "displayName": "Litchi FR",
+    "id": "b4201f44-eda5-55e4-aae2-91c7a3f8f775",
     "metadata": [
       {
-        "alias": "lychee-fr-overseas",
+        "alias": "lychee-fr",
         "defaultOrigin": "France",
-        "displayName": "Litchi FR Outre-Mer",
-        "id": "d28fd59a-ae07-5813-b707-c9329ffc39ed",
+        "displayName": "Litchi FR",
+        "id": "49f28010-4312-57ee-9a96-8058e2ca96f9",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -3787,18 +3842,18 @@
   },
   {
     "activityName": "Mango, conventional, Val de San Francisco, at orchard {BR} U",
-    "alias": "mango-fr-overseas",
+    "alias": "mango-fr",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Mangue FR Outre-Mer",
-    "id": "3ac2cffb-be57-58c0-b77d-562256325e1e",
+    "displayName": "Mangue FR",
+    "id": "476ce552-d1c0-55df-9424-f62339387dd5",
     "metadata": [
       {
-        "alias": "mango-fr-overseas",
+        "alias": "mango-fr",
         "defaultOrigin": "France",
-        "displayName": "Mangue FR Outre-Mer",
-        "id": "5d39ed23-3000-54af-9c47-6954802a3cf5",
+        "displayName": "Mangue FR",
+        "id": "49ca593f-7466-531a-8444-0746c68114a7",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Mango in agb_inedible.csv",
@@ -4392,18 +4447,18 @@
   },
   {
     "activityName": "Papaya {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "papaya-fr-overseas",
+    "alias": "papaya-fr",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Papaye FR Outre-Mer",
-    "id": "18a2531b-63ac-53fa-95a9-d9f957364901",
+    "displayName": "Papaye FR",
+    "id": "8f5510ea-4304-5791-a0d9-81d74a3c4d6b",
     "metadata": [
       {
-        "alias": "papaya-fr-overseas",
+        "alias": "papaya-fr",
         "defaultOrigin": "France",
-        "displayName": "Papaye FR Outre-Mer",
-        "id": "d570f7df-ca64-505b-ac16-da2685b71722",
+        "displayName": "Papaye FR",
+        "id": "b17e9fc9-2de8-575a-b8ce-060665b385e1",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -4797,10 +4852,10 @@
         "ingredientCategories": [
           "nut_oilseed_raw"
         ],
-        "ingredientDensity": 0.63,
+        "ingredientDensity": 0.6,
         "ingredientDensityMatch": {
-          "rule": "Matched with Nuts in fao_density.csv",
-          "confidence": 0.95
+          "rule": "nut_oilseed default from food_type_density.csv",
+          "confidence": 1.0
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -4816,7 +4871,7 @@
         "visible": true,
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "matched 'noix' in cropgroup.csv",
+          "rule": "nut default",
           "confidence": 1.0
         },
         "scopes": [
@@ -4832,18 +4887,18 @@
   },
   {
     "activityName": "Pineapple, at farm {CR} - Adapted from WFLDB U",
-    "alias": "pineapple-fr-overseas",
+    "alias": "pineapple-fr",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Ananas FR Outre-Mer",
-    "id": "049e074f-f883-5aa9-a303-83fb4baf0df7",
+    "displayName": "Ananas FR",
+    "id": "5f092708-22a4-5caa-b361-d7d4dfd04ce2",
     "metadata": [
       {
-        "alias": "pineapple-fr-overseas",
+        "alias": "pineapple-fr",
         "defaultOrigin": "France",
-        "displayName": "Ananas FR Outre-Mer",
-        "id": "d3c1b683-ba25-5bbb-a249-c4cb6b3331bb",
+        "displayName": "Ananas FR",
+        "id": "1c2dee99-0171-5f46-8da9-e5928fbfb009",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "Matched with Pineapple in agb_inedible.csv",
@@ -5311,7 +5366,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'carrot' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -7135,18 +7190,18 @@
   },
   {
     "activityName": "Vanilla {MG}| vanilla production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "vanilla-alcoholic-or-aqueou-extract-fr-overseas",
+    "alias": "vanilla-alcoholic-or-aqueou-extract-fr",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Extrait de vanille, alcoolique ou aqueux FR Outre-Mer",
-    "id": "1d960b87-5360-543c-afb3-592f217fe6cd",
+    "displayName": "Extrait de vanille, alcoolique ou aqueux FR",
+    "id": "fc7e1157-c02f-571f-bae0-5a8e6da72955",
     "metadata": [
       {
-        "alias": "vanilla-alcoholic-or-aqueou-extract-fr-overseas",
+        "alias": "vanilla-alcoholic-or-aqueou-extract-fr",
         "defaultOrigin": "France",
-        "displayName": "Extrait de vanille, alcoolique ou aqueux FR Outre-Mer",
-        "id": "56776050-b4f4-5db7-a878-2e2003fff390",
+        "displayName": "Extrait de vanille, alcoolique ou aqueux FR",
+        "id": "c2ef7c69-52ef-57f6-9aee-632562b5d7ed",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -7684,61 +7739,6 @@
     "unit": "kg"
   },
   {
-    "activityName": "Onion, conventional, national average, at farm {FR} U",
-    "alias": "garlic-fr",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Ail FR",
-    "id": "c03816c8-9022-5c40-93ed-8cb4b31d541f",
-    "metadata": [
-      {
-        "alias": "garlic-fr",
-        "defaultOrigin": "France",
-        "displayName": "Ail FR",
-        "id": "ed105d1a-b85e-5aa5-9e22-8fa74103aaef",
-        "inediblePart": 0.1,
-        "inediblePartMatch": {
-          "rule": "Matched with Garlic in agb_inedible.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.3,
-        "ingredientDensityMatch": {
-          "rule": "garlic found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with garlic in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "reference",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food"
-        ]
-      }
-    ],
-    "scopes": [
-      "food"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
     "alias": "artichoke-fr",
     "categories": [
@@ -7997,6 +7997,329 @@
           "rule": "legume default",
           "confidence": 1.0
         },
+        "scopes": [
+          "food"
+        ]
+      }
+    ],
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Beef cattle, conventional, national average, at farm gate {FR} U",
+    "alias": "beef-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Boeuf FR",
+    "id": "a72ad133-407d-5a41-8c33-ccbb0d989069",
+    "metadata": [
+      {
+        "alias": "beef-fr",
+        "defaultOrigin": "France",
+        "displayName": "Boeuf FR",
+        "id": "83dd3304-48b4-524a-ac85-de5402385fa3",
+        "inediblePart": 0.05,
+        "inediblePartMatch": {
+          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "ingredientDensity": 1.05,
+        "ingredientDensityMatch": {
+          "rule": "beef found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.792,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with ground beef in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "reference",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "meat NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "animalGroup1": "cattle",
+        "animalGroup2": "cow",
+        "animalProduct": "meat",
+        "scopes": [
+          "food"
+        ]
+      }
+    ],
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Broiler, conventional, at farm gate {FR} U",
+    "alias": "broiler-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Poulet FR",
+    "id": "6a4bf7d8-c0f5-55cd-b6ea-d3d3a52574de",
+    "metadata": [
+      {
+        "alias": "broiler-fr",
+        "defaultOrigin": "France",
+        "displayName": "Poulet FR",
+        "id": "5b787acc-bc8d-5c7a-907c-09441b47151d",
+        "inediblePart": 0.05,
+        "inediblePartMatch": {
+          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "ingredientDensity": 1.05,
+        "ingredientDensityMatch": {
+          "rule": "meat default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.755,
+        "rawToCookedRatioMatch": {
+          "rule": "poultry keyword found in Broiler",
+          "confidence": 1.0
+        },
+        "scenario": "reference",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "meat NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "PRAIRIES PERMANENTES",
+        "cropGroupMatch": {
+          "rule": "matched 'prairies naturelles' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "animalGroup1": "poultry",
+        "animalGroup2": "chicken",
+        "animalProduct": "meat",
+        "scopes": [
+          "food"
+        ]
+      }
+    ],
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Broiler, conventional, at farm gate {FR} U",
+    "alias": "poultry-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Volaille FR",
+    "id": "adf4d350-6b58-5e7e-b2ef-af123b3f789c",
+    "metadata": [
+      {
+        "alias": "poultry-fr",
+        "defaultOrigin": "France",
+        "displayName": "Volaille FR",
+        "id": "7fbeb096-3076-55a7-b5e2-341ba3e1d59e",
+        "inediblePart": 0.05,
+        "inediblePartMatch": {
+          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "ingredientDensity": 1.05,
+        "ingredientDensityMatch": {
+          "rule": "meat default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.755,
+        "rawToCookedRatioMatch": {
+          "rule": "poultry keyword found in Poultry",
+          "confidence": 1.0
+        },
+        "scenario": "reference",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "meat NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "animalGroup1": "poultry",
+        "animalGroup2": "chicken",
+        "animalProduct": "meat",
+        "scopes": [
+          "food"
+        ]
+      }
+    ],
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Lamb, conventional, indoor production system, at farm gate {FR} U",
+    "alias": "lamb-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Agneau FR",
+    "id": "3df890a5-9e47-5705-badc-ceef67a4bc33",
+    "metadata": [
+      {
+        "alias": "lamb-fr",
+        "defaultOrigin": "France",
+        "displayName": "Agneau FR",
+        "id": "d769a057-a17c-557f-849a-94cebdeabfa3",
+        "inediblePart": 0.05,
+        "inediblePartMatch": {
+          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "ingredientDensity": 1.05,
+        "ingredientDensityMatch": {
+          "rule": "lamb found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.792,
+        "rawToCookedRatioMatch": {
+          "rule": "meat default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "reference",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "meat NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "animalGroup1": "sheep",
+        "animalGroup2": "sheep",
+        "animalProduct": "meat",
+        "scopes": [
+          "food"
+        ]
+      }
+    ],
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Mixt pig, conventional, national average, at farm gate {FR} U",
+    "alias": "pork-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Porc FR",
+    "id": "df49b412-2d28-53ff-8a1d-b359e8d00e63",
+    "metadata": [
+      {
+        "alias": "pork-fr",
+        "defaultOrigin": "France",
+        "displayName": "Porc FR",
+        "id": "20f23531-773c-5d76-a87e-ad99086f61d8",
+        "inediblePart": 0.05,
+        "inediblePartMatch": {
+          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "ingredientDensity": 1.05,
+        "ingredientDensityMatch": {
+          "rule": "pork found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.792,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with pork in cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "reference",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "meat NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "animalGroup1": "pig",
+        "animalGroup2": "pig",
+        "animalProduct": "meat",
+        "scopes": [
+          "food"
+        ]
+      }
+    ],
+    "scopes": [
+      "food"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Broiler, conventional, at farm gate {FR} U",
+    "alias": "rabbit-fr",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Lapin FR",
+    "id": "7c10a53a-3cbd-5a70-b021-df44b57cda99",
+    "metadata": [
+      {
+        "alias": "rabbit-fr",
+        "defaultOrigin": "France",
+        "displayName": "Lapin FR",
+        "id": "0d3c6e8c-bd97-5011-9011-1d7771db43b0",
+        "inediblePart": 0.05,
+        "inediblePartMatch": {
+          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "rabbit found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.755,
+        "rawToCookedRatioMatch": {
+          "rule": "poultry keyword found in Rabbit",
+          "confidence": 1.0
+        },
+        "scenario": "reference",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "meat NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "animalGroup1": "poultry",
+        "animalGroup2": "chicken",
+        "animalProduct": "meat",
         "scopes": [
           "food"
         ]
