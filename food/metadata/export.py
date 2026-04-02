@@ -624,7 +624,7 @@ def reassemble(
         entry = {**act}
         non_food_meta = entry.pop("_non_food_metadata", [])
         ings = by_activity.get(dn, [])
-        food_ings = [{**ing, "scopes": ["food"]} for ing in ings]
+        food_ings = [{**ing, "scopes": ing.get("scopes", ["food"])} for ing in ings]
         all_meta = non_food_meta + food_ings
         if all_meta:
             entry["metadata"] = all_meta
