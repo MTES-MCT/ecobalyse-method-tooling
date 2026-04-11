@@ -81,6 +81,13 @@ DB_MAP: dict[str, str] = {
 # Alias suffixes that identify raw ingredient variants (longest first to avoid partial matches)
 VARIANT_SUFFIXES = ["-organic", "-default", "-fr"]
 
+# French display name suffixes per scenario (matching export.py VARIANT_SUFFIX)
+VARIANT_DISPLAY_SUFFIX: dict[str, str] = {
+    "reference": " FR",
+    "organic": " Bio",
+    "import": " Origine Inconnue",
+}
+
 # Classification filters matching the "transformed" preset in volca.toml
 # Sent as a single request with repeated query parameters (OR semantics server-side)
 TRANSFORMED_FILTERS: list[tuple[str, str, str]] = [
@@ -126,6 +133,55 @@ def strip_variant_suffix(alias: str) -> str | None:
         if alias.endswith(suffix):
             return alias[:-len(suffix)]
     return None
+
+
+CORRECTIONS_CSV = Path(__file__).parent / "translation_corrections.csv"
+
+
+def _load_corrections() -> dict[str, str]:
+    """Load post-translation corrections from CSV."""
+    import csv
+    if not CORRECTIONS_CSV.exists():
+        return {}
+    with CORRECTIONS_CSV.open(newline="", encoding="utf-8") as f:
+        return {row["wrong"]: row["correct"] for row in csv.DictReader(f)}
+
+
+def translate_en_to_fr(names: list[str]) -> list[str]:
+    """Translate English food product names to French using Helsinki-NLP/opus-mt-en-fr."""
+    if not names:
+        return []
+    from transformers import MarianMTModel, MarianTokenizer
+    model_name = "Helsinki-NLP/opus-mt-en-fr"
+    tokenizer = MarianTokenizer.from_pretrained(model_name)
+    model = MarianMTModel.from_pretrained(model_name)
+    tokens = tokenizer(names, return_tensors="pt", padding=True, truncation=True)
+    translated = model.generate(**tokens)
+    results = tokenizer.batch_decode(translated, skip_special_tokens=True)
+    corrections = _load_corrections()
+    return [corrections.get(t, t) for t in results]
+
+
+# Patterns for LCA jargon segments to drop from activity names
+_JARGON_RE = re.compile(
+    r"^at (processing|plant|industrial mill|orchard|farm)"
+    r"|production"
+    r"|^for "
+    r"|^from "
+    r"|^NFC$|^1L$|^1kg of |^conventional$|^national average$",
+    re.IGNORECASE,
+)
+
+
+def extract_short_name(activity_name: str) -> str:
+    """Extract a human-readable product name from an Agribalyse activity name.
+
+    Strips LCA jargon (location, production method, packaging) and geo codes,
+    keeping only segments that describe the product itself."""
+    clean = re.sub(r"\s*\{[^}]+\}\s*U$", "", activity_name).strip()
+    segments = [s.strip() for s in clean.split(",")]
+    kept = [s for s in segments if not _JARGON_RE.search(s)]
+    return ", ".join(kept) if kept else segments[0]
 
 
 def is_proxy(base_name: str, activity_name: str) -> bool:
@@ -357,12 +413,12 @@ def make_from_existing(
     }
 
 
-def make_activities_entry(fe_block: dict, target: VariantInfo) -> dict:
+def make_activities_entry(fe_block: dict, target: VariantInfo, french_name: str) -> dict:
     """Build an activities.json entry for a new transformed ingredient variant."""
     meta = target.raw_meta
     alias = fe_block["alias"]
-    # Display name: reuse raw variant's displayName logic or construct one
-    display_name = meta.get("displayName", alias)
+    variant_suffix = VARIANT_DISPLAY_SUFFIX.get(target.scenario, "")
+    display_name = french_name + variant_suffix
 
     return {
         "activityName": fe_block["newName"],
@@ -512,23 +568,39 @@ def main() -> None:
                 fe = make_from_existing(path, source, target, all_generated_aliases)
                 if fe is None:
                     continue
-                ae = make_activities_entry(fe, target)
-                output_fe.append(fe)
-                output_ae.append(ae)
+                # Extract short English name for translation
+                short_name = extract_short_name(fe["existingActivity"]["name"])
+                output_fe.append((fe, target, short_name))
                 all_generated_aliases.add(fe["alias"])
+
+    # Translate short English names to French in one batch
+    short_names = list(dict.fromkeys(short_name for _, _, short_name in output_fe))
+    print(f"Translating {len(short_names)} unique product names to French ...")
+    french_names = translate_en_to_fr(short_names)
+    en_to_fr = dict(zip(short_names, french_names))
+    for en, fr in en_to_fr.items():
+        print(f"  {en} → {fr}")
+
+    # Build final outputs
+    final_fe: list[dict] = []
+    final_ae: list[dict] = []
+    for fe, target, short_name in output_fe:
+        ae = make_activities_entry(fe, target, en_to_fr[short_name])
+        final_fe.append(fe)
+        final_ae.append(ae)
 
     # Write outputs
     fe_path = output_dir / "generated_activities_to_create.json"
     ae_path = output_dir / "generated_activities.json"
 
     with fe_path.open("w") as f:
-        json.dump(output_fe, f, indent=2, ensure_ascii=False)
+        json.dump(final_fe, f, indent=2, ensure_ascii=False)
     with ae_path.open("w") as f:
-        json.dump(output_ae, f, indent=2, ensure_ascii=False)
+        json.dump(final_ae, f, indent=2, ensure_ascii=False)
 
     print(f"\nDone.")
-    print(f"  {len(output_fe)} from_existing blocks → {fe_path}")
-    print(f"  {len(output_ae)} activities.json entries → {ae_path}")
+    print(f"  {len(final_fe)} from_existing blocks → {fe_path}")
+    print(f"  {len(final_ae)} activities.json entries → {ae_path}")
 
 
 if __name__ == "__main__":
