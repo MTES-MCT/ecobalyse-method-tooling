@@ -143,14 +143,31 @@ def main() -> None:
     parser.add_argument("--volca-url", default=VOLCA_URL)
     parser.add_argument("--db", default=DB)
     parser.add_argument("--output", default="transform_params.csv")
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Process every activity matched by the 'transformed' preset instead of the 4 reference PIDs.",
+    )
+    parser.add_argument("--limit", type=int, default=None)
     args = parser.parse_args()
 
     client = Client(base_url=args.volca_url, db=args.db)
 
+    if args.all:
+        acts = client.search_activities(preset="transformed", limit=args.limit)
+        targets = [(a.name, a.location, a.process_id) for a in acts]
+        print(f"Found {len(targets)} activities via preset=transformed")
+    else:
+        targets = REFERENCE_PROCESSES
+
     rows: list[Row] = []
-    for label, variant, pid in REFERENCE_PROCESSES:
+    for label, variant, pid in targets:
         print(f"-> {label} ({variant}) ...")
-        d = decompose(client, pid)
+        try:
+            d = decompose(client, pid)
+        except Exception as e:
+            print(f"   skipped: {e}")
+            continue
         rows.append(to_row(label, variant, pid, d))
 
     print()
