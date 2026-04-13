@@ -9,15 +9,11 @@
     },
     "newName": "Almond, unshelled, at processing {FR} U [almond-in-shell-organic] {{almond-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Almond, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Almonds, in shell, at farm {CN} - Adapted from WFLDB U"
+            "name": "Almond, consumption mix {FR} U"
           },
           "to": {
             "name": "Almonds, in shell, at farm, organic 2025 {CN}",
@@ -37,15 +33,11 @@
     },
     "newName": "Apple juice, industrial production, at plant, NFC, 1L {FR} U [apple-organic] {{apple-juice-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Table apple, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Apple, conventional, national average, at orchard {FR} U"
+            "name": "Table apple, consumption mix {FR} U"
           },
           "to": {
             "name": "Apple, organic 2025, national average, at orchard {FR} U",
@@ -65,15 +57,11 @@
     },
     "newName": "Apple juice, industrial production, at plant, NFC, 1L {FR} U [apple-default] {{apple-juice-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Table apple, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Apple, conventional, national average, at orchard {FR} U"
+            "name": "Table apple, consumption mix {FR} U"
           },
           "to": {
             "name": "Apple, at farm (WFLDB)",
@@ -93,15 +81,11 @@
     },
     "newName": "Table apple, peeled, at processing {FR} U [apple-organic] {{table-apple-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Table apple, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Apple, conventional, national average, at orchard {FR} U"
+            "name": "Table apple, consumption mix {FR} U"
           },
           "to": {
             "name": "Apple, organic 2025, national average, at orchard {FR} U",
@@ -121,15 +105,11 @@
     },
     "newName": "Table apple, peeled, at processing {FR} U [apple-default] {{table-apple-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Table apple, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Apple, conventional, national average, at orchard {FR} U"
+            "name": "Table apple, consumption mix {FR} U"
           },
           "to": {
             "name": "Apple, at farm (WFLDB)",
@@ -245,15 +225,11 @@
     },
     "newName": "Apricot, pitted, at processing {FR} U [apricot-organic] {{apricot-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Apricot, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Apricot, conventional, national average, at orchard {FR} U"
+            "name": "Apricot, consumption mix {FR} U"
           },
           "to": {
             "name": "Apricot, organic 2025 {FR}| apricot production | Cut-off, U",
@@ -273,15 +249,11 @@
     },
     "newName": "Apricot, pitted, at processing {FR} U [apricot-default] {{apricot-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Apricot, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Apricot, conventional, national average, at orchard {FR} U"
+            "name": "Apricot, consumption mix {FR} U"
           },
           "to": {
             "name": "Apricot, at farm (WFLDB)",
@@ -357,15 +329,11 @@
     },
     "newName": "Barley flour, at industrial mill {FR} U [barley-whole-default] {{barley-flour-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Barley, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Barley grain {FR}| barley production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Barley, consumption mix {FR} U"
           },
           "to": {
             "name": "Barley grain, non-irrigated, at farm (WFLDB)",
@@ -385,15 +353,11 @@
     },
     "newName": "Barley bran, at industrial mill {FR} U [barley-whole-default] {{barley-bran-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Barley, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Barley grain {FR}| barley production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Barley, consumption mix {FR} U"
           },
           "to": {
             "name": "Barley grain, non-irrigated, at farm (WFLDB)",
@@ -437,15 +401,11 @@
     },
     "newName": "Broccoli, peeled, at processing {FR} U [broccoli-organic] {{broccoli-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Broccoli, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Broccoli {GLO}| production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Broccoli, consumption mix {FR} U"
           },
           "to": {
             "name": "Broccoli, organic 2025 {GLO}| production | Cut-off, U",
@@ -465,15 +425,11 @@
     },
     "newName": "White cabbage, peeled, at processing {FR} U [white-cabbage-organic] {{white-cabbage-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "White cabbage, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Cabbage white {RoW}| cabbage white production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "White cabbage, consumption mix {FR} U"
           },
           "to": {
             "name": "Cabbage white, organic 2025 {RoW}| cabbage white production | Cut-off, U",
@@ -741,15 +697,11 @@
     },
     "newName": "Carrot, peeled, at processing {FR} U [carrot-organic] {{carrot-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Carrot, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Carrot, conventional, national average, at farm gate {FR} U"
+            "name": "Carrot, consumption mix {FR} U"
           },
           "to": {
             "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
@@ -769,15 +721,11 @@
     },
     "newName": "Carrot, peeled, at processing {FR} U [carrot-default] {{carrot-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Carrot, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Carrot, conventional, national average, at farm gate {FR} U"
+            "name": "Carrot, consumption mix {FR} U"
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
@@ -797,15 +745,11 @@
     },
     "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-organic] {{frozen-carrot-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Carrot, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Carrot, conventional, national average, at farm gate {FR} U"
+            "name": "Carrot, consumption mix {FR} U"
           },
           "to": {
             "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
@@ -825,15 +769,11 @@
     },
     "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-default] {{frozen-carrot-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Carrot, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Carrot, conventional, national average, at farm gate {FR} U"
+            "name": "Carrot, consumption mix {FR} U"
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
@@ -853,15 +793,11 @@
     },
     "newName": "Cauliflower, peeled, at processing {FR} U [cauliflower-default] {{cauliflower-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Cauliflower, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Cauliflower, conventional, national average, at farm gate {FR} U"
+            "name": "Cauliflower, consumption mix {FR} U"
           },
           "to": {
             "name": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
@@ -881,15 +817,11 @@
     },
     "newName": "Cauliflower, peeled, at processing {FR} U [cauliflower-organic] {{cauliflower-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Cauliflower, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Cauliflower, conventional, national average, at farm gate {FR} U"
+            "name": "Cauliflower, consumption mix {FR} U"
           },
           "to": {
             "name": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
@@ -909,15 +841,11 @@
     },
     "newName": "Celery stalk, peeled, at processing {FR} U [celery-organic] {{celery-stalk-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Celery, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Celery {GLO}| 675 production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Celery, consumption mix {FR} U"
           },
           "to": {
             "name": "Celery, organic 2025 {GLO}| 675 production | Cut-off, U",
@@ -937,15 +865,11 @@
     },
     "newName": "Celery, peeled, at processing {FR} U [celery-organic] {{celery-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Celery, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Celery {GLO}| 675 production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Celery, consumption mix {FR} U"
           },
           "to": {
             "name": "Celery, organic 2025 {GLO}| 675 production | Cut-off, U",
@@ -1013,15 +937,11 @@
     },
     "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-default] {{chicory-roots-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chicory roots, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Chicory roots, conventional, at farm gate {FR} U"
+            "name": "Chicory roots, consumption mix {FR} U"
           },
           "to": {
             "name": "Chicory witloof, early, conventional, root production, at farm gate {FR} U"
@@ -1040,15 +960,11 @@
     },
     "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-organic] {{chicory-roots-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chicory roots, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Chicory roots, conventional, at farm gate {FR} U"
+            "name": "Chicory roots, consumption mix {FR} U"
           },
           "to": {
             "name": "Chicory roots, organic 2025, at farm gate {FR} U",
@@ -1115,15 +1031,11 @@
     },
     "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-organic] {{chicken-egg-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chicken egg, raw, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Egg, conventionnal, national average, at farm gate {FR} U"
+            "name": "Chicken egg, raw, consumption mix {FR} U"
           },
           "to": {
             "name": "Egg, organic, at farm gate {FR} U"
@@ -1142,15 +1054,11 @@
     },
     "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-default] {{chicken-egg-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chicken egg, raw, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Egg, conventionnal, national average, at farm gate {FR} U"
+            "name": "Chicken egg, raw, consumption mix {FR} U"
           },
           "to": {
             "name": "Chicken egg, poultry industrial laying systems, at farm (WFLDB)",
@@ -1170,15 +1078,11 @@
     },
     "newName": "Egg white, raw, at processing {FR} U [egg-organic] {{egg-white-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chicken egg, raw, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Egg, conventionnal, national average, at farm gate {FR} U"
+            "name": "Chicken egg, raw, consumption mix {FR} U"
           },
           "to": {
             "name": "Egg, organic, at farm gate {FR} U"
@@ -1197,15 +1101,11 @@
     },
     "newName": "Egg white, raw, at processing {FR} U [egg-default] {{egg-white-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chicken egg, raw, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Egg, conventionnal, national average, at farm gate {FR} U"
+            "name": "Chicken egg, raw, consumption mix {FR} U"
           },
           "to": {
             "name": "Chicken egg, poultry industrial laying systems, at farm (WFLDB)",
@@ -1225,15 +1125,11 @@
     },
     "newName": "Egg yolk, raw, at processing {FR} U [egg-organic] {{egg-yolk-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chicken egg, raw, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Egg, conventionnal, national average, at farm gate {FR} U"
+            "name": "Chicken egg, raw, consumption mix {FR} U"
           },
           "to": {
             "name": "Egg, organic, at farm gate {FR} U"
@@ -1252,15 +1148,11 @@
     },
     "newName": "Egg yolk, raw, at processing {FR} U [egg-default] {{egg-yolk-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chicken egg, raw, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Egg, conventionnal, national average, at farm gate {FR} U"
+            "name": "Chicken egg, raw, consumption mix {FR} U"
           },
           "to": {
             "name": "Chicken egg, poultry industrial laying systems, at farm (WFLDB)",
@@ -1280,15 +1172,11 @@
     },
     "newName": "Fennel, peeled, at processing {FR} U [fennel-organic] {{fennel-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Fennel, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Fennel, consumption mix {FR} U"
           },
           "to": {
             "name": "Fennel, organic 2025 {GLO}| production | Cut-off, U",
@@ -1308,15 +1196,11 @@
     },
     "newName": "French bean, peeled, at processing {FR} U [french-bean-organic] {{french-bean-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "French bean, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "French bean, conventional, national average, at farm gate {FR} U"
+            "name": "French bean, consumption mix {FR} U"
           },
           "to": {
             "name": "French bean, organic 2025, national average, at farm gate {FR} U",
@@ -1336,15 +1220,11 @@
     },
     "newName": "French bean, for canned and frozen products, trimmed, at processing {FR} U [french-bean-organic] {{french-bean-for-canned-and-frozen-products-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "French bean, for canned and frozen products, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "French bean, conventional, national average, at farm gate {FR} U"
+            "name": "French bean, for canned and frozen products, consumption mix {FR} U"
           },
           "to": {
             "name": "French bean, organic 2025, national average, at farm gate {FR} U",
@@ -1364,15 +1244,11 @@
     },
     "newName": "Table grape, peeled, at processing {FR} U [grape-black-or-white-organic] {{table-grape-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Table grape, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Grape {RoW}| grape production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Table grape, consumption mix {FR} U"
           },
           "to": {
             "name": "Grape, wine grape, at farm, organic 2025 {IT}",
@@ -1440,15 +1316,11 @@
     },
     "newName": "Hazelnuts, unshelled, at processing {FR} U [hazelnut-in-shell-organic] {{hazelnuts-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Hazelnuts, with shell, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Hazelnut, in shell, at farm {IT} - Adapted from WFLDB U"
+            "name": "Hazelnuts, with shell, consumption mix {FR} U"
           },
           "to": {
             "name": "Hazelnut, in shell, at farm, organic 2025 {IT}",
@@ -1468,15 +1340,11 @@
     },
     "newName": "Hazelnuts, unshelled, at processing {FR} U [hazelnut-in-shell-default] {{hazelnuts-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Hazelnuts, with shell, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Hazelnut, in shell, at farm {IT} - Adapted from WFLDB U"
+            "name": "Hazelnuts, with shell, consumption mix {FR} U"
           },
           "to": {
             "name": "Hazelnut, in shell, at farm (WFLDB)",
@@ -1520,15 +1388,11 @@
     },
     "newName": "Leek, peeled, at processing {FR} U [leek-default] {{leek-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Leek, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Leek, conventional, national average, at plant {FR} U"
+            "name": "Leek, consumption mix {FR} U"
           },
           "to": {
             "name": "Leek, early sown, conventional, at farm gate {FR} U"
@@ -1547,15 +1411,11 @@
     },
     "newName": "Leek, peeled, at processing {FR} U [leek-organic] {{leek-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Leek, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Leek, conventional, national average, at plant {FR} U"
+            "name": "Leek, consumption mix {FR} U"
           },
           "to": {
             "name": "Leek, organic 2025, national average, at plant {FR} U",
@@ -1623,15 +1483,11 @@
     },
     "newName": "Lemon, peeled, at processing {FR} U [lemon-organic] {{lemon-peeled-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Lemon, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Lemon {ES}| lemon production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Lemon, consumption mix {FR} U"
           },
           "to": {
             "name": "Lemon, at farm, organic 2025 {IT} U",
@@ -1651,15 +1507,11 @@
     },
     "newName": "Lemon, peeled, at processing {FR} U [lemon-default] {{lemon-peeled-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Lemon, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Lemon {ES}| lemon production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Lemon, consumption mix {FR} U"
           },
           "to": {
             "name": "Lemon, at farm (WFLDB)",
@@ -1679,15 +1531,11 @@
     },
     "newName": "Lentils, canned {FR} U [lentil-organic] {{lentils-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Lentils, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Lentil {CA-SK}| lentil production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Lentils, consumption mix {FR} U"
           },
           "to": {
             "name": "Lentil, organic 2025 {CA-SK}| lentil production | Cut-off, U",
@@ -1707,15 +1555,11 @@
     },
     "newName": "Mint, peeled, at processing {FR} U [mint-default] {{mint-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Mint, fresh, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Mint {RoW}| mint production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Mint, fresh, consumption mix {FR} U"
           },
           "to": {
             "name": "Mint, at farm (WFLDB)",
@@ -1735,15 +1579,11 @@
     },
     "newName": "Onions, for industrial onion products, peeled, at processing {FR} U [onion-organic] {{onions-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Onions, for industrial onions products, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Onion, conventional, national average, at farm {FR} U"
+            "name": "Onions, for industrial onions products, consumption mix {FR} U"
           },
           "to": {
             "name": "Onion, organic 2025, national average, at farm {FR} U",
@@ -1763,15 +1603,11 @@
     },
     "newName": "Onions, for industrial onion products, peeled, at processing {FR} U [onion-default] {{onions-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Onions, for industrial onions products, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Onion, conventional, national average, at farm {FR} U"
+            "name": "Onions, for industrial onions products, consumption mix {FR} U"
           },
           "to": {
             "name": "Onion, at farm (WFLDB)",
@@ -1791,15 +1627,11 @@
     },
     "newName": "Onions, peeled, at processing {FR} U [onion-organic] {{onions-peeled-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Onions, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Onion, conventional, national average, at farm {FR} U"
+            "name": "Onions, consumption mix {FR} U"
           },
           "to": {
             "name": "Onion, organic 2025, national average, at farm {FR} U",
@@ -1819,15 +1651,11 @@
     },
     "newName": "Onions, peeled, at processing {FR} U [onion-default] {{onions-peeled-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Onions, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Onion, conventional, national average, at farm {FR} U"
+            "name": "Onions, consumption mix {FR} U"
           },
           "to": {
             "name": "Onion, at farm (WFLDB)",
@@ -1847,15 +1675,11 @@
     },
     "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-organic] {{chive-or-spring-onion-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chive or spring onion, fresh, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Onion, conventional, national average, at farm {FR} U"
+            "name": "Chive or spring onion, fresh, consumption mix {FR} U"
           },
           "to": {
             "name": "Onion, organic 2025, national average, at farm {FR} U",
@@ -1875,15 +1699,11 @@
     },
     "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-default] {{chive-or-spring-onion-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chive or spring onion, fresh, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Onion, conventional, national average, at farm {FR} U"
+            "name": "Chive or spring onion, fresh, consumption mix {FR} U"
           },
           "to": {
             "name": "Onion, at farm (WFLDB)",
@@ -1903,15 +1723,11 @@
     },
     "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-organic] {{frozen-onion-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chive or spring onion, fresh, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Onion, conventional, national average, at farm {FR} U"
+            "name": "Chive or spring onion, fresh, consumption mix {FR} U"
           },
           "to": {
             "name": "Onion, organic 2025, national average, at farm {FR} U",
@@ -1931,15 +1747,11 @@
     },
     "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-default] {{frozen-onion-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chive or spring onion, fresh, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Onion, conventional, national average, at farm {FR} U"
+            "name": "Chive or spring onion, fresh, consumption mix {FR} U"
           },
           "to": {
             "name": "Onion, at farm (WFLDB)",
@@ -1959,15 +1771,11 @@
     },
     "newName": "Orange, peeled, at processing {FR} U [orange-default] {{orange-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Orange, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Orange, fresh grade, at farm {ES} - Adapted from WFLDB U"
+            "name": "Orange, consumption mix {FR} U"
           },
           "to": {
             "name": "Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U"
@@ -1986,15 +1794,11 @@
     },
     "newName": "Orange, peeled, at processing {FR} U [orange-organic] {{orange-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Orange, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Orange, fresh grade, at farm {ES} - Adapted from WFLDB U"
+            "name": "Orange, consumption mix {FR} U"
           },
           "to": {
             "name": "Orange, processing grade, at farm, organic 2025 {BR}",
@@ -2110,15 +1914,11 @@
     },
     "newName": "Peach, pitted, at processing {FR} U [peach-organic] {{peach-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Peach, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Peach, conventional, national average, at orchard {FR} U"
+            "name": "Peach, consumption mix {FR} U"
           },
           "to": {
             "name": "Peach, at farm, organic 2025 {ES}",
@@ -2138,15 +1938,11 @@
     },
     "newName": "Peach, pitted, at processing {FR} U [peach-default] {{peach-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Peach, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Peach, conventional, national average, at orchard {FR} U"
+            "name": "Peach, consumption mix {FR} U"
           },
           "to": {
             "name": "Peach, at farm (WFLDB)",
@@ -2270,15 +2066,11 @@
     },
     "newName": "Pear, peeled, at processing {FR} U [pear-organic] {{pear-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Pear, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Pear, conventional, national average, at orchard {FR} U"
+            "name": "Pear, consumption mix {FR} U"
           },
           "to": {
             "name": "Pear, at farm, organic 2025 {NL} U",
@@ -2298,15 +2090,11 @@
     },
     "newName": "Pear, peeled, at processing {FR} U [pear-default] {{pear-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Pear, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Pear, conventional, national average, at orchard {FR} U"
+            "name": "Pear, consumption mix {FR} U"
           },
           "to": {
             "name": "Pear, at farm (WFLDB)",
@@ -2326,15 +2114,11 @@
     },
     "newName": "Quinoa FR, conventional, at plant {FR} U [quinoa-default] {{quinoa-fr-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Quinoa from France, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Quinoa FR, conventional, at farm gate {FR} U"
+            "name": "Quinoa from France, consumption mix {FR} U"
           },
           "to": {
             "name": "Quinoa, intensive production, at farm {PE} - Adapted from WFLDB U"
@@ -2353,15 +2137,11 @@
     },
     "newName": "Quinoa FR, conventional, at plant {FR} U [quinoa-organic] {{quinoa-fr-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Quinoa from France, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Quinoa FR, conventional, at farm gate {FR} U"
+            "name": "Quinoa from France, consumption mix {FR} U"
           },
           "to": {
             "name": "Quinoa FR, organic 2025, at farm gate {FR} U",
@@ -2405,15 +2185,11 @@
     },
     "newName": "Rice bran, at industrial mill {FR} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-organic] {{rice-bran-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Paddy rice, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Rice, non-basmati {CN}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Paddy rice, consumption mix {FR} U"
           },
           "to": {
             "name": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
@@ -2433,15 +2209,11 @@
     },
     "newName": "Rice flour, at industrial mill {FR} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-organic] {{rice-flour-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Paddy rice, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Rice, non-basmati {CN}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Paddy rice, consumption mix {FR} U"
           },
           "to": {
             "name": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
@@ -2461,15 +2233,11 @@
     },
     "newName": "Rice flour, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-flour-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Paddy rice, consumption mix {IT} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Rice, non-basmati {CN}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Paddy rice, consumption mix {IT} U"
           },
           "to": {
             "name": "Rice, basmati {IN}| rice production, basmati | Cut-off, U - Adapted from Ecoinvent U"
@@ -2488,15 +2256,11 @@
     },
     "newName": "Rice flour, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-organic] {{rice-flour-at-industrial-mill-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Paddy rice, consumption mix {IT} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Rice, non-basmati {CN}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Paddy rice, consumption mix {IT} U"
           },
           "to": {
             "name": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
@@ -2516,15 +2280,11 @@
     },
     "newName": "Rice bran, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-bran-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Paddy rice, consumption mix {IT} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Rice, non-basmati {CN}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Paddy rice, consumption mix {IT} U"
           },
           "to": {
             "name": "Rice, basmati {IN}| rice production, basmati | Cut-off, U - Adapted from Ecoinvent U"
@@ -2543,15 +2303,11 @@
     },
     "newName": "Rice bran, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-organic] {{rice-bran-at-industrial-mill-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Paddy rice, consumption mix {IT} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Rice, non-basmati {CN}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Paddy rice, consumption mix {IT} U"
           },
           "to": {
             "name": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
@@ -2571,15 +2327,11 @@
     },
     "newName": "Rye bran, at industrial mill {FR} U [rye-whole-default] {{rye-bran-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Rye, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Rye grain, feed, Swiss integrated production {CH}| production | Cut-off, U - Copied from Ecoinvent U"
+            "name": "Rye, consumption mix {FR} U"
           },
           "to": {
             "name": "Rye grain {GLO}| market for rye grain | Cut-off, U",
@@ -2599,15 +2351,11 @@
     },
     "newName": "Rye flour, at industrial mill {FR} U [rye-whole-default] {{rye-flour-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Rye, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Rye grain, feed, Swiss integrated production {CH}| production | Cut-off, U - Copied from Ecoinvent U"
+            "name": "Rye, consumption mix {FR} U"
           },
           "to": {
             "name": "Rye grain {GLO}| market for rye grain | Cut-off, U",
@@ -2627,15 +2375,11 @@
     },
     "newName": "Spinach, peeled, at processing {FR} U [spinach-organic] {{spinach-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Spinach, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Spinach {GLO}| production | Cut-off, U - Adapted from Ecoinvent U"
+            "name": "Spinach, consumption mix {FR} U"
           },
           "to": {
             "name": "Spinach, organic 2025 {GLO}| production | Cut-off, U",
@@ -2711,15 +2455,11 @@
     },
     "newName": "Walnuts, unshelled, at processing {FR} U [walnut-organic] {{walnuts-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Walnuts, with shell, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Walnut, dried inshell, conventional, national average, at farm gate {FR} U"
+            "name": "Walnuts, with shell, consumption mix {FR} U"
           },
           "to": {
             "name": "Walnut, dried inshell, organic 2025, national average, at farm gate {FR} U",
@@ -2739,15 +2479,11 @@
     },
     "newName": "Walnuts, unshelled, at processing {FR} U [walnut-default] {{walnuts-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Walnuts, with shell, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Walnut, dried inshell, conventional, national average, at farm gate {FR} U"
+            "name": "Walnuts, with shell, consumption mix {FR} U"
           },
           "to": {
             "name": "Walnut, in shell, dried, at farm (WFLDB)",
@@ -2767,15 +2503,11 @@
     },
     "newName": "Potato, pre-fried into cubes, frozen, at processing {FR} U [potato-default] {{potato-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Potato, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U"
+            "name": "Potato, consumption mix {FR} U"
           },
           "to": {
             "name": "Potato {US}| potato production | Cut-off, U",
@@ -2795,15 +2527,11 @@
     },
     "newName": "Potato, pre-fried into cubes, frozen, at processing {FR} U [potato-organic] {{potato-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Potato, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U"
+            "name": "Potato, consumption mix {FR} U"
           },
           "to": {
             "name": "Ware potato, organic 2025, variety mix, national average, at farm gate {FR} U",
@@ -2823,15 +2551,11 @@
     },
     "newName": "Potato, peeled, at processing {FR} U [potato-default] {{potato-peeled-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Potato, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U"
+            "name": "Potato, consumption mix {FR} U"
           },
           "to": {
             "name": "Potato {US}| potato production | Cut-off, U",
@@ -2851,15 +2575,11 @@
     },
     "newName": "Potato, peeled, at processing {FR} U [potato-organic] {{potato-peeled-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Potato, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U"
+            "name": "Potato, consumption mix {FR} U"
           },
           "to": {
             "name": "Ware potato, organic 2025, variety mix, national average, at farm gate {FR} U",
@@ -2879,15 +2599,11 @@
     },
     "newName": "Asparagus, peeled, at processing {FR} U [asparagu-organic] {{asparagus-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Asparagus, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "White asparagus {FR}| white asparagus production | Cut-off, U - Copied from Ecoinvent U"
+            "name": "Asparagus, consumption mix {FR} U"
           },
           "to": {
             "name": "White asparagus, organic 2025 {FR}| white asparagus production | Cut-off, U",
@@ -2907,15 +2623,11 @@
     },
     "newName": "Asparagus, peeled, at processing {FR} U [asparagu-default] {{asparagus-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Asparagus, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "White asparagus {FR}| white asparagus production | Cut-off, U - Copied from Ecoinvent U"
+            "name": "Asparagus, consumption mix {FR} U"
           },
           "to": {
             "name": "Asparagus, at farm (WFLDB)",
@@ -2935,15 +2647,11 @@
     },
     "newName": "Chick pea flour, at industrial mill {FR} U [pea-with-pod-organic] {{chick-pea-flour-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chick peas, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Winter pea, conventional, 15% moisture, at farm gate {FR} U"
+            "name": "Chick peas, consumption mix {FR} U"
           },
           "to": {
             "name": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
@@ -2963,15 +2671,11 @@
     },
     "newName": "Chick peas, peeled, at processing {FR} U [pea-with-pod-organic] {{chick-peas-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chick peas, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Winter pea, conventional, 15% moisture, at farm gate {FR} U"
+            "name": "Chick peas, consumption mix {FR} U"
           },
           "to": {
             "name": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
@@ -2991,15 +2695,11 @@
     },
     "newName": "Chick pea bran, at industrial mill {FR} U [pea-with-pod-organic] {{chick-pea-bran-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Chick peas, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Winter pea, conventional, 15% moisture, at farm gate {FR} U"
+            "name": "Chick peas, consumption mix {FR} U"
           },
           "to": {
             "name": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
@@ -3019,15 +2719,11 @@
     },
     "newName": "Zucchini, peeled, at processing {FR} U [zucchini-default] {{zucchini-default}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Zucchini, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Zucchini, conventional, national average, at farm gate {FR} U"
+            "name": "Zucchini, consumption mix {FR} U"
           },
           "to": {
             "name": "Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U"
@@ -3046,15 +2742,11 @@
     },
     "newName": "Zucchini, peeled, at processing {FR} U [zucchini-organic] {{zucchini-organic}}",
     "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Zucchini, consumption mix {FR} U"
-        }
-      ],
+      "upstreamPath": [],
       "replace": [
         {
           "from": {
-            "name": "Zucchini, conventional, national average, at farm gate {FR} U"
+            "name": "Zucchini, consumption mix {FR} U"
           },
           "to": {
             "name": "Zucchini, organic 2025, national average, at farm gate {FR} U",

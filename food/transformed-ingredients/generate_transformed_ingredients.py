@@ -376,11 +376,29 @@ def make_from_existing(
     """
     Build a from_existing block for activities_to_create.json.
     path.path[0] = existingActivity (the transformed product)
-    path.path[1:-1] = upstreamPath (intermediate steps)
-    path.path[-1] = replace.from (the source raw ingredient activity)
+    path.path[-1] = the source raw ingredient activity
+
+    If a consumption mix sits between the consumer and the ingredient,
+    the mix itself becomes replace.from (replacing the entire sourcing blend).
+    Otherwise the leaf ingredient is replace.from.
     Returns None if the alias already exists.
     """
     steps = path.path
+
+    # If a consumption mix sits between the consumer and the raw ingredient,
+    # replace the mix itself (not just one ingredient inside it).
+    mix_index = next(
+        (i for i in range(1, len(steps) - 1)
+         if "consumption mix" in steps[i].name.lower()),
+        None,
+    )
+    if mix_index is not None:
+        upstream_steps = steps[1:mix_index]
+        replace_from_step = steps[mix_index]
+    else:
+        upstream_steps = steps[1:-1]
+        replace_from_step = steps[-1]
+
     # Derive alias: split activity name on commas, start short, grow if taken
     variant_suffix = target.alias.split("-")[-1]  # "fr", "organic", or "default"
     segments = steps[0].name.split(",")
@@ -407,8 +425,8 @@ def make_from_existing(
         "existingActivity": {"name": steps[0].name},
         "newName": f"{steps[0].name} [{target.alias}] {{{{{alias}}}}}",
         "replacementPlan": {
-            "upstreamPath": [{"name": s.name} for s in steps[1:-1]],
-            "replace": [{"from": {"name": steps[-1].name}, "to": to_entry}],
+            "upstreamPath": [{"name": s.name} for s in upstream_steps],
+            "replace": [{"from": {"name": replace_from_step.name}, "to": to_entry}],
         },
     }
 
