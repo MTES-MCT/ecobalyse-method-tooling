@@ -9,6 +9,10 @@ dependencies = [
     "sentencepiece>=0.2.1",
     "torch>=2.11.0",
     "transformers>=5.5.3",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.7.2",
+    "sentence-transformers>=5.1.2",
+    "pronto>=2.7.2",
 ]
 
 [tool.uv.sources]
@@ -18,3 +22,4 @@ torch = { index = "pytorch-cpu" }
 [[tool.uv.index]]
 name = "pytorch-cpu"
 url = "https://download.pytorch.org/whl/cpu"
+explicit = true  # only match packages that request this index explicitly (torch)

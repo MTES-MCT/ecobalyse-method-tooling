@@ -13,15 +13,15 @@
         "alias": "almond-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "7b529b0a-ee4f-40f2-8c6f-bda0de885f38",
+        "id": "d15ccc14-9f9d-4f35-b696-560961ecdc0a",
         "displayName": "Amandes décortiquées Bio",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
-          "nut_oilseed_raw",
+          "nut_oilseed_processed",
           "organic"
         ],
-        "inediblePart": 0.5,
-        "ingredientDensity": 0.46,
+        "inediblePart": 0,
+        "ingredientDensity": 0.6,
         "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
@@ -51,16 +51,16 @@
         "alias": "apple-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "2f5a63e6-01b2-463c-baa6-21fd581f2a5a",
+        "id": "0242a00e-827d-46f5-b086-9f4e06bc4217",
         "displayName": "Jus de pomme Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -89,15 +89,15 @@
         "alias": "apple-juice-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "8f3d9198-e36a-4a35-bb94-c382156d375e",
+        "id": "88509324-97b2-4dd6-bd85-9fa062cefe12",
         "displayName": "Jus de pomme Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -126,16 +126,16 @@
         "alias": "table-apple-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "8bce62c7-702e-45ea-91aa-cd7f6532e7bb",
+        "id": "f0c8638c-b148-4f87-b274-8a8bb7c04fbe",
         "displayName": "Pommes de table, pelées Bio",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -164,15 +164,15 @@
         "alias": "table-apple-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "a2e9a9a3-d098-411d-86cb-7c6ca54b975d",
+        "id": "13f5412b-b378-47e5-b850-d2ea437d2a84",
         "displayName": "Pommes de table, pelées Origine Inconnue",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -201,16 +201,16 @@
         "alias": "apricot-stone-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "e10906e2-8f51-4e45-86bf-82634b90f25d",
+        "id": "5a079242-e45f-489c-ad20-b9b6211b9c12",
         "displayName": "Noyau d'abricot Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -239,15 +239,15 @@
         "alias": "apricot-stone-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "b31ae460-73ab-4664-9481-73a11f8e3d93",
+        "id": "ed72c9bf-f564-4b59-ba4e-9d9153c78ff2",
         "displayName": "Noyau d'abricot Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -276,16 +276,16 @@
         "alias": "frozen-apricot-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "3ca2ab48-0cf0-4ab2-83a9-db9cdf561b3a",
+        "id": "1828b587-4fd3-442c-bb7b-6a029bc63cc1",
         "displayName": "Purée d'abricots congelés Bio",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -314,15 +314,15 @@
         "alias": "frozen-apricot-puree-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "fc703bcf-3ab9-4418-bb4e-67e3f7468869",
+        "id": "7b0afb5a-76e1-4d85-8aa0-02008c5740d3",
         "displayName": "Purée d'abricots congelés Origine Inconnue",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -351,16 +351,16 @@
         "alias": "apricot-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "33841c5b-b718-4f07-96de-dce0ab4317ca",
+        "id": "c0412a4a-959a-4797-a442-eba57c4f9246",
         "displayName": "Abricot, dénoyauté Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -389,15 +389,15 @@
         "alias": "apricot-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "dcbb4eaf-0ffd-4365-8a17-3c86a4f5ecca",
+        "id": "5404b1cc-32cc-4fc4-850b-c4d4392d5ea3",
         "displayName": "Abricot, dénoyauté Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -426,16 +426,16 @@
         "alias": "frozen-apricot-puree-at-plant-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "6596a3f1-58c3-4f84-b137-d71086468114",
+        "id": "3bdcc316-b870-4f16-8154-2da6096fb939",
         "displayName": "Purée d'abricots congelés Bio",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -464,15 +464,15 @@
         "alias": "frozen-apricot-puree-at-plant-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "5fc7fc1f-f050-4f74-8cde-f8104c415e52",
+        "id": "18e7ade0-40cf-4809-bf22-798ade6c7f96",
         "displayName": "Purée d'abricots congelés Origine Inconnue",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -501,15 +501,15 @@
         "alias": "barley-flour-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "173ccc24-2143-4c7e-8b9c-3d1a9155d133",
+        "id": "aa01ac28-8ff6-4730-91f5-b77dc8b3f5ac",
         "displayName": "Farine d'orge Origine Inconnue",
         "cropGroup": "ORGE",
         "ingredientCategories": [
-          "grain_raw"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.75,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -538,20 +538,20 @@
         "alias": "barley-bran-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "73673c1f-990b-479a-882a-5990e1255bd7",
+        "id": "1a2c6e1d-2a06-458e-8038-27838fb9ce8e",
         "displayName": "Son d'orge Origine Inconnue",
         "cropGroup": "ORGE",
         "ingredientCategories": [
-          "grain_raw"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.75,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
         ],
-        "transportCooling": "none",
+        "transportCooling": "always",
         "visible": true
       }
     ],
@@ -575,16 +575,16 @@
         "alias": "beetroot-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "c609d8f3-96f8-45fb-9091-c6faee239666",
+        "id": "4faff858-68c4-450d-bf7a-bd76627cbcad",
         "displayName": "Jus de betterave, jus pur Bio",
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -613,16 +613,16 @@
         "alias": "broccoli-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "39a252c1-c415-4d63-aa52-2c6af60cf927",
+        "id": "f664f138-8a02-4e16-a99c-1a31b97770db",
         "displayName": "Brocoli, pelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -651,16 +651,16 @@
         "alias": "white-cabbage-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "82c83554-6b42-4cbd-9b2c-8905b185e5e5",
+        "id": "66557fd8-70c8-4cdf-a83f-88cde29e2d19",
         "displayName": "Choux blancs, pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -689,16 +689,16 @@
         "alias": "carrot-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "d57a5bb6-914b-49f6-baf4-6040699fd746",
+        "id": "c0bc4a15-6fa5-48b9-9cbf-b0987d74ccf4",
         "displayName": "Jus de carottes, jus pur Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -727,15 +727,15 @@
         "alias": "carrot-juice-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "e3fe85a6-a469-4765-8f6c-25611cd1f6dc",
+        "id": "448e456f-765e-4760-8ec0-c6732c294846",
         "displayName": "Jus de carottes, jus pur Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -764,16 +764,16 @@
         "alias": "frozen-concentrated-carrot-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "a05c4a12-50be-40df-a109-6551e694c4ee",
+        "id": "dd7aa01a-dc36-491a-87b9-76af82749449",
         "displayName": "purée de carottes concentrées congelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -802,15 +802,15 @@
         "alias": "frozen-concentrated-carrot-puree-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "05e93811-f894-4373-99e7-782288302ec2",
+        "id": "955d9dfe-691e-478b-b312-672690511ce5",
         "displayName": "purée de carottes concentrées congelée Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -839,16 +839,16 @@
         "alias": "carrot-pomace-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "0e94d5a0-87c3-406c-8251-c2f0a1f89a78",
+        "id": "88886ca7-d467-49be-94ac-16e5815d6201",
         "displayName": "Marc de carotte, frais Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -877,15 +877,15 @@
         "alias": "carrot-pomace-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "249d2a27-0199-479a-9296-49ec1ffdd906",
+        "id": "5c195de0-6dd9-41b6-b988-87762d81502f",
         "displayName": "Marc de carotte, frais Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -914,16 +914,16 @@
         "alias": "carrot-pomace-fresh-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "8af0a2d9-b727-420e-9a13-bad1b199d86d",
+        "id": "dee62032-0877-4299-b673-ab1931c08459",
         "displayName": "Marc de carotte, frais Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -952,15 +952,15 @@
         "alias": "carrot-pomace-fresh-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "0e76bf61-c881-4adc-8ffa-4b0ce6256ce6",
+        "id": "1ed79713-9c5b-4e42-8638-b23724bde961",
         "displayName": "Marc de carotte, frais Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -989,21 +989,21 @@
         "alias": "carrot-juice-pure-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "fb91ce94-f9cf-404a-90e9-6ec620e5a0a5",
+        "id": "7e25681c-1650-4645-a6bb-a8fe6051af81",
         "displayName": "Jus de carottes, jus pur Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
         ],
-        "transportCooling": "always",
+        "transportCooling": "none",
         "visible": true
       }
     ],
@@ -1027,20 +1027,20 @@
         "alias": "carrot-juice-pure-juice-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "985ade76-2c66-4461-b293-0d38fbb84866",
+        "id": "4f8adc2a-64d6-4f7f-b584-38ca29fb907d",
         "displayName": "Jus de carottes, jus pur Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
         ],
-        "transportCooling": "always",
+        "transportCooling": "none",
         "visible": true
       }
     ],
@@ -1064,16 +1064,16 @@
         "alias": "carrot-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "804cde8f-826e-49cf-8aea-df08835b2780",
+        "id": "b5be5ade-2de5-4808-b2f7-4f31df1d8cd3",
         "displayName": "Carotte pelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1102,15 +1102,15 @@
         "alias": "carrot-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "e76d5015-df4c-4dda-a33b-505f748c1aa0",
+        "id": "1b98bd0d-5cdb-4d0f-973d-e16249c00a25",
         "displayName": "Carotte pelée Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1139,16 +1139,16 @@
         "alias": "frozen-carrot-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "2004a70e-514b-455f-b85a-256b00829416",
+        "id": "f979b6f6-5e22-4db9-b0e2-ca5dbadfd98c",
         "displayName": "Carotte congelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1177,15 +1177,15 @@
         "alias": "frozen-carrot-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "5740807e-b3cc-415e-9401-e419c2539218",
+        "id": "f8cf38f1-d4e4-45a3-8e26-ecdc3a3adeda",
         "displayName": "Carotte congelée Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1214,15 +1214,15 @@
         "alias": "cauliflower-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "58d7d2f4-565d-4df0-a7ab-0fcd661aba58",
+        "id": "9294a3f6-7750-4fd3-a3e6-19e909a7b3e0",
         "displayName": "Choux-fleurs, pelés Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1251,16 +1251,16 @@
         "alias": "cauliflower-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "70934cf3-5e58-441c-879e-559e522f56e2",
+        "id": "ee822eeb-4479-4207-86dc-84ace1830dc0",
         "displayName": "Choux-fleurs, pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1289,16 +1289,16 @@
         "alias": "celery-stalk-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "3bfb4389-1a2f-401c-b31d-33ac934822b2",
+        "id": "031f681a-682f-4f6b-8114-4371e298e9d9",
         "displayName": "Branche de céleri, pelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.03,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1327,16 +1327,16 @@
         "alias": "celery-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "090b4624-6862-4e2e-8458-77c742794ef6",
+        "id": "ad8a4396-331d-4fa9-ae74-b22c2e51da7c",
         "displayName": "Céleri, pelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.03,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1365,16 +1365,16 @@
         "alias": "cherry-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "554e8cc2-d871-4f2e-98a1-2db2ac2a4446",
+        "id": "cfa52c6b-4011-40d5-9d75-d7e722a08a44",
         "displayName": "Jus de cerise, jus pur Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1403,15 +1403,15 @@
         "alias": "cherry-juice-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "72ca63b1-eb38-4e33-8a34-ba70e61e7cb8",
+        "id": "3ec6673a-a930-4c32-9cd1-f1ef3f6ffd09",
         "displayName": "Jus de cerise, jus pur Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1440,15 +1440,15 @@
         "alias": "chicory-roots-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "e4d3cc3b-25d5-46af-9d41-f874b47554c5",
+        "id": "04cf989d-8f21-4c6b-b724-0ec053d5f3f3",
         "displayName": "Racines de chicorée, lavées et triées, coupées en cossettes Origine Inconnue",
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1477,16 +1477,16 @@
         "alias": "chicory-roots-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "f1e4f3c1-6753-44a1-a4c0-b3489169236c",
+        "id": "5e052692-729d-4a68-b778-3b6dfdb73a97",
         "displayName": "Racines de chicorée, lavées et triées, coupées en cossettes Bio",
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1515,15 +1515,15 @@
         "alias": "durum-wheat-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "88745688-1827-40df-bd0d-a070fa7515b2",
+        "id": "8011240c-3093-4257-b6bd-81d139b9f90d",
         "displayName": "Blé dur, en sauce tomate Origine Inconnue",
         "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
-          "grain_raw"
+          "grain_processed"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.75,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 0.24,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1552,16 +1552,16 @@
         "alias": "durum-wheat-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "a813a757-302f-4446-bf4e-04453ad059f8",
+        "id": "90e93fc1-acdd-47ba-b289-534043df4d85",
         "displayName": "Blé dur, en sauce tomate Bio",
         "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
-          "grain_raw",
+          "grain_processed",
           "organic"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.75,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 0.24,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1590,16 +1590,16 @@
         "alias": "chicken-egg-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "74049218-fb5e-4b51-8e2f-56fc4e5db4d8",
+        "id": "87bf830a-7884-40cb-8647-c9893310cdc8",
         "displayName": "Oeufs de poulet crus, sans coquille Bio",
         "cropGroup": null,
         "ingredientCategories": [
           "animal_product",
           "organic"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.974,
+        "inediblePart": 0,
+        "ingredientDensity": 1.05,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1628,15 +1628,15 @@
         "alias": "chicken-egg-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "c0de6c4b-403c-4467-a865-5757cc6af59a",
+        "id": "34b86563-2564-4cea-afd5-d3eb42872bd9",
         "displayName": "Oeufs de poulet crus, sans coquille Origine Inconnue",
         "cropGroup": null,
         "ingredientCategories": [
           "animal_product"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.974,
+        "inediblePart": 0,
+        "ingredientDensity": 1.05,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1665,16 +1665,16 @@
         "alias": "egg-white-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "6be023e2-cff2-49f9-b016-ff54fd57be19",
+        "id": "af63c230-f3c8-4662-8e0c-d5a12fecae42",
         "displayName": "Blanc d'oeufs, cru Bio",
         "cropGroup": null,
         "ingredientCategories": [
           "animal_product",
           "organic"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.974,
+        "inediblePart": 0,
+        "ingredientDensity": 1.05,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1703,15 +1703,15 @@
         "alias": "egg-white-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "758607ed-13af-44cc-a3a6-1f6f69b2c5d7",
+        "id": "58b9d906-7e75-4215-a0be-6135f57950a1",
         "displayName": "Blanc d'oeufs, cru Origine Inconnue",
         "cropGroup": null,
         "ingredientCategories": [
           "animal_product"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.974,
+        "inediblePart": 0,
+        "ingredientDensity": 1.05,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1740,16 +1740,16 @@
         "alias": "egg-yolk-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "c8919421-6a2f-4867-b7a3-cc7cd31bae67",
+        "id": "3a8c443f-1f1c-460e-804f-f54d9d88849c",
         "displayName": "Jaunes d'oeufs, crues Bio",
         "cropGroup": null,
         "ingredientCategories": [
           "animal_product",
           "organic"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.974,
+        "inediblePart": 0,
+        "ingredientDensity": 1.05,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1778,15 +1778,15 @@
         "alias": "egg-yolk-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "831b0cf9-ef80-48bf-a400-77b28e1ec609",
+        "id": "f911d05c-ac27-4d6b-b8c9-60d55c151b31",
         "displayName": "Jaunes d'oeufs, crues Origine Inconnue",
         "cropGroup": null,
         "ingredientCategories": [
           "animal_product"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.974,
+        "inediblePart": 0,
+        "ingredientDensity": 1.05,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1815,16 +1815,16 @@
         "alias": "fennel-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "30700f40-bab2-471f-ba87-4fa70a38dad3",
+        "id": "a5d28350-afbc-4dde-b4af-202f266f1d7c",
         "displayName": "Fenouil, pelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1853,16 +1853,16 @@
         "alias": "french-bean-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "35230ba4-050f-4cc6-8cc3-3dbe87f8ad85",
+        "id": "6effe299-38fb-46c0-a522-9e3d65e18122",
         "displayName": "Haricot français, pelé Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.8,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1891,16 +1891,16 @@
         "alias": "french-bean-for-canned-and-frozen-products-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "981cc03e-163a-47fc-aea7-346a07b4563e",
+        "id": "156d51d7-f607-46d0-9f4e-52da153addd5",
         "displayName": "Haricots français, coupés Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.8,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1929,16 +1929,16 @@
         "alias": "table-grape-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "d65329ec-1e2d-466a-8a33-5ec7c09864aa",
+        "id": "957834b9-d57f-4f33-bfb3-0ddb0f09658d",
         "displayName": "Raisins de table, pelés Bio",
         "cropGroup": "VIGNES",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -1967,15 +1967,15 @@
         "alias": "hazelnut-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "64d8d789-7d58-4798-b9c1-f60887c6ebb8",
+        "id": "51445ec4-5cd0-4977-8848-cae929a96b2f",
         "displayName": "Noisettes décortiquées Bio",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
-          "nut_oilseed_raw",
+          "nut_oilseed_processed",
           "organic"
         ],
-        "inediblePart": 0.5,
-        "ingredientDensity": 0.55,
+        "inediblePart": 0,
+        "ingredientDensity": 0.6,
         "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
@@ -2005,14 +2005,14 @@
         "alias": "hazelnut-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "bbfedd83-4a4e-4682-be96-7a72e8a58411",
+        "id": "97cba884-8487-418f-a262-7f1ee516d39a",
         "displayName": "Noisettes décortiquées Origine Inconnue",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
-          "nut_oilseed_raw"
+          "nut_oilseed_processed"
         ],
-        "inediblePart": 0.5,
-        "ingredientDensity": 0.55,
+        "inediblePart": 0,
+        "ingredientDensity": 0.6,
         "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
@@ -2042,15 +2042,15 @@
         "alias": "hazelnuts-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "14329f8b-3c25-4bf4-aa1c-f804fbb288cb",
+        "id": "854cf774-3d44-4661-83b1-6796aa7f9737",
         "displayName": "Noisettes décortiquées Bio",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
-          "nut_oilseed_raw",
+          "nut_oilseed_processed",
           "organic"
         ],
-        "inediblePart": 0.5,
-        "ingredientDensity": 0.55,
+        "inediblePart": 0,
+        "ingredientDensity": 0.6,
         "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
@@ -2080,14 +2080,14 @@
         "alias": "hazelnuts-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "b1c06b71-6c68-4947-ae5a-1a0a0ae1c7e1",
+        "id": "bf2d4e14-08ab-43e4-a2e3-5843d75cedc4",
         "displayName": "Noisettes décortiquées Origine Inconnue",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
-          "nut_oilseed_raw"
+          "nut_oilseed_processed"
         ],
-        "inediblePart": 0.5,
-        "ingredientDensity": 0.55,
+        "inediblePart": 0,
+        "ingredientDensity": 0.6,
         "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
@@ -2117,16 +2117,16 @@
         "alias": "kiwi-fr-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "79fe0959-2f04-4525-b8ab-84d2c7590259",
+        "id": "56d36343-fcee-4b97-a899-50896d60586e",
         "displayName": "Kiwi FR Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2155,15 +2155,15 @@
         "alias": "leek-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "3102f5ee-ade1-494e-bbbb-e060aa46de5e",
+        "id": "19a42bb6-8e1d-4df0-a6d9-9a4c772bcaed",
         "displayName": "Poireau, pelé Origine Inconnue",
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2192,16 +2192,16 @@
         "alias": "leek-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "94aa0690-6a52-4735-8096-81fcbaa61d2b",
+        "id": "deec0f58-0074-44ba-9432-df5d83731e69",
         "displayName": "Poireau, pelé Bio",
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2230,16 +2230,16 @@
         "alias": "lemon-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "add2ee56-dc4d-4d05-8a0a-aaea6649023c",
+        "id": "160bd920-646c-42dd-99e8-664e9f04a332",
         "displayName": "Citron Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.3,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2268,15 +2268,15 @@
         "alias": "lemon-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "c9a90d42-0808-490f-b235-d92444bf155b",
+        "id": "e20b46ae-5008-4ec4-91d2-498c7eec7f51",
         "displayName": "Citron Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.3,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2305,16 +2305,16 @@
         "alias": "lemon-peeled-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "66dfa836-3931-4ae6-b09e-3ad12080662f",
+        "id": "77c848e4-74b1-4151-9086-9be748582100",
         "displayName": "Citron, pelé Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.3,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2343,15 +2343,15 @@
         "alias": "lemon-peeled-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "1bbd46df-97ac-497f-8bf1-b489a966deac",
+        "id": "456350ac-b51d-41c9-b900-9d3f5fd95ce7",
         "displayName": "Citron, pelé Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.3,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2380,21 +2380,21 @@
         "alias": "lentils-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "c1c03573-c8ae-4a85-8a5d-889b53dbdd17",
+        "id": "eaf3d979-d669-42e7-bf59-a947d0d347d9",
         "displayName": "Lentilles, en conserve Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.8,
-        "rawToCookedRatio": 2.33,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
         ],
-        "transportCooling": "always",
+        "transportCooling": "none",
         "visible": true
       }
     ],
@@ -2418,15 +2418,15 @@
         "alias": "mint-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "5fb61950-db76-495b-acaa-b921d989b51c",
+        "id": "ffe279bc-4680-4421-bc9c-6bf542f99bca",
         "displayName": "Menthe pelée Origine Inconnue",
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2455,16 +2455,16 @@
         "alias": "onions-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "27a9113c-9745-4e6f-a47c-b3cf227f38b0",
+        "id": "a79d4d72-68f9-424f-8c24-a18c6c5aa021",
         "displayName": "Oignons pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2493,15 +2493,15 @@
         "alias": "onions-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "e1a27a10-f801-41de-ac53-c65e20511009",
+        "id": "f7e1a6db-990f-4e76-8b73-75ca9fa42a20",
         "displayName": "Oignons pelés Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2530,16 +2530,16 @@
         "alias": "onions-peeled-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "4b49342e-5d60-4aec-a5e6-3d4ed51e5aeb",
+        "id": "0460ef4e-b72e-44de-94d5-26761b90d437",
         "displayName": "Oignons pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2568,15 +2568,15 @@
         "alias": "onions-peeled-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "6ea84fb9-d4eb-4ece-a033-a7832fff2498",
+        "id": "393030b0-4c74-4fb2-9a7b-c1d72b4fb4ff",
         "displayName": "Oignons pelés Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2605,16 +2605,16 @@
         "alias": "chive-or-spring-onion-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "72dc2ba8-2f07-4078-8803-9cfa219a9070",
+        "id": "e8b2c884-579e-4efe-8ced-2b0e325da314",
         "displayName": "Ciboulette ou oignon nouveau, pelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "dairy_product",
           "organic"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 1.03,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2643,15 +2643,15 @@
         "alias": "chive-or-spring-onion-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "4dc85b92-c9fd-4870-876a-7c6d5bd5ebbd",
+        "id": "0d6a940f-322f-42d9-b0e5-7fbc17141dc8",
         "displayName": "Ciboulette ou oignon nouveau, pelé Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "dairy_product"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 1.03,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2680,16 +2680,16 @@
         "alias": "frozen-onion-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "ccb4d346-5426-4b07-a0ab-149e784953d6",
+        "id": "c697e4e8-1ad2-4183-965d-2efaf4cd6c39",
         "displayName": "Oignon congelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2718,15 +2718,15 @@
         "alias": "frozen-onion-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "7d7f8871-bdd1-4bb9-8e1d-82a6c489d1f7",
+        "id": "d117abc4-971f-4e1d-aa8c-0f0ee6158985",
         "displayName": "Oignon congelé Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2755,15 +2755,15 @@
         "alias": "orange-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "1e7249ef-f0f3-42e3-afe0-51c6507414e6",
+        "id": "8ec33e81-ef1c-4304-8054-f91c246a690d",
         "displayName": "Orange, pelé Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.95,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2792,16 +2792,16 @@
         "alias": "orange-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "cd9c6e8e-0aff-4264-9331-d3875795c257",
+        "id": "4c3b8705-0a25-46f6-9d2e-851d425fca86",
         "displayName": "Orange, pelé Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.95,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2830,16 +2830,16 @@
         "alias": "peach-stone-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "1598f628-b7d7-4219-8316-79be44115754",
+        "id": "88dd4845-c1c5-47de-b549-86bfabef18e3",
         "displayName": "Noyau de pêche Bio",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2868,15 +2868,15 @@
         "alias": "peach-stone-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "b6291399-b5eb-4816-9d61-a4c7fd6f28ee",
+        "id": "883e07a6-9b94-412a-be34-19d4121f0b6b",
         "displayName": "Noyau de pêche Origine Inconnue",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2905,16 +2905,16 @@
         "alias": "frozen-peach-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "66684630-f7ca-4957-9971-c0aa301e0d21",
+        "id": "1b7b1516-8737-46ec-91ff-0201411cfba5",
         "displayName": "Purée de pêche congelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2943,15 +2943,15 @@
         "alias": "frozen-peach-puree-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "c5d69282-614e-4eb1-90fb-69d2f146bd5b",
+        "id": "ba578539-b4b1-4c55-a522-db7c32c70450",
         "displayName": "Purée de pêche congelée Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -2980,16 +2980,16 @@
         "alias": "peach-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "0d7c1b06-57b0-46c4-8a8d-8de0d9072d64",
+        "id": "4e48aaec-f530-468b-9d9d-71e806aaf041",
         "displayName": "Pêche, dénoyautée Bio",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3018,15 +3018,15 @@
         "alias": "peach-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "f02b539d-015b-4ff2-b153-5b298c57314e",
+        "id": "bcd87f4a-9ed9-4963-9529-cf8a0fb65abb",
         "displayName": "Pêche, dénoyautée Origine Inconnue",
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3055,16 +3055,16 @@
         "alias": "frozen-peach-puree-at-plant-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "b0517008-c139-4e5d-8bac-1e8627f81dba",
+        "id": "60705af0-21b0-4408-ae56-cf10aecdec97",
         "displayName": "Purée de pêche congelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3093,15 +3093,15 @@
         "alias": "frozen-peach-puree-at-plant-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "23818400-3447-424c-be11-461a57b245fb",
+        "id": "12dd75c6-6e99-47ec-94f4-907d13baf463",
         "displayName": "Purée de pêche congelée Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
+        "inediblePart": 0,
         "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3130,16 +3130,16 @@
         "alias": "frozen-pear-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "62f427c7-ebef-45d9-8154-d031b142f26d",
+        "id": "96dab129-d223-469e-a3ca-057ad3a7beed",
         "displayName": "purée de poire congelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3168,15 +3168,15 @@
         "alias": "frozen-pear-puree-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "d141bacf-efc9-4c52-b2cb-034fe5126fbc",
+        "id": "a431d847-9a39-4517-945a-3cbc0378eefa",
         "displayName": "purée de poire congelée Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3205,16 +3205,16 @@
         "alias": "pear-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "d79ae391-2794-42a5-999d-8d6e42a77214",
+        "id": "a4712e34-cbd7-4426-a1ce-dd848e57ba4c",
         "displayName": "Poire, pelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3243,15 +3243,15 @@
         "alias": "pear-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "bf4103df-eb56-457a-ad75-63802ae18353",
+        "id": "75027923-775e-4436-b3cb-fdc884ae2478",
         "displayName": "Poire, pelée Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
+        "inediblePart": 0,
         "ingredientDensity": 0.85,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3280,15 +3280,15 @@
         "alias": "quinoa-fr-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "90ca24fd-f9c5-43f6-8661-2055d73fe562",
+        "id": "d3116263-8cf3-4050-8fe2-211c3853260f",
         "displayName": "Quinoa FR Origine Inconnue",
         "cropGroup": "AUTRES CEREALES",
         "ingredientCategories": [
-          "grain_raw"
+          "grain_processed"
         ],
-        "inediblePart": 0.0,
+        "inediblePart": 0,
         "ingredientDensity": 0.75,
-        "rawToCookedRatio": 2.259,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3317,16 +3317,16 @@
         "alias": "quinoa-fr-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "15f158b8-e227-4027-9c0c-bd23f54394a6",
+        "id": "117b9b8d-6209-4ec9-a16a-1331cece2365",
         "displayName": "Quinoa FR Bio",
         "cropGroup": "AUTRES CEREALES",
         "ingredientCategories": [
-          "grain_raw",
+          "grain_processed",
           "organic"
         ],
-        "inediblePart": 0.0,
+        "inediblePart": 0,
         "ingredientDensity": 0.75,
-        "rawToCookedRatio": 2.259,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3355,16 +3355,16 @@
         "alias": "frozen-raspberry-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "01fd09ab-7e4a-42f2-8de5-938a7c9d0db8",
+        "id": "3ae05f68-17ed-40f1-9e10-ebf6ea4358e0",
         "displayName": "purée de framboises congelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.03,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3393,16 +3393,16 @@
         "alias": "rice-bran-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "618ae37c-613b-4779-897d-a4b135deb095",
+        "id": "bb911c68-058a-4486-aff4-dd9320cad724",
         "displayName": "Son de riz Bio",
         "cropGroup": "RIZ",
         "ingredientCategories": [
-          "grain_raw",
+          "grain_processed",
           "organic"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 0.75,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3431,16 +3431,16 @@
         "alias": "rice-flour-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "eb760386-8b19-4871-89a7-478aeca3a99b",
+        "id": "9e8f3ed3-0260-42ba-ae87-76305f02cecf",
         "displayName": "Farine de riz Bio",
-        "cropGroup": "RIZ",
+        "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
-          "grain_raw",
+          "grain_processed",
           "organic"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3469,15 +3469,15 @@
         "alias": "rice-flour-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "1318f86b-c2f0-4ae6-b9f9-903f750d5275",
+        "id": "b4ce03e6-b3cb-422f-86a5-4e6f76873665",
         "displayName": "Farine de riz Origine Inconnue",
-        "cropGroup": "RIZ",
+        "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
-          "grain_raw"
+          "grain_processed"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3506,16 +3506,16 @@
         "alias": "rice-flour-at-industrial-mill-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "6faef9ee-eacb-4f22-8475-325de8994652",
+        "id": "866cc24d-a23e-4d4f-a845-40b0e138e418",
         "displayName": "Farine de riz Bio",
-        "cropGroup": "RIZ",
+        "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
-          "grain_raw",
+          "grain_processed",
           "organic"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3544,15 +3544,15 @@
         "alias": "rice-bran-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "48d4ddc3-f0cb-4d83-b451-779a667f81b5",
+        "id": "7b145286-44b5-44cb-bad0-a0c63d07d1b3",
         "displayName": "Son de riz Origine Inconnue",
         "cropGroup": "RIZ",
         "ingredientCategories": [
-          "grain_raw"
+          "grain_processed"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 0.75,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3581,16 +3581,16 @@
         "alias": "rice-bran-at-industrial-mill-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "6072948e-413f-43f9-a749-cc24414d1a8c",
+        "id": "b2700e96-83dd-4c3e-a734-47f77ff3bf5a",
         "displayName": "Son de riz Bio",
         "cropGroup": "RIZ",
         "ingredientCategories": [
-          "grain_raw",
+          "grain_processed",
           "organic"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.85,
-        "rawToCookedRatio": 2.259,
+        "inediblePart": 0,
+        "ingredientDensity": 0.75,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3619,15 +3619,15 @@
         "alias": "rye-bran-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "737bf4b0-522f-4e31-96f9-bd07cf78f818",
+        "id": "6dd6ed3b-1643-41dc-afc0-f1cce1296ca3",
         "displayName": "Son de seigle Origine Inconnue",
         "cropGroup": "AUTRES CEREALES",
         "ingredientCategories": [
-          "grain_raw"
+          "grain_processed"
         ],
-        "inediblePart": 0.0,
+        "inediblePart": 0,
         "ingredientDensity": 0.75,
-        "rawToCookedRatio": 2.259,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3656,15 +3656,15 @@
         "alias": "rye-flour-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "2b3dafea-cbcb-4f07-8b13-3bffc9ba4500",
+        "id": "51ede1b9-a7aa-4c73-8aff-52574b7fe6f6",
         "displayName": "Farine de seigle Origine Inconnue",
         "cropGroup": "AUTRES CEREALES",
         "ingredientCategories": [
-          "grain_raw"
+          "grain_processed"
         ],
-        "inediblePart": 0.0,
+        "inediblePart": 0,
         "ingredientDensity": 0.75,
-        "rawToCookedRatio": 2.259,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3693,16 +3693,16 @@
         "alias": "spinach-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "b1c6a0c4-848c-4f60-b1a8-ddbae1f71ec5",
+        "id": "c7054dc8-65af-473d-bd6e-d1d1ff37b804",
         "displayName": "Épinards pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.03,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3731,15 +3731,15 @@
         "alias": "sunflower-oil-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "6df41e0c-103b-44a4-bf76-358b559d62ea",
+        "id": "1e915498-78b9-4eef-b9c4-a7f413b82a2f",
         "displayName": "Huile de tournesol Bio",
-        "cropGroup": "TOURNESOL",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "nut_oilseed_raw",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.62,
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
         "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
@@ -3769,14 +3769,14 @@
         "alias": "sunflower-oil-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "fff2fd0f-365a-45ce-a1a5-b2a43a941411",
+        "id": "59c461ce-f160-4351-81f7-357001c479d8",
         "displayName": "Huile de tournesol Origine Inconnue",
-        "cropGroup": "TOURNESOL",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "nut_oilseed_raw"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.0,
-        "ingredientDensity": 0.62,
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
         "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
@@ -3806,21 +3806,21 @@
         "alias": "walnuts-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "a3b1ea76-11de-4630-8f79-6db916812abd",
+        "id": "fc7ce2ef-720d-4f9f-8bd7-7fc68d7f1a0a",
         "displayName": "Noix décortiquées Bio",
-        "cropGroup": "FRUITS A COQUES",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "nut_oilseed_raw",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.5,
-        "ingredientDensity": 0.5,
+        "inediblePart": 0,
+        "ingredientDensity": 0.72,
         "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
         ],
-        "transportCooling": "none",
+        "transportCooling": "always",
         "visible": true
       }
     ],
@@ -3844,20 +3844,20 @@
         "alias": "walnuts-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "c429e074-e046-4091-8e2a-283553f89af4",
+        "id": "e17ff8b9-97fc-4310-8b51-240d20ea89fd",
         "displayName": "Noix décortiquées Origine Inconnue",
-        "cropGroup": "FRUITS A COQUES",
+        "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "nut_oilseed_raw"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.5,
-        "ingredientDensity": 0.5,
+        "inediblePart": 0,
+        "ingredientDensity": 0.72,
         "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
         ],
-        "transportCooling": "none",
+        "transportCooling": "always",
         "visible": true
       }
     ],
@@ -3881,15 +3881,15 @@
         "alias": "potato-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "98edfc2b-2a6a-446c-b2df-7afbfe8b9afa",
+        "id": "cfc21f87-ad51-49dd-80b5-e7f7e5160570",
         "displayName": "Pommes de terre, pré-friées en cubes, congelées Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.1,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3918,16 +3918,16 @@
         "alias": "potato-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "86f82a4d-a25b-4924-bdb3-b54e4692c295",
+        "id": "bbd09e4a-a9de-488d-85f1-69f94e6417fa",
         "displayName": "Pommes de terre, pré-friées en cubes, congelées Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.1,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3956,15 +3956,15 @@
         "alias": "potato-peeled-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "0c7ee5ad-dfb6-483e-b4c3-015accd63c5c",
+        "id": "7d824735-4494-4e9a-adf7-1f81592a2cc0",
         "displayName": "Pommes de terre, pelées Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.1,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -3993,16 +3993,16 @@
         "alias": "potato-peeled-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "f8978263-183d-4318-aae1-8d6168aaeedf",
+        "id": "c42ada64-298e-4088-a94d-a9e14c01e565",
         "displayName": "Pommes de terre, pelées Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.1,
-        "ingredientDensity": 1.1,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -4031,16 +4031,16 @@
         "alias": "asparagus-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "ced127f9-dded-411a-a2ab-9c2b195b70b9",
+        "id": "e5bf28c0-5a2d-4096-904e-5913b6894cec",
         "displayName": "Asperges pelées Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.4,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -4069,15 +4069,15 @@
         "alias": "asparagus-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "89b1f3dd-9fd6-416d-b2bf-86b9f8d01907",
+        "id": "1c6af5c8-812a-4164-b785-ba449e05d030",
         "displayName": "Asperges pelées Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.4,
+        "inediblePart": 0,
         "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -4106,21 +4106,21 @@
         "alias": "chick-pea-flour-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "36eb00e2-f4e1-467f-bf13-9f908a0d3c72",
+        "id": "b162e77d-475c-406c-945b-8d73eb5312fd",
         "displayName": "Farine de pois chiches Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
         ],
-        "transportCooling": "always",
+        "transportCooling": "none",
         "visible": true
       }
     ],
@@ -4144,16 +4144,16 @@
         "alias": "chick-peas-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "9bbeb452-0414-4c31-932d-49765127e688",
+        "id": "4d1258af-ccd1-4f88-a7a7-ef30b9591f60",
         "displayName": "Pois chiches, pelés Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -4182,16 +4182,16 @@
         "alias": "chick-pea-bran-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "71deece1-c44c-489f-8547-ee14cbc38567",
+        "id": "79423395-953d-4788-960d-babc451e6a2f",
         "displayName": "Son de pois chiches Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 0.9,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -4220,15 +4220,15 @@
         "alias": "zucchini-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "cee9e0c7-2cd1-4bb2-b028-a28fab8e33d7",
+        "id": "6c175bac-f2cd-4add-80f3-9671e9ba45a4",
         "displayName": "Courgette, pelée Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh"
+          "vegetable_processed"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"
@@ -4257,16 +4257,16 @@
         "alias": "zucchini-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "2e24c5c8-fd2e-440a-9ff2-f502e66faac6",
+        "id": "94585ec4-82be-4e4c-b739-7a486b6d63dc",
         "displayName": "Courgette, pelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
-          "vegetable_fresh",
+          "vegetable_processed",
           "organic"
         ],
-        "inediblePart": 0.2,
-        "ingredientDensity": 1.0,
-        "rawToCookedRatio": 0.856,
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
         "scopes": [
           "food",
           "food2"

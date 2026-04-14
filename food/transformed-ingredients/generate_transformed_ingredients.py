@@ -56,8 +56,15 @@ from dataclasses import dataclass
 from pathlib import Path
 from uuid import uuid4
 
-from volca import Client
+from volca import Client, ClassificationFilter
 from volca.types import ConsumerResult, PathResult
+
+# predict.py lives in a sibling package that is not installed as a module;
+# expose it via sys.path so we can import the Predictor class directly.
+_METADATA_DIR = Path(__file__).resolve().parent.parent / "metadata"
+if str(_METADATA_DIR) not in sys.path:
+    sys.path.insert(0, str(_METADATA_DIR))
+from predict import Predictor  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -66,6 +73,9 @@ from volca.types import ConsumerResult, PathResult
 
 # VoLCA database name for the main Agribalyse database (where transformed products live)
 AGRIBALYSE_DB = "agribalyse-3.2"
+
+# Cached predictor pickle (sibling to this script, git-ignored)
+PREDICTOR_CACHE = Path(__file__).resolve().parent / ".predictor.pkl"
 
 # Mapping from activities.json "source" field to VoLCA database name
 DB_MAP: dict[str, str] = {
@@ -90,10 +100,10 @@ VARIANT_DISPLAY_SUFFIX: dict[str, str] = {
 
 # Classification filters matching the "transformed" preset in volca.toml
 # Sent as a single request with repeated query parameters (OR semantics server-side)
-TRANSFORMED_FILTERS: list[tuple[str, str, str]] = [
-    ("Category", "Agricultural\\Food\\Transformation", "exact"),
-    ("Category", "Agricultural\\Food\\Cheese production", "exact"),
-    ("Category type", "material", "exact"),
+TRANSFORMED_FILTERS: list[ClassificationFilter] = [
+    ClassificationFilter("Category", "Agricultural\\Food\\Transformation", "exact"),
+    ClassificationFilter("Category", "Agricultural\\Food\\Cheese production", "exact"),
+    ClassificationFilter("Category type", "material", "exact"),
 ]
 
 
@@ -431,12 +441,70 @@ def make_from_existing(
     }
 
 
-def make_activities_entry(fe_block: dict, target: VariantInfo, french_name: str) -> dict:
-    """Build an activities.json entry for a new transformed ingredient variant."""
+def load_or_train_predictor(training_ingredients_path: Path) -> Predictor:
+    """Load the cached predictor pickle, or train one from the flat ingredients.json.
+
+    predict.py's Predictor.fit() expects the flat ecobalyse ingredients schema
+    (top-level `name`, `density`, `inediblePart`, …) shipped under
+    public/data/food/ingredients.json — NOT the nested activities.json format.
+
+    Training is expensive (FoodOn ontology + transformers) so the result is
+    pickled next to the script.
+    """
+    if PREDICTOR_CACHE.exists():
+        print(f"Loading predictor from {PREDICTOR_CACHE.name} ...")
+        return Predictor.load(str(PREDICTOR_CACHE))
+    print(f"Training predictor from {training_ingredients_path} "
+          f"(slow, first run only) ...")
+    with training_ingredients_path.open() as f:
+        training = json.load(f)
+    p = Predictor()
+    p.fit(training)
+    p.save(str(PREDICTOR_CACHE))
+    print(f"  saved to {PREDICTOR_CACHE.name}")
+    return p
+
+
+def make_activities_entry(
+    fe_block: dict,
+    target: VariantInfo,
+    french_name: str,
+    predictor: Predictor,
+) -> dict:
+    """Build an activities.json entry for a new transformed ingredient variant.
+
+    Physical metadata (density, transportCooling, rawToCookedRatio, categories,
+    cropGroup) is predicted from the transformed-product name via ../metadata/
+    predict.py. Variant identity (scenario, defaultOrigin) comes from the
+    target raw variant. inediblePart is hardcoded to 0 — transformation has
+    already removed the inedible fraction.
+    """
     meta = target.raw_meta
     alias = fe_block["alias"]
     variant_suffix = VARIANT_DISPLAY_SUFFIX.get(target.scenario, "")
     display_name = french_name + variant_suffix
+
+    # Pass the clean French product name (without " Bio" / " Origine Inconnue"
+    # suffix) and the underlying Agribalyse activity name (without the variant
+    # bracket added for substitution). The suffixes add noise to the
+    # FoodOn/nearest-neighbour matchers inside predict.py.
+    pred = predictor.predict({
+        "name": french_name,
+        "activityName": fe_block["existingActivity"]["name"],
+    })
+
+    # Predictor sometimes returns "_raw" / "_fresh" category tokens because
+    # the NOVA keyword classifier does not fire on juice/puree/peeled names.
+    # Transformed ingredients are always processed, so rewrite the category
+    # suffix to match the ecobalyse convention (grain_processed,
+    # vegetable_processed, …). Append the variant tag ("organic") last.
+    base_categories = pred.get("categories") or []
+    ing_categories = [
+        c.replace("_raw", "_processed").replace("_fresh", "_processed")
+        for c in base_categories
+    ]
+    if target.scenario == "organic" and "organic" not in ing_categories:
+        ing_categories.append("organic")
 
     return {
         "activityName": fe_block["newName"],
@@ -450,13 +518,13 @@ def make_activities_entry(fe_block: dict, target: VariantInfo, french_name: str)
             "defaultOrigin": meta.get("defaultOrigin"),
             "id": str(uuid4()),
             "displayName": display_name,
-            "cropGroup": meta.get("cropGroup"),
-            "ingredientCategories": meta.get("ingredientCategories", []),
-            "inediblePart": meta.get("inediblePart"),
-            "ingredientDensity": meta.get("ingredientDensity"),
-            "rawToCookedRatio": meta.get("rawToCookedRatio"),
+            "cropGroup": pred.get("cropGroup") or meta.get("cropGroup"),
+            "ingredientCategories": ing_categories,
+            "inediblePart": 0,
+            "ingredientDensity": pred.get("density"),
+            "rawToCookedRatio": 1.0,
             "scopes": ["food", "food2"],
-            "transportCooling": meta.get("transportCooling"),
+            "transportCooling": pred.get("transportCooling"),
             "visible": True,
         }],
         "scopes": ["food", "food2"],
@@ -495,6 +563,12 @@ def main() -> None:
         type=int,
         default=2,
         help="Max BFS depth for get_consumers (default: 2 = direct + one intermediate like market mix)",
+    )
+    parser.add_argument(
+        "--training-ingredients",
+        default=None,
+        help="Path to flat ingredients.json used to train the metadata predictor "
+             "(default: sibling public/data/food/ingredients.json next to --activities)",
     )
     args = parser.parse_args()
 
@@ -599,11 +673,18 @@ def main() -> None:
     for en, fr in en_to_fr.items():
         print(f"  {en} → {fr}")
 
+    # Train (or load cached) metadata predictor from existing ingredients
+    if args.training_ingredients:
+        training_path = Path(args.training_ingredients)
+    else:
+        training_path = activities_path.parent / "public/data/food/ingredients.json"
+    predictor = load_or_train_predictor(training_path)
+
     # Build final outputs
     final_fe: list[dict] = []
     final_ae: list[dict] = []
     for fe, target, short_name in output_fe:
-        ae = make_activities_entry(fe, target, en_to_fr[short_name])
+        ae = make_activities_entry(fe, target, en_to_fr[short_name], predictor)
         final_fe.append(fe)
         final_ae.append(ae)
 
