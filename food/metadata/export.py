@@ -241,6 +241,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
 
         # Extract production location for FR variant handling
         production_fr = str(row.get("Production_FR", "")).strip()
+        antilles = str(row.get("antilles", "")).strip().upper() == "TRUE"
 
         ingredient = {"name": name, "activityName": activity_name}
         predictions = predictor.predict(ingredient)
@@ -256,6 +257,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
             "predictions": predictions,
             "variant": variant,
             "production_fr": production_fr,
+            "antilles": antilles,
             "location": location,
             "visible": visible,
         })
@@ -361,12 +363,16 @@ def build_activity_entry(
     production_fr: str = "",
     location: str = "",
     visible: bool = True,
+    antilles: bool = False,
 ) -> dict:
     """Build an activity entry in the activities.json format."""
     # Determine suffix based on variant and production location
     if variant == Variant.FR and production_fr == "DOM":
         variant_suffix = " FR Outre-Mer"
         alias_suffix = "-fr-overseas"
+    elif variant == Variant.UE and antilles:
+        variant_suffix = " UE Antilles"
+        alias_suffix = "-eu-antilles"
     else:
         variant_suffix = VARIANT_SUFFIX[variant]
         alias_suffix = VARIANT_ALIAS_SUFFIX[variant]
@@ -445,6 +451,7 @@ def write_json(results: list, output_path: str):
             r.get("production_fr", ""),
             r.get("location", ""),
             r.get("visible", True),
+            r.get("antilles", False),
         )
         activities.append(activity)
 
@@ -464,6 +471,17 @@ GENERATED_DIR = Path(__file__).parent / "generated"
 
 def get_input_csv(variant: Variant) -> Path:
     return INPUT_CSV_DIR / f"new_ingredient_{variant.value}.csv"
+
+
+def load_source_csv(variant: Variant) -> pd.DataFrame:
+    df = pd.read_csv(get_input_csv(variant))
+    df.columns = df.columns.str.replace("_", " ")
+    if "under review" in df.columns:
+        mask = df["under review"].astype(str).str.strip().str.upper() == "TRUE"
+        if mask.any():
+            print(f"Skipping {int(mask.sum())} rows marked 'under review'")
+        df = df[~mask].reset_index(drop=True)
+    return df
 
 
 def get_output_paths(variant: Variant) -> tuple[Path, Path, Path]:
@@ -605,8 +623,9 @@ def apply_suffixes(
         if dn not in new_ing_names:
             # OLD ingredient
             if dn not in keep_set:
-                ing["displayName"] += old_display_suffix
-                if ing.get("alias"):
+                if not ing["displayName"].endswith(old_display_suffix):
+                    ing["displayName"] += old_display_suffix
+                if ing.get("alias") and not ing["alias"].endswith(old_alias_suffix):
                     old_ing_alias = ing["alias"]
                     ing["alias"] = old_ing_alias + old_alias_suffix
                     ing_alias_renames[old_ing_alias] = ing["alias"]
@@ -636,7 +655,7 @@ def reassemble(
         all_meta = non_food_meta + food_ings
         if all_meta:
             entry["metadata"] = all_meta
-        elif entry.get("categories") == ["ingredient"]:
+        elif "ingredient" in entry.get("categories", []):
             continue  # Skip orphaned ingredient activities with no metadata
         result.append(entry)
     return result + other
@@ -727,15 +746,36 @@ def merge_activities(
     # New ingredients override existing on displayName collision (allows re-exporting updates)
     # but preserve existing UUIDs
     merged_ings = {**existing_ings}
+    pre_alias_renames: dict[str, str] = {}
     for dn, ing in new_ings.items():
-        if dn in existing_ings and "id" in existing_ings[dn]:
-            ing = {**ing, "id": existing_ings[dn]["id"]}
+        existing = merged_ings.get(dn)
+        if existing is not None:
+            existing_ad = existing.get("activity_display")
+            new_ad = ing.get("activity_display")
+            if existing_ad != new_ad:
+                # Collision on displayName across two different hosting activities.
+                # Artifact of a past migration where the outer activity got suffixed
+                # with OLD_DISPLAY_SUFFIX but the inner ingredient kept its
+                # un-suffixed name. Move the existing orphan aside under its
+                # suffixed identity so its activity keeps valid metadata and the
+                # new ingredient takes the clean name.
+                old_dn = existing["displayName"] + OLD_DISPLAY_SUFFIX
+                renamed = {**existing, "displayName": old_dn}
+                old_alias_val = existing.get("alias") or ""
+                if old_alias_val and not old_alias_val.endswith(OLD_ALIAS_SUFFIX):
+                    renamed["alias"] = old_alias_val + OLD_ALIAS_SUFFIX
+                    pre_alias_renames[old_alias_val] = renamed["alias"]
+                merged_ings[old_dn] = renamed
+                merged_ings[dn] = ing
+                continue
+            if "id" in existing:
+                ing = {**ing, "id": existing["id"]}
         merged_ings[dn] = ing
 
     # Apply suffix logic
-    alias_renames = {}
+    alias_renames = dict(pre_alias_renames)
     if add_old_suffix:
-        merged_acts, merged_ings, alias_renames = apply_suffixes(
+        merged_acts, merged_ings, apply_renames = apply_suffixes(
             merged_acts,
             merged_ings,
             set(added_acts),
@@ -745,6 +785,7 @@ def merge_activities(
             OLD_DISPLAY_SUFFIX,
             OLD_ALIAS_SUFFIX,
         )
+        alias_renames.update(apply_renames)
 
     # Update feed.json keys to match renamed ingredient aliases
     feed_path = target_activities_path.parent / "food/ecosystemic_services/feed.json"
@@ -752,7 +793,7 @@ def merge_activities(
         with open(feed_path, encoding="utf-8") as f:
             feed_data = json.load(f)
 
-        if add_old_suffix and alias_renames:
+        if alias_renames:
             updated_feed = {}
             renamed_count = 0
             for key, value in feed_data.items():
@@ -787,7 +828,7 @@ def generate_final_data(variant: Variant):
     # Load source CSV
     input_csv = get_input_csv(variant)
     print(f"Loading {input_csv}...")
-    source_df = pd.read_csv(input_csv)
+    source_df = load_source_csv(variant)
 
     ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
     ECOBALYSE = Path(os.environ["ECOBALYSE"])
@@ -834,8 +875,11 @@ def generate_final_data(variant: Variant):
         activity_name = row["icv final"]
 
         # Derive alias the same way build_activity_entry does (alias is unique, activityName is not)
+        antilles = str(row.get("antilles", "")).strip().upper() == "TRUE"
         if variant == Variant.FR and row.get("Production_FR") == "DOM":
             alias_suffix = "-fr-overseas"
+        elif variant == Variant.UE and antilles:
+            alias_suffix = "-eu-antilles"
         else:
             alias_suffix = VARIANT_ALIAS_SUFFIX[variant]
         row_alias = generate_alias(row["item"]) + alias_suffix
@@ -1088,8 +1132,7 @@ def main():
     # Load input CSV
     input_csv = get_input_csv(args.variant)
     print(f"\nLoading {input_csv}...")
-    df = pd.read_csv(input_csv)
-    df.columns = df.columns.str.replace("_", " ")
+    df = load_source_csv(args.variant)
 
     if "item" not in df.columns or "icv final" not in df.columns:
         raise ValueError("CSV must have 'item' and 'icv final' columns")
