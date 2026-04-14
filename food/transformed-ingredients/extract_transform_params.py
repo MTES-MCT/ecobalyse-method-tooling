@@ -64,6 +64,7 @@ class Row:
     allocation_pct: float
     eau_ajoutee_kg: float
     biowaste_pct: float
+    dummy_op: bool
     coproduits: str
     process_id: str
 
@@ -112,6 +113,7 @@ def to_row(label: str, variant: str, pid: str, d: Decomposition) -> Row:
         allocation_pct=main_product_allocation_pct(d),
         eau_ajoutee_kg=round(d.tap_water_kg, 4),
         biowaste_pct=round(biowaste_pct, 2),
+        dummy_op=d.dummy_op,
         coproduits="; ".join(f"{n} ({q:.3g} {u})" for n, q, u in d.co_products),
         process_id=pid,
     )

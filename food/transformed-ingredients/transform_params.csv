@@ -1,5 +1,5 @@
-ingredient,variante,pattern,icv_matiere_premiere,rdmt_mat_kg_per_kg,perte_pct,elec_kwh,chaleur_mj,allocation_pct,eau_ajoutee_kg,biowaste_pct,coproduits,process_id
-Beurre 82%,FR,wrapper_wfldb,"Cow milk, consumption mix {FR} U",6.5816,0.0,0.4809,0.0321,33.0,0.4809,0.0,,7c235fbd-e757-5987-a6ea-28bf873dda83_54652585-3ae3-5810-80b0-9e00a093d0c2
-Jus de pomme NFC,FR,direct,"Table apple, consumption mix {FR} U",1.37,27.01,0.09,0.41,100.0,3.05,37.0,,1a4c2770-5794-5f31-b269-4604930b2143_9c67e6cc-8f24-5f44-9243-d64c2494a8b3
-Tomate pelée,FR,layered,"Processed tomatoes, for industrial tomato pasta type products {FR} U",1.0309,3.0,0,0,100.0,0,3.09,,b81fb01c-7808-567b-99d0-b1487e69dc3e_19b7531c-1bd7-521b-8118-89f9c848446f
-Lait en poudre entier,FR,wrapper_wfldb,"Milk, whole, pasteurised, at plant {FR} U",10.1,90.1,0.5052,7.4029,100.0,39.3585,0.0,,145e1331-113c-5686-9d0f-2ff332f37dad_cc42bcb0-d2ef-5533-9d13-9453c3371d3b
+ingredient,variante,pattern,icv_matiere_premiere,rdmt_mat_kg_per_kg,perte_pct,elec_kwh,chaleur_mj,allocation_pct,eau_ajoutee_kg,biowaste_pct,dummy_op,coproduits,process_id
+Beurre 82%,FR,wrapper_wfldb,"Cow milk, consumption mix {FR} U",6.5816,0.0,0.4809,0.0321,33.0,0.4809,0.0,False,,7c235fbd-e757-5987-a6ea-28bf873dda83_54652585-3ae3-5810-80b0-9e00a093d0c2
+Jus de pomme NFC,FR,direct,"Table apple, consumption mix {FR} U",1.37,27.01,0.09,0.41,100.0,3.05,37.0,False,,1a4c2770-5794-5f31-b269-4604930b2143_9c67e6cc-8f24-5f44-9243-d64c2494a8b3
+Tomate pelée,FR,layered,"Tomato, average basket, conventional, soil based, non-heated greenhouse, at greenhouse {FR} U",1.0309,3.0,0.0,0.0,100.0,0.0,0.0,True,,b81fb01c-7808-567b-99d0-b1487e69dc3e_19b7531c-1bd7-521b-8118-89f9c848446f
+Lait en poudre entier,FR,wrapper_wfldb,"Milk, whole, pasteurised, at plant {FR} U",10.1,90.1,0.5052,7.4029,100.0,39.3585,0.0,False,,145e1331-113c-5686-9d0f-2ff332f37dad_cc42bcb0-d2ef-5533-9d13-9453c3371d3b
