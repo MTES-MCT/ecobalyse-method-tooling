@@ -699,6 +699,35 @@ def merge_activities(
         new_list, strip_display, strip_alias
     )
 
+    # Activity displayName collision: a new activity shares its displayName with
+    # an existing activity hosted on a different ecoinvent activityName. Rename
+    # the old activity with OLD_DISPLAY_SUFFIX so its pre-existing ingredients
+    # stay anchored to it instead of being orphaned onto the new activity.
+    existing_act_renames: dict[str, str] = {}
+    for dn, new_act in list(new_acts.items()):
+        if dn not in existing_acts:
+            continue
+        existing_an = existing_acts[dn].get("activityName")
+        new_an = new_act.get("activityName")
+        if not existing_an or not new_an or existing_an == new_an:
+            continue
+        old_dn = dn + OLD_DISPLAY_SUFFIX
+        if old_dn in existing_acts:
+            continue
+        renamed = {**existing_acts[dn], "displayName": old_dn}
+        old_alias_val = renamed.get("alias") or ""
+        if old_alias_val and not old_alias_val.endswith(OLD_ALIAS_SUFFIX):
+            renamed["alias"] = old_alias_val + OLD_ALIAS_SUFFIX
+        existing_acts[old_dn] = renamed
+        del existing_acts[dn]
+        existing_act_renames[dn] = old_dn
+
+    if existing_act_renames:
+        for ing in existing_ings.values():
+            ad = ing.get("activity_display")
+            if ad in existing_act_renames:
+                ing["activity_display"] = existing_act_renames[ad]
+
     # Build activityName -> displayName map from existing
     existing_act_by_name = {
         act["activityName"]: dn
