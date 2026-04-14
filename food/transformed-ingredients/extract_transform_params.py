@@ -1,13 +1,49 @@
 """Extract transformation parameters from Agribalyse processes via VoLCA.
 
-Reverse-engineers the parameters needed by Ecobalyse's "composant" module
-(yield, electricity, heat, allocation, water, co-products, biowaste) for a
-small set of reference processes by composing /aggregate queries through
-``volca.agribalyse.decompose``.
+Strategy
+--------
+Ecobalyse's "composant" module needs per-transformation parameters (raw
+material yield, electricity, heat, allocation factor, added water,
+co-products, biowaste share, is_byproduct flag) that Agribalyse does not
+expose directly — they are buried in a tree of sub-activities whose shape
+depends on how the dataset was authored.
+
+We reverse-engineer those values by calling ``volca.agribalyse.decompose``
+on each target process. ``decompose`` walks the supply chain with VoLCA's
+/aggregate and /get_activity endpoints and classifies the activity into
+one of three authoring patterns:
+
+  - Pattern A "wrapper_wfldb" : an Agribalyse wrapper points at a WFLDB
+    activity that carries the real inventory (e.g. Beurre, Lait en poudre).
+  - Pattern B "direct"        : the transformation inventory lives directly
+    on the activity (e.g. Jus de pomme NFC).
+  - Pattern C "layered"       : the activity is a thin layer over another
+    Agribalyse sub-activity (e.g. Tomate pelée).
+
+``decompose`` returns a structured ``Decomposition`` with raw_material_kg,
+electricity_kwh, heat_mj, tap_water_kg, biowaste_kg, allocation factors,
+co_products and flags (dummy_op, is_byproduct). ``to_row`` then maps that
+into the CSV schema expected by the spreadsheet, with two domain rules:
+
+  - Allocation: when a multi-output process has several allocation factors,
+    pick the one whose key does NOT appear in the raw material name (the
+    raw is the input; the main product is the *other* key). For butter the
+    raw is "Cow milk" → pick the "butter" factor.
+  - Loss: mass that doesn't make it into the output. For mono-product
+    processes, loss = (raw_kg - 1) / raw_kg. For multi-product processes
+    (allocation set), that formula over-attributes loss to the main product
+    because the gap is allocation, not physical waste — fall back to the
+    biowaste share instead.
+
+By default the script processes four reference PIDs covering all three
+patterns. Pass ``--all`` to decompose every activity matched by the
+"transformed" preset in volca.toml (same preset used by
+generate_transformed_ingredients.py to enumerate consumers).
 
 Usage:
     uv run python extract_transform_params.py
     uv run python extract_transform_params.py --output transform_params.csv
+    uv run python extract_transform_params.py --all --limit 50
 """
 
 import argparse

@@ -32,9 +32,17 @@ Algorithm:
      path from C to V_src (the variant C already uses).
    - Derive the from_existing block: existingActivity=path[0],
      upstreamPath=path[1:-1], replace.from=path[-1]=V_src, replace.to=V_tgt.
-5. Also generate an activities.json entry for each new transformed activity,
-   copying physical metadata (density, inediblePart, rawToCookedRatio ...)
-   from the corresponding raw variant.
+   - Special case: if a "consumption mix" activity sits between C and the
+     raw ingredient, replace the mix itself (not the leaf ingredient inside
+     it), so the whole sourcing blend is swapped for V_tgt.
+5. Also generate an activities.json entry for each new transformed activity.
+   Physical metadata (ingredientDensity, transportCooling, cropGroup,
+   ingredientCategories) is *predicted* from the transformed-product name
+   via ../metadata/predict.py (FoodOn ontology + nearest-neighbour). The
+   English activity name is translated to French with Helsinki-NLP/opus-mt
+   for the displayName. inediblePart is hardcoded to 0 (transformation has
+   already removed the inedible fraction) and rawToCookedRatio to 1.0.
+   Only scenario and defaultOrigin come from the target raw variant.
 
 Outputs two files:
   generated_activities_to_create.json  — from_existing blocks to merge into activities_to_create.json
