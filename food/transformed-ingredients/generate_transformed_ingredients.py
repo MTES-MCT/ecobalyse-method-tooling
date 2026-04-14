@@ -56,7 +56,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from uuid import uuid4
 
-from volca import Client, ClassificationFilter
+from volca import Client
 from volca.types import ConsumerResult, PathResult
 
 # predict.py lives in a sibling package that is not installed as a module;
@@ -80,7 +80,7 @@ PREDICTOR_CACHE = Path(__file__).resolve().parent / ".predictor.pkl"
 # Mapping from activities.json "source" field to VoLCA database name
 DB_MAP: dict[str, str] = {
     "Agribalyse 3.2": "agribalyse-3.2",
-    "Ecoinvent 3.9.1": "ecoinvent-3.9.1",
+    "Ecoinvent 3.9.1": "ecoinvent-3-9-1-adapted",
     "Ecoinvent 3.11": "ecoinvent-3-11-adapted",
     "Ginko 2025": "ginko",
     "WFLDB": "wfldb",
@@ -98,13 +98,10 @@ VARIANT_DISPLAY_SUFFIX: dict[str, str] = {
     "import": " Origine Inconnue",
 }
 
-# Classification filters matching the "transformed" preset in volca.toml
-# Sent as a single request with repeated query parameters (OR semantics server-side)
-TRANSFORMED_FILTERS: list[ClassificationFilter] = [
-    ClassificationFilter("Category", "Agricultural\\Food\\Transformation", "exact"),
-    ClassificationFilter("Category", "Agricultural\\Food\\Cheese production", "exact"),
-    ClassificationFilter("Category type", "material", "exact"),
-]
+# Named VoLCA preset bundling the classification filters for firstly-transformed
+# food ingredients (flour milling, juice pressing, cheese making, ...).
+# Resolved server-side from volca.toml; see `volca list_presets`.
+TRANSFORMED_PRESET = "transformed"
 
 
 # ---------------------------------------------------------------------------
@@ -357,7 +354,7 @@ def collect_consumers(
         try:
             consumers = db_client.get_consumers(
                 v.process_id,
-                classification_filters=TRANSFORMED_FILTERS,
+                preset=TRANSFORMED_PRESET,
                 max_depth=max_depth,
             )
         except Exception as exc:
@@ -595,7 +592,7 @@ def main() -> None:
 
     # Detect databases with native naming (EcoSpold 2) vs SimaPro CSV
     dbs = client.list_databases()
-    native_dbs = {db["dsaName"] for db in dbs if db.get("dsaFormat") != "SimaPro CSV"}
+    native_dbs = {db["name"] for db in dbs if db.get("format") != "SimaPro CSV"}
     print(f"Native-naming databases: {native_dbs}")
 
     # Step 1: Parse and group
