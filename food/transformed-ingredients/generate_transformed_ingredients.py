@@ -431,6 +431,8 @@ def make_from_existing(
     to_entry: dict = {"name": target.activity_name}
     if target.source != "Agribalyse 3.2":
         to_entry["database"] = target.source
+    if target.location:
+        to_entry["location"] = target.location
 
     return {
         "activityCreationType": "from_existing",
