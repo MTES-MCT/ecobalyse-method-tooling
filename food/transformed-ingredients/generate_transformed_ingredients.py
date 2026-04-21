@@ -20,21 +20,26 @@ Algorithm:
 1. Parse activities.json to build ingredient groups: for each alias prefix
    (e.g. "radish") collect all known variants (radish-fr, radish-organic,
    radish-default) with their upstream LCA activityName and database.
-2. For each variant in each group, call VoLCA get_consumers with a
-   classification filter restricted to transformed-food categories (from the
-   "transformed" preset in volca.toml). This returns only genuine
-   transformation activities, regardless of how many intermediate market or
-   transport steps sit between the raw ingredient and the transformation.
-3. Collect the union of all consumers across all variants in the group.
-   For each consumer C, record which variant(s) it already uses as input.
+2. For each variant in each group, call VoLCA get_consumers with
+   include_edges=True and no server-side preset. This returns the full
+   BFS subgraph of transitive consumers plus every technosphere edge
+   between reachable nodes. Transformed-product filtering happens
+   client-side from ConsumerResult.classifications (Category ∈
+   TRANSFORMED_CATEGORIES + Category type = material). Keeping the
+   unfiltered response preserves consumption-mix metadata needed when
+   walking paths.
+3. Collect the union of all transformed consumers across all variants in
+   the group. For each consumer C, record which variant(s) it uses.
 4. For each consumer C and each variant V_tgt that C does NOT yet use:
-   - Call get_path_to(C, V_src.activityName) to get the exact supply chain
-     path from C to V_src (the variant C already uses).
+   - Walk the per-supplier edge subgraph locally (BFS from V_src.process_id
+     to C) to reconstruct the shortest path C → ... → V_src. No extra
+     HTTP round-trip.
    - Derive the from_existing block: existingActivity=path[0],
      upstreamPath=path[1:-1], replace.from=path[-1]=V_src, replace.to=V_tgt.
-   - Special case: if a "consumption mix" activity sits between C and the
-     raw ingredient, replace the mix itself (not the leaf ingredient inside
-     it), so the whole sourcing blend is swapped for V_tgt.
+   - Special case: if a hop on the path has
+     Category = "Agricultural\\Food\\Consumption mixes", replace the mix
+     itself (not the leaf ingredient inside it), so the whole sourcing
+     blend is swapped for V_tgt.
 5. Also generate an activities.json entry for each new transformed activity.
    Physical metadata (ingredientDensity, transportCooling, cropGroup,
    ingredientCategories) is *predicted* from the transformed-product name
@@ -65,7 +70,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from volca import Client
-from volca.types import ConsumerResult, PathResult
+from volca.types import ConsumerResult, SupplyChainEdge
 
 # predict.py lives in a sibling package that is not installed as a module;
 # expose it via sys.path so we can import the Predictor class directly.
@@ -106,10 +111,6 @@ VARIANT_DISPLAY_SUFFIX: dict[str, str] = {
     "import": " Origine Inconnue",
 }
 
-# Named VoLCA preset bundling the classification filters for firstly-transformed
-# food ingredients (flour milling, juice pressing, cheese making, ...).
-# Resolved server-side from volca.toml; see `volca list_presets`.
-TRANSFORMED_PRESET = "transformed"
 
 
 # ---------------------------------------------------------------------------
@@ -355,9 +356,8 @@ def resolve_process_ids(
             geo = v.location or parsed_geo
             if geo:
                 search_kwargs["geo"] = geo
-            results = db_client.search_activities(**search_kwargs)
-            exact = [r for r in results if r.name == search_name]
-            pid = exact[0].process_id if exact else None
+            results = db_client.search_activities(exact=True, **search_kwargs)
+            pid = results[0].process_id if results else None
             if pid is None:
                 print(
                     f"  [WARN] Could not resolve '{v.activity_name}' in {db_name!r}",
@@ -372,43 +372,67 @@ def resolve_process_ids(
 # ---------------------------------------------------------------------------
 
 
+TRANSFORMED_CATEGORIES = {
+    "Agricultural\\Food\\Transformation",
+    "Agricultural\\Food\\Cheese production",
+}
+MIX_CATEGORY = "Agricultural\\Food\\Consumption mixes"
+
+
+def _is_transformed_product(c: ConsumerResult) -> bool:
+    """Client-side replication of the `transformed` preset (volca.toml):
+    Category ∈ TRANSFORMED_CATEGORIES AND Category type = material."""
+    cls = c.classifications
+    return (
+        cls.get("Category") in TRANSFORMED_CATEGORIES
+        and cls.get("Category type") == "material"
+    )
+
+
 def collect_consumers(
     variants: list[VariantInfo],
     client: Client,
+    food_transform_dbs: set[str],
     max_depth: int = 2,
-) -> tuple[dict[str, set[str]], dict[str, ConsumerResult]]:
-    """
-    For each variant that lives in a database containing food-transformed products
-    (Agribalyse or any database that has it as dependency), call get_consumers with
-    the transformed-food classification filter.
+) -> tuple[
+    dict[str, set[str]],
+    dict[str, ConsumerResult],
+    dict[str, list[SupplyChainEdge]],
+]:
+    """Find transformed-product consumers for each variant and retain the
+    traversal subgraph for local path reconstruction.
 
-    Databases that hold transformed food products: agribalyse-3.2 and those that
-    depend on it (ginko, pastoeco, ecobalyse ...).  Pure Ecoinvent activities are
-    unlikely to have Agribalyse-based food-transformed consumers, so we skip them.
+    One ``get_consumers(include_edges=True)`` call per variant, without a
+    server-side preset — transformed-product filtering happens client-side
+    using ConsumerResult.classifications. This keeps all intermediate
+    subgraph nodes (notably consumption mixes) available for path-walking,
+    which the preset-filtered list would otherwise omit.
 
     Returns:
-      consumer_to_found_variants: {consumer_pid: {variant_alias, ...}}
-      consumer_info: {consumer_pid: ConsumerResult}
+      consumer_to_found_variants: {consumer_pid: {variant_alias, ...}} — only
+        transformed products matching the preset classification filter.
+      node_info: {pid: ConsumerResult} — every node reached in the BFS, so
+        the caller can look up name + classifications for any hop on a path.
+      supplier_edges: {supplier_pid: [SupplyChainEdge, ...]} — per-supplier
+        subgraph used by ``shortest_path_via_edges``.
     """
-    # Databases where transformed food products live
-    FOOD_TRANSFORM_DBS = {AGRIBALYSE_DB, "ginko-2025-v2", "pastoeco", "ecobalyse", "ecoplus"}
-
     consumer_to_found_variants: dict[str, set[str]] = defaultdict(set)
-    consumer_info: dict[str, ConsumerResult] = {}
+    node_info: dict[str, ConsumerResult] = {}
+    supplier_edges: dict[str, list[SupplyChainEdge]] = {}
 
     for v in variants:
         if v.process_id is None:
             continue
         db_name = DB_MAP.get(v.source)
-        if db_name not in FOOD_TRANSFORM_DBS:
-            continue  # e.g. pure Ecoinvent variants have no Agribalyse consumers
+        if db_name not in food_transform_dbs:
+            continue  # pure Ecoinvent variants have no Agribalyse consumers
 
         db_client = client.use(db_name)
         try:
-            consumers = db_client.get_consumers(
+            resp = db_client.get_consumers(
                 v.process_id,
-                preset=TRANSFORMED_PRESET,
                 max_depth=max_depth,
+                include_edges=True,
             )
         except Exception as exc:
             print(
@@ -416,13 +440,79 @@ def collect_consumers(
                 file=sys.stderr,
             )
             continue
-        for c in consumers:
+        supplier_edges[v.process_id] = resp.edges
+        for c in resp.consumers:
+            node_info[c.process_id] = c
             if "2025" in c.name:
-                continue  # skip -2025 organic variants; they are not stable Agribalyse activities
-            consumer_to_found_variants[c.process_id].add(v.alias)
-            consumer_info[c.process_id] = c
+                continue  # skip -2025 organic variants (not stable Agribalyse activities)
+            if _is_transformed_product(c):
+                consumer_to_found_variants[c.process_id].add(v.alias)
 
-    return dict(consumer_to_found_variants), consumer_info
+    return dict(consumer_to_found_variants), node_info, supplier_edges
+
+
+@dataclass
+class LocalStep:
+    """Step in a locally-reconstructed consumer→supplier path. Carries exactly
+    what make_from_existing needs: .name for the replacement block, and
+    .classifications for consumption-mix detection."""
+
+    process_id: str
+    name: str
+    classifications: dict[str, str]
+
+
+def shortest_path_via_edges(
+    supplier_pid: str,
+    consumer_pid: str,
+    edges: list[SupplyChainEdge],
+    node_info: dict[str, ConsumerResult],
+    supplier_step: LocalStep,
+) -> list[LocalStep] | None:
+    """BFS from supplier_pid following edges (supplier → consumer) until
+    consumer_pid is reached. Returns a path ordered consumer → … → supplier,
+    matching the shape the former get_path_to endpoint produced."""
+    adj: dict[str, list[str]] = defaultdict(list)
+    for e in edges:
+        adj[e.from_id].append(e.to_id)
+
+    parent: dict[str, str] = {}
+    frontier = [supplier_pid]
+    reached = False
+    while frontier and not reached:
+        next_frontier: list[str] = []
+        for node in frontier:
+            if node == consumer_pid:
+                reached = True
+                break
+            for nxt in adj.get(node, []):
+                if nxt != supplier_pid and nxt not in parent:
+                    parent[nxt] = node
+                    next_frontier.append(nxt)
+        frontier = next_frontier
+
+    if consumer_pid != supplier_pid and consumer_pid not in parent:
+        return None
+
+    chain: list[str] = [consumer_pid]
+    while chain[-1] != supplier_pid:
+        chain.append(parent[chain[-1]])
+    return [_pid_to_step(pid, node_info, supplier_step) for pid in chain]
+
+
+def _pid_to_step(
+    pid: str,
+    node_info: dict[str, ConsumerResult],
+    supplier_step: LocalStep,
+) -> LocalStep:
+    if pid == supplier_step.process_id:
+        return supplier_step
+    c = node_info[pid]
+    return LocalStep(
+        process_id=c.process_id,
+        name=c.name,
+        classifications=c.classifications,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -445,30 +535,27 @@ def derive_alias(
 
 
 def make_from_existing(
-    path: PathResult,
+    steps: list[LocalStep],
     source: VariantInfo,
     target: VariantInfo,
     existing_aliases: set[str],
 ) -> dict | None:
     """
     Build a from_existing block for activities_to_create.json.
-    path.path[0] = existingActivity (the transformed product)
-    path.path[-1] = the source raw ingredient activity
+    steps[0] = existingActivity (the transformed product)
+    steps[-1] = the source raw ingredient activity
 
     If a consumption mix sits between the consumer and the ingredient,
     the mix itself becomes replace.from (replacing the entire sourcing blend).
     Otherwise the leaf ingredient is replace.from.
     Returns None if the alias already exists.
     """
-    steps = path.path
-
-    # If a consumption mix sits between the consumer and the raw ingredient,
-    # replace the mix itself (not just one ingredient inside it).
+    # Mix detection via the Category classification (robust across name variants).
     mix_index = next(
         (
             i
             for i in range(1, len(steps) - 1)
-            if "consumption mix" in steps[i].name.lower()
+            if steps[i].classifications.get("Category") == MIX_CATEGORY
         ),
         None,
     )
@@ -744,12 +831,17 @@ def main() -> None:
 
     # Connect to VoLCA
     client = Client(base_url=args.volca_url, db=AGRIBALYSE_DB)
-    agribalyse_client = client.use(AGRIBALYSE_DB)  # used for get_path_to
 
-    # Detect databases with native naming (EcoSpold 2) vs SimaPro CSV
+    # Detect databases with native naming (EcoSpold 2) vs SimaPro CSV, and
+    # derive the set of DBs hosting transformed food products from declared
+    # topology: agribalyse itself plus anything that depends on it.
     dbs = client.list_databases()
     native_dbs = {db["name"] for db in dbs if db.get("format") != "SimaPro CSV"}
+    food_transform_dbs = {AGRIBALYSE_DB} | {
+        db["name"] for db in dbs if AGRIBALYSE_DB in db.get("dependsOn", [])
+    }
     print(f"Native-naming databases: {native_dbs}")
+    print(f"Food-transform databases: {food_transform_dbs}")
 
     # Step 1: Parse and group
     print("Parsing ingredient groups ...")
@@ -782,9 +874,9 @@ def main() -> None:
         if not genuine:
             continue
 
-        # Collect consumers for genuine variants only
-        consumer_to_found, consumer_info = collect_consumers(
-            genuine, client, max_depth=args.max_depth
+        # Collect consumers + per-supplier edge subgraph in one pass
+        consumer_to_found, node_info, supplier_edges = collect_consumers(
+            genuine, client, food_transform_dbs, max_depth=args.max_depth
         )
 
         # variant lookup by alias
@@ -792,7 +884,7 @@ def main() -> None:
 
         for consumer_pid, found_aliases in consumer_to_found.items():
             # Skip consumers that belong to a different ingredient (proxy relationship)
-            consumer_name = consumer_info[consumer_pid].name
+            consumer_name = node_info[consumer_pid].name
             if is_proxy(base, consumer_name):
                 continue
 
@@ -800,24 +892,32 @@ def main() -> None:
             if not missing:
                 continue
 
-            # Pick one found variant as path-to source
+            # Pick one found variant as path source
             source_alias = next(iter(found_aliases))
             source = variant_by_alias.get(source_alias)
             if source is None or source.process_id is None:
                 continue
 
-            # get_path_to accepts only bare activityUUID; strip combined activityUUID_productUUID
-            activity_pid = consumer_pid.split("_")[0]
-            try:
-                path = agribalyse_client.get_path_to(activity_pid, source.activity_name)
-            except Exception as exc:
+            source_step = LocalStep(
+                process_id=source.process_id,
+                name=source.activity_name,
+                classifications={},
+            )
+            path = shortest_path_via_edges(
+                source.process_id,
+                consumer_pid,
+                supplier_edges.get(source.process_id, []),
+                node_info,
+                source_step,
+            )
+            if path is None:
                 print(
-                    f"  [WARN] get_path_to failed for consumer {consumer_info[consumer_pid].name!r}: {exc}",
+                    f"  [WARN] no path found from {source.alias!r} to consumer {consumer_name!r}",
                     file=sys.stderr,
                 )
                 continue
 
-            existing_name = path.path[0].name
+            existing_name = path[0].name
             base_short_name = extract_short_name(existing_name)
             for found_alias in found_aliases:
                 base_target = variant_by_alias.get(found_alias)
