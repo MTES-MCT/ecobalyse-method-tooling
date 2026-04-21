@@ -1,2 +1,3 @@
 __pycache__/
 food/transformed-ingredients/.predictor.pkl
+food/transformed-ingredients/.translation_cache.json

@@ -80,17 +80,17 @@ from predict import Predictor  # noqa: E402
 # ---------------------------------------------------------------------------
 
 # VoLCA database name for the main Agribalyse database (where transformed products live)
-AGRIBALYSE_DB = "agribalyse-3.2"
+AGRIBALYSE_DB = "agribalyse-3-2"
 
 # Cached predictor pickle (sibling to this script, git-ignored)
 PREDICTOR_CACHE = Path(__file__).resolve().parent / ".predictor.pkl"
 
 # Mapping from activities.json "source" field to VoLCA database name
 DB_MAP: dict[str, str] = {
-    "Agribalyse 3.2": "agribalyse-3.2",
+    "Agribalyse 3.2": AGRIBALYSE_DB,
     "Ecoinvent 3.9.1": "ecoinvent-3-9-1-adapted",
     "Ecoinvent 3.11": "ecoinvent-3-11-adapted",
-    "Ginko 2025": "ginko",
+    "Ginko 2025": "ginko-2025-v2",
     "WFLDB": "wfldb",
     "PastoEco": "pastoeco",
 }
@@ -116,21 +116,25 @@ TRANSFORMED_PRESET = "transformed"
 # Data model
 # ---------------------------------------------------------------------------
 
+
 @dataclass
 class VariantInfo:
-    alias: str            # e.g. "carrot-organic"
-    scenario: str         # "reference", "organic", "import"
-    default_origin: str   # e.g. "France"
-    activity_name: str    # top-level activityName (same for all metadata within one entry)
-    source: str           # e.g. "Agribalyse 3.2", "Ecoinvent 3.9.1"
+    alias: str  # e.g. "carrot-organic"
+    scenario: str  # "reference", "organic", "import"
+    default_origin: str  # e.g. "France"
+    activity_name: (
+        str  # top-level activityName (same for all metadata within one entry)
+    )
+    source: str  # e.g. "Agribalyse 3.2", "Ecoinvent 3.9.1"
     location: str | None  # top-level location field (used when searching VoLCA)
-    raw_meta: dict        # full metadata dict (for copying physical properties)
+    raw_meta: dict  # full metadata dict (for copying physical properties)
     process_id: str | None = None  # resolved after VoLCA lookup
 
 
 # ---------------------------------------------------------------------------
 # Alias / group helpers
 # ---------------------------------------------------------------------------
+
 
 def parse_ecoinvent_name(full_name: str) -> tuple[str, str | None]:
     """Parse Ecoinvent long format 'Product {Geo}| activity name | Cut-off, U'.
@@ -146,35 +150,65 @@ def strip_variant_suffix(alias: str) -> str | None:
     """Return the base ingredient name by stripping a known variant suffix, or None."""
     for suffix in VARIANT_SUFFIXES:
         if alias.endswith(suffix):
-            return alias[:-len(suffix)]
+            return alias[: -len(suffix)]
     return None
 
 
 CORRECTIONS_CSV = Path(__file__).parent / "translation_corrections.csv"
+TRANSLATION_CACHE = Path(__file__).parent / ".translation_cache.json"
 
 
 def _load_corrections() -> dict[str, str]:
     """Load post-translation corrections from CSV."""
     import csv
+
     if not CORRECTIONS_CSV.exists():
         return {}
     with CORRECTIONS_CSV.open(newline="", encoding="utf-8") as f:
         return {row["wrong"]: row["correct"] for row in csv.DictReader(f)}
 
 
+def _load_translation_cache() -> dict[str, str]:
+    if not TRANSLATION_CACHE.exists():
+        return {}
+    with TRANSLATION_CACHE.open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _save_translation_cache(cache: dict[str, str]) -> None:
+    with TRANSLATION_CACHE.open("w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=2, ensure_ascii=False, sort_keys=True)
+
+
 def translate_en_to_fr(names: list[str]) -> list[str]:
-    """Translate English food product names to French using Helsinki-NLP/opus-mt-en-fr."""
+    """Translate English food product names to French using Helsinki-NLP/opus-mt-en-fr.
+
+    Raw translations (pre-corrections) are persisted to .translation_cache.json
+    so repeat runs only load MarianMT for genuinely new names. Post-translation
+    corrections from translation_corrections.csv are re-applied every run, so
+    tweaking the CSV takes effect without invalidating the cache.
+    """
     if not names:
         return []
-    from transformers import MarianMTModel, MarianTokenizer
-    model_name = "Helsinki-NLP/opus-mt-en-fr"
-    tokenizer = MarianTokenizer.from_pretrained(model_name)
-    model = MarianMTModel.from_pretrained(model_name)
-    tokens = tokenizer(names, return_tensors="pt", padding=True, truncation=True)
-    translated = model.generate(**tokens)
-    results = tokenizer.batch_decode(translated, skip_special_tokens=True)
+
+    cache = _load_translation_cache()
+    missing = [n for n in names if n not in cache]
+
+    if missing:
+        from transformers import MarianMTModel, MarianTokenizer
+
+        model_name = "Helsinki-NLP/opus-mt-en-fr"
+        tokenizer = MarianTokenizer.from_pretrained(model_name)
+        model = MarianMTModel.from_pretrained(model_name)
+        tokens = tokenizer(missing, return_tensors="pt", padding=True, truncation=True)
+        translated = model.generate(**tokens)
+        new_results = tokenizer.batch_decode(translated, skip_special_tokens=True)
+        for en, fr in zip(missing, new_results):
+            cache[en] = fr
+        _save_translation_cache(cache)
+
     corrections = _load_corrections()
-    return [corrections.get(t, t) for t in results]
+    return [corrections.get(cache[n], cache[n]) for n in names]
 
 
 # Patterns for LCA jargon segments to drop from activity names
@@ -217,7 +251,10 @@ def slugify(text: str) -> str:
 # Step 1: Parse activities.json
 # ---------------------------------------------------------------------------
 
-def parse_ingredient_groups(activities_json: list[dict]) -> dict[str, list[VariantInfo]]:
+
+def parse_ingredient_groups(
+    activities_json: list[dict],
+) -> dict[str, list[VariantInfo]]:
     """Return {base_name: [VariantInfo, ...]} for all food ingredient variants."""
     variants: list[VariantInfo] = []
 
@@ -240,15 +277,17 @@ def parse_ingredient_groups(activities_json: list[dict]) -> dict[str, list[Varia
                 continue  # skip -2025 and other non-standard aliases
             if "food" not in meta.get("scopes", []):
                 continue
-            variants.append(VariantInfo(
-                alias=alias,
-                scenario=scenario,
-                default_origin=meta.get("defaultOrigin", ""),
-                activity_name=activity_name,
-                source=source,
-                location=location,
-                raw_meta=meta,
-            ))
+            variants.append(
+                VariantInfo(
+                    alias=alias,
+                    scenario=scenario,
+                    default_origin=meta.get("defaultOrigin", ""),
+                    activity_name=activity_name,
+                    source=source,
+                    location=location,
+                    raw_meta=meta,
+                )
+            )
 
     groups: dict[str, list[VariantInfo]] = defaultdict(list)
     for v in variants:
@@ -259,7 +298,7 @@ def parse_ingredient_groups(activities_json: list[dict]) -> dict[str, list[Varia
 
 
 def filter_actionable_groups(
-    groups: dict[str, list[VariantInfo]]
+    groups: dict[str, list[VariantInfo]],
 ) -> dict[str, list[VariantInfo]]:
     """Keep only groups that have at least one reference AND one non-reference variant
     with a DIFFERENT activityName (substitution is meaningful)."""
@@ -278,6 +317,7 @@ def filter_actionable_groups(
 # ---------------------------------------------------------------------------
 # Step 2: Resolve process_ids via VoLCA
 # ---------------------------------------------------------------------------
+
 
 def resolve_process_ids(
     groups: dict[str, list[VariantInfo]],
@@ -298,8 +338,10 @@ def resolve_process_ids(
 
             db_name = DB_MAP.get(v.source)
             if not db_name:
-                print(f"  [WARN] Unknown source database '{v.source}' for alias {v.alias!r}",
-                      file=sys.stderr)
+                print(
+                    f"  [WARN] Unknown source database '{v.source}' for alias {v.alias!r}",
+                    file=sys.stderr,
+                )
                 cache[key] = None
                 v.process_id = None
                 continue
@@ -317,8 +359,10 @@ def resolve_process_ids(
             exact = [r for r in results if r.name == search_name]
             pid = exact[0].process_id if exact else None
             if pid is None:
-                print(f"  [WARN] Could not resolve '{v.activity_name}' in {db_name!r}",
-                      file=sys.stderr)
+                print(
+                    f"  [WARN] Could not resolve '{v.activity_name}' in {db_name!r}",
+                    file=sys.stderr,
+                )
             cache[key] = pid
             v.process_id = pid
 
@@ -326,6 +370,7 @@ def resolve_process_ids(
 # ---------------------------------------------------------------------------
 # Step 3c: Find transformed consumers for each variant
 # ---------------------------------------------------------------------------
+
 
 def collect_consumers(
     variants: list[VariantInfo],
@@ -346,7 +391,7 @@ def collect_consumers(
       consumer_info: {consumer_pid: ConsumerResult}
     """
     # Databases where transformed food products live
-    FOOD_TRANSFORM_DBS = {"agribalyse-3.2", "ginko", "pastoeco", "ecobalyse", "ecoplus"}
+    FOOD_TRANSFORM_DBS = {AGRIBALYSE_DB, "ginko-2025-v2", "pastoeco", "ecobalyse", "ecoplus"}
 
     consumer_to_found_variants: dict[str, set[str]] = defaultdict(set)
     consumer_info: dict[str, ConsumerResult] = {}
@@ -366,8 +411,10 @@ def collect_consumers(
                 max_depth=max_depth,
             )
         except Exception as exc:
-            print(f"  [WARN] get_consumers failed for {v.alias!r} in {db_name!r}: {exc}",
-                  file=sys.stderr)
+            print(
+                f"  [WARN] get_consumers failed for {v.alias!r} in {db_name!r}: {exc}",
+                file=sys.stderr,
+            )
             continue
         for c in consumers:
             if "2025" in c.name:
@@ -381,6 +428,21 @@ def collect_consumers(
 # ---------------------------------------------------------------------------
 # Steps 3d-3f: Generate from_existing blocks and activities.json entries
 # ---------------------------------------------------------------------------
+
+
+def derive_alias(
+    activity_name: str, variant_suffix: str, existing_aliases: set[str]
+) -> str | None:
+    """Shortest unique alias built from comma segments of the activity name."""
+    segments = activity_name.split(",")
+    for i in range(1, len(segments) + 1):
+        base = ",".join(segments[:i]).strip()
+        base = re.sub(r"\s*\{[^}]+\}\s*U$", "", base).strip()
+        candidate = f"{slugify(base)}-{variant_suffix}"
+        if candidate not in existing_aliases:
+            return candidate
+    return None
+
 
 def make_from_existing(
     path: PathResult,
@@ -403,8 +465,11 @@ def make_from_existing(
     # If a consumption mix sits between the consumer and the raw ingredient,
     # replace the mix itself (not just one ingredient inside it).
     mix_index = next(
-        (i for i in range(1, len(steps) - 1)
-         if "consumption mix" in steps[i].name.lower()),
+        (
+            i
+            for i in range(1, len(steps) - 1)
+            if "consumption mix" in steps[i].name.lower()
+        ),
         None,
     )
     if mix_index is not None:
@@ -414,17 +479,8 @@ def make_from_existing(
         upstream_steps = steps[1:-1]
         replace_from_step = steps[-1]
 
-    # Derive alias: split activity name on commas, start short, grow if taken
     variant_suffix = target.alias.split("-")[-1]  # "fr", "organic", or "default"
-    segments = steps[0].name.split(",")
-    alias = None
-    for i in range(1, len(segments) + 1):
-        base = ",".join(segments[:i]).strip()
-        base = re.sub(r"\s*\{[^}]+\}\s*U$", "", base).strip()
-        candidate = f"{slugify(base)}-{variant_suffix}"
-        if candidate not in existing_aliases:
-            alias = candidate
-            break
+    alias = derive_alias(steps[0].name, variant_suffix, existing_aliases)
     if alias is None:
         return None  # all prefixes taken — skip
 
@@ -461,8 +517,10 @@ def load_or_train_predictor(training_ingredients_path: Path) -> Predictor:
     if PREDICTOR_CACHE.exists():
         print(f"Loading predictor from {PREDICTOR_CACHE.name} ...")
         return Predictor.load(str(PREDICTOR_CACHE))
-    print(f"Training predictor from {training_ingredients_path} "
-          f"(slow, first run only) ...")
+    print(
+        f"Training predictor from {training_ingredients_path} "
+        f"(slow, first run only) ..."
+    )
     with training_ingredients_path.open() as f:
         training = json.load(f)
     p = Predictor()
@@ -519,29 +577,117 @@ def make_activities_entry(
         "categories": ["ingredient", "material"],
         "database": "Ecobalyse",
         "displayName": display_name,
-        "metadata": [{
-            "alias": alias,
-            "scenario": target.scenario,
-            "defaultOrigin": meta.get("defaultOrigin"),
-            "id": str(uuid4()),
-            "displayName": display_name,
-            "cropGroup": pred.get("cropGroup") or meta.get("cropGroup"),
-            "ingredientCategories": ing_categories,
-            "inediblePart": 0,
-            "ingredientDensity": pred.get("density"),
-            "rawToCookedRatio": 1.0,
-            "scopes": ["food", "food2"],
-            "transportCooling": pred.get("transportCooling"),
-            "visible": True,
-        }],
+        "id": str(uuid4()),
+        "metadata": [
+            {
+                "alias": alias,
+                "scenario": target.scenario,
+                "defaultOrigin": meta.get("defaultOrigin"),
+                "id": str(uuid4()),
+                "displayName": display_name,
+                "cropGroup": pred.get("cropGroup") or meta.get("cropGroup"),
+                "ingredientCategories": ing_categories,
+                "inediblePart": 0,
+                "ingredientDensity": pred.get("density"),
+                "rawToCookedRatio": 1.0,
+                "scopes": ["food", "food2"],
+                "transportCooling": pred.get("transportCooling"),
+                "visible": True,
+            }
+        ],
         "scopes": ["food", "food2"],
         "source": "Ecobalyse",
+    }
+
+
+def merge_by_activity_name(entries: list[dict]) -> list[dict]:
+    """Collapse entries that share an activityName into one with concatenated
+    metadata. Matches the convention used elsewhere in activities.json (one
+    activity object hosting multiple scenario/origin metadata blocks).
+
+    When merging, the host is whichever entry carries a reference-scenario
+    metadata block (so top-level displayName/alias/id stay anchored to the
+    reference variant); otherwise the first-seen entry is kept as host.
+    """
+    by_name: dict[str, dict] = {}
+    for e in entries:
+        an = e["activityName"]
+        host = by_name.get(an)
+        if host is None:
+            by_name[an] = e
+            continue
+        host_has_ref = any(m.get("scenario") == "reference" for m in host["metadata"])
+        new_has_ref = any(m.get("scenario") == "reference" for m in e["metadata"])
+        if new_has_ref and not host_has_ref:
+            e["metadata"] = [*e["metadata"], *host["metadata"]]
+            by_name[an] = e
+        else:
+            host["metadata"] = [*host["metadata"], *e["metadata"]]
+    return list(by_name.values())
+
+
+def make_base_activities_entry(
+    existing_activity_name: str,
+    alias: str,
+    target: VariantInfo,
+    french_name: str,
+    predictor: Predictor,
+) -> dict:
+    """Build an activities.json entry for the variant a consumer already uses.
+
+    No substitution is needed — the consumer activity already exists in
+    Agribalyse as-is, so we reference it directly (plain activityName,
+    source="Agribalyse 3.2", no bracketed variant tag or {{alias}} UUID marker).
+    """
+    meta = target.raw_meta
+    display_name = french_name + VARIANT_DISPLAY_SUFFIX.get(target.scenario, "")
+
+    pred = predictor.predict({
+        "name": french_name,
+        "activityName": existing_activity_name,
+    })
+
+    base_categories = pred.get("categories") or []
+    ing_categories = [
+        c.replace("_raw", "_processed").replace("_fresh", "_processed")
+        for c in base_categories
+    ]
+    if target.scenario == "organic" and "organic" not in ing_categories:
+        ing_categories.append("organic")
+
+    return {
+        "activityName": existing_activity_name,
+        "alias": alias,
+        "categories": ["ingredient", "material"],
+        "database": "Agribalyse 3.2",
+        "displayName": display_name,
+        "id": str(uuid4()),
+        "metadata": [
+            {
+                "alias": alias,
+                "scenario": target.scenario,
+                "defaultOrigin": meta.get("defaultOrigin"),
+                "id": str(uuid4()),
+                "displayName": display_name,
+                "cropGroup": pred.get("cropGroup") or meta.get("cropGroup"),
+                "ingredientCategories": ing_categories,
+                "inediblePart": 0,
+                "ingredientDensity": pred.get("density"),
+                "rawToCookedRatio": 1.0,
+                "scopes": ["food", "food2"],
+                "transportCooling": pred.get("transportCooling"),
+                "visible": True,
+            }
+        ],
+        "scopes": ["food", "food2"],
+        "source": "Agribalyse 3.2",
     }
 
 
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
@@ -575,7 +721,7 @@ def main() -> None:
         "--training-ingredients",
         default=None,
         help="Path to flat ingredients.json used to train the metadata predictor "
-             "(default: sibling public/data/food/ingredients.json next to --activities)",
+        "(default: sibling public/data/food/ingredients.json next to --activities)",
     )
     args = parser.parse_args()
 
@@ -609,20 +755,24 @@ def main() -> None:
     print("Parsing ingredient groups ...")
     all_groups = parse_ingredient_groups(activities_json)
     groups = filter_actionable_groups(all_groups)
-    print(f"  {len(all_groups)} total groups, {len(groups)} actionable (have substitutable variants)")
+    print(
+        f"  {len(all_groups)} total groups, {len(groups)} actionable (have substitutable variants)"
+    )
 
     # Step 2: Resolve process_ids
     print("Resolving process IDs via VoLCA ...")
     resolve_process_ids(groups, client, native_dbs)
     resolvable = sum(
-        1 for vs in groups.values()
-        if any(v.process_id is not None for v in vs)
+        1 for vs in groups.values() if any(v.process_id is not None for v in vs)
     )
     print(f"  {resolvable}/{len(groups)} groups have at least one resolved variant")
 
     # Step 3c-f: Generate entries
     output_fe: list[dict] = []
-    output_ae: list[dict] = []
+    # (existing_activity_name, alias, target_variant, short_name) — base
+    # variants already live as-is in Agribalyse, so they only need an
+    # activities.json entry (no from_existing block).
+    output_base: list[tuple[str, str, VariantInfo, str]] = []
     all_generated_aliases: set[str] = set(existing_aliases)
 
     for base, variants in groups.items():
@@ -633,7 +783,9 @@ def main() -> None:
             continue
 
         # Collect consumers for genuine variants only
-        consumer_to_found, consumer_info = collect_consumers(genuine, client, max_depth=args.max_depth)
+        consumer_to_found, consumer_info = collect_consumers(
+            genuine, client, max_depth=args.max_depth
+        )
 
         # variant lookup by alias
         variant_by_alias = {v.alias: v for v in variants}
@@ -659,9 +811,31 @@ def main() -> None:
             try:
                 path = agribalyse_client.get_path_to(activity_pid, source.activity_name)
             except Exception as exc:
-                print(f"  [WARN] get_path_to failed for consumer {consumer_info[consumer_pid].name!r}: {exc}",
-                      file=sys.stderr)
+                print(
+                    f"  [WARN] get_path_to failed for consumer {consumer_info[consumer_pid].name!r}: {exc}",
+                    file=sys.stderr,
+                )
                 continue
+
+            existing_name = path.path[0].name
+            base_short_name = extract_short_name(existing_name)
+            for found_alias in found_aliases:
+                base_target = variant_by_alias.get(found_alias)
+                if base_target is None:
+                    continue
+                variant_suffix = base_target.alias.split("-")[-1]
+                base_alias = derive_alias(
+                    existing_name, variant_suffix, all_generated_aliases
+                )
+                if base_alias is None:
+                    continue
+                all_generated_aliases.add(base_alias)
+                output_base.append((
+                    existing_name,
+                    base_alias,
+                    base_target,
+                    base_short_name,
+                ))
 
             for target in missing:
                 fe = make_from_existing(path, source, target, all_generated_aliases)
@@ -673,7 +847,11 @@ def main() -> None:
                 all_generated_aliases.add(fe["alias"])
 
     # Translate short English names to French in one batch
-    short_names = list(dict.fromkeys(short_name for _, _, short_name in output_fe))
+    short_names = list(
+        dict.fromkeys(
+            [sn for _, _, sn in output_fe] + [sn for _, _, _, sn in output_base]
+        )
+    )
     print(f"Translating {len(short_names)} unique product names to French ...")
     french_names = translate_en_to_fr(short_names)
     en_to_fr = dict(zip(short_names, french_names))
@@ -694,6 +872,16 @@ def main() -> None:
         ae = make_activities_entry(fe, target, en_to_fr[short_name], predictor)
         final_fe.append(fe)
         final_ae.append(ae)
+    for existing_name, alias, target, short_name in output_base:
+        ae = make_base_activities_entry(
+            existing_name, alias, target, en_to_fr[short_name], predictor
+        )
+        final_ae.append(ae)
+
+    # Collapse entries sharing an activityName (happens when a consumer uses
+    # several raw variants natively — e.g. both -fr and -default): keep one
+    # activity object with concatenated metadata blocks.
+    final_ae = merge_by_activity_name(final_ae)
 
     # Write outputs
     fe_path = output_dir / "generated_activities_to_create.json"

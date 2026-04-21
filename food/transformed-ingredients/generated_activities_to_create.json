@@ -17,7 +17,8 @@
           },
           "to": {
             "name": "Almonds, in shell, at farm, organic 2025 {CN}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "CN"
           }
         }
       ]
@@ -41,7 +42,8 @@
           },
           "to": {
             "name": "Apple, organic 2025, national average, at orchard {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -65,7 +67,8 @@
           },
           "to": {
             "name": "Apple, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -89,7 +92,8 @@
           },
           "to": {
             "name": "Apple, organic 2025, national average, at orchard {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -113,7 +117,8 @@
           },
           "to": {
             "name": "Apple, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -137,7 +142,8 @@
           },
           "to": {
             "name": "Apricot, organic 2025 {FR}| apricot production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -161,7 +167,8 @@
           },
           "to": {
             "name": "Apricot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "GLO"
           }
         }
       ]
@@ -185,7 +192,8 @@
           },
           "to": {
             "name": "Apricot, organic 2025 {FR}| apricot production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -209,7 +217,8 @@
           },
           "to": {
             "name": "Apricot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "GLO"
           }
         }
       ]
@@ -233,7 +242,8 @@
           },
           "to": {
             "name": "Apricot, organic 2025 {FR}| apricot production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -257,7 +267,8 @@
           },
           "to": {
             "name": "Apricot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "GLO"
           }
         }
       ]
@@ -285,7 +296,8 @@
           },
           "to": {
             "name": "Apricot, organic 2025 {FR}| apricot production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -313,7 +325,8 @@
           },
           "to": {
             "name": "Apricot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "GLO"
           }
         }
       ]
@@ -337,7 +350,8 @@
           },
           "to": {
             "name": "Barley grain, non-irrigated, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "UA"
           }
         }
       ]
@@ -361,7 +375,8 @@
           },
           "to": {
             "name": "Barley grain, non-irrigated, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "UA"
           }
         }
       ]
@@ -385,7 +400,8 @@
           },
           "to": {
             "name": "Beetroot for juice, organic 2025, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -409,7 +425,8 @@
           },
           "to": {
             "name": "Broccoli, organic 2025 {GLO}| production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "GLO"
           }
         }
       ]
@@ -433,7 +450,8 @@
           },
           "to": {
             "name": "Cabbage white, organic 2025 {RoW}| cabbage white production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "RoW"
           }
         }
       ]
@@ -457,7 +475,8 @@
           },
           "to": {
             "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -481,7 +500,8 @@
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "IL"
           }
         }
       ]
@@ -505,7 +525,8 @@
           },
           "to": {
             "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -529,7 +550,8 @@
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "IL"
           }
         }
       ]
@@ -553,7 +575,8 @@
           },
           "to": {
             "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -577,7 +600,8 @@
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "IL"
           }
         }
       ]
@@ -601,7 +625,8 @@
           },
           "to": {
             "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -625,7 +650,8 @@
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "IL"
           }
         }
       ]
@@ -653,7 +679,8 @@
           },
           "to": {
             "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -681,7 +708,8 @@
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "IL"
           }
         }
       ]
@@ -705,7 +733,8 @@
           },
           "to": {
             "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -729,7 +758,8 @@
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "IL"
           }
         }
       ]
@@ -753,7 +783,8 @@
           },
           "to": {
             "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -777,7 +808,8 @@
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "IL"
           }
         }
       ]
@@ -801,7 +833,8 @@
           },
           "to": {
             "name": "Cauliflower {GLO}| cauliflower production | Cut-off, U",
-            "database": "Ecoinvent 3.11"
+            "database": "Ecoinvent 3.11",
+            "location": "GLO"
           }
         }
       ]
@@ -825,7 +858,8 @@
           },
           "to": {
             "name": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -849,7 +883,8 @@
           },
           "to": {
             "name": "Celery, organic 2025 {GLO}| 675 production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "GLO"
           }
         }
       ]
@@ -873,7 +908,8 @@
           },
           "to": {
             "name": "Celery, organic 2025 {GLO}| 675 production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "GLO"
           }
         }
       ]
@@ -897,7 +933,8 @@
           },
           "to": {
             "name": "Cherry, organic 2025, national average, at orchard {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -921,7 +958,8 @@
           },
           "to": {
             "name": "Cherry, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "TR"
           }
         }
       ]
@@ -944,7 +982,8 @@
             "name": "Chicory roots, consumption mix {FR} U"
           },
           "to": {
-            "name": "Chicory witloof, early, conventional, root production, at farm gate {FR} U"
+            "name": "Chicory witloof, early, conventional, root production, at farm gate {FR} U",
+            "location": "FR"
           }
         }
       ]
@@ -968,7 +1007,8 @@
           },
           "to": {
             "name": "Chicory roots, organic 2025, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -1015,7 +1055,8 @@
           },
           "to": {
             "name": "Durum wheat grain, at farm, organic 2025 {GLO}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "GLO"
           }
         }
       ]
@@ -1038,7 +1079,8 @@
             "name": "Chicken egg, raw, consumption mix {FR} U"
           },
           "to": {
-            "name": "Egg, organic, at farm gate {FR} U"
+            "name": "Egg, organic, at farm gate {FR} U",
+            "location": "FR"
           }
         }
       ]
@@ -1062,7 +1104,8 @@
           },
           "to": {
             "name": "Chicken egg, poultry industrial laying systems, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -1085,7 +1128,8 @@
             "name": "Chicken egg, raw, consumption mix {FR} U"
           },
           "to": {
-            "name": "Egg, organic, at farm gate {FR} U"
+            "name": "Egg, organic, at farm gate {FR} U",
+            "location": "FR"
           }
         }
       ]
@@ -1109,7 +1153,8 @@
           },
           "to": {
             "name": "Chicken egg, poultry industrial laying systems, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -1132,7 +1177,8 @@
             "name": "Chicken egg, raw, consumption mix {FR} U"
           },
           "to": {
-            "name": "Egg, organic, at farm gate {FR} U"
+            "name": "Egg, organic, at farm gate {FR} U",
+            "location": "FR"
           }
         }
       ]
@@ -1156,7 +1202,8 @@
           },
           "to": {
             "name": "Chicken egg, poultry industrial laying systems, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -1180,7 +1227,8 @@
           },
           "to": {
             "name": "Fennel, organic 2025 {GLO}| production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "GLO"
           }
         }
       ]
@@ -1204,7 +1252,8 @@
           },
           "to": {
             "name": "French bean, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -1228,7 +1277,8 @@
           },
           "to": {
             "name": "French bean, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -1252,7 +1302,8 @@
           },
           "to": {
             "name": "Grape, wine grape, at farm, organic 2025 {IT}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "IT"
           }
         }
       ]
@@ -1276,7 +1327,8 @@
           },
           "to": {
             "name": "Hazelnut, in shell, at farm, organic 2025 {IT}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "IT"
           }
         }
       ]
@@ -1300,7 +1352,8 @@
           },
           "to": {
             "name": "Hazelnut, in shell, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "US"
           }
         }
       ]
@@ -1324,7 +1377,8 @@
           },
           "to": {
             "name": "Hazelnut, in shell, at farm, organic 2025 {IT}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "IT"
           }
         }
       ]
@@ -1348,7 +1402,8 @@
           },
           "to": {
             "name": "Hazelnut, in shell, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "US"
           }
         }
       ]
@@ -1372,7 +1427,8 @@
           },
           "to": {
             "name": "Kiwi, organic 2025 {GLO}| production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "GLO"
           }
         }
       ]
@@ -1395,7 +1451,8 @@
             "name": "Leek, consumption mix {FR} U"
           },
           "to": {
-            "name": "Leek, early sown, conventional, at farm gate {FR} U"
+            "name": "Leek, early sown, conventional, at farm gate {FR} U",
+            "location": "FR"
           }
         }
       ]
@@ -1419,7 +1476,8 @@
           },
           "to": {
             "name": "Leek, organic 2025, national average, at plant {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -1443,7 +1501,8 @@
           },
           "to": {
             "name": "Lemon, at farm, organic 2025 {IT} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "IT"
           }
         }
       ]
@@ -1467,7 +1526,8 @@
           },
           "to": {
             "name": "Lemon, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "MX"
           }
         }
       ]
@@ -1491,7 +1551,8 @@
           },
           "to": {
             "name": "Lemon, at farm, organic 2025 {IT} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "IT"
           }
         }
       ]
@@ -1515,7 +1576,8 @@
           },
           "to": {
             "name": "Lemon, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "MX"
           }
         }
       ]
@@ -1539,7 +1601,8 @@
           },
           "to": {
             "name": "Lentil, organic 2025 {CA-SK}| lentil production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "CA-SK"
           }
         }
       ]
@@ -1563,7 +1626,8 @@
           },
           "to": {
             "name": "Mint, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "IN"
           }
         }
       ]
@@ -1587,7 +1651,8 @@
           },
           "to": {
             "name": "Onion, organic 2025, national average, at farm {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -1611,7 +1676,8 @@
           },
           "to": {
             "name": "Onion, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "NZ"
           }
         }
       ]
@@ -1635,7 +1701,8 @@
           },
           "to": {
             "name": "Onion, organic 2025, national average, at farm {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -1659,7 +1726,8 @@
           },
           "to": {
             "name": "Onion, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "NZ"
           }
         }
       ]
@@ -1683,7 +1751,8 @@
           },
           "to": {
             "name": "Onion, organic 2025, national average, at farm {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -1707,7 +1776,8 @@
           },
           "to": {
             "name": "Onion, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "NZ"
           }
         }
       ]
@@ -1731,7 +1801,8 @@
           },
           "to": {
             "name": "Onion, organic 2025, national average, at farm {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -1755,7 +1826,8 @@
           },
           "to": {
             "name": "Onion, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "NZ"
           }
         }
       ]
@@ -1802,7 +1874,8 @@
           },
           "to": {
             "name": "Orange, processing grade, at farm, organic 2025 {BR}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "BR"
           }
         }
       ]
@@ -1826,7 +1899,8 @@
           },
           "to": {
             "name": "Peach, at farm, organic 2025 {ES}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "ES"
           }
         }
       ]
@@ -1850,7 +1924,8 @@
           },
           "to": {
             "name": "Peach, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -1874,7 +1949,8 @@
           },
           "to": {
             "name": "Peach, at farm, organic 2025 {ES}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "ES"
           }
         }
       ]
@@ -1898,7 +1974,8 @@
           },
           "to": {
             "name": "Peach, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -1922,7 +1999,8 @@
           },
           "to": {
             "name": "Peach, at farm, organic 2025 {ES}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "ES"
           }
         }
       ]
@@ -1946,7 +2024,8 @@
           },
           "to": {
             "name": "Peach, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -1974,7 +2053,8 @@
           },
           "to": {
             "name": "Peach, at farm, organic 2025 {ES}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "ES"
           }
         }
       ]
@@ -2002,7 +2082,8 @@
           },
           "to": {
             "name": "Peach, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -2026,7 +2107,8 @@
           },
           "to": {
             "name": "Pear, at farm, organic 2025 {NL} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "NL"
           }
         }
       ]
@@ -2050,7 +2132,8 @@
           },
           "to": {
             "name": "Pear, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -2074,7 +2157,8 @@
           },
           "to": {
             "name": "Pear, at farm, organic 2025 {NL} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "NL"
           }
         }
       ]
@@ -2098,7 +2182,8 @@
           },
           "to": {
             "name": "Pear, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -2121,7 +2206,8 @@
             "name": "Quinoa from France, consumption mix {FR} U"
           },
           "to": {
-            "name": "Quinoa, intensive production, at farm {PE} - Adapted from WFLDB U"
+            "name": "Quinoa, intensive production, at farm {PE} - Adapted from WFLDB U",
+            "location": "PE"
           }
         }
       ]
@@ -2145,7 +2231,8 @@
           },
           "to": {
             "name": "Quinoa FR, organic 2025, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -2169,7 +2256,8 @@
           },
           "to": {
             "name": "Raspberry, at farm, organic 2025 {RS}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "RS"
           }
         }
       ]
@@ -2193,7 +2281,8 @@
           },
           "to": {
             "name": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "IN"
           }
         }
       ]
@@ -2217,7 +2306,8 @@
           },
           "to": {
             "name": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "IN"
           }
         }
       ]
@@ -2225,13 +2315,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-flour-default",
+    "alias": "rice-flour-at-industrial-mill-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice flour, at industrial mill {IT} U"
     },
-    "newName": "Rice flour, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-flour-default}}",
+    "newName": "Rice flour, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-flour-at-industrial-mill-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2264,7 +2354,8 @@
           },
           "to": {
             "name": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "IN"
           }
         }
       ]
@@ -2272,13 +2363,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-bran-default",
+    "alias": "rice-bran-at-industrial-mill-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice bran, at industrial mill {IT} U"
     },
-    "newName": "Rice bran, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-bran-default}}",
+    "newName": "Rice bran, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-bran-at-industrial-mill-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2311,7 +2402,8 @@
           },
           "to": {
             "name": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "IN"
           }
         }
       ]
@@ -2335,7 +2427,8 @@
           },
           "to": {
             "name": "Rye grain {GLO}| market for rye grain | Cut-off, U",
-            "database": "Ecoinvent 3.11"
+            "database": "Ecoinvent 3.11",
+            "location": "GLO"
           }
         }
       ]
@@ -2359,7 +2452,8 @@
           },
           "to": {
             "name": "Rye grain {GLO}| market for rye grain | Cut-off, U",
-            "database": "Ecoinvent 3.11"
+            "database": "Ecoinvent 3.11",
+            "location": "GLO"
           }
         }
       ]
@@ -2383,7 +2477,8 @@
           },
           "to": {
             "name": "Spinach, organic 2025 {GLO}| production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "GLO"
           }
         }
       ]
@@ -2411,7 +2506,8 @@
           },
           "to": {
             "name": "Sunflower, at farm, organic 2025 {FR}",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -2439,7 +2535,8 @@
           },
           "to": {
             "name": "Sunflower, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "RU"
           }
         }
       ]
@@ -2463,7 +2560,8 @@
           },
           "to": {
             "name": "Walnut, dried inshell, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -2487,7 +2585,8 @@
           },
           "to": {
             "name": "Walnut, in shell, dried, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "US"
           }
         }
       ]
@@ -2511,7 +2610,8 @@
           },
           "to": {
             "name": "Potato {US}| potato production | Cut-off, U",
-            "database": "Ecoinvent 3.11"
+            "database": "Ecoinvent 3.11",
+            "location": "US"
           }
         }
       ]
@@ -2535,7 +2635,8 @@
           },
           "to": {
             "name": "Ware potato, organic 2025, variety mix, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -2559,7 +2660,8 @@
           },
           "to": {
             "name": "Potato {US}| potato production | Cut-off, U",
-            "database": "Ecoinvent 3.11"
+            "database": "Ecoinvent 3.11",
+            "location": "US"
           }
         }
       ]
@@ -2583,7 +2685,8 @@
           },
           "to": {
             "name": "Ware potato, organic 2025, variety mix, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -2607,7 +2710,8 @@
           },
           "to": {
             "name": "White asparagus, organic 2025 {FR}| white asparagus production | Cut-off, U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -2631,7 +2735,8 @@
           },
           "to": {
             "name": "Asparagus, at farm (WFLDB)",
-            "database": "WFLDB"
+            "database": "WFLDB",
+            "location": "CN"
           }
         }
       ]
@@ -2655,7 +2760,8 @@
           },
           "to": {
             "name": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -2679,7 +2785,8 @@
           },
           "to": {
             "name": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -2703,7 +2810,8 @@
           },
           "to": {
             "name": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]
@@ -2726,7 +2834,8 @@
             "name": "Zucchini, consumption mix {FR} U"
           },
           "to": {
-            "name": "Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U"
+            "name": "Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",
+            "location": "FR"
           }
         }
       ]
@@ -2750,7 +2859,8 @@
           },
           "to": {
             "name": "Zucchini, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025"
+            "database": "Ginko 2025",
+            "location": "FR"
           }
         }
       ]

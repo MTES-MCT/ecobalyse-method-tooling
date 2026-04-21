@@ -8,12 +8,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Amandes décortiquées Bio",
+    "id": "4684b224-6d9f-44bb-943e-355d117044dd",
     "metadata": [
       {
         "alias": "almond-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "c576428a-16b3-4d2d-a9db-7c78f595e2b8",
+        "id": "6853b8fa-d287-4a2e-8049-c49ec325bf24",
         "displayName": "Amandes décortiquées Bio",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
@@ -46,12 +47,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jus de pomme Bio",
+    "id": "2dcda64a-cf19-4c0f-8a5e-94a5e0cc4cf5",
     "metadata": [
       {
         "alias": "apple-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "280276de-4531-4bae-848c-0d1970ce8d0f",
+        "id": "133c0225-2ce6-4a69-a977-24e5c483566b",
         "displayName": "Jus de pomme Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -84,12 +86,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jus de pomme Origine Inconnue",
+    "id": "04076373-4e85-4fc6-9ab5-17c42f06dffa",
     "metadata": [
       {
         "alias": "apple-juice-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "909c714f-0b57-4330-bba7-d86e5eee2a3b",
+        "id": "8a6a6d2a-103c-43cc-95ec-fa70fd24137e",
         "displayName": "Jus de pomme Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -121,12 +124,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Pommes de table, pelées Bio",
+    "id": "6c02fe2f-220f-43bb-bc09-2f7632ac99bb",
     "metadata": [
       {
         "alias": "table-apple-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "5d00e04c-196c-4a3a-b4c7-63888fd4fad2",
+        "id": "2f8c8e10-d03d-4480-b64d-d66f860c4d26",
         "displayName": "Pommes de table, pelées Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -159,12 +163,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Pommes de table, pelées Origine Inconnue",
+    "id": "9bce928a-8950-42cf-854f-d1861e72e774",
     "metadata": [
       {
         "alias": "table-apple-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "28e9d542-1715-4139-b5a8-a11b87c2df1e",
+        "id": "bb4ae2bc-431a-4584-9c71-0c4438a26db8",
         "displayName": "Pommes de table, pelées Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -196,12 +201,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noyau d'abricot Bio",
+    "id": "02413cca-9cae-4103-b29c-d650b3df25d3",
     "metadata": [
       {
         "alias": "apricot-stone-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "46e87610-7b2a-4d21-b3d8-bd64ea2b04d3",
+        "id": "da7151d1-ef49-4dce-865f-cf3bceb570aa",
         "displayName": "Noyau d'abricot Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -234,12 +240,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noyau d'abricot Origine Inconnue",
+    "id": "6b9c255d-d9eb-4d19-9a29-1817b04b4564",
     "metadata": [
       {
         "alias": "apricot-stone-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "2d8962bb-6a43-43bc-95fd-6ebc6be29a21",
+        "id": "e20b1622-85ee-479c-bb70-b28690ff7c78",
         "displayName": "Noyau d'abricot Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -271,12 +278,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Purée d'abricots congelés Bio",
+    "id": "83ddf484-4d1f-4aaf-9b82-ba2f86594b9f",
     "metadata": [
       {
         "alias": "frozen-apricot-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "f76d64e8-322f-49b1-9ed5-7d515587e46c",
+        "id": "c7cae7b3-4eb0-4cbf-8e84-8a8f9895068a",
         "displayName": "Purée d'abricots congelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -309,12 +317,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Purée d'abricots congelés Origine Inconnue",
+    "id": "76969bbb-f0e9-43c0-9ceb-51e1180e975b",
     "metadata": [
       {
         "alias": "frozen-apricot-puree-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "4991a7b4-a6f2-4355-9f25-7816ceda0d99",
+        "id": "b9bd6811-7e4d-4f67-b3cc-480b57561745",
         "displayName": "Purée d'abricots congelés Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -346,12 +355,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Abricot, dénoyauté Bio",
+    "id": "f0d31874-5f48-455c-90dc-34256d05b304",
     "metadata": [
       {
         "alias": "apricot-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "56054b3a-3ae7-443a-94af-9990984e35c7",
+        "id": "5d8ef5a8-469d-4815-acff-7b63c93892be",
         "displayName": "Abricot, dénoyauté Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -384,12 +394,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Abricot, dénoyauté Origine Inconnue",
+    "id": "2ab63d3d-53fc-41ab-9d29-47bab60695db",
     "metadata": [
       {
         "alias": "apricot-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "32083865-50e2-4310-86fd-883645fbe3fd",
+        "id": "bd0a33ef-b81b-4008-af53-c95ec44aae1b",
         "displayName": "Abricot, dénoyauté Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -421,12 +432,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Purée d'abricots congelés Bio",
+    "id": "c6aafbb7-276f-4745-b1fe-f4a9db9ef951",
     "metadata": [
       {
         "alias": "frozen-apricot-puree-at-plant-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "0ae54837-a322-4c5b-a98d-f08a20562438",
+        "id": "6078f82b-dbd0-4518-aca9-5fb8d7239239",
         "displayName": "Purée d'abricots congelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -459,12 +471,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Purée d'abricots congelés Origine Inconnue",
+    "id": "ad0ca351-3317-4cd9-985a-c172343e7b8d",
     "metadata": [
       {
         "alias": "frozen-apricot-puree-at-plant-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "9bbe43bd-f037-4d96-8ce6-b6be38658112",
+        "id": "63bcb670-216e-4ce0-bacf-c911883fc6c8",
         "displayName": "Purée d'abricots congelés Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -496,12 +509,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Farine d'orge Origine Inconnue",
+    "id": "7ecf202a-72c8-4431-ae31-655e0eb20171",
     "metadata": [
       {
         "alias": "barley-flour-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "283cebe9-729f-4c37-9167-3456873a3d06",
+        "id": "7423516b-9bb2-4170-b4ee-572367b23b5f",
         "displayName": "Farine d'orge Origine Inconnue",
         "cropGroup": "ORGE",
         "ingredientCategories": [
@@ -533,12 +547,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Son d'orge Origine Inconnue",
+    "id": "c33fa2d4-b722-4c27-aae7-2623ed732d1b",
     "metadata": [
       {
         "alias": "barley-bran-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "1099fb2d-b977-4ea2-b2d6-77d910bbe66c",
+        "id": "df5b3d25-00e7-4160-a199-d422c08467d7",
         "displayName": "Son d'orge Origine Inconnue",
         "cropGroup": "ORGE",
         "ingredientCategories": [
@@ -570,12 +585,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jus de betterave, jus pur Bio",
+    "id": "c8de5d4d-0702-4685-b6dd-ca8c94da94d4",
     "metadata": [
       {
         "alias": "beetroot-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "fbd660cd-55a6-45f8-bf85-c0aa75784a80",
+        "id": "6df302b1-27b2-47e0-8a2a-e9d1177013e3",
         "displayName": "Jus de betterave, jus pur Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -608,12 +624,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Brocoli, pelé Bio",
+    "id": "944792cd-3194-4f2b-861b-38041ee769cf",
     "metadata": [
       {
         "alias": "broccoli-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "8f8b40f3-5637-402d-8e45-6fd6eaa65b68",
+        "id": "570a48c3-e459-45ac-a2ce-0a45323cec8c",
         "displayName": "Brocoli, pelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -646,12 +663,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Choux blancs, pelés Bio",
+    "id": "87d826e5-9f3b-4cec-b9fa-a5694f8a2e9e",
     "metadata": [
       {
         "alias": "white-cabbage-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "10951461-74a3-4476-9021-aa33368ea33f",
+        "id": "47d2aed4-a1f3-4af1-92c4-35b2c5e2c3d2",
         "displayName": "Choux blancs, pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -684,12 +702,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jus de carottes, jus pur Bio",
+    "id": "b1117140-805c-4d8e-bce2-185314a22f54",
     "metadata": [
       {
         "alias": "carrot-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "20ad7ed8-67e3-4455-aaaf-54a6f7f32a0b",
+        "id": "e65050c6-50f5-4edd-a881-25015abc3f83",
         "displayName": "Jus de carottes, jus pur Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -722,12 +741,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jus de carottes, jus pur Origine Inconnue",
+    "id": "a418d5aa-56fe-44f8-b785-dc92997d684a",
     "metadata": [
       {
         "alias": "carrot-juice-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "74e6d33e-a47a-409e-8b84-b3f6b1b11ec6",
+        "id": "177d0fad-73f5-467f-bae8-5f0151ca3e3a",
         "displayName": "Jus de carottes, jus pur Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -759,12 +779,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "purée de carottes concentrées congelée Bio",
+    "id": "5dab0787-0093-4b44-a200-c1e7772c7dbf",
     "metadata": [
       {
         "alias": "frozen-concentrated-carrot-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "534fb579-2bc5-4d06-8ac5-a04e34633208",
+        "id": "0c63a586-62dd-4e02-81e6-1f6579871f8c",
         "displayName": "purée de carottes concentrées congelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -797,12 +818,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "purée de carottes concentrées congelée Origine Inconnue",
+    "id": "5df9704b-ca40-47bd-b39a-1518f4acb083",
     "metadata": [
       {
         "alias": "frozen-concentrated-carrot-puree-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "812ec607-2742-4064-882d-9a0e87108bb4",
+        "id": "753bded0-f31a-46d5-b170-6a306adae84e",
         "displayName": "purée de carottes concentrées congelée Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -834,12 +856,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Marc de carotte, frais Bio",
+    "id": "57c6c318-ed66-43c7-8d9f-8f7ef0439bda",
     "metadata": [
       {
         "alias": "carrot-pomace-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "75a2c490-f557-43b4-bb49-230fa0e90750",
+        "id": "5aabd513-87a7-467c-b40b-f2d7144dcf87",
         "displayName": "Marc de carotte, frais Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -872,12 +895,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Marc de carotte, frais Origine Inconnue",
+    "id": "253a0e88-3c4b-46eb-8f24-94a00541f115",
     "metadata": [
       {
         "alias": "carrot-pomace-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "95e519cc-c472-4b4b-bfd9-da26178b2e5d",
+        "id": "019f207b-f6ea-41af-a203-96dc5e95855b",
         "displayName": "Marc de carotte, frais Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -909,12 +933,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Marc de carotte, frais Bio",
+    "id": "bdab59c5-cd9a-4a38-8fd6-ba7ab8c31336",
     "metadata": [
       {
         "alias": "carrot-pomace-fresh-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "c16d9a66-8eb7-472f-abf2-2242fac0398e",
+        "id": "b9576bd6-9e08-4ce8-95b9-fe22b4e24738",
         "displayName": "Marc de carotte, frais Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -947,12 +972,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Marc de carotte, frais Origine Inconnue",
+    "id": "61578e9f-08e2-455c-93d8-eb09a5801e8d",
     "metadata": [
       {
         "alias": "carrot-pomace-fresh-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "1c4f30a7-94f6-44cf-9eda-aad00a9e3de7",
+        "id": "ea45cd19-1479-4945-8653-28e506e6dd0f",
         "displayName": "Marc de carotte, frais Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -984,12 +1010,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jus de carottes, jus pur Bio",
+    "id": "f1d1ab14-eaab-44e9-a69c-08d3dc33cab2",
     "metadata": [
       {
         "alias": "carrot-juice-pure-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "918061f0-1a51-40a9-bc73-6871b98aec40",
+        "id": "03aed9aa-976c-456e-be38-33d302bf8e94",
         "displayName": "Jus de carottes, jus pur Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1022,12 +1049,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jus de carottes, jus pur Origine Inconnue",
+    "id": "bf051e1f-969d-44ca-984d-1ae94ad599d0",
     "metadata": [
       {
         "alias": "carrot-juice-pure-juice-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "9192a49d-a02f-40e0-983e-c1e29bafd227",
+        "id": "53a228e9-3d3f-4d52-959f-db55784dfc7e",
         "displayName": "Jus de carottes, jus pur Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1059,12 +1087,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Carotte pelée Bio",
+    "id": "c4e1f585-e75b-42f4-90cd-6ae8ea000773",
     "metadata": [
       {
         "alias": "carrot-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "81e31d96-024f-4a92-8d67-4cec0ea2101b",
+        "id": "1c936f7f-aef4-4dc7-b846-bfe4fc14f769",
         "displayName": "Carotte pelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1097,12 +1126,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Carotte pelée Origine Inconnue",
+    "id": "db6a6d47-380a-40fc-9218-8ef8375d7e97",
     "metadata": [
       {
         "alias": "carrot-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "95cefe16-5ba6-4119-a79d-4698cfadbfd2",
+        "id": "e8d88b45-5219-4009-b613-1f209722e7c7",
         "displayName": "Carotte pelée Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1134,12 +1164,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Carotte congelée Bio",
+    "id": "e3b3a119-19fa-426b-bd14-e486e7476a1a",
     "metadata": [
       {
         "alias": "frozen-carrot-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "d83a2185-520d-415e-84bc-11a110f42943",
+        "id": "65845262-66e3-4bf2-8bf6-92eb1ccd8770",
         "displayName": "Carotte congelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1172,12 +1203,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Carotte congelée Origine Inconnue",
+    "id": "e263d95c-2700-4e7e-9b48-9a306100c566",
     "metadata": [
       {
         "alias": "frozen-carrot-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "ec18e85c-51ba-4375-81e0-5135481d4c9d",
+        "id": "830dd0cd-41ea-4771-bcaf-f059a5019f66",
         "displayName": "Carotte congelée Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1209,12 +1241,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Choux-fleurs, pelés Origine Inconnue",
+    "id": "380359ca-ad74-4198-8c82-a4a9ef1f904c",
     "metadata": [
       {
         "alias": "cauliflower-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "a5d53c7c-793b-46d8-9f97-1c9ede2fe96a",
+        "id": "b3e91961-a518-4ddf-8474-6806687180f6",
         "displayName": "Choux-fleurs, pelés Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1246,12 +1279,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Choux-fleurs, pelés Bio",
+    "id": "f981e523-5319-4247-af3c-31231a1b1b3d",
     "metadata": [
       {
         "alias": "cauliflower-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "7ed62638-23a4-485b-92a6-11ab85920796",
+        "id": "f2944812-5b45-4105-ab4b-f9750abfd95d",
         "displayName": "Choux-fleurs, pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1284,12 +1318,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Branche de céleri, pelée Bio",
+    "id": "1f05b43d-30a2-4791-bbfd-c0f02f674dd4",
     "metadata": [
       {
         "alias": "celery-stalk-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "fb7ff4ef-52d6-4900-b328-103a0a0ebbf8",
+        "id": "c8e68421-019d-40fb-beaf-9e579ae4f165",
         "displayName": "Branche de céleri, pelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1322,12 +1357,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Céleri, pelé Bio",
+    "id": "6e574b6a-c6a5-4c9f-b699-47ea9ffcf7bf",
     "metadata": [
       {
         "alias": "celery-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "d4fcd5b8-9711-41e9-93c8-db45ee66d354",
+        "id": "268bc345-2134-49d6-9600-e593a798dd0b",
         "displayName": "Céleri, pelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1360,12 +1396,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jus de cerise, jus pur Bio",
+    "id": "457638ae-f33b-4075-a7e2-e88e95823bc2",
     "metadata": [
       {
         "alias": "cherry-juice-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "93517c50-2353-4d1b-a638-7796ce3fb85d",
+        "id": "2e0aee12-d15e-455f-80cd-1faa1a5e8beb",
         "displayName": "Jus de cerise, jus pur Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -1398,12 +1435,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jus de cerise, jus pur Origine Inconnue",
+    "id": "2314a57e-a95d-4c5e-9082-ff34d02b1d9c",
     "metadata": [
       {
         "alias": "cherry-juice-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "59d82f8d-6de5-478f-919c-da3de16a43d8",
+        "id": "4ac89c04-57cb-4ce3-ba4b-69747c69947d",
         "displayName": "Jus de cerise, jus pur Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -1435,12 +1473,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Racines de chicorée, lavées et triées, coupées en cossettes Origine Inconnue",
+    "id": "2df58bc7-46d4-4c07-84fa-0e1dd4f69931",
     "metadata": [
       {
         "alias": "chicory-roots-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "2c1e6665-980b-4810-8466-209d1c807c94",
+        "id": "a398faa7-3fbe-452b-a5e5-cd1d4bed7d33",
         "displayName": "Racines de chicorée, lavées et triées, coupées en cossettes Origine Inconnue",
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "ingredientCategories": [
@@ -1472,12 +1511,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Racines de chicorée, lavées et triées, coupées en cossettes Bio",
+    "id": "60d91eef-5696-4297-9ad9-a49e72616c5e",
     "metadata": [
       {
         "alias": "chicory-roots-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "96ab91e1-c257-48f9-8b51-91dbd86d8f98",
+        "id": "74a8711d-9061-477d-97ac-2049634ef234",
         "displayName": "Racines de chicorée, lavées et triées, coupées en cossettes Bio",
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "ingredientCategories": [
@@ -1510,12 +1550,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Blé dur, en sauce tomate Origine Inconnue",
+    "id": "fc1fd24d-7363-48d1-a706-b51562e249d4",
     "metadata": [
       {
         "alias": "durum-wheat-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "24e6d390-0b1f-423a-a2ee-bb307a318659",
+        "id": "bc6003f9-b04b-4c15-961f-76fb04119be9",
         "displayName": "Blé dur, en sauce tomate Origine Inconnue",
         "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
@@ -1547,12 +1588,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Blé dur, en sauce tomate Bio",
+    "id": "1966d0b2-17b2-4e9e-acea-e143c64135bf",
     "metadata": [
       {
         "alias": "durum-wheat-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "1984e329-7fb4-43f8-a575-94d973ee1025",
+        "id": "a8bf4731-b625-4ff8-b3fb-39093eb3ccf0",
         "displayName": "Blé dur, en sauce tomate Bio",
         "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
@@ -1585,12 +1627,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Oeufs de poulet crus, sans coquille Bio",
+    "id": "b0a81e2b-6f5e-4bad-86b7-f223188de0cf",
     "metadata": [
       {
         "alias": "chicken-egg-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "68adce7c-a20c-4dc4-901c-feef632badfc",
+        "id": "810e2f49-2267-4d03-a830-3659c0d6b635",
         "displayName": "Oeufs de poulet crus, sans coquille Bio",
         "cropGroup": null,
         "ingredientCategories": [
@@ -1623,12 +1666,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Oeufs de poulet crus, sans coquille Origine Inconnue",
+    "id": "e361fc8a-9d10-4f2a-a643-7c8b491ea81e",
     "metadata": [
       {
         "alias": "chicken-egg-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "563f1b3f-7a2a-4664-b183-1bf91c2bfe0a",
+        "id": "316bc918-12f7-4342-9e83-0a4c2107af0d",
         "displayName": "Oeufs de poulet crus, sans coquille Origine Inconnue",
         "cropGroup": null,
         "ingredientCategories": [
@@ -1660,12 +1704,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Blanc d'oeufs, cru Bio",
+    "id": "cd78f3b4-dca3-48b6-be89-2dd360135e7d",
     "metadata": [
       {
         "alias": "egg-white-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "d5a3a78d-201f-4b9b-8e40-f709d97030fa",
+        "id": "fede0e88-c449-4dfd-8d64-97b87b523db5",
         "displayName": "Blanc d'oeufs, cru Bio",
         "cropGroup": null,
         "ingredientCategories": [
@@ -1698,12 +1743,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Blanc d'oeufs, cru Origine Inconnue",
+    "id": "6beb02fe-4c4d-42b5-90c6-e78ef54313c2",
     "metadata": [
       {
         "alias": "egg-white-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "d578befe-eebe-4927-a7ab-fc8f2def0d0f",
+        "id": "4ff1d3d4-2fea-4b3e-afcb-ba81792dc375",
         "displayName": "Blanc d'oeufs, cru Origine Inconnue",
         "cropGroup": null,
         "ingredientCategories": [
@@ -1735,12 +1781,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jaunes d'oeufs, crues Bio",
+    "id": "f1dce7f4-c652-4ae3-bf16-e96216bf2580",
     "metadata": [
       {
         "alias": "egg-yolk-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "2099595d-36b5-49e5-9ef8-6e589ed7ae99",
+        "id": "6a6cffdf-64cc-4c29-bf5e-33943b12cc7f",
         "displayName": "Jaunes d'oeufs, crues Bio",
         "cropGroup": null,
         "ingredientCategories": [
@@ -1773,12 +1820,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Jaunes d'oeufs, crues Origine Inconnue",
+    "id": "b40342a8-5361-43e9-a085-fab4a6bf930b",
     "metadata": [
       {
         "alias": "egg-yolk-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "80149c19-8a9c-4239-a297-22edc26823d2",
+        "id": "3a77f6ac-1720-4522-8160-87c165f695ca",
         "displayName": "Jaunes d'oeufs, crues Origine Inconnue",
         "cropGroup": null,
         "ingredientCategories": [
@@ -1810,12 +1858,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Fenouil, pelé Bio",
+    "id": "87616a00-52fb-4e38-86f6-e73f77997921",
     "metadata": [
       {
         "alias": "fennel-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "3820d71a-d2cf-49f0-856b-db2b968c4ac2",
+        "id": "eaa5c9a4-7ad1-432e-83b6-c5268e874bda",
         "displayName": "Fenouil, pelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -1848,12 +1897,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Haricot français, pelé Bio",
+    "id": "79be26b6-5dce-4974-9fd8-bfc1bf956983",
     "metadata": [
       {
         "alias": "french-bean-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "7074cf97-7608-4c47-bbbd-834e939d1e37",
+        "id": "edc5b628-7315-4dd4-8ff5-f9a68974c03f",
         "displayName": "Haricot français, pelé Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
@@ -1886,12 +1936,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Haricots français, coupés Bio",
+    "id": "a742efbc-039c-4822-89f7-abfb285edfdc",
     "metadata": [
       {
         "alias": "french-bean-for-canned-and-frozen-products-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "006070bc-54ab-47e0-b0e6-83242469b2b1",
+        "id": "0d520dee-d62f-40a7-901c-13d01c66ceb3",
         "displayName": "Haricots français, coupés Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
@@ -1924,12 +1975,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Raisins de table, pelés Bio",
+    "id": "cf6b3f99-b5a3-4a00-ab69-8a2b20c21357",
     "metadata": [
       {
         "alias": "table-grape-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "eee912c5-a767-4be6-a392-3686ced94230",
+        "id": "4c4bcaee-912a-470e-8a17-0e885a66c80d",
         "displayName": "Raisins de table, pelés Bio",
         "cropGroup": "VIGNES",
         "ingredientCategories": [
@@ -1962,12 +2014,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noisettes décortiquées Bio",
+    "id": "7a01f7f4-e513-4600-b393-ee76e71a9656",
     "metadata": [
       {
         "alias": "hazelnut-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "57247ed2-a789-4848-bb3d-83bf8ffb628e",
+        "id": "41cec48d-ce27-48d1-add1-e18873c9616f",
         "displayName": "Noisettes décortiquées Bio",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
@@ -2000,12 +2053,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noisettes décortiquées Origine Inconnue",
+    "id": "e23870b0-9d15-4eda-ac8e-cf00707ab03c",
     "metadata": [
       {
         "alias": "hazelnut-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "1866d028-721d-4405-99fb-0c3db2276d0f",
+        "id": "161f4a32-e6c4-487f-b499-26018660572b",
         "displayName": "Noisettes décortiquées Origine Inconnue",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
@@ -2037,12 +2091,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noisettes décortiquées Bio",
+    "id": "b6c839d3-e90a-4217-896b-71fdcdbd61e4",
     "metadata": [
       {
         "alias": "hazelnuts-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "7b42fb7f-cacb-466c-b294-aa443a310b07",
+        "id": "1f18d7d1-3d1d-43ff-aae4-84af8f9476f0",
         "displayName": "Noisettes décortiquées Bio",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
@@ -2075,12 +2130,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noisettes décortiquées Origine Inconnue",
+    "id": "773cdd21-875c-440e-a788-49f2a5634e79",
     "metadata": [
       {
         "alias": "hazelnuts-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "3bf6b2ba-0558-492e-87ed-1ab87c00e7c5",
+        "id": "fe5b2b22-1612-422a-85ab-dc62c34f06ba",
         "displayName": "Noisettes décortiquées Origine Inconnue",
         "cropGroup": "FRUITS A COQUES",
         "ingredientCategories": [
@@ -2112,12 +2168,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Kiwi FR Bio",
+    "id": "ad5045a5-3d68-49f6-83f0-d547ee39dd54",
     "metadata": [
       {
         "alias": "kiwi-fr-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "79d8568b-1c3e-4cef-be2c-b55e200ebc96",
+        "id": "54bdf108-4ddb-4768-bc47-9945a34ea7ba",
         "displayName": "Kiwi FR Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2150,12 +2207,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Poireau, pelé Origine Inconnue",
+    "id": "43a9f0e2-0f84-4e0f-aaa5-31f96becafd1",
     "metadata": [
       {
         "alias": "leek-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "4c402da1-6bdd-4754-b4f5-0abba236a2fe",
+        "id": "179f21bd-1d9a-4fee-9a7b-5ea0abe691d1",
         "displayName": "Poireau, pelé Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2187,12 +2245,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Poireau, pelé Bio",
+    "id": "c7e50a03-8e94-466b-ac81-bbe2838c709d",
     "metadata": [
       {
         "alias": "leek-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "1bc74fdf-868c-43bd-8713-0d91fd5272f0",
+        "id": "3d862eef-6ab7-465d-acf1-76e72f12471e",
         "displayName": "Poireau, pelé Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2225,12 +2284,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Citron Bio",
+    "id": "34331b00-6c87-4169-b22e-3698e99c8238",
     "metadata": [
       {
         "alias": "lemon-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "e672a81b-4817-4a08-b52c-2e371f803c52",
+        "id": "b10850b0-7176-4996-b014-a435264877ca",
         "displayName": "Citron Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2263,12 +2323,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Citron Origine Inconnue",
+    "id": "e1275181-8b9f-4582-a445-1af9b48afa81",
     "metadata": [
       {
         "alias": "lemon-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "c0686c59-08a1-42cf-b7aa-816261ea3e06",
+        "id": "9e19cbc1-5bb9-4323-9eab-75058bf142ed",
         "displayName": "Citron Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2300,12 +2361,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Citron, pelé Bio",
+    "id": "5665386f-576b-4cae-8a63-d39b4c1120e5",
     "metadata": [
       {
         "alias": "lemon-peeled-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "f3d6d17c-3bc5-47f8-b3c0-140b94648ae3",
+        "id": "3bc3e0c1-e464-48b1-8983-de45868b5a6e",
         "displayName": "Citron, pelé Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2338,12 +2400,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Citron, pelé Origine Inconnue",
+    "id": "84f4a9d1-005e-486a-986b-925d592c63ad",
     "metadata": [
       {
         "alias": "lemon-peeled-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "bce59814-3158-449f-b59e-5914d31e9d45",
+        "id": "26e9ae4b-fc08-4ef4-9479-5a5bebd90c79",
         "displayName": "Citron, pelé Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2375,12 +2438,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Lentilles, en conserve Bio",
+    "id": "bbc53ca9-3fd0-459f-a70f-17e2d762e566",
     "metadata": [
       {
         "alias": "lentils-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "f4616e4e-fd5a-48b3-8cdf-e038b0b9354d",
+        "id": "f589edab-8e0c-4f31-bd52-4cec9b19953f",
         "displayName": "Lentilles, en conserve Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
@@ -2413,12 +2477,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Menthe pelée Origine Inconnue",
+    "id": "8426da49-8412-4840-89d3-95344f769a33",
     "metadata": [
       {
         "alias": "mint-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "123baed2-0936-417d-94de-a1ccbd770852",
+        "id": "379ae47f-db5d-4594-a3b1-c469e0f05b55",
         "displayName": "Menthe pelée Origine Inconnue",
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "ingredientCategories": [
@@ -2450,12 +2515,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Oignons pelés Bio",
+    "id": "117a824f-a7e8-4068-89a6-7da50a834bfb",
     "metadata": [
       {
         "alias": "onions-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "51514141-f712-482e-9cda-f4838ca0507a",
+        "id": "193a2da0-3e3f-456b-8a57-104dc5c6a4e9",
         "displayName": "Oignons pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2488,12 +2554,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Oignons pelés Origine Inconnue",
+    "id": "3637835a-2e79-4c60-a044-a9d831db6428",
     "metadata": [
       {
         "alias": "onions-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "cf752ceb-2352-488b-9586-2fc92f03bbbb",
+        "id": "a44a32ca-e2cc-4f4b-a7b5-131d2f63eb03",
         "displayName": "Oignons pelés Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2525,12 +2592,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Oignons pelés Bio",
+    "id": "c95c5e16-fc2d-487e-88e9-c7743873f0a5",
     "metadata": [
       {
         "alias": "onions-peeled-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "065a0b1d-2273-4a1b-88ca-af06bf260be1",
+        "id": "90aac692-c283-4092-8d1b-0dfb6bbaacfa",
         "displayName": "Oignons pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2563,12 +2631,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Oignons pelés Origine Inconnue",
+    "id": "6e952952-0c10-468f-b865-84927adb034e",
     "metadata": [
       {
         "alias": "onions-peeled-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "afbdefee-91ee-4d43-be10-8136975e0049",
+        "id": "ea9259b9-59b7-4695-bf11-a6d089c4890e",
         "displayName": "Oignons pelés Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2600,12 +2669,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Ciboulette ou oignon nouveau, pelé Bio",
+    "id": "a0fffb85-7b04-4705-af3d-18ce16596baf",
     "metadata": [
       {
         "alias": "chive-or-spring-onion-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "55786bec-5eea-4880-a67c-1e714c2ae0bd",
+        "id": "12d27172-1dc7-428e-960d-1a0dd959fb7e",
         "displayName": "Ciboulette ou oignon nouveau, pelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2638,12 +2708,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Ciboulette ou oignon nouveau, pelé Origine Inconnue",
+    "id": "29aaba0c-ec01-4497-aec2-6270e773b20f",
     "metadata": [
       {
         "alias": "chive-or-spring-onion-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "4efd8f35-2344-45b1-8e5a-21fa2ba3c3f6",
+        "id": "0d8128ea-4337-4910-8075-8c2e1be5fd29",
         "displayName": "Ciboulette ou oignon nouveau, pelé Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2675,12 +2746,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Oignon congelé Bio",
+    "id": "aeb4b548-96c5-47d2-9ffe-42b37290499e",
     "metadata": [
       {
         "alias": "frozen-onion-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "b76bba3a-d566-469e-9fed-062fa9c7b8d4",
+        "id": "7b3f002e-159a-408a-bf9f-4cb16ab10330",
         "displayName": "Oignon congelé Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2713,12 +2785,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Oignon congelé Origine Inconnue",
+    "id": "09c9fdd6-9518-449e-b5d9-98acc51e51ee",
     "metadata": [
       {
         "alias": "frozen-onion-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "33286aa9-279f-4f26-aaed-626c087e2065",
+        "id": "12fdad76-98a5-40bf-afb8-8d52f63f8833",
         "displayName": "Oignon congelé Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2750,12 +2823,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Orange, pelé Origine Inconnue",
+    "id": "5ce1dbb7-baf2-4873-85b7-76d39dc94603",
     "metadata": [
       {
         "alias": "orange-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "43bd90f7-881e-4401-bcf3-ba03479a1c76",
+        "id": "730c6884-3998-4a89-9d65-36f4d3dc7b4c",
         "displayName": "Orange, pelé Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2787,12 +2861,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Orange, pelé Bio",
+    "id": "acc63245-0ebc-4a6a-915e-e0b691031800",
     "metadata": [
       {
         "alias": "orange-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "eadd0815-6687-4b13-9c47-eb1a824b9487",
+        "id": "39d97573-4f73-44d0-93c5-a627a161f34a",
         "displayName": "Orange, pelé Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2825,12 +2900,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noyau de pêche Bio",
+    "id": "069f3a8d-a62d-4a06-8a4a-e05ed5726aab",
     "metadata": [
       {
         "alias": "peach-stone-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "33d7f3da-4a74-4543-bfdc-2710f8a524f9",
+        "id": "f702fedb-3403-486c-826e-51e58e188399",
         "displayName": "Noyau de pêche Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2863,12 +2939,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noyau de pêche Origine Inconnue",
+    "id": "71dee007-8606-4c27-b077-32be8dcfe1c6",
     "metadata": [
       {
         "alias": "peach-stone-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "8409cae5-7934-4ff0-9174-3e5221ed1f8b",
+        "id": "1bff44dd-1508-4838-8d67-32e3fc0cf8ad",
         "displayName": "Noyau de pêche Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -2900,12 +2977,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Purée de pêche congelée Bio",
+    "id": "2e06ed90-4b37-473c-81b7-766acaf66f85",
     "metadata": [
       {
         "alias": "frozen-peach-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "b9c57e6e-b77f-4cac-ac6e-a547cd8c0000",
+        "id": "516be9c9-d5d5-478d-8bce-0794c385b144",
         "displayName": "Purée de pêche congelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2938,12 +3016,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Purée de pêche congelée Origine Inconnue",
+    "id": "ff25a83d-714c-4817-89a5-8d6e505592ae",
     "metadata": [
       {
         "alias": "frozen-peach-puree-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "74ac58ae-cdf3-48c1-bb64-c9bf519cff8a",
+        "id": "a02801ee-d9ea-4cf3-a224-6242b9f5b1a1",
         "displayName": "Purée de pêche congelée Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -2975,12 +3054,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Pêche, dénoyautée Bio",
+    "id": "5380f3d8-97ad-4c42-b15f-a51e30ddea65",
     "metadata": [
       {
         "alias": "peach-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "2ba61366-c7cb-47b1-8d33-5989608abee8",
+        "id": "e53d06a3-cf20-48a4-ae5e-2e407352da59",
         "displayName": "Pêche, dénoyautée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3013,12 +3093,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Pêche, dénoyautée Origine Inconnue",
+    "id": "6ff2d8fc-fa62-47a2-ac37-bf782022c8e1",
     "metadata": [
       {
         "alias": "peach-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "8f7e250c-8c30-4d88-916b-0c6a749245c6",
+        "id": "784fedd7-ef1b-4011-92b9-b0abf246a5e2",
         "displayName": "Pêche, dénoyautée Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3050,12 +3131,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Purée de pêche congelée Bio",
+    "id": "7f0b693a-10ed-47a4-ae02-a0c6de041080",
     "metadata": [
       {
         "alias": "frozen-peach-puree-at-plant-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "3576bf0a-327a-4b61-bd11-a09c261111f3",
+        "id": "f11ec6b1-7eed-4fae-8a9f-983acfc0a757",
         "displayName": "Purée de pêche congelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -3088,12 +3170,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Purée de pêche congelée Origine Inconnue",
+    "id": "f70a8e4f-cd0e-422d-9adb-0583fcebc868",
     "metadata": [
       {
         "alias": "frozen-peach-puree-at-plant-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "ef94ef37-4024-4678-bf14-713321e68f6b",
+        "id": "9a3c4672-bdea-42ad-bbcb-40be13ff6e78",
         "displayName": "Purée de pêche congelée Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -3125,12 +3208,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "purée de poire congelée Bio",
+    "id": "0b3d990f-da2e-43d9-b5b9-b2733d4590e4",
     "metadata": [
       {
         "alias": "frozen-pear-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "301df3f9-6767-44a4-8eaa-3eb8b1e600f3",
+        "id": "9e297cc9-e8dc-4563-a722-50e0fc58bb40",
         "displayName": "purée de poire congelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -3163,12 +3247,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "purée de poire congelée Origine Inconnue",
+    "id": "da1d9cc1-ca76-4e2d-ab34-0fc709d2190a",
     "metadata": [
       {
         "alias": "frozen-pear-puree-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "bec5907b-e251-4d2b-bcd5-7607927ea577",
+        "id": "acf46fe6-bc28-4fb2-b469-b2fe54c2bb8d",
         "displayName": "purée de poire congelée Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -3200,12 +3285,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Poire, pelée Bio",
+    "id": "d039c080-e845-4040-a7f7-48cbd314e753",
     "metadata": [
       {
         "alias": "pear-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "dac5486b-cbc0-4c40-83a5-28bb1e81f766",
+        "id": "88b9c01f-4c49-43f9-b0ad-ba69b29d7d63",
         "displayName": "Poire, pelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -3238,12 +3324,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Poire, pelée Origine Inconnue",
+    "id": "d411c26d-743a-4ba0-ac21-eb1e60b68056",
     "metadata": [
       {
         "alias": "pear-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "c10ec812-109d-492c-bbe3-72b242ee6c9e",
+        "id": "0945de60-8427-4b76-8a11-2ef35707562d",
         "displayName": "Poire, pelée Origine Inconnue",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -3275,12 +3362,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Quinoa FR Origine Inconnue",
+    "id": "98df509b-175d-47bf-8a4a-3188cec493b8",
     "metadata": [
       {
         "alias": "quinoa-fr-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "fc98b7d6-51f3-4177-8ef1-01a4bc825658",
+        "id": "ea0c205a-e05e-4d3a-9b80-7ba07433027f",
         "displayName": "Quinoa FR Origine Inconnue",
         "cropGroup": "AUTRES CEREALES",
         "ingredientCategories": [
@@ -3312,12 +3400,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Quinoa FR Bio",
+    "id": "cfedfac5-dc75-4511-971a-9971010e271e",
     "metadata": [
       {
         "alias": "quinoa-fr-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "ca533a16-6100-4ea6-b2d3-a2bd4f0246c3",
+        "id": "45b6186b-66bb-4563-ad45-28caabadf227",
         "displayName": "Quinoa FR Bio",
         "cropGroup": "AUTRES CEREALES",
         "ingredientCategories": [
@@ -3350,12 +3439,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "purée de framboises congelée Bio",
+    "id": "fee0a531-1377-4dcf-9858-727ac6b130db",
     "metadata": [
       {
         "alias": "frozen-raspberry-puree-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "8726db22-7a3c-4a35-bd27-300cc565fc22",
+        "id": "aba752fa-1c72-42b1-bcda-bf4de3e5983a",
         "displayName": "purée de framboises congelée Bio",
         "cropGroup": "VERGERS",
         "ingredientCategories": [
@@ -3388,12 +3478,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Son de riz Bio",
+    "id": "e5905dc9-8307-40fd-ae9f-68e6bb9f5364",
     "metadata": [
       {
         "alias": "rice-bran-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "f6bec41d-4399-4e68-b7c2-69e970c6cc42",
+        "id": "7caf18af-9e1d-46d6-acc0-84f1a203096e",
         "displayName": "Son de riz Bio",
         "cropGroup": "RIZ",
         "ingredientCategories": [
@@ -3426,12 +3517,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Farine de riz Bio",
+    "id": "7377acf3-a6f0-44a3-b31d-32bbd189fbbc",
     "metadata": [
       {
         "alias": "rice-flour-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "96b32c06-f0ce-4326-85e2-93e24928ee43",
+        "id": "fd5dd72c-8070-4954-abc2-9a0ee63f87de",
         "displayName": "Farine de riz Bio",
         "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
@@ -3456,20 +3548,21 @@
     "source": "Ecobalyse"
   },
   {
-    "activityName": "Rice flour, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-flour-default}}",
-    "alias": "rice-flour-default",
+    "activityName": "Rice flour, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-flour-at-industrial-mill-default}}",
+    "alias": "rice-flour-at-industrial-mill-default",
     "categories": [
       "ingredient",
       "material"
     ],
     "database": "Ecobalyse",
     "displayName": "Farine de riz Origine Inconnue",
+    "id": "2d5eec8e-133c-4911-a868-41dc62e79bfb",
     "metadata": [
       {
-        "alias": "rice-flour-default",
+        "alias": "rice-flour-at-industrial-mill-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "e153b638-66c4-4156-ad75-07bfb92c2d05",
+        "id": "0acf1e65-03b5-4a41-8a27-2b0e549530e4",
         "displayName": "Farine de riz Origine Inconnue",
         "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
@@ -3501,12 +3594,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Farine de riz Bio",
+    "id": "820c66f8-573b-43ba-ac8d-e2d21cb1a03c",
     "metadata": [
       {
         "alias": "rice-flour-at-industrial-mill-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "0cfc4a49-c879-4a00-805b-cd23de171c09",
+        "id": "72525d79-33b0-4647-90bc-847e74a4e6a5",
         "displayName": "Farine de riz Bio",
         "cropGroup": "BLE TENDRE",
         "ingredientCategories": [
@@ -3531,20 +3625,21 @@
     "source": "Ecobalyse"
   },
   {
-    "activityName": "Rice bran, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-bran-default}}",
-    "alias": "rice-bran-default",
+    "activityName": "Rice bran, at industrial mill {IT} U [rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-default] {{rice-bran-at-industrial-mill-default}}",
+    "alias": "rice-bran-at-industrial-mill-default",
     "categories": [
       "ingredient",
       "material"
     ],
     "database": "Ecobalyse",
     "displayName": "Son de riz Origine Inconnue",
+    "id": "3cb83010-755b-4fca-824e-a9518ccd4a47",
     "metadata": [
       {
-        "alias": "rice-bran-default",
+        "alias": "rice-bran-at-industrial-mill-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "e30c109d-ba4d-4885-bd2f-62574e5782e5",
+        "id": "873cb1ad-b927-4193-ac7f-b2296aa4c1b0",
         "displayName": "Son de riz Origine Inconnue",
         "cropGroup": "RIZ",
         "ingredientCategories": [
@@ -3576,12 +3671,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Son de riz Bio",
+    "id": "d741218c-34d0-4cb1-9c96-2e2823ce37a3",
     "metadata": [
       {
         "alias": "rice-bran-at-industrial-mill-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "b8e358a7-8b96-4b64-a8e6-eb61b357756c",
+        "id": "88acd737-6780-4c2c-879c-4e4af4ff0b2a",
         "displayName": "Son de riz Bio",
         "cropGroup": "RIZ",
         "ingredientCategories": [
@@ -3614,12 +3710,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Son de seigle Origine Inconnue",
+    "id": "4e16dcce-08c0-4562-bc73-b346731d2b97",
     "metadata": [
       {
         "alias": "rye-bran-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "9f791edd-7440-4529-add6-b6a386828709",
+        "id": "93e7677b-67de-484d-b1d4-c7126f6e3357",
         "displayName": "Son de seigle Origine Inconnue",
         "cropGroup": "AUTRES CEREALES",
         "ingredientCategories": [
@@ -3651,12 +3748,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Farine de seigle Origine Inconnue",
+    "id": "933dd9b4-1b9f-453f-b5fc-08cee1e92ea7",
     "metadata": [
       {
         "alias": "rye-flour-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "6003e019-cc9f-47c6-a98e-282e50c79104",
+        "id": "4e4adfe6-9ff0-4d8d-8b39-781721f54aae",
         "displayName": "Farine de seigle Origine Inconnue",
         "cropGroup": "AUTRES CEREALES",
         "ingredientCategories": [
@@ -3688,12 +3786,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Épinards pelés Bio",
+    "id": "7b55e7e6-eec7-43d2-8f7f-ab3f4fd351a4",
     "metadata": [
       {
         "alias": "spinach-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "80ddf743-0863-4e01-a655-1db169d14594",
+        "id": "3863e6e4-3ab9-480d-a199-51727f70698a",
         "displayName": "Épinards pelés Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3726,12 +3825,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Huile de tournesol Bio",
+    "id": "8992ff96-c787-428d-8698-82f6b3ca217d",
     "metadata": [
       {
         "alias": "sunflower-oil-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "a08e52ff-edcc-433d-8b41-3b0163c2eb81",
+        "id": "7e4d774f-46bd-47e4-98f6-076b6355e5cd",
         "displayName": "Huile de tournesol Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3764,12 +3864,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Huile de tournesol Origine Inconnue",
+    "id": "386dc14b-0b4b-46bc-87e7-12585388f422",
     "metadata": [
       {
         "alias": "sunflower-oil-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "086400fc-b476-47ae-9e7a-25396a4d1f3b",
+        "id": "face8567-88c7-4b6b-a175-b27aa11c65c8",
         "displayName": "Huile de tournesol Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3801,12 +3902,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noix décortiquées Bio",
+    "id": "8d4573ca-deef-4a1b-98fb-92370d722144",
     "metadata": [
       {
         "alias": "walnuts-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "07bd0db4-fd5f-4cb2-a1b7-abae1f0544b0",
+        "id": "10825ec2-376b-45bc-8111-8cfc7198aa73",
         "displayName": "Noix décortiquées Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3839,12 +3941,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Noix décortiquées Origine Inconnue",
+    "id": "39173af8-5aec-4c34-9e05-351a7264b142",
     "metadata": [
       {
         "alias": "walnuts-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "1beb08cb-a0bc-40a1-8139-d186a54b8c0e",
+        "id": "b047ed23-3bb6-45eb-bb86-8b35878945cb",
         "displayName": "Noix décortiquées Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3876,12 +3979,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Pommes de terre, pré-friées en cubes, congelées Origine Inconnue",
+    "id": "19bba7a6-84ab-4ef5-a04b-6494b84d6e3a",
     "metadata": [
       {
         "alias": "potato-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "e907f8ee-311e-4210-b309-28631e6e41f2",
+        "id": "374641f6-1e4b-4763-b44c-ff946d60af1c",
         "displayName": "Pommes de terre, pré-friées en cubes, congelées Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3913,12 +4017,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Pommes de terre, pré-friées en cubes, congelées Bio",
+    "id": "b9cf8643-373d-43e1-833b-701f48918b1e",
     "metadata": [
       {
         "alias": "potato-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "daabc2ed-7973-4c1f-a496-3d413b972468",
+        "id": "bb35f101-0112-44f6-a0b8-b8fb1310ad9a",
         "displayName": "Pommes de terre, pré-friées en cubes, congelées Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3951,12 +4056,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Pommes de terre, pelées Origine Inconnue",
+    "id": "5df9b614-d91e-462f-aece-c3a70a0650fa",
     "metadata": [
       {
         "alias": "potato-peeled-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "09ecd7f1-696d-4b4d-88bb-1e15a5cf1e7d",
+        "id": "150bc762-9c8e-4efc-bd33-45f3f2471096",
         "displayName": "Pommes de terre, pelées Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -3988,12 +4094,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Pommes de terre, pelées Bio",
+    "id": "62395c2b-01f1-4225-bfd5-cf5e60ca26ae",
     "metadata": [
       {
         "alias": "potato-peeled-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "dabb0dde-28e0-4cf8-8dfa-ee881bfeae68",
+        "id": "0bac2ffd-c502-486b-a263-af88a415eec0",
         "displayName": "Pommes de terre, pelées Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -4026,12 +4133,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Asperges pelées Bio",
+    "id": "3d258235-d4c2-4569-8995-c4f4b3364a28",
     "metadata": [
       {
         "alias": "asparagus-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "0104c582-8593-413f-9e81-e74251eda1c8",
+        "id": "87595849-cc1a-40db-9490-f9cbbfa605cf",
         "displayName": "Asperges pelées Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -4064,12 +4172,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Asperges pelées Origine Inconnue",
+    "id": "39359225-0b32-4a60-906a-4a87a200012f",
     "metadata": [
       {
         "alias": "asparagus-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "96b15858-fd38-4d2a-ba8d-ff2c9980cc10",
+        "id": "d6f00093-a858-439d-bf13-eea008d671af",
         "displayName": "Asperges pelées Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -4101,12 +4210,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Farine de pois chiches Bio",
+    "id": "a6fc1585-5751-4bcb-a7b1-1c2639d33874",
     "metadata": [
       {
         "alias": "chick-pea-flour-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "79990af1-d900-4efb-8664-96813c226476",
+        "id": "5fcba06d-7fd4-4184-8c46-1cc884d36e08",
         "displayName": "Farine de pois chiches Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
@@ -4139,12 +4249,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Pois chiches, pelés Bio",
+    "id": "b13fefdb-d46d-4f3e-b57c-15ab1fb296a9",
     "metadata": [
       {
         "alias": "chick-peas-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "ac09d928-7ddb-49e7-87a6-3db592e1eded",
+        "id": "aff8b197-606a-4221-bea0-9840fc6cbc66",
         "displayName": "Pois chiches, pelés Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
@@ -4177,12 +4288,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Son de pois chiches Bio",
+    "id": "66c29cc6-efe8-410c-b2a5-35ca9193b7a4",
     "metadata": [
       {
         "alias": "chick-pea-bran-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "1dc8c9a0-4a0f-48d4-8ea7-3a3cbe1d1b69",
+        "id": "ee25075d-f155-4fb6-988b-8f8b111c7433",
         "displayName": "Son de pois chiches Bio",
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "ingredientCategories": [
@@ -4215,12 +4327,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Courgette, pelée Origine Inconnue",
+    "id": "76b654b6-ded6-4343-a964-bd2c6d49d1b1",
     "metadata": [
       {
         "alias": "zucchini-default",
         "scenario": "import",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "id": "c24750ba-6525-4f2b-9fcc-0e75eec1ab8c",
+        "id": "79a11a49-bd47-4d56-af69-38a31d8f446c",
         "displayName": "Courgette, pelée Origine Inconnue",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -4252,12 +4365,13 @@
     ],
     "database": "Ecobalyse",
     "displayName": "Courgette, pelée Bio",
+    "id": "6b7d030b-50e0-4a8e-ae6f-b4ba65a703ba",
     "metadata": [
       {
         "alias": "zucchini-organic",
         "scenario": "organic",
         "defaultOrigin": "France",
-        "id": "0c199f90-bbde-43eb-a2ed-aca46747a67d",
+        "id": "5565cb24-c493-44c3-b2da-c29bb334eebf",
         "displayName": "Courgette, pelée Bio",
         "cropGroup": "LEGUMES-FLEURS",
         "ingredientCategories": [
@@ -4280,5 +4394,2987 @@
       "food2"
     ],
     "source": "Ecobalyse"
+  },
+  {
+    "activityName": "Almond, unshelled, at processing {FR} U",
+    "alias": "almond-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Amandes décortiquées FR",
+    "id": "8d3a897e-6476-46ed-9f36-2cc0d68debb9",
+    "metadata": [
+      {
+        "alias": "almond-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "a9149fd7-d721-4959-bebc-c2d54da95d61",
+        "displayName": "Amandes décortiquées FR",
+        "cropGroup": "FRUITS A COQUES",
+        "ingredientCategories": [
+          "nut_oilseed_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.6,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      },
+      {
+        "alias": "almond-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "2ca5ff89-4ca1-4576-83cc-afea04a2378a",
+        "displayName": "Amandes décortiquées Origine Inconnue",
+        "cropGroup": "FRUITS A COQUES",
+        "ingredientCategories": [
+          "nut_oilseed_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.6,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Apple juice, industrial production, at plant, NFC, 1L {FR} U",
+    "alias": "apple-juice-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Jus de pomme FR",
+    "id": "3b8d0131-8481-42d1-a939-fa0b5b1950b1",
+    "metadata": [
+      {
+        "alias": "apple-juice-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "0f4054cc-7fe2-4386-8bc8-93f2c717c45a",
+        "displayName": "Jus de pomme FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Table apple, peeled, at processing {FR} U",
+    "alias": "table-apple-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Pommes de table, pelées FR",
+    "id": "65fcf1d7-e51c-4cc7-930a-997d79d4e16f",
+    "metadata": [
+      {
+        "alias": "table-apple-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "d17d672b-7b6f-4365-8f8c-104ad02a175b",
+        "displayName": "Pommes de table, pelées FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Apricot stone, from frozen apricot puree production, at processing {FR} U",
+    "alias": "apricot-stone-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Noyau d'abricot FR",
+    "id": "786a08d9-8909-4b8e-b2ab-20a080a44bdb",
+    "metadata": [
+      {
+        "alias": "apricot-stone-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "8c0dc665-d83e-48c4-8a45-88b943576233",
+        "displayName": "Noyau d'abricot FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Frozen apricot puree, at processing {FR} U",
+    "alias": "frozen-apricot-puree-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Purée d'abricots congelés FR",
+    "id": "9542978a-4039-4dc5-be0c-d90d81e0846d",
+    "metadata": [
+      {
+        "alias": "frozen-apricot-puree-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "30d0aa36-4f28-4cf1-8150-638fa70d3aec",
+        "displayName": "Purée d'abricots congelés FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Apricot, pitted, at processing {FR} U",
+    "alias": "apricot-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Abricot, dénoyauté FR",
+    "id": "a4f14f1b-199d-4a91-8ff5-35fbd499031b",
+    "metadata": [
+      {
+        "alias": "apricot-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "74d7180e-8af4-4c07-bb13-0f5b974eedd1",
+        "displayName": "Abricot, dénoyauté FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Frozen apricot puree, at plant {FR} U",
+    "alias": "frozen-apricot-puree-at-plant-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Purée d'abricots congelés FR",
+    "id": "82a179c4-97c4-4a77-b95f-cd89a465e642",
+    "metadata": [
+      {
+        "alias": "frozen-apricot-puree-at-plant-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "d6f70461-e0e8-4e6f-9fb2-4aed6f85ce59",
+        "displayName": "Purée d'abricots congelés FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Barley flour, at industrial mill {FR} U",
+    "alias": "barley-flour-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Farine d'orge FR",
+    "id": "f7cb93e3-bb0e-4562-abc1-6bc5afb1b08e",
+    "metadata": [
+      {
+        "alias": "barley-flour-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "4407a795-cc79-428b-9d4c-6814fc5aae8f",
+        "displayName": "Farine d'orge FR",
+        "cropGroup": "ORGE",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Barley bran, at industrial mill {FR} U",
+    "alias": "barley-bran-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Son d'orge FR",
+    "id": "99bd4fa5-82f8-4ca3-9f0f-fe2d3e9361cc",
+    "metadata": [
+      {
+        "alias": "barley-bran-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "f8e4f015-34ef-49c9-938c-e6aabb61c15c",
+        "displayName": "Son d'orge FR",
+        "cropGroup": "ORGE",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Beetroot juice, pure juice, at processing {DE} U",
+    "alias": "beetroot-juice-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Jus de betterave, jus pur FR",
+    "id": "0f95e52d-86b1-486b-9bba-8ee2742215bc",
+    "metadata": [
+      {
+        "alias": "beetroot-juice-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "ae163dc1-5abb-4152-b5c0-f0dc8690eaf6",
+        "displayName": "Jus de betterave, jus pur FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "beetroot-juice-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "e060c33b-364a-41c5-abbc-8995babdab57",
+        "displayName": "Jus de betterave, jus pur Origine Inconnue",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Broccoli, peeled, at processing {FR} U",
+    "alias": "broccoli-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Brocoli, pelé FR",
+    "id": "e8f69855-a628-4450-b456-a1ad4cb1bcfb",
+    "metadata": [
+      {
+        "alias": "broccoli-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "507a38e6-7aaa-4f83-9f9a-bce79481dfd5",
+        "displayName": "Brocoli, pelé FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "broccoli-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "dd746a2a-f3af-4b41-899a-c49e006f02ee",
+        "displayName": "Brocoli, pelé Origine Inconnue",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "White cabbage, peeled, at processing {FR} U",
+    "alias": "white-cabbage-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Choux blancs, pelés FR",
+    "id": "6ed4831c-60bc-4321-989c-7c0b1d92cf2c",
+    "metadata": [
+      {
+        "alias": "white-cabbage-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "49e2716d-67e8-444d-b3ce-56a8ab64ba8a",
+        "displayName": "Choux blancs, pelés FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "white-cabbage-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "1d147941-cbfb-45fb-93df-a03107548089",
+        "displayName": "Choux blancs, pelés Origine Inconnue",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Carrot juice, pure juice, at processing {FR} U",
+    "alias": "carrot-juice-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Jus de carottes, jus pur FR",
+    "id": "1ed39dab-d40f-46cc-b395-8db375a3e0ed",
+    "metadata": [
+      {
+        "alias": "carrot-juice-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "ffd3acac-e641-4242-b989-a450a2457144",
+        "displayName": "Jus de carottes, jus pur FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Frozen concentrated carrot puree, at processing {FR} U",
+    "alias": "frozen-concentrated-carrot-puree-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "purée de carottes concentrées congelée FR",
+    "id": "6cae24d2-4498-43bc-b46f-a30b8e041a0d",
+    "metadata": [
+      {
+        "alias": "frozen-concentrated-carrot-puree-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "af2f9386-4511-44a5-b405-43d64d01d43f",
+        "displayName": "purée de carottes concentrées congelée FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Carrot pomace, fresh, from frozen concentrated carrot puree production, at processing {FR} U",
+    "alias": "carrot-pomace-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Marc de carotte, frais FR",
+    "id": "60be14d1-0c95-49b4-afc2-19fed2c8bc05",
+    "metadata": [
+      {
+        "alias": "carrot-pomace-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "783496e8-0a73-44f1-842c-e185a47dc3dc",
+        "displayName": "Marc de carotte, frais FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Carrot pomace, fresh, from carrot juice production, at processing {FR} U",
+    "alias": "carrot-pomace-fresh-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Marc de carotte, frais FR",
+    "id": "20e4174f-3f9a-4062-999b-2934ef73d50d",
+    "metadata": [
+      {
+        "alias": "carrot-pomace-fresh-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "2c7f42e4-cf21-4e76-8e03-5d340c45f015",
+        "displayName": "Marc de carotte, frais FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Carrot juice, pure juice, at plant {FR} U",
+    "alias": "carrot-juice-pure-juice-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Jus de carottes, jus pur FR",
+    "id": "ae3aee80-b975-4499-bcc5-2efa21f47866",
+    "metadata": [
+      {
+        "alias": "carrot-juice-pure-juice-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "f8945ba3-89a2-4b0d-b078-fdeea692aae6",
+        "displayName": "Jus de carottes, jus pur FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Carrot, peeled, at processing {FR} U",
+    "alias": "carrot-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Carotte pelée FR",
+    "id": "c106b950-1fc1-4491-a3a5-512ffdd1e02f",
+    "metadata": [
+      {
+        "alias": "carrot-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "32dd242f-72a1-4efa-a0a2-49dc6a8bc2d4",
+        "displayName": "Carotte pelée FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U",
+    "alias": "frozen-carrot-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Carotte congelée FR",
+    "id": "af07dd13-981e-4f34-b14a-f8484e913324",
+    "metadata": [
+      {
+        "alias": "frozen-carrot-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "63e41f56-0ab8-4a87-86c9-fca2088bf63a",
+        "displayName": "Carotte congelée FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Cauliflower, peeled, at processing {FR} U",
+    "alias": "cauliflower-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Choux-fleurs, pelés FR",
+    "id": "045e9053-537a-4e9d-a1ff-af3467511ffb",
+    "metadata": [
+      {
+        "alias": "cauliflower-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "f13dd32c-695a-466c-bdc7-f52b858278de",
+        "displayName": "Choux-fleurs, pelés FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Celery stalk, peeled, at processing {FR} U",
+    "alias": "celery-stalk-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Branche de céleri, pelée FR",
+    "id": "07d81e07-b5d0-42ee-8cd9-c1763fae37ff",
+    "metadata": [
+      {
+        "alias": "celery-stalk-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "a5835ce7-83f0-44d9-81d5-faad72489c9c",
+        "displayName": "Branche de céleri, pelée FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "celery-stalk-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "84c8e838-c4dd-44ce-8c93-b87e6569e984",
+        "displayName": "Branche de céleri, pelée Origine Inconnue",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Celery, peeled, at processing {FR} U",
+    "alias": "celery-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Céleri, pelé FR",
+    "id": "5b293dfd-7023-4baf-ac6d-5f1d25ae34e7",
+    "metadata": [
+      {
+        "alias": "celery-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "9fdc068d-0d53-4784-b6e5-94d5ce4de0ff",
+        "displayName": "Céleri, pelé FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "celery-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "44382c7b-b552-468a-b6de-5745968daebd",
+        "displayName": "Céleri, pelé Origine Inconnue",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Cherry juice, pure juice, at processing {FR} U",
+    "alias": "cherry-juice-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Jus de cerise, jus pur FR",
+    "id": "ec192d73-bf91-405e-a867-50fb7f6167af",
+    "metadata": [
+      {
+        "alias": "cherry-juice-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "05866574-98dd-49d0-b8cc-11924be2c061",
+        "displayName": "Jus de cerise, jus pur FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U",
+    "alias": "chicory-roots-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Racines de chicorée, lavées et triées, coupées en cossettes FR",
+    "id": "dd82078a-8b9a-493f-a5fc-d5df3388e0db",
+    "metadata": [
+      {
+        "alias": "chicory-roots-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "73ff98c9-68d0-4627-af19-6991432e88d3",
+        "displayName": "Racines de chicorée, lavées et triées, coupées en cossettes FR",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Durum wheat, for canned ravioli filled with meat, in tomato sauce {FR} U",
+    "alias": "durum-wheat-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Blé dur, en sauce tomate FR",
+    "id": "eb1363e3-5fd5-4149-9a75-7010aa661562",
+    "metadata": [
+      {
+        "alias": "durum-wheat-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "efc97b6b-5180-4144-8d2c-c48e98b23c5e",
+        "displayName": "Blé dur, en sauce tomate FR",
+        "cropGroup": "BLE TENDRE",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.24,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Chicken egg, raw, without shell, at plant {FR} U",
+    "alias": "chicken-egg-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Oeufs de poulet crus, sans coquille FR",
+    "id": "2a867fff-2581-4b54-a946-74159f4d59a8",
+    "metadata": [
+      {
+        "alias": "chicken-egg-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "0ec4cfd1-ea68-4a2c-8c55-d67890aae3c5",
+        "displayName": "Oeufs de poulet crus, sans coquille FR",
+        "cropGroup": null,
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.05,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Egg white, raw, at processing {FR} U",
+    "alias": "egg-white-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Blanc d'oeufs, cru FR",
+    "id": "62f8b7ea-6358-4f7b-8ef1-a9377ce627c8",
+    "metadata": [
+      {
+        "alias": "egg-white-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "ead7f01a-b9df-4551-9a08-cdc18678d988",
+        "displayName": "Blanc d'oeufs, cru FR",
+        "cropGroup": null,
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.05,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Egg yolk, raw, at processing {FR} U",
+    "alias": "egg-yolk-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Jaunes d'oeufs, crues FR",
+    "id": "1e225bd4-ed4f-4155-a3b0-9ccb9852d12c",
+    "metadata": [
+      {
+        "alias": "egg-yolk-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "0b492071-62c7-4053-9331-f2a2d6e857cf",
+        "displayName": "Jaunes d'oeufs, crues FR",
+        "cropGroup": null,
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.05,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Fennel, peeled, at processing {FR} U",
+    "alias": "fennel-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Fenouil, pelé FR",
+    "id": "1fd35bd9-b035-4dc2-9283-3e721152482c",
+    "metadata": [
+      {
+        "alias": "fennel-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "df88e15e-0cd6-4239-adf8-17fcd396bd5b",
+        "displayName": "Fenouil, pelé FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "fennel-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "4c0f46ce-0d5b-4e49-8e1b-87c55755ae94",
+        "displayName": "Fenouil, pelé Origine Inconnue",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "French bean, peeled, at processing {FR} U",
+    "alias": "french-bean-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Haricot français, pelé FR",
+    "id": "055c21f5-ea9e-4e24-b94d-c9aa2d437b1d",
+    "metadata": [
+      {
+        "alias": "french-bean-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "6d64b1e3-07f2-4a29-9032-d53cfd1101d3",
+        "displayName": "Haricot français, pelé FR",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "french-bean-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "30877f26-0753-4cef-82df-55ce760d0592",
+        "displayName": "Haricot français, pelé Origine Inconnue",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "French bean, for canned and frozen products, trimmed, at processing {FR} U",
+    "alias": "french-bean-for-canned-and-frozen-products-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Haricots français, coupés FR",
+    "id": "dbb1672f-c541-4ad1-8535-3d6b9a22832b",
+    "metadata": [
+      {
+        "alias": "french-bean-for-canned-and-frozen-products-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "ae78020c-4010-48f4-8ef3-b201c6188976",
+        "displayName": "Haricots français, coupés FR",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "french-bean-for-canned-and-frozen-products-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "01f7cf6a-b6b1-4e43-8c49-875addedeac3",
+        "displayName": "Haricots français, coupés Origine Inconnue",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Table grape, peeled, at processing {FR} U",
+    "alias": "table-grape-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Raisins de table, pelés FR",
+    "id": "b2ae1a00-d472-4740-9206-599b3c86a71b",
+    "metadata": [
+      {
+        "alias": "table-grape-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "8bfeda7a-534a-4ebc-aeec-fcfa02f45c3d",
+        "displayName": "Raisins de table, pelés FR",
+        "cropGroup": "VIGNES",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Hazelnut, unshelled, at plant {IT} U",
+    "alias": "hazelnut-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Noisettes décortiquées FR",
+    "id": "36b29327-bb7b-4e58-811f-caab39fdc73a",
+    "metadata": [
+      {
+        "alias": "hazelnut-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "e95ff851-5564-464d-9eab-8764e6339383",
+        "displayName": "Noisettes décortiquées FR",
+        "cropGroup": "FRUITS A COQUES",
+        "ingredientCategories": [
+          "nut_oilseed_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.6,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Hazelnuts, unshelled, at processing {FR} U",
+    "alias": "hazelnuts-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Noisettes décortiquées FR",
+    "id": "49e1c33e-d58d-4ce5-86ea-3ebea9e28231",
+    "metadata": [
+      {
+        "alias": "hazelnuts-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "61638973-6440-40f2-ab4c-30046fe1e4d8",
+        "displayName": "Noisettes décortiquées FR",
+        "cropGroup": "FRUITS A COQUES",
+        "ingredientCategories": [
+          "nut_oilseed_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.6,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Kiwi FR, conventional, national average, at plant {FR} U",
+    "alias": "kiwi-fr-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Kiwi FR FR",
+    "id": "86ea33fe-f82d-4316-bd0e-fbb5b0eb907e",
+    "metadata": [
+      {
+        "alias": "kiwi-fr-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "2e1f59d8-2866-4a62-bd44-a12a016f61e9",
+        "displayName": "Kiwi FR FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "kiwi-fr-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "839bbfba-8f16-4575-8663-7f522933877a",
+        "displayName": "Kiwi FR Origine Inconnue",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Leek, peeled, at processing {FR} U",
+    "alias": "leek-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Poireau, pelé FR",
+    "id": "e9ffab35-1363-4cd2-b776-be584c57a96a",
+    "metadata": [
+      {
+        "alias": "leek-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "f8e832a0-2d5d-4dbc-a40e-c0ec7fadb55e",
+        "displayName": "Poireau, pelé FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Lemon, for grated carrots {FR} U",
+    "alias": "lemon-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Citron FR",
+    "id": "1dff9cc5-bf94-401f-9888-759c181da3c5",
+    "metadata": [
+      {
+        "alias": "lemon-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "dc4ac266-7314-4911-a217-3b03b19f3c74",
+        "displayName": "Citron FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Lemon, peeled, at processing {FR} U",
+    "alias": "lemon-peeled-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Citron, pelé FR",
+    "id": "5c66ed62-38b0-4045-bd99-59abf4ff33f6",
+    "metadata": [
+      {
+        "alias": "lemon-peeled-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "3482c30c-9403-413f-b92d-fb98c3e783df",
+        "displayName": "Citron, pelé FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Lentils, canned {FR} U",
+    "alias": "lentils-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Lentilles, en conserve FR",
+    "id": "a3092eb3-57f1-4654-b754-a941c62b51ce",
+    "metadata": [
+      {
+        "alias": "lentils-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "13af6fec-0631-42dd-b55a-6cdd8fe70ff3",
+        "displayName": "Lentilles, en conserve FR",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      },
+      {
+        "alias": "lentils-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "f959bef6-24e7-4014-a205-4c5653289ff7",
+        "displayName": "Lentilles, en conserve Origine Inconnue",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Mint, peeled, at processing {FR} U",
+    "alias": "mint-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Menthe pelée FR",
+    "id": "412106c5-1d9f-4987-9b53-e0a238e792ed",
+    "metadata": [
+      {
+        "alias": "mint-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "4d91f3ac-ebf4-4254-bc8b-2118cd60db36",
+        "displayName": "Menthe pelée FR",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Onions, for industrial onion products, peeled, at processing {FR} U",
+    "alias": "onions-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Oignons pelés FR",
+    "id": "2dac955a-56a2-4d1a-b690-d76c4382942c",
+    "metadata": [
+      {
+        "alias": "onions-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "d9e5e27b-bef0-41d2-b2e9-ceb943b0e3e3",
+        "displayName": "Oignons pelés FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Onions, peeled, at processing {FR} U",
+    "alias": "onions-peeled-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Oignons pelés FR",
+    "id": "401acb4e-f7b5-4e4b-a2c3-d00462b17d4b",
+    "metadata": [
+      {
+        "alias": "onions-peeled-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "0e3b0fb3-bc31-4e19-a915-58dbce95bc23",
+        "displayName": "Oignons pelés FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Chive or spring onion, peeled, at processing {FR} U",
+    "alias": "chive-or-spring-onion-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Ciboulette ou oignon nouveau, pelé FR",
+    "id": "7708ac2d-a87c-4494-b592-adca2d6f4b9a",
+    "metadata": [
+      {
+        "alias": "chive-or-spring-onion-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "09f24a14-ca05-4bf7-b188-d95d0278d3e9",
+        "displayName": "Ciboulette ou oignon nouveau, pelé FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "dairy_product"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.03,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Frozen onion, production, 1kg of frozen vegetable {FR} U",
+    "alias": "frozen-onion-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Oignon congelé FR",
+    "id": "f4ca51e1-0176-4133-b621-beccd94dd525",
+    "metadata": [
+      {
+        "alias": "frozen-onion-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "fd33adbb-a4c3-4939-b516-6470d3ad8b1d",
+        "displayName": "Oignon congelé FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Orange, peeled, at processing {FR} U",
+    "alias": "orange-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Orange, pelé FR",
+    "id": "771faa6c-5804-4570-b4ea-6de6db3fc9ee",
+    "metadata": [
+      {
+        "alias": "orange-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "bb26da90-ff9a-46a6-a16d-920ad1d01b87",
+        "displayName": "Orange, pelé FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Peach stone, from frozen peach puree production, at processing {FR} U",
+    "alias": "peach-stone-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Noyau de pêche FR",
+    "id": "5d2eeb9a-edb9-42c1-87fd-9f7274cfe957",
+    "metadata": [
+      {
+        "alias": "peach-stone-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "ade18183-c250-4465-be11-4b4b19e3e9e6",
+        "displayName": "Noyau de pêche FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Frozen peach puree, at processing {FR} U",
+    "alias": "frozen-peach-puree-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Purée de pêche congelée FR",
+    "id": "b3a3a9d1-056b-4fb9-a2e6-604ac05bfb9b",
+    "metadata": [
+      {
+        "alias": "frozen-peach-puree-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "a9397267-d653-4bfd-97a2-9f3d44bc3155",
+        "displayName": "Purée de pêche congelée FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Peach, pitted, at processing {FR} U",
+    "alias": "peach-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Pêche, dénoyautée FR",
+    "id": "b6d22e34-5761-4f87-bf0a-34d478d6465b",
+    "metadata": [
+      {
+        "alias": "peach-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "fb38ed3d-b9a5-4ed9-9b28-b6598b616c37",
+        "displayName": "Pêche, dénoyautée FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Frozen peach puree, at plant {FR} U",
+    "alias": "frozen-peach-puree-at-plant-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Purée de pêche congelée FR",
+    "id": "cfa42980-6159-4e6b-ad1d-5e1754ec3d54",
+    "metadata": [
+      {
+        "alias": "frozen-peach-puree-at-plant-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "fd2c163e-383a-4833-855d-fa0fe4bc4002",
+        "displayName": "Purée de pêche congelée FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Frozen pear puree, at processing {FR} U",
+    "alias": "frozen-pear-puree-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "purée de poire congelée FR",
+    "id": "a6a4c346-2bb4-4cb4-898b-edbd39b52e97",
+    "metadata": [
+      {
+        "alias": "frozen-pear-puree-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "1bf054ce-f6f0-4860-9bd9-eefe1b100866",
+        "displayName": "purée de poire congelée FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Pear, peeled, at processing {FR} U",
+    "alias": "pear-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Poire, pelée FR",
+    "id": "4a7fc18b-fe5c-4589-b635-156180463ea2",
+    "metadata": [
+      {
+        "alias": "pear-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "dd1f8680-0a9b-4734-8a25-5e87ea71773b",
+        "displayName": "Poire, pelée FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Quinoa FR, conventional, at plant {FR} U",
+    "alias": "quinoa-fr-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Quinoa FR FR",
+    "id": "ac91e67a-a0b8-4d06-8dd3-7c9f0539855d",
+    "metadata": [
+      {
+        "alias": "quinoa-fr-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "bc5a0725-57c4-4b8f-bfee-c7cdab1b055d",
+        "displayName": "Quinoa FR FR",
+        "cropGroup": "AUTRES CEREALES",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.75,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Frozen raspberry puree, at processing {RS} U",
+    "alias": "frozen-raspberry-puree-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "purée de framboises congelée FR",
+    "id": "d3e3ca3e-c78e-47cc-9ad5-2af5017d4c73",
+    "metadata": [
+      {
+        "alias": "frozen-raspberry-puree-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "b71a79bf-ba28-48f1-b0e5-8f3fd44b6801",
+        "displayName": "purée de framboises congelée FR",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "frozen-raspberry-puree-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "8b0db903-2b9e-465b-a096-8ae1c3134060",
+        "displayName": "purée de framboises congelée Origine Inconnue",
+        "cropGroup": "VERGERS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.85,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Rice bran, at industrial mill {FR} U",
+    "alias": "rice-bran-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Son de riz FR",
+    "id": "692dc0fc-e9b8-4f3b-9abc-97840cca03ac",
+    "metadata": [
+      {
+        "alias": "rice-bran-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "18a1a1b0-35a0-453d-b29c-2dbea37ef5c9",
+        "displayName": "Son de riz FR",
+        "cropGroup": "RIZ",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.75,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      },
+      {
+        "alias": "rice-bran-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "6e25be7b-9720-48e1-be82-c965f9068d43",
+        "displayName": "Son de riz Origine Inconnue",
+        "cropGroup": "RIZ",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.75,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Rice flour, at industrial mill {FR} U",
+    "alias": "rice-flour-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Farine de riz FR",
+    "id": "144997ea-6768-4c86-a082-64e16629df07",
+    "metadata": [
+      {
+        "alias": "rice-flour-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "53ece67e-6bbd-4aaf-a45c-64fd40b9e3b2",
+        "displayName": "Farine de riz FR",
+        "cropGroup": "BLE TENDRE",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      },
+      {
+        "alias": "rice-flour-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "a5edbca0-c367-416a-a3ca-e63a5c8e3a7e",
+        "displayName": "Farine de riz Origine Inconnue",
+        "cropGroup": "BLE TENDRE",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Rice flour, at industrial mill {IT} U",
+    "alias": "rice-flour-at-industrial-mill-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Farine de riz FR",
+    "id": "1239c893-0a31-4026-9057-3162f7d2b399",
+    "metadata": [
+      {
+        "alias": "rice-flour-at-industrial-mill-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "51ced865-ff73-4b92-8a2d-6070e22c582d",
+        "displayName": "Farine de riz FR",
+        "cropGroup": "BLE TENDRE",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Rice bran, at industrial mill {IT} U",
+    "alias": "rice-bran-at-industrial-mill-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Son de riz FR",
+    "id": "37f387a4-0b0f-47c7-a45e-1acd32a429a9",
+    "metadata": [
+      {
+        "alias": "rice-bran-at-industrial-mill-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "1b5c3783-9c47-4fbe-8d3d-000d42799145",
+        "displayName": "Son de riz FR",
+        "cropGroup": "RIZ",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.75,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Rye bran, at industrial mill {FR} U",
+    "alias": "rye-bran-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Son de seigle FR",
+    "id": "77a708d0-35f1-41ab-abd3-8be5f3977e31",
+    "metadata": [
+      {
+        "alias": "rye-bran-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "e5d58968-d7d3-4fc8-ab72-789fc1a97de8",
+        "displayName": "Son de seigle FR",
+        "cropGroup": "AUTRES CEREALES",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.75,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Rye flour, at industrial mill {FR} U",
+    "alias": "rye-flour-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Farine de seigle FR",
+    "id": "0c965a05-1de8-4bf9-a2c8-1d092c50c1e7",
+    "metadata": [
+      {
+        "alias": "rye-flour-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "364ed3ce-29cc-4c81-a81a-e773423f38fe",
+        "displayName": "Farine de seigle FR",
+        "cropGroup": "AUTRES CEREALES",
+        "ingredientCategories": [
+          "grain_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.75,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Spinach, peeled, at processing {FR} U",
+    "alias": "spinach-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Épinards pelés FR",
+    "id": "4ad6600d-a4f9-49bb-97ac-ac0e3a2c084e",
+    "metadata": [
+      {
+        "alias": "spinach-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "bb03fc11-c9cb-40e1-aef8-53d4fc379511",
+        "displayName": "Épinards pelés FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "spinach-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "c09c9477-c4d9-4629-97bc-05aa8a905ab9",
+        "displayName": "Épinards pelés Origine Inconnue",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Sunflower oil, at plant {IT} U",
+    "alias": "sunflower-oil-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Huile de tournesol FR",
+    "id": "f0f538b3-7052-4eb4-9a5a-051e9d8ae210",
+    "metadata": [
+      {
+        "alias": "sunflower-oil-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "d83b75e5-f3ce-48ff-8051-5a298b96e8cd",
+        "displayName": "Huile de tournesol FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 1.0,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Walnuts, unshelled, at processing {FR} U",
+    "alias": "walnuts-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Noix décortiquées FR",
+    "id": "53c81d2b-0fdc-4161-8b99-878b9054fd6f",
+    "metadata": [
+      {
+        "alias": "walnuts-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "07c4418d-ea5c-4cf3-9b3e-21977c8cc728",
+        "displayName": "Noix décortiquées FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.72,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Potato, pre-fried into cubes, frozen, at processing {FR} U",
+    "alias": "potato-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Pommes de terre, pré-friées en cubes, congelées FR",
+    "id": "62671c8d-18b0-4b0d-86c1-181485414734",
+    "metadata": [
+      {
+        "alias": "potato-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "6c4e6087-b9e5-4002-8df2-082e78d6d1a2",
+        "displayName": "Pommes de terre, pré-friées en cubes, congelées FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Potato, peeled, at processing {FR} U",
+    "alias": "potato-peeled-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Pommes de terre, pelées FR",
+    "id": "41ddc420-da3f-413e-934f-580fef4d7994",
+    "metadata": [
+      {
+        "alias": "potato-peeled-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "3dcebcc3-5354-48a4-b03d-5df6b51e642b",
+        "displayName": "Pommes de terre, pelées FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Asparagus, peeled, at processing {FR} U",
+    "alias": "asparagus-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Asperges pelées FR",
+    "id": "58d23edf-f494-41a5-8d81-947a19e80423",
+    "metadata": [
+      {
+        "alias": "asparagus-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "58c3c443-7beb-44f4-9c8e-91224c011fe6",
+        "displayName": "Asperges pelées FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Chick pea flour, at industrial mill {FR} U",
+    "alias": "chick-pea-flour-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Farine de pois chiches FR",
+    "id": "8de8064d-ba2c-477a-be71-98cd3e1bf939",
+    "metadata": [
+      {
+        "alias": "chick-pea-flour-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "89d5b74c-04c1-48fc-bb57-282c9081dd8b",
+        "displayName": "Farine de pois chiches FR",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      },
+      {
+        "alias": "chick-pea-flour-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "c1f39c52-b55f-4375-95fc-ae4ee995aa52",
+        "displayName": "Farine de pois chiches Origine Inconnue",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "none",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Chick peas, peeled, at processing {FR} U",
+    "alias": "chick-peas-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Pois chiches, pelés FR",
+    "id": "c5579327-dad3-4f5c-8632-7ea2ea0084f3",
+    "metadata": [
+      {
+        "alias": "chick-peas-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "13094ea5-5d4f-4a44-b686-5b0fd89213b4",
+        "displayName": "Pois chiches, pelés FR",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "chick-peas-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "2e5f10f4-ac15-4c1e-9491-fd9464d050ab",
+        "displayName": "Pois chiches, pelés Origine Inconnue",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Chick pea bran, at industrial mill {FR} U",
+    "alias": "chick-pea-bran-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Son de pois chiches FR",
+    "id": "d46f3413-9374-4cb0-8639-645ec9a620c4",
+    "metadata": [
+      {
+        "alias": "chick-pea-bran-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "103c8eb9-1d99-4559-acc7-afa432acbbeb",
+        "displayName": "Son de pois chiches FR",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      },
+      {
+        "alias": "chick-pea-bran-default",
+        "scenario": "import",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "id": "fa95dc24-f7a1-47bd-924e-670c8415fb22",
+        "displayName": "Son de pois chiches Origine Inconnue",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.8,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
+  },
+  {
+    "activityName": "Zucchini, peeled, at processing {FR} U",
+    "alias": "zucchini-fr",
+    "categories": [
+      "ingredient",
+      "material"
+    ],
+    "database": "Agribalyse 3.2",
+    "displayName": "Courgette, pelée FR",
+    "id": "076bdfdd-7b8b-4e62-9950-ca7acc8342a4",
+    "metadata": [
+      {
+        "alias": "zucchini-fr",
+        "scenario": "reference",
+        "defaultOrigin": "France",
+        "id": "3cba772d-289a-4905-a5dd-526cea453b07",
+        "displayName": "Courgette, pelée FR",
+        "cropGroup": "LEGUMES-FLEURS",
+        "ingredientCategories": [
+          "vegetable_processed"
+        ],
+        "inediblePart": 0,
+        "ingredientDensity": 0.9,
+        "rawToCookedRatio": 1.0,
+        "scopes": [
+          "food",
+          "food2"
+        ],
+        "transportCooling": "always",
+        "visible": true
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2"
   }
 ]
