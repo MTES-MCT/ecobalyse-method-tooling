@@ -426,8 +426,8 @@ def build_activity_entry(
         "categories": ["ingredient"],
         "displayName": display_name,
         "id": activity_id,
-        "metadata": [{**ingredient, "scopes": ["food"]}],
-        "scopes": ["food"],
+        "metadata": [{**ingredient, "scopes": ["food", "food2"]}],
+        "scopes": ["food", "food2"],
         "source": source,
         "unit": unit,
     }
@@ -745,12 +745,11 @@ def merge_activities(
             existing_act_by_name[act_name] = dn
         else:
             # Update existing activity with fields from new export (location, source, etc.)
+            # Only overwrite when present in the new export — absence must not delete.
             existing_dn = existing_act_by_name[act_name]
             for key in ("location", "source"):
                 if key in act:
                     existing_acts[existing_dn][key] = act[key]
-                elif key in existing_acts[existing_dn]:
-                    del existing_acts[existing_dn][key]
 
     # Remap new ingredients to existing activity displayNames where applicable
     for ing_dn, ing in new_ings.items():
