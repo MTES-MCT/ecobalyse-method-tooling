@@ -23,6 +23,7 @@ import os
 import re
 import shutil
 import uuid
+from collections import Counter
 from enum import Enum
 from pathlib import Path
 
@@ -661,6 +662,30 @@ def reassemble(
     return result + other
 
 
+def dedupe_suffixed_ids(entries: dict[str, dict], kind: str) -> None:
+    """Regenerate UUIDs for entries with duplicate ids.
+
+    Convention: UUIDs are derived from displayName. After a merge, an old
+    entry that was renamed with OLD_DISPLAY_SUFFIX still carries the UUID
+    derived from its pre-suffix displayName; a freshly generated new entry
+    with that same pre-suffix displayName then ends up with the same UUID.
+
+    We keep the un-suffixed entry's UUID as the canonical one (it may be
+    referenced elsewhere) and regenerate the UUID of the suffixed entry from
+    its current (suffixed) displayName. Suffixed entries are removed later,
+    so a changed UUID has no downstream impact.
+
+    Mutates `entries` in place.
+    """
+    id_counts = Counter(e["id"] for e in entries.values() if "id" in e)
+    dupes = {uid for uid, n in id_counts.items() if n > 1}
+    if not dupes:
+        return
+    for dn, e in entries.items():
+        if e.get("id") in dupes and dn.endswith(OLD_DISPLAY_SUFFIX):
+            e["id"] = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"{kind}:{dn}"))
+
+
 def merge_activities(
     new_activities_path: Path,
     target_activities_path: Path,
@@ -835,6 +860,9 @@ def merge_activities(
 
         with open(feed_path, "w", encoding="utf-8") as f:
             json.dump(feed_data, f, indent=2, ensure_ascii=False)
+
+    dedupe_suffixed_ids(merged_acts, "activity")
+    dedupe_suffixed_ids(merged_ings, "ingredient")
 
     result = reassemble(merged_acts, merged_ings, other)
 
