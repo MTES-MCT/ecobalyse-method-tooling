@@ -8736,7 +8736,7 @@
           "rule": "meat NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "animalGroup1": "cattle",
         "animalGroup2": "cow",
         "animalProduct": "meat",
@@ -8792,7 +8792,7 @@
           "rule": "meat NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "PRAIRIES PERMANENTES",
         "cropGroupMatch": {
           "rule": "matched 'prairies naturelles' in cropgroup.csv",
@@ -8853,7 +8853,7 @@
           "rule": "meat NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "animalGroup1": "poultry",
         "animalGroup2": "chicken",
         "animalProduct": "meat",
@@ -8909,7 +8909,7 @@
           "rule": "meat NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "animalGroup1": "sheep",
         "animalGroup2": "sheep",
         "animalProduct": "meat",
@@ -8965,7 +8965,7 @@
           "rule": "Matched with Poitrine de porc (alim. ani. 100% FR) in ingredients.json",
           "confidence": 0.95
         },
-        "visible": true,
+        "visible": false,
         "animalGroup1": "pig",
         "animalGroup2": "pig",
         "animalProduct": "meat",
@@ -9021,7 +9021,7 @@
           "rule": "meat NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "animalGroup1": "poultry",
         "animalGroup2": "chicken",
         "animalProduct": "meat",

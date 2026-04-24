@@ -241,7 +241,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
             continue
 
         # Extract production location for FR variant handling
-        production_fr = str(row.get("Production_FR", "")).strip()
+        production_fr = str(row.get("production fr", "")).strip()
         antilles = str(row.get("antilles", "")).strip().upper() == "TRUE"
 
         ingredient = {"name": name, "activityName": activity_name}
@@ -476,7 +476,7 @@ def get_input_csv(variant: Variant) -> Path:
 
 def load_source_csv(variant: Variant) -> pd.DataFrame:
     df = pd.read_csv(get_input_csv(variant))
-    df.columns = df.columns.str.replace("_", " ")
+    df.columns = df.columns.str.lower().str.replace("_", " ")
     if "under review" in df.columns:
         mask = df["under review"].astype(str).str.strip().str.upper() == "TRUE"
         if mask.any():
@@ -932,7 +932,7 @@ def generate_final_data(variant: Variant):
 
         # Derive alias the same way build_activity_entry does (alias is unique, activityName is not)
         antilles = str(row.get("antilles", "")).strip().upper() == "TRUE"
-        if variant == Variant.FR and row.get("Production_FR") == "DOM":
+        if variant == Variant.FR and row.get("production fr") == "DOM":
             alias_suffix = "-fr-overseas"
         elif variant == Variant.UE and antilles:
             alias_suffix = "-eu-antilles"
