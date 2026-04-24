@@ -155,3 +155,4 @@ EB_idV05,Poultry,Volaille,"Live broiler, for direct consumption, consumption mix
 EB_idV06,Lamb,Agneau,"Live lamb, consumption mix {FR} U {{lamb-meat-without-bone-organic-2025}}",FR,OUI,FALSE
 EB_idV07,Pork,Porc,"Live pig, consumption mix {FR} U {{bacon-organic-2025}}",FR,OUI,FALSE
 EB_idV08,Rabbit,Lapin,"Live broiler, for direct consumption, consumption mix {FR} U {{chicken-breast-organic-2025}} {{chicken-breast-fr-organic-2025}}",FR,OUI,FALSE
+

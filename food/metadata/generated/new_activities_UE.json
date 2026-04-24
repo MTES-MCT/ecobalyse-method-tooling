@@ -44,12 +44,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -99,12 +101,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -154,12 +158,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -209,12 +215,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -264,12 +272,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -319,12 +329,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -374,12 +386,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -429,12 +443,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -484,12 +500,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -539,12 +557,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -594,12 +614,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -649,12 +671,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -704,12 +728,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -759,12 +785,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -814,12 +842,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "WFLDB",
     "unit": "kg",
@@ -870,12 +900,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -925,12 +957,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -980,12 +1014,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1035,12 +1071,71 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "carrot-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Carottes UE",
+    "id": "433d66c4-a706-5060-8c33-ee26313ccce3",
+    "metadata": [
+      {
+        "alias": "carrot-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Carottes UE",
+        "id": "836d0a35-84c0-5981-bcde-73befcf3bf61",
+        "inediblePart": 0.1,
+        "inediblePartMatch": {
+          "rule": "Matched with Carrots in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with carrot in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1090,12 +1185,71 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "celeriac-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Céleri-rave UE",
+    "id": "7202dbd6-6a83-5ff1-8767-18a234b67336",
+    "metadata": [
+      {
+        "alias": "celeriac-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Céleri-rave UE",
+        "id": "b149f393-d905-5874-9974-2c8c1217978e",
+        "inediblePart": 0.1,
+        "inediblePartMatch": {
+          "rule": "Matched with Celeriac in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'celeriac' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1145,15 +1299,75 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
+  },
+  {
+    "activityName": "Cherry, at farm (WFLDB)",
+    "alias": "cherry-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Cerise UE",
+    "id": "a432b779-87fe-5dba-b81f-bdde26451ccf",
+    "metadata": [
+      {
+        "alias": "cherry-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Cerise UE",
+        "id": "c460d841-321f-5dfb-ada4-e1266c10e2ee",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Cherry in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "cherry found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "WFLDB",
+    "unit": "kg",
+    "location": "IT"
   },
   {
     "activityName": "Tomato, fresh grade {ES}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U - Copied from Ecoinvent U",
@@ -1200,12 +1414,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1255,12 +1471,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1310,12 +1528,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -1365,12 +1585,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1420,12 +1642,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1475,12 +1699,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1530,12 +1756,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1585,15 +1813,130 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
+  },
+  {
+    "activityName": "Sweet corn {HU}| sweet corn production | Cut-off, U",
+    "alias": "corn-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Maïs UE",
+    "id": "1874bc4c-d7e5-5f11-bfc0-0ca8e3e1bac6",
+    "metadata": [
+      {
+        "alias": "corn-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Maïs UE",
+        "id": "96962794-5565-544b-ba7b-ba05b859711e",
+        "inediblePart": 0.0,
+        "inediblePartMatch": {
+          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "grain_raw"
+        ],
+        "ingredientDensity": 0.72,
+        "ingredientDensityMatch": {
+          "rule": "corn found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 2.259,
+        "rawToCookedRatioMatch": {
+          "rule": "grain default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "grain → none (non-perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "MAIS GRAIN ET ENSILAGE",
+        "cropGroupMatch": {
+          "rule": "matched 'corn' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Ecoinvent 3.11",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Raw cow milk archetype, feed mix UK-149NW, at farm (WFLDB)",
+    "alias": "cow-milk-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Lait de vache UE",
+    "id": "b4e00c5d-1c5f-5947-90a0-dbc0e3a5614a",
+    "metadata": [
+      {
+        "alias": "cow-milk-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Lait de vache UE",
+        "id": "f092e399-eb0c-5f4d-abc3-8df379b20dfc",
+        "inediblePart": 0.0,
+        "inediblePartMatch": {
+          "rule": "dairy NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "dairy_product"
+        ],
+        "ingredientDensity": 1.05,
+        "ingredientDensityMatch": {
+          "rule": "Matched with cow in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 1.0,
+        "rawToCookedRatioMatch": {
+          "rule": "dairy default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "dairy NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "animalGroup1": "cattle",
+        "animalGroup2": "cow",
+        "animalProduct": "milk",
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "WFLDB",
+    "unit": "kg",
+    "location": "RER"
   },
   {
     "activityName": "Tomato, fresh grade {ES}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U - Copied from Ecoinvent U",
@@ -1640,12 +1983,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1695,12 +2040,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1750,12 +2097,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -1805,12 +2154,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -1860,12 +2211,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -1913,12 +2266,14 @@
         "animalGroup2": "chicken",
         "animalProduct": "egg",
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "WFLDB",
     "unit": "kg",
@@ -1969,12 +2324,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2024,12 +2381,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2079,12 +2438,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2134,12 +2495,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2189,12 +2552,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2244,12 +2609,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2299,12 +2666,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2354,12 +2723,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2409,12 +2780,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -2464,12 +2837,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "WFLDB",
     "unit": "kg"
@@ -2519,12 +2894,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2574,12 +2951,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -2629,12 +3008,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2684,12 +3065,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2739,15 +3122,75 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
+  },
+  {
+    "activityName": "Cherry, at farm (WFLDB)",
+    "alias": "greengage-plum-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Prune reine-claude UE",
+    "id": "6acc9e69-340e-51f7-86b6-2d1833d5968c",
+    "metadata": [
+      {
+        "alias": "greengage-plum-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Prune reine-claude UE",
+        "id": "a8abdd4a-b6bd-5afa-b1a7-de92c50a0268",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Plum in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.95,
+        "ingredientDensityMatch": {
+          "rule": "Matched with plum in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with plum in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "ARBORICULTURE",
+        "cropGroupMatch": {
+          "rule": "matched 'banane export' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "WFLDB",
+    "unit": "kg",
+    "location": "IT"
   },
   {
     "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
@@ -2794,12 +3237,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2849,12 +3294,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2904,12 +3351,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -2954,12 +3403,71 @@
         },
         "visible": true,
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "horseradish-fresh-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Raifort frais UE",
+    "id": "b13eba34-f280-54be-87fb-fd075577625f",
+    "metadata": [
+      {
+        "alias": "horseradish-fresh-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Raifort frais UE",
+        "id": "73ea7661-67ba-5ba1-8c8a-7e96b2817468",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3009,12 +3517,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3064,12 +3574,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3119,12 +3631,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3174,12 +3688,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3229,12 +3745,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3284,12 +3802,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3339,12 +3859,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3394,12 +3916,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3449,12 +3973,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3504,15 +4030,75 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
+  },
+  {
+    "activityName": "Cherry, at farm (WFLDB)",
+    "alias": "morello-cherry-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Cerise griotte UE",
+    "id": "4f11edab-7279-5791-89c8-ba4d21da87f8",
+    "metadata": [
+      {
+        "alias": "morello-cherry-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Cerise griotte UE",
+        "id": "c96dbf63-7d41-5c8b-acf2-84569e953281",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Cherry in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "Matched with cherry in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "WFLDB",
+    "unit": "kg",
+    "location": "IT"
   },
   {
     "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
@@ -3559,12 +4145,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3614,12 +4202,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3669,12 +4259,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3724,12 +4316,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3779,12 +4373,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3834,12 +4430,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3889,12 +4487,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3944,12 +4544,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -3999,12 +4601,71 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "parsnip-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Panais UE",
+    "id": "bcbcb0fd-40a3-554a-b250-486a2295f0bf",
+    "metadata": [
+      {
+        "alias": "parsnip-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Panais UE",
+        "id": "a8eddc41-ee96-50f5-839e-f224502d27f0",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "AUTRES OLEAGINEUX",
+        "cropGroupMatch": {
+          "rule": "matched 'autres oleagineux' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4054,12 +4715,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4109,12 +4772,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4164,12 +4829,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4219,12 +4886,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4274,12 +4943,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -4329,12 +5000,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4384,12 +5057,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -4439,12 +5114,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4494,12 +5171,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "WFLDB",
     "unit": "kg",
@@ -4550,12 +5229,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4605,12 +5286,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4660,12 +5343,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -4715,12 +5400,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4752,7 +5439,7 @@
           "rule": "radish found in density.csv",
           "confidence": 1.0
         },
-        "rawToCookedRatio": 0.85,
+        "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
           "rule": "Matched with radish in cooked_to_raw.csv",
           "confidence": 1.0
@@ -4770,12 +5457,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4825,12 +5514,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4880,12 +5571,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4935,12 +5628,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -4990,12 +5685,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5045,12 +5742,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -5100,12 +5799,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5155,12 +5856,71 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "rutabaga-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Rutabaga UE",
+    "id": "402acbb7-189c-5670-aac8-dc1e207d032e",
+    "metadata": [
+      {
+        "alias": "rutabaga-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Rutabaga UE",
+        "id": "94de0d0c-56a7-53e2-b949-4757beb7ba8f",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "Rutabaga FR found in ingredients.json",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5210,12 +5970,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5265,12 +6027,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5320,12 +6084,71 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "salsify-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Salsifi UE",
+    "id": "b00e8bce-c9f5-5f34-ad22-4966671ae8b3",
+    "metadata": [
+      {
+        "alias": "salsify-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Salsifi UE",
+        "id": "ffda5241-c267-5ff7-a9fa-5c4edf6c085b",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Salsify in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'endive' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5370,12 +6193,14 @@
         },
         "visible": true,
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5425,12 +6250,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5480,12 +6307,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5533,12 +6362,14 @@
         "animalGroup2": "sheep",
         "animalProduct": "milk",
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5588,12 +6419,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5643,12 +6476,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5698,12 +6533,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5753,12 +6590,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5808,12 +6647,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -5863,12 +6704,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5918,12 +6761,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -5973,12 +6818,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6028,12 +6875,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "L"
@@ -6083,12 +6932,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6138,12 +6989,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -6193,12 +7046,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6248,12 +7103,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "WFLDB",
     "unit": "kg",
@@ -6304,12 +7161,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6359,12 +7218,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -6414,12 +7275,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
@@ -6469,12 +7332,71 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "turnip-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Navet UE",
+    "id": "011b9a13-03a5-5b16-9578-0c21d7e8d161",
+    "metadata": [
+      {
+        "alias": "turnip-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Navet UE",
+        "id": "88d8d0b5-c399-5d7a-8636-d027d40e4e5e",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Turnips in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with turnip in cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'carrot' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6524,12 +7446,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6579,12 +7503,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6634,12 +7560,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6689,12 +7617,128 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "White cabbage {CH}| white cabbage production, conventional, plain region | Cut-off, U",
+    "alias": "white-cabbage-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Chou blanc UE",
+    "id": "4ad9eda0-4635-52f0-966c-6f7830bf773c",
+    "metadata": [
+      {
+        "alias": "white-cabbage-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Chou blanc UE",
+        "id": "6a1eddb0-92ac-5e8c-ae51-908634b6f33d",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Cabbage in agb_inedible.csv",
+          "confidence": 0.98
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with cabbage in cooked_to_raw.csv",
+          "confidence": 0.98
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Ecoinvent 3.11",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Barley grain {DE}| barley production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "barley-whole-eu",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Orge entière UE",
+    "id": "fa02e8b6-dd76-509c-ab61-17b7fe13923a",
+    "metadata": [
+      {
+        "alias": "barley-whole-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Orge entière UE",
+        "id": "6cf9e844-ecdf-5ab5-adee-41a45d709ab1",
+        "inediblePart": 0.0,
+        "inediblePartMatch": {
+          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "grain_raw"
+        ],
+        "ingredientDensity": 0.75,
+        "ingredientDensityMatch": {
+          "rule": "grain default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 2.259,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with barley in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "grain → none (non-perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "ORGE",
+        "cropGroupMatch": {
+          "rule": "barley pattern",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6744,12 +7788,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6799,12 +7845,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6854,12 +7902,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6909,12 +7959,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -6964,12 +8016,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -7014,12 +8068,14 @@
         },
         "visible": true,
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -7069,12 +8125,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -7124,12 +8182,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"
@@ -7179,12 +8239,14 @@
           "confidence": 1.0
         },
         "scopes": [
-          "food"
+          "food",
+          "food2"
         ]
       }
     ],
     "scopes": [
-      "food"
+      "food",
+      "food2"
     ],
     "source": "Agribalyse 3.2",
     "unit": "kg"

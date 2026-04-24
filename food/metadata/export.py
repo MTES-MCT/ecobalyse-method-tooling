@@ -26,6 +26,7 @@ import uuid
 from collections import Counter
 from enum import Enum
 from pathlib import Path
+from urllib.request import urlopen
 
 import inflect
 
@@ -234,11 +235,11 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
         activity_name = (
             str(row["icv final"]).strip() if pd.notna(row["icv final"]) else ""
         )
-        csv_location = str(row.get("location", "")).strip() if pd.notna(row.get("location")) else ""
-        unit, source, location = get_db_unit(activity_name, csv_location)
-
         if not name or not activity_name:
             continue
+
+        csv_location = str(row.get("location", "")).strip() if pd.notna(row.get("location")) else ""
+        unit, source, location = get_db_unit(activity_name, csv_location)
 
         # Extract production location for FR variant handling
         production_fr = str(row.get("production fr", "")).strip()
@@ -474,14 +475,37 @@ def get_input_csv(variant: Variant) -> Path:
     return INPUT_CSV_DIR / f"new_ingredient_{variant.value}.csv"
 
 
-def load_source_csv(variant: Variant) -> pd.DataFrame:
+def fetch_source_csv(variant: Variant) -> Path:
+    """Download the Google Sheet tab for `variant` and overwrite the local source CSV.
+
+    Reads GSHEET_ID and GSHEET_GID_{VARIANT} from the environment (.env).
+    """
+    sheet_id = os.environ["GSHEET_ID"]
+    gid = os.environ[f"GSHEET_GID_{variant.value}"]
+    url = (
+        f"https://docs.google.com/spreadsheets/d/{sheet_id}"
+        f"/export?format=csv&gid={gid}"
+    )
+    target = get_input_csv(variant)
+    print(f"Fetching {variant.value} from Google Sheet (gid={gid})...")
+    with urlopen(url, timeout=30) as resp:
+        data = resp.read().replace(b"\r\n", b"\n")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(data)
+    print(f"  wrote {len(data)} bytes to {target}")
+    return target
+
+
+def load_source_csv(variant: Variant, fetch: bool = True) -> pd.DataFrame:
+    if fetch:
+        fetch_source_csv(variant)
     df = pd.read_csv(get_input_csv(variant))
     df.columns = df.columns.str.lower().str.replace("_", " ")
     if "under review" in df.columns:
         mask = df["under review"].astype(str).str.strip().str.upper() == "TRUE"
         if mask.any():
-            print(f"Skipping {int(mask.sum())} rows marked 'under review'")
-        df = df[~mask].reset_index(drop=True)
+            print(f"Forcing visible=FALSE on {int(mask.sum())} rows marked 'under review'")
+            df.loc[mask, "visible"] = "FALSE"
     return df
 
 
@@ -871,7 +895,7 @@ def merge_activities(
     print(f"Merged {len(added_acts)} new activities into {len(merged_acts)} total activities")
 
 
-def generate_final_data(variant: Variant):
+def generate_final_data(variant: Variant, fetch: bool = True):
     """Generate final CSV with all ingredient data and impacts.
 
     Combines:
@@ -884,7 +908,7 @@ def generate_final_data(variant: Variant):
     # Load source CSV
     input_csv = get_input_csv(variant)
     print(f"Loading {input_csv}...")
-    source_df = load_source_csv(variant)
+    source_df = load_source_csv(variant, fetch=fetch)
 
     ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
     ECOBALYSE = Path(os.environ["ECOBALYSE"])
@@ -1147,6 +1171,11 @@ def main():
         action="store_true",
         help="Add '(2025)' suffix to pre-existing ingredient displayNames and '-2025' suffix to their aliases",
     )
+    parser.add_argument(
+        "--no-fetch",
+        action="store_true",
+        help="Skip Google Sheet fetch, use existing local source/*.csv as-is",
+    )
     args = parser.parse_args()
 
     # Handle remove-old command (no variant needed)
@@ -1164,7 +1193,7 @@ def main():
     output_csv, output_json, final_output_csv = get_output_paths(args.variant)
 
     if args.command == "final_data":
-        generate_final_data(args.variant)
+        generate_final_data(args.variant, fetch=not args.no_fetch)
         return
 
     if args.clear_cache:
@@ -1188,7 +1217,7 @@ def main():
     # Load input CSV
     input_csv = get_input_csv(args.variant)
     print(f"\nLoading {input_csv}...")
-    df = load_source_csv(args.variant)
+    df = load_source_csv(args.variant, fetch=not args.no_fetch)
 
     if "item" not in df.columns or "icv final" not in df.columns:
         raise ValueError("CSV must have 'item' and 'icv final' columns")
