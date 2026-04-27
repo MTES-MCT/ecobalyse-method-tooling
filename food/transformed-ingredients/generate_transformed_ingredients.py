@@ -836,9 +836,9 @@ def main() -> None:
     # derive the set of DBs hosting transformed food products from declared
     # topology: agribalyse itself plus anything that depends on it.
     dbs = client.list_databases()
-    native_dbs = {db["name"] for db in dbs if db.get("format") != "SimaPro CSV"}
+    native_dbs = {db.name for db in dbs if db.format != "SimaPro CSV"}
     food_transform_dbs = {AGRIBALYSE_DB} | {
-        db["name"] for db in dbs if AGRIBALYSE_DB in db.get("dependsOn", [])
+        db.name for db in dbs if AGRIBALYSE_DB in db.depends_on
     }
     print(f"Native-naming databases: {native_dbs}")
     print(f"Food-transform databases: {food_transform_dbs}")
