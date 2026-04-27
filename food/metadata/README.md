@@ -5,8 +5,7 @@
 ```
 metadata/
 ├── source/
-│   ├── new_ingredient_FR.csv      # Input: FR ingredients to predict
-│   ├── new_ingredient_OI.csv      # Input: OI ingredients to predict
+│   ├── new_ingredient_{FR,BIO,UE,OI,NUE}.csv  # Input: ingredients per variant (auto-fetched from Google Sheets)
 │   └── keep.csv                   # DisplayNames to keep unsuffixed during merge
 ├── generated/
 │   ├── predictions_{variant}.csv       # Output: CSV with predictions + confidence
@@ -18,6 +17,7 @@ metadata/
 │   ├── food_type.csv              # custom food type mappings
 │   ├── processing_state.csv       # custom processing state mappings
 │   ├── nova_classification.csv    # NOVA 1-4 reference data
+│   ├── animal.csv                 # animalGroup1/animalGroup2/animalProduct mappings
 │   ├── cropgroup.csv              # custom crop group mappings
 │   ├── density.csv                # custom density values
 │   ├── inedible_part.csv          # custom inedible part percentages
@@ -43,7 +43,17 @@ Create a `.env` file with required environment variables:
 BRIGHTWAY2_DIR=/path/to/brightway-dirs/main
 ECOBALYSE_DATA=../../../ecobalyse-data
 ECOBALYSE=../../../ecobalyse
+
+# Google Sheet source (one tab per variant)
+GSHEET_ID=...
+GSHEET_GID_FR=...
+GSHEET_GID_BIO=...
+GSHEET_GID_UE=...
+GSHEET_GID_OI=...
+GSHEET_GID_NUE=...
 ```
+
+By default, every `metadata` / `final_data` run downloads the matching tab from the Google Sheet and overwrites `source/new_ingredient_{variant}.csv` before predicting. Use `--no-fetch` to skip the download and reuse the local file.
 
 ## Export Workflow
 
@@ -75,9 +85,9 @@ This will:
 5. Merge new activities into `$ECOBALYSE_DATA/activities.json`
 6. Copy reference CSVs to `$ECOBALYSE_DATA/food/metadata/`
 
-The `--add-old-suffix` flag adds a `(2025)` suffix to pre-existing activity and ingredient displayNames. Activities reused by new ingredients keep their original displayName. **Use it only on the first variant merge** — subsequent variants would incorrectly suffix the previously merged ingredients.
+The `--add-old-suffix` flag adds a ` (2025)` suffix to pre-existing activity and ingredient displayNames and a `-2025` suffix to their aliases. Activities reused by new ingredients keep their original displayName. **Use it only on the first variant merge** — subsequent variants would incorrectly suffix the previously merged ingredients.
 
-Variants: `FR`, `ORG`, `UE`, `OI`, `NUE`.
+Variants: `FR`, `BIO`, `UE`, `OI`, `NUE`.
 
 ### Step 2: Regenerate Ingredients in ecobalyse-data
 
@@ -122,12 +132,15 @@ OI-specific columns:
 
 ```bash
 uv run export.py metadata --variant FR                    # Export + merge (no suffix)
+uv run export.py metadata --variant BIO                   # Export BIO (organic) variant
 uv run export.py metadata --variant OI                    # Export OI variant
-uv run export.py metadata --variant FR --add-old-suffix   # Export + merge + add (2025) suffix
+uv run export.py metadata --variant NUE                   # Export NUE (hors UE) variant
+uv run export.py metadata --variant FR --add-old-suffix   # Export + merge + add (2025) / -2025 suffix
+uv run export.py metadata --variant FR --no-fetch         # Skip Google Sheet download, use local source CSV
 uv run export.py metadata --variant FR --clear-cache      # Clear translation cache first
 uv run export.py final_data --variant FR                  # Generate final CSV with impacts
 uv run export.py final_data --variant OI                  # Generate final CSV with impacts (OI)
-uv run export.py remove-old                               # Remove (2025)-suffixed entries from activities.json
+uv run export.py remove-old                               # Remove (2025)/-2025-suffixed entries from activities.json
 uv run validate_nova.py --folds 5                         # Validate NOVA classification (5-fold CV)
 ```
 
@@ -324,7 +337,7 @@ Match info includes a human-readable rule explanation and confidence:
 
 All Match fields follow the same format: `{"rule": "...", "confidence": float}`. The rule explains how the value was determined (text match, keyword detection, or default fallback).
 
-For animal-based ingredients, `detect_animal_fields()` in `export.py` also adds `animalGroup1`, `animalGroup2`, and `animalProduct` fields to the activity entry.
+For animal-based ingredients, `detect_animal_fields()` in `export.py` also adds `animalGroup1`, `animalGroup2`, and `animalProduct` fields to the activity entry, using regex patterns from `reference/animal.csv`.
 
 ## Feature Extraction
 
