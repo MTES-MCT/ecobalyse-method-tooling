@@ -452,9 +452,11 @@ def build_activity_entry(
     # DisplayName from French name + variant suffix
     display_name = (french_name if french_name else name) + variant_suffix
 
-    # Generate deterministic UUIDs based on displayName
-    # This ensures each unique displayName gets a unique UUID
-    activity_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{display_name}"))
+    # Activity UUID is keyed by alias (= activityName-derived) to keep stable
+    # identity across variants/exports; two activities sharing a displayName
+    # but pointing to different LCI processes get distinct UUIDs.
+    # Ingredient UUID stays keyed by displayName (its Ecobalyse identity).
+    activity_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{activity_alias}"))
     ingredient_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"ingredient:{display_name}"))
 
     # Scenario from variant
@@ -668,10 +670,14 @@ def extract_activities_and_ingredients(
     old_alias_suffix: str,
 ) -> tuple[dict[str, dict], dict[str, dict], list[dict]]:
     """Extract and normalize flat dicts from nested activities.json.
-    Keyed by displayName. Consolidates by activityName. Last wins.
+
+    Activities are keyed by `alias` (deterministic from activityName since
+    generate_activity_alias was introduced). Ingredients stay keyed by
+    `displayName`. The link from ingredient to its hosting activity is the
+    `activity_alias` field.
     """
     activities, ingredients, other = {}, {}, []
-    by_activity_name = {}  # activityName -> activity displayName
+    by_activity_name = {}  # activityName -> activity alias key
 
     for a in activities_list:
         if "displayName" not in a:
@@ -679,25 +685,24 @@ def extract_activities_and_ingredients(
             continue
         act_name = a.get("activityName")
         act_display = normalize_display_name(a["displayName"], old_display_suffix)
+        act_alias = normalize_alias(a.get("alias", ""), old_alias_suffix) or ""
 
         if act_name and act_name in by_activity_name:
-            act_display = by_activity_name[act_name]
+            act_alias = by_activity_name[act_name]
         else:
             if act_name:
-                by_activity_name[act_name] = act_display
+                by_activity_name[act_name] = act_alias
             # Preserve non-food metadata (textile, etc.) on the activity dict
             meta_list = a.get("metadata", [])
             non_food_meta = [m for m in meta_list if "food" not in m.get("scopes", [])]
-            activities[act_display] = {k: v for k, v in a.items() if k != "metadata"}
+            activities[act_alias] = {k: v for k, v in a.items() if k != "metadata"}
             if non_food_meta:
-                activities[act_display]["_non_food_metadata"] = non_food_meta
-            activities[act_display]["displayName"] = act_display
-            activities[act_display]["alias"] = normalize_alias(
-                a.get("alias", ""), old_alias_suffix
-            )
+                activities[act_alias]["_non_food_metadata"] = non_food_meta
+            activities[act_alias]["displayName"] = act_display
+            activities[act_alias]["alias"] = act_alias
 
         for ing in (m for m in a.get("metadata", []) if "food" in m.get("scopes", [])):
-            ing = {**ing, "activity_display": act_display}
+            ing = {**ing, "activity_alias": act_alias}
             ing["displayName"] = normalize_display_name(ing["displayName"], old_display_suffix)
             ing["alias"] = normalize_alias(ing.get("alias", ""), old_alias_suffix)
             ingredients[ing["displayName"]] = ing
@@ -708,51 +713,35 @@ def extract_activities_and_ingredients(
 def apply_suffixes(
     activities: dict[str, dict],
     ingredients: dict[str, dict],
-    new_act_names: set[str],
     new_ing_names: set[str],
-    kept_act_names: set[str],
     keep_set: set[str],
     old_display_suffix: str,
     old_alias_suffix: str,
 ) -> tuple[dict[str, dict], dict[str, dict], dict[str, str]]:
-    """Add old_display_suffix and old_alias_suffix to old activity/ingredient names.
+    """Add legacy suffixes to pre-existing **ingredients** only.
 
-    - Old activities get old_display_suffix on their displayName and old_alias_suffix
-      on their alias, unless they are in kept_act_names (existing activities reused
-      by new ingredients).
-    - Old ingredients get old_display_suffix on their displayName and old_alias_suffix
-      on their alias, unless in keep_set.
-    - New activities/ingredients keep their clean names (no suffix).
+    The `-2025` / ` (2025)` suffix is an ingredient-only namespace: it tags
+    Ecobalyse-side identities being phased out. Activities (= LCI process
+    handles) are never suffixed — they live by their `alias` derived from the
+    activityName.
 
     Returns (activities, ingredients, alias_renames) where alias_renames maps
-    old_alias -> new_alias for every activity alias that was suffixed.
+    old_alias -> new_alias for every ingredient alias that was suffixed.
     """
-    new_acts = {}
-    for dn, act in activities.items():
-        act = {**act}
-        if dn not in new_act_names:
-            # OLD activity
-            if dn not in kept_act_names and "ingredient" in act.get("categories", []):
-                act["displayName"] = act["displayName"] + old_display_suffix
-                if act.get("alias"):
-                    act["alias"] = act["alias"] + old_alias_suffix
-        new_acts[dn] = act
-
     new_ings = {}
     ing_alias_renames = {}
     for dn, ing in ingredients.items():
         ing = {**ing}
-        if dn not in new_ing_names:
-            # OLD ingredient
-            if dn not in keep_set:
-                if not ing["displayName"].endswith(old_display_suffix):
-                    ing["displayName"] += old_display_suffix
-                if ing.get("alias") and not ing["alias"].endswith(old_alias_suffix):
-                    old_ing_alias = ing["alias"]
-                    ing["alias"] = old_ing_alias + old_alias_suffix
-                    ing_alias_renames[old_ing_alias] = ing["alias"]
+        if dn not in new_ing_names and dn not in keep_set:
+            # OLD ingredient — apply legacy suffix
+            if not ing["displayName"].endswith(old_display_suffix):
+                ing["displayName"] += old_display_suffix
+            if ing.get("alias") and not ing["alias"].endswith(old_alias_suffix):
+                old_ing_alias = ing["alias"]
+                ing["alias"] = old_ing_alias + old_alias_suffix
+                ing_alias_renames[old_ing_alias] = ing["alias"]
         new_ings[dn] = ing
-    return new_acts, new_ings, ing_alias_renames
+    return activities, new_ings, ing_alias_renames
 
 
 def reassemble(
@@ -760,19 +749,23 @@ def reassemble(
     ingredients: dict[str, dict],
     other: list[dict],
 ) -> list[dict]:
-    """Reassemble flat dicts back into nested activities.json format."""
+    """Reassemble flat dicts back into nested activities.json format.
+
+    Activities are dict-keyed by alias; ingredients link back via
+    `activity_alias`.
+    """
     by_activity = {}
     for ing in ingredients.values():
-        ad = ing["activity_display"]
-        by_activity.setdefault(ad, []).append(
-            {k: v for k, v in ing.items() if k != "activity_display"}
+        aa = ing["activity_alias"]
+        by_activity.setdefault(aa, []).append(
+            {k: v for k, v in ing.items() if k != "activity_alias"}
         )
 
     result = []
-    for dn, act in activities.items():
+    for act_alias, act in activities.items():
         entry = {**act}
         non_food_meta = entry.pop("_non_food_metadata", [])
-        ings = by_activity.get(dn, [])
+        ings = by_activity.get(act_alias, [])
         food_ings = [{**ing, "scopes": ing.get("scopes", ["food"])} for ing in ings]
         all_meta = non_food_meta + food_ings
         if all_meta:
@@ -845,94 +838,54 @@ def merge_activities(
         new_list, strip_display, strip_alias
     )
 
-    # Activity displayName collision: a new activity shares its displayName with
-    # an existing activity hosted on a different ecoinvent activityName. Rename
-    # the old activity with OLD_DISPLAY_SUFFIX so its pre-existing ingredients
-    # stay anchored to it instead of being orphaned onto the new activity.
-    existing_act_renames: dict[str, str] = {}
-    for dn, new_act in list(new_acts.items()):
-        if dn not in existing_acts:
-            continue
-        existing_an = existing_acts[dn].get("activityName")
-        new_an = new_act.get("activityName")
-        if not existing_an or not new_an or existing_an == new_an:
-            continue
-        old_dn = dn + OLD_DISPLAY_SUFFIX
-        if old_dn in existing_acts:
-            continue
-        renamed = {**existing_acts[dn], "displayName": old_dn}
-        old_alias_val = renamed.get("alias") or ""
-        if old_alias_val and not old_alias_val.endswith(OLD_ALIAS_SUFFIX):
-            renamed["alias"] = old_alias_val + OLD_ALIAS_SUFFIX
-        existing_acts[old_dn] = renamed
-        del existing_acts[dn]
-        existing_act_renames[dn] = old_dn
-
-    if existing_act_renames:
-        for ing in existing_ings.values():
-            ad = ing.get("activity_display")
-            if ad in existing_act_renames:
-                ing["activity_display"] = existing_act_renames[ad]
-
-    # Build activityName -> displayName map from existing
+    # Build activityName -> existing activity alias (= dict key)
     existing_act_by_name = {
-        act["activityName"]: dn
-        for dn, act in existing_acts.items()
+        act["activityName"]: alias
+        for alias, act in existing_acts.items()
         if "activityName" in act
     }
 
     # For new activities: only add if activityName is genuinely new.
-    # For new ingredients mapping to existing activityNames: remap activity_display.
+    # For new ingredients hosted on a reused activityName: remap activity_alias.
     added_acts = {}
-    for dn, act in new_acts.items():
+    for new_alias, act in new_acts.items():
         act_name = act.get("activityName")
         if act_name not in existing_act_by_name:
-            added_acts[dn] = act
-            existing_act_by_name[act_name] = dn
+            added_acts[new_alias] = act
+            existing_act_by_name[act_name] = new_alias
         else:
-            # Update existing activity with fields from new export (location, source, etc.)
-            # Only overwrite when present in the new export — absence must not delete.
-            existing_dn = existing_act_by_name[act_name]
+            # Update existing activity with fields from new export
+            # (location, source, alias). Absence must not delete.
+            existing_alias = existing_act_by_name[act_name]
             for key in ("location", "source"):
                 if key in act:
-                    existing_acts[existing_dn][key] = act[key]
+                    existing_acts[existing_alias][key] = act[key]
 
-    # Remap new ingredients to existing activity displayNames where applicable
+    # Remap new ingredients to existing activity alias where applicable
     for ing_dn, ing in new_ings.items():
-        act_display = ing["activity_display"]
-        # Find the activityName for this ingredient's activity
-        source_act = new_acts.get(act_display)
+        ing_act_alias = ing["activity_alias"]
+        source_act = new_acts.get(ing_act_alias)
         if source_act:
             act_name = source_act["activityName"]
-            existing_dn = existing_act_by_name.get(act_name)
-            if existing_dn and existing_dn != act_display:
-                ing["activity_display"] = existing_dn
-
-    # Existing activities whose activityName is shared with a new activity
-    # are "kept" (they hold new ingredients and will survive the future release).
-    kept_act_names = set()
-    for dn, act in new_acts.items():
-        act_name = act.get("activityName")
-        if act_name and act_name in existing_act_by_name:
-            kept_act_names.add(existing_act_by_name[act_name])
+            existing_alias = existing_act_by_name.get(act_name)
+            if existing_alias and existing_alias != ing_act_alias:
+                ing["activity_alias"] = existing_alias
 
     merged_acts = {**existing_acts, **added_acts}
-    # New ingredients override existing on displayName collision (allows re-exporting updates)
-    # but preserve existing UUIDs
+    # New ingredients override existing on displayName collision (allows re-exporting
+    # updates) but preserve existing UUIDs. When the collision is across different
+    # hosting activities (e.g. legacy `strawberry-eu` ingredient under
+    # `strawberry-eu-2025` activity vs new `strawberry-eu` ingredient under the
+    # clean `strawberry` activity), the legacy ingredient is moved aside under
+    # its `(2025)` displayName / `-2025` alias so both coexist.
     merged_ings = {**existing_ings}
     pre_alias_renames: dict[str, str] = {}
     for dn, ing in new_ings.items():
         existing = merged_ings.get(dn)
         if existing is not None:
-            existing_ad = existing.get("activity_display")
-            new_ad = ing.get("activity_display")
-            if existing_ad != new_ad:
-                # Collision on displayName across two different hosting activities.
-                # Artifact of a past migration where the outer activity got suffixed
-                # with OLD_DISPLAY_SUFFIX but the inner ingredient kept its
-                # un-suffixed name. Move the existing orphan aside under its
-                # suffixed identity so its activity keeps valid metadata and the
-                # new ingredient takes the clean name.
+            existing_aa = existing.get("activity_alias")
+            new_aa = ing.get("activity_alias")
+            if existing_aa != new_aa:
                 old_dn = existing["displayName"] + OLD_DISPLAY_SUFFIX
                 renamed = {**existing, "displayName": old_dn}
                 old_alias_val = existing.get("alias") or ""
@@ -946,15 +899,13 @@ def merge_activities(
                 ing = {**ing, "id": existing["id"]}
         merged_ings[dn] = ing
 
-    # Apply suffix logic
-    alias_renames = dict(pre_alias_renames)
+    # Apply suffix logic (ingredients only)
+    alias_renames: dict[str, str] = dict(pre_alias_renames)
     if add_old_suffix:
         merged_acts, merged_ings, apply_renames = apply_suffixes(
             merged_acts,
             merged_ings,
-            set(added_acts),
             set(new_ings),
-            kept_act_names,
             keep_set,
             OLD_DISPLAY_SUFFIX,
             OLD_ALIAS_SUFFIX,
@@ -982,7 +933,7 @@ def merge_activities(
         with open(feed_path, "w", encoding="utf-8") as f:
             json.dump(feed_data, f, indent=2, ensure_ascii=False)
 
-    dedupe_suffixed_ids(merged_acts, "activity")
+    # Activities never get suffixed, so no UUID collisions to dedupe on them.
     dedupe_suffixed_ids(merged_ings, "ingredient")
 
     result = reassemble(merged_acts, merged_ings, other)
