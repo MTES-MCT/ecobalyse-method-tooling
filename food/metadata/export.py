@@ -200,6 +200,19 @@ def extract_geo(activity_name: str) -> str:
     return m.group(1).lower() if m else ""
 
 
+_MARKER_RE = re.compile(r"\s*\{\{[^}]*\}\}\s*")
+
+
+def clean_activity_name(activity_name: str) -> str:
+    """Strip `{{archive-alias-…}}` annotation markers used in the source CSV.
+
+    These are human-only hints (no code consumes them) but they leak into the
+    predictor's text matching and trigger false positives (e.g. `{{bacon-…}}`
+    matching the `\\bbacon\\b` cured-meat rule on a `Live pig` activity).
+    """
+    return _MARKER_RE.sub(" ", activity_name).strip()
+
+
 def _format_match(match_info: dict | None) -> str:
     """Format match rule for CSV output."""
     if match_info is None:
@@ -260,7 +273,7 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
             else ""
         )
         activity_name = (
-            str(row["icv final"]).strip() if pd.notna(row["icv final"]) else ""
+            clean_activity_name(str(row["icv final"])) if pd.notna(row["icv final"]) else ""
         )
         if not name or not activity_name:
             continue
@@ -1030,7 +1043,7 @@ def generate_final_data(variant: Variant, fetch: bool = True):
 
     for _, row in source_df.iterrows():
         result = dict(row)  # Copy all source columns
-        activity_name = row["icv final"]
+        activity_name = clean_activity_name(str(row["icv final"]))
 
         # Derive alias the same way build_activity_entry does (alias is unique, activityName is not)
         antilles = str(row.get("antilles", "")).strip().upper() == "TRUE"
