@@ -180,16 +180,22 @@ _LCA_NOISE_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Year-version markers (e.g. `organic 2025`) used in BIO LCI names. Strip the
+# year to avoid colliding with the legacy `-2025` alias suffix that already
+# tags pre-existing ingredients in activities.json.
+_YEAR_MARKER_RE = re.compile(r"\s+20\d{2}\b")
+
 
 def generate_activity_alias(activity_name: str) -> str:
     """Generate alias from a Brightway/Agribalyse activityName.
 
     Keeps discriminating qualifiers (`, in shell`, `, non-basmati`, `, dried`,
     …) but drops process-LCA boilerplate (`, at farm`, `{geo}`, `| production
-    …`, ` U`, `- Adapted from …`).
+    …`, ` U`, `- Adapted from …`, ` 20XX` year markers).
     """
     head = re.split(r"[{(|]", activity_name, maxsplit=1)[0]
     head = _LCA_NOISE_RE.sub("", head)
+    head = _YEAR_MARKER_RE.sub("", head)
     head = re.sub(r"\s+U\s*$", "", head).strip().strip(",").strip()
     return generate_alias(head)
 

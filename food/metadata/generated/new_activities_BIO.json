@@ -1,7 +1,7 @@
 [
   {
     "activityName": "Sugarcane, at farm, organic 2025 {MX}",
-    "alias": "sugarcane-organic-2025",
+    "alias": "sugarcane-organic",
     "categories": [
       "ingredient"
     ],
@@ -59,7 +59,7 @@
   },
   {
     "activityName": "Linseed, organic 2025 {RoW}| linseed production | Cut-off, U",
-    "alias": "linseed-organic-2025",
+    "alias": "linseed-organic",
     "categories": [
       "ingredient"
     ],
@@ -240,7 +240,7 @@
   },
   {
     "activityName": "Almonds, in shell, at farm, organic 2025 {CN}",
-    "alias": "almond-in-shell-organic-2025",
+    "alias": "almond-in-shell-organic",
     "categories": [
       "ingredient"
     ],
@@ -298,7 +298,7 @@
   },
   {
     "activityName": "Durum wheat grain, organic 2025, national average, at farm gate {FR} U",
-    "alias": "durum-wheat-grain-organic-2025-fr",
+    "alias": "durum-wheat-grain-organic-fr",
     "categories": [
       "ingredient"
     ],
@@ -397,7 +397,7 @@
   },
   {
     "activityName": "Apple, organic 2025, national average, at orchard {FR} U",
-    "alias": "apple-organic-2025-at-orchard",
+    "alias": "apple-organic-at-orchard",
     "categories": [
       "ingredient"
     ],
@@ -537,7 +537,7 @@
   },
   {
     "activityName": "Apricot, organic 2025 {FR}| apricot production | Cut-off, U",
-    "alias": "apricot-organic-2025",
+    "alias": "apricot-organic",
     "categories": [
       "ingredient"
     ],
@@ -595,7 +595,7 @@
   },
   {
     "activityName": "Cauliflower, organic 2025, national average, at farm gate {FR} U",
-    "alias": "cauliflower-organic-2025",
+    "alias": "cauliflower-organic",
     "categories": [
       "ingredient"
     ],
@@ -981,7 +981,7 @@
   },
   {
     "activityName": "White asparagus, organic 2025 {FR}| white asparagus production | Cut-off, U",
-    "alias": "white-asparagu-organic-2025",
+    "alias": "white-asparagu-organic",
     "categories": [
       "ingredient"
     ],
@@ -1080,7 +1080,7 @@
   },
   {
     "activityName": "Avocado, organic 2025 {GLO}| production | Cut-off, U",
-    "alias": "avocado-organic-2025",
+    "alias": "avocado-organic",
     "categories": [
       "ingredient"
     ],
@@ -1138,7 +1138,7 @@
   },
   {
     "activityName": "Banana, at farm, organic 2025 {GLO}",
-    "alias": "banana-organic-2025-glo",
+    "alias": "banana-organic-glo",
     "categories": [
       "ingredient"
     ],
@@ -1196,7 +1196,7 @@
   },
   {
     "activityName": "Rice, basmati, organic 2025 {IN}| rice production, basmati | Cut-off, U",
-    "alias": "rice-basmati-organic-2025",
+    "alias": "rice-basmati-organic",
     "categories": [
       "ingredient"
     ],
@@ -1295,7 +1295,7 @@
   },
   {
     "activityName": "Beetroot for juice, organic 2025, at farm gate {FR} U",
-    "alias": "beetroot-for-juice-organic-2025",
+    "alias": "beetroot-for-juice-organic",
     "categories": [
       "ingredient"
     ],
@@ -1353,7 +1353,7 @@
   },
   {
     "activityName": "Bell pepper, organic 2025 {FR}| bell pepper production, in unheated greenhouse | Cut-off, U",
-    "alias": "bell-pepper-organic-2025",
+    "alias": "bell-pepper-organic",
     "categories": [
       "ingredient"
     ],
@@ -1411,7 +1411,7 @@
   },
   {
     "activityName": "Strawberry, open field, organic 2025, at farm gate {FR} U",
-    "alias": "strawberry-open-field-organic-2025",
+    "alias": "strawberry-open-field-organic",
     "categories": [
       "ingredient"
     ],
@@ -1592,7 +1592,7 @@
   },
   {
     "activityName": "Blackberry, at farm, organic 2025 {RS}",
-    "alias": "blackberry-organic-2025",
+    "alias": "blackberry-organic",
     "categories": [
       "ingredient"
     ],
@@ -1650,7 +1650,7 @@
   },
   {
     "activityName": "Blueberry, at farm, organic 2025 {CA}",
-    "alias": "blueberry-organic-2025",
+    "alias": "blueberry-organic",
     "categories": [
       "ingredient"
     ],
@@ -1708,7 +1708,7 @@
   },
   {
     "activityName": "Peanut, organic 2025 {AR}| peanut production | Cut-off, U",
-    "alias": "peanut-organic-2025-ar",
+    "alias": "peanut-organic-ar",
     "categories": [
       "ingredient"
     ],
@@ -1807,7 +1807,7 @@
   },
   {
     "activityName": "Mango, organic 2025, Val de San Francisco, at orchard {BR} U",
-    "alias": "mango-organic-2025-val-de-san-francisco-at-orchard",
+    "alias": "mango-organic-val-de-san-francisco-at-orchard",
     "categories": [
       "ingredient"
     ],
@@ -1947,7 +1947,7 @@
   },
   {
     "activityName": "Fava bean, Swiss integrated production, organic 2025 {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U",
-    "alias": "fava-bean-swis-integrated-production-organic-2025",
+    "alias": "fava-bean-swis-integrated-production-organic",
     "categories": [
       "ingredient"
     ],
@@ -2169,7 +2169,7 @@
   },
   {
     "activityName": "Broccoli, organic 2025 {GLO}| production | Cut-off, U",
-    "alias": "broccoli-organic-2025",
+    "alias": "broccoli-organic",
     "categories": [
       "ingredient"
     ],
@@ -2227,7 +2227,7 @@
   },
   {
     "activityName": "Carrot, organic 2025, national average, at farm gate {FR} U",
-    "alias": "carrot-organic-2025-fr",
+    "alias": "carrot-organic-fr",
     "categories": [
       "ingredient"
     ],
@@ -2531,7 +2531,7 @@
   },
   {
     "activityName": "Peanut, organic 2025 {CN}| peanut production | Cut-off, U",
-    "alias": "peanut-organic-2025-cn",
+    "alias": "peanut-organic-cn",
     "categories": [
       "ingredient"
     ],
@@ -2589,7 +2589,7 @@
   },
   {
     "activityName": "Carrot, organic 2025 {RoW}| carrot production | Cut-off, U",
-    "alias": "carrot-organic-2025-row",
+    "alias": "carrot-organic-row",
     "categories": [
       "ingredient"
     ],
@@ -2729,7 +2729,7 @@
   },
   {
     "activityName": "Celery, organic 2025 {GLO}| 675 production | Cut-off, U",
-    "alias": "celery-organic-2025",
+    "alias": "celery-organic",
     "categories": [
       "ingredient"
     ],
@@ -2787,7 +2787,7 @@
   },
   {
     "activityName": "Cherry, organic 2025, national average, at orchard {FR} U",
-    "alias": "cherry-organic-2025-at-orchard",
+    "alias": "cherry-organic-at-orchard",
     "categories": [
       "ingredient"
     ],
@@ -2927,7 +2927,7 @@
   },
   {
     "activityName": "Tomato, cherry, consumption mix, organic 2025 {FR} U",
-    "alias": "tomato-cherry-consumption-mix-organic-2025",
+    "alias": "tomato-cherry-consumption-mix-organic",
     "categories": [
       "ingredient"
     ],
@@ -2985,7 +2985,7 @@
   },
   {
     "activityName": "Walnut, dried inshell, organic 2025, national average, at farm gate {FR} U",
-    "alias": "walnut-inshell-organic-2025-dried",
+    "alias": "walnut-inshell-organic-dried",
     "categories": [
       "ingredient"
     ],
@@ -3183,7 +3183,7 @@
   },
   {
     "activityName": "Chicory roots, organic 2025, at farm gate {FR} U",
-    "alias": "chicory-root-organic-2025",
+    "alias": "chicory-root-organic",
     "categories": [
       "ingredient"
     ],
@@ -3241,7 +3241,7 @@
   },
   {
     "activityName": "Onion, organic 2025, national average, at farm {FR} U",
-    "alias": "onion-organic-2025-fr",
+    "alias": "onion-organic-fr",
     "categories": [
       "ingredient"
     ],
@@ -3422,7 +3422,7 @@
   },
   {
     "activityName": "Clementine, export quality, Souss, at orchard, organic 2025 {MA} U",
-    "alias": "clementine-export-quality-sous-at-orchard-organic-2025",
+    "alias": "clementine-export-quality-sous-at-orchard-organic",
     "categories": [
       "ingredient"
     ],
@@ -3480,7 +3480,7 @@
   },
   {
     "activityName": "Coconut, dehusked, organic 2025 {RoW}| coconut production, dehusked | Cut-off, U",
-    "alias": "coconut-organic-2025-dehusked",
+    "alias": "coconut-organic-dehusked",
     "categories": [
       "ingredient"
     ],
@@ -3596,7 +3596,7 @@
   },
   {
     "activityName": "Fennel, organic 2025 {GLO}| production | Cut-off, U",
-    "alias": "fennel-organic-2025",
+    "alias": "fennel-organic",
     "categories": [
       "ingredient"
     ],
@@ -3818,7 +3818,7 @@
   },
   {
     "activityName": "Maize grain, organic 2025, 28% moisture, national average, animal feed, at farm gate {FR} U",
-    "alias": "maize-grain-organic-2025-28-moisture-animal-feed",
+    "alias": "maize-grain-organic-28-moisture-animal-feed",
     "categories": [
       "ingredient"
     ],
@@ -3876,7 +3876,7 @@
   },
   {
     "activityName": "Cranberry, at farm, organic 2025 {CL}",
-    "alias": "cranberry-organic-2025",
+    "alias": "cranberry-organic",
     "categories": [
       "ingredient"
     ],
@@ -3934,7 +3934,7 @@
   },
   {
     "activityName": "Tomato, medium size, organic 2025, soil based, non-heated greenhouse, at greenhouse {FR} U",
-    "alias": "tomato-medium-size-organic-2025-soil-based-non-heated-greenhouse-at-greenhouse",
+    "alias": "tomato-medium-size-organic-soil-based-non-heated-greenhouse-at-greenhouse",
     "categories": [
       "ingredient"
     ],
@@ -3992,7 +3992,7 @@
   },
   {
     "activityName": "Palm date, organic 2025 {GLO}| palm date production | Cut-off, U",
-    "alias": "palm-date-organic-2025",
+    "alias": "palm-date-organic",
     "categories": [
       "ingredient"
     ],
@@ -4050,7 +4050,7 @@
   },
   {
     "activityName": "Durum wheat grain, at farm, organic 2025 {GLO}",
-    "alias": "durum-wheat-grain-organic-2025-glo",
+    "alias": "durum-wheat-grain-organic-glo",
     "categories": [
       "ingredient"
     ],
@@ -4164,7 +4164,7 @@
   },
   {
     "activityName": "Zucchini, organic 2025, national average, at farm gate {FR} U",
-    "alias": "zucchini-organic-2025",
+    "alias": "zucchini-organic",
     "categories": [
       "ingredient"
     ],
@@ -4345,7 +4345,7 @@
   },
   {
     "activityName": "Strawberry for processing, open field, organic 2025, at farm gate {PL} U",
-    "alias": "strawberry-for-processing-open-field-organic-2025",
+    "alias": "strawberry-for-processing-open-field-organic",
     "categories": [
       "ingredient"
     ],
@@ -4403,7 +4403,7 @@
   },
   {
     "activityName": "Lettuce, organic 2025, national average, at farm gate {FR} U",
-    "alias": "lettuce-organic-2025",
+    "alias": "lettuce-organic",
     "categories": [
       "ingredient"
     ],
@@ -4543,7 +4543,7 @@
   },
   {
     "activityName": "Peach, organic 2025, national average, at orchard {FR} U",
-    "alias": "peach-organic-2025-at-orchard",
+    "alias": "peach-organic-at-orchard",
     "categories": [
       "ingredient"
     ],
@@ -4642,7 +4642,7 @@
   },
   {
     "activityName": "Flaxseed, national average, animal feed, at farm gate, organic 2025 {FR} U",
-    "alias": "flaxseed-animal-feed-organic-2025",
+    "alias": "flaxseed-animal-feed-organic",
     "categories": [
       "ingredient"
     ],
@@ -4700,7 +4700,7 @@
   },
   {
     "activityName": "French bean, organic 2025, national average, at farm gate {FR} U",
-    "alias": "french-bean-organic-2025",
+    "alias": "french-bean-organic",
     "categories": [
       "ingredient"
     ],
@@ -4840,7 +4840,7 @@
   },
   {
     "activityName": "Onion, organic 2025 {CN}| onion production | Cut-off, U",
-    "alias": "onion-organic-2025-cn",
+    "alias": "onion-organic-cn",
     "categories": [
       "ingredient"
     ],
@@ -4898,7 +4898,7 @@
   },
   {
     "activityName": "Grapefruit for juice, organic 2025, at farm gate {US} U",
-    "alias": "grapefruit-for-juice-organic-2025",
+    "alias": "grapefruit-for-juice-organic",
     "categories": [
       "ingredient"
     ],
@@ -4956,7 +4956,7 @@
   },
   {
     "activityName": "Grape, wine grape, at farm, organic 2025 {IT}",
-    "alias": "grape-wine-grape-organic-2025",
+    "alias": "grape-wine-grape-organic",
     "categories": [
       "ingredient"
     ],
@@ -5014,7 +5014,7 @@
   },
   {
     "activityName": "Kiwi, organic 2025 {GLO}| production | Cut-off, U",
-    "alias": "kiwi-organic-2025",
+    "alias": "kiwi-organic",
     "categories": [
       "ingredient"
     ],
@@ -5154,7 +5154,7 @@
   },
   {
     "activityName": "Hazelnut, in shell, at farm, organic 2025 {IT}",
-    "alias": "hazelnut-in-shell-organic-2025",
+    "alias": "hazelnut-in-shell-organic",
     "categories": [
       "ingredient"
     ],
@@ -5212,7 +5212,7 @@
   },
   {
     "activityName": "Hemp, grain, Champagne, at farm gate, organic 2025 {FR} U",
-    "alias": "hemp-grain-champagne-organic-2025",
+    "alias": "hemp-grain-champagne-organic",
     "categories": [
       "ingredient"
     ],
@@ -5270,7 +5270,7 @@
   },
   {
     "activityName": "Orange, fresh grade, organic 2025 {ES}| orange production, fresh grade | Cut-off, U",
-    "alias": "orange-grade-organic-2025-fresh",
+    "alias": "orange-grade-organic-fresh",
     "categories": [
       "ingredient"
     ],
@@ -5328,7 +5328,7 @@
   },
   {
     "activityName": "Leek, organic 2025, national average, at plant {FR} U",
-    "alias": "leek-organic-2025-at-plant",
+    "alias": "leek-organic-at-plant",
     "categories": [
       "ingredient"
     ],
@@ -5386,7 +5386,7 @@
   },
   {
     "activityName": "Lemon, at farm, organic 2025 {IT} U",
-    "alias": "lemon-organic-2025",
+    "alias": "lemon-organic",
     "categories": [
       "ingredient"
     ],
@@ -5444,7 +5444,7 @@
   },
   {
     "activityName": "Lentil, organic 2025 {CA-SK}| lentil production | Cut-off, U",
-    "alias": "lentil-organic-2025",
+    "alias": "lentil-organic",
     "categories": [
       "ingredient"
     ],
@@ -5502,7 +5502,7 @@
   },
   {
     "activityName": "Lupin, organic 2025, national average, at farm gate, production {FR} U",
-    "alias": "lupin-organic-2025-production",
+    "alias": "lupin-organic-production",
     "categories": [
       "ingredient"
     ],
@@ -5560,7 +5560,7 @@
   },
   {
     "activityName": "Mango, organic 2025 {BR}| mango production | Cut-off, U",
-    "alias": "mango-organic-2025",
+    "alias": "mango-organic",
     "categories": [
       "ingredient"
     ],
@@ -5618,7 +5618,7 @@
   },
   {
     "activityName": "Melon, organic 2025, national average, at farm gate {FR} U",
-    "alias": "melon-organic-2025",
+    "alias": "melon-organic",
     "categories": [
       "ingredient"
     ],
@@ -5717,7 +5717,7 @@
   },
   {
     "activityName": "Spinach, organic 2025 {GLO}| production | Cut-off, U",
-    "alias": "spinach-organic-2025",
+    "alias": "spinach-organic",
     "categories": [
       "ingredient"
     ],
@@ -5857,7 +5857,7 @@
   },
   {
     "activityName": "Oat grain, organic 2025 {RoW}| oat production | Cut-off, U",
-    "alias": "oat-grain-organic-2025",
+    "alias": "oat-grain-organic",
     "categories": [
       "ingredient"
     ],
@@ -5915,7 +5915,7 @@
   },
   {
     "activityName": "Olive, organic 2025 {ES}| olive production | Cut-off, U",
-    "alias": "olive-organic-2025",
+    "alias": "olive-organic",
     "categories": [
       "ingredient"
     ],
@@ -5973,7 +5973,7 @@
   },
   {
     "activityName": "Orange, processing grade, at farm, organic 2025 {BR}",
-    "alias": "orange-processing-grade-organic-2025",
+    "alias": "orange-processing-grade-organic",
     "categories": [
       "ingredient"
     ],
@@ -6031,7 +6031,7 @@
   },
   {
     "activityName": "Palm fruit bunch, at farm, organic 2025 {MY}",
-    "alias": "palm-fruit-bunch-organic-2025",
+    "alias": "palm-fruit-bunch-organic",
     "categories": [
       "ingredient"
     ],
@@ -6089,7 +6089,7 @@
   },
   {
     "activityName": "Papaya, organic 2025 {GLO}| production | Cut-off, U",
-    "alias": "papaya-organic-2025",
+    "alias": "papaya-organic",
     "categories": [
       "ingredient"
     ],
@@ -6147,7 +6147,7 @@
   },
   {
     "activityName": "Peach, at farm, organic 2025 {ES}",
-    "alias": "peach-organic-2025",
+    "alias": "peach-organic",
     "categories": [
       "ingredient"
     ],
@@ -6205,7 +6205,7 @@
   },
   {
     "activityName": "Peanut, organic 2025 {RoW}| peanut production | Cut-off, U",
-    "alias": "peanut-organic-2025-row",
+    "alias": "peanut-organic-row",
     "categories": [
       "ingredient"
     ],
@@ -6304,7 +6304,7 @@
   },
   {
     "activityName": "Pear, at farm, organic 2025 {NL} U",
-    "alias": "pear-organic-2025",
+    "alias": "pear-organic",
     "categories": [
       "ingredient"
     ],
@@ -6362,7 +6362,7 @@
   },
   {
     "activityName": "Winter pea, organic 2025, 15% moisture, at farm gate {FR} U",
-    "alias": "winter-pea-organic-2025-15-moisture",
+    "alias": "winter-pea-organic-15-moisture",
     "categories": [
       "ingredient"
     ],
@@ -6543,7 +6543,7 @@
   },
   {
     "activityName": "Pineapple, at farm, organic 2025 {CR}",
-    "alias": "pineapple-organic-2025",
+    "alias": "pineapple-organic",
     "categories": [
       "ingredient"
     ],
@@ -6601,7 +6601,7 @@
   },
   {
     "activityName": "Banana, organic 2025 {RoW}| banana production | Cut-off, U",
-    "alias": "banana-organic-2025-row",
+    "alias": "banana-organic-row",
     "categories": [
       "ingredient"
     ],
@@ -6659,7 +6659,7 @@
   },
   {
     "activityName": "Ware potato, organic 2025, variety mix, national average, at farm gate {FR} U",
-    "alias": "ware-potato-organic-2025-variety-mix",
+    "alias": "ware-potato-organic-variety-mix",
     "categories": [
       "ingredient"
     ],
@@ -6758,7 +6758,7 @@
   },
   {
     "activityName": "Quinoa FR, organic 2025, at farm gate {FR} U",
-    "alias": "quinoa-fr-organic-2025",
+    "alias": "quinoa-fr-organic",
     "categories": [
       "ingredient"
     ],
@@ -6816,7 +6816,7 @@
   },
   {
     "activityName": "Radish, organic 2025 {FR}| radish production, in unheated greenhouse | Cut-off, U",
-    "alias": "radish-organic-2025",
+    "alias": "radish-organic",
     "categories": [
       "ingredient"
     ],
@@ -6874,7 +6874,7 @@
   },
   {
     "activityName": "Rapeseed, organic 2025, 9% moisture, national average, animal feed, at farm gate, production {FR} U",
-    "alias": "rapeseed-organic-2025-9-moisture-animal-feed-production",
+    "alias": "rapeseed-organic-9-moisture-animal-feed-production",
     "categories": [
       "ingredient"
     ],
@@ -6932,7 +6932,7 @@
   },
   {
     "activityName": "Raspberry, at farm, organic 2025 {RS}",
-    "alias": "raspberry-organic-2025",
+    "alias": "raspberry-organic",
     "categories": [
       "ingredient"
     ],
@@ -6990,7 +6990,7 @@
   },
   {
     "activityName": "Peanut, organic 2025 {IN}| peanut production | Cut-off, U",
-    "alias": "peanut-organic-2025-in",
+    "alias": "peanut-organic-in",
     "categories": [
       "ingredient"
     ],
@@ -7048,7 +7048,7 @@
   },
   {
     "activityName": "Soft wheat grain, organic 2025, breadmaking quality, 15% moisture, at farm gate {FR} U",
-    "alias": "soft-wheat-grain-organic-2025-breadmaking-quality-15-moisture",
+    "alias": "soft-wheat-grain-organic-breadmaking-quality-15-moisture",
     "categories": [
       "ingredient"
     ],
@@ -7106,7 +7106,7 @@
   },
   {
     "activityName": "Sweet sorghum grain, organic 2025 {RoW}| sweet sorghum production | Cut-off, U",
-    "alias": "sweet-sorghum-grain-organic-2025",
+    "alias": "sweet-sorghum-grain-organic",
     "categories": [
       "ingredient"
     ],
@@ -7164,7 +7164,7 @@
   },
   {
     "activityName": "Soybean, organic 2025 {BR}| market for soybean | Cut-off, U",
-    "alias": "soybean-organic-2025",
+    "alias": "soybean-organic",
     "categories": [
       "ingredient"
     ],
@@ -7222,7 +7222,7 @@
   },
   {
     "activityName": "Spring faba bean, organic 2025, reduced protection, at farm gate {FR} U",
-    "alias": "spring-faba-bean-organic-2025-reduced-protection",
+    "alias": "spring-faba-bean-organic-reduced-protection",
     "categories": [
       "ingredient"
     ],
@@ -7338,7 +7338,7 @@
   },
   {
     "activityName": "Sugar beet, at farm, organic 2025 {DE}",
-    "alias": "sugar-beet-organic-2025",
+    "alias": "sugar-beet-organic",
     "categories": [
       "ingredient"
     ],
@@ -7396,7 +7396,7 @@
   },
   {
     "activityName": "Sunflower, at farm, organic 2025 {FR}",
-    "alias": "sunflower-organic-2025",
+    "alias": "sunflower-organic",
     "categories": [
       "ingredient"
     ],
@@ -7454,7 +7454,7 @@
   },
   {
     "activityName": "Tomato, fresh grade, organic 2025 {ES}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U",
-    "alias": "tomato-grade-organic-2025-fresh",
+    "alias": "tomato-grade-organic-fresh",
     "categories": [
       "ingredient"
     ],
@@ -7512,7 +7512,7 @@
   },
   {
     "activityName": "Cabbage white, organic 2025 {RoW}| cabbage white production | Cut-off, U",
-    "alias": "cabbage-white-organic-2025",
+    "alias": "cabbage-white-organic",
     "categories": [
       "ingredient"
     ],
@@ -7570,7 +7570,7 @@
   },
   {
     "activityName": "Wheat grain, organic 2025 {FR}| wheat production | Cut-off, U",
-    "alias": "wheat-grain-organic-2025",
+    "alias": "wheat-grain-organic",
     "categories": [
       "ingredient"
     ],
