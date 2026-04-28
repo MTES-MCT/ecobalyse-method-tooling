@@ -1,7 +1,7 @@
 [
   {
     "activityName": "Agave tequilana, at farm {MX} U",
-    "alias": "agave-eu",
+    "alias": "agave-tequilana",
     "categories": [
       "ingredient"
     ],
@@ -23,7 +23,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
+          "rule": "Agave UE found in ingredients.json",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -58,7 +58,7 @@
   },
   {
     "activityName": "Almonds, in shell, at farm {CN} - Adapted from WFLDB U",
-    "alias": "almond-in-shell-eu",
+    "alias": "almond-in-shell",
     "categories": [
       "ingredient"
     ],
@@ -115,7 +115,7 @@
   },
   {
     "activityName": "Durum wheat grain, at farm {ES} - Adapted from WFLDB U",
-    "alias": "amaranth-eu",
+    "alias": "durum-wheat-grain-es",
     "categories": [
       "ingredient"
     ],
@@ -161,6 +161,86 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "durum-wheat-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Blé dur UE",
+        "id": "0c168ecf-5feb-5bce-a516-5a270ba1a6cd",
+        "inediblePart": 0.0,
+        "inediblePartMatch": {
+          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "grain_raw"
+        ],
+        "ingredientDensity": 0.75,
+        "ingredientDensityMatch": {
+          "rule": "grain default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 2.259,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with durum wheat in cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "grain → none (non-perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "BLE TENDRE",
+        "cropGroupMatch": {
+          "rule": "wheat/flour pattern",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "spelt-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Epeautre UE",
+        "id": "25d36bfb-7580-59d8-8a5b-0b22536e9aca",
+        "inediblePart": 0.0,
+        "inediblePartMatch": {
+          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "grain_raw"
+        ],
+        "ingredientDensity": 0.75,
+        "ingredientDensityMatch": {
+          "rule": "grain default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 2.259,
+        "rawToCookedRatioMatch": {
+          "rule": "grain default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "grain → none (non-perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "AUTRES CEREALES",
+        "cropGroupMatch": {
+          "rule": "matched 'spelt' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -172,7 +252,7 @@
   },
   {
     "activityName": "Apple {IT}| apple production | Cut-off, U",
-    "alias": "apple-eu",
+    "alias": "apple",
     "categories": [
       "ingredient"
     ],
@@ -218,6 +298,46 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "quince-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Coing UE",
+        "id": "5f521f2b-f40e-5828-92a1-0cb9dff674f1",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.85,
+        "ingredientDensityMatch": {
+          "rule": "fruit default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -229,7 +349,7 @@
   },
   {
     "activityName": "Apricot {ES}| apricot production | Cut-off, U",
-    "alias": "apricot-eu",
+    "alias": "apricot",
     "categories": [
       "ingredient"
     ],
@@ -286,7 +406,7 @@
   },
   {
     "activityName": "White asparagus {FR}| white asparagus production | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "asparagu-eu",
+    "alias": "white-asparagu",
     "categories": [
       "ingredient"
     ],
@@ -343,7 +463,7 @@
   },
   {
     "activityName": "Avocado {GLO}| avocado production | Cut-off, U",
-    "alias": "avocado-eu",
+    "alias": "avocado",
     "categories": [
       "ingredient"
     ],
@@ -400,7 +520,7 @@
   },
   {
     "activityName": "Banana {RoW}| banana production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "banana-eu-antilles",
+    "alias": "banana",
     "categories": [
       "ingredient"
     ],
@@ -457,7 +577,7 @@
   },
   {
     "activityName": "Mint {IN}| mint production | Cut-off, U",
-    "alias": "bay-leaf-eu",
+    "alias": "mint",
     "categories": [
       "ingredient"
     ],
@@ -503,6 +623,206 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "dill-fresh-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Aneth, frais UE",
+        "id": "f7a0c8f4-0292-5d4f-a1bf-c0ea957782e1",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "herb-marjoram-oregano-savory-thyme-basil-rosemary-sage-dried-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) UE",
+        "id": "a31fc664-e136-507a-9ae0-ad78d5130625",
+        "inediblePart": 0.0,
+        "inediblePartMatch": {
+          "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "spice_condiment_additive"
+        ],
+        "ingredientDensity": 0.5,
+        "ingredientDensityMatch": {
+          "rule": "Matched with Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) FR in ingredients.json",
+          "confidence": 0.999
+        },
+        "rawToCookedRatio": 1.0,
+        "rawToCookedRatioMatch": {
+          "rule": "spice_condiment default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "dried packaging → none",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroupMatch": {
+          "rule": "matched 'rosemary' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "herb-dill-basil-chervil-rosemary-sage-thyme-fresh-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) UE",
+        "id": "ddf1b502-4c77-5275-a074-726b1125a959",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroupMatch": {
+          "rule": "matched 'rosemary' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "mint-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Menthe UE",
+        "id": "d4a10667-ce93-5a47-a1c4-f1af001850f8",
+        "inediblePart": 0.1,
+        "inediblePartMatch": {
+          "rule": "Matched with Mint in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroupMatch": {
+          "rule": "matched 'mint' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "tarragon-fresh-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Estragon frais UE",
+        "id": "4671039d-bdd2-58d9-bd3d-d33855775740",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Tarragon in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "spice_condiment_additive"
+        ],
+        "ingredientDensity": 0.5,
+        "ingredientDensityMatch": {
+          "rule": "spice_condiment default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 1.0,
+        "rawToCookedRatioMatch": {
+          "rule": "spice_condiment default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "spice_condiment → none (non-perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroupMatch": {
+          "rule": "matched 'tarragon' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -514,7 +834,7 @@
   },
   {
     "activityName": "Beetroot for juice, conventional, at farm gate {FR} U",
-    "alias": "beetroot-eu",
+    "alias": "beetroot-for-juice",
     "categories": [
       "ingredient"
     ],
@@ -571,7 +891,7 @@
   },
   {
     "activityName": "Bell pepper {FR}| bell pepper production, in unheated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "bell-pepper-green-yellow-or-red-eu",
+    "alias": "bell-pepper",
     "categories": [
       "ingredient"
     ],
@@ -617,6 +937,46 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "chili-pepper-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Piments UE",
+        "id": "f14e9789-c999-5263-838e-17beede52267",
+        "inediblePart": 0.03,
+        "inediblePartMatch": {
+          "rule": "Matched with Peppers in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'chili pepper' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -628,7 +988,7 @@
   },
   {
     "activityName": "Strawberry {ES}| strawberry production, open field, macro tunnel | Cut-off, U",
-    "alias": "black-currant-eu",
+    "alias": "strawberry",
     "categories": [
       "ingredient"
     ],
@@ -674,6 +1034,126 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "gooseberry-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Groseille UE",
+        "id": "f1487a1a-72ca-5d80-987f-14f899e7c0ef",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.85,
+        "ingredientDensityMatch": {
+          "rule": "fruit default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "red-currant-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Groseille rouge UE",
+        "id": "2d2c8085-aec1-5d55-9357-440cc3582855",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Currant in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.85,
+        "ingredientDensityMatch": {
+          "rule": "fruit default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "strawberry-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Fraise UE",
+        "id": "7b6087bc-b370-56a8-a4c5-1afe960116a3",
+        "inediblePart": 0.03,
+        "inediblePartMatch": {
+          "rule": "Matched with Strawberries in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.95,
+        "ingredientDensityMatch": {
+          "rule": "strawberry found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'strawberry' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -685,7 +1165,7 @@
   },
   {
     "activityName": "Blackberry, at farm {RS} - Adapted from WFLDB U",
-    "alias": "black-mulberry-eu",
+    "alias": "blackberry",
     "categories": [
       "ingredient"
     ],
@@ -742,7 +1222,7 @@
   },
   {
     "activityName": "Blueberry, at farm {CA} - Adapted from WFLDB U",
-    "alias": "blueberry-eu",
+    "alias": "blueberry",
     "categories": [
       "ingredient"
     ],
@@ -799,7 +1279,7 @@
   },
   {
     "activityName": "Mango, at farm (WFLDB)",
-    "alias": "breadfruit-eu",
+    "alias": "mango",
     "categories": [
       "ingredient"
     ],
@@ -857,7 +1337,7 @@
   },
   {
     "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "broad-bean-eu",
+    "alias": "fava-bean-swis-integrated-production",
     "categories": [
       "ingredient"
     ],
@@ -903,6 +1383,166 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "flageolet-bean-green-dried-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Haricots flageolets verts UE",
+        "id": "e634ae9e-b825-5dcf-a0c1-14cbf495c35d",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "legume default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "legume default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "dried packaging → none",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroupMatch": {
+          "rule": "legume default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "lima-bean-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Haricots de Lima UE",
+        "id": "3a3a72d4-8df1-5c4b-987c-30594730d724",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "legume default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "legume default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "legume NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroupMatch": {
+          "rule": "legume default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "mung-bean-sprouted-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Haricot mungo UE",
+        "id": "79cd73a5-7b3c-5ac0-b6af-87d8562438b3",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "legume default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "legume default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "legume NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroupMatch": {
+          "rule": "legume default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "red-bean-dried-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Haricots rouges UE",
+        "id": "64c9962d-8250-50a5-86d2-9c0379220645",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "legume default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "legume default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "dried packaging → none",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroupMatch": {
+          "rule": "legume default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -914,7 +1554,7 @@
   },
   {
     "activityName": "Broccoli {CH}| broccoli production, conventional, plain region | Cut-off, U",
-    "alias": "broccoli-eu",
+    "alias": "broccoli",
     "categories": [
       "ingredient"
     ],
@@ -971,7 +1611,7 @@
   },
   {
     "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "brussel-sprout-eu",
+    "alias": "cauliflower",
     "categories": [
       "ingredient"
     ],
@@ -1017,29 +1657,172 @@
           "food",
           "food2"
         ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "cardoon-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Cardoon UE",
-    "id": "a8dc730b-985f-5d2a-8cb9-246b54eb2226",
-    "metadata": [
+      },
       {
         "alias": "cardoon-eu",
         "defaultOrigin": "EuropeAndMaghreb",
         "displayName": "Cardoon UE",
         "id": "d75a5fdf-9051-5bb1-a858-7cb7ffe58de6",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "Cardoon UE found in ingredients.json",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "cauliflower-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Chou-fleur UE",
+        "id": "06cecb02-3b24-59a9-a966-a65e33ba4bf6",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Cauliflower in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "cauliflower found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'chou-fleur' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "green-cabbage-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Chou vert UE",
+        "id": "2a491957-35f1-51a3-804d-e09c457cb2ba",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Cabbage in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with cabbage in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "jerusalem-artichoke-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Topinambour UE",
+        "id": "def22b3d-6c34-53a7-a594-942a798c0e8f",
+        "inediblePart": 0.1,
+        "inediblePartMatch": {
+          "rule": "Matched with Jerusalemen artichoke in agb_inedible.csv",
+          "confidence": 0.98
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with artichoke in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "kale-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Chou frisé UE",
+        "id": "bc6e351b-b696-5f99-8c53-0afdc1f499f8",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -1056,6 +1839,126 @@
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
           "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'chou-fleur' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "kohlrabi-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Chou-rave UE",
+        "id": "c4cc3679-d5b2-5d2e-a088-1d53b2ee4375",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'chou-fleur' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "rhubarb-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Rhubarbe UE",
+        "id": "bea6498a-c42e-528b-83af-b2337b419c10",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "Rhubarbe UE found in ingredients.json",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "artichoke-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Artichaut UE",
+        "id": "f370924b-f15c-53dc-9728-38010bb6a7c9",
+        "inediblePart": 0.6,
+        "inediblePartMatch": {
+          "rule": "Matched with Artichokes in agb_inedible.csv",
+          "confidence": 0.98
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with artichoke in cooked_to_raw.csv",
           "confidence": 1.0
         },
         "scenario": "import",
@@ -1085,7 +1988,7 @@
   },
   {
     "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "carrot-eu",
+    "alias": "carrot",
     "categories": [
       "ingredient"
     ],
@@ -1131,81 +2034,7 @@
           "food",
           "food2"
         ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "cauliflower-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Chou-fleur UE",
-    "id": "d3860559-49c8-5df3-8fe4-1b0689cb938e",
-    "metadata": [
-      {
-        "alias": "cauliflower-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Chou-fleur UE",
-        "id": "06cecb02-3b24-59a9-a966-a65e33ba4bf6",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Cauliflower in agb_inedible.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "cauliflower found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'chou-fleur' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "celeriac-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Céleri-rave UE",
-    "id": "7202dbd6-6a83-5ff1-8767-18a234b67336",
-    "metadata": [
+      },
       {
         "alias": "celeriac-eu",
         "defaultOrigin": "EuropeAndMaghreb",
@@ -1245,6 +2074,206 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "horseradish-fresh-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Raifort frais UE",
+        "id": "73ea7661-67ba-5ba1-8c8a-7e96b2817468",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "parsnip-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Panais UE",
+        "id": "a8eddc41-ee96-50f5-839e-f224502d27f0",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "AUTRES OLEAGINEUX",
+        "cropGroupMatch": {
+          "rule": "matched 'autres oleagineux' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "rutabaga-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Rutabaga UE",
+        "id": "94de0d0c-56a7-53e2-b949-4757beb7ba8f",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "Rutabaga FR found in ingredients.json",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "salsify-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Salsifi UE",
+        "id": "ffda5241-c267-5ff7-a9fa-5c4edf6c085b",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Salsify in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'endive' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "turnip-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Navet UE",
+        "id": "88d8d0b5-c399-5d7a-8636-d027d40e4e5e",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Turnips in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with turnip in cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'carrot' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -1256,7 +2285,7 @@
   },
   {
     "activityName": "Celery {GLO}| 675 production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "celery-eu",
+    "alias": "celery",
     "categories": [
       "ingredient"
     ],
@@ -1313,7 +2342,7 @@
   },
   {
     "activityName": "Cherry, at farm (WFLDB)",
-    "alias": "cherry-eu",
+    "alias": "cherry",
     "categories": [
       "ingredient"
     ],
@@ -1359,6 +2388,86 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "greengage-plum-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Prune reine-claude UE",
+        "id": "a8abdd4a-b6bd-5afa-b1a7-de92c50a0268",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Plum in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.95,
+        "ingredientDensityMatch": {
+          "rule": "Matched with plum in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with plum in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "ARBORICULTURE",
+        "cropGroupMatch": {
+          "rule": "matched 'banane export' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "morello-cherry-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Cerise griotte UE",
+        "id": "c96dbf63-7d41-5c8b-acf2-84569e953281",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Cherry in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "Matched with cherry in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -1371,7 +2480,7 @@
   },
   {
     "activityName": "Tomato, fresh grade {ES}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "cherry-tomato-eu",
+    "alias": "tomato-grade-fresh",
     "categories": [
       "ingredient"
     ],
@@ -1417,6 +2526,126 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "cucumber-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Concombre UE",
+        "id": "198e4676-91fb-53de-9976-bc97a3a19078",
+        "inediblePart": 0.1,
+        "inediblePartMatch": {
+          "rule": "Matched with Cucumbers in agb_inedible.csv",
+          "confidence": 0.98
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "cucumber found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'cucumber' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "gherkin-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Cornichon UE",
+        "id": "260c363e-3d44-50c3-b01f-4a8404fcbb02",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "tomato-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Tomate UE",
+        "id": "580a0f50-b5fa-5ae3-9d95-14a70e0cf0d3",
+        "inediblePart": 0.03,
+        "inediblePartMatch": {
+          "rule": "Matched with Tomatoes in agb_inedible.csv",
+          "confidence": 0.98
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "tomato found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'tomato' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -1428,7 +2657,7 @@
   },
   {
     "activityName": "Walnut, dried inshell, conventional, national average, at farm gate {FR} U",
-    "alias": "chestnut-eu",
+    "alias": "walnut-inshell-dried",
     "categories": [
       "ingredient"
     ],
@@ -1474,6 +2703,46 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "walnut-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Noix UE",
+        "id": "4e996d8a-160a-5f73-a9b5-ace3b8f69369",
+        "inediblePart": 0.5,
+        "inediblePartMatch": {
+          "rule": "Matched with Walnuts in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "nut_oilseed_raw"
+        ],
+        "ingredientDensity": 0.5,
+        "ingredientDensityMatch": {
+          "rule": "Matched with walnut in density.csv",
+          "confidence": 0.98
+        },
+        "rawToCookedRatio": 1.0,
+        "rawToCookedRatioMatch": {
+          "rule": "nut_oilseed default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "nut_oilseed → none (non-perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "FRUITS A COQUES",
+        "cropGroupMatch": {
+          "rule": "matched 'walnut' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -1485,7 +2754,7 @@
   },
   {
     "activityName": "Chickpea {IN}| chickpea production | Cut-off, U",
-    "alias": "chickpea-dried-eu",
+    "alias": "chickpea",
     "categories": [
       "ingredient"
     ],
@@ -1542,7 +2811,7 @@
   },
   {
     "activityName": "Chicory witloof, season, conventional, root production, at farm gate {FR} U",
-    "alias": "chicory-root-eu",
+    "alias": "chicory-witloof-season-root-production",
     "categories": [
       "ingredient"
     ],
@@ -1598,65 +2867,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Bell pepper {FR}| bell pepper production, in unheated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "chili-pepper-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Piments UE",
-    "id": "0529f3a5-2f7b-5fb6-9117-01ebbfb88d27",
-    "metadata": [
-      {
-        "alias": "chili-pepper-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Piments UE",
-        "id": "f14e9789-c999-5263-838e-17beede52267",
-        "inediblePart": 0.03,
-        "inediblePartMatch": {
-          "rule": "Matched with Peppers in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'chili pepper' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Onion {NL}| onion production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "chive-eu",
+    "alias": "onion",
     "categories": [
       "ingredient"
     ],
@@ -1702,6 +2914,86 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "onion-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Oignons UE",
+        "id": "d90b05b5-7cb0-5b0c-b035-014cd9a9e088",
+        "inediblePart": 0.1,
+        "inediblePartMatch": {
+          "rule": "Matched with Onions in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'oignons' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "shallot-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Échalotes UE",
+        "id": "d0e04c4d-fa9c-5d55-b6c2-bda73c22d378",
+        "inediblePart": 0.1,
+        "inediblePartMatch": {
+          "rule": "Matched with Shallot in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -1713,7 +3005,7 @@
   },
   {
     "activityName": "Clementine, export quality, Souss, at orchard {MA} U",
-    "alias": "clementine-eu",
+    "alias": "clementine-export-quality-sous-at-orchard",
     "categories": [
       "ingredient"
     ],
@@ -1770,7 +3062,7 @@
   },
   {
     "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "coriander-eu",
+    "alias": "fennel",
     "categories": [
       "ingredient"
     ],
@@ -1816,6 +3108,86 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "fennel-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Fenouil UE",
+        "id": "b0b6d4c2-e9e9-5f9d-bf9c-22eb872a3b75",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Fennel in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'fennel' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "persimmon-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Kaki UE",
+        "id": "cf66c6cc-eef0-5e86-9194-3f4c31a01ec6",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.85,
+        "ingredientDensityMatch": {
+          "rule": "fruit default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -1827,7 +3199,7 @@
   },
   {
     "activityName": "Sweet corn {HU}| sweet corn production | Cut-off, U",
-    "alias": "corn-eu",
+    "alias": "sweet-corn",
     "categories": [
       "ingredient"
     ],
@@ -1884,7 +3256,7 @@
   },
   {
     "activityName": "Raw cow milk archetype, feed mix UK-149NW, at farm (WFLDB)",
-    "alias": "cow-milk-eu",
+    "alias": "cow-milk-archetype-feed-mix-uk-149nw-raw",
     "categories": [
       "ingredient"
     ],
@@ -1939,65 +3311,8 @@
     "location": "RER"
   },
   {
-    "activityName": "Tomato, fresh grade {ES}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "cucumber-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Concombre UE",
-    "id": "40407f34-2961-556f-a1d4-f928deb3a92b",
-    "metadata": [
-      {
-        "alias": "cucumber-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Concombre UE",
-        "id": "198e4676-91fb-53de-9976-bc97a3a19078",
-        "inediblePart": 0.1,
-        "inediblePartMatch": {
-          "rule": "Matched with Cucumbers in agb_inedible.csv",
-          "confidence": 0.98
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 1.0,
-        "ingredientDensityMatch": {
-          "rule": "cucumber found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'cucumber' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Linseed seed, at farm {CH}| linseed seed production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "cucurbitacea-seed-eu",
+    "alias": "linseed-seed",
     "categories": [
       "ingredient"
     ],
@@ -2043,171 +3358,40 @@
           "food",
           "food2"
         ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Mint {IN}| mint production | Cut-off, U",
-    "alias": "dill-fresh-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Aneth, frais UE",
-    "id": "4b42bb06-bab2-512f-9015-d51ff7df1daa",
-    "metadata": [
+      },
       {
-        "alias": "dill-fresh-eu",
+        "alias": "poppy-seed-eu",
         "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Aneth, frais UE",
-        "id": "f7a0c8f4-0292-5d4f-a1bf-c0ea957782e1",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Mint {IN}| mint production | Cut-off, U",
-    "alias": "herb-marjoram-oregano-savory-thyme-basil-rosemary-sage-dried-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) UE",
-    "id": "3178d97c-9a35-5e6a-aea2-8787ed3b477a",
-    "metadata": [
-      {
-        "alias": "herb-marjoram-oregano-savory-thyme-basil-rosemary-sage-dried-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) UE",
-        "id": "a31fc664-e136-507a-9ae0-ad78d5130625",
+        "displayName": "Graines de pavot UE",
+        "id": "72925a8b-cd45-5967-a561-f9c977549930",
         "inediblePart": 0.0,
         "inediblePartMatch": {
-          "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
+          "rule": "Matched with poppy seed in inedible_part.csv",
+          "confidence": 0.98
         },
         "ingredientCategories": [
-          "spice_condiment_additive"
+          "nut_oilseed_raw"
         ],
-        "ingredientDensity": 0.5,
+        "ingredientDensity": 0.6,
         "ingredientDensityMatch": {
-          "rule": "Matched with Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) FR in ingredients.json",
-          "confidence": 0.999
+          "rule": "nut_oilseed default from food_type_density.csv",
+          "confidence": 1.0
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
-          "rule": "spice_condiment default from food_type_cooked_to_raw.csv",
+          "rule": "nut_oilseed default from food_type_cooked_to_raw.csv",
           "confidence": 1.0
         },
         "scenario": "import",
         "transportCooling": "none",
         "transportCoolingMatch": {
-          "rule": "dried packaging → none",
+          "rule": "nut_oilseed → none (non-perishable)",
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroup": "AUTRES OLEAGINEUX",
         "cropGroupMatch": {
-          "rule": "matched 'rosemary' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Durum wheat grain, at farm {ES} - Adapted from WFLDB U",
-    "alias": "durum-wheat-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Blé dur UE",
-    "id": "967100c0-720b-59d0-8bd1-1f3412f4acd8",
-    "metadata": [
-      {
-        "alias": "durum-wheat-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Blé dur UE",
-        "id": "0c168ecf-5feb-5bce-a516-5a270ba1a6cd",
-        "inediblePart": 0.0,
-        "inediblePartMatch": {
-          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "grain_raw"
-        ],
-        "ingredientDensity": 0.75,
-        "ingredientDensityMatch": {
-          "rule": "grain default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 2.259,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with durum wheat in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "grain → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "BLE TENDRE",
-        "cropGroupMatch": {
-          "rule": "wheat/flour pattern",
+          "rule": "oilseed pattern",
           "confidence": 1.0
         },
         "scopes": [
@@ -2225,7 +3409,7 @@
   },
   {
     "activityName": "Chicken egg, poultry industrial laying systems, at farm (WFLDB)",
-    "alias": "egg-eu",
+    "alias": "chicken-egg-poultry-industrial-laying-system",
     "categories": [
       "ingredient"
     ],
@@ -2281,7 +3465,7 @@
   },
   {
     "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
-    "alias": "eggplant-eu",
+    "alias": "zucchini",
     "categories": [
       "ingredient"
     ],
@@ -2327,6 +3511,126 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "pumpkin-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Citrouille UE",
+        "id": "29929942-0081-5f67-9a02-e23e3e4c3f48",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Pumpkin in agb_inedible.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "pumpkin found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "squash-with-skin-raw-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Courge crue, avec la peau UE",
+        "id": "209bb168-1e1b-5516-830b-72b369251d87",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "zucchini-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Courgettes UE",
+        "id": "d918af68-50fd-5198-93a6-fdc42a5348ae",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "zucchini found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with zucchini in cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'zucchini' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -2338,7 +3642,7 @@
   },
   {
     "activityName": "Elderberry, at farm {PL} - Adapted from WFLDB U",
-    "alias": "elderberry-eu",
+    "alias": "elderberry",
     "categories": [
       "ingredient"
     ],
@@ -2395,7 +3699,7 @@
   },
   {
     "activityName": "Lettuce, conventional, national average, at farm gate {FR} U",
-    "alias": "endive-eu",
+    "alias": "lettuce",
     "categories": [
       "ingredient"
     ],
@@ -2417,7 +3721,7 @@
         ],
         "ingredientDensity": 0.118,
         "ingredientDensityMatch": {
-          "rule": "Endive FR found in ingredients.json",
+          "rule": "Endive UE found in ingredients.json",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -2441,32 +3745,15 @@
           "food",
           "food2"
         ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "fennel-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Fenouil UE",
-    "id": "1131f41a-151a-56de-8a2d-6d14e89e0d84",
-    "metadata": [
+      },
       {
-        "alias": "fennel-eu",
+        "alias": "red-endive-eu",
         "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Fenouil UE",
-        "id": "b0b6d4c2-e9e9-5f9d-bf9c-22eb872a3b75",
+        "displayName": "Endive rouge UE",
+        "id": "78804878-493f-57d0-ae3e-abea8192c922",
         "inediblePart": 0.2,
         "inediblePartMatch": {
-          "rule": "Matched with Fennel in agb_inedible.csv",
+          "rule": "Matched with Red endive in agb_inedible.csv",
           "confidence": 1.0
         },
         "ingredientCategories": [
@@ -2479,8 +3766,8 @@
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
+          "rule": "Matched with endive in cooked_to_raw.csv",
+          "confidence": 0.95
         },
         "scenario": "import",
         "transportCooling": "always",
@@ -2491,7 +3778,47 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'fennel' in cropgroup.csv",
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "salad-lettuce-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Salade, laitue UE",
+        "id": "81894508-a3ba-56b8-87f2-6545439cae72",
+        "inediblePart": 0.4,
+        "inediblePartMatch": {
+          "rule": "Matched with Lettuce in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with lettuce in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2509,7 +3836,7 @@
   },
   {
     "activityName": "Peach, at farm {ES} - Adapted from WFLDB U",
-    "alias": "fig-eu",
+    "alias": "peach",
     "categories": [
       "ingredient"
     ],
@@ -2555,57 +3882,80 @@
           "food",
           "food2"
         ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "flageolet-bean-green-dried-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Haricots flageolets verts UE",
-    "id": "e6b06271-dcc0-51dc-a58f-0c4dc2f345c8",
-    "metadata": [
+      },
       {
-        "alias": "flageolet-bean-green-dried-eu",
+        "alias": "nectarine-eu",
         "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Haricots flageolets verts UE",
-        "id": "e634ae9e-b825-5dcf-a0c1-14cbf495c35d",
+        "displayName": "Nectarine UE",
+        "id": "c08197ea-6916-5882-93b6-512cbfb3442d",
         "inediblePart": 0.2,
         "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
           "confidence": 1.0
         },
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.8,
+        "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
+          "rule": "Nectarine FR found in ingredients.json",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
-          "rule": "legume default from food_type_cooked_to_raw.csv",
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
           "confidence": 1.0
         },
         "scenario": "import",
-        "transportCooling": "none",
+        "transportCooling": "always",
         "transportCoolingMatch": {
-          "rule": "dried packaging → none",
+          "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "peach-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Pêches UE",
+        "id": "c4702f90-e428-5a44-867f-3f7261b04afe",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Peach in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.85,
+        "ingredientDensityMatch": {
+          "rule": "fruit default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with peach in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2623,7 +3973,7 @@
   },
   {
     "activityName": "Flaxseed, national average, animal feed, at farm gate {FR} U",
-    "alias": "flaxseed-eu",
+    "alias": "flaxseed-animal-feed",
     "categories": [
       "ingredient"
     ],
@@ -2680,7 +4030,7 @@
   },
   {
     "activityName": "French bean, conventional, national average, at farm gate {FR} U",
-    "alias": "french-bean-eu",
+    "alias": "french-bean",
     "categories": [
       "ingredient"
     ],
@@ -2726,57 +4076,40 @@
           "food",
           "food2"
         ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Mint {IN}| mint production | Cut-off, U",
-    "alias": "herb-dill-basil-chervil-rosemary-sage-thyme-fresh-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) UE",
-    "id": "9f5e38f8-52fd-555a-8d6d-b5f1bba17ffa",
-    "metadata": [
+      },
       {
-        "alias": "herb-dill-basil-chervil-rosemary-sage-thyme-fresh-eu",
+        "alias": "white-bean-dried-eu",
         "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) UE",
-        "id": "ddf1b502-4c77-5275-a074-726b1125a959",
+        "displayName": "Haricots blancs séchés UE",
+        "id": "6fb8faac-9315-5292-8ec0-4cc570b980a9",
         "inediblePart": 0.2,
         "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
           "confidence": 1.0
         },
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 0.8,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
+          "rule": "legume default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "rule": "legume default from food_type_cooked_to_raw.csv",
           "confidence": 1.0
         },
         "scenario": "import",
-        "transportCooling": "always",
+        "transportCooling": "none",
         "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
+          "rule": "dried packaging → none",
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
         "cropGroupMatch": {
-          "rule": "matched 'rosemary' in cropgroup.csv",
+          "rule": "legume default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2789,12 +4122,12 @@
       "food",
       "food2"
     ],
-    "source": "Ecoinvent 3.11",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
     "activityName": "Garlic, fresh, at farm (WFLDB)",
-    "alias": "garlic-eu",
+    "alias": "garlic-fresh",
     "categories": [
       "ingredient"
     ],
@@ -2850,122 +4183,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Tomato, fresh grade {ES}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "gherkin-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Cornichon UE",
-    "id": "83c0c838-c87e-511d-8c27-0803ff7ad4c4",
-    "metadata": [
-      {
-        "alias": "gherkin-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Cornichon UE",
-        "id": "260c363e-3d44-50c3-b01f-4a8404fcbb02",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Strawberry {ES}| strawberry production, open field, macro tunnel | Cut-off, U",
-    "alias": "gooseberry-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Groseille UE",
-    "id": "38ab0abf-0333-54b8-bfd7-76dbaf5f4317",
-    "metadata": [
-      {
-        "alias": "gooseberry-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Groseille UE",
-        "id": "f1487a1a-72ca-5d80-987f-14f899e7c0ef",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.85,
-        "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "fruit default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
     "activityName": "Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "grapefruit-eu",
+    "alias": "orange-grade-fresh",
     "categories": [
       "ingredient"
     ],
@@ -3011,6 +4230,46 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "orange-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Oranges UE",
+        "id": "ab3925fc-577b-5a3c-ae6f-fdacd155d565",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Orange in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.95,
+        "ingredientDensityMatch": {
+          "rule": "Oranges FR found in ingredients.json",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -3022,7 +4281,7 @@
   },
   {
     "activityName": "Grape, wine grape, at farm {IT} - Adapted from WFLDB U",
-    "alias": "grape-black-or-white-eu",
+    "alias": "grape-wine-grape",
     "categories": [
       "ingredient"
     ],
@@ -3078,123 +4337,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "green-cabbage-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Chou vert UE",
-    "id": "7aa24936-d770-5998-aef7-5eb54ee440c7",
-    "metadata": [
-      {
-        "alias": "green-cabbage-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Chou vert UE",
-        "id": "2a491957-35f1-51a3-804d-e09c457cb2ba",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Cabbage in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with cabbage in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cherry, at farm (WFLDB)",
-    "alias": "greengage-plum-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Prune reine-claude UE",
-    "id": "6acc9e69-340e-51f7-86b6-2d1833d5968c",
-    "metadata": [
-      {
-        "alias": "greengage-plum-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Prune reine-claude UE",
-        "id": "a8abdd4a-b6bd-5afa-b1a7-de92c50a0268",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Plum in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.95,
-        "ingredientDensityMatch": {
-          "rule": "Matched with plum in density.csv",
-          "confidence": 0.95
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with plum in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "cropGroup": "ARBORICULTURE",
-        "cropGroupMatch": {
-          "rule": "matched 'banane export' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "IT"
-  },
-  {
     "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
-    "alias": "guava-eu-antilles",
+    "alias": "kiwi-fr-at-orchard",
     "categories": [
       "ingredient"
     ],
@@ -3240,6 +4384,46 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "kiwi-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Kiwi UE",
+        "id": "9dadb94e-4b4a-57ac-a4c9-9b02b586e904",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "kiwi found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with kiwi in cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "fruit default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -3251,7 +4435,7 @@
   },
   {
     "activityName": "Hazelnut, in shell, at farm {IT} - Adapted from WFLDB U",
-    "alias": "hazelnut-in-shell-eu",
+    "alias": "hazelnut-in-shell",
     "categories": [
       "ingredient"
     ],
@@ -3308,7 +4492,7 @@
   },
   {
     "activityName": "Hemp, grain, Champagne, at farm gate {FR} U",
-    "alias": "hemp-grain-eu",
+    "alias": "hemp-grain-champagne",
     "categories": [
       "ingredient"
     ],
@@ -3365,7 +4549,7 @@
   },
   {
     "activityName": "Honey, raw, small-scale production, unpackaged, at farm {CH} - Adapted from WFLDB U",
-    "alias": "honey-eu",
+    "alias": "honey-small-scale-production-unpackaged-raw",
     "categories": [
       "ingredient"
     ],
@@ -3416,293 +4600,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "horseradish-fresh-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Raifort frais UE",
-    "id": "b13eba34-f280-54be-87fb-fd075577625f",
-    "metadata": [
-      {
-        "alias": "horseradish-fresh-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Raifort frais UE",
-        "id": "73ea7661-67ba-5ba1-8c8a-7e96b2817468",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "jerusalem-artichoke-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Topinambour UE",
-    "id": "4492c354-4960-5825-8d0c-d579a8162b48",
-    "metadata": [
-      {
-        "alias": "jerusalem-artichoke-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Topinambour UE",
-        "id": "def22b3d-6c34-53a7-a594-942a798c0e8f",
-        "inediblePart": 0.1,
-        "inediblePartMatch": {
-          "rule": "Matched with Jerusalemen artichoke in agb_inedible.csv",
-          "confidence": 0.98
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with artichoke in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "kale-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Chou frisé UE",
-    "id": "17f5a096-f517-57fc-a4b4-de4c319cb87c",
-    "metadata": [
-      {
-        "alias": "kale-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Chou frisé UE",
-        "id": "bc6e351b-b696-5f99-8c53-0afdc1f499f8",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'chou-fleur' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
-    "alias": "kiwi-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Kiwi UE",
-    "id": "03bdbc73-8fbd-540a-81c2-2ecebeee7b69",
-    "metadata": [
-      {
-        "alias": "kiwi-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Kiwi UE",
-        "id": "9dadb94e-4b4a-57ac-a4c9-9b02b586e904",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 1.0,
-        "ingredientDensityMatch": {
-          "rule": "kiwi found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with kiwi in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "fruit default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "kohlrabi-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Chou-rave UE",
-    "id": "b1830127-ce26-589a-af39-3769502360a9",
-    "metadata": [
-      {
-        "alias": "kohlrabi-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Chou-rave UE",
-        "id": "c4cc3679-d5b2-5d2e-a088-1d53b2ee4375",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'chou-fleur' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Leek, conventional, national average, at plant {FR} U",
-    "alias": "leek-eu",
+    "alias": "leek-at-plant",
     "categories": [
       "ingredient"
     ],
@@ -3759,7 +4658,7 @@
   },
   {
     "activityName": "Lemon {ES}| lemon production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "lemon-eu",
+    "alias": "lemon",
     "categories": [
       "ingredient"
     ],
@@ -3816,7 +4715,7 @@
   },
   {
     "activityName": "Lentil {CA-SK}| lentil production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "lentil-eu",
+    "alias": "lentil",
     "categories": [
       "ingredient"
     ],
@@ -3872,65 +4771,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "lima-bean-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Haricots de Lima UE",
-    "id": "afd047f2-e3a0-5417-b9ce-5e9a191a6ccc",
-    "metadata": [
-      {
-        "alias": "lima-bean-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Haricots de Lima UE",
-        "id": "3a3a72d4-8df1-5c4b-987c-30594730d724",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "legume default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "legume NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
-        "cropGroupMatch": {
-          "rule": "legume default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Melon, conventional, national average, at farm gate {FR} U",
-    "alias": "melon-honeydew-charentai-cataloupe-cavaillon-eu",
+    "alias": "melon",
     "categories": [
       "ingredient"
     ],
@@ -3976,98 +4818,24 @@
           "food",
           "food2"
         ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Mint {IN}| mint production | Cut-off, U",
-    "alias": "mint-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Menthe UE",
-    "id": "0cf0f86a-d000-5c35-af7c-a6288caa2e4d",
-    "metadata": [
+      },
       {
-        "alias": "mint-eu",
+        "alias": "watermelon-eu",
         "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Menthe UE",
-        "id": "d4a10667-ce93-5a47-a1c4-f1af001850f8",
-        "inediblePart": 0.1,
-        "inediblePartMatch": {
-          "rule": "Matched with Mint in agb_inedible.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
-        "cropGroupMatch": {
-          "rule": "matched 'mint' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cherry, at farm (WFLDB)",
-    "alias": "morello-cherry-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Cerise griotte UE",
-    "id": "4f11edab-7279-5791-89c8-ba4d21da87f8",
-    "metadata": [
-      {
-        "alias": "morello-cherry-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Cerise griotte UE",
-        "id": "c96dbf63-7d41-5c8b-acf2-84569e953281",
+        "displayName": "Pastèque UE",
+        "id": "becdf1e8-b157-5dd9-9e7d-ce8045507714",
         "inediblePart": 0.2,
         "inediblePartMatch": {
-          "rule": "Matched with Cherry in agb_inedible.csv",
-          "confidence": 0.95
+          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
         },
         "ingredientCategories": [
           "vegetable_fresh"
         ],
         "ingredientDensity": 1.0,
         "ingredientDensityMatch": {
-          "rule": "Matched with cherry in density.csv",
-          "confidence": 0.95
+          "rule": "watermelon found in density.csv",
+          "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -4080,68 +4848,10 @@
           "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": false,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "fruit default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "IT"
-  },
-  {
-    "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "mung-bean-sprouted-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Haricot mungo UE",
-    "id": "2baf3e1e-3811-5a51-aabf-f81ea5700aa7",
-    "metadata": [
-      {
-        "alias": "mung-bean-sprouted-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Haricot mungo UE",
-        "id": "79cd73a5-7b3c-5ac0-b6af-87d8562438b3",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "legume default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "legume NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'pastèque' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4159,7 +4869,7 @@
   },
   {
     "activityName": "Agaricus bisporus mushroom, fresh, at plant {NL} - Adapted from WFLDB U",
-    "alias": "mushroom-morel-eu",
+    "alias": "agaricu-bisporu-mushroom-at-plant-fresh",
     "categories": [
       "ingredient"
     ],
@@ -4216,7 +4926,7 @@
   },
   {
     "activityName": "Mustard, proxy from Rape seed {Canada without Quebec}| rape seed production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "mustard-seed-eu",
+    "alias": "mustard-proxy-from-rape-seed",
     "categories": [
       "ingredient"
     ],
@@ -4272,65 +4982,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Peach, at farm {ES} - Adapted from WFLDB U",
-    "alias": "nectarine-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Nectarine UE",
-    "id": "38fc3696-979e-5aeb-8cd4-6c5145d6b572",
-    "metadata": [
-      {
-        "alias": "nectarine-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Nectarine UE",
-        "id": "c08197ea-6916-5882-93b6-512cbfb3442d",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.85,
-        "ingredientDensityMatch": {
-          "rule": "Nectarine FR found in ingredients.json",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "fruit default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Oats, at farm {FI} - Adapted from WFLDB U",
-    "alias": "oats-eu",
+    "alias": "oats",
     "categories": [
       "ingredient"
     ],
@@ -4387,7 +5040,7 @@
   },
   {
     "activityName": "Olive {IT}| olive production | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "olive-eu",
+    "alias": "olive",
     "categories": [
       "ingredient"
     ],
@@ -4443,122 +5096,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Onion {NL}| onion production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "onion-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Oignons UE",
-    "id": "0cf0af61-4465-50ca-bc02-80d06252b286",
-    "metadata": [
-      {
-        "alias": "onion-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Oignons UE",
-        "id": "d90b05b5-7cb0-5b0c-b035-014cd9a9e088",
-        "inediblePart": 0.1,
-        "inediblePartMatch": {
-          "rule": "Matched with Onions in agb_inedible.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'oignons' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "orange-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Oranges UE",
-    "id": "b802653c-4b37-5b81-ace2-eb59c20606db",
-    "metadata": [
-      {
-        "alias": "orange-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Oranges UE",
-        "id": "ab3925fc-577b-5a3c-ae6f-fdacd155d565",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Orange in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.95,
-        "ingredientDensityMatch": {
-          "rule": "Oranges FR found in ingredients.json",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "fruit default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Parsley, fresh, at farm {US} - Adapted from WFLDB U",
-    "alias": "parsley-fresh-eu",
+    "alias": "parsley-fresh",
     "categories": [
       "ingredient"
     ],
@@ -4614,122 +5153,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "parsnip-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Panais UE",
-    "id": "bcbcb0fd-40a3-554a-b250-486a2295f0bf",
-    "metadata": [
-      {
-        "alias": "parsnip-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Panais UE",
-        "id": "a8eddc41-ee96-50f5-839e-f224502d27f0",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "cropGroup": "AUTRES OLEAGINEUX",
-        "cropGroupMatch": {
-          "rule": "matched 'autres oleagineux' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Peach, at farm {ES} - Adapted from WFLDB U",
-    "alias": "peach-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Pêches UE",
-    "id": "6765799a-2799-579e-837e-019822bf0f69",
-    "metadata": [
-      {
-        "alias": "peach-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Pêches UE",
-        "id": "c4702f90-e428-5a44-867f-3f7261b04afe",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Peach in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.85,
-        "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with peach in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "fruit default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Pear, at farm {BE} - Adapted from WFLDB U",
-    "alias": "pear-eu",
+    "alias": "pear",
     "categories": [
       "ingredient"
     ],
@@ -4775,6 +5200,46 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "prickly-pear-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Figue de barbarie UE",
+        "id": "1255cec9-431a-5d6b-9bdc-940fa1a2d6f7",
+        "inediblePart": 0.1,
+        "inediblePartMatch": {
+          "rule": "Matched with Pear in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "grain_raw"
+        ],
+        "ingredientDensity": 0.95,
+        "ingredientDensityMatch": {
+          "rule": "Matched with pear in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 2.259,
+        "rawToCookedRatioMatch": {
+          "rule": "grain default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "grain → none (non-perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "prickly pear pattern",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -4786,7 +5251,7 @@
   },
   {
     "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
-    "alias": "pea-with-pod-eu",
+    "alias": "winter-pea-15-moisture",
     "categories": [
       "ingredient"
     ],
@@ -4832,57 +5297,120 @@
           "food",
           "food2"
         ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Fennel {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "persimmon-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Kaki UE",
-    "id": "565de124-2b7d-5343-9c98-477696bd1c56",
-    "metadata": [
+      },
       {
-        "alias": "persimmon-eu",
+        "alias": "snow-pea-eu",
         "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Kaki UE",
-        "id": "cf66c6cc-eef0-5e86-9194-3f4c31a01ec6",
+        "displayName": "Pois mange-tout UE",
+        "id": "7e41f2c4-1a95-5b50-acc3-a6370a10a575",
+        "inediblePart": 0.4,
+        "inediblePartMatch": {
+          "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "Matched with pea in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 1.0,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with pea in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fish_seafood NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroupMatch": {
+          "rule": "matched 'pea' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "split-pea-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Pois cassés UE",
+        "id": "149fea4b-47c5-5130-8838-93f4c49b974f",
         "inediblePart": 0.2,
         "inediblePartMatch": {
-          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
           "confidence": 1.0
         },
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.85,
+        "ingredientDensity": 0.8,
         "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with pea in density.csv",
+          "confidence": 0.95
         },
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
+          "rule": "Matched with pea in cooked_to_raw.csv",
+          "confidence": 0.95
         },
         "scenario": "import",
         "transportCooling": "always",
         "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
+          "rule": "legume NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'pea' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "winter-pea-eu",
+        "defaultOrigin": "EuropeAndMaghreb",
+        "displayName": "Pois d'hiver UE",
+        "id": "39a870a6-3146-5d74-af21-fe49165c8622",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "legume default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 1.0,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with pea in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "legume NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroupMatch": {
+          "rule": "legume default",
           "confidence": 1.0
         },
         "scopes": [
@@ -4900,7 +5428,7 @@
   },
   {
     "activityName": "Peanut {BR-SP}| peanut production, in cropping system | Cut-off, U",
-    "alias": "pine-nut-eu",
+    "alias": "peanut",
     "categories": [
       "ingredient"
     ],
@@ -4957,7 +5485,7 @@
   },
   {
     "activityName": "Pineapple, at farm {CR} - Adapted from WFLDB U",
-    "alias": "pineapple-eu-antilles",
+    "alias": "pineapple",
     "categories": [
       "ingredient"
     ],
@@ -5014,7 +5542,7 @@
   },
   {
     "activityName": "Pomegranate {RoW}| pomegranate production | Cut-off, U",
-    "alias": "pomegranate-eu",
+    "alias": "pomegranate",
     "categories": [
       "ingredient"
     ],
@@ -5070,65 +5598,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Linseed seed, at farm {CH}| linseed seed production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "poppy-seed-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Graines de pavot UE",
-    "id": "a753451a-a85b-514f-81d4-8bf214f8584c",
-    "metadata": [
-      {
-        "alias": "poppy-seed-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Graines de pavot UE",
-        "id": "72925a8b-cd45-5967-a561-f9c977549930",
-        "inediblePart": 0.0,
-        "inediblePartMatch": {
-          "rule": "Matched with poppy seed in inedible_part.csv",
-          "confidence": 0.98
-        },
-        "ingredientCategories": [
-          "nut_oilseed_raw"
-        ],
-        "ingredientDensity": 0.6,
-        "ingredientDensityMatch": {
-          "rule": "nut_oilseed default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 1.0,
-        "rawToCookedRatioMatch": {
-          "rule": "nut_oilseed default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "nut_oilseed → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "AUTRES OLEAGINEUX",
-        "cropGroupMatch": {
-          "rule": "oilseed pattern",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Potato, at farm (WFLDB)",
-    "alias": "potato-eu",
+    "alias": "potato",
     "categories": [
       "ingredient"
     ],
@@ -5185,179 +5656,8 @@
     "location": "NL"
   },
   {
-    "activityName": "Pear, at farm {BE} - Adapted from WFLDB U",
-    "alias": "prickly-pear-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Figue de barbarie UE",
-    "id": "9c31b456-0843-5c49-91b6-715796798bed",
-    "metadata": [
-      {
-        "alias": "prickly-pear-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Figue de barbarie UE",
-        "id": "1255cec9-431a-5d6b-9bdc-940fa1a2d6f7",
-        "inediblePart": 0.1,
-        "inediblePartMatch": {
-          "rule": "Matched with Pear in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "grain_raw"
-        ],
-        "ingredientDensity": 0.95,
-        "ingredientDensityMatch": {
-          "rule": "Matched with pear in density.csv",
-          "confidence": 0.95
-        },
-        "rawToCookedRatio": 2.259,
-        "rawToCookedRatioMatch": {
-          "rule": "grain default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "grain → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "prickly pear pattern",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
-    "alias": "pumpkin-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Citrouille UE",
-    "id": "9c3d01ed-6d0f-5cad-b77c-a5f2e48b3827",
-    "metadata": [
-      {
-        "alias": "pumpkin-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Citrouille UE",
-        "id": "29929942-0081-5f67-9a02-e23e3e4c3f48",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Pumpkin in agb_inedible.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 1.0,
-        "ingredientDensityMatch": {
-          "rule": "pumpkin found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Apple {IT}| apple production | Cut-off, U",
-    "alias": "quince-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Coing UE",
-    "id": "e4d406d7-4d41-5e63-af72-7d128b212062",
-    "metadata": [
-      {
-        "alias": "quince-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Coing UE",
-        "id": "5f521f2b-f40e-5828-92a1-0cb9dff674f1",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.85,
-        "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "fruit default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
     "activityName": "Quinoa FR, conventional, at farm gate {FR} U",
-    "alias": "quinoa-eu",
+    "alias": "quinoa-fr",
     "categories": [
       "ingredient"
     ],
@@ -5414,7 +5714,7 @@
   },
   {
     "activityName": "Radish {FR}| radish production, in unheated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "radish-eu",
+    "alias": "radish",
     "categories": [
       "ingredient"
     ],
@@ -5471,7 +5771,7 @@
   },
   {
     "activityName": "Rapeseed, conventional, 9% moisture, national average, animal feed, at farm gate, production {FR} U",
-    "alias": "rapeseed-eu",
+    "alias": "rapeseed-9-moisture-animal-feed-production",
     "categories": [
       "ingredient"
     ],
@@ -5528,7 +5828,7 @@
   },
   {
     "activityName": "Raspberry, at farm {RS} - Adapted from WFLDB U",
-    "alias": "raspberry-eu",
+    "alias": "raspberry",
     "categories": [
       "ingredient"
     ],
@@ -5585,7 +5885,7 @@
   },
   {
     "activityName": "Rice, non-basmati {RoW}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-eu",
+    "alias": "rice-non-basmati",
     "categories": [
       "ingredient"
     ],
@@ -5641,293 +5941,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Fava bean, Swiss integrated production {CH}| fava bean production, Swiss integrated production, at farm | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "red-bean-dried-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Haricots rouges UE",
-    "id": "85e2e235-7ad1-5e5b-b28d-f7ce132a3140",
-    "metadata": [
-      {
-        "alias": "red-bean-dried-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Haricots rouges UE",
-        "id": "64c9962d-8250-50a5-86d2-9c0379220645",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "legume default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "dried packaging → none",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
-        "cropGroupMatch": {
-          "rule": "legume default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Strawberry {ES}| strawberry production, open field, macro tunnel | Cut-off, U",
-    "alias": "red-currant-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Groseille rouge UE",
-    "id": "2ea31b97-8b16-5890-9308-a0268f973c4f",
-    "metadata": [
-      {
-        "alias": "red-currant-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Groseille rouge UE",
-        "id": "2d2c8085-aec1-5d55-9357-440cc3582855",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Currant in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.85,
-        "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "fruit default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Lettuce, conventional, national average, at farm gate {FR} U",
-    "alias": "red-endive-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Endive rouge UE",
-    "id": "db6991f9-4aa9-59b3-b2c5-ba69d86fadc0",
-    "metadata": [
-      {
-        "alias": "red-endive-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Endive rouge UE",
-        "id": "78804878-493f-57d0-ae3e-abea8192c922",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Red endive in agb_inedible.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with endive in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "rhubarb-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Rhubarbe UE",
-    "id": "8c5b0795-01fc-50be-b667-77b908aafe25",
-    "metadata": [
-      {
-        "alias": "rhubarb-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Rhubarbe UE",
-        "id": "bea6498a-c42e-528b-83af-b2337b419c10",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "Rhubarbe FR found in ingredients.json",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "rutabaga-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Rutabaga UE",
-    "id": "402acbb7-189c-5670-aac8-dc1e207d032e",
-    "metadata": [
-      {
-        "alias": "rutabaga-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Rutabaga UE",
-        "id": "94de0d0c-56a7-53e2-b949-4757beb7ba8f",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "Rutabaga FR found in ingredients.json",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Black pepper, conventional, at farm gate {VN} U",
-    "alias": "saffron-eu",
+    "alias": "black-pepper",
     "categories": [
       "ingredient"
     ],
@@ -5983,65 +5998,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Lettuce, conventional, national average, at farm gate {FR} U",
-    "alias": "salad-lettuce-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Salade, laitue UE",
-    "id": "c0f92dc4-a2ce-5858-942b-3630a9d47f75",
-    "metadata": [
-      {
-        "alias": "salad-lettuce-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Salade, laitue UE",
-        "id": "81894508-a3ba-56b8-87f2-6545439cae72",
-        "inediblePart": 0.4,
-        "inediblePartMatch": {
-          "rule": "Matched with Lettuce in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with lettuce in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Algae (Laminaria), fresh, at farm {FR} U",
-    "alias": "salicornia-fresh-eu",
+    "alias": "alga",
     "categories": [
       "ingredient"
     ],
@@ -6097,65 +6055,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "salsify-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Salsifi UE",
-    "id": "b00e8bce-c9f5-5f34-ad22-4966671ae8b3",
-    "metadata": [
-      {
-        "alias": "salsify-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Salsifi UE",
-        "id": "ffda5241-c267-5ff7-a9fa-5c4edf6c085b",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Salsify in agb_inedible.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'endive' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Sodium chloride, powder {GLO}| market for | Cut-off, S - Copied from Ecoinvent U",
-    "alias": "sea-salt-celery-salt-or-fleur-de-sel-eu",
+    "alias": "sodium-chloride-powder",
     "categories": [
       "ingredient"
     ],
@@ -6207,7 +6108,7 @@
   },
   {
     "activityName": "Seaweed optimized production, 1kg algae (Laminaria), fresh weight {FR} U",
-    "alias": "seaweed-eu",
+    "alias": "seaweed-optimized-production-1kg-alga",
     "categories": [
       "ingredient"
     ],
@@ -6263,65 +6164,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Onion {NL}| onion production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "shallot-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Échalotes UE",
-    "id": "816436e1-6d9d-582c-869f-e6d9847bb9a2",
-    "metadata": [
-      {
-        "alias": "shallot-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Échalotes UE",
-        "id": "d0e04c4d-fa9c-5d55-b6c2-bda73c22d378",
-        "inediblePart": 0.1,
-        "inediblePartMatch": {
-          "rule": "Matched with Shallot in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Sheep milk, conventional, Roquefort system, at farm gate {FR} U",
-    "alias": "sheep-milk-eu",
+    "alias": "sheep-milk-roquefort-system",
     "categories": [
       "ingredient"
     ],
@@ -6375,65 +6219,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
-    "alias": "snow-pea-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Pois mange-tout UE",
-    "id": "0768a3b7-9dfc-5173-b5a6-81d84822dd30",
-    "metadata": [
-      {
-        "alias": "snow-pea-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Pois mange-tout UE",
-        "id": "7e41f2c4-1a95-5b50-acc3-a6370a10a575",
-        "inediblePart": 0.4,
-        "inediblePartMatch": {
-          "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "animal_product"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "Matched with pea in density.csv",
-          "confidence": 0.95
-        },
-        "rawToCookedRatio": 1.0,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with pea in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fish_seafood NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
-        "cropGroupMatch": {
-          "rule": "matched 'pea' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Wheat grain {ES}| wheat production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "soft-wheat-eu",
+    "alias": "wheat-grain",
     "categories": [
       "ingredient"
     ],
@@ -6490,7 +6277,7 @@
   },
   {
     "activityName": "Soybean {CH}| soybean production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "soybean-eu",
+    "alias": "soybean",
     "categories": [
       "ingredient"
     ],
@@ -6546,65 +6333,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Durum wheat grain, at farm {ES} - Adapted from WFLDB U",
-    "alias": "spelt-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Epeautre UE",
-    "id": "2b985304-3d3b-54f5-96c6-77235e223b73",
-    "metadata": [
-      {
-        "alias": "spelt-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Epeautre UE",
-        "id": "25d36bfb-7580-59d8-8a5b-0b22536e9aca",
-        "inediblePart": 0.0,
-        "inediblePartMatch": {
-          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "grain_raw"
-        ],
-        "ingredientDensity": 0.75,
-        "ingredientDensityMatch": {
-          "rule": "grain default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 2.259,
-        "rawToCookedRatioMatch": {
-          "rule": "grain default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "grain → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "AUTRES CEREALES",
-        "cropGroupMatch": {
-          "rule": "matched 'spelt' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Spinach {CH}| spinach production, conventional, plain region | Cut-off, U",
-    "alias": "spinach-eu",
+    "alias": "spinach",
     "categories": [
       "ingredient"
     ],
@@ -6650,57 +6380,40 @@
           "food",
           "food2"
         ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
-    "alias": "split-pea-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Pois cassés UE",
-    "id": "1e358439-45db-5a68-b467-68e1ccaa730c",
-    "metadata": [
+      },
       {
-        "alias": "split-pea-eu",
+        "alias": "swis-chard-eu",
         "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Pois cassés UE",
-        "id": "149fea4b-47c5-5130-8838-93f4c49b974f",
+        "displayName": "Blette UE",
+        "id": "1326c16c-fb23-5397-ba04-1394b57e60c4",
         "inediblePart": 0.2,
         "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
           "confidence": 1.0
         },
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.8,
+        "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Matched with pea in density.csv",
-          "confidence": 0.95
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
         },
-        "rawToCookedRatio": 1.0,
+        "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
-          "rule": "Matched with pea in cooked_to_raw.csv",
-          "confidence": 0.95
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
         },
         "scenario": "import",
         "transportCooling": "always",
         "transportCoolingMatch": {
-          "rule": "legume NOVA 1 → always (perishable)",
+          "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'pea' in cropgroup.csv",
+          "rule": "matched 'chou-fleur' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6713,12 +6426,12 @@
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
     "activityName": "Spring faba bean, conventional, national average, at farm gate {FR} U",
-    "alias": "spring-faba-eu",
+    "alias": "spring-faba-bean",
     "categories": [
       "ingredient"
     ],
@@ -6775,7 +6488,7 @@
   },
   {
     "activityName": "Spring pea, conventional, 15% moisture, animal feed, at farm gate, production {FR} U",
-    "alias": "spring-pea-eu",
+    "alias": "spring-pea-15-moisture-animal-feed-production",
     "categories": [
       "ingredient"
     ],
@@ -6832,7 +6545,7 @@
   },
   {
     "activityName": "Water extraction, container filling and grouping, at water factory {FR} - Adapted from WFLDB U",
-    "alias": "spring-water-eu",
+    "alias": "water-extraction-container-filling-and-grouping-at-water-factory",
     "categories": [
       "ingredient"
     ],
@@ -6888,122 +6601,8 @@
     "unit": "L"
   },
   {
-    "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
-    "alias": "squash-with-skin-raw-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Courge crue, avec la peau UE",
-    "id": "fc89363a-f9c4-5129-82e5-306bf889840d",
-    "metadata": [
-      {
-        "alias": "squash-with-skin-raw-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Courge crue, avec la peau UE",
-        "id": "209bb168-1e1b-5516-830b-72b369251d87",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Strawberry {ES}| strawberry production, open field, macro tunnel | Cut-off, U",
-    "alias": "strawberry-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Fraise UE",
-    "id": "28987c81-1247-5e79-98f2-bfc815e274c7",
-    "metadata": [
-      {
-        "alias": "strawberry-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Fraise UE",
-        "id": "7b6087bc-b370-56a8-a4c5-1afe960116a3",
-        "inediblePart": 0.03,
-        "inediblePartMatch": {
-          "rule": "Matched with Strawberries in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.95,
-        "ingredientDensityMatch": {
-          "rule": "strawberry found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'strawberry' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
     "activityName": "Sugar beet, at farm {DE} - Adapted from WFLDB U",
-    "alias": "sugar-beet-eu",
+    "alias": "sugar-beet",
     "categories": [
       "ingredient"
     ],
@@ -7060,7 +6659,7 @@
   },
   {
     "activityName": "Sunflower, at farm (WFLDB)",
-    "alias": "sunflower-seed-eu",
+    "alias": "sunflower",
     "categories": [
       "ingredient"
     ],
@@ -7118,7 +6717,7 @@
   },
   {
     "activityName": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U",
-    "alias": "sweet-potato-eu",
+    "alias": "ware-potato-variety-mix",
     "categories": [
       "ingredient"
     ],
@@ -7174,236 +6773,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Spinach {CH}| spinach production, conventional, plain region | Cut-off, U",
-    "alias": "swis-chard-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Blette UE",
-    "id": "981eae36-23ea-5e99-978c-86f2e73b4602",
-    "metadata": [
-      {
-        "alias": "swis-chard-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Blette UE",
-        "id": "1326c16c-fb23-5397-ba04-1394b57e60c4",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'chou-fleur' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Mint {IN}| mint production | Cut-off, U",
-    "alias": "tarragon-fresh-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Estragon frais UE",
-    "id": "badd6faf-0723-5bb7-b45f-94d805a24f90",
-    "metadata": [
-      {
-        "alias": "tarragon-fresh-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Estragon frais UE",
-        "id": "4671039d-bdd2-58d9-bd3d-d33855775740",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Tarragon in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "spice_condiment_additive"
-        ],
-        "ingredientDensity": 0.5,
-        "ingredientDensityMatch": {
-          "rule": "spice_condiment default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 1.0,
-        "rawToCookedRatioMatch": {
-          "rule": "spice_condiment default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "spice_condiment → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
-        "cropGroupMatch": {
-          "rule": "matched 'tarragon' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Tomato, fresh grade {ES}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "tomato-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Tomate UE",
-    "id": "154168de-0070-52fe-a0b6-109f9fe44639",
-    "metadata": [
-      {
-        "alias": "tomato-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Tomate UE",
-        "id": "580a0f50-b5fa-5ae3-9d95-14a70e0cf0d3",
-        "inediblePart": 0.03,
-        "inediblePartMatch": {
-          "rule": "Matched with Tomatoes in agb_inedible.csv",
-          "confidence": 0.98
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 1.0,
-        "ingredientDensityMatch": {
-          "rule": "tomato found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'tomato' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "turnip-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Navet UE",
-    "id": "011b9a13-03a5-5b16-9578-0c21d7e8d161",
-    "metadata": [
-      {
-        "alias": "turnip-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Navet UE",
-        "id": "88d8d0b5-c399-5d7a-8636-d027d40e4e5e",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Turnips in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with turnip in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'carrot' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Vanilla {MG}| vanilla production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "vanilla-alcoholic-or-aqueou-extract-eu-antilles",
+    "alias": "vanilla",
     "categories": [
       "ingredient"
     ],
@@ -7459,179 +6830,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Walnut, dried inshell, conventional, national average, at farm gate {FR} U",
-    "alias": "walnut-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Noix UE",
-    "id": "a36e7603-b15a-519d-afcf-2fb5dd176b60",
-    "metadata": [
-      {
-        "alias": "walnut-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Noix UE",
-        "id": "4e996d8a-160a-5f73-a9b5-ace3b8f69369",
-        "inediblePart": 0.5,
-        "inediblePartMatch": {
-          "rule": "Matched with Walnuts in agb_inedible.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "nut_oilseed_raw"
-        ],
-        "ingredientDensity": 0.5,
-        "ingredientDensityMatch": {
-          "rule": "Matched with walnut in density.csv",
-          "confidence": 0.98
-        },
-        "rawToCookedRatio": 1.0,
-        "rawToCookedRatioMatch": {
-          "rule": "nut_oilseed default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "nut_oilseed → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "FRUITS A COQUES",
-        "cropGroupMatch": {
-          "rule": "matched 'walnut' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Melon, conventional, national average, at farm gate {FR} U",
-    "alias": "watermelon-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Pastèque UE",
-    "id": "59ab4f1e-6fcd-501a-855f-5bf63ed43631",
-    "metadata": [
-      {
-        "alias": "watermelon-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Pastèque UE",
-        "id": "becdf1e8-b157-5dd9-9e7d-ce8045507714",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 1.0,
-        "ingredientDensityMatch": {
-          "rule": "watermelon found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'pastèque' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "French bean, conventional, national average, at farm gate {FR} U",
-    "alias": "white-bean-dried-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Haricots blancs séchés UE",
-    "id": "ab3b4d29-0ab7-506f-a897-0855ba60dc78",
-    "metadata": [
-      {
-        "alias": "white-bean-dried-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Haricots blancs séchés UE",
-        "id": "6fb8faac-9315-5292-8ec0-4cc570b980a9",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "legume default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "dried packaging → none",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
-        "cropGroupMatch": {
-          "rule": "legume default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "White cabbage {CH}| white cabbage production, conventional, plain region | Cut-off, U",
-    "alias": "white-cabbage-eu",
+    "alias": "white-cabbage",
     "categories": [
       "ingredient"
     ],
@@ -7688,7 +6888,7 @@
   },
   {
     "activityName": "Barley grain {DE}| barley production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "barley-whole-eu",
+    "alias": "barley-grain",
     "categories": [
       "ingredient"
     ],
@@ -7745,7 +6945,7 @@
   },
   {
     "activityName": "Durum wheat grain, at farm {GR} - Adapted from WFLDB U",
-    "alias": "millet-whole-eu",
+    "alias": "durum-wheat-grain-gr",
     "categories": [
       "ingredient"
     ],
@@ -7802,7 +7002,7 @@
   },
   {
     "activityName": "Rye grain {RER}| rye production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "rye-whole-eu",
+    "alias": "rye-grain",
     "categories": [
       "ingredient"
     ],
@@ -7858,179 +7058,8 @@
     "unit": "kg"
   },
   {
-    "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
-    "alias": "winter-pea-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Pois d'hiver UE",
-    "id": "c962b7e2-109c-5cb5-9bc7-fcc00a5ff997",
-    "metadata": [
-      {
-        "alias": "winter-pea-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Pois d'hiver UE",
-        "id": "39a870a6-3146-5d74-af21-fe49165c8622",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 1.0,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with pea in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "legume NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
-        "cropGroupMatch": {
-          "rule": "legume default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Zucchini, conventional, national average, at farm gate {FR} U",
-    "alias": "zucchini-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Courgettes UE",
-    "id": "f0663e89-81b6-5c0f-a8fd-448d8f6be85a",
-    "metadata": [
-      {
-        "alias": "zucchini-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Courgettes UE",
-        "id": "d918af68-50fd-5198-93a6-fdc42a5348ae",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 1.0,
-        "ingredientDensityMatch": {
-          "rule": "zucchini found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with zucchini in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'zucchini' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Cauliflower, conventional, national average, at farm gate {FR} U",
-    "alias": "artichoke-eu",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Artichaut UE",
-    "id": "9d36478a-5976-5669-8f87-9d245ee68054",
-    "metadata": [
-      {
-        "alias": "artichoke-eu",
-        "defaultOrigin": "EuropeAndMaghreb",
-        "displayName": "Artichaut UE",
-        "id": "f370924b-f15c-53dc-9728-38010bb6a7c9",
-        "inediblePart": 0.6,
-        "inediblePartMatch": {
-          "rule": "Matched with Artichokes in agb_inedible.csv",
-          "confidence": 0.98
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with artichoke in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Snail, wild {RO} U",
-    "alias": "snail-eu",
+    "alias": "snail-wild",
     "categories": [
       "ingredient"
     ],
@@ -8082,7 +7111,7 @@
   },
   {
     "activityName": "Seed-cotton {IN-GJ}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "cotton-seed-eu",
+    "alias": "seed-cotton",
     "categories": [
       "ingredient"
     ],
@@ -8139,7 +7168,7 @@
   },
   {
     "activityName": "Lupin, conventional, national average, at farm gate, production {FR} U",
-    "alias": "lupin-eu",
+    "alias": "lupin-production",
     "categories": [
       "ingredient"
     ],
@@ -8196,7 +7225,7 @@
   },
   {
     "activityName": "Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "alfalfa-eu",
+    "alias": "linseed",
     "categories": [
       "ingredient"
     ],

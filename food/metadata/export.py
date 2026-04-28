@@ -173,6 +173,33 @@ def generate_alias(name: str) -> str:
     return "-".join(singularized + qualifier_words)
 
 
+# LCA-process boilerplate phrases that don't help identify the activity.
+# Order matters in alternation: longer phrases first.
+_LCA_NOISE_RE = re.compile(
+    r",\s*(?:at\s+farm\s+gate|at\s+farm|national\s+average|conventional)",
+    re.IGNORECASE,
+)
+
+
+def generate_activity_alias(activity_name: str) -> str:
+    """Generate alias from a Brightway/Agribalyse activityName.
+
+    Keeps discriminating qualifiers (`, in shell`, `, non-basmati`, `, dried`,
+    …) but drops process-LCA boilerplate (`, at farm`, `{geo}`, `| production
+    …`, ` U`, `- Adapted from …`).
+    """
+    head = re.split(r"[{(|]", activity_name, maxsplit=1)[0]
+    head = _LCA_NOISE_RE.sub("", head)
+    head = re.sub(r"\s+U\s*$", "", head).strip().strip(",").strip()
+    return generate_alias(head)
+
+
+def extract_geo(activity_name: str) -> str:
+    """Return the lowercase code inside the first `{…}` of an activityName, or ''."""
+    m = re.search(r"\{([^}]+)\}", activity_name)
+    return m.group(1).lower() if m else ""
+
+
 def _format_match(match_info: dict | None) -> str:
     """Format match rule for CSV output."""
     if match_info is None:
@@ -366,8 +393,19 @@ def build_activity_entry(
     location: str = "",
     visible: bool = True,
     antilles: bool = False,
+    geo_disambiguate: bool = False,
 ) -> dict:
-    """Build an activity entry in the activities.json format."""
+    """Build an activity entry in the activities.json format.
+
+    Activity-level alias is derived from `activity_name` (LCI process identity);
+    ingredient-level alias is derived from `name` (Ecobalyse ingredient identity).
+    They differ when several ingredients reuse the same upstream activity as a
+    proxy (e.g., `fig-eu` ingredient hosted on `peach` activity).
+
+    When `geo_disambiguate` is True, the geo code from `{…}` in `activity_name`
+    is inserted before the variant suffix on the activity alias, to break ties
+    between distinct activityNames that collapse to the same alias.
+    """
     # Determine suffix based on variant and production location
     if variant == Variant.FR and production_fr == "DOM":
         variant_suffix = " FR Outre-Mer"
@@ -379,8 +417,18 @@ def build_activity_entry(
         variant_suffix = VARIANT_SUFFIX[variant]
         alias_suffix = VARIANT_ALIAS_SUFFIX[variant]
 
-    # Alias from English name + variant suffix (lowercase)
-    alias = generate_alias(name) + alias_suffix
+    # Activity alias from LCI activityName only (no variant suffix: an activity
+    # can be shared across variants — same `Apple {IT}` LCI feeds the FR, UE
+    # and OI variants of the apple ingredient). Geo is only appended when two
+    # distinct activityNames collide on the base alias.
+    activity_alias = generate_activity_alias(activity_name)
+    if geo_disambiguate:
+        geo = extract_geo(activity_name)
+        if geo:
+            activity_alias = f"{activity_alias}-{geo}"
+
+    # Ingredient alias from Ecobalyse ingredient name + variant suffix
+    ingredient_alias = generate_alias(name) + alias_suffix
 
     # DisplayName from French name + variant suffix
     display_name = (french_name if french_name else name) + variant_suffix
@@ -394,7 +442,7 @@ def build_activity_entry(
     scenario = VARIANT_SCENARIO[variant]
 
     ingredient = {
-        "alias": alias,
+        "alias": ingredient_alias,
         "defaultOrigin": VARIANT_ORIGIN[variant],
         "displayName": display_name,
         "id": ingredient_id,
@@ -424,7 +472,7 @@ def build_activity_entry(
 
     entry = {
         "activityName": activity_name,
-        "alias": alias,
+        "alias": activity_alias,
         "categories": ["ingredient"],
         "displayName": display_name,
         "id": activity_id,
@@ -438,29 +486,59 @@ def build_activity_entry(
     return entry
 
 
-def write_json(results: list, output_path: str):
-    """Write activities to JSON file."""
-    activities = []
-    for r in results:
-        activity = build_activity_entry(
-            r["name"],
-            r["french_name"],
-            r["activity_name"],
-            r["source"],
-            r["unit"],
-            r["predictions"],
-            r["variant"],
-            r.get("production_fr", ""),
-            r.get("location", ""),
-            r.get("visible", True),
-            r.get("antilles", False),
-        )
-        activities.append(activity)
+def _build_entry_for_row(r: dict, geo_disambiguate: bool = False) -> dict:
+    return build_activity_entry(
+        r["name"],
+        r["french_name"],
+        r["activity_name"],
+        r["source"],
+        r["unit"],
+        r["predictions"],
+        r["variant"],
+        r.get("production_fr", ""),
+        r.get("location", ""),
+        r.get("visible", True),
+        r.get("antilles", False),
+        geo_disambiguate=geo_disambiguate,
+    )
 
+
+def write_json(results: list, output_path: str):
+    """Write activities to JSON, grouped by activity alias.
+
+    Several rows can share the same upstream `activity_name` (proxy ingredients);
+    they merge into a single activity entry with multiple ingredients in
+    `metadata`. If two distinct `activity_name` strings collapse to the same
+    activity alias within the variant, both fall back to a geo-disambiguated
+    alias (e.g. `apple-it-eu` vs `apple-es-eu`).
+    """
+    # Pass 1: try without geo disambiguation, detect collisions.
+    base_entries = [_build_entry_for_row(r) for r in results]
+    activity_names_per_alias: dict[str, set[str]] = {}
+    for entry in base_entries:
+        activity_names_per_alias.setdefault(entry["alias"], set()).add(
+            entry["activityName"]
+        )
+    colliding = {a for a, ans in activity_names_per_alias.items() if len(ans) > 1}
+    if colliding:
+        print(f"Geo-disambiguating {len(colliding)} colliding alias(es): {sorted(colliding)}")
+
+    # Pass 2: rebuild colliding rows with geo suffix; group all rows by final alias.
+    by_alias: dict[str, dict] = {}
+    for r, entry in zip(results, base_entries):
+        if entry["alias"] in colliding:
+            entry = _build_entry_for_row(r, geo_disambiguate=True)
+        key = entry["alias"]
+        if key in by_alias:
+            by_alias[key]["metadata"].extend(entry["metadata"])
+        else:
+            by_alias[key] = entry
+
+    activities = list(by_alias.values())
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(activities, f, indent=2, ensure_ascii=False)
 
-    print(f"JSON written to {output_path}")
+    print(f"JSON written to {output_path} ({len(activities)} activities, {sum(len(a['metadata']) for a in activities)} ingredients)")
 
 
 # =============================================================================
