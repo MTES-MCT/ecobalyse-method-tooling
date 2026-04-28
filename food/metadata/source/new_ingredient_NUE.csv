@@ -84,7 +84,7 @@ EB_id0107,,Leek,Poireau,"Leek, conventional, national average, at plant {FR} U",
 EB_id0108,,Lemon,Citron,"Lemon, at farm (WFLDB)",WFLDB,GLO,TRUE
 EB_id0109,,Lentil,Lentille,"Lentil {CA-SK}| lentil production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,CA-SK,TRUE
 EB_id0111,,Lima beans,Haricots de Lima,"Fava bean {CA-SK}| fava bean production | Cut-off, U",Ecoinvent 3.11,CA-SK,TRUE
-EB_id0115,,Lychee,Litchi,"Mango, at farm (WFLDB)",Ecoinvent 3.11,RoW,TRUE
+EB_id0115,,Lychee,Litchi,"Mango, at farm (WFLDB)",WFLDB,MX,TRUE
 EB_id0116,,Macadamia nut,Noix de macadamia,"Walnut, in shell, dried, at farm (WFLDB)",WFLDB,US,TRUE
 EB_id0118,,Mango,Mangue,"Mango, at farm (WFLDB)",WFLDB,MX,TRUE
 EB_id0120,TRUE,"Melon (honeydew, Charentais, Cataloupe, Cavaillon)","Melon (miellat, Charentais, Cataloupe, Cavaillon)","Melon {GLO}| melon production | Cut-off, U",Ecoinvent 3.11,GLO,TRUE
