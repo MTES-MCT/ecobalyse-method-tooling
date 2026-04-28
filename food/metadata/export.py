@@ -943,6 +943,50 @@ def merge_activities(
     print(f"Merged {len(added_acts)} new activities into {len(merged_acts)} total activities")
 
 
+def _build_es_by_base_alias(ingredients: list[dict]) -> dict[str, dict]:
+    """Build a base-alias → ecosystemicServices map from ingredients.json.
+
+    ecosystemicServices values are variant-agnostic by design (only `scenario`
+    differs across variants of the same ingredient), so we strip the variant
+    suffix from each alias and pick the first non-empty ES set per base.
+    """
+    variant_suffixes = sorted(
+        {
+            "-fr-overseas",
+            "-eu-antilles",
+            "-fr",
+            "-eu",
+            "-organic",
+            "-default",
+            "-non-eu",
+            *VARIANT_ALIAS_SUFFIX.values(),
+        },
+        key=len,
+        reverse=True,
+    )
+
+    def strip_all_suffixes(alias: str) -> str:
+        # Strip legacy `-2025` first, then any variant suffix (longest match wins).
+        if alias.endswith(OLD_ALIAS_SUFFIX):
+            alias = alias[: -len(OLD_ALIAS_SUFFIX)]
+        for sfx in variant_suffixes:
+            if alias.endswith(sfx):
+                return alias[: -len(sfx)]
+        return alias
+
+    es_by_base: dict[str, dict] = {}
+    for ing in ingredients:
+        al = ing.get("alias")
+        if not al:
+            continue
+        es = ing.get("ecosystemicServices") or {}
+        if not any(v for v in es.values() if v):
+            continue
+        base = strip_all_suffixes(al)
+        es_by_base.setdefault(base, es)
+    return es_by_base
+
+
 def generate_final_data(variant: Variant, fetch: bool = True):
     """Generate final CSV with all ingredient data and impacts.
 
@@ -950,6 +994,8 @@ def generate_final_data(variant: Variant, fetch: bool = True):
     - source/new_ingredient_{variant}.csv (base data)
     - new_activities.json (predicted metadata)
     - processes_impacts.json (environmental impacts, matched by activityName)
+    - ingredients.json (ecosystemicServices ONLY, looked up by base alias —
+      ES is variant-agnostic; the rest of the ingredient is not consulted)
     """
     output_csv, output_json, final_output_csv = get_output_paths(variant)
 
@@ -959,6 +1005,7 @@ def generate_final_data(variant: Variant, fetch: bool = True):
     source_df = load_source_csv(variant, fetch=fetch)
 
     ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
+    ECOBALYSE = Path(os.environ["ECOBALYSE"])
 
     # Load processes_impacts.json - key by activityName for direct matching
     processes_path = ECOBALYSE_DATA / "public/data/processes_impacts.json"
@@ -974,8 +1021,16 @@ def generate_final_data(variant: Variant, fetch: bool = True):
     # Map alias to full activity (alias is unique; activityName is not)
     activities_by_alias = {a["alias"]: a for a in new_activities}
 
+    # Load ingredients.json — used ONLY for ecosystemicServices lookup.
+    ingredients_path = ECOBALYSE / "public/data/food/ingredients.json"
+    print(f"Loading {ingredients_path} (ES lookup only)...")
+    with open(ingredients_path) as f:
+        ingredients_list = json.load(f)
+    es_by_base_alias = _build_es_by_base_alias(ingredients_list)
+
     print(
-        f"\nLoaded: {len(new_activities)} activities, {len(processes_by_name)} processes"
+        f"\nLoaded: {len(new_activities)} activities, {len(processes_by_name)} processes,"
+        f" {len(es_by_base_alias)} ecosystemicServices entries (by base alias)"
     )
 
     # Process each row
@@ -1028,11 +1083,14 @@ def generate_final_data(variant: Variant, fetch: bool = True):
             for col in IMPACT_COLUMNS:
                 result[col] = ""
 
-        # ecosystemicServices columns intentionally left empty: they used to be
-        # backfilled from ingredients.json but that source is itself generated,
-        # so the lookup created a feedback loop. Populate downstream if needed.
-        for field in ECOSYSTEMIC_SERVICES_MULTIPLIERS:
-            result[field] = ""
+        # ecosystemicServices: variant-agnostic — look up from ingredients.json
+        # by base alias (= ingredient identity stripped of variant suffix).
+        # Apply the multiplier defined in ECOSYSTEMIC_SERVICES_MULTIPLIERS.
+        base_alias = generate_alias(row["item"])
+        es = es_by_base_alias.get(base_alias) or {}
+        for field, multiplier in ECOSYSTEMIC_SERVICES_MULTIPLIERS.items():
+            raw = es.get(field) or 0
+            result[field] = raw * multiplier if raw else ""
 
         results.append(result)
 
