@@ -959,7 +959,6 @@ def generate_final_data(variant: Variant, fetch: bool = True):
     source_df = load_source_csv(variant, fetch=fetch)
 
     ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
-    ECOBALYSE = Path(os.environ["ECOBALYSE"])
 
     # Load processes_impacts.json - key by activityName for direct matching
     processes_path = ECOBALYSE_DATA / "public/data/processes_impacts.json"
@@ -975,22 +974,8 @@ def generate_final_data(variant: Variant, fetch: bool = True):
     # Map alias to full activity (alias is unique; activityName is not)
     activities_by_alias = {a["alias"]: a for a in new_activities}
 
-    # Load ingredients.json to get ecosystemicServices
-    ingredients_path = ECOBALYSE / "public/data/food/ingredients.json"
-    print(f"Loading {ingredients_path}...")
-    with open(ingredients_path) as f:
-        ingredients_list = json.load(f)
-    ingredients_by_alias = {i["alias"]: i for i in ingredients_list}
-    # For ingredients that have no ecosystemicServices, index by activityName as fallback
-    # (a new ingredient may share an activityName with an existing one that has the data)
-    ingredients_es_by_activity = {}
-    for i in ingredients_list:
-        es = i.get("ecosystemicServices")
-        if es and any(v for v in es.values() if v is not None):
-            ingredients_es_by_activity.setdefault(i.get("activityName"), i)
-
     print(
-        f"\nLoaded: {len(new_activities)} activities, {len(processes_by_name)} processes, {len(ingredients_list)} ingredients"
+        f"\nLoaded: {len(new_activities)} activities, {len(processes_by_name)} processes"
     )
 
     # Process each row
@@ -1043,23 +1028,11 @@ def generate_final_data(variant: Variant, fetch: bool = True):
             for col in IMPACT_COLUMNS:
                 result[col] = ""
 
-        # Get ecosystemicServices from ingredients.json
-        # Primary lookup by alias; fall back to activityName when the alias entry has no data
-        ingredient = ingredients_by_alias.get(row_alias)
-        es = (ingredient.get("ecosystemicServices") if ingredient else None) or None
-        if es is None:
-            fallback = ingredients_es_by_activity.get(activity_name)
-            es = (fallback.get("ecosystemicServices") if fallback else None) or {}
-        if ingredient or es:
-            for field, multiplier in ECOSYSTEMIC_SERVICES_MULTIPLIERS.items():
-                raw = es.get(field) or 0
-                result[field] = raw * multiplier if raw else 0
-        else:
-            result["cropDiversity"] = ""
-            result["hedges"] = ""
-            result["livestockDensity"] = ""
-            result["permanentPasture"] = ""
-            result["plotSize"] = ""
+        # ecosystemicServices columns intentionally left empty: they used to be
+        # backfilled from ingredients.json but that source is itself generated,
+        # so the lookup created a feedback loop. Populate downstream if needed.
+        for field in ECOSYSTEMIC_SERVICES_MULTIPLIERS:
+            result[field] = ""
 
         results.append(result)
 
@@ -1249,18 +1222,10 @@ def main():
         print("Translation cache cleared")
 
     ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
-    ECOBALYSE = Path(os.environ["ECOBALYSE"])
 
-    # Load training data
-    ingredients_path = ECOBALYSE / "public/data/food/ingredients.json"
-    print(f"Loading training data from {ingredients_path}...")
-    with open(ingredients_path) as f:
-        training_data = json.load(f)
-
-    # Train predictor
-    print(f"\nTraining on {len(training_data)} ingredients...")
+    # Build predictor from reference CSVs (no ingredients.json training corpus)
     predictor = Predictor()
-    predictor.fit(training_data)
+    predictor.fit()
 
     # Load input CSV
     input_csv = get_input_csv(args.variant)

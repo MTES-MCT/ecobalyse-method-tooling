@@ -23,7 +23,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Agave UE found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -38,9 +38,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'caroube' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -175,10 +175,10 @@
         "ingredientCategories": [
           "grain_raw"
         ],
-        "ingredientDensity": 0.75,
+        "ingredientDensity": 0.77,
         "ingredientDensityMatch": {
-          "rule": "grain default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Wheat in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 2.259,
         "rawToCookedRatioMatch": {
@@ -192,9 +192,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "BLE TENDRE",
+        "cropGroup": "AUTRES CEREALES",
         "cropGroupMatch": {
-          "rule": "wheat/flour pattern",
+          "rule": "matched 'blé dur hiver' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -331,7 +331,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -388,7 +388,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -445,7 +445,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -502,7 +502,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -679,8 +679,8 @@
         ],
         "ingredientDensity": 0.5,
         "ingredientDensityMatch": {
-          "rule": "Matched with Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) FR in ingredients.json",
-          "confidence": 0.999
+          "rule": "spice_condiment default from food_type_density.csv",
+          "confidence": 1.0
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -913,8 +913,8 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with bell pepper in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -930,7 +930,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'bell pepper' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1027,7 +1027,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1065,9 +1065,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "VIGNES",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'grape' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1107,7 +1107,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1204,7 +1204,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1261,7 +1261,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1318,7 +1318,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1454,9 +1454,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "PROTEAGINEUX",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'spring faba' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1673,7 +1673,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Cardoon UE found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -1688,9 +1688,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES CEREALES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'avoine' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1753,8 +1753,8 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with cabbage in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -1770,7 +1770,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'cabbage' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1810,7 +1810,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1913,7 +1913,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Rhubarbe UE found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -1928,9 +1928,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1970,7 +1970,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'fennel' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2027,7 +2027,7 @@
         "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2170,7 +2170,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Rutabaga FR found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -2185,9 +2185,9 @@
           "confidence": 1.0
         },
         "visible": false,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'moutarde' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2307,7 +2307,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Céleri FR found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -2324,7 +2324,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'céleri-rave' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2381,7 +2381,7 @@
         "visible": false,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'cerise bigarreaux industrie' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2459,9 +2459,9 @@
           "confidence": 1.0
         },
         "visible": false,
-        "cropGroup": "VERGERS",
+        "cropGroup": "ARBORICULTURE",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'banane export' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2500,10 +2500,10 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 1.0,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with tomato in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -2519,7 +2519,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'tomato' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2848,9 +2848,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'chicory' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2985,9 +2985,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES OLEAGINEUX",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'autres oleagineux' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3027,7 +3027,7 @@
         ],
         "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "Clémentine FR found in ingredients.json",
+          "rule": "fruit default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -3044,7 +3044,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3181,7 +3181,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3389,9 +3389,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES OLEAGINEUX",
+        "cropGroup": "SEMENCES",
         "cropGroupMatch": {
-          "rule": "oilseed pattern",
+          "rule": "matched 'semences epeautre' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3719,9 +3719,9 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.118,
+        "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Endive UE found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -3778,7 +3778,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'endive' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3799,10 +3799,10 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 0.3,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with lettuce in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -3873,9 +3873,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "ARBORICULTURE",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'banana' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3898,7 +3898,7 @@
         ],
         "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "Nectarine FR found in ingredients.json",
+          "rule": "fruit default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -3915,7 +3915,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4067,9 +4067,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "AUTRES OLEAGINEUX",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'soja' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4166,7 +4166,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4221,9 +4221,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VIGNES",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "grape/wine pattern",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4246,8 +4246,8 @@
         ],
         "ingredientDensity": 0.95,
         "ingredientDensityMatch": {
-          "rule": "Oranges FR found in ingredients.json",
-          "confidence": 1.0
+          "rule": "Matched with orange in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -4263,7 +4263,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4301,10 +4301,10 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.85,
+        "ingredientDensity": 1.0,
         "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with grape in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -4320,7 +4320,7 @@
         "visible": true,
         "cropGroup": "VIGNES",
         "cropGroupMatch": {
-          "rule": "grape/wine pattern",
+          "rule": "matched 'grape' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4377,7 +4377,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4417,7 +4417,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4697,7 +4697,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4794,8 +4794,8 @@
         ],
         "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "Matched with Melon (miellat, Charentais, Cataloupe, Cavaillon) FR in ingredients.json",
-          "confidence": 0.98
+          "rule": "fruit default from food_type_density.csv",
+          "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -4809,9 +4809,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'melon' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4908,7 +4908,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'brussels sprout' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4946,10 +4946,10 @@
         "ingredientCategories": [
           "spice_condiment_additive"
         ],
-        "ingredientDensity": 0.5,
+        "ingredientDensity": 1.0,
         "ingredientDensityMatch": {
-          "rule": "spice_condiment default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with mustard in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -4963,9 +4963,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "DIVERS",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
-          "rule": "spice_condiment default",
+          "rule": "matched 'moutarde' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5062,8 +5062,8 @@
         ],
         "ingredientDensity": 0.65,
         "ingredientDensityMatch": {
-          "rule": "Olives FR found in ingredients.json",
-          "confidence": 1.0
+          "rule": "Matched with Olives, green, with stone in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -5077,9 +5077,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "OLIVIERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'olive' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5193,7 +5193,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5393,8 +5393,8 @@
         ],
         "ingredientDensity": 0.8,
         "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with pea in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -5408,9 +5408,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "PROTEAGINEUX",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'pois d'hiver' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5448,10 +5448,10 @@
         "ingredientCategories": [
           "nut_oilseed_raw"
         ],
-        "ingredientDensity": 0.6,
+        "ingredientDensity": 0.63,
         "ingredientDensityMatch": {
-          "rule": "nut_oilseed default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Nuts in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -5467,7 +5467,7 @@
         "visible": true,
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "nut default",
+          "rule": "matched 'noix' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5679,7 +5679,7 @@
         ],
         "ingredientDensity": 0.75,
         "ingredientDensityMatch": {
-          "rule": "Quinoa FR found in ingredients.json",
+          "rule": "grain default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 2.259,
@@ -5753,7 +5753,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5867,7 +5867,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6087,9 +6087,9 @@
           "confidence": 1.0
         },
         "scenario": "import",
-        "transportCooling": "always",
+        "transportCooling": "none",
         "transportCoolingMatch": {
-          "rule": "Matched with Céleri FR in ingredients.json",
+          "rule": "Matched with salt in transport_cooling.csv",
           "confidence": 0.95
         },
         "visible": true,
@@ -6373,7 +6373,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6510,8 +6510,8 @@
         ],
         "ingredientDensity": 0.8,
         "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with pea in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -6525,9 +6525,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "PROTEAGINEUX",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'pois de printemps' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6578,8 +6578,8 @@
         "scenario": "import",
         "transportCooling": "none",
         "transportCoolingMatch": {
-          "rule": "Matched with Autres eaux et autres boissons (non encore répertoriées) (2025) in ingredients.json",
-          "confidence": 0.997
+          "rule": "Matched with bread in transport_cooling.csv",
+          "confidence": 0.642
         },
         "visible": true,
         "cropGroup": "DIVERS",
@@ -6622,10 +6622,10 @@
         "ingredientCategories": [
           "spice_condiment_additive"
         ],
-        "ingredientDensity": 0.5,
+        "ingredientDensity": 0.95,
         "ingredientDensityMatch": {
-          "rule": "spice_condiment default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Sugar in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -6698,7 +6698,7 @@
         "visible": true,
         "cropGroup": "TOURNESOL",
         "cropGroupMatch": {
-          "rule": "sunflower pattern",
+          "rule": "matched 'sunflower' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6737,10 +6737,10 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 0.65,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Sweet potato, boiled in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -6756,7 +6756,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'potato' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6853,8 +6853,8 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with cabbage in density.csv",
+          "confidence": 0.98
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -6870,7 +6870,7 @@
         "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'cabbage' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6908,10 +6908,10 @@
         "ingredientCategories": [
           "grain_raw"
         ],
-        "ingredientDensity": 0.75,
+        "ingredientDensity": 0.65,
         "ingredientDensityMatch": {
-          "rule": "grain default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Barley, whole in fao_density.csv",
+          "confidence": 0.98
         },
         "rawToCookedRatio": 2.259,
         "rawToCookedRatioMatch": {
@@ -6927,7 +6927,7 @@
         "visible": false,
         "cropGroup": "ORGE",
         "cropGroupMatch": {
-          "rule": "barley pattern",
+          "rule": "matched 'barley' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -7022,10 +7022,10 @@
         "ingredientCategories": [
           "grain_raw"
         ],
-        "ingredientDensity": 0.75,
+        "ingredientDensity": 0.705,
         "ingredientDensityMatch": {
-          "rule": "grain default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Rye, whole in fao_density.csv",
+          "confidence": 0.98
         },
         "rawToCookedRatio": 2.259,
         "rawToCookedRatioMatch": {
@@ -7041,7 +7041,7 @@
         "visible": true,
         "cropGroup": "AUTRES CEREALES",
         "cropGroupMatch": {
-          "rule": "grain default",
+          "rule": "matched 'seigle' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -7148,9 +7148,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "SEMENCES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'semences epeautre' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -7190,7 +7190,7 @@
         ],
         "ingredientDensity": 0.8,
         "ingredientDensityMatch": {
-          "rule": "Lupin FR found in ingredients.json",
+          "rule": "legume default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,

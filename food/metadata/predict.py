@@ -48,9 +48,6 @@ from typing import Optional
 import numpy as np
 import pandas as pd
 import torch
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import cross_val_score
-from sklearn.preprocessing import LabelEncoder
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
 warnings.filterwarnings("ignore")
@@ -387,70 +384,6 @@ def _load_food_type_ratio() -> dict[str, tuple[float, str]]:
 def _match(rule: str, conf: float) -> dict:
     """Build a Match dict with rule explanation and confidence."""
     return {"rule": rule, "confidence": round(conf, 3)}
-
-
-def _build_cropgroup_data(ingredients: list) -> tuple[list, list, list]:
-    """Build (names, cropGroups, sources) from training ingredients + cropGroup labels themselves."""
-    names = []
-    cropgroups = []
-    sources = []
-
-    # Add ingredient names as training points
-    for ing in ingredients:
-        if ing.get("cropGroup"):
-            names.append(ing.get("name", ""))
-            cropgroups.append(ing["cropGroup"])
-            sources.append("ingredients.json")
-
-    # Add cropGroup labels themselves as training points
-    # e.g., "LEGUMES-FLEURS" → LEGUMES-FLEURS
-    unique_cropgroups = set(cropgroups)
-    for cg in unique_cropgroups:
-        names.append(cg)  # The label itself
-        cropgroups.append(cg)
-        sources.append("cropgroup_labels")
-
-    return names, cropgroups, sources
-
-
-def _extract_ingredient_values(
-    ingredients: list, field: str, allow_zero: bool = False
-) -> tuple[list, list, list]:
-    """
-    Extract (names, values, sources) from ingredients with a given field.
-
-    Only extracts ground truth values - skips ingredients that have a *Match
-    attribute for this field (indicating the value was predicted, not curated).
-
-    Args:
-        ingredients: List of ingredient dicts
-        field: Field name to extract (e.g., "density", "inediblePart")
-        allow_zero: If True, include zero values (use "is not None" check).
-                   If False, exclude zero/falsy values (use truthiness check).
-    """
-    match_field = f"{field}Match"
-    names, values = [], []
-
-    for ing in ingredients:
-        # Skip predicted values (has Match attribute = not ground truth)
-        if ing.get(match_field) is not None:
-            continue
-
-        val = ing.get(field)
-        if allow_zero:
-            # Use "is not None" check to include zero values
-            if val is None:
-                continue
-        else:
-            # Use truthiness check to exclude zero/falsy values
-            if not val:
-                continue
-
-        names.append(ing["name"])
-        values.append(val)
-
-    sources = ["ingredients.json"] * len(names)
-    return names, values, sources
 
 
 class NearestNeighborMatcher:
@@ -817,13 +750,8 @@ class Predictor:
         self.food_type_inedible = _load_food_type_inedible()
         self.food_type_ratio = _load_food_type_ratio()
 
-        # Training data (for evaluation)
-        self.training_features = None
-        self.training_ingredients = None
-
         # Metadata
         self.is_fitted = False
-        self.feature_dim = None
 
     @staticmethod
     def _load_translation_cache() -> dict:
@@ -1476,12 +1404,15 @@ class Predictor:
             foodon_extractor=self.foodon_extractor,
         )
 
-    def fit(self, ingredients: list[dict], verbose: bool = True):
+    def fit(self, verbose: bool = True):
         """
-        Train the predictor on a list of ingredients.
+        Build all matchers from reference CSVs only.
 
-        Args:
-            ingredients: List of dicts with at least "name" and "activityName"
+        ingredients.json is no longer used as a training corpus: its rows are
+        themselves predictor output and using them as ground truth created a
+        feedback loop. All matchers now rely solely on the curated reference
+        data under `reference/` (food_type.csv, nova.csv, cropgroup.csv,
+        transport.csv, density.csv, agb_inedible.csv, raw_to_cooked.csv).
         """
 
         def timed_print(msg, start_time=[None]):
@@ -1495,142 +1426,51 @@ class Predictor:
         self._load_foodon()
 
         if verbose:
-            timed_print(f"Training on {len(ingredients)} ingredients...\n")
+            timed_print("Building matchers from reference CSVs...\n")
 
-        # 1. Pre-translate all ingredient names (batch for performance)
-        cache_size_before = len(self._translation_cache)
-        if verbose:
-            timed_print(f"Translating ingredient names ({cache_size_before} cached)...")
-        translated_names = [self._translate(ing.get("name", "")) for ing in ingredients]
-        cache_hits = cache_size_before
-        cache_misses = len(self._translation_cache) - cache_size_before
-        if verbose and cache_misses > 0:
-            print(f" ({cache_hits} hits, {cache_misses} new)", end="")
-
-        # 2. Extract features for all ingredients
-        if verbose:
-            timed_print("Extracting features...")
-
-        features_list = []
-        for i, ing in enumerate(ingredients):
-            activity = ing.get("activityName", "")
-            feat = extract_features(
-                translated_names[i],
-                activity,
-                translate_fn=None,  # Already translated
-                foodon_extractor=self.foodon_extractor,
-            )
-            features_list.append(feat)
-
-        self.training_features = np.array(features_list)
-        self.training_ingredients = ingredients
-        self.feature_dim = self.training_features.shape[1]
-
-        # 3. Build foodType matcher (nearest neighbor)
-        # Use ONLY reference data from food_type.csv - NOT ingredients.json
+        # foodType matcher (nearest neighbor on reference data)
         if verbose:
             timed_print("Building foodType matcher...")
-
         ref_food_names, ref_food_types, ref_food_sources = _load_food_type_data()
-
         self.food_type_matcher = self._build_matcher(
             ref_food_names, ref_food_types, ref_food_sources
         )
 
-        # 3b. Build NOVA matcher (nearest neighbor on reference data only)
+        # NOVA matcher
         if verbose:
             timed_print("Building NOVA matcher...")
-
         nova_names, nova_groups, nova_sources = _load_nova_data()
         if nova_names:
-            # Convert string novaGroup to int
             nova_groups = [int(g) for g in nova_groups]
             self.nova_matcher = self._build_matcher(nova_names, nova_groups, nova_sources)
 
-        # 4. Build cropGroup matcher (nearest neighbor)
+        # cropGroup matcher
         if verbose:
             timed_print("Building cropGroup matcher...")
-
-        # Start with reference data from cropgroup.csv
         cropgroup_names, cropgroup_vals, cropgroup_sources = _load_cropgroup_data()
-
-        # Add training data from ingredients with cropGroup
-        ing_cg_names, ing_cg_vals, ing_cg_sources = _build_cropgroup_data(ingredients)
-        cropgroup_names.extend(ing_cg_names)
-        cropgroup_vals.extend(ing_cg_vals)
-        cropgroup_sources.extend(ing_cg_sources)
-
         if cropgroup_names:
             self.cropgroup_matcher = self._build_matcher(
                 cropgroup_names, cropgroup_vals, cropgroup_sources
             )
 
-        # 5. Build transportCooling matcher (combines ingredients.json + reference data)
+        # transportCooling matcher
         if verbose:
             timed_print("Building transportCooling matcher...")
-
-        transport_names = [ing["name"] for ing in ingredients]
-        y_transport = [ing.get("transportCooling", "none") for ing in ingredients]
-        transport_sources = ["ingredients.json"] * len(ingredients)
-
-        ref_transport_names, ref_transport, ref_transport_sources = (
-            _load_transport_data()
-        )
-        transport_names.extend(ref_transport_names)
-        y_transport.extend(ref_transport)
-        transport_sources.extend(ref_transport_sources)
-
+        ref_transport_names, ref_transport, ref_transport_sources = _load_transport_data()
         self.transport_matcher = self._build_matcher(
-            transport_names, y_transport, transport_sources
+            ref_transport_names, ref_transport, ref_transport_sources
         )
 
-        # 6. Build nearest neighbor matchers for continuous values
-        # Each matcher combines ingredients.json + reference CSV data
-
-        def build_value_matcher(
-            field, ref_loader, allow_zero=False, name=None, skip_ingredients=False
-        ):
-            """Helper to build a matcher combining reference + ingredients data.
-
-            Reference data comes FIRST so it has priority in word matches.
-
-            Args:
-                skip_ingredients: If True, don't include ingredients.json data.
-                    Use this for fields where ingredients.json values are generated
-                    (not manually curated) and shouldn't be used for training.
-            """
+        # Continuous-value matchers (density, inediblePart, rawToCookedRatio)
+        def build_value_matcher(ref_loader, name):
             if verbose:
-                timed_print(f"Building {name or field} matcher...")
-            # Reference data first (has priority in matches)
+                timed_print(f"Building {name} matcher...")
             names, vals, sources = ref_loader()
-            # Then training ingredients (unless skipped)
-            if not skip_ingredients:
-                ing_names, ing_vals, ing_sources = _extract_ingredient_values(
-                    ingredients, field, allow_zero=allow_zero
-                )
-                names.extend(ing_names)
-                vals.extend(ing_vals)
-                sources.extend(ing_sources)
             return self._build_matcher(names, vals, sources)
 
-        self.density_matcher = build_value_matcher(
-            "density", _load_density_data, name="density"
-        )
-        # Skip ingredients.json for inediblePart - values are generated, not curated
-        self.inedible_matcher = build_value_matcher(
-            "inediblePart",
-            _load_inedible_data,
-            allow_zero=True,
-            name="inedible part",
-            skip_ingredients=True,
-        )
-        # Skip ingredients.json for rawToCookedRatio - values are generated, not curated
-        self.ratio_matcher = build_value_matcher(
-            "rawToCookedRatio",
-            _load_ratio_data,
-            name="raw-to-cooked ratio",
-            skip_ingredients=True,
-        )
+        self.density_matcher = build_value_matcher(_load_density_data, "density")
+        self.inedible_matcher = build_value_matcher(_load_inedible_data, "inedible part")
+        self.ratio_matcher = build_value_matcher(_load_ratio_data, "raw-to-cooked ratio")
 
         self.is_fitted = True
 
@@ -1937,72 +1777,6 @@ class Predictor:
 
         return predictions
 
-    def evaluate(self, verbose: bool = True) -> dict:
-        """
-        Evaluate predictor with cross-validation on training data.
-
-        Returns:
-            Dict with scores per metadata field
-        """
-        if not self.is_fitted:
-            raise RuntimeError("Predictor must be fitted before evaluation.")
-
-        def _cv_score(y_values: list, field_name: str, X=None, cv=5) -> dict:
-            """Run cross-validation and return {mean, std}."""
-            features = X if X is not None else self.training_features
-            encoder = LabelEncoder()
-            y_encoded = encoder.fit_transform(y_values)
-            cv_scores = cross_val_score(
-                RandomForestClassifier(
-                    n_estimators=100, class_weight="balanced", random_state=42
-                ),
-                features,
-                y_encoded,
-                cv=cv,
-                scoring="accuracy",
-            )
-            if verbose:
-                print(
-                    f"{field_name} accuracy: {cv_scores.mean():.3f} ± {cv_scores.std():.3f}"
-                )
-            return {"mean": cv_scores.mean(), "std": cv_scores.std()}
-
-        scores = {}
-
-        # Extract foodType and processingState from categories
-        y_food = []
-        y_proc = []
-        for ing in self.training_ingredients:
-            base_cat = self._get_base_category(ing.get("categories", ["misc"]))
-            food_type, proc_state = CATEGORY_TO_DIMENSIONS.get(
-                base_cat, ("misc", "processed")
-            )
-            y_food.append(food_type)
-            y_proc.append(proc_state)
-
-        scores["foodType"] = _cv_score(y_food, "FoodType")
-        scores["processingState"] = _cv_score(y_proc, "ProcessingState")
-        scores["transportCooling"] = _cv_score(
-            [ing.get("transportCooling", "none") for ing in self.training_ingredients],
-            "TransportCooling",
-        )
-
-        # Evaluate cropGroup (vegetables only, using RandomForest on embeddings)
-        cropgroup_names, cropgroup_vals, _ = _build_cropgroup_data(
-            self.training_ingredients
-        )
-        if len(cropgroup_names) > 10:
-            self._load_embedding_model()
-            X_crop = self.model.encode(cropgroup_names)
-            scores["cropGroup"] = _cv_score(
-                cropgroup_vals,
-                "CropGroup",
-                X=X_crop,
-                cv=min(5, len(set(cropgroup_vals))),
-            )
-
-        return scores
-
     def save(self, path: str):
         """Save the trained predictor."""
         if not self.is_fitted:
@@ -2035,10 +1809,6 @@ class Predictor:
             "ratio_matcher": self.ratio_matcher,
             # Translation cache (avoid re-translating on reload)
             "_translation_cache": self._translation_cache,
-            # Training data (for evaluation)
-            "training_features": self.training_features,
-            "training_ingredients": self.training_ingredients,
-            "feature_dim": self.feature_dim,
             "is_fitted": True,
             # FoodOn state (extractor is reloaded lazily)
             "_foodon_loaded": False,
@@ -2206,16 +1976,15 @@ def main():
     parser = argparse.ArgumentParser(description="Predict ingredient metadata using ML")
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
 
-    # Train command
-    train_parser = subparsers.add_parser("train", help="Train predictor on ingredients")
-    train_parser.add_argument(
-        "input", type=str, help="Input JSON file with ingredients"
+    # Build command — assemble matchers from reference CSVs and pickle to disk.
+    build_parser = subparsers.add_parser(
+        "build", help="Build predictor from reference CSVs and save to disk"
     )
-    train_parser.add_argument(
+    build_parser.add_argument(
         "--output", "-o", type=str, default="predictor.pkl", help="Output model file"
     )
 
-    # Infer command
+    # Infer command — load a pickled model and predict for a single ingredient.
     infer_parser = subparsers.add_parser(
         "infer", help="Predict metadata for new ingredient"
     )
@@ -2227,20 +1996,11 @@ def main():
         "--activity", "-a", type=str, required=True, help="Activity/process name"
     )
 
-    # Evaluate command
-    eval_parser = subparsers.add_parser(
-        "evaluate", help="Evaluate predictor with cross-validation"
-    )
-    eval_parser.add_argument("input", type=str, help="Input JSON file with ingredients")
-
     args = parser.parse_args()
 
-    if args.command == "train":
-        with open(args.input) as f:
-            ingredients = json.load(f)
-
+    if args.command == "build":
         predictor = Predictor()
-        predictor.fit(ingredients)
+        predictor.fit()
         predictor.save(args.output)
 
     elif args.command == "infer":
@@ -2265,16 +2025,6 @@ def main():
                 )
             else:
                 print(f"  {key}: {value}")
-
-    elif args.command == "evaluate":
-        with open(args.input) as f:
-            ingredients = json.load(f)
-
-        predictor = Predictor()
-        predictor.fit(ingredients)
-
-        print("\n📈 Cross-validation results:")
-        predictor.evaluate()
 
     else:
         parser.print_help()
