@@ -449,15 +449,27 @@ def build_activity_entry(
     # Ingredient alias from Ecobalyse ingredient name + variant suffix
     ingredient_alias = generate_alias(name) + alias_suffix
 
-    # DisplayName from French name + variant suffix
-    display_name = (french_name if french_name else name) + variant_suffix
+    # Ingredient displayName from French name + variant suffix
+    ingredient_display_name = (french_name if french_name else name) + variant_suffix
+
+    # Activity displayName: variant-neutral, derived from the LCI activityName.
+    # Take the leading product segment (before `{`/`(`/`|`) and append the geo
+    # code from `{…}` to keep the displayName unique across activities sharing
+    # a product name (e.g. `Broccoli (GLO)` vs `Broccoli (CH)`).
+    activity_display_base = re.split(r"[{(|]", activity_name, maxsplit=1)[0].strip().rstrip(",").strip()
+    geo_code = extract_geo(activity_name)
+    activity_display_name = (
+        f"{activity_display_base} ({geo_code.upper()})"
+        if geo_code
+        else activity_display_base
+    )
 
     # Activity UUID is keyed by alias (= activityName-derived) to keep stable
     # identity across variants/exports; two activities sharing a displayName
     # but pointing to different LCI processes get distinct UUIDs.
     # Ingredient UUID stays keyed by displayName (its Ecobalyse identity).
     activity_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{activity_alias}"))
-    ingredient_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"ingredient:{display_name}"))
+    ingredient_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"ingredient:{ingredient_display_name}"))
 
     # Scenario from variant
     scenario = VARIANT_SCENARIO[variant]
@@ -465,7 +477,7 @@ def build_activity_entry(
     ingredient = {
         "alias": ingredient_alias,
         "defaultOrigin": VARIANT_ORIGIN[variant],
-        "displayName": display_name,
+        "displayName": ingredient_display_name,
         "id": ingredient_id,
         "inediblePart": predictions.get("inediblePart", 0),
         "inediblePartMatch": predictions.get("inediblePartMatch"),
@@ -495,7 +507,7 @@ def build_activity_entry(
         "activityName": activity_name,
         "alias": activity_alias,
         "categories": ["ingredient"],
-        "displayName": display_name,
+        "displayName": activity_display_name,
         "id": activity_id,
         "metadata": [{**ingredient, "scopes": ["food", "food2"]}],
         "scopes": ["food", "food2"],
