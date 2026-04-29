@@ -173,6 +173,29 @@ def generate_alias(name: str) -> str:
     return "-".join(singularized + qualifier_words)
 
 
+def simplify_for_alias(name: str) -> str:
+    """Drop clarifying alternative-lists from an ingredient name before alias generation.
+
+    Two patterns are dropped:
+    - parenthesized clarifications: ``Bell pepper (green, yellow, or red)`` → ``Bell pepper``
+    - trailing alternative tails containing `` or ``:
+      ``Sea salt, celery salt, or fleur de sel`` → ``Sea salt``
+    - if a parenthetical was already stripped, the leading comma-tail is also
+      dropped (it's redundant with the dropped paren):
+      ``Raw rice, all varieties (white, wild, ...)`` → ``Raw rice``
+
+    Real qualifiers (no parens, no `` or `` in the tail) are kept:
+    ``Almonds, in shell``, ``Squash, raw, with skin`` are returned as-is.
+    """
+    stripped, n_strip = re.subn(r"\s*\([^)]*\)", "", name)
+    stripped = stripped.strip()
+    if "," in stripped:
+        head, tail = stripped.split(",", 1)
+        if " or " in tail or n_strip > 0:
+            return head.strip()
+    return stripped
+
+
 # LCA-process boilerplate phrases that don't help identify the activity.
 # Order matters in alternation: longer phrases first.
 _LCA_NOISE_RE = re.compile(
@@ -446,8 +469,12 @@ def build_activity_entry(
         if geo:
             activity_alias = f"{activity_alias}-{geo}"
 
-    # Ingredient alias from Ecobalyse ingredient name + variant suffix
-    ingredient_alias = generate_alias(name) + alias_suffix
+    # Ingredient alias from Ecobalyse ingredient name + variant suffix.
+    # simplify_for_alias drops parenthesized clarifications and trailing
+    # alternative-lists (e.g. "Bell pepper (green, yellow, or red)" → "Bell
+    # pepper") so newly added ingredients get a short, stable alias. The full
+    # `item` text remains the displayName/source-of-truth.
+    ingredient_alias = generate_alias(simplify_for_alias(name)) + alias_suffix
 
     # Ingredient displayName from French name + variant suffix
     ingredient_display_name = (french_name if french_name else name) + variant_suffix

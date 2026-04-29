@@ -665,7 +665,7 @@
         ]
       },
       {
-        "alias": "herb-marjoram-oregano-savory-thyme-basil-rosemary-sage-dried-eu",
+        "alias": "herb-dried-eu",
         "defaultOrigin": "EuropeAndMaghreb",
         "displayName": "Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) UE",
         "id": "a31fc664-e136-507a-9ae0-ad78d5130625",
@@ -705,7 +705,7 @@
         ]
       },
       {
-        "alias": "herb-dill-basil-chervil-rosemary-sage-thyme-fresh-eu",
+        "alias": "herb-fresh-eu",
         "defaultOrigin": "EuropeAndMaghreb",
         "displayName": "Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) UE",
         "id": "ddf1b502-4c77-5275-a074-726b1125a959",
@@ -899,7 +899,7 @@
     "id": "b3a82bf4-8ebd-51db-aa88-e0460ee22acb",
     "metadata": [
       {
-        "alias": "bell-pepper-green-yellow-or-red-eu",
+        "alias": "bell-pepper-eu",
         "defaultOrigin": "EuropeAndMaghreb",
         "displayName": "Poivron, vert, jaune ou rouge UE",
         "id": "f03947eb-3f24-5de7-ba45-a01c3b3deabb",
@@ -4289,7 +4289,7 @@
     "id": "83b83c10-e53d-529e-a8ff-4472df980533",
     "metadata": [
       {
-        "alias": "grape-black-or-white-eu",
+        "alias": "grape-eu",
         "defaultOrigin": "EuropeAndMaghreb",
         "displayName": "Raisins (noirs ou blancs) UE",
         "id": "654989b5-c728-5bf5-b673-832ef1612b1a",
@@ -4780,7 +4780,7 @@
     "id": "4c7fbd51-7e6b-5051-8cf9-967faf911763",
     "metadata": [
       {
-        "alias": "melon-honeydew-charentai-cataloupe-cavaillon-eu",
+        "alias": "melon-eu",
         "defaultOrigin": "EuropeAndMaghreb",
         "displayName": "Melon (miellat, Charentais, Cataloupe, Cavaillon) UE",
         "id": "d8814568-a69d-51ce-92ec-14b7c181d30b",
@@ -5893,7 +5893,7 @@
     "id": "4e94a467-d4bd-5f38-a7ff-374f465ee789",
     "metadata": [
       {
-        "alias": "rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-eu",
+        "alias": "rice-raw-eu",
         "defaultOrigin": "EuropeAndMaghreb",
         "displayName": "Riz cru, toutes variétés (blanc, sauvage, riz thaï ou basmati, cru) UE",
         "id": "4b967a1f-c621-5c68-878e-4c75a712b4ff",
@@ -6064,7 +6064,7 @@
     "id": "9c2f29f0-e402-5381-a27a-2dadb02b623f",
     "metadata": [
       {
-        "alias": "sea-salt-celery-salt-or-fleur-de-sel-eu",
+        "alias": "sea-salt-eu",
         "defaultOrigin": "EuropeAndMaghreb",
         "displayName": "Sel de mer, sel de céleri ou fleur de sel UE",
         "id": "d91d56f7-139a-55e5-b30d-b27b2fdfc026",
@@ -6782,7 +6782,7 @@
     "id": "8ee74ad9-f4c4-57ec-9004-b81c481917c9",
     "metadata": [
       {
-        "alias": "vanilla-alcoholic-or-aqueou-extract-eu-antilles",
+        "alias": "vanilla-eu-antilles",
         "defaultOrigin": "EuropeAndMaghreb",
         "displayName": "Extrait de vanille, alcoolique ou aqueux UE Antilles",
         "id": "a8cc0638-9d79-5974-8343-e6cfa913ec5b",
