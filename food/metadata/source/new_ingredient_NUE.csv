@@ -48,7 +48,7 @@ EB_id0060,,Cow milk,Lait de vache,"Cow milk {CA-QC}| milk production, from cow |
 EB_id0062,,Cranberry,Canneberge,"Cranberry, at farm (WFLDB)",WFLDB,GLO,TRUE
 EB_id0063,,Cucumber,Concombre,"Tomato, fresh grade {RoW}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U",Ecoinvent 3.11,RoW,TRUE
 EB_id0064,,Cucurbitacea seed,Graines de Cucurbitacées,"Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,RoW,TRUE
-EB_id0065,,Dates,Dattes,"Palm fruit bunch, at farm {MY} - Adapted from WFLDB U",Agribalyse 3.2,MY,TRUE
+EB_id0065,,Dates,Dattes,"Palm fruit bunch, at farm (WFLDB)",WFLDB,GLO,TRUE
 EB_id0066,,"Dill, fresh","Aneth, frais","Mint {IN}| mint production | Cut-off, U",Ecoinvent 3.11,IN,TRUE
 EB_id0067,,"Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage)","Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge)","Mint {IN}| mint production | Cut-off, U",Ecoinvent 3.11,IN,TRUE
 EB_id0069,,Durum wheat,Blé dur,"Durum wheat grain, at farm {GLO} - Adapted from WFLDB U",Agribalyse 3.2,GLO,TRUE
@@ -125,7 +125,7 @@ EB_id0160,,Quinoa,Quinoa,"Quinoa, intensive production, at farm {PE} - Adapted f
 EB_id0162,,Radish,Radis,"Radish {GLO}| radish production, in heated greenhouse | Cut-off, U",Ecoinvent 3.11,GLO,TRUE
 EB_id0163,,Rapeseed,Colza,"Rapeseed, at farm {GLO} - Adapted from WFLDB U",Agribalyse 3.2,GLO,TRUE
 EB_id0164,,Raspberry,Framboise,"Raspberry, at farm {RS} - Adapted from WFLDB U",Agribalyse 3.2,RS,TRUE
-EB_id0165,,"Raw rice, all varieties (white, wild, c Thai or basmati rice, raw)","Riz cru, toutes variétés (blanc, sauvage, riz thaï ou basmati, cru)","Raw rice, all varieties (white, wild, c Thai or basmati rice, raw)",Ecoinvent 3.11,RoW,TRUE
+EB_id0165,,"Raw rice, all varieties (white, wild, c Thai or basmati rice, raw)","Riz cru, toutes variétés (blanc, sauvage, riz thaï ou basmati, cru)","Rice, non-basmati {RoW}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U",Ecoinvent 3.11,RoW,TRUE
 EB_id0166,,"Red beans, dried",Haricots rouges,"Fava bean {CA-SK}| fava bean production | Cut-off, U",Ecoinvent 3.11,CA-SK,TRUE
 EB_id0167,,Red currant,Groseille rouge,"Strawberry {US}| strawberry production, open field, macro tunnel | Cut-off, U",Ecoinvent 3.11,US,TRUE
 EB_id0168,,Red endive,Endive rouge,"Iceberg lettuce {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,GLO,TRUE
