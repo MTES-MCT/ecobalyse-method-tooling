@@ -22,6 +22,7 @@ import json
 import os
 import re
 import shutil
+import unicodedata
 import uuid
 from collections import Counter
 from enum import Enum
@@ -839,12 +840,77 @@ def dedupe_suffixed_ids(entries: dict[str, dict], kind: str) -> None:
             e["id"] = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"{kind}:{dn}"))
 
 
+# Adapted from https://github.com/django/django/blob/main/django/utils/text.py
+def slugify(value: str) -> str:
+    """Slugify a database source name into a directory-safe identifier.
+
+    Mirrors `ECOBALYSE_DATA/migrations/2026-06-14-explode-activities-json.py`
+    so the lci_catalog subdirectory names match exactly.
+    """
+    value = str(value)
+    value = (
+        unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+    )
+    value = re.sub(r"[^\w^\.\s-]", "", value.lower())
+    return re.sub(r"[-.\s]+", "-", value).strip("-_")
+
+
+def load_lci_catalog(catalog_dir: Path) -> list[dict]:
+    """Load every activity from `catalog_dir/<source-slug>/<alias>.json`.
+
+    The migration script strips `alias` before writing each file, so we
+    re-inject it from the filename stem to rebuild a list compatible with
+    the legacy activities.json format.
+    """
+    activities = []
+    for path in sorted(catalog_dir.glob("*/*.json")):
+        with open(path, encoding="utf-8") as f:
+            activity = json.load(f)
+        activity["alias"] = path.stem
+        activities.append(activity)
+    return activities
+
+
+def write_lci_catalog(activities: list[dict], catalog_dir: Path) -> None:
+    """Write activities into `catalog_dir/<source-slug>/<alias>.json`.
+
+    File format and naming convention follow the migration script:
+      - subdirectory = slugify(activity["source"])
+      - filename = activity["alias"] + ".json"
+      - the `alias` field is removed from the on-disk payload
+      - JSON is dumped with indent=2 and ensure_ascii=False
+
+    Files no longer present in `activities` are deleted, so the catalog
+    matches the merged result (same semantics as the previous full
+    rewrite of activities.json).
+    """
+    catalog_dir.mkdir(exist_ok=True)
+
+    desired: set[tuple[str, str]] = set()
+    for activity in activities:
+        source_slug = slugify(activity["source"])
+        alias = activity["alias"]
+        desired.add((source_slug, alias))
+
+        source_dir = catalog_dir / source_slug
+        source_dir.mkdir(exist_ok=True)
+
+        payload = {k: v for k, v in activity.items() if k != "alias"}
+        with open(source_dir / f"{alias}.json", "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2, ensure_ascii=False)
+            f.write("\n")
+
+    for path in catalog_dir.glob("*/*.json"):
+        if (path.parent.name, path.stem) not in desired:
+            path.unlink()
+
+
 def merge_activities(
     new_activities_path: Path,
-    target_activities_path: Path,
+    target_catalog_dir: Path,
     add_old_suffix: bool = False,
 ):
-    """Merge new_activities.json into target activities.json.
+    """Merge new_activities.json into the target lci_catalog directory.
 
     Uses flat dicts keyed by UUID for activities and ingredients.
     Normalizes on load (strips previous merge artifacts), then merges
@@ -856,8 +922,7 @@ def merge_activities(
     """
     with open(new_activities_path) as f:
         new_list = json.load(f)
-    with open(target_activities_path) as f:
-        existing_list = json.load(f)
+    existing_list = load_lci_catalog(target_catalog_dir)
 
     keep_csv_path = Path(__file__).parent / "source/keep.csv"
     keep_set = set()
@@ -952,7 +1017,7 @@ def merge_activities(
         alias_renames.update(apply_renames)
 
     # Update feed.json keys to match renamed ingredient aliases
-    feed_path = target_activities_path.parent / "food/ecosystemic_services/feed.json"
+    feed_path = target_catalog_dir.parent / "food/ecosystemic_services/feed.json"
     if feed_path.exists():
         with open(feed_path, encoding="utf-8") as f:
             feed_data = json.load(f)
@@ -977,8 +1042,7 @@ def merge_activities(
 
     result = reassemble(merged_acts, merged_ings, other)
 
-    with open(target_activities_path, "w") as f:
-        json.dump(result, f, indent=2, ensure_ascii=False)
+    write_lci_catalog(result, target_catalog_dir)
     print(f"Merged {len(added_acts)} new activities into {len(merged_acts)} total activities")
 
 
@@ -1140,7 +1204,7 @@ def generate_final_data(variant: Variant, fetch: bool = True):
     print(f"Final data written to {final_output_csv}")
 
 
-def remove_old(target_activities_path: Path):
+def remove_old(target_catalog_dir: Path):
     """Remove activities/ingredients whose alias ends with '-2025' or displayName ends with ' (2025)'.
 
     Also removes feed.json entries whose top-level key ends with '-2025'.
@@ -1148,9 +1212,7 @@ def remove_old(target_activities_path: Path):
     old_alias_suffix = OLD_ALIAS_SUFFIX
     old_display_suffix = OLD_DISPLAY_SUFFIX
 
-    # Load and filter activities.json
-    with open(target_activities_path) as f:
-        activities_list = json.load(f)
+    activities_list = load_lci_catalog(target_catalog_dir)
 
     filtered = []
     removed_activities = 0
@@ -1185,12 +1247,11 @@ def remove_old(target_activities_path: Path):
 
         filtered.append(activity)
 
-    with open(target_activities_path, "w") as f:
-        json.dump(filtered, f, indent=2, ensure_ascii=False)
-    print(f"activities.json: removed {removed_activities} activities, {removed_ingredients} ingredients")
+    write_lci_catalog(filtered, target_catalog_dir)
+    print(f"lci_catalog: removed {removed_activities} activities, {removed_ingredients} ingredients")
 
     # Load and filter feed.json
-    feed_path = target_activities_path.parent / "food/ecosystemic_services/feed.json"
+    feed_path = target_catalog_dir.parent / "food/ecosystemic_services/feed.json"
     if feed_path.exists():
         with open(feed_path, encoding="utf-8") as f:
             feed_data = json.load(f)
@@ -1299,8 +1360,8 @@ def main():
     # Handle remove-old command (no variant needed)
     if args.command == "remove-old":
         ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
-        activities_path = ECOBALYSE_DATA / "activities.json"
-        remove_old(activities_path)
+        catalog_dir = ECOBALYSE_DATA / "lci_catalog"
+        remove_old(catalog_dir)
         return
 
     # Validate --variant is required for metadata and final_data commands
@@ -1344,12 +1405,12 @@ def main():
     # Compare predictions across variants
     compare_variants(GENERATED_DIR)
 
-    # Merge into activities.json
-    activities_path = ECOBALYSE_DATA / "activities.json"
-    if activities_path.exists():
+    # Merge into lci_catalog
+    catalog_dir = ECOBALYSE_DATA / "lci_catalog"
+    if catalog_dir.exists():
         merge_activities(
             output_json,
-            activities_path,
+            catalog_dir,
             args.add_old_suffix,
         )
 
@@ -1365,7 +1426,7 @@ def main():
             "\nNext step: run 'just export-all' in ecobalyse-data to regenerate ingredients.json"
         )
     else:
-        print(f"\nWarning: ACTIVITIES path does not exist: {activities_path}")
+        print(f"\nWarning: lci_catalog directory does not exist: {catalog_dir}")
 
     print("\nDone!")
 
