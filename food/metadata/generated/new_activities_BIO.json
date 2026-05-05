@@ -5,7 +5,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Agave Bio",
+    "displayName": "Sugarcane, at farm, organic 2025 (MX)",
     "id": "561abf22-eada-567d-b6ac-3fc450471659",
     "metadata": [
       {
@@ -24,7 +24,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Agave UE found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -39,9 +39,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'caroube' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -63,7 +63,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Luzerne Bio",
+    "displayName": "Linseed, organic 2025 (ROW)",
     "id": "c0f3abf7-453f-594a-b3be-b3f37db182ad",
     "metadata": [
       {
@@ -138,9 +138,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "SEMENCES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'semences epeautre' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -220,9 +220,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES OLEAGINEUX",
+        "cropGroup": "SEMENCES",
         "cropGroupMatch": {
-          "rule": "oilseed pattern",
+          "rule": "matched 'semences epeautre' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -244,7 +244,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Amandes en coquille Bio",
+    "displayName": "Almonds, in shell, at farm, organic 2025 (CN)",
     "id": "e71058ff-14b8-5b99-98b3-bc12c1a61c69",
     "metadata": [
       {
@@ -302,7 +302,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Amarante Bio",
+    "displayName": "Durum wheat grain, organic 2025, national average, at farm gate (FR)",
     "id": "d23d6953-6bf7-5acc-a512-e073e2547f3a",
     "metadata": [
       {
@@ -401,7 +401,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Pomme Bio",
+    "displayName": "Apple, organic 2025, national average, at orchard (FR)",
     "id": "6d784d95-bab7-591f-b896-c4cafc0d678a",
     "metadata": [
       {
@@ -519,7 +519,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -541,7 +541,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Abricot Bio",
+    "displayName": "Apricot, organic 2025 (FR)",
     "id": "a7975add-8fca-5b4d-9975-ef479392a16a",
     "metadata": [
       {
@@ -577,7 +577,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -599,7 +599,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Artichaut Bio",
+    "displayName": "Cauliflower, organic 2025, national average, at farm gate (FR)",
     "id": "caffe4c2-57a9-5bc9-8275-21d9061ba103",
     "metadata": [
       {
@@ -635,7 +635,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'fennel' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -700,7 +700,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Cardoon UE found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -715,9 +715,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES CEREALES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'avoine' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -782,8 +782,8 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with cabbage in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -799,7 +799,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'cabbage' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -840,7 +840,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -946,7 +946,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Rhubarbe UE found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -961,9 +961,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -985,7 +985,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Asperge Bio",
+    "displayName": "White asparagus, organic 2025 (FR)",
     "id": "5adc8681-e131-537f-97d0-938659b61e76",
     "metadata": [
       {
@@ -1021,7 +1021,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1062,7 +1062,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'brussels sprout' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1084,7 +1084,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Avocat Bio",
+    "displayName": "Avocado, organic 2025 (GLO)",
     "id": "81565c8b-e677-54b8-8846-8d860e2990fb",
     "metadata": [
       {
@@ -1120,7 +1120,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1142,7 +1142,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Banane Bio",
+    "displayName": "Banana, at farm, organic 2025 (GLO)",
     "id": "2c7d630a-7c69-5557-9278-8718c78eee60",
     "metadata": [
       {
@@ -1200,7 +1200,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Riz basmati Bio",
+    "displayName": "Rice, basmati, organic 2025 (IN)",
     "id": "bac3906e-6c8d-5f1e-ab1b-a9e5ec5b2e86",
     "metadata": [
       {
@@ -1217,10 +1217,10 @@
           "grain_raw",
           "organic"
         ],
-        "ingredientDensity": 0.75,
+        "ingredientDensity": 0.72,
         "ingredientDensityMatch": {
-          "rule": "grain default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Rice in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 2.259,
         "rawToCookedRatioMatch": {
@@ -1236,7 +1236,7 @@
         "visible": true,
         "cropGroup": "RIZ",
         "cropGroupMatch": {
-          "rule": "rice pattern",
+          "rule": "matched 'rice' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1245,7 +1245,7 @@
         ]
       },
       {
-        "alias": "rice-all-variety-white-wild-c-thai-or-basmati-rice-raw-raw-organic",
+        "alias": "rice-raw-organic",
         "defaultOrigin": "France",
         "displayName": "Riz cru, toutes variétés (blanc, sauvage, riz thaï ou basmati, cru) Bio",
         "id": "2934f4bc-fec5-5eea-9ab3-127b32254a1d",
@@ -1299,7 +1299,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Betterave Bio",
+    "displayName": "Beetroot for juice, organic 2025, at farm gate (FR)",
     "id": "224b21be-1de7-53b7-8bf0-6beaa9841cdd",
     "metadata": [
       {
@@ -1357,11 +1357,11 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Poivron, vert, jaune ou rouge Bio",
+    "displayName": "Bell pepper, organic 2025 (FR)",
     "id": "9c6dbc5e-1ca9-5505-bec9-48591dc07fe9",
     "metadata": [
       {
-        "alias": "bell-pepper-green-yellow-or-red-organic",
+        "alias": "bell-pepper-organic",
         "defaultOrigin": "France",
         "displayName": "Poivron, vert, jaune ou rouge Bio",
         "id": "b775f784-db90-528b-bc3d-60cd7e8729f2",
@@ -1376,8 +1376,8 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with bell pepper in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -1393,7 +1393,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'bell pepper' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1415,7 +1415,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Cassis Bio",
+    "displayName": "Strawberry, open field, organic 2025, at farm gate (FR)",
     "id": "56049446-6bc7-57f6-8c13-5cce1711b603",
     "metadata": [
       {
@@ -1451,7 +1451,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1490,9 +1490,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "VIGNES",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'grape' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1533,7 +1533,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1596,7 +1596,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Mûre noire Bio",
+    "displayName": "Blackberry, at farm, organic 2025 (RS)",
     "id": "601ad614-a247-5456-b0cf-43ce3ee2cff7",
     "metadata": [
       {
@@ -1632,7 +1632,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1654,7 +1654,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Myrtille Bio",
+    "displayName": "Blueberry, at farm, organic 2025 (CA)",
     "id": "65633a14-69f4-5ebd-9ae9-45e168d339e4",
     "metadata": [
       {
@@ -1690,7 +1690,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1712,7 +1712,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Noix du Brésil Bio",
+    "displayName": "Peanut, organic 2025 (AR)",
     "id": "0874a5fd-259e-571d-a4f7-5d56cc4f68e6",
     "metadata": [
       {
@@ -1729,10 +1729,10 @@
           "nut_oilseed_raw",
           "organic"
         ],
-        "ingredientDensity": 0.6,
+        "ingredientDensity": 0.63,
         "ingredientDensityMatch": {
-          "rule": "nut_oilseed default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Nuts in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -1748,7 +1748,7 @@
         "visible": true,
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "nut default",
+          "rule": "matched 'noix' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1811,7 +1811,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Fruit à pain Bio",
+    "displayName": "Mango, organic 2025, Val de San Francisco, at orchard (BR)",
     "id": "44c35c92-61e7-5701-b29f-1fe61b374c0e",
     "metadata": [
       {
@@ -1847,7 +1847,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -1951,7 +1951,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Fève Bio",
+    "displayName": "Fava bean, Swiss integrated production, organic 2025 (CH)",
     "id": "e7fab1dd-0553-50e0-b75b-a89f51d6b04f",
     "metadata": [
       {
@@ -2067,9 +2067,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "PROTEAGINEUX",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'spring faba' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2173,7 +2173,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Brocoli Bio",
+    "displayName": "Broccoli, organic 2025 (GLO)",
     "id": "4c2fe6e5-0c91-5350-ab36-e607dec96761",
     "metadata": [
       {
@@ -2231,7 +2231,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Carottes Bio",
+    "displayName": "Carrot, organic 2025, national average, at farm gate (FR)",
     "id": "066a0373-52fb-54b8-8133-c332d97bc63e",
     "metadata": [
       {
@@ -2267,7 +2267,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2414,7 +2414,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Rutabaga FR found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -2429,9 +2429,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'moutarde' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2535,7 +2535,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Noix de cajou Bio",
+    "displayName": "Peanut, organic 2025 (CN)",
     "id": "5189831d-4315-50f9-aa9c-78fbf59eec45",
     "metadata": [
       {
@@ -2571,7 +2571,7 @@
         "visible": true,
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "nut default",
+          "rule": "matched 'almond' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2593,7 +2593,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Manioc Bio",
+    "displayName": "Carrot, organic 2025 (ROW)",
     "id": "03d0f2a0-67e2-58f4-b9be-beef9e7ecd1b",
     "metadata": [
       {
@@ -2670,7 +2670,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'brussels sprout' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2733,7 +2733,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Céleri Bio",
+    "displayName": "Celery, organic 2025 (GLO)",
     "id": "a8449aff-7b42-5a64-9453-8a5447103611",
     "metadata": [
       {
@@ -2752,7 +2752,7 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Céleri FR found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -2769,7 +2769,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'céleri-rave' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2791,7 +2791,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Cerise Bio",
+    "displayName": "Cherry, organic 2025, national average, at orchard (FR)",
     "id": "19ebea8f-f941-5197-9558-7b631b367d53",
     "metadata": [
       {
@@ -2827,7 +2827,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'cerise bigarreaux industrie' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2907,9 +2907,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "ARBORICULTURE",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'banane export' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2931,7 +2931,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Tomates cerises Bio",
+    "displayName": "Tomato, cherry, consumption mix, organic 2025 (FR)",
     "id": "d7afd2d5-2118-5c3d-a19e-31db3e4ccf54",
     "metadata": [
       {
@@ -2948,10 +2948,10 @@
           "vegetable_fresh",
           "organic"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 1.0,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with tomato in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -2967,7 +2967,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'tomato' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -2989,7 +2989,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Châtaigne Bio",
+    "displayName": "Walnut, dried inshell, organic 2025, national average, at farm gate (FR)",
     "id": "5fd6185e-dbef-5ec0-aeb4-f919119d35d5",
     "metadata": [
       {
@@ -3066,7 +3066,7 @@
         "visible": true,
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "nut default",
+          "rule": "matched 'noix' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3129,7 +3129,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Pois chiches Bio",
+    "displayName": "Chickpea seed, organic, at farm gate (FR)",
     "id": "19454740-08ba-5a57-adcf-25aa55975543",
     "metadata": [
       {
@@ -3187,7 +3187,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Racine de chicorée Bio",
+    "displayName": "Chicory roots, organic 2025, at farm gate (FR)",
     "id": "dd49ac0f-6070-5121-8ced-124d2101a38a",
     "metadata": [
       {
@@ -3221,9 +3221,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'chicory' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3245,7 +3245,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Ciboulette Bio",
+    "displayName": "Onion, organic 2025, national average, at farm (FR)",
     "id": "a438fb32-c4fc-5039-ad49-aa00466ad86a",
     "metadata": [
       {
@@ -3322,7 +3322,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3402,9 +3402,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "AUTRES OLEAGINEUX",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'autres oleagineux' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3426,7 +3426,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Clémentine Bio",
+    "displayName": "Clementine, export quality, Souss, at orchard, organic 2025 (MA)",
     "id": "162e0b74-b31c-5c1a-ad97-2cbe794532ba",
     "metadata": [
       {
@@ -3445,7 +3445,7 @@
         ],
         "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "Clémentine FR found in ingredients.json",
+          "rule": "fruit default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -3462,7 +3462,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3484,7 +3484,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Noix de coco décortiquée Bio",
+    "displayName": "Coconut, dehusked, organic 2025 (ROW)",
     "id": "8abfde51-624d-5b0d-a52e-f789c346c741",
     "metadata": [
       {
@@ -3542,7 +3542,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Café en grains Bio",
+    "displayName": "Coffee, green beans (IN)",
     "id": "951060aa-ffa2-51a5-b58e-ea8505b54381",
     "metadata": [
       {
@@ -3600,7 +3600,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Coriandre Bio",
+    "displayName": "Fennel, organic 2025 (GLO)",
     "id": "1b221149-fc1b-574a-9c6a-12755b990037",
     "metadata": [
       {
@@ -3716,9 +3716,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "DIVERS",
+        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
-          "rule": "spice_condiment default",
+          "rule": "matched 'curcuma' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3757,9 +3757,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3800,7 +3800,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3822,7 +3822,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Maïs Bio",
+    "displayName": "Maize grain, organic 2025, 28% moisture, national average, animal feed, at farm gate (FR)",
     "id": "e6ef258c-d5c3-5798-af4e-bd17d566e247",
     "metadata": [
       {
@@ -3880,7 +3880,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Canneberge Bio",
+    "displayName": "Cranberry, at farm, organic 2025 (CL)",
     "id": "f40436db-27d6-5c23-be4d-84c863c43312",
     "metadata": [
       {
@@ -3916,7 +3916,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -3938,7 +3938,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Concombre Bio",
+    "displayName": "Tomato, medium size, organic 2025, soil based, non-heated greenhouse, at greenhouse (FR)",
     "id": "0d1f263a-595c-5099-9a2c-2cf3e926a9e1",
     "metadata": [
       {
@@ -3996,7 +3996,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Dattes Bio",
+    "displayName": "Palm date, organic 2025 (GLO)",
     "id": "3265d5ec-80cb-5a35-be54-18a7fc95450e",
     "metadata": [
       {
@@ -4032,7 +4032,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4054,7 +4054,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Blé dur Bio",
+    "displayName": "Durum wheat grain, at farm, organic 2025 (GLO)",
     "id": "a209e352-b140-5c53-b547-0de0df61da72",
     "metadata": [
       {
@@ -4071,10 +4071,10 @@
           "grain_raw",
           "organic"
         ],
-        "ingredientDensity": 0.75,
+        "ingredientDensity": 0.77,
         "ingredientDensityMatch": {
-          "rule": "grain default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Wheat in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 2.259,
         "rawToCookedRatioMatch": {
@@ -4088,9 +4088,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "BLE TENDRE",
+        "cropGroup": "AUTRES CEREALES",
         "cropGroupMatch": {
-          "rule": "wheat/flour pattern",
+          "rule": "matched 'blé dur hiver' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4112,7 +4112,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Œuf Bio",
+    "displayName": "Egg, organic, at farm gate (FR)",
     "id": "c99a288f-90d4-59e6-866c-a46be0b8e75f",
     "metadata": [
       {
@@ -4168,7 +4168,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Aubergine Bio",
+    "displayName": "Zucchini, organic 2025, national average, at farm gate (FR)",
     "id": "ab1a7915-d2bb-5617-b23d-5ab9cdfad9b6",
     "metadata": [
       {
@@ -4349,7 +4349,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Baies de sureau Bio",
+    "displayName": "Strawberry for processing, open field, organic 2025, at farm gate (PL)",
     "id": "3abb3503-b805-5ee1-b2b6-5fc171cbce7f",
     "metadata": [
       {
@@ -4407,7 +4407,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Endive Bio",
+    "displayName": "Lettuce, organic 2025, national average, at farm gate (FR)",
     "id": "24b37e95-359c-5a5d-a727-8e220d6864e1",
     "metadata": [
       {
@@ -4424,9 +4424,9 @@
           "vegetable_fresh",
           "organic"
         ],
-        "ingredientDensity": 0.118,
+        "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Endive UE found in ingredients.json",
+          "rule": "vegetable default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -4484,7 +4484,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'endive' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4506,10 +4506,10 @@
           "vegetable_fresh",
           "organic"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 0.3,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with lettuce in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -4547,7 +4547,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Figue Bio",
+    "displayName": "Peach, organic 2025, national average, at orchard (FR)",
     "id": "fab4457e-961f-56fd-a06b-6edb39f40cbd",
     "metadata": [
       {
@@ -4581,9 +4581,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "ARBORICULTURE",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'banana' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4607,7 +4607,7 @@
         ],
         "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "Nectarine FR found in ingredients.json",
+          "rule": "fruit default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -4624,7 +4624,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4646,7 +4646,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Graines de lin Bio",
+    "displayName": "Flaxseed, national average, animal feed, at farm gate, organic 2025 (FR)",
     "id": "c7445665-2f95-5b75-933b-2d82ef95f909",
     "metadata": [
       {
@@ -4704,7 +4704,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Haricots verts Bio",
+    "displayName": "French bean, organic 2025, national average, at farm gate (FR)",
     "id": "e8b9de98-3844-5f25-bbb1-8aa2afef8553",
     "metadata": [
       {
@@ -4738,9 +4738,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "AUTRES OLEAGINEUX",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'soja' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4844,7 +4844,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Gingembre Bio",
+    "displayName": "Onion, organic 2025 (CN)",
     "id": "e489ae68-57f6-5d3f-82dc-3781e6e0a8b1",
     "metadata": [
       {
@@ -4902,7 +4902,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Pamplemousse Bio",
+    "displayName": "Grapefruit for juice, organic 2025, at farm gate (US)",
     "id": "cf181734-ffd7-527b-be00-7164caee3390",
     "metadata": [
       {
@@ -4936,9 +4936,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VIGNES",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "grape/wine pattern",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4960,11 +4960,11 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Raisins (noirs ou blancs) Bio",
+    "displayName": "Grape, wine grape, at farm, organic 2025 (IT)",
     "id": "eaab4a14-c14f-53c0-9ba3-9a9974712e5c",
     "metadata": [
       {
-        "alias": "grape-black-or-white-organic",
+        "alias": "grape-organic",
         "defaultOrigin": "France",
         "displayName": "Raisins (noirs ou blancs) Bio",
         "id": "8d83f94f-a882-51f6-baf5-aec52f2431f3",
@@ -4977,10 +4977,10 @@
           "vegetable_fresh",
           "organic"
         ],
-        "ingredientDensity": 0.85,
+        "ingredientDensity": 1.0,
         "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with grape in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -4996,7 +4996,7 @@
         "visible": true,
         "cropGroup": "VIGNES",
         "cropGroupMatch": {
-          "rule": "grape/wine pattern",
+          "rule": "matched 'grape' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5018,7 +5018,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Goyave Bio",
+    "displayName": "Kiwi, organic 2025 (GLO)",
     "id": "43f18adb-8f07-513f-98ea-547c18ba70fc",
     "metadata": [
       {
@@ -5054,7 +5054,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5095,7 +5095,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5158,7 +5158,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Noisettes en coquille Bio",
+    "displayName": "Hazelnut, in shell, at farm, organic 2025 (IT)",
     "id": "2d08ca8c-a133-56d8-8903-5f7c3aa18adb",
     "metadata": [
       {
@@ -5216,7 +5216,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Chanvre Bio",
+    "displayName": "Hemp, grain, Champagne, at farm gate, organic 2025 (FR)",
     "id": "7e9b6006-3f07-54cb-b09c-84629f67c393",
     "metadata": [
       {
@@ -5274,7 +5274,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Kumquat Bio",
+    "displayName": "Orange, fresh grade, organic 2025 (ES)",
     "id": "71eb9809-a689-5c73-a1be-9eb71aaaddf7",
     "metadata": [
       {
@@ -5293,7 +5293,7 @@
         ],
         "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "Kumquat FR found in ingredients.json",
+          "rule": "fruit default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -5310,7 +5310,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5332,7 +5332,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Poireau Bio",
+    "displayName": "Leek, organic 2025, national average, at plant (FR)",
     "id": "9c8e8539-3858-56a4-bc32-21f322e1ddc4",
     "metadata": [
       {
@@ -5390,7 +5390,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Citron Bio",
+    "displayName": "Lemon, at farm, organic 2025 (IT)",
     "id": "091ac983-d241-53d5-be36-a3cddbf44c3c",
     "metadata": [
       {
@@ -5426,7 +5426,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5448,7 +5448,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Lentille Bio",
+    "displayName": "Lentil, organic 2025 (CA-SK)",
     "id": "8179624f-d026-5bae-8b56-b677e71f92d3",
     "metadata": [
       {
@@ -5506,7 +5506,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Lupin Bio",
+    "displayName": "Lupin, organic 2025, national average, at farm gate, production (FR)",
     "id": "f37b591d-63b9-5f8f-8caa-d06620c21536",
     "metadata": [
       {
@@ -5525,7 +5525,7 @@
         ],
         "ingredientDensity": 0.8,
         "ingredientDensityMatch": {
-          "rule": "Lupin FR found in ingredients.json",
+          "rule": "legume default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -5564,7 +5564,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Mangue Bio",
+    "displayName": "Mango, organic 2025 (BR)",
     "id": "f040fcfa-d567-508c-937d-71d77ac991ae",
     "metadata": [
       {
@@ -5622,11 +5622,11 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Melon (miellat, Charentais, Cataloupe, Cavaillon) Bio",
+    "displayName": "Melon, organic 2025, national average, at farm gate (FR)",
     "id": "21fea654-a110-55ac-b2cc-b2eb4314f4e8",
     "metadata": [
       {
-        "alias": "melon-honeydew-charentai-cataloupe-cavaillon-organic",
+        "alias": "melon-organic",
         "defaultOrigin": "France",
         "displayName": "Melon (miellat, Charentais, Cataloupe, Cavaillon) Bio",
         "id": "1897e16d-b313-537e-b765-2b20a3963a38",
@@ -5641,8 +5641,8 @@
         ],
         "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "Matched with Melon (miellat, Charentais, Cataloupe, Cavaillon) FR in ingredients.json",
-          "confidence": 0.98
+          "rule": "fruit default from food_type_density.csv",
+          "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -5656,9 +5656,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'melon' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5721,7 +5721,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Épinards de Nouvelle-Zélande Bio",
+    "displayName": "Spinach, organic 2025 (GLO)",
     "id": "c391d7e5-57b1-5f93-9f27-c5f8f92b7b0e",
     "metadata": [
       {
@@ -5740,8 +5740,8 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with spinach in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -5757,7 +5757,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'fennel' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5798,7 +5798,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5861,7 +5861,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Avoine Bio",
+    "displayName": "Oat grain, organic 2025 (ROW)",
     "id": "474772d6-dfea-50b9-a1a0-25fa062abdca",
     "metadata": [
       {
@@ -5919,7 +5919,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Olives Bio",
+    "displayName": "Olive, organic 2025 (ES)",
     "id": "770a1286-d8f3-5af0-883a-48a0e244efa9",
     "metadata": [
       {
@@ -5938,8 +5938,8 @@
         ],
         "ingredientDensity": 0.65,
         "ingredientDensityMatch": {
-          "rule": "Olives FR found in ingredients.json",
-          "confidence": 1.0
+          "rule": "Matched with Olives, green, with stone in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -5953,9 +5953,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "OLIVIERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'olive' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5977,7 +5977,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Oranges Bio",
+    "displayName": "Orange, processing grade, at farm, organic 2025 (BR)",
     "id": "a6c9e9d2-a410-57bf-b105-fd28233246f8",
     "metadata": [
       {
@@ -5996,8 +5996,8 @@
         ],
         "ingredientDensity": 0.95,
         "ingredientDensityMatch": {
-          "rule": "Oranges FR found in ingredients.json",
-          "confidence": 1.0
+          "rule": "Matched with orange in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -6013,7 +6013,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6035,7 +6035,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Fruit du palmier Bio",
+    "displayName": "Palm fruit bunch, at farm, organic 2025 (MY)",
     "id": "a6c200b1-6a3d-508b-bf1b-afcc91644795",
     "metadata": [
       {
@@ -6093,7 +6093,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Papaye Bio",
+    "displayName": "Papaya, organic 2025 (GLO)",
     "id": "d97eb654-339f-5823-bb58-6733710e4fe1",
     "metadata": [
       {
@@ -6151,7 +6151,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Pêches Bio",
+    "displayName": "Peach, at farm, organic 2025 (ES)",
     "id": "3b7b3228-1d8c-545b-ae9d-cf93124f9edb",
     "metadata": [
       {
@@ -6209,7 +6209,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Arachide Bio",
+    "displayName": "Peanut, organic 2025 (ROW)",
     "id": "98336c40-1e5e-54a0-b4ca-bf21c888a016",
     "metadata": [
       {
@@ -6267,10 +6267,10 @@
           "nut_oilseed_raw",
           "organic"
         ],
-        "ingredientDensity": 0.6,
+        "ingredientDensity": 0.63,
         "ingredientDensityMatch": {
-          "rule": "nut_oilseed default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Nuts in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -6286,7 +6286,7 @@
         "visible": true,
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "nut default",
+          "rule": "matched 'noix' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6308,7 +6308,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Poires Bio",
+    "displayName": "Pear, at farm, organic 2025 (NL)",
     "id": "389bed29-5637-5bf8-802c-c1dba4090bf9",
     "metadata": [
       {
@@ -6344,7 +6344,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6366,7 +6366,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Pois, avec leurs cosses Bio",
+    "displayName": "Winter pea, organic 2025, 15% moisture, at farm gate (FR)",
     "id": "12a66ec8-8a2c-541e-9c0d-d603508c7a00",
     "metadata": [
       {
@@ -6508,8 +6508,8 @@
         ],
         "ingredientDensity": 0.8,
         "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with pea in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -6523,9 +6523,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "PROTEAGINEUX",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'pois d'hiver' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6547,7 +6547,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Ananas Bio",
+    "displayName": "Pineapple, at farm, organic 2025 (CR)",
     "id": "e393d83d-9cc8-5b6a-b03f-7562bb2098f8",
     "metadata": [
       {
@@ -6605,7 +6605,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Plantain Bio",
+    "displayName": "Banana, organic 2025 (ROW)",
     "id": "7bf84dd4-781d-5804-b6f4-5d32be811504",
     "metadata": [
       {
@@ -6624,7 +6624,7 @@
         ],
         "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "Plantain FR found in ingredients.json",
+          "rule": "fruit default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 0.856,
@@ -6641,7 +6641,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6663,7 +6663,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Pomme de terre Bio",
+    "displayName": "Ware potato, organic 2025, variety mix, national average, at farm gate (FR)",
     "id": "8860451f-bd10-54b3-9b7e-1998fcceba55",
     "metadata": [
       {
@@ -6721,10 +6721,10 @@
           "vegetable_fresh",
           "organic"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 0.65,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Sweet potato, boiled in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -6740,7 +6740,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'potato' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6762,7 +6762,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Quinoa Bio",
+    "displayName": "Quinoa FR, organic 2025, at farm gate (FR)",
     "id": "ccab5b1e-afeb-54d1-b279-54088041892b",
     "metadata": [
       {
@@ -6781,7 +6781,7 @@
         ],
         "ingredientDensity": 0.75,
         "ingredientDensityMatch": {
-          "rule": "Quinoa FR found in ingredients.json",
+          "rule": "grain default from food_type_density.csv",
           "confidence": 1.0
         },
         "rawToCookedRatio": 2.259,
@@ -6820,7 +6820,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Radis Bio",
+    "displayName": "Radish, organic 2025 (FR)",
     "id": "bd1ee562-399a-525a-af3c-6d8ecf117608",
     "metadata": [
       {
@@ -6856,7 +6856,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'carrot' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6878,7 +6878,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Colza Bio",
+    "displayName": "Rapeseed, organic 2025, 9% moisture, national average, animal feed, at farm gate, production (FR)",
     "id": "19ffca06-a53e-5038-986e-d5380b9b6f7b",
     "metadata": [
       {
@@ -6936,7 +6936,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Framboise Bio",
+    "displayName": "Raspberry, at farm, organic 2025 (RS)",
     "id": "1f56aff2-395e-5c03-be71-9e1a043cee07",
     "metadata": [
       {
@@ -6972,7 +6972,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "fruit default",
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -6994,7 +6994,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Graines de sésame Bio",
+    "displayName": "Peanut, organic 2025 (IN)",
     "id": "af1c82d6-dd55-596e-b050-e3954ce616a5",
     "metadata": [
       {
@@ -7028,9 +7028,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES CEREALES",
+        "cropGroup": "SEMENCES",
         "cropGroupMatch": {
-          "rule": "grain default",
+          "rule": "matched 'semences epeautre' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -7052,7 +7052,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Blé tendre Bio",
+    "displayName": "Soft wheat grain, organic 2025, breadmaking quality, 15% moisture, at farm gate (FR)",
     "id": "049ce90c-a396-5611-b061-68c2a095a927",
     "metadata": [
       {
@@ -7110,7 +7110,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Sorgho Bio",
+    "displayName": "Sweet sorghum grain, organic 2025 (ROW)",
     "id": "4263a97f-34ae-5572-9605-6985ab6121a1",
     "metadata": [
       {
@@ -7129,8 +7129,8 @@
         ],
         "ingredientDensity": 0.54,
         "ingredientDensityMatch": {
-          "rule": "Sorgho FR found in ingredients.json",
-          "confidence": 1.0
+          "rule": "Matched with Sorghum, fermented flour in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 2.259,
         "rawToCookedRatioMatch": {
@@ -7168,7 +7168,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Soja Bio",
+    "displayName": "Soybean, organic 2025 (BR)",
     "id": "bd878da4-6f00-5efb-9351-785453abc93d",
     "metadata": [
       {
@@ -7226,7 +7226,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Fèves printanières Bio",
+    "displayName": "Spring faba bean, organic 2025, reduced protection, at farm gate (FR)",
     "id": "b99a5d3f-79c1-5d98-89c2-11fff437145b",
     "metadata": [
       {
@@ -7284,7 +7284,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Pois de printemps Bio",
+    "displayName": "Spring pea seed, organic, at farm gate (FR)",
     "id": "fe02455f-52f6-5ea0-b18c-f94f65dd9ddc",
     "metadata": [
       {
@@ -7303,8 +7303,8 @@
         ],
         "ingredientDensity": 0.8,
         "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with pea in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -7318,9 +7318,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "PROTEAGINEUX",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'pois de printemps' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -7342,7 +7342,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Betterave à sucre Bio",
+    "displayName": "Sugar beet, at farm, organic 2025 (DE)",
     "id": "0645ae84-57d3-56ff-95b2-39da046a1979",
     "metadata": [
       {
@@ -7359,10 +7359,10 @@
           "spice_condiment_additive",
           "organic"
         ],
-        "ingredientDensity": 0.5,
+        "ingredientDensity": 0.95,
         "ingredientDensityMatch": {
-          "rule": "spice_condiment default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Sugar in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -7400,7 +7400,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Tournesol, graine Bio",
+    "displayName": "Sunflower, at farm, organic 2025 (FR)",
     "id": "3b1c0bcb-5441-5a44-90fc-4a5592e3150b",
     "metadata": [
       {
@@ -7436,7 +7436,7 @@
         "visible": true,
         "cropGroup": "TOURNESOL",
         "cropGroupMatch": {
-          "rule": "sunflower pattern",
+          "rule": "matched 'sunflower' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -7458,7 +7458,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Tomate Bio",
+    "displayName": "Tomato, fresh grade, organic 2025 (ES)",
     "id": "f2edc75c-7efd-5cce-89fe-c0729789bdf0",
     "metadata": [
       {
@@ -7516,7 +7516,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Chou blanc Bio",
+    "displayName": "Cabbage white, organic 2025 (ROW)",
     "id": "bbfcf692-76d2-5aa6-9541-818dece93a16",
     "metadata": [
       {
@@ -7535,8 +7535,8 @@
         ],
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with cabbage in density.csv",
+          "confidence": 0.98
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -7552,7 +7552,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "vegetable default",
+          "rule": "matched 'cabbage' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -7574,7 +7574,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Millet entier Bio",
+    "displayName": "Wheat grain, organic 2025 (FR)",
     "id": "9b4af75d-f11d-5425-91e7-1af533cb8ba2",
     "metadata": [
       {
@@ -7632,7 +7632,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Boeuf Bio",
+    "displayName": "Live beef, for direct consumption, consumption mix (FR)",
     "id": "12fb7c01-cd0b-59ec-872f-06f5ba982b5d",
     "metadata": [
       {
@@ -7688,7 +7688,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Poulet Bio",
+    "displayName": "Live broiler, for direct consumption, consumption mix (FR)",
     "id": "bc5a154d-e89e-5ea1-a2ac-926d7cfa9945",
     "metadata": [
       {
@@ -7766,6 +7766,11 @@
           "confidence": 1.0
         },
         "visible": false,
+        "cropGroup": "PRAIRIES PERMANENTES",
+        "cropGroupMatch": {
+          "rule": "matched 'prairies naturelles' in cropgroup.csv",
+          "confidence": 1.0
+        },
         "animalGroup1": "poultry",
         "animalGroup2": "chicken",
         "animalProduct": "meat",
@@ -7827,7 +7832,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Agneau Bio",
+    "displayName": "Live lamb, consumption mix (FR)",
     "id": "9888b073-a101-5bd8-a5e9-94bb9c052c3f",
     "metadata": [
       {
@@ -7883,7 +7888,7 @@
     "categories": [
       "ingredient"
     ],
-    "displayName": "Porc Bio",
+    "displayName": "Live pig, consumption mix (FR)",
     "id": "ec694943-f9c8-5a8e-8959-1380d32738c9",
     "metadata": [
       {

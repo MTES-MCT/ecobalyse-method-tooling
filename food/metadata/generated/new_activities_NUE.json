@@ -9,10 +9,10 @@
     "id": "9ac30e81-0687-598f-8fd4-3b9ddbe43275",
     "metadata": [
       {
-        "alias": "agave-default",
+        "alias": "agave-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Agave Origine Inconnue",
-        "id": "f55d6582-d0c6-5987-8171-c6d3a9e448b3",
+        "displayName": "Agave HORS UE",
+        "id": "28ea331e-3c42-5c47-9469-b5f8d785565c",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -66,10 +66,10 @@
     "id": "8bc4da08-0d27-5cb3-8c32-1ad6b2507bc0",
     "metadata": [
       {
-        "alias": "almond-in-shell-default",
+        "alias": "almond-in-shell-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Amandes en coquille Origine Inconnue",
-        "id": "d6eb53ea-273e-57c0-8989-bf12e7650c72",
+        "displayName": "Amandes en coquille HORS UE",
+        "id": "b1ec904f-aa81-572b-8687-513b54be1224",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "with shell keyword found in Almonds, in shell",
@@ -114,19 +114,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Durum wheat grain, at farm {AU} - Adapted from WFLDB U",
-    "alias": "durum-wheat-grain",
+    "activityName": "Wheat grain {IN}| wheat production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "wheat-grain-in",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Durum wheat grain, at farm (AU)",
-    "id": "cfdd1afe-f9ff-516e-ab27-2a9cfbede91c",
+    "displayName": "Wheat grain (IN)",
+    "id": "3a619d37-5424-5fc3-b7fd-50814adab318",
     "metadata": [
       {
-        "alias": "amaranth-default",
+        "alias": "amaranth-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Amarante Origine Inconnue",
-        "id": "f445d9af-019b-51d5-8e2c-690d1b28291f",
+        "displayName": "Amarante HORS UE",
+        "id": "585c4a98-a772-54a2-9c6e-9741cd912f1e",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -161,86 +161,6 @@
           "food",
           "food2"
         ]
-      },
-      {
-        "alias": "durum-wheat-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Blé dur Origine Inconnue",
-        "id": "0a76b2a3-a8e1-5b35-90d3-a4cfd1d4a560",
-        "inediblePart": 0.0,
-        "inediblePartMatch": {
-          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "grain_raw"
-        ],
-        "ingredientDensity": 0.77,
-        "ingredientDensityMatch": {
-          "rule": "Matched with Wheat in fao_density.csv",
-          "confidence": 0.95
-        },
-        "rawToCookedRatio": 2.259,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with durum wheat in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "grain → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "AUTRES CEREALES",
-        "cropGroupMatch": {
-          "rule": "matched 'blé dur hiver' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      },
-      {
-        "alias": "spelt-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Epeautre Origine Inconnue",
-        "id": "0acce812-320f-51c8-b1bb-bd09c3b06284",
-        "inediblePart": 0.0,
-        "inediblePartMatch": {
-          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "grain_raw"
-        ],
-        "ingredientDensity": 0.75,
-        "ingredientDensityMatch": {
-          "rule": "grain default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 2.259,
-        "rawToCookedRatioMatch": {
-          "rule": "grain default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "grain → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "AUTRES CEREALES",
-        "cropGroupMatch": {
-          "rule": "matched 'spelt' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
       }
     ],
     "scopes": [
@@ -251,19 +171,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Apple, at farm (WFLDB)",
+    "activityName": "Apple {CN}| apple production | Cut-off, U",
     "alias": "apple",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Apple, at farm",
+    "displayName": "Apple (CN)",
     "id": "abfdfebc-3426-5585-b8da-d3031bb927e3",
     "metadata": [
       {
-        "alias": "apple-default",
+        "alias": "apple-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pomme Origine Inconnue",
-        "id": "a8a4ef06-c11f-5242-a9e1-05b93a55804b",
+        "displayName": "Pomme HORS UE",
+        "id": "99b68960-addc-5de7-8f82-f34eb9ac2d8d",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Apple in agb_inedible.csv",
@@ -300,10 +220,10 @@
         ]
       },
       {
-        "alias": "quince-default",
+        "alias": "quince-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Coing Origine Inconnue",
-        "id": "4f133fae-1737-54c6-9b46-86d2d403dd03",
+        "displayName": "Coing HORS UE",
+        "id": "e73f79ca-ba84-5369-81b9-863fcd496e5b",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -344,24 +264,23 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "CN"
+    "source": "Ecoinvent 3.11",
+    "unit": "kg"
   },
   {
-    "activityName": "Apricot, at farm (WFLDB)",
+    "activityName": "Apricot {RoW}| apricot production | Cut-off, U",
     "alias": "apricot",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Apricot, at farm",
+    "displayName": "Apricot (ROW)",
     "id": "31e6e9bc-3d11-535c-a5a5-435eaba01e3a",
     "metadata": [
       {
-        "alias": "apricot-default",
+        "alias": "apricot-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Abricot Origine Inconnue",
-        "id": "b4a8ff8e-a9ee-594c-b028-424a755f58e7",
+        "displayName": "Abricot HORS UE",
+        "id": "6692972a-c589-5773-922c-03e2a2041edb",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Apricot in agb_inedible.csv",
@@ -402,24 +321,23 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "ES"
+    "source": "Ecoinvent 3.11",
+    "unit": "kg"
   },
   {
-    "activityName": "Asparagus, at farm (WFLDB)",
-    "alias": "asparagu",
+    "activityName": "White asparagus {CN}| white asparagus production | Cut-off, U",
+    "alias": "white-asparagu-cn",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Asparagus, at farm",
-    "id": "2bda7da9-d128-5e9c-9d63-cc1165bbd096",
+    "displayName": "White asparagus (CN)",
+    "id": "6de7b8b4-7af8-5bee-820a-c2ca4317e3ff",
     "metadata": [
       {
-        "alias": "asparagu-default",
+        "alias": "asparagu-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Asperge Origine Inconnue",
-        "id": "36c1702e-7ca4-5d5e-8d4e-22754ee78f4c",
+        "displayName": "Asperge HORS UE",
+        "id": "093cdaba-be7e-53c1-8ba4-ce37228aa4fa",
         "inediblePart": 0.4,
         "inediblePartMatch": {
           "rule": "Matched with Asparagus in agb_inedible.csv",
@@ -460,9 +378,8 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "CN"
+    "source": "Ecoinvent 3.11",
+    "unit": "kg"
   },
   {
     "activityName": "Avocado {GLO}| avocado production | Cut-off, U",
@@ -474,10 +391,10 @@
     "id": "812147e5-e915-5de6-b511-1524cf48d0c0",
     "metadata": [
       {
-        "alias": "avocado-default",
+        "alias": "avocado-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Avocat Origine Inconnue",
-        "id": "cfce40a0-1a82-5c9d-bfc1-f0912db6d7e6",
+        "displayName": "Avocat HORS UE",
+        "id": "75943841-50ba-51da-9ebf-40b17d9ef096",
         "inediblePart": 0.3,
         "inediblePartMatch": {
           "rule": "Matched with Avocados in agb_inedible.csv",
@@ -522,19 +439,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "White asparagus {CN}| white asparagus production | Cut-off, U",
-    "alias": "white-asparagu",
+    "activityName": "White asparagus {PE}| white asparagus production | Cut-off, U",
+    "alias": "white-asparagu-pe",
     "categories": [
       "ingredient"
     ],
-    "displayName": "White asparagus (CN)",
-    "id": "c74c2bc1-4ff5-5808-a0d8-79215c9e0d5f",
+    "displayName": "White asparagus (PE)",
+    "id": "1735a482-85cd-50e4-9feb-1e41a34a1eec",
     "metadata": [
       {
-        "alias": "bamboo-shoot-default",
+        "alias": "bamboo-shoot-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pousses de bambou Origine Inconnue",
-        "id": "b7ef5773-90fa-510a-9d26-06f22046f3b0",
+        "displayName": "Pousses de bambou HORS UE",
+        "id": "944b2f5d-c4cc-5398-bb20-22e4084477c1",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -579,19 +496,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Banana, at farm (WFLDB)",
+    "activityName": "Banana {RoW}| banana production | Cut-off, U - Adapted from Ecoinvent U",
     "alias": "banana",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Banana, at farm",
+    "displayName": "Banana (ROW)",
     "id": "3925fb34-df8d-599c-821c-057671bc4bd6",
     "metadata": [
       {
-        "alias": "banana-default",
+        "alias": "banana-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Banane Origine Inconnue",
-        "id": "4c14c708-abac-54fd-a647-aa355a402822",
+        "displayName": "Banane HORS UE",
+        "id": "6460dea6-8599-5a2c-b929-c01d54abe5af",
         "inediblePart": 0.3,
         "inediblePartMatch": {
           "rule": "Matched with Banana in agb_inedible.csv",
@@ -616,7 +533,7 @@
           "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "ARBORICULTURE",
         "cropGroupMatch": {
           "rule": "matched 'banana' in cropgroup.csv",
@@ -628,10 +545,10 @@
         ]
       },
       {
-        "alias": "plantain-default",
+        "alias": "plantain-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Plantain Origine Inconnue",
-        "id": "d42d666d-ec3f-5fa6-a227-45da422ab9c0",
+        "displayName": "Plantain HORS UE",
+        "id": "92adff42-f2d4-504d-b0c7-92d9640d2059",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -656,7 +573,7 @@
           "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
           "rule": "matched 'poires pour transformation' in cropgroup.csv",
@@ -672,24 +589,23 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "CR"
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
   },
   {
-    "activityName": "Rice, basmati {IN}| rice production, basmati | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Rice, basmati {GLO}| market for rice, basmati | Cut-off, U",
     "alias": "rice-basmati",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Rice, basmati (IN)",
+    "displayName": "Rice, basmati (GLO)",
     "id": "2c27e0ff-d5c7-5ee8-988f-e9f34ca961dd",
     "metadata": [
       {
-        "alias": "basmati-rice-default",
+        "alias": "basmati-rice-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Riz basmati Origine Inconnue",
-        "id": "4ecb43f7-b431-5c0f-9cec-6bdd5c3d63dd",
+        "displayName": "Riz basmati HORS UE",
+        "id": "174df3b4-afcf-5ab4-a5e4-53417462b35d",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "Matched with rice in inedible_part.csv",
@@ -724,69 +640,29 @@
           "food",
           "food2"
         ]
-      },
-      {
-        "alias": "rice-raw-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Riz cru, toutes variétés (blanc, sauvage, riz thaï ou basmati, cru) Origine Inconnue",
-        "id": "cd75bf39-ee3a-5532-9d70-d8b853be0460",
-        "inediblePart": 0.0,
-        "inediblePartMatch": {
-          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "grain_raw"
-        ],
-        "ingredientDensity": 0.85,
-        "ingredientDensityMatch": {
-          "rule": "Matched with Rice, raw in fao_density.csv",
-          "confidence": 0.95
-        },
-        "rawToCookedRatio": 2.259,
-        "rawToCookedRatioMatch": {
-          "rule": "grain default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "grain → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "RIZ",
-        "cropGroupMatch": {
-          "rule": "matched 'rice' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
       }
     ],
     "scopes": [
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
-    "activityName": "Mint, at farm (WFLDB)",
+    "activityName": "Mint {IN}| mint production | Cut-off, U",
     "alias": "mint",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Mint, at farm",
+    "displayName": "Mint (IN)",
     "id": "e589703f-8c56-5adb-9b23-b5aff1fcd0a5",
     "metadata": [
       {
-        "alias": "bay-leaf-default",
+        "alias": "bay-leaf-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Feuilles de laurier Origine Inconnue",
-        "id": "29b166a8-2590-5e8a-b07c-93aed2ca41e6",
+        "displayName": "Feuilles de laurier HORS UE",
+        "id": "92bfeb5c-044f-5aac-9b95-7d2f863f1afc",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -823,10 +699,10 @@
         ]
       },
       {
-        "alias": "dill-fresh-default",
+        "alias": "dill-fresh-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Aneth, frais Origine Inconnue",
-        "id": "751a8b5e-d97d-5933-b308-c0d6aeae6c1a",
+        "displayName": "Aneth, frais HORS UE",
+        "id": "e849f2db-b8d3-5456-a771-bd23d88b1e66",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -863,10 +739,10 @@
         ]
       },
       {
-        "alias": "herb-dried-default",
+        "alias": "herb-dried-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) Origine Inconnue",
-        "id": "8790077d-37a1-5c83-9534-db01d182c8d7",
+        "displayName": "Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge) HORS UE",
+        "id": "d6dd0011-30df-5509-bc5e-b6d47a71b6e3",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -903,10 +779,10 @@
         ]
       },
       {
-        "alias": "herb-fresh-default",
+        "alias": "herb-fresh-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) Origine Inconnue",
-        "id": "83a078bb-4e00-5c7e-a8a9-6323213ab606",
+        "displayName": "Herbes fraîches (aneth, basilic, cerfeuil, romarin, sauge, thym) HORS UE",
+        "id": "e0ca6e33-9540-5abc-a285-bfffba017601",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -943,10 +819,10 @@
         ]
       },
       {
-        "alias": "mint-default",
+        "alias": "mint-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Menthe Origine Inconnue",
-        "id": "4b5297bc-f65b-5caa-a1aa-2f70744457ee",
+        "displayName": "Menthe HORS UE",
+        "id": "51b817e2-be00-55d1-b9ff-9b8a7dad8af8",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Mint in agb_inedible.csv",
@@ -983,10 +859,10 @@
         ]
       },
       {
-        "alias": "tarragon-fresh-default",
+        "alias": "tarragon-fresh-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Estragon frais Origine Inconnue",
-        "id": "1530c386-76ae-5c9c-9002-0764a53fed0a",
+        "displayName": "Estragon frais HORS UE",
+        "id": "a2f47dd6-71bc-5e3f-b501-48b4bb524a55",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Tarragon in agb_inedible.csv",
@@ -1027,9 +903,8 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "IN"
+    "source": "Ecoinvent 3.11",
+    "unit": "kg"
   },
   {
     "activityName": "Beetroot for juice, conventional, at farm gate {FR} U",
@@ -1041,10 +916,10 @@
     "id": "5261a6ab-828c-5dcb-b56a-6eb4d45ec72b",
     "metadata": [
       {
-        "alias": "beetroot-default",
+        "alias": "beetroot-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Betterave Origine Inconnue",
-        "id": "e8035fac-470a-5b89-bf84-5f158cabf65d",
+        "displayName": "Betterave HORS UE",
+        "id": "733845b9-52a5-57ca-a7ca-011b0250c873",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Beetroots in agb_inedible.csv",
@@ -1089,19 +964,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Bell pepper {IN-UP}| bell pepper production, open field | Cut-off, U",
+    "activityName": "Bell pepper {RoW}| bell pepper production, open field | Cut-off, U",
     "alias": "bell-pepper",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Bell pepper (IN-UP)",
+    "displayName": "Bell pepper (ROW)",
     "id": "b3a82bf4-8ebd-51db-aa88-e0460ee22acb",
     "metadata": [
       {
-        "alias": "bell-pepper-default",
+        "alias": "bell-pepper-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Poivron, vert, jaune ou rouge Origine Inconnue",
-        "id": "297d24f1-2cb9-5080-b83a-234365c9ddc2",
+        "displayName": "Poivron, vert, jaune ou rouge HORS UE",
+        "id": "6b3ee1ef-92cb-5d0d-9419-d2755446bd10",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -1138,10 +1013,10 @@
         ]
       },
       {
-        "alias": "chili-pepper-default",
+        "alias": "chili-pepper-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Piments Origine Inconnue",
-        "id": "c546e4c6-4b67-5997-ab0d-b19ecef20040",
+        "displayName": "Piments HORS UE",
+        "id": "287c1ac8-9933-5af7-84f5-517514152fc2",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Peppers in agb_inedible.csv",
@@ -1186,19 +1061,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Strawberry, open field, macro tunnel, at farm (WFLDB)",
-    "alias": "strawberry-open-field-macro-tunnel",
+    "activityName": "Strawberry {US}| strawberry production, open field, macro tunnel | Cut-off, U",
+    "alias": "strawberry",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Strawberry, open field, macro tunnel, at farm",
-    "id": "baa1abc2-b554-5767-8128-4e990c4401a3",
+    "displayName": "Strawberry (US)",
+    "id": "3872d30b-9b01-5f82-9e05-9a422f81a6e9",
     "metadata": [
       {
-        "alias": "black-currant-default",
+        "alias": "black-currant-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Cassis Origine Inconnue",
-        "id": "d72eb780-f57a-5b7f-bdf5-382ec815a9eb",
+        "displayName": "Cassis HORS UE",
+        "id": "6cc1c2fd-1d30-5ec1-89b5-734d1947b7dd",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Currant in agb_inedible.csv",
@@ -1235,10 +1110,10 @@
         ]
       },
       {
-        "alias": "gooseberry-default",
+        "alias": "gooseberry-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Groseille Origine Inconnue",
-        "id": "ace2f44d-72bf-5727-9dd5-25f29fd32daf",
+        "displayName": "Groseille HORS UE",
+        "id": "fe75d696-d364-5848-be1f-d3108383c4c8",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -1275,10 +1150,10 @@
         ]
       },
       {
-        "alias": "red-currant-default",
+        "alias": "red-currant-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Groseille rouge Origine Inconnue",
-        "id": "ca4c8f20-91f4-5175-98c0-61ac41634ea9",
+        "displayName": "Groseille rouge HORS UE",
+        "id": "baea5b5d-5230-55e0-8eec-6e3cf3810b0e",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Currant in agb_inedible.csv",
@@ -1315,10 +1190,10 @@
         ]
       },
       {
-        "alias": "strawberry-default",
+        "alias": "strawberry-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Fraise Origine Inconnue",
-        "id": "151d2068-96bf-5711-b725-f3ba0269ae0a",
+        "displayName": "Fraise HORS UE",
+        "id": "ce1aeaff-2d87-5f4f-b0b9-43acb3bfd1ec",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Strawberries in agb_inedible.csv",
@@ -1359,9 +1234,8 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "MA"
+    "source": "Ecoinvent 3.11",
+    "unit": "kg"
   },
   {
     "activityName": "Blackberry, at farm {RS} - Adapted from WFLDB U",
@@ -1373,10 +1247,10 @@
     "id": "a8b1f368-d26f-5e53-81b8-04aa8db9c8ef",
     "metadata": [
       {
-        "alias": "black-mulberry-default",
+        "alias": "black-mulberry-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Mûre noire Origine Inconnue",
-        "id": "7be4ce53-6a38-5da7-a227-cfde66b0bae0",
+        "displayName": "Mûre noire HORS UE",
+        "id": "5ea169ef-b51d-5f7f-96d9-2322a0cf1948",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -1430,10 +1304,10 @@
     "id": "f2bd4410-1537-54b3-b359-74d7b5385ecd",
     "metadata": [
       {
-        "alias": "black-pepper-default",
+        "alias": "black-pepper-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Poivre noir Origine Inconnue",
-        "id": "217df27a-7ab5-5d1d-97a4-8b20db8f4952",
+        "displayName": "Poivre noir HORS UE",
+        "id": "66a509c8-926d-5459-b2ab-d3b48720281a",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Peppers in agb_inedible.csv",
@@ -1470,10 +1344,10 @@
         ]
       },
       {
-        "alias": "cinnamon-default",
+        "alias": "cinnamon-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Cannelle Origine Inconnue",
-        "id": "7160d46c-8d39-5113-9779-1fd5dcc04d49",
+        "displayName": "Cannelle HORS UE",
+        "id": "22dd97eb-a2d8-5d7b-9c9a-58c55c3fbfc1",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -1510,10 +1384,10 @@
         ]
       },
       {
-        "alias": "saffron-default",
+        "alias": "saffron-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Safran Origine Inconnue",
-        "id": "bd475d67-0055-5780-a48e-d94002bfe06a",
+        "displayName": "Safran HORS UE",
+        "id": "bbbc2735-e6d9-51f0-b744-94ba5d5d8003",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -1567,10 +1441,10 @@
     "id": "c48e1cfa-52a1-5532-b89a-53a066487bbb",
     "metadata": [
       {
-        "alias": "blueberry-default",
+        "alias": "blueberry-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Myrtille Origine Inconnue",
-        "id": "099aeeb2-bf69-5105-a94f-f1fde83a451e",
+        "displayName": "Myrtille HORS UE",
+        "id": "a077503f-a792-5000-b1ba-974bed3c8af4",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Blueberries in agb_inedible.csv",
@@ -1615,19 +1489,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Peanut, in shell, at farm (WFLDB)",
-    "alias": "peanut-in-shell",
+    "activityName": "Peanut {BR-SP}| peanut production, in cropping system | Cut-off, U",
+    "alias": "peanut",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Peanut, in shell, at farm",
-    "id": "1ff0b9aa-08d5-5a32-b978-f7964e56d4d9",
+    "displayName": "Peanut (BR-SP)",
+    "id": "f427ffaa-0462-509d-840f-5e975d42f83e",
     "metadata": [
       {
-        "alias": "brazil-nut-default",
+        "alias": "brazil-nut-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Noix du Brésil Origine Inconnue",
-        "id": "81a21989-c2e3-5d93-8013-7f13251d7982",
+        "displayName": "Noix du Brésil HORS UE",
+        "id": "306e53a4-4b48-51f3-a5a6-e8341235215d",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -1664,10 +1538,10 @@
         ]
       },
       {
-        "alias": "peanut-default",
+        "alias": "peanut-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Arachide Origine Inconnue",
-        "id": "50a3465b-0922-55ec-9732-7423ed8f1c87",
+        "displayName": "Arachide HORS UE",
+        "id": "9f90423f-7c10-5aad-bed8-be5ed281aa3a",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "Matched with peanut butter in inedible_part.csv",
@@ -1704,10 +1578,10 @@
         ]
       },
       {
-        "alias": "pine-nut-default",
+        "alias": "pine-nut-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pignons de pin Origine Inconnue",
-        "id": "28c098db-c276-5df3-8880-87f302e7ccaf",
+        "displayName": "Pignons de pin HORS UE",
+        "id": "5db46489-d409-5f5b-bac5-e2e38314f7b1",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -1744,10 +1618,10 @@
         ]
       },
       {
-        "alias": "pistachio-default",
+        "alias": "pistachio-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pistaches Origine Inconnue",
-        "id": "1cf8f49e-d1a5-5ffe-9af3-8c15988e2353",
+        "displayName": "Pistaches HORS UE",
+        "id": "1c54ed0a-a1c6-5808-a79d-dddf94b4c98b",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -1788,9 +1662,8 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "IN"
+    "source": "Ecoinvent 3.11",
+    "unit": "kg"
   },
   {
     "activityName": "Mango, at farm (WFLDB)",
@@ -1802,10 +1675,10 @@
     "id": "6bd91044-d3c9-5ac4-a6b1-ac70df17dcd2",
     "metadata": [
       {
-        "alias": "breadfruit-default",
+        "alias": "breadfruit-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Fruit à pain Origine Inconnue",
-        "id": "07e14cc7-4082-569b-8f7c-40a41be901c2",
+        "displayName": "Fruit à pain HORS UE",
+        "id": "d2ceaec2-ab73-545c-8c3c-f349b80e4f88",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -1842,10 +1715,10 @@
         ]
       },
       {
-        "alias": "carambola-default",
+        "alias": "carambola-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Carambole Origine Inconnue",
-        "id": "31b9f2dc-10ac-5cb6-ac45-38240c2b5ecb",
+        "displayName": "Carambole HORS UE",
+        "id": "5e850572-72f7-55a2-b9d2-d739f3e6f184",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -1882,10 +1755,10 @@
         ]
       },
       {
-        "alias": "lychee-default",
+        "alias": "lychee-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Litchi Origine Inconnue",
-        "id": "0b8fb79c-001f-5e63-942c-cab8bc50e949",
+        "displayName": "Litchi HORS UE",
+        "id": "16457ffe-d9d6-5ddd-9a06-0c15b201501e",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -1922,10 +1795,10 @@
         ]
       },
       {
-        "alias": "mango-default",
+        "alias": "mango-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Mangue Origine Inconnue",
-        "id": "f8421f12-46da-533c-8cae-38c0d90a8bdb",
+        "displayName": "Mangue HORS UE",
+        "id": "8d8bc11d-867f-52ed-98c1-d8a858069b06",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Mango in agb_inedible.csv",
@@ -1968,22 +1841,22 @@
     ],
     "source": "WFLDB",
     "unit": "kg",
-    "location": "IN"
+    "location": "MX"
   },
   {
-    "activityName": "Fava bean {CA-AB}| fava bean production | Cut-off, U",
+    "activityName": "Fava bean {CA-SK}| fava bean production | Cut-off, U",
     "alias": "fava-bean",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Fava bean (CA-AB)",
+    "displayName": "Fava bean (CA-SK)",
     "id": "bb8ea198-7de7-55cc-bee5-a7779c0a98f9",
     "metadata": [
       {
-        "alias": "broad-bean-default",
+        "alias": "broad-bean-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Fève Origine Inconnue",
-        "id": "c1e97232-44d3-5657-9180-a3a5dd621875",
+        "displayName": "Fève HORS UE",
+        "id": "8d57d7fd-ec9b-5660-b775-e58627e7dd8d",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -2020,10 +1893,10 @@
         ]
       },
       {
-        "alias": "flageolet-bean-green-dried-default",
+        "alias": "flageolet-bean-green-dried-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Haricots flageolets verts Origine Inconnue",
-        "id": "602d7c9f-0098-531d-bcf0-c4da10ff1d2b",
+        "displayName": "Haricots flageolets verts HORS UE",
+        "id": "9085ce9a-2480-563e-b320-7fe627b74a92",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -2060,10 +1933,50 @@
         ]
       },
       {
-        "alias": "mung-bean-sprouted-default",
+        "alias": "lima-bean-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Haricot mungo Origine Inconnue",
-        "id": "d48d93f8-3451-599c-81ba-276f7a92f6ef",
+        "displayName": "Haricots de Lima HORS UE",
+        "id": "c5ad2797-001c-5f25-9031-0943c390bac5",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "legume default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "legume default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "legume NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "PROTEAGINEUX",
+        "cropGroupMatch": {
+          "rule": "matched 'spring faba' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "mung-bean-sprouted-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Haricot mungo HORS UE",
+        "id": "21a9475f-9447-58a7-ae0c-2869944b9269",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -2098,6 +2011,46 @@
           "food",
           "food2"
         ]
+      },
+      {
+        "alias": "red-bean-dried-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Haricots rouges HORS UE",
+        "id": "bc2fea1a-3dc9-515b-b744-7af4222e448f",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "legume default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "legume default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "dried packaging → none",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroupMatch": {
+          "rule": "legume default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
       }
     ],
     "scopes": [
@@ -2117,10 +2070,10 @@
     "id": "5238d98f-4095-59ab-ba43-16734fc0a6c3",
     "metadata": [
       {
-        "alias": "broccoli-default",
+        "alias": "broccoli-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Brocoli Origine Inconnue",
-        "id": "39c533c5-98ce-5b84-8dd3-53415f75d37a",
+        "displayName": "Brocoli HORS UE",
+        "id": "2f9fa5d7-bd9b-57db-bfaa-4bd10d17a873",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Broccoli in agb_inedible.csv",
@@ -2174,10 +2127,10 @@
     "id": "e0e9fbad-5c37-5340-b26b-51beed3f16a4",
     "metadata": [
       {
-        "alias": "brussel-sprout-default",
+        "alias": "brussel-sprout-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Chou de Bruxelles Origine Inconnue",
-        "id": "182d07cc-e80f-5d53-a0b3-52c6ac4a65c3",
+        "displayName": "Chou de Bruxelles HORS UE",
+        "id": "36527f99-fa92-5284-b96b-47faa6f3d02b",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Brussels sprout in agb_inedible.csv",
@@ -2214,10 +2167,10 @@
         ]
       },
       {
-        "alias": "cardoon-default",
+        "alias": "cardoon-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Cardoon Origine Inconnue",
-        "id": "e06b94ec-a1f6-53f9-8e31-a338e0ddfb29",
+        "displayName": "Cardoon HORS UE",
+        "id": "5bf765e1-1e15-520e-8802-a872249097fd",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2254,10 +2207,10 @@
         ]
       },
       {
-        "alias": "cauliflower-default",
+        "alias": "cauliflower-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Chou-fleur Origine Inconnue",
-        "id": "97b3f167-af9b-553e-aa6f-caa3f6d80559",
+        "displayName": "Chou-fleur HORS UE",
+        "id": "0e4abdc0-8bfe-5cae-932b-c37cac8e980b",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Cauliflower in agb_inedible.csv",
@@ -2294,10 +2247,10 @@
         ]
       },
       {
-        "alias": "green-cabbage-default",
+        "alias": "green-cabbage-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Chou vert Origine Inconnue",
-        "id": "0571c52e-d806-5faa-8105-8ae0d5726400",
+        "displayName": "Chou vert HORS UE",
+        "id": "648f7809-1214-5d69-a2b6-9d1cefac514b",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Cabbage in agb_inedible.csv",
@@ -2334,10 +2287,10 @@
         ]
       },
       {
-        "alias": "jerusalem-artichoke-default",
+        "alias": "jerusalem-artichoke-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Topinambour Origine Inconnue",
-        "id": "601e6d94-cf62-54f0-9419-c3d12c53c3da",
+        "displayName": "Topinambour HORS UE",
+        "id": "17d188ad-5f55-5215-90ce-7789fe5e3ccd",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Jerusalemen artichoke in agb_inedible.csv",
@@ -2374,10 +2327,10 @@
         ]
       },
       {
-        "alias": "kale-default",
+        "alias": "kale-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Chou frisé Origine Inconnue",
-        "id": "bb9215ce-cd54-51ea-adda-2e9a73dce44d",
+        "displayName": "Chou frisé HORS UE",
+        "id": "53d5d13b-248a-5718-9b2e-35b8c14822a2",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2414,10 +2367,10 @@
         ]
       },
       {
-        "alias": "kohlrabi-default",
+        "alias": "kohlrabi-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Chou-rave Origine Inconnue",
-        "id": "c7474759-1240-566a-bcc7-1f17b26bee50",
+        "displayName": "Chou-rave HORS UE",
+        "id": "f795ca6f-9d2f-505d-aa8c-11decb78477d",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2454,10 +2407,10 @@
         ]
       },
       {
-        "alias": "rhubarb-default",
+        "alias": "rhubarb-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Rhubarbe Origine Inconnue",
-        "id": "3c491005-9181-5140-bddc-5f501016dfb2",
+        "displayName": "Rhubarbe HORS UE",
+        "id": "0fb8261f-750b-5962-8042-8623c8108927",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2494,10 +2447,10 @@
         ]
       },
       {
-        "alias": "artichoke-default",
+        "alias": "artichoke-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Artichaut Origine Inconnue",
-        "id": "cbcf4992-133c-56e7-b741-7056813729b5",
+        "displayName": "Artichaut HORS UE",
+        "id": "e5af9442-ade1-5848-abf8-e4addc290983",
         "inediblePart": 0.6,
         "inediblePartMatch": {
           "rule": "Matched with Artichokes in agb_inedible.csv",
@@ -2542,19 +2495,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Carrot, at farm (WFLDB)",
+    "activityName": "Carrot {RoW}| carrot production | Cut-off, U - Copied from Ecoinvent U",
     "alias": "carrot",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Carrot, at farm",
+    "displayName": "Carrot (ROW)",
     "id": "edb4182a-a031-54de-9a80-793d39d50d76",
     "metadata": [
       {
-        "alias": "carrot-default",
+        "alias": "carrot-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Carottes Origine Inconnue",
-        "id": "b55f946b-c884-54ce-9b25-40de7eeb7e5d",
+        "displayName": "Carottes HORS UE",
+        "id": "541dd76b-5d72-5d21-8802-353cea99a226",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Carrots in agb_inedible.csv",
@@ -2579,7 +2532,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'carrot' in cropgroup.csv",
@@ -2591,10 +2544,10 @@
         ]
       },
       {
-        "alias": "cassava-default",
+        "alias": "cassava-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Manioc Origine Inconnue",
-        "id": "404a2c55-f154-5e1c-85fd-8ec539a63470",
+        "displayName": "Manioc HORS UE",
+        "id": "a29df57a-e115-5a32-b03d-0ee01839bcdd",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Cassava in agb_inedible.csv",
@@ -2619,7 +2572,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'cassava' in cropgroup.csv",
@@ -2631,10 +2584,10 @@
         ]
       },
       {
-        "alias": "celeriac-default",
+        "alias": "celeriac-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Céleri-rave Origine Inconnue",
-        "id": "5fbb6d80-01c0-5ab1-b1af-23ffc5518320",
+        "displayName": "Céleri-rave HORS UE",
+        "id": "492f420b-10d2-519c-824e-8e0e47167cc5",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Celeriac in agb_inedible.csv",
@@ -2659,7 +2612,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'celeriac' in cropgroup.csv",
@@ -2671,10 +2624,10 @@
         ]
       },
       {
-        "alias": "horseradish-fresh-default",
+        "alias": "horseradish-fresh-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Raifort frais Origine Inconnue",
-        "id": "a4b546fa-a89a-5373-82aa-e94112e3fd48",
+        "displayName": "Raifort frais HORS UE",
+        "id": "fcca964a-f8e3-505c-a43c-7d0058176a74",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2699,7 +2652,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "vegetable default",
@@ -2711,10 +2664,10 @@
         ]
       },
       {
-        "alias": "parsnip-default",
+        "alias": "parsnip-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Panais Origine Inconnue",
-        "id": "e9444944-a97a-546d-be5e-43ca74efb7e6",
+        "displayName": "Panais HORS UE",
+        "id": "b0cebb59-9cac-540e-9b87-dd8c772239f9",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2739,7 +2692,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "AUTRES OLEAGINEUX",
         "cropGroupMatch": {
           "rule": "matched 'autres oleagineux' in cropgroup.csv",
@@ -2751,10 +2704,10 @@
         ]
       },
       {
-        "alias": "rutabaga-default",
+        "alias": "rutabaga-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Rutabaga Origine Inconnue",
-        "id": "020de0fa-d979-5199-85ee-f29ed211e200",
+        "displayName": "Rutabaga HORS UE",
+        "id": "79b5ba09-5aa2-5ac2-a1fb-1a0eef96b626",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2779,7 +2732,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
           "rule": "matched 'moutarde' in cropgroup.csv",
@@ -2791,10 +2744,10 @@
         ]
       },
       {
-        "alias": "salsify-default",
+        "alias": "salsify-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Salsifi Origine Inconnue",
-        "id": "83f34dda-137f-54a3-b231-6e38d0431bcf",
+        "displayName": "Salsifi HORS UE",
+        "id": "e35dd3d4-245a-5c3f-9319-1bd49b976e24",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Salsify in agb_inedible.csv",
@@ -2819,7 +2772,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'endive' in cropgroup.csv",
@@ -2831,10 +2784,10 @@
         ]
       },
       {
-        "alias": "tapioca-default",
+        "alias": "tapioca-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Tapioca Origine Inconnue",
-        "id": "dbb74330-9562-5252-8359-8bed45768d0c",
+        "displayName": "Tapioca HORS UE",
+        "id": "8aea7392-fb28-5038-a030-1b786dc90fe1",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 2-4 default from food_type_inedible_part.csv",
@@ -2859,7 +2812,7 @@
           "rule": "grain → none (non-perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'tapioca' in cropgroup.csv",
@@ -2871,10 +2824,10 @@
         ]
       },
       {
-        "alias": "taro-tuber-default",
+        "alias": "taro-tuber-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Taro, tubercule Origine Inconnue",
-        "id": "09fd984b-25db-51cf-8834-ec0757af3f9a",
+        "displayName": "Taro, tubercule HORS UE",
+        "id": "a5124af0-ff0e-5ab9-ae84-6d7804b2a210",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2899,7 +2852,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'brussels sprout' in cropgroup.csv",
@@ -2911,10 +2864,10 @@
         ]
       },
       {
-        "alias": "turnip-default",
+        "alias": "turnip-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Navet Origine Inconnue",
-        "id": "022b51ee-ee0e-5ed6-b901-e4d6e9111d82",
+        "displayName": "Navet HORS UE",
+        "id": "c1a8be62-a691-5d91-8781-0ffb8c5c4b20",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Turnips in agb_inedible.csv",
@@ -2939,7 +2892,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'carrot' in cropgroup.csv",
@@ -2951,10 +2904,10 @@
         ]
       },
       {
-        "alias": "yam-default",
+        "alias": "yam-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Igname Origine Inconnue",
-        "id": "e047defb-6364-5dd6-b503-a5ae43a8960d",
+        "displayName": "Igname HORS UE",
+        "id": "58712d30-8969-5897-ab82-d39fb621508b",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -2979,7 +2932,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'chou-fleur' in cropgroup.csv",
@@ -2995,9 +2948,8 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "IL"
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
   },
   {
     "activityName": "Cashew, in-shell, at farm (WFLDB)",
@@ -3009,10 +2961,10 @@
     "id": "0d17305f-aab5-5024-971a-12e49c70b123",
     "metadata": [
       {
-        "alias": "cashew-default",
+        "alias": "cashew-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Noix de cajou Origine Inconnue",
-        "id": "aad23c3a-2025-53c3-b9b1-3705ac076ec5",
+        "displayName": "Noix de cajou HORS UE",
+        "id": "97a4fca1-952a-5ed3-984f-c0645cebc4f6",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -3055,7 +3007,7 @@
     ],
     "source": "WFLDB",
     "unit": "kg",
-    "location": "CI"
+    "location": "GLO"
   },
   {
     "activityName": "Celery {GLO}| 675 production | Cut-off, U - Adapted from Ecoinvent U",
@@ -3067,10 +3019,10 @@
     "id": "b700ed12-7dc0-5017-a289-c83c37194289",
     "metadata": [
       {
-        "alias": "celery-default",
+        "alias": "celery-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Céleri Origine Inconnue",
-        "id": "30ceca68-7047-5ac6-8abe-786e5bc98005",
+        "displayName": "Céleri HORS UE",
+        "id": "cffb00a0-f1c2-5981-a0c4-1537a4b5d166",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Celery in agb_inedible.csv",
@@ -3124,10 +3076,10 @@
     "id": "6823de67-95eb-5407-bb30-d0a683153ee4",
     "metadata": [
       {
-        "alias": "cherry-default",
+        "alias": "cherry-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Cerise Origine Inconnue",
-        "id": "ce94c3fd-f91f-5087-883d-273b26954a67",
+        "displayName": "Cerise HORS UE",
+        "id": "5c7fe6d3-a168-52f1-b82f-81ab18f9716e",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Cherry in agb_inedible.csv",
@@ -3164,10 +3116,10 @@
         ]
       },
       {
-        "alias": "greengage-plum-default",
+        "alias": "greengage-plum-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Prune reine-claude Origine Inconnue",
-        "id": "19cf6044-71a7-51ea-95e0-fa8284b471e5",
+        "displayName": "Prune reine-claude HORS UE",
+        "id": "e3f76f9b-34c9-5184-a11b-ea2ceeea30fe",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Plum in agb_inedible.csv",
@@ -3204,10 +3156,10 @@
         ]
       },
       {
-        "alias": "morello-cherry-default",
+        "alias": "morello-cherry-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Cerise griotte Origine Inconnue",
-        "id": "543750d3-9284-569d-b4c9-2b2e2141fa67",
+        "displayName": "Cerise griotte HORS UE",
+        "id": "cf8d9247-e709-5b6f-9814-3b470e91b340",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Cherry in agb_inedible.csv",
@@ -3250,22 +3202,22 @@
     ],
     "source": "WFLDB",
     "unit": "kg",
-    "location": "CL"
+    "location": "GLO"
   },
   {
-    "activityName": "Tomato, fresh grade, open field, at farm (WFLDB)",
-    "alias": "tomato-grade-open-field-fresh",
+    "activityName": "Tomato, fresh grade {RoW}| tomato production, fresh grade, in unheated greenhouse | Cut-off, U",
+    "alias": "tomato-grade-fresh",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Tomato, fresh grade, open field, at farm",
-    "id": "eecf4f81-9410-5308-bf06-046bc22edb9c",
+    "displayName": "Tomato, fresh grade (ROW)",
+    "id": "558f24e2-abfd-5071-a9a1-178863a5367f",
     "metadata": [
       {
-        "alias": "cherry-tomato-default",
+        "alias": "cherry-tomato-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Tomates cerises Origine Inconnue",
-        "id": "9760e635-cdb0-56e8-9fa3-0e20b9d54764",
+        "displayName": "Tomates cerises HORS UE",
+        "id": "b1a8cec8-95ff-50f5-aa88-9446a8b574a8",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Tomatoes in agb_inedible.csv",
@@ -3302,10 +3254,10 @@
         ]
       },
       {
-        "alias": "cucumber-default",
+        "alias": "cucumber-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Concombre Origine Inconnue",
-        "id": "053533cf-8fd1-5cbe-832c-c25d2d9ed885",
+        "displayName": "Concombre HORS UE",
+        "id": "5164b1ca-a76c-55d0-9cbb-a71e2454284b",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Cucumbers in agb_inedible.csv",
@@ -3342,10 +3294,50 @@
         ]
       },
       {
-        "alias": "tomato-default",
+        "alias": "gherkin-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Tomate Origine Inconnue",
-        "id": "9b908fda-5301-5767-a6a6-0ae4877ac09c",
+        "displayName": "Cornichon HORS UE",
+        "id": "e3cc80c7-c95a-5167-8f83-8da8f2055159",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "vegetable default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "tomato-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Tomate HORS UE",
+        "id": "b973aaef-6b46-54bc-b482-58172d9bcebd",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Tomatoes in agb_inedible.csv",
@@ -3386,7 +3378,7 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -3399,10 +3391,10 @@
     "id": "63c8e73a-1041-52c9-af6d-31bafd4bb10c",
     "metadata": [
       {
-        "alias": "chestnut-default",
+        "alias": "chestnut-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Châtaigne Origine Inconnue",
-        "id": "6adadee7-7f65-5b0b-9361-386750d7c57f",
+        "displayName": "Châtaigne HORS UE",
+        "id": "ef86efa4-f2fc-59e3-957c-e7e025319bdc",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -3439,10 +3431,10 @@
         ]
       },
       {
-        "alias": "macadamia-nut-default",
+        "alias": "macadamia-nut-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Noix de macadamia Origine Inconnue",
-        "id": "02a9df90-91c4-5bf0-900a-9efa6ffcfaf6",
+        "displayName": "Noix de macadamia HORS UE",
+        "id": "7ce914d1-92fb-59a8-8488-a1a07975fdbe",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -3479,10 +3471,10 @@
         ]
       },
       {
-        "alias": "walnut-default",
+        "alias": "walnut-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Noix Origine Inconnue",
-        "id": "dacf5f44-e7d6-53ba-a49e-a109d3610b5a",
+        "displayName": "Noix HORS UE",
+        "id": "601eab74-a1bf-5f76-bf8d-78efef92e196",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "Matched with Walnuts in agb_inedible.csv",
@@ -3527,19 +3519,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Linseed, at farm {CA} - Adapted from WFLDB U",
+    "activityName": "Linseed {RoW}| linseed production | Cut-off, U - Adapted from Ecoinvent U",
     "alias": "linseed",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Linseed, at farm (CA)",
+    "displayName": "Linseed (ROW)",
     "id": "73916c63-601a-5d4e-9082-0cdc8f74c577",
     "metadata": [
       {
-        "alias": "chia-seed-dried-default",
+        "alias": "chia-seed-dried-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Graines de chia Origine Inconnue",
-        "id": "a32e20de-16e0-567e-93dc-e7fcf210da17",
+        "displayName": "Graines de chia HORS UE",
+        "id": "f78baa5c-880f-5570-8c0e-e81a9174dd92",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -3576,10 +3568,10 @@
         ]
       },
       {
-        "alias": "cucurbitacea-seed-default",
+        "alias": "cucurbitacea-seed-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Graines de Cucurbitacées Origine Inconnue",
-        "id": "31c039c7-72a5-577c-8b43-c4996c954003",
+        "displayName": "Graines de Cucurbitacées HORS UE",
+        "id": "7082dd46-4799-58f6-a441-bf79dccc9d53",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -3616,10 +3608,10 @@
         ]
       },
       {
-        "alias": "poppy-seed-default",
+        "alias": "poppy-seed-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Graines de pavot Origine Inconnue",
-        "id": "1972fc81-8757-516d-9208-a2c521a31967",
+        "displayName": "Graines de pavot HORS UE",
+        "id": "c58a8fd0-f98a-5b30-93ea-d54c2560b20e",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "Matched with poppy seed in inedible_part.csv",
@@ -3656,10 +3648,10 @@
         ]
       },
       {
-        "alias": "alfalfa-default",
+        "alias": "alfalfa-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Luzerne Origine Inconnue",
-        "id": "e28278da-bbdc-5176-b388-2556e7295340",
+        "displayName": "Luzerne HORS UE",
+        "id": "d7c8cc63-e9e0-55c9-a54c-be9e30bfac74",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -3704,19 +3696,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Chickpea {RoW}| chickpea production | Cut-off, U",
+    "activityName": "Chickpea {IN}| chickpea production | Cut-off, U",
     "alias": "chickpea",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Chickpea (ROW)",
+    "displayName": "Chickpea (IN)",
     "id": "914f4a85-2ca6-58fe-ad60-6e9d00e7372e",
     "metadata": [
       {
-        "alias": "chickpea-dried-default",
+        "alias": "chickpea-dried-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pois chiches Origine Inconnue",
-        "id": "c2f6be93-66f8-5a1d-afda-a7d8f6db3a9e",
+        "displayName": "Pois chiches HORS UE",
+        "id": "5c830f3e-2467-58b4-b9cc-c5ce6eedf306",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -3761,19 +3753,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Chicory witloof, early, conventional, root production, at farm gate {FR} U",
-    "alias": "chicory-witloof-early-root-production",
+    "activityName": "Chicory witloof, season, conventional, root production, at farm gate {FR} U",
+    "alias": "chicory-witloof-season-root-production",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Chicory witloof, early, conventional, root production, at farm gate (FR)",
-    "id": "41b82e97-3974-57da-ab47-0a88598f7041",
+    "displayName": "Chicory witloof, season, conventional, root production, at farm gate (FR)",
+    "id": "aece7ffb-2881-5513-8663-7b4513a74178",
     "metadata": [
       {
-        "alias": "chicory-root-default",
+        "alias": "chicory-root-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Racine de chicorée Origine Inconnue",
-        "id": "d78fd37f-1cf5-5c5a-a80f-095e2336fcc8",
+        "displayName": "Racine de chicorée HORS UE",
+        "id": "0f83ca15-c957-5977-ae23-a187a9431299",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Chicory in agb_inedible.csv",
@@ -3818,19 +3810,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Onion, at farm (WFLDB)",
+    "activityName": "Onion {RoW}| onion production | Cut-off, U - Copied from Ecoinvent U",
     "alias": "onion",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Onion, at farm",
+    "displayName": "Onion (ROW)",
     "id": "53ea0db7-bd61-5ebc-9285-d80fffc063a7",
     "metadata": [
       {
-        "alias": "chive-default",
+        "alias": "chive-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Ciboulette Origine Inconnue",
-        "id": "af970b08-d802-5f9f-bff3-42b789fac6cd",
+        "displayName": "Ciboulette HORS UE",
+        "id": "714bfa3b-e8b7-5e26-82f0-477e20cea04b",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -3867,10 +3859,10 @@
         ]
       },
       {
-        "alias": "onion-default",
+        "alias": "onion-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Oignons Origine Inconnue",
-        "id": "88d3c7e0-920b-5444-b283-a8941e2aeb34",
+        "displayName": "Oignons HORS UE",
+        "id": "23d64366-18f7-5f10-a3a8-6c15176d16a9",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Onions in agb_inedible.csv",
@@ -3907,10 +3899,10 @@
         ]
       },
       {
-        "alias": "shallot-default",
+        "alias": "shallot-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Échalotes Origine Inconnue",
-        "id": "5ae615e4-9eae-5b56-b3db-9b59f01b80a8",
+        "displayName": "Échalotes HORS UE",
+        "id": "8d7cb59a-2be8-5453-9ba6-0d655fabc469",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Shallot in agb_inedible.csv",
@@ -3951,9 +3943,8 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "NZ"
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
   },
   {
     "activityName": "Clementine, export quality, Souss, at orchard {MA} U",
@@ -3965,10 +3956,10 @@
     "id": "64bd0903-d84d-5d4c-92ea-8dd4cb2b879d",
     "metadata": [
       {
-        "alias": "clementine-default",
+        "alias": "clementine-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Clémentine Origine Inconnue",
-        "id": "31283456-4ae3-5e06-a922-e188c1d21250",
+        "displayName": "Clémentine HORS UE",
+        "id": "91c4bcb6-595d-5e95-a1dc-1584d584e0ce",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -4013,19 +4004,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Cocoa bean {ID}| cocoa bean production, sun-dried | Cut-off, U",
+    "activityName": "Cocoa bean {GH}| cocoa bean production, sun-dried | Cut-off, U",
     "alias": "cocoa-bean",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Cocoa bean (ID)",
+    "displayName": "Cocoa bean (GH)",
     "id": "ecbafca4-1d44-52e8-a979-d79b24345d76",
     "metadata": [
       {
-        "alias": "cocoa-bean-default",
+        "alias": "cocoa-bean-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Fève de cacao Origine Inconnue",
-        "id": "8958164d-9c4b-5f4c-9b78-0a42f4452543",
+        "displayName": "Fève de cacao HORS UE",
+        "id": "35d0ffc8-3043-5012-86f3-4401ab37c5cf",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -4070,19 +4061,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Coconut, dehusked, at farm (WFLDB)",
+    "activityName": "Coconut, dehusked {ID}| coconut production, dehusked | Cut-off, U - Adapted from Ecoinvent U",
     "alias": "coconut-dehusked",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Coconut, dehusked, at farm",
+    "displayName": "Coconut, dehusked (ID)",
     "id": "75a4ac51-d255-5d4a-acff-40e2759e3bf2",
     "metadata": [
       {
-        "alias": "coconut-dehusked-default",
+        "alias": "coconut-dehusked-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Noix de coco décortiquée Origine Inconnue",
-        "id": "c8c1ff4e-fe84-5a77-9ba8-7a988895c2d5",
+        "displayName": "Noix de coco décortiquée HORS UE",
+        "id": "927231a5-c0c4-560f-8e89-ca4b01795fe6",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -4123,24 +4114,23 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "PH"
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
   },
   {
-    "activityName": "Coffee, green bean {IN}| coffee green bean production, arabica | Cut-off, U - Copied from Ecoinvent U",
+    "activityName": "Coffee, green beans (Robusta), at farm {IN} - Adapted from WFLDB U",
     "alias": "coffee-green-bean",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Coffee, green bean (IN)",
+    "displayName": "Coffee, green beans (IN)",
     "id": "951060aa-ffa2-51a5-b58e-ea8505b54381",
     "metadata": [
       {
-        "alias": "coffee-bean-default",
+        "alias": "coffee-bean-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Café en grains Origine Inconnue",
-        "id": "526835dc-7a46-586d-9228-cd6fdd353ac4",
+        "displayName": "Café en grains HORS UE",
+        "id": "5cbf821a-76ab-52e6-a0d7-6235a7ba0b48",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -4194,10 +4184,10 @@
     "id": "7689398c-545f-5c0f-bebd-7597037ba9a0",
     "metadata": [
       {
-        "alias": "coriander-default",
+        "alias": "coriander-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Coriandre Origine Inconnue",
-        "id": "119e8699-e060-5bce-9a8d-67f52cf34fef",
+        "displayName": "Coriandre HORS UE",
+        "id": "49bb5e51-c5b2-5804-ab28-831e39b7b961",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Coriander in agb_inedible.csv",
@@ -4234,10 +4224,10 @@
         ]
       },
       {
-        "alias": "fennel-default",
+        "alias": "fennel-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Fenouil Origine Inconnue",
-        "id": "d994632e-9e0c-5b3b-817f-c18d9fe4e583",
+        "displayName": "Fenouil HORS UE",
+        "id": "070c635e-71e7-5a26-963f-f0367f326333",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Fennel in agb_inedible.csv",
@@ -4274,10 +4264,10 @@
         ]
       },
       {
-        "alias": "nutmeg-default",
+        "alias": "nutmeg-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Noix de muscade Origine Inconnue",
-        "id": "1be309ce-922f-5ea1-a154-6d64f271dce9",
+        "displayName": "Noix de muscade HORS UE",
+        "id": "e1639fd2-ddc4-5372-8c60-3d5e9c31c782",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -4314,10 +4304,10 @@
         ]
       },
       {
-        "alias": "okra-default",
+        "alias": "okra-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Gombo Origine Inconnue",
-        "id": "d0535c02-0a57-511e-8ea4-c21a2a1450a6",
+        "displayName": "Gombo HORS UE",
+        "id": "83a95647-b915-5cdf-bcfa-6f6732df6b6a",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -4354,10 +4344,10 @@
         ]
       },
       {
-        "alias": "persimmon-default",
+        "alias": "persimmon-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Kaki Origine Inconnue",
-        "id": "cc8a6698-0150-5b63-a12a-38a52c2896b2",
+        "displayName": "Kaki HORS UE",
+        "id": "e7476f18-f00b-5fa8-873b-826ce48149c2",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -4402,19 +4392,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Sweet corn {US-MN}| sweet corn production | Cut-off, U",
+    "activityName": "Sweet corn {US}| sweet corn production | Cut-off, U",
     "alias": "sweet-corn",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Sweet corn (US-MN)",
+    "displayName": "Sweet corn (US)",
     "id": "7d255c03-7e40-5495-9bf0-d9718d9b4fc2",
     "metadata": [
       {
-        "alias": "corn-default",
+        "alias": "corn-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Maïs Origine Inconnue",
-        "id": "11fd6550-211b-5c84-8424-5331b1cb3ca6",
+        "displayName": "Maïs HORS UE",
+        "id": "960e7dda-6655-5288-8601-47c789cb9948",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -4439,7 +4429,7 @@
           "rule": "grain → none (non-perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "MAIS GRAIN ET ENSILAGE",
         "cropGroupMatch": {
           "rule": "matched 'corn' in cropgroup.csv",
@@ -4459,19 +4449,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Cow milk {RoW}| milk production, from cow | Cut-off, U",
+    "activityName": "Cow milk {CA-QC}| milk production, from cow | Cut-off, S - Copied from Ecoinvent U",
     "alias": "cow-milk",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Cow milk (ROW)",
+    "displayName": "Cow milk (CA-QC)",
     "id": "dceabbbb-f3ff-565b-af5c-80304aa4e14a",
     "metadata": [
       {
-        "alias": "cow-milk-default",
+        "alias": "cow-milk-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Lait de vache Origine Inconnue",
-        "id": "9f4cde40-b8ad-506c-8b79-cd689e3431eb",
+        "displayName": "Lait de vache HORS UE",
+        "id": "413dbd30-f224-580c-bf02-51664910430e",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "dairy NOVA 1 default from food_type_inedible_part.csv",
@@ -4510,23 +4500,23 @@
       "food",
       "food2"
     ],
-    "source": "Ecoinvent 3.11",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
-    "activityName": "Cranberry, at farm {CL} - Adapted from WFLDB U",
+    "activityName": "Cranberry, at farm (WFLDB)",
     "alias": "cranberry",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Cranberry, at farm (CL)",
+    "displayName": "Cranberry, at farm",
     "id": "27673177-963f-53be-9471-7fc99acc75c8",
     "metadata": [
       {
-        "alias": "cranberry-default",
+        "alias": "cranberry-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Canneberge Origine Inconnue",
-        "id": "1814403b-fa43-5db4-9921-071889af8fe0",
+        "displayName": "Canneberge HORS UE",
+        "id": "ca7756ab-51df-59ce-8827-4da2b3a6aa5c",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -4567,23 +4557,24 @@
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "source": "WFLDB",
+    "unit": "kg",
+    "location": "GLO"
   },
   {
-    "activityName": "Palm date, conditioned and dried {GLO}| palm date production, conditioned and dried | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "palm-date-conditioned-and-dried",
+    "activityName": "Palm fruit bunch, at farm (WFLDB)",
+    "alias": "palm-fruit-bunch",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Palm date, conditioned and dried (GLO)",
-    "id": "c2217717-9043-5329-a35b-dadb4d17feb3",
+    "displayName": "Palm fruit bunch, at farm",
+    "id": "85101672-3eed-5c80-8e27-704cfafbf522",
     "metadata": [
       {
-        "alias": "date-default",
+        "alias": "date-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Dattes Origine Inconnue",
-        "id": "e888149b-0a27-50b7-bac8-26afc6e895f1",
+        "displayName": "Dattes HORS UE",
+        "id": "9158f29c-068b-5cb8-b268-801b9e54d7ec",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -4603,15 +4594,153 @@
           "confidence": 1.0
         },
         "scenario": "import",
-        "transportCooling": "none",
+        "transportCooling": "always",
         "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → none (perishable)",
+          "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
           "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "palm-fruit-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Fruit du palmier HORS UE",
+        "id": "acddae2c-e094-5702-907c-66ca35190166",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.9,
+        "ingredientDensityMatch": {
+          "rule": "vegetable default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with fruit in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "vegetable default",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "WFLDB",
+    "unit": "kg",
+    "location": "GLO"
+  },
+  {
+    "activityName": "Durum wheat grain, at farm {GLO} - Adapted from WFLDB U",
+    "alias": "durum-wheat-grain",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Durum wheat grain, at farm (GLO)",
+    "id": "cfdd1afe-f9ff-516e-ab27-2a9cfbede91c",
+    "metadata": [
+      {
+        "alias": "durum-wheat-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Blé dur HORS UE",
+        "id": "e53a74ab-c871-57f5-9098-b09f307b9db4",
+        "inediblePart": 0.0,
+        "inediblePartMatch": {
+          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "grain_raw"
+        ],
+        "ingredientDensity": 0.77,
+        "ingredientDensityMatch": {
+          "rule": "Matched with Wheat in fao_density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 2.259,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with durum wheat in cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "grain → none (non-perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "AUTRES CEREALES",
+        "cropGroupMatch": {
+          "rule": "matched 'blé dur hiver' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "spelt-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Epeautre HORS UE",
+        "id": "8ab92b08-5af1-5a60-84fb-00172caa4d44",
+        "inediblePart": 0.0,
+        "inediblePartMatch": {
+          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "grain_raw"
+        ],
+        "ingredientDensity": 0.75,
+        "ingredientDensityMatch": {
+          "rule": "grain default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 2.259,
+        "rawToCookedRatioMatch": {
+          "rule": "grain default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "grain → none (non-perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "AUTRES CEREALES",
+        "cropGroupMatch": {
+          "rule": "matched 'spelt' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4637,10 +4766,10 @@
     "id": "0917baf2-9727-58cc-8f57-7cf063bbf296",
     "metadata": [
       {
-        "alias": "egg-default",
+        "alias": "egg-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Œuf Origine Inconnue",
-        "id": "6eea55d1-747b-5525-9a6e-eeb209e3912e",
+        "displayName": "Œuf HORS UE",
+        "id": "9122a17b-7a34-5e33-8416-4186310baafc",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Egg in agb_inedible.csv",
@@ -4681,22 +4810,22 @@
     ],
     "source": "WFLDB",
     "unit": "kg",
-    "location": "CN"
+    "location": "CA"
   },
   {
-    "activityName": "Zucchini, autumn, under tunnel, conventional, at farm gate {FR} U",
-    "alias": "zucchini-autumn-under-tunnel",
+    "activityName": "Zucchini {CH}| zucchini production, conventional, plain region | Cut-off, U",
+    "alias": "zucchini-ch",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Zucchini, autumn, under tunnel, conventional, at farm gate (FR)",
-    "id": "783dbd8a-b773-54e9-8304-a488ed072fed",
+    "displayName": "Zucchini (CH)",
+    "id": "da56b693-061c-54f7-a15d-fc1f7bc93b84",
     "metadata": [
       {
-        "alias": "eggplant-default",
+        "alias": "eggplant-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Aubergine Origine Inconnue",
-        "id": "af3985b9-5532-575b-a157-14b34e5d0436",
+        "displayName": "Aubergine HORS UE",
+        "id": "165de411-6cfe-52f3-89d4-79fd9728d813",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Eggplant in agb_inedible.csv",
@@ -4721,7 +4850,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'eggplant' in cropgroup.csv",
@@ -4733,10 +4862,10 @@
         ]
       },
       {
-        "alias": "pumpkin-default",
+        "alias": "pumpkin-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Citrouille Origine Inconnue",
-        "id": "538bc99e-6871-5ca2-b451-23bd7e507697",
+        "displayName": "Citrouille HORS UE",
+        "id": "cfcaf264-2941-50d8-b315-9f4d2a789981",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Pumpkin in agb_inedible.csv",
@@ -4761,7 +4890,7 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "vegetable default",
@@ -4773,10 +4902,10 @@
         ]
       },
       {
-        "alias": "squash-with-skin-raw-default",
+        "alias": "squash-with-skin-raw-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Courge crue, avec la peau Origine Inconnue",
-        "id": "512f4085-3c26-562a-8a2f-3958ae9fb45a",
+        "displayName": "Courge crue, avec la peau HORS UE",
+        "id": "eb23113c-927e-503d-ab1e-9a6173fbb1ff",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -4801,50 +4930,10 @@
           "rule": "vegetable NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      },
-      {
-        "alias": "zucchini-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Courgettes Origine Inconnue",
-        "id": "0c28e3b8-0699-5524-9205-8915ff5c881a",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 1.0,
-        "ingredientDensityMatch": {
-          "rule": "zucchini found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with zucchini in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "matched 'zucchini' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -4857,7 +4946,7 @@
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -4870,10 +4959,10 @@
     "id": "1c56317a-41d2-58d1-a871-17722fa0d438",
     "metadata": [
       {
-        "alias": "elderberry-default",
+        "alias": "elderberry-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Baies de sureau Origine Inconnue",
-        "id": "feeaa187-3b5f-5185-a0e5-1760b1b1b251",
+        "displayName": "Baies de sureau HORS UE",
+        "id": "768437d9-5f04-5c39-94a6-cb3f0e8aaa89",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -4918,19 +5007,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Lettuce {GLO}| lettuce production, in heated greenhouse | Cut-off, U",
-    "alias": "lettuce",
+    "activityName": "Iceberg lettuce {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "iceberg-lettuce",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Lettuce (GLO)",
-    "id": "c24ebc38-2c80-53d1-8d1b-da2757ff19fd",
+    "displayName": "Iceberg lettuce (GLO)",
+    "id": "2f7e1c4f-3f24-5d41-ac3a-2ce52ae8a3e4",
     "metadata": [
       {
-        "alias": "endive-default",
+        "alias": "endive-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Endive Origine Inconnue",
-        "id": "ac9e560d-6171-5899-b97c-b092b89aa108",
+        "displayName": "Endive HORS UE",
+        "id": "205c2e78-6fd8-5f7f-a6b0-ce4b13b068f4",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Endive in agb_inedible.csv",
@@ -4967,10 +5056,10 @@
         ]
       },
       {
-        "alias": "red-endive-default",
+        "alias": "red-endive-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Endive rouge Origine Inconnue",
-        "id": "0e20a17c-507f-5fed-a674-2852ea7280a0",
+        "displayName": "Endive rouge HORS UE",
+        "id": "834d11b2-368f-55ad-9a19-5e334589cfcc",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Red endive in agb_inedible.csv",
@@ -5007,10 +5096,10 @@
         ]
       },
       {
-        "alias": "salad-lettuce-default",
+        "alias": "salad-lettuce-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Salade, laitue Origine Inconnue",
-        "id": "fd1a4327-abf4-599a-9116-4633c5feaf62",
+        "displayName": "Salade, laitue HORS UE",
+        "id": "fbf439ff-cfba-5a9f-b887-8221ad46c021",
         "inediblePart": 0.4,
         "inediblePartMatch": {
           "rule": "Matched with Lettuce in agb_inedible.csv",
@@ -5051,7 +5140,7 @@
       "food",
       "food2"
     ],
-    "source": "Ecoinvent 3.11",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
@@ -5064,10 +5153,10 @@
     "id": "1b4ce511-0fde-5120-b7bb-9342ef5185bd",
     "metadata": [
       {
-        "alias": "fig-default",
+        "alias": "fig-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Figue Origine Inconnue",
-        "id": "260ec040-df10-5ef6-9a02-cc2799b52b78",
+        "displayName": "Figue HORS UE",
+        "id": "3598df40-75b0-5863-af81-6e2a581d6a32",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -5104,10 +5193,10 @@
         ]
       },
       {
-        "alias": "nectarine-default",
+        "alias": "nectarine-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Nectarine Origine Inconnue",
-        "id": "11a8671b-5e76-544d-a42a-3527fa6e6dd1",
+        "displayName": "Nectarine HORS UE",
+        "id": "01d233d9-228e-5ff7-8a57-1528e3f92b80",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -5144,10 +5233,10 @@
         ]
       },
       {
-        "alias": "peach-default",
+        "alias": "peach-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pêches Origine Inconnue",
-        "id": "7f757299-9f03-5b92-932f-a82f9775bcd2",
+        "displayName": "Pêches HORS UE",
+        "id": "51e77c85-2b6d-53a1-a1fd-6033d2805cab",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Peach in agb_inedible.csv",
@@ -5190,7 +5279,7 @@
     ],
     "source": "WFLDB",
     "unit": "kg",
-    "location": "CN"
+    "location": "GLO"
   },
   {
     "activityName": "Flaxseed, national average, animal feed, at farm gate {FR} U",
@@ -5202,10 +5291,10 @@
     "id": "3bbe144d-ef02-5a0a-8439-fd8a652ada90",
     "metadata": [
       {
-        "alias": "flaxseed-default",
+        "alias": "flaxseed-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Graines de lin Origine Inconnue",
-        "id": "17b36bf9-98fa-5aa5-bb82-4571f118ad4b",
+        "displayName": "Graines de lin HORS UE",
+        "id": "ace5907e-fe3a-5cf0-9f03-baf27f782a6e",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -5259,10 +5348,10 @@
     "id": "80674c88-6f12-5f7b-b70d-d72ba7d1e4be",
     "metadata": [
       {
-        "alias": "french-bean-default",
+        "alias": "french-bean-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Haricots verts Origine Inconnue",
-        "id": "a0d6909b-13ad-5ef5-bdbe-ecfbdc2c4788",
+        "displayName": "Haricots verts HORS UE",
+        "id": "5d85dc6f-23dc-5c17-8ccf-8762d82a8e9d",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with French bean in agb_inedible.csv",
@@ -5299,10 +5388,10 @@
         ]
       },
       {
-        "alias": "tamarind-default",
+        "alias": "tamarind-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Tamarin Origine Inconnue",
-        "id": "a6916657-8a33-5d6e-8bd3-f388d858fab4",
+        "displayName": "Tamarin HORS UE",
+        "id": "fc285bae-8dee-51d1-83ec-b897c98dd64c",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -5339,10 +5428,10 @@
         ]
       },
       {
-        "alias": "white-bean-dried-default",
+        "alias": "white-bean-dried-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Haricots blancs séchés Origine Inconnue",
-        "id": "ec4b37fd-34ee-54d7-9283-02344bd529ba",
+        "displayName": "Haricots blancs séchés HORS UE",
+        "id": "bacc7c83-8f18-5677-9179-63b0a537e25c",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -5396,10 +5485,10 @@
     "id": "1cd29e55-2ee7-5275-90d5-92c6a7676908",
     "metadata": [
       {
-        "alias": "garlic-default",
+        "alias": "garlic-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Ail Origine Inconnue",
-        "id": "d8c8a918-a11a-502f-a5cf-90052d96c133",
+        "displayName": "Ail HORS UE",
+        "id": "df25f0b8-080e-5dad-9bba-6ce69f59bb6a",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Garlic in agb_inedible.csv",
@@ -5444,63 +5533,6 @@
     "unit": "kg"
   },
   {
-    "activityName": "Cucumber {GLO}| cucumber production, in heated greenhouse | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "cucumber",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Cucumber (GLO)",
-    "id": "4fc6c5bf-f755-51d9-92be-892e33043084",
-    "metadata": [
-      {
-        "alias": "gherkin-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Cornichon Origine Inconnue",
-        "id": "3630f376-2866-517b-b9ee-fa75fbcb7176",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
     "activityName": "Ginger, fresh, at farm (WFLDB)",
     "alias": "ginger-fresh",
     "categories": [
@@ -5510,10 +5542,10 @@
     "id": "08ae47c9-c456-5659-9bcf-ad7ef7023706",
     "metadata": [
       {
-        "alias": "ginger-default",
+        "alias": "ginger-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Gingembre Origine Inconnue",
-        "id": "0293340c-933d-553d-b807-a2cc4863b05c",
+        "displayName": "Gingembre HORS UE",
+        "id": "72911044-87fc-59e7-a9f1-bcedf4f6d40b",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -5558,19 +5590,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Orange, fresh grade {ES}| orange production, fresh grade | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Orange, fresh grade {US}| orange production, fresh grade | Cut-off, U",
     "alias": "orange-grade-fresh",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Orange, fresh grade (ES)",
+    "displayName": "Orange, fresh grade (US)",
     "id": "1f1c98ce-4c93-5f21-9fb1-a02de68229da",
     "metadata": [
       {
-        "alias": "grapefruit-default",
+        "alias": "grapefruit-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pamplemousse Origine Inconnue",
-        "id": "a03ee09d-313a-512c-9570-6d5d6660b662",
+        "displayName": "Pamplemousse HORS UE",
+        "id": "9bdb9c81-7c43-54ba-b9e2-5294ef47522b",
         "inediblePart": 0.3,
         "inediblePartMatch": {
           "rule": "Matched with Grapefruit in agb_inedible.csv",
@@ -5595,7 +5627,7 @@
           "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
           "rule": "matched 'poires pour transformation' in cropgroup.csv",
@@ -5607,107 +5639,10 @@
         ]
       },
       {
-        "alias": "kumquat-default",
+        "alias": "grape-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Kumquat Origine Inconnue",
-        "id": "6665c6fe-6144-5e7c-82ef-455daf277752",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.85,
-        "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      },
-      {
-        "alias": "orange-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Oranges Origine Inconnue",
-        "id": "cb58f1d0-634f-5582-9c13-a12e80474e77",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "Matched with Orange in agb_inedible.csv",
-          "confidence": 0.95
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.95,
-        "ingredientDensityMatch": {
-          "rule": "Matched with orange in density.csv",
-          "confidence": 0.95
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "fruit default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "VERGERS",
-        "cropGroupMatch": {
-          "rule": "matched 'orange' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Grape, wine grape, at farm {IT} - Adapted from WFLDB U",
-    "alias": "grape-wine-grape",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Grape, wine grape, at farm (IT)",
-    "id": "83b83c10-e53d-529e-a8ff-4472df980533",
-    "metadata": [
-      {
-        "alias": "grape-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Raisins (noirs ou blancs) Origine Inconnue",
-        "id": "3733e844-5e53-5404-9b26-28fcb67896c8",
+        "displayName": "Raisins (noirs ou blancs) HORS UE",
+        "id": "f125d883-6ce8-56db-8831-ee59c132ca60",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Grape in agb_inedible.csv",
@@ -5732,10 +5667,90 @@
           "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "VIGNES",
         "cropGroupMatch": {
           "rule": "matched 'grape' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "kumquat-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Kumquat HORS UE",
+        "id": "434d4ffb-da80-5e01-99e8-972d0acf7193",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.85,
+        "ingredientDensityMatch": {
+          "rule": "fruit default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "orange-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Oranges HORS UE",
+        "id": "c5c1e413-9a92-5661-b260-0fb421ae9e9a",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "Matched with Orange in agb_inedible.csv",
+          "confidence": 0.95
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.95,
+        "ingredientDensityMatch": {
+          "rule": "Matched with orange in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "fruit default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fruit NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "VERGERS",
+        "cropGroupMatch": {
+          "rule": "matched 'orange' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -5748,23 +5763,23 @@
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
-    "activityName": "Kiwi FR, conventional, national average, at orchard {FR} U",
-    "alias": "kiwi-fr-at-orchard",
+    "activityName": "Kiwi {GLO}| production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "kiwi",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Kiwi FR, conventional, national average, at orchard (FR)",
-    "id": "bfdb3896-6e4e-5c4b-a5e8-0aaf2c8a9a18",
+    "displayName": "Kiwi (GLO)",
+    "id": "5eeb9c89-bf25-5ced-a745-491a5ac5e731",
     "metadata": [
       {
-        "alias": "guava-default",
+        "alias": "guava-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Goyave Origine Inconnue",
-        "id": "2368c69a-ed80-5783-914a-2ac9b58d34aa",
+        "displayName": "Goyave HORS UE",
+        "id": "f79ab5ae-7198-5cd1-9839-6a07657a7add",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -5801,10 +5816,10 @@
         ]
       },
       {
-        "alias": "kiwi-default",
+        "alias": "kiwi-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Kiwi Origine Inconnue",
-        "id": "ee78fd94-c4b4-5e73-8e1f-c615927c75f8",
+        "displayName": "Kiwi HORS UE",
+        "id": "3865b016-6bec-598b-adf7-deeaab9b8738",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -5829,7 +5844,7 @@
           "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
           "rule": "matched 'orange' in cropgroup.csv",
@@ -5841,10 +5856,10 @@
         ]
       },
       {
-        "alias": "passion-fruit-default",
+        "alias": "passion-fruit-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Fruit de la passion Origine Inconnue",
-        "id": "f41a9a9e-38e7-577f-89bd-fa4197de9d57",
+        "displayName": "Fruit de la passion HORS UE",
+        "id": "333440db-95b3-587d-bbbf-6916b9bee4ec",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -5889,19 +5904,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Hazelnut, in shell, at farm (WFLDB)",
+    "activityName": "Hazelnut, in shell, at farm {TR} - Adapted from WFLDB U",
     "alias": "hazelnut-in-shell",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Hazelnut, in shell, at farm",
+    "displayName": "Hazelnut, in shell, at farm (TR)",
     "id": "3cf074d1-5ec9-53ab-9bd9-1cfc0c53cf06",
     "metadata": [
       {
-        "alias": "hazelnut-in-shell-default",
+        "alias": "hazelnut-in-shell-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Noisettes en coquille Origine Inconnue",
-        "id": "36b1e838-2886-5a11-9f08-a35df87f5758",
+        "displayName": "Noisettes en coquille HORS UE",
+        "id": "a6f59247-8877-5d9d-9531-025c61242c92",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "with shell keyword found in Hazelnuts, in shell",
@@ -5926,7 +5941,7 @@
           "rule": "nut_oilseed → none (non-perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
           "rule": "matched 'noisettes' in cropgroup.csv",
@@ -5942,9 +5957,8 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "US"
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
   },
   {
     "activityName": "Hemp, grain, Champagne, at farm gate {FR} U",
@@ -5956,10 +5970,10 @@
     "id": "333452e0-7800-519a-8e6b-2b4ec83a3283",
     "metadata": [
       {
-        "alias": "hemp-grain-default",
+        "alias": "hemp-grain-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Chanvre Origine Inconnue",
-        "id": "fb785134-d5c3-5c6f-975e-1db030ec128e",
+        "displayName": "Chanvre HORS UE",
+        "id": "3fd9b4c0-5c04-5c8b-ae75-c68eb6962a50",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -6013,10 +6027,10 @@
     "id": "4286580a-e7e9-5195-98fc-b79a28f14b04",
     "metadata": [
       {
-        "alias": "honey-default",
+        "alias": "honey-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Miel Origine Inconnue",
-        "id": "1ea191e2-0120-5095-a4e3-efc2c1d91545",
+        "displayName": "Miel HORS UE",
+        "id": "89353ff4-7c20-573e-a483-599575d5492a",
         "inediblePart": 0.4,
         "inediblePartMatch": {
           "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
@@ -6056,19 +6070,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Leek, early sown, conventional, at farm gate {FR} U",
-    "alias": "leek-early-sown",
+    "activityName": "Leek, conventional, national average, at plant {FR} U",
+    "alias": "leek-at-plant",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Leek, early sown, conventional, at farm gate (FR)",
-    "id": "2a73f73d-afed-51c9-844f-e232973bdc8a",
+    "displayName": "Leek, conventional, national average, at plant (FR)",
+    "id": "fd2ba522-d6cb-543e-b106-086cbd29c468",
     "metadata": [
       {
-        "alias": "leek-default",
+        "alias": "leek-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Poireau Origine Inconnue",
-        "id": "da93edc8-ef2a-5aba-8983-2cd068478108",
+        "displayName": "Poireau HORS UE",
+        "id": "63672696-8c4b-599c-9be5-5c06bbf3d8b8",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Leek in agb_inedible.csv",
@@ -6122,10 +6136,10 @@
     "id": "ba7cde20-48da-5ad9-b51f-f154d208ab59",
     "metadata": [
       {
-        "alias": "lemon-default",
+        "alias": "lemon-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Citron Origine Inconnue",
-        "id": "055b8141-6ffa-5302-ad63-115bd76709d1",
+        "displayName": "Citron HORS UE",
+        "id": "a447ef9c-05c2-523d-8a7a-5c79df886df2",
         "inediblePart": 0.3,
         "inediblePartMatch": {
           "rule": "Matched with Lemon in agb_inedible.csv",
@@ -6168,7 +6182,7 @@
     ],
     "source": "WFLDB",
     "unit": "kg",
-    "location": "MX"
+    "location": "GLO"
   },
   {
     "activityName": "Lentil {CA-SK}| lentil production | Cut-off, U - Adapted from Ecoinvent U",
@@ -6180,10 +6194,10 @@
     "id": "1f263d8c-2c9b-58f2-893d-84388b86743b",
     "metadata": [
       {
-        "alias": "lentil-default",
+        "alias": "lentil-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Lentille Origine Inconnue",
-        "id": "6d6db0b8-2e1d-5074-9a22-4e81d5fb52cd",
+        "displayName": "Lentille HORS UE",
+        "id": "efaed529-e1c8-57d9-9637-2cc16ad0c5b0",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -6228,76 +6242,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Fava bean, feed, Swiss integrated production {RoW}| fava bean, feed production, Swiss integrated production | Cut-off, U",
-    "alias": "fava-bean-feed-swis-integrated-production",
+    "activityName": "Melon {GLO}| melon production | Cut-off, U",
+    "alias": "melon",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Fava bean, feed, Swiss integrated production (ROW)",
-    "id": "b6edeb9a-a1aa-558e-939c-bbe59684ab45",
+    "displayName": "Melon (GLO)",
+    "id": "4c7fbd51-7e6b-5051-8cf9-967faf911763",
     "metadata": [
       {
-        "alias": "lima-bean-default",
+        "alias": "melon-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Haricots de Lima Origine Inconnue",
-        "id": "23f3aa29-6b9e-5046-9c78-cafc25f8d7d4",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "legume default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "legume NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "PROTEAGINEUX",
-        "cropGroupMatch": {
-          "rule": "matched 'spring faba' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Melon, under low tunnel, conventional, at farm gate {FR} U",
-    "alias": "melon-under-low-tunnel",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Melon, under low tunnel, conventional, at farm gate (FR)",
-    "id": "147bba19-b74f-571f-8009-0c346f2c3b58",
-    "metadata": [
-      {
-        "alias": "melon-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Melon (miellat, Charentais, Cataloupe, Cavaillon) Origine Inconnue",
-        "id": "85eb0842-4eab-5d67-8385-c91fa1e4f4ea",
+        "displayName": "Melon (miellat, Charentais, Cataloupe, Cavaillon) HORS UE",
+        "id": "14272545-c1a9-5648-a41d-f407d34db615",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -6322,7 +6279,7 @@
           "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'melon' in cropgroup.csv",
@@ -6334,10 +6291,10 @@
         ]
       },
       {
-        "alias": "watermelon-default",
+        "alias": "watermelon-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pastèque Origine Inconnue",
-        "id": "7eda0b01-9fe3-52e7-b8f1-4fc434e76d43",
+        "displayName": "Pastèque HORS UE",
+        "id": "6b13600b-47c5-5e83-a8bd-e26fb6ac7fb6",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -6378,7 +6335,7 @@
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -6391,10 +6348,10 @@
     "id": "499a23ca-3162-59dc-8872-3137aa4226fe",
     "metadata": [
       {
-        "alias": "mushroom-morel-default",
+        "alias": "mushroom-morel-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Champignon, morille Origine Inconnue",
-        "id": "5a29aa60-9bb9-5a93-acf3-bbba3afb2edd",
+        "displayName": "Champignon, morille HORS UE",
+        "id": "6236c2b7-2388-5c1a-98ce-bd52c0dbffa3",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Mushroom in agb_inedible.csv",
@@ -6448,10 +6405,10 @@
     "id": "862f1031-f4b8-519a-bc2b-ab0622b0da29",
     "metadata": [
       {
-        "alias": "mustard-seed-default",
+        "alias": "mustard-seed-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Graines de moutarde Origine Inconnue",
-        "id": "cc48ac13-6a7c-5032-8138-1fefeff09404",
+        "displayName": "Graines de moutarde HORS UE",
+        "id": "1ef72379-1224-5d01-a733-3562c730728a",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "Matched with mustard in inedible_part.csv",
@@ -6505,10 +6462,10 @@
     "id": "e1a847b5-ed54-5cdf-b4b0-c8c8e118017e",
     "metadata": [
       {
-        "alias": "new-zealand-spinach-default",
+        "alias": "new-zealand-spinach-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Épinards de Nouvelle-Zélande Origine Inconnue",
-        "id": "913296af-fd26-598a-baa6-511a630ab2fb",
+        "displayName": "Épinards de Nouvelle-Zélande HORS UE",
+        "id": "048723dc-3bc2-576e-8dc4-8ddf01dd2152",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Spinach in agb_inedible.csv",
@@ -6545,10 +6502,10 @@
         ]
       },
       {
-        "alias": "spinach-default",
+        "alias": "spinach-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Épinard Origine Inconnue",
-        "id": "ebe3c381-6d31-528a-b1f2-e3efbd6fe678",
+        "displayName": "Épinard HORS UE",
+        "id": "2c46f0cb-63f3-5ba0-9170-f99231212e9f",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Spinach in agb_inedible.csv",
@@ -6585,10 +6542,10 @@
         ]
       },
       {
-        "alias": "swis-chard-default",
+        "alias": "swis-chard-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Blette Origine Inconnue",
-        "id": "3af7783a-ddd0-5feb-964f-570f25efcd55",
+        "displayName": "Blette HORS UE",
+        "id": "8691479c-e41d-5850-89b0-b565245298ee",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -6633,19 +6590,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Oats, at farm {FI} - Adapted from WFLDB U",
-    "alias": "oats",
+    "activityName": "Oat grain {RoW}| oat production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "oat-grain",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Oats, at farm (FI)",
-    "id": "e3b1b327-5880-5ea1-9acb-1218d417957b",
+    "displayName": "Oat grain (ROW)",
+    "id": "bb01555a-af4e-5f11-9071-3f718c50e99c",
     "metadata": [
       {
-        "alias": "oats-default",
+        "alias": "oats-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Avoine Origine Inconnue",
-        "id": "f65deb2f-ec1b-57a2-a8b9-1610dfd2a07e",
+        "displayName": "Avoine HORS UE",
+        "id": "d8198264-e84f-51c9-9d54-1908734fe17f",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -6690,19 +6647,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Olive, at farm (WFLDB)",
+    "activityName": "Olive {RoW}| olive production | Cut-off, U",
     "alias": "olive",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Olive, at farm",
+    "displayName": "Olive (ROW)",
     "id": "fb9a4711-6a68-5b7d-b2be-e28be4a549c6",
     "metadata": [
       {
-        "alias": "olive-default",
+        "alias": "olive-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Olives Origine Inconnue",
-        "id": "34e35753-f5ae-58d4-8f4e-5d15a3821a8e",
+        "displayName": "Olives HORS UE",
+        "id": "70fa757d-1626-5a99-be30-99dff4973485",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "Matched with Olives in agb_inedible.csv",
@@ -6727,7 +6684,7 @@
           "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
-        "visible": true,
+        "visible": false,
         "cropGroup": "OLIVIERS",
         "cropGroupMatch": {
           "rule": "matched 'olive' in cropgroup.csv",
@@ -6743,65 +6700,7 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "IT"
-  },
-  {
-    "activityName": "Palm fruit bunch, with deforestation, on land recently transformed, animal feed, at farm gate {MY} U",
-    "alias": "palm-fruit-bunch-with-deforestation-on-land-recently-transformed-animal-feed",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Palm fruit bunch, with deforestation, on land recently transformed, animal feed, at farm gate (MY)",
-    "id": "f583323d-a4dc-5e2b-9dbc-1e7c977bec2a",
-    "metadata": [
-      {
-        "alias": "palm-fruit-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Fruit du palmier Origine Inconnue",
-        "id": "14f0f1ce-a25d-5295-9232-78a05415aa6d",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.9,
-        "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.856,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with fruit in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "vegetable NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMES-FLEURS",
-        "cropGroupMatch": {
-          "rule": "vegetable default",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -6814,10 +6713,10 @@
     "id": "67c8fe8a-e0f5-570f-ba21-0d0cfbbc6bc7",
     "metadata": [
       {
-        "alias": "papaya-default",
+        "alias": "papaya-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Papaye Origine Inconnue",
-        "id": "c56a57b2-d38d-520f-a439-6b0440cda0b3",
+        "displayName": "Papaye HORS UE",
+        "id": "188fde05-96e4-5408-844f-683401fae521",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "fruit NOVA 1 default from food_type_inedible_part.csv",
@@ -6871,10 +6770,10 @@
     "id": "a00b5d8d-d1a8-500c-b3ae-e830f11d8af6",
     "metadata": [
       {
-        "alias": "parsley-fresh-default",
+        "alias": "parsley-fresh-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Persil frais Origine Inconnue",
-        "id": "e09e5d3e-d50c-545d-982f-d48ee9f450ec",
+        "displayName": "Persil frais HORS UE",
+        "id": "3e4cf4f8-b01f-565e-8d0c-0968a5901a81",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Parsley in agb_inedible.csv",
@@ -6919,19 +6818,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Pear, at farm (WFLDB)",
+    "activityName": "Pear {RoW}| pear production | Cut-off, U",
     "alias": "pear",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Pear, at farm",
+    "displayName": "Pear (ROW)",
     "id": "d8fb60c0-0e2c-57d4-9fd8-02a73cc4166f",
     "metadata": [
       {
-        "alias": "pear-default",
+        "alias": "pear-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Poires Origine Inconnue",
-        "id": "f46f3765-0282-5e11-b91d-fcd1e13076bc",
+        "displayName": "Poires HORS UE",
+        "id": "e1331e3a-f23b-535b-a2f1-10434946c90e",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Pear in agb_inedible.csv",
@@ -6968,10 +6867,10 @@
         ]
       },
       {
-        "alias": "prickly-pear-default",
+        "alias": "prickly-pear-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Figue de barbarie Origine Inconnue",
-        "id": "4167c6b1-5bb1-5e15-9dfa-a70096bdfbeb",
+        "displayName": "Figue de barbarie HORS UE",
+        "id": "11112cea-ce8a-50a5-82ac-6a900270272c",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Pear in agb_inedible.csv",
@@ -7012,24 +6911,23 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "CN"
+    "source": "Ecoinvent 3.11",
+    "unit": "kg"
   },
   {
-    "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
-    "alias": "winter-pea-15-moisture",
+    "activityName": "Pea {CH}| pea production, conventional, hill region | Cut-off, U",
+    "alias": "pea",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Winter pea, conventional, 15% moisture, at farm gate (FR)",
-    "id": "ae7da361-192c-553c-8867-8db66731c169",
+    "displayName": "Pea (CH)",
+    "id": "8e4c2c9a-f13d-550a-8bbc-18c95f008ed1",
     "metadata": [
       {
-        "alias": "pea-with-pod-default",
+        "alias": "pea-with-pod-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pois, avec leurs cosses Origine Inconnue",
-        "id": "eb8856d3-fce3-54ea-a454-b59fd0db1d83",
+        "displayName": "Pois, avec leurs cosses HORS UE",
+        "id": "8dfca2b2-16a0-51c5-8b6a-82a9fce729ab",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -7064,149 +6962,29 @@
           "food",
           "food2"
         ]
-      },
-      {
-        "alias": "snow-pea-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pois mange-tout Origine Inconnue",
-        "id": "924bb722-23a3-5037-b28c-21dc102dbf22",
-        "inediblePart": 0.4,
-        "inediblePartMatch": {
-          "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "animal_product"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "Matched with pea in density.csv",
-          "confidence": 0.95
-        },
-        "rawToCookedRatio": 1.0,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with pea in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "fish_seafood NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
-        "cropGroupMatch": {
-          "rule": "matched 'pea' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      },
-      {
-        "alias": "split-pea-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pois cassés Origine Inconnue",
-        "id": "7050213e-f089-5021-a2f4-6977e24f1695",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "Matched with pea in density.csv",
-          "confidence": 0.95
-        },
-        "rawToCookedRatio": 1.0,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with pea in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "legume NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
-        "cropGroupMatch": {
-          "rule": "matched 'pea' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      },
-      {
-        "alias": "winter-pea-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pois d'hiver Origine Inconnue",
-        "id": "253d6297-fe50-5d89-9d08-fdae671f214b",
-        "inediblePart": 0.2,
-        "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "vegetable_fresh"
-        ],
-        "ingredientDensity": 0.8,
-        "ingredientDensityMatch": {
-          "rule": "Matched with pea in density.csv",
-          "confidence": 0.95
-        },
-        "rawToCookedRatio": 1.0,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with pea in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "legume NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "PROTEAGINEUX",
-        "cropGroupMatch": {
-          "rule": "matched 'pois d'hiver' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
       }
     ],
     "scopes": [
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
-    "activityName": "Pineapple, at farm {TH} U",
+    "activityName": "Pineapple, at farm {CR} - Adapted from WFLDB U",
     "alias": "pineapple",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Pineapple, at farm (TH)",
+    "displayName": "Pineapple, at farm (CR)",
     "id": "8896eb0d-179c-5de2-8d76-73e9b09dd5ec",
     "metadata": [
       {
-        "alias": "pineapple-default",
+        "alias": "pineapple-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Ananas Origine Inconnue",
-        "id": "b15053cb-8e16-56ed-a530-aeea4e6d040d",
+        "displayName": "Ananas HORS UE",
+        "id": "413952d8-12d3-5999-8db7-d5126b710332",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "Matched with Pineapple in agb_inedible.csv",
@@ -7260,10 +7038,10 @@
     "id": "549829e0-e6d5-5d01-a576-4da60c92de18",
     "metadata": [
       {
-        "alias": "pomegranate-default",
+        "alias": "pomegranate-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Grenade Origine Inconnue",
-        "id": "d6793bb2-2518-56e3-94b1-b86e783d1830",
+        "displayName": "Grenade HORS UE",
+        "id": "fd54ea90-f010-5102-b8bd-b439ba2d1aa8",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Pomegranate in agb_inedible.csv",
@@ -7308,19 +7086,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Potato {US}| potato production | Cut-off, U",
+    "activityName": "Potato, at farm (WFLDB)",
     "alias": "potato",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Potato (US)",
+    "displayName": "Potato, at farm",
     "id": "1b52033f-842a-5deb-9315-8521752ee797",
     "metadata": [
       {
-        "alias": "potato-default",
+        "alias": "potato-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pomme de terre Origine Inconnue",
-        "id": "999485a8-08af-5135-bf2c-48ce04c68f81",
+        "displayName": "Pomme de terre HORS UE",
+        "id": "aa640be1-c369-547b-8056-326e7eb842e3",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Potatoes in agb_inedible.csv",
@@ -7361,8 +7139,9 @@
       "food",
       "food2"
     ],
-    "source": "Ecoinvent 3.11",
-    "unit": "kg"
+    "source": "WFLDB",
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Quinoa, intensive production, at farm {PE} - Adapted from WFLDB U",
@@ -7374,10 +7153,10 @@
     "id": "ee63889a-8e63-5a23-a69d-db77ecacdd0c",
     "metadata": [
       {
-        "alias": "quinoa-default",
+        "alias": "quinoa-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Quinoa Origine Inconnue",
-        "id": "b6f2565a-0954-5c82-a948-9d2fe82bfae9",
+        "displayName": "Quinoa HORS UE",
+        "id": "c38e36d6-1204-5d32-a7bf-b1ed524d01f8",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -7431,10 +7210,10 @@
     "id": "40edf93f-879d-51a2-8ebb-2513c2d8c908",
     "metadata": [
       {
-        "alias": "radish-default",
+        "alias": "radish-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Radis Origine Inconnue",
-        "id": "f1769f71-8a52-5e10-b3a0-efdc2a1918f8",
+        "displayName": "Radis HORS UE",
+        "id": "9fd0eb3b-0bc8-5697-9436-206c4016f0cb",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Radish in agb_inedible.csv",
@@ -7488,10 +7267,10 @@
     "id": "5d4615b0-1ebc-5625-be0c-52bdd3897e44",
     "metadata": [
       {
-        "alias": "rapeseed-default",
+        "alias": "rapeseed-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Colza Origine Inconnue",
-        "id": "c1be6c42-5f21-5afc-af09-1cd4c2f426b6",
+        "displayName": "Colza HORS UE",
+        "id": "8f2dd82b-c471-5282-a464-cfe564a165e8",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -7545,10 +7324,10 @@
     "id": "7103b667-c2c9-5b24-870d-aa422bc01312",
     "metadata": [
       {
-        "alias": "raspberry-default",
+        "alias": "raspberry-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Framboise Origine Inconnue",
-        "id": "d93befed-4e46-58c0-ae12-f80cbdb79012",
+        "displayName": "Framboise HORS UE",
+        "id": "8d685a2b-b9f7-5f25-be4f-bcf66455c76f",
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Raspberries in agb_inedible.csv",
@@ -7593,47 +7372,47 @@
     "unit": "kg"
   },
   {
-    "activityName": "Red kidney bean {CA-ON}| red kidney bean production | Cut-off, U",
-    "alias": "red-kidney-bean",
+    "activityName": "Rice, non-basmati {RoW}| rice production, non-basmati | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "rice-non-basmati",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Red kidney bean (CA-ON)",
-    "id": "e7787b92-9c75-5b65-8cdc-98459c10c47a",
+    "displayName": "Rice, non-basmati (ROW)",
+    "id": "4e94a467-d4bd-5f38-a7ff-374f465ee789",
     "metadata": [
       {
-        "alias": "red-bean-dried-default",
+        "alias": "rice-raw-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Haricots rouges Origine Inconnue",
-        "id": "5833b6c6-89d7-51a5-a3de-8a3c48278f02",
-        "inediblePart": 0.2,
+        "displayName": "Riz cru, toutes variétés (blanc, sauvage, riz thaï ou basmati, cru) HORS UE",
+        "id": "eb910448-ee1f-5483-8ba9-1280ea8ff613",
+        "inediblePart": 0.0,
         "inediblePartMatch": {
-          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
           "confidence": 1.0
         },
         "ingredientCategories": [
-          "vegetable_fresh"
+          "grain_raw"
         ],
-        "ingredientDensity": 0.8,
+        "ingredientDensity": 0.85,
         "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Rice, raw in fao_density.csv",
+          "confidence": 0.95
         },
-        "rawToCookedRatio": 0.856,
+        "rawToCookedRatio": 2.259,
         "rawToCookedRatioMatch": {
-          "rule": "legume default from food_type_cooked_to_raw.csv",
+          "rule": "grain default from food_type_cooked_to_raw.csv",
           "confidence": 1.0
         },
         "scenario": "import",
         "transportCooling": "none",
         "transportCoolingMatch": {
-          "rule": "dried packaging → none",
+          "rule": "grain → none (non-perishable)",
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroup": "RIZ",
         "cropGroupMatch": {
-          "rule": "legume default",
+          "rule": "matched 'rice' in cropgroup.csv",
           "confidence": 1.0
         },
         "scopes": [
@@ -7646,23 +7425,23 @@
       "food",
       "food2"
     ],
-    "source": "Ecoinvent 3.11",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
-    "activityName": "Seaweed non-optimized production, 1kg algae (Laminaria), fresh weight {FR} U",
-    "alias": "seaweed-non-optimized-production-1kg-alga",
+    "activityName": "Algae (Laminaria), fresh, at farm {FR} U",
+    "alias": "alga",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Seaweed non-optimized production, 1kg algae (FR)",
-    "id": "e2abaacb-dc6e-5c7c-b36b-51ca75273f77",
+    "displayName": "Algae (FR)",
+    "id": "1c17b523-c05e-59a4-b72f-142a0e9fd9fd",
     "metadata": [
       {
-        "alias": "salicornia-fresh-default",
+        "alias": "salicornia-fresh-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Salicorne, fraîche Origine Inconnue",
-        "id": "216d7676-f583-55c1-8bec-e7467a8f5a38",
+        "displayName": "Salicorne, fraîche HORS UE",
+        "id": "09aba87b-5a76-51b0-8e62-541b9f2bc949",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -7697,12 +7476,81 @@
           "food",
           "food2"
         ]
-      },
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Sodium chloride, powder {GLO}| market for | Cut-off, S - Copied from Ecoinvent U",
+    "alias": "sodium-chloride-powder",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Sodium chloride, powder (GLO)",
+    "id": "9c2f29f0-e402-5381-a27a-2dadb02b623f",
+    "metadata": [
       {
-        "alias": "seaweed-default",
+        "alias": "sea-salt-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Algue Origine Inconnue",
-        "id": "f85915bb-9679-530c-b06b-0180c64aa4ed",
+        "displayName": "Sel de mer, sel de céleri ou fleur de sel HORS UE",
+        "id": "5382613c-160f-562f-87bc-05ad85bd63a8",
+        "inediblePart": 0.0,
+        "inediblePartMatch": {
+          "rule": "fish_seafood NOVA 2-4 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "ingredientDensity": 1.05,
+        "ingredientDensityMatch": {
+          "rule": "fish_seafood default from food_type_density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.819,
+        "rawToCookedRatioMatch": {
+          "rule": "fish_seafood default from food_type_cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "none",
+        "transportCoolingMatch": {
+          "rule": "Matched with salt in transport_cooling.csv",
+          "confidence": 0.95
+        },
+        "visible": true,
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Seaweed optimized production, 1kg algae (Laminaria), fresh weight {FR} U",
+    "alias": "seaweed-optimized-production-1kg-alga",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Seaweed optimized production, 1kg algae (FR)",
+    "id": "6ca1f200-9613-5dad-a4f1-ae1cc9583c24",
+    "metadata": [
+      {
+        "alias": "seaweed-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Algue HORS UE",
+        "id": "9ac494b8-5352-5d16-9e7e-3241d293832e",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -7747,71 +7595,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Sodium chloride, powder {GLO}| market for | Cut-off, S - Copied from Ecoinvent U",
-    "alias": "sodium-chloride-powder",
+    "activityName": "Sesame seed {IN}| sesame seed production | Cut-off, U",
+    "alias": "sesame-seed",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Sodium chloride, powder (GLO)",
-    "id": "9c2f29f0-e402-5381-a27a-2dadb02b623f",
+    "displayName": "Sesame seed (IN)",
+    "id": "a412238d-cf70-5bd6-a297-af2bff8f3ee2",
     "metadata": [
       {
-        "alias": "sea-salt-default",
+        "alias": "sesame-seed-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Sel de mer, sel de céleri ou fleur de sel Origine Inconnue",
-        "id": "9e3c5bdd-474a-561a-8d5f-ea03b9c537a3",
-        "inediblePart": 0.0,
-        "inediblePartMatch": {
-          "rule": "fish_seafood NOVA 2-4 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "animal_product"
-        ],
-        "ingredientDensity": 1.05,
-        "ingredientDensityMatch": {
-          "rule": "fish_seafood default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.819,
-        "rawToCookedRatioMatch": {
-          "rule": "fish_seafood default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "Matched with salt in transport_cooling.csv",
-          "confidence": 0.95
-        },
-        "visible": true,
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Peanut {IN}| peanut production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "peanut",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Peanut (IN)",
-    "id": "f427ffaa-0462-509d-840f-5e975d42f83e",
-    "metadata": [
-      {
-        "alias": "sesame-seed-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Graines de sésame Origine Inconnue",
-        "id": "33408c9c-e1fd-506c-983c-ff92a6160e4d",
+        "displayName": "Graines de sésame HORS UE",
+        "id": "81f92a28-a862-530c-a352-7e18f937c62c",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -7852,7 +7648,7 @@
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
@@ -7865,10 +7661,10 @@
     "id": "4f5eb1ff-b052-58c1-81dd-9dd6542b1856",
     "metadata": [
       {
-        "alias": "sheep-milk-default",
+        "alias": "sheep-milk-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Lait de brebis Origine Inconnue",
-        "id": "e5b6e5a2-07c0-5a37-950c-a1087fe0712f",
+        "displayName": "Lait de brebis HORS UE",
+        "id": "5870e3a4-c845-54c4-8ea6-66b280b41821",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "dairy NOVA 1 default from food_type_inedible_part.csv",
@@ -7911,19 +7707,156 @@
     "unit": "kg"
   },
   {
-    "activityName": "Wheat grain {US}| wheat production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "wheat-grain-us",
+    "activityName": "Winter pea, conventional, 15% moisture, at farm gate {FR} U",
+    "alias": "winter-pea-15-moisture",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Wheat grain (US)",
-    "id": "6682b9f3-117c-5eaa-8ee8-994458c82daa",
+    "displayName": "Winter pea, conventional, 15% moisture, at farm gate (FR)",
+    "id": "ae7da361-192c-553c-8867-8db66731c169",
     "metadata": [
       {
-        "alias": "soft-wheat-default",
+        "alias": "snow-pea-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Blé tendre Origine Inconnue",
-        "id": "eb95f8d6-e3c0-556b-acff-91c7773f5b33",
+        "displayName": "Pois mange-tout HORS UE",
+        "id": "cd8748c4-0b74-5106-b906-cedb53fad575",
+        "inediblePart": 0.4,
+        "inediblePartMatch": {
+          "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "animal_product"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "Matched with pea in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 1.0,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with pea in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "fish_seafood NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroupMatch": {
+          "rule": "matched 'pea' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "split-pea-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Pois cassés HORS UE",
+        "id": "2af3643a-5255-570e-bb31-6e02921fd10f",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "Matched with pea in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 1.0,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with pea in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "legume NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "LEGUMINEUSES A GRAIN",
+        "cropGroupMatch": {
+          "rule": "matched 'pea' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      },
+      {
+        "alias": "winter-pea-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Pois d'hiver HORS UE",
+        "id": "c3b89c06-daf4-56e4-a451-8e68d1fde102",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 0.8,
+        "ingredientDensityMatch": {
+          "rule": "Matched with pea in density.csv",
+          "confidence": 0.95
+        },
+        "rawToCookedRatio": 1.0,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with pea in cooked_to_raw.csv",
+          "confidence": 0.95
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "legume NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": true,
+        "cropGroup": "PROTEAGINEUX",
+        "cropGroupMatch": {
+          "rule": "matched 'pois d'hiver' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Wheat grain {RoW}| wheat production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "wheat-grain-row",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Wheat grain (ROW)",
+    "id": "ceb88fa5-9d41-5268-b7f8-73b34374de14",
+    "metadata": [
+      {
+        "alias": "soft-wheat-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Blé tendre HORS UE",
+        "id": "1402fd8a-d473-51fd-9d07-b4c0eb798dcc",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -7960,10 +7893,10 @@
         ]
       },
       {
-        "alias": "millet-whole-default",
+        "alias": "millet-whole-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Millet entier Origine Inconnue",
-        "id": "9591a756-7917-52d6-9b0c-ca286988348e",
+        "displayName": "Millet entier HORS UE",
+        "id": "4b996c06-a53a-5ed9-9add-22f59f7a9f6d",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -8008,19 +7941,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Silage sorghum, national average, animal feed, at farm gate {FR} U",
-    "alias": "silage-sorghum-animal-feed",
+    "activityName": "Sweet sorghum grain {RoW}| sweet sorghum production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "sweet-sorghum-grain",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Silage sorghum, national average, animal feed, at farm gate (FR)",
-    "id": "7a14527a-9df3-55d0-acc3-ae3566f7715a",
+    "displayName": "Sweet sorghum grain (ROW)",
+    "id": "0122f445-1d2b-5a48-a231-2fff9bb97aef",
     "metadata": [
       {
-        "alias": "sorghum-default",
+        "alias": "sorghum-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Sorgho Origine Inconnue",
-        "id": "d8583020-bcc9-5525-9baf-457c46f286d1",
+        "displayName": "Sorgho HORS UE",
+        "id": "6781efe4-afc3-5114-af10-9836c7357bc0",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -8065,19 +7998,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Soybean {BR-RS}| soybean production | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Soybean, at farm (WFLDB)",
     "alias": "soybean",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Soybean (BR-RS)",
+    "displayName": "Soybean, at farm",
     "id": "a2dc3fb6-ac83-557a-b946-0cf8bf661df7",
     "metadata": [
       {
-        "alias": "soybean-default",
+        "alias": "soybean-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Soja Origine Inconnue",
-        "id": "2c2e014e-3a4a-523a-8d26-eead5e99a957",
+        "displayName": "Soja HORS UE",
+        "id": "295e9a33-e26a-5f56-ac22-62e6b31287f0",
         "inediblePart": 0.5,
         "inediblePartMatch": {
           "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
@@ -8118,8 +8051,9 @@
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "source": "WFLDB",
+    "unit": "kg",
+    "location": "GLO"
   },
   {
     "activityName": "Spring faba bean, conventional, national average, at farm gate {FR} U",
@@ -8131,10 +8065,10 @@
     "id": "419b1e01-d262-5870-873f-b103929eb106",
     "metadata": [
       {
-        "alias": "spring-faba-default",
+        "alias": "spring-faba-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Fèves printanières Origine Inconnue",
-        "id": "3c3f93e7-fb77-5306-bad5-3988bbc95489",
+        "displayName": "Fèves printanières HORS UE",
+        "id": "4c7b0814-025a-5e73-b7ab-e90ab4cea87c",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -8188,10 +8122,10 @@
     "id": "e8ca93da-42f3-55da-a5d7-1f63df9de8d5",
     "metadata": [
       {
-        "alias": "spring-pea-default",
+        "alias": "spring-pea-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Pois de printemps Origine Inconnue",
-        "id": "e532f04f-ef0f-53a6-b091-2dcff07b69ad",
+        "displayName": "Pois de printemps HORS UE",
+        "id": "b0330498-73cb-51c4-805f-9394e59273b8",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -8236,19 +8170,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Tap water {ZA}| market for tap water | Cut-off, S - Copied from Ecoinvent U",
-    "alias": "tap-water",
+    "activityName": "Water extraction, container filling and grouping, at water factory {FR} - Adapted from WFLDB U",
+    "alias": "water-extraction-container-filling-and-grouping-at-water-factory",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Tap water (ZA)",
-    "id": "df283721-5c28-545e-a159-c8d601e72117",
+    "displayName": "Water extraction, container filling and grouping, at water factory (FR)",
+    "id": "94505f63-f1b7-5f74-933a-611ab0d8fa60",
     "metadata": [
       {
-        "alias": "spring-water-default",
+        "alias": "spring-water-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Eau de source Origine Inconnue",
-        "id": "ff4bfbab-b234-5427-847e-ad10a30c3e49",
+        "displayName": "Eau de source HORS UE",
+        "id": "18b6919c-d41f-537d-97ab-ae2bef5ad9d7",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "beverage NOVA 1 default from food_type_inedible_part.csv",
@@ -8290,22 +8224,22 @@
       "food2"
     ],
     "source": "Agribalyse 3.2",
-    "unit": "kg"
+    "unit": "L"
   },
   {
-    "activityName": "Sugar beet, at farm {CA} - Adapted from WFLDB U",
+    "activityName": "Sugar beet, at farm {US} - Adapted from WFLDB U",
     "alias": "sugar-beet",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Sugar beet, at farm (CA)",
+    "displayName": "Sugar beet, at farm (US)",
     "id": "dd868e13-a71e-53a3-955c-9d5312e1afe7",
     "metadata": [
       {
-        "alias": "sugar-beet-default",
+        "alias": "sugar-beet-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Betterave à sucre Origine Inconnue",
-        "id": "b6214661-a43d-53a3-b51e-f8cf2304d508",
+        "displayName": "Betterave à sucre HORS UE",
+        "id": "1034344d-9a4b-5812-8051-b9190af8e525",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "Matched with sugar in inedible_part.csv",
@@ -8350,19 +8284,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Sunflower, at farm (WFLDB)",
-    "alias": "sunflower",
+    "activityName": "Sunflower seed {UA}| sunflower production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "sunflower-seed",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Sunflower, at farm",
-    "id": "2ef9dc61-712f-578c-850a-c600d930e23a",
+    "displayName": "Sunflower seed (UA)",
+    "id": "03a7ade0-81b5-5acb-acee-0665d51dc699",
     "metadata": [
       {
-        "alias": "sunflower-seed-default",
+        "alias": "sunflower-seed-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Tournesol, graine Origine Inconnue",
-        "id": "30dd2403-628a-5475-b78f-2248e00d351d",
+        "displayName": "Tournesol, graine HORS UE",
+        "id": "5d1e4843-a051-5fd4-999d-65bdf697560d",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "Matched with sunflower seed in inedible_part.csv",
@@ -8403,24 +8337,23 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "RU"
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
   },
   {
-    "activityName": "Ware potato, conventional, for fresh market, firm flesh varieties, at farm gate {FR} U",
-    "alias": "ware-potato-for-market-firm-flesh-variety-fresh",
+    "activityName": "Ware potato, conventional, variety mix, national average, at farm gate {FR} U",
+    "alias": "ware-potato-variety-mix",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Ware potato, conventional, for fresh market, firm flesh varieties, at farm gate (FR)",
-    "id": "f756170a-d2bb-50d6-bed9-cd0484593aad",
+    "displayName": "Ware potato, conventional, variety mix, national average, at farm gate (FR)",
+    "id": "5df3a5be-b7ef-56c0-a79c-af2752a13f0f",
     "metadata": [
       {
-        "alias": "sweet-potato-default",
+        "alias": "sweet-potato-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Patate douce Origine Inconnue",
-        "id": "3e7fc827-4685-542c-ab4c-66732fac4390",
+        "displayName": "Patate douce HORS UE",
+        "id": "d70d39f5-d4f7-52be-8c29-c7dfb9c46add",
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Potatoes in agb_inedible.csv",
@@ -8465,19 +8398,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Tea, dried {CN}| tea production, dried | Cut-off, U",
+    "activityName": "Tea, dried {KE}| tea production, dried | Cut-off, U - Adapted from Ecoinvent U",
     "alias": "tea-dried",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Tea, dried (CN)",
+    "displayName": "Tea, dried (KE)",
     "id": "f6ab53ef-3a7b-5780-a3f2-3e8aefffc6cf",
     "metadata": [
       {
-        "alias": "tea-dried-default",
+        "alias": "tea-dried-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Thé, feuilles séchées Origine Inconnue",
-        "id": "6b1e7d82-2817-5f58-bb85-3f117e48cffd",
+        "displayName": "Thé, feuilles séchées HORS UE",
+        "id": "b767e665-ad96-5200-ad67-11ac66e81559",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "beverage NOVA 1 default from food_type_inedible_part.csv",
@@ -8518,23 +8451,23 @@
       "food",
       "food2"
     ],
-    "source": "Ecoinvent 3.11",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
-    "activityName": "Vanilla, cured and dried beans, at farm (WFLDB)",
-    "alias": "vanilla-cured-and-bean-dried",
+    "activityName": "Vanilla {MG}| vanilla production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "vanilla",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Vanilla, cured and dried beans, at farm",
-    "id": "0acd3496-ff85-585a-924e-6a21f398e3bb",
+    "displayName": "Vanilla (MG)",
+    "id": "8ee74ad9-f4c4-57ec-9004-b81c481917c9",
     "metadata": [
       {
-        "alias": "vanilla-default",
+        "alias": "vanilla-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Extrait de vanille, alcoolique ou aqueux Origine Inconnue",
-        "id": "c1749703-c662-546b-b61f-2f7c1f242a67",
+        "displayName": "Extrait de vanille, alcoolique ou aqueux HORS UE",
+        "id": "77dc04ff-6163-5b79-8657-381436135399",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "spice_condiment NOVA 1 default from food_type_inedible_part.csv",
@@ -8575,23 +8508,23 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
+    "source": "Agribalyse 3.2",
     "unit": "kg"
   },
   {
-    "activityName": "Cabbage white {RoW}| cabbage white production | Cut-off, U - Adapted from Ecoinvent U",
-    "alias": "cabbage-white",
+    "activityName": "White cabbage {CH}| white cabbage production, conventional, plain region | Cut-off, U",
+    "alias": "white-cabbage",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Cabbage white (ROW)",
-    "id": "b590deba-d76d-5221-99ea-dc94b10e3c94",
+    "displayName": "White cabbage (CH)",
+    "id": "5ae60d6f-609c-5a7c-a15b-f662367370c0",
     "metadata": [
       {
-        "alias": "white-cabbage-default",
+        "alias": "white-cabbage-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Chou blanc Origine Inconnue",
-        "id": "9a42ef66-b45b-597f-b8b4-bb7792e5bde9",
+        "displayName": "Chou blanc HORS UE",
+        "id": "8a11482b-65fe-587f-aa89-290378250e42",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Cabbage in agb_inedible.csv",
@@ -8632,23 +8565,23 @@
       "food",
       "food2"
     ],
-    "source": "Agribalyse 3.2",
+    "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
-    "activityName": "Barley grain, non-irrigated, at farm (WFLDB)",
-    "alias": "barley-grain-non-irrigated",
+    "activityName": "Barley grain {RoW}| barley production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "barley-grain",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Barley grain, non-irrigated, at farm",
-    "id": "1192623d-4e0b-574a-b04f-ea38e25774a8",
+    "displayName": "Barley grain (ROW)",
+    "id": "bfd9f7a5-5920-574f-84e4-69450e278567",
     "metadata": [
       {
-        "alias": "barley-whole-default",
+        "alias": "barley-whole-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Orge entière Origine Inconnue",
-        "id": "8b4a4423-594c-59fc-a544-5899efea8b16",
+        "displayName": "Orge entière HORS UE",
+        "id": "d265033b-7b93-510d-b299-50120bf0f3f5",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -8689,24 +8622,23 @@
       "food",
       "food2"
     ],
-    "source": "WFLDB",
-    "unit": "kg",
-    "location": "UA"
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
   },
   {
-    "activityName": "Rye grain {GLO}| market for rye grain | Cut-off, U",
+    "activityName": "Rye grain {RoW}| rye production | Cut-off, U - Adapted from Ecoinvent U",
     "alias": "rye-grain",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Rye grain (GLO)",
+    "displayName": "Rye grain (ROW)",
     "id": "52992c30-4b58-5aaa-9383-8d76966683f2",
     "metadata": [
       {
-        "alias": "rye-whole-default",
+        "alias": "rye-whole-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Seigle entier Origine Inconnue",
-        "id": "3ae8076d-51ce-52b0-a7ca-09c127f1c00d",
+        "displayName": "Seigle entier HORS UE",
+        "id": "1bc0fd22-11bf-5f70-9eba-f884f1f488f1",
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "grain NOVA 1 default from food_type_inedible_part.csv",
@@ -8747,23 +8679,80 @@
       "food",
       "food2"
     ],
+    "source": "Agribalyse 3.2",
+    "unit": "kg"
+  },
+  {
+    "activityName": "Zucchini {GLO}| zucchini production | Cut-off, U",
+    "alias": "zucchini-glo",
+    "categories": [
+      "ingredient"
+    ],
+    "displayName": "Zucchini (GLO)",
+    "id": "7be320b4-ce5e-5115-8b41-e3edccb3e363",
+    "metadata": [
+      {
+        "alias": "zucchini-non-eu",
+        "defaultOrigin": "OutOfEuropeAndMaghreb",
+        "displayName": "Courgettes HORS UE",
+        "id": "7fd3a93e-d205-5af6-bbe4-b9718986f075",
+        "inediblePart": 0.2,
+        "inediblePartMatch": {
+          "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
+          "confidence": 1.0
+        },
+        "ingredientCategories": [
+          "vegetable_fresh"
+        ],
+        "ingredientDensity": 1.0,
+        "ingredientDensityMatch": {
+          "rule": "zucchini found in density.csv",
+          "confidence": 1.0
+        },
+        "rawToCookedRatio": 0.856,
+        "rawToCookedRatioMatch": {
+          "rule": "Matched with zucchini in cooked_to_raw.csv",
+          "confidence": 1.0
+        },
+        "scenario": "import",
+        "transportCooling": "always",
+        "transportCoolingMatch": {
+          "rule": "vegetable NOVA 1 → always (perishable)",
+          "confidence": 1.0
+        },
+        "visible": false,
+        "cropGroup": "LEGUMES-FLEURS",
+        "cropGroupMatch": {
+          "rule": "matched 'zucchini' in cropgroup.csv",
+          "confidence": 1.0
+        },
+        "scopes": [
+          "food",
+          "food2"
+        ]
+      }
+    ],
+    "scopes": [
+      "food",
+      "food2"
+    ],
     "source": "Ecoinvent 3.11",
     "unit": "kg"
   },
   {
-    "activityName": "Snail, wild {HU} U",
+    "activityName": "Snail, wild {TR} U",
     "alias": "snail-wild",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Snail, wild (HU)",
+    "displayName": "Snail, wild (TR)",
     "id": "61c35797-d5b2-5cb5-8c85-76998aa6c6ca",
     "metadata": [
       {
-        "alias": "snail-default",
+        "alias": "snail-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Escargot Origine Inconnue",
-        "id": "3bd5db8a-ef5a-5d51-ba4c-9f71c7875405",
+        "displayName": "Escargot HORS UE",
+        "id": "9d03bba9-c519-5808-a337-24ad41311285",
         "inediblePart": 0.4,
         "inediblePartMatch": {
           "rule": "fish_seafood NOVA 1 default from food_type_inedible_part.csv",
@@ -8803,19 +8792,19 @@
     "unit": "kg"
   },
   {
-    "activityName": "Seed-cotton {BD}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",
+    "activityName": "Seed-cotton {IN-GJ}| seed-cotton production, conventional | Cut-off, U - Adapted from Ecoinvent U",
     "alias": "seed-cotton",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Seed-cotton (BD)",
+    "displayName": "Seed-cotton (IN-GJ)",
     "id": "02e2688c-c135-57ee-a85f-d44c3301582a",
     "metadata": [
       {
-        "alias": "cotton-seed-default",
+        "alias": "cotton-seed-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Graine de coton Origine Inconnue",
-        "id": "d7c78f73-0688-5813-8181-1ab09cc70e44",
+        "displayName": "Graine de coton HORS UE",
+        "id": "db6c899f-6e68-5725-89ef-8373cc2c7027",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "vegetable NOVA 1 default from food_type_inedible_part.csv",
@@ -8869,10 +8858,10 @@
     "id": "5f600e3a-e822-504e-898f-ff5c387d9d0b",
     "metadata": [
       {
-        "alias": "lupin-default",
+        "alias": "lupin-non-eu",
         "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Lupin Origine Inconnue",
-        "id": "83804056-27f7-5a8e-a1fe-0958ab01a46a",
+        "displayName": "Lupin HORS UE",
+        "id": "0a199744-fe6e-576f-ad8b-b99ef8c5ac88",
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "legume NOVA 1 default from food_type_inedible_part.csv",
@@ -8903,312 +8892,6 @@
           "rule": "matched 'lupin' in cropgroup.csv",
           "confidence": 1.0
         },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Beef cattle, feedlot or intensive system, live weight, at farm {GB} - Adapted from WFLDB U",
-    "alias": "beef-cattle-feedlot-or-intensive-system-live-weight",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Beef cattle, feedlot or intensive system, live weight, at farm (GB)",
-    "id": "4363d9cd-34c7-5048-bed8-0b9b38377e1c",
-    "metadata": [
-      {
-        "alias": "beef-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Boeuf Origine Inconnue",
-        "id": "046dbc17-d453-526e-9d3d-d79706f48b88",
-        "inediblePart": 0.05,
-        "inediblePartMatch": {
-          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "animal_product"
-        ],
-        "ingredientDensity": 1.05,
-        "ingredientDensityMatch": {
-          "rule": "beef found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.792,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with ground beef in cooked_to_raw.csv",
-          "confidence": 0.95
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "meat NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "animalGroup1": "cattle",
-        "animalGroup2": "cow",
-        "animalProduct": "meat",
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Broiler, conventional, at farm gate {FR} U",
-    "alias": "broiler",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Broiler, conventional, at farm gate (FR)",
-    "id": "7ecb8444-27c8-5e77-98c4-73d16cb99644",
-    "metadata": [
-      {
-        "alias": "broiler-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Poulet Origine Inconnue",
-        "id": "8d3a194f-b478-556c-bacc-18d452baefa4",
-        "inediblePart": 0.05,
-        "inediblePartMatch": {
-          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "animal_product"
-        ],
-        "ingredientDensity": 1.05,
-        "ingredientDensityMatch": {
-          "rule": "meat default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.755,
-        "rawToCookedRatioMatch": {
-          "rule": "poultry keyword found in Broiler",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "meat NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "cropGroup": "PRAIRIES PERMANENTES",
-        "cropGroupMatch": {
-          "rule": "matched 'prairies naturelles' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "animalGroup1": "poultry",
-        "animalGroup2": "chicken",
-        "animalProduct": "meat",
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      },
-      {
-        "alias": "poultry-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Volaille Origine Inconnue",
-        "id": "c7b79f39-3672-530e-8966-f612b67de746",
-        "inediblePart": 0.05,
-        "inediblePartMatch": {
-          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "animal_product"
-        ],
-        "ingredientDensity": 1.05,
-        "ingredientDensityMatch": {
-          "rule": "meat default from food_type_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.755,
-        "rawToCookedRatioMatch": {
-          "rule": "poultry keyword found in Poultry",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "meat NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "cropGroup": "PRAIRIES PERMANENTES",
-        "cropGroupMatch": {
-          "rule": "matched 'prairies naturelles' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "animalGroup1": "poultry",
-        "animalGroup2": "chicken",
-        "animalProduct": "meat",
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      },
-      {
-        "alias": "rabbit-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Lapin Origine Inconnue",
-        "id": "1e72c100-92f9-54e3-8289-d8efc3890acc",
-        "inediblePart": 0.05,
-        "inediblePartMatch": {
-          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "animal_product"
-        ],
-        "ingredientDensity": 1.0,
-        "ingredientDensityMatch": {
-          "rule": "rabbit found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.755,
-        "rawToCookedRatioMatch": {
-          "rule": "poultry keyword found in Rabbit",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "meat NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "animalGroup1": "poultry",
-        "animalGroup2": "chicken",
-        "animalProduct": "meat",
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Lamb, conventional, indoor production system, at farm gate {FR} U",
-    "alias": "lamb-indoor-production-system",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Lamb, conventional, indoor production system, at farm gate (FR)",
-    "id": "ef7a9dd0-287f-5d48-bb35-0d6c0e081dce",
-    "metadata": [
-      {
-        "alias": "lamb-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Agneau Origine Inconnue",
-        "id": "03ff2f01-3931-55a9-81f7-509909908486",
-        "inediblePart": 0.05,
-        "inediblePartMatch": {
-          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "animal_product"
-        ],
-        "ingredientDensity": 1.05,
-        "ingredientDensityMatch": {
-          "rule": "lamb found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.792,
-        "rawToCookedRatioMatch": {
-          "rule": "meat default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "meat NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "animalGroup1": "sheep",
-        "animalGroup2": "sheep",
-        "animalProduct": "meat",
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Agribalyse 3.2",
-    "unit": "kg"
-  },
-  {
-    "activityName": "Mixt pig, conventional, national average, at farm gate {FR} U",
-    "alias": "mixt-pig",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Mixt pig, conventional, national average, at farm gate (FR)",
-    "id": "6c33be75-cfab-5b7b-815c-17ccbdf6aaff",
-    "metadata": [
-      {
-        "alias": "pork-default",
-        "defaultOrigin": "OutOfEuropeAndMaghreb",
-        "displayName": "Porc Origine Inconnue",
-        "id": "7d94e5d1-ef4b-55ec-8212-b23be63c16a3",
-        "inediblePart": 0.05,
-        "inediblePartMatch": {
-          "rule": "meat NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "animal_product"
-        ],
-        "ingredientDensity": 1.05,
-        "ingredientDensityMatch": {
-          "rule": "pork found in density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 0.792,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with pork in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "import",
-        "transportCooling": "always",
-        "transportCoolingMatch": {
-          "rule": "meat NOVA 1 → always (perishable)",
-          "confidence": 1.0
-        },
-        "visible": false,
-        "animalGroup1": "pig",
-        "animalGroup2": "pig",
-        "animalProduct": "meat",
         "scopes": [
           "food",
           "food2"
