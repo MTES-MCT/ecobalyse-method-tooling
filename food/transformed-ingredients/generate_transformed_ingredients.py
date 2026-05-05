@@ -17,9 +17,11 @@ for every transformed product T that uses raw variant V_src, we create a new
 version of T that uses each other raw variant V_tgt instead of V_src.
 
 Algorithm:
-1. Parse activities.json to build ingredient groups: for each alias prefix
-   (e.g. "radish") collect all known variants (radish-fr, radish-organic,
-   radish-default) with their upstream LCA activityName and database.
+1. Walk lci_catalog/<source-slug>/<alias>.json (the per-activity layout
+   that replaced the monolithic activities.json) to build ingredient
+   groups: for each alias prefix (e.g. "radish") collect all known
+   variants (radish-fr, radish-organic, radish-default, …) with their
+   upstream LCA activityName and database.
 2. For each variant in each group, call VoLCA get_consumers with
    include_edges=True and no server-side preset. This returns the full
    BFS subgraph of transitive consumers plus every technosphere edge
@@ -55,7 +57,7 @@ Outputs two files:
 
 Usage:
     python generate_transformed_ingredients.py \\
-        --activities /path/to/ecobalyse-data/activities.json \\
+        --activities /path/to/ecobalyse-data/lci_catalog \\
         --output-dir /path/to/output \\
         [--volca-url http://localhost:8080]
 """
@@ -72,12 +74,13 @@ from uuid import uuid4
 from volca import Client
 from volca.types import ConsumerResult, SupplyChainEdge
 
-# predict.py lives in a sibling package that is not installed as a module;
-# expose it via sys.path so we can import the Predictor class directly.
+# predict.py and lci_catalog.py live in a sibling package that is not
+# installed as a module; expose it via sys.path so we can import them.
 _METADATA_DIR = Path(__file__).resolve().parent.parent / "metadata"
 if str(_METADATA_DIR) not in sys.path:
     sys.path.insert(0, str(_METADATA_DIR))
 from predict import Predictor  # noqa: E402
+from lci_catalog import load_lci_catalog, merge_activities  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -101,16 +104,34 @@ DB_MAP: dict[str, str] = {
 }
 
 
-# Alias suffixes that identify raw ingredient variants (longest first to avoid partial matches)
-VARIANT_SUFFIXES = ["-organic", "-default", "-fr"]
+# Per-variant info keyed by alias suffix (the only field unique across variants;
+# scenario collapses UE/OI/NUE into "import"). Order matters: longest suffix
+# first so endswith() matches "-non-eu" before "-eu".
+# (alias_suffix, short_suffix_for_new_aliases, French display suffix)
+VARIANT_INFO: list[tuple[str, str, str]] = [
+    ("-non-eu", "non-eu", " HORS UE"),
+    ("-organic", "organic", " Bio"),
+    ("-default", "default", " Origine Inconnue"),
+    ("-eu", "eu", " UE"),
+    ("-fr", "fr", " FR"),
+]
+VARIANT_SUFFIXES = [s for s, _, _ in VARIANT_INFO]
 
-# French display name suffixes per scenario (matching export.py VARIANT_SUFFIX)
-VARIANT_DISPLAY_SUFFIX: dict[str, str] = {
-    "reference": " FR",
-    "organic": " Bio",
-    "import": " Origine Inconnue",
-}
 
+def variant_short_suffix(alias: str) -> str:
+    """e.g. 'carrot-non-eu' -> 'non-eu'."""
+    for s, short, _ in VARIANT_INFO:
+        if alias.endswith(s):
+            return short
+    raise ValueError(f"alias {alias!r} has no known variant suffix")
+
+
+def variant_display_suffix(alias: str) -> str:
+    """e.g. 'carrot-non-eu' -> ' HORS UE'."""
+    for s, _, disp in VARIANT_INFO:
+        if alias.endswith(s):
+            return disp
+    return ""
 
 
 # ---------------------------------------------------------------------------
@@ -231,6 +252,29 @@ def extract_short_name(activity_name: str) -> str:
     clean = re.sub(r"\s*\{[^}]+\}\s*U$", "", activity_name).strip()
     segments = [s.strip() for s in clean.split(",")]
     kept = [s for s in segments if not _JARGON_RE.search(s)]
+    return ", ".join(kept) if kept else segments[0]
+
+
+# `for X` / `from X` qualifiers normally count as jargon and get stripped, but
+# they're often the only thing distinguishing a transformed product from its
+# raw ingredient (e.g. "Lemon, for grated carrots" vs. plain "Lemon"). Used
+# only as a collision fallback in `extract_long_name`.
+_QUALIFIER_RE = re.compile(r"^(for|from) ", re.IGNORECASE)
+
+
+def extract_long_name(activity_name: str) -> str:
+    """Like extract_short_name but keeps `for X` / `from X` qualifier segments.
+
+    Use as a fallback when the short name's translation would collide with an
+    existing displayName in lci_catalog/ — the qualifier disambiguates the
+    transformed product from its raw counterpart.
+    """
+    clean = re.sub(r"\s*\{[^}]+\}\s*U$", "", activity_name).strip()
+    segments = [s.strip() for s in clean.split(",")]
+    kept = [
+        s for s in segments
+        if not _JARGON_RE.search(s) or _QUALIFIER_RE.match(s)
+    ]
     return ", ".join(kept) if kept else segments[0]
 
 
@@ -566,7 +610,7 @@ def make_from_existing(
         upstream_steps = steps[1:-1]
         replace_from_step = steps[-1]
 
-    variant_suffix = target.alias.split("-")[-1]  # "fr", "organic", or "default"
+    variant_suffix = variant_short_suffix(target.alias)
     alias = derive_alias(steps[0].name, variant_suffix, existing_aliases)
     if alias is None:
         return None  # all prefixes taken — skip
@@ -633,8 +677,7 @@ def make_activities_entry(
     """
     meta = target.raw_meta
     alias = fe_block["alias"]
-    variant_suffix = VARIANT_DISPLAY_SUFFIX.get(target.scenario, "")
-    display_name = french_name + variant_suffix
+    display_name = french_name + variant_display_suffix(target.alias)
 
     # Pass the clean French product name (without " Bio" / " Origine Inconnue"
     # suffix) and the underlying Agribalyse activity name (without the variant
@@ -727,7 +770,7 @@ def make_base_activities_entry(
     source="Agribalyse 3.2", no bracketed variant tag or {{alias}} UUID marker).
     """
     meta = target.raw_meta
-    display_name = french_name + VARIANT_DISPLAY_SUFFIX.get(target.scenario, "")
+    display_name = french_name + variant_display_suffix(target.alias)
 
     pred = predictor.predict({
         "name": french_name,
@@ -780,8 +823,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument(
         "--activities",
-        default="activities.json",
-        help="Path to activities.json (default: activities.json)",
+        default="lci_catalog",
+        help="Path to the lci_catalog/ directory (per-activity files grouped by "
+        "source slug, replacing the old activities.json). Default: lci_catalog",
     )
     parser.add_argument(
         "--activities-to-create",
@@ -792,6 +836,15 @@ def main() -> None:
         "--output-dir",
         default=".",
         help="Directory for output files (default: current directory)",
+    )
+    parser.add_argument(
+        "--merge-into-catalog",
+        default=None,
+        help="If set, merge generated_activities.json directly into the given "
+        "lci_catalog/ directory using food/metadata/lci_catalog.py:merge_activities. "
+        "The catalog is rewritten in place (existing UUIDs preserved, "
+        "ingredient alias collisions get the legacy '-2025' / ' (2025)' marker). "
+        "Typically points at the same lci_catalog as --activities to round-trip.",
     )
     parser.add_argument(
         "--volca-url",
@@ -815,9 +868,17 @@ def main() -> None:
     # Load inputs
     activities_path = Path(args.activities)
     print(f"Loading {activities_path} ...")
-    with activities_path.open() as f:
-        activities_json: list[dict] = json.load(f)
+    activities_json = load_lci_catalog(activities_path)
+    print(f"  {len(activities_json)} activities loaded from catalog")
 
+    # Seed every alias already in use so derive_alias never collides.
+    # Three claim sources, all equally binding:
+    #   - activities_to_create.json: pending creation blocks
+    #   - lci_catalog activity-level aliases (= lci_catalog file stems)
+    #   - lci_catalog ingredient-level aliases (the metadata blocks)
+    # Without all three, a transformed product like "banana puree organic"
+    # would emit alias "banana-organic" — which already names the raw Ginko
+    # ingredient — and the merge would clobber it across source slugs.
     atc_path = Path(args.activities_to_create)
     existing_aliases: set[str] = set()
     if atc_path.exists():
@@ -825,6 +886,17 @@ def main() -> None:
             for entry in json.load(f):
                 if a := entry.get("alias"):
                     existing_aliases.add(a)
+    existing_display_names: set[str] = set()
+    for activity in activities_json:
+        if a := activity.get("alias"):
+            existing_aliases.add(a)
+        for m in activity.get("metadata") or []:
+            if a := m.get("alias"):
+                existing_aliases.add(a)
+            if dn := m.get("displayName"):
+                existing_display_names.add(dn)
+    print(f"  {len(existing_aliases)} aliases seeded as off-limits for derive_alias")
+    print(f"  {len(existing_display_names)} displayNames seeded for collision fallback")
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -860,11 +932,13 @@ def main() -> None:
     print(f"  {resolvable}/{len(groups)} groups have at least one resolved variant")
 
     # Step 3c-f: Generate entries
-    output_fe: list[dict] = []
-    # (existing_activity_name, alias, target_variant, short_name) — base
-    # variants already live as-is in Agribalyse, so they only need an
-    # activities.json entry (no from_existing block).
-    output_base: list[tuple[str, str, VariantInfo, str]] = []
+    # Each output tuple carries BOTH the short and the long English name.
+    # The short form is the preferred displayName source; the long form
+    # (which keeps `for X` / `from X` qualifiers normally treated as jargon)
+    # is the fallback when the short form's translated displayName would
+    # collide with an existing entry in lci_catalog/.
+    output_fe: list[tuple[dict, VariantInfo, str, str]] = []
+    output_base: list[tuple[str, str, VariantInfo, str, str]] = []
     all_generated_aliases: set[str] = set(existing_aliases)
 
     for base, variants in groups.items():
@@ -919,11 +993,12 @@ def main() -> None:
 
             existing_name = path[0].name
             base_short_name = extract_short_name(existing_name)
+            base_long_name = extract_long_name(existing_name)
             for found_alias in found_aliases:
                 base_target = variant_by_alias.get(found_alias)
                 if base_target is None:
                     continue
-                variant_suffix = base_target.alias.split("-")[-1]
+                variant_suffix = variant_short_suffix(base_target.alias)
                 base_alias = derive_alias(
                     existing_name, variant_suffix, all_generated_aliases
                 )
@@ -935,26 +1010,33 @@ def main() -> None:
                     base_alias,
                     base_target,
                     base_short_name,
+                    base_long_name,
                 ))
 
             for target in missing:
                 fe = make_from_existing(path, source, target, all_generated_aliases)
                 if fe is None:
                     continue
-                # Extract short English name for translation
-                short_name = extract_short_name(fe["existingActivity"]["name"])
-                output_fe.append((fe, target, short_name))
+                src_name = fe["existingActivity"]["name"]
+                short_name = extract_short_name(src_name)
+                long_name = extract_long_name(src_name)
+                output_fe.append((fe, target, short_name, long_name))
                 all_generated_aliases.add(fe["alias"])
 
-    # Translate short English names to French in one batch
-    short_names = list(
+    # Translate short AND long names in a single MarianMT batch (the cache
+    # makes any duplicates free). The long form is only picked when the
+    # short form's displayName would collide with an existing entry.
+    all_names = list(
         dict.fromkeys(
-            [sn for _, _, sn in output_fe] + [sn for _, _, _, sn in output_base]
+            [sn for _, _, sn, _ in output_fe]
+            + [ln for _, _, _, ln in output_fe]
+            + [sn for _, _, _, sn, _ in output_base]
+            + [ln for _, _, _, _, ln in output_base]
         )
     )
-    print(f"Translating {len(short_names)} unique product names to French ...")
-    french_names = translate_en_to_fr(short_names)
-    en_to_fr = dict(zip(short_names, french_names))
+    print(f"Translating {len(all_names)} unique product names to French ...")
+    french_translations = translate_en_to_fr(all_names)
+    en_to_fr = dict(zip(all_names, french_translations))
     for en, fr in en_to_fr.items():
         print(f"  {en} → {fr}")
 
@@ -965,16 +1047,32 @@ def main() -> None:
         training_path = activities_path.parent / "public/data/food/ingredients.json"
     predictor = load_or_train_predictor(training_path)
 
+    def _pick_french(short_en: str, long_en: str, variant_alias: str) -> str:
+        """Prefer the short translation; fall back to the long one if the
+        resulting displayName would collide with an existing lci_catalog entry.
+        Both candidates' displayNames also get reserved so within-run siblings
+        of the same product end up consistently disambiguated."""
+        suffix = variant_display_suffix(variant_alias)
+        short_fr = en_to_fr[short_en]
+        if short_fr + suffix not in existing_display_names:
+            existing_display_names.add(short_fr + suffix)
+            return short_fr
+        long_fr = en_to_fr[long_en]
+        existing_display_names.add(long_fr + suffix)
+        return long_fr
+
     # Build final outputs
     final_fe: list[dict] = []
     final_ae: list[dict] = []
-    for fe, target, short_name in output_fe:
-        ae = make_activities_entry(fe, target, en_to_fr[short_name], predictor)
+    for fe, target, short_name, long_name in output_fe:
+        french = _pick_french(short_name, long_name, target.alias)
+        ae = make_activities_entry(fe, target, french, predictor)
         final_fe.append(fe)
         final_ae.append(ae)
-    for existing_name, alias, target, short_name in output_base:
+    for existing_name, alias, target, short_name, long_name in output_base:
+        french = _pick_french(short_name, long_name, target.alias)
         ae = make_base_activities_entry(
-            existing_name, alias, target, en_to_fr[short_name], predictor
+            existing_name, alias, target, french, predictor
         )
         final_ae.append(ae)
 
@@ -995,6 +1093,34 @@ def main() -> None:
     print(f"\nDone.")
     print(f"  {len(final_fe)} from_existing blocks → {fe_path}")
     print(f"  {len(final_ae)} activities.json entries → {ae_path}")
+
+    if args.merge_into_catalog:
+        catalog_dir = Path(args.merge_into_catalog)
+        print(f"\nMerging {ae_path.name} into {catalog_dir} ...")
+        merge_activities(ae_path, catalog_dir)
+
+        # Also append the from_existing blocks to the target's
+        # activities_to_create.json (sibling of lci_catalog/), de-duped on alias.
+        target_atc = catalog_dir.parent / "activities_to_create.json"
+        existing_atc: list[dict] = []
+        if target_atc.exists():
+            with target_atc.open() as f:
+                existing_atc = json.load(f)
+        existing_atc_aliases = {
+            e.get("alias") for e in existing_atc if e.get("alias")
+        }
+        new_blocks = [
+            b for b in final_fe if b.get("alias") not in existing_atc_aliases
+        ]
+        if new_blocks:
+            existing_atc.extend(new_blocks)
+            with target_atc.open("w") as f:
+                json.dump(existing_atc, f, indent=2, ensure_ascii=False)
+        skipped = len(final_fe) - len(new_blocks)
+        print(
+            f"  Appended {len(new_blocks)} from_existing blocks "
+            f"(skipped {skipped} already present) → {target_atc}"
+        )
 
 
 if __name__ == "__main__":
