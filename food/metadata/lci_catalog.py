@@ -34,8 +34,12 @@ OLD_ALIAS_SUFFIX = "-2025"
 
 
 def extract_geo(activity_name: str) -> str:
-    """Return the lowercase code inside the first `{…}` of an activityName, or ''."""
-    m = re.search(r"\{([^}]+)\}", activity_name)
+    """Return the lowercase code inside the first single-brace `{…}` of an
+    activityName, or ''. Skips `{{xxx}}` annotation markers (used to label
+    activities with their Ecobalyse alias, e.g. `Bacon {{pork-default}}`).
+    """
+    cleaned = re.sub(r"\{\{[^}]*\}\}", "", activity_name)
+    m = re.search(r"\{([^}]+)\}", cleaned)
     return m.group(1).lower() if m else ""
 
 
@@ -157,7 +161,10 @@ def extract_activities_and_ingredients(
     Activity-level aliases and displayNames are always stripped of those
     markers on load (independently of `add_old_suffix`), and any
     within-source alias collision created by the strip is resolved by
-    appending the geo code from the activityName.
+    appending the geo code from the activityName. The `activityName`
+    itself is preserved verbatim — it is the Brightway lookup key, and
+    `activities_to_create.json` may inject `-2025` into `{{…}}` markers
+    via `newName`; downstream `cached_search_one` requires an exact match.
     """
     activities: dict[tuple[str, str], dict] = {}
     ingredients: dict[str, dict] = {}
@@ -165,20 +172,13 @@ def extract_activities_and_ingredients(
     by_activity_name: dict[str, tuple[str, str]] = {}
     seen_display_names: set[str] = set()
 
-    marker_strip_re = re.compile(
-        r"\{\{([^}]+?)" + re.escape(OLD_ALIAS_SUFFIX) + r"\}\}"
-    )
-
     for a in activities_list:
         if "displayName" not in a:
             other.append(a)
             continue
         act_name = a.get("activityName") or ""
-        if act_name:
-            act_name = marker_strip_re.sub(r"{{\1}}", act_name)
-            a = {**a, "activityName": act_name}
-        act_display = normalize_display_name(a["displayName"], OLD_DISPLAY_SUFFIX)
-        act_alias = normalize_alias(a.get("alias", ""), OLD_ALIAS_SUFFIX) or ""
+        act_display = a["displayName"]
+        act_alias = a.get("alias", "") or ""
         src_slug = slugify(a.get("source", "")) or ""
 
         if act_name and act_name in by_activity_name:
@@ -187,12 +187,18 @@ def extract_activities_and_ingredients(
             act_key = (src_slug, act_alias)
             if act_alias and act_key in activities:
                 geo = extract_geo(act_name or "").lower()
+                candidate_alias: str | None = None
                 if geo:
-                    candidate_alias = f"{act_alias}-{geo}"
-                    candidate_key = (src_slug, candidate_alias)
-                    if candidate_key not in activities:
-                        act_alias = candidate_alias
-                        act_key = candidate_key
+                    cand = f"{act_alias}-{geo}"
+                    if (src_slug, cand) not in activities:
+                        candidate_alias = cand
+                if candidate_alias is None:
+                    cand = act_alias + OLD_ALIAS_SUFFIX
+                    if (src_slug, cand) not in activities:
+                        candidate_alias = cand
+                if candidate_alias is not None:
+                    act_alias = candidate_alias
+                    act_key = (src_slug, candidate_alias)
             if act_display and act_display in seen_display_names:
                 geo_disp = extract_geo(act_name or "").upper()
                 if geo_disp:
@@ -234,20 +240,31 @@ def apply_suffixes(
     handles) are never suffixed — they live by their `alias` derived from the
     activityName.
 
+    If suffixing an existing ingredient's alias would collide with an alias
+    already claimed by another ingredient (e.g. a hand-curated entry that
+    arrived with a `-2025` suffix already), the entire entry is left
+    unsuffixed — both alias and displayName — to keep the canonical alias
+    unique within the file.
+
     Returns (activities, ingredients, alias_renames) where alias_renames maps
     old_alias -> new_alias for every ingredient alias that was suffixed.
     """
+    claimed_aliases = {ing.get("alias") for ing in ingredients.values() if ing.get("alias")}
     new_ings = {}
     ing_alias_renames = {}
     for dn, ing in ingredients.items():
         ing = {**ing}
         if dn not in new_ing_names and dn not in keep_set:
+            old_ing_alias = ing.get("alias")
+            if old_ing_alias and not old_ing_alias.endswith(old_alias_suffix):
+                suffixed_alias = old_ing_alias + old_alias_suffix
+                if suffixed_alias in claimed_aliases:
+                    new_ings[dn] = ing
+                    continue
+                ing["alias"] = suffixed_alias
+                ing_alias_renames[old_ing_alias] = suffixed_alias
             if not ing["displayName"].endswith(old_display_suffix):
                 ing["displayName"] += old_display_suffix
-            if ing.get("alias") and not ing["alias"].endswith(old_alias_suffix):
-                old_ing_alias = ing["alias"]
-                ing["alias"] = old_ing_alias + old_alias_suffix
-                ing_alias_renames[old_ing_alias] = ing["alias"]
         new_ings[dn] = ing
     return activities, new_ings, ing_alias_renames
 
@@ -380,6 +397,11 @@ def merge_activities(
 
     merged_acts = {**existing_acts, **added_acts}
     merged_ings = {**existing_ings}
+    all_known_aliases = {
+        e.get("alias")
+        for e in list(existing_ings.values()) + list(new_ings.values())
+        if e.get("alias")
+    }
     pre_alias_renames: dict[str, str] = {}
     for dn, ing in new_ings.items():
         existing = merged_ings.get(dn)
@@ -387,12 +409,22 @@ def merge_activities(
             existing_aa = existing.get("activity_key")
             new_aa = ing.get("activity_key")
             if existing_aa != new_aa:
+                old_alias_val = existing.get("alias") or ""
+                suffixed_alias = old_alias_val + OLD_ALIAS_SUFFIX
+                # If suffixing would collide with another claimed alias, the
+                # legacy entry is being superseded — drop it instead of
+                # creating a duplicate alias.
+                if (old_alias_val
+                        and not old_alias_val.endswith(OLD_ALIAS_SUFFIX)
+                        and suffixed_alias in all_known_aliases):
+                    merged_ings[dn] = ing
+                    continue
                 old_dn = existing["displayName"] + OLD_DISPLAY_SUFFIX
                 renamed = {**existing, "displayName": old_dn}
-                old_alias_val = existing.get("alias") or ""
                 if old_alias_val and not old_alias_val.endswith(OLD_ALIAS_SUFFIX):
-                    renamed["alias"] = old_alias_val + OLD_ALIAS_SUFFIX
+                    renamed["alias"] = suffixed_alias
                     pre_alias_renames[old_alias_val] = renamed["alias"]
+                    all_known_aliases.add(suffixed_alias)
                 merged_ings[old_dn] = renamed
                 merged_ings[dn] = ing
                 continue
@@ -408,6 +440,7 @@ def merge_activities(
     # canonical alias.
     alias_collision_renames: dict[str, str] = {}
     new_ing_aliases = {ing["alias"] for ing in new_ings.values() if ing.get("alias")}
+    claimed_aliases = {ing.get("alias") for ing in merged_ings.values() if ing.get("alias")}
     for dn in list(merged_ings.keys()):
         if dn in new_ings:
             continue
@@ -418,9 +451,13 @@ def merge_activities(
         if al not in new_ing_aliases:
             continue
         new_alias = al + OLD_ALIAS_SUFFIX
+        if new_alias in claimed_aliases:
+            del merged_ings[dn]
+            continue
         new_dn = ing["displayName"] + OLD_DISPLAY_SUFFIX
         renamed = {**ing, "alias": new_alias, "displayName": new_dn}
         alias_collision_renames[al] = new_alias
+        claimed_aliases.add(new_alias)
         del merged_ings[dn]
         merged_ings[new_dn] = renamed
 
@@ -459,6 +496,43 @@ def merge_activities(
             json.dump(feed_data, f, indent=2, ensure_ascii=False)
 
     dedupe_suffixed_ids(merged_ings, "ingredient")
+
+    # Disambiguate cross-source same-alias collisions. Activities are keyed by
+    # (src_slug, alias) internally, but lci_catalog filenames must have
+    # globally-unique stems (test_json_consistency aggregates all source dirs
+    # into a single alias namespace). When the same alias (e.g. `olive`)
+    # appears in multiple sources, append the geo code from activityName
+    # (e.g. `olive-es`, `olive-row`); fall back to src_slug if no geo or if
+    # geo would itself collide.
+    alias_to_keys: dict[str, list[tuple[str, str]]] = {}
+    for key in merged_acts:
+        alias_to_keys.setdefault(key[1], []).append(key)
+    cross_source_renames: dict[tuple[str, str], tuple[str, str]] = {}
+    for alias, keys in alias_to_keys.items():
+        if len(keys) <= 1:
+            continue
+        used: set[str] = set()
+        for old_key in sorted(keys):
+            act = merged_acts[old_key]
+            geo = extract_geo(act.get("activityName", ""))
+            cand = f"{alias}-{geo}" if geo else f"{alias}-{old_key[0]}"
+            if cand in used:
+                cand = f"{alias}-{old_key[0]}"
+            used.add(cand)
+            cross_source_renames[old_key] = (old_key[0], cand)
+    for old_key, new_key in cross_source_renames.items():
+        act = merged_acts.pop(old_key)
+        act["alias"] = new_key[1]
+        # Regenerate UUID for the renamed activity from its new (now-unique)
+        # alias. Activities that kept their canonical alias keep their original
+        # UUID — only renamed ones get a new id.
+        act["id"] = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{new_key[1]}"))
+        merged_acts[new_key] = act
+    if cross_source_renames:
+        for ing in merged_ings.values():
+            ak = ing.get("activity_key")
+            if ak in cross_source_renames:
+                ing["activity_key"] = cross_source_renames[ak]
 
     result = reassemble(merged_acts, merged_ings, other)
 
