@@ -532,7 +532,10 @@ def merge_activities(
         act["alias"] = new_key[1]
         if act.get("displayName", "").endswith(OLD_DISPLAY_SUFFIX):
             act["displayName"] = act["displayName"][: -len(OLD_DISPLAY_SUFFIX)]
-        act["id"] = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{new_key[1]}"))
+        # Keep the original UUID (derived from the `-2025` alias). It's
+        # already unique (uuid5 of `xxx-2025` can't collide with any other
+        # activity), the rename is a cosmetic transition, and preserving
+        # the id keeps downstream references stable.
         merged_acts[new_key] = act
     if legacy_renames:
         for ing in merged_ings.values():
