@@ -474,6 +474,72 @@ def merge_activities(
         )
         alias_renames.update(apply_renames)
 
+    dedupe_suffixed_ids(merged_ings, "ingredient")
+
+    # Strip the `-2025` suffix from activity-level aliases. The `-2025`
+    # namespace is for ingredients only; activities (= LCI process handles)
+    # should never carry it. Three cases per activity whose alias ends in
+    # `-2025`:
+    # 1. Canonical alias claimed elsewhere → drop the `-2025` snapshot
+    #    (superseded). Its legacy ingredients are dropped too; their
+    #    `xxx-2025` aliases are remapped to `xxx` so feed.json references
+    #    follow.
+    # 2. activityName has `{{xxx-2025}}` marker → keep as-is. The marker is
+    #    the BW DB lookup key (created from `activities_to_create.json`'s
+    #    `newName`); stripping the alias would break test consistency
+    #    (`creation_alias != export_alias`) and the matching `bin/export.py
+    #    processes` search.
+    # 3. Otherwise → rename: strip `-2025` from alias and the activity-level
+    #    displayName suffix `(2025)`. Update ingredient `activity_key`
+    #    references and regenerate the UUID from the new alias.
+    canonical_aliases = {alias for (_src, alias) in merged_acts}
+    marker_re = re.compile(r"\{\{[^}]+\}\}")
+    legacy_keys_to_drop: set[tuple[str, str]] = set()
+    legacy_renames: dict[tuple[str, str], tuple[str, str]] = {}
+    for key in list(merged_acts.keys()):
+        src_slug, alias = key
+        if not alias.endswith(OLD_ALIAS_SUFFIX):
+            continue
+        canonical_alias = alias[: -len(OLD_ALIAS_SUFFIX)]
+        if canonical_alias in canonical_aliases:
+            legacy_keys_to_drop.add(key)
+            continue
+        act = merged_acts[key]
+        if marker_re.search(act.get("activityName", "")):
+            continue  # Curated `-2025` activity; needs cross-repo cleanup.
+        legacy_renames[key] = (src_slug, canonical_alias)
+        canonical_aliases.add(canonical_alias)
+    # Track ingredient alias renames induced by activity drops, so feed.json
+    # references to dropped legacy ingredient aliases follow the canonical.
+    for key in legacy_keys_to_drop:
+        for ing in list(merged_ings.values()):
+            if ing.get("activity_key") != key:
+                continue
+            ing_alias = ing.get("alias") or ""
+            if ing_alias.endswith(OLD_ALIAS_SUFFIX):
+                canonical_ing_alias = ing_alias[: -len(OLD_ALIAS_SUFFIX)]
+                alias_renames.setdefault(ing_alias, canonical_ing_alias)
+    for key in legacy_keys_to_drop:
+        del merged_acts[key]
+    if legacy_keys_to_drop:
+        for dn in [
+            dn for dn, ing in merged_ings.items()
+            if ing.get("activity_key") in legacy_keys_to_drop
+        ]:
+            del merged_ings[dn]
+    for old_key, new_key in legacy_renames.items():
+        act = merged_acts.pop(old_key)
+        act["alias"] = new_key[1]
+        if act.get("displayName", "").endswith(OLD_DISPLAY_SUFFIX):
+            act["displayName"] = act["displayName"][: -len(OLD_DISPLAY_SUFFIX)]
+        act["id"] = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{new_key[1]}"))
+        merged_acts[new_key] = act
+    if legacy_renames:
+        for ing in merged_ings.values():
+            ak = ing.get("activity_key")
+            if ak in legacy_renames:
+                ing["activity_key"] = legacy_renames[ak]
+
     # Update feed.json keys to match renamed ingredient aliases
     feed_path = target_catalog_dir.parent / "food/ecosystemic_services/feed.json"
     if feed_path.exists():
@@ -494,8 +560,6 @@ def merge_activities(
 
         with open(feed_path, "w", encoding="utf-8") as f:
             json.dump(feed_data, f, indent=2, ensure_ascii=False)
-
-    dedupe_suffixed_ids(merged_ings, "ingredient")
 
     # Disambiguate cross-source same-alias collisions. Activities are keyed by
     # (src_slug, alias) internally, but lci_catalog filenames must have
