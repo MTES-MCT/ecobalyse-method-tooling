@@ -475,28 +475,30 @@ class NearestNeighborMatcher:
                 return value, 1.0, self.names[i], self.sources[i]
 
         # 1.5 Try semantic near-exact match (handles plurals like "Avocado" ≈ "Avocados")
-        # This uses sentence_transformers to find semantically very similar names
-        # Reference data is loaded first, so return FIRST match above threshold
+        # This uses sentence_transformers to find semantically very similar names.
+        # Picks the BEST match (highest cosine similarity) and only returns it
+        # when the similarity is ≥0.95 — a 0.9 threshold returning the first
+        # hit was producing dubious cross-French-vocabulary matches such as
+        # "cassis" ↔ "poires pour transformation" once cropgroup.csv was
+        # expanded with ~150 RPG 28 entries. Confidence reflects the actual
+        # similarity rather than a hard-coded 0.98.
         try:
             from sentence_transformers import SentenceTransformer
 
             if not hasattr(self, "_embedding_model"):
                 self._embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
-            # Encode query and all reference names
             query_emb = self._embedding_model.encode([query_lower])[0]
             ref_embs = self._embedding_model.encode(self.names_lower)
-            # Compute cosine similarities
             similarities = np.dot(ref_embs, query_emb) / (
                 np.linalg.norm(ref_embs, axis=1) * np.linalg.norm(query_emb) + 1e-8
             )
-            # Return FIRST match above threshold (reference data comes first in the list)
-            # This ensures reference data (agb_inedible.csv) is preferred over ingredients.json
-            for idx in range(len(similarities)):
-                if similarities[idx] > 0.9:  # High threshold for near-exact
-                    value = self.values[idx]
-                    if isinstance(value, (int, float, np.number)):
-                        value = float(value)
-                    return value, 0.98, self.names[idx], self.sources[idx]
+            best_idx = int(np.argmax(similarities))
+            best_sim = float(similarities[best_idx])
+            if best_sim >= 0.95:
+                value = self.values[best_idx]
+                if isinstance(value, (int, float, np.number)):
+                    value = float(value)
+                return value, best_sim, self.names[best_idx], self.sources[best_idx]
         except ImportError:
             pass  # sentence_transformers not available, skip semantic matching
 
@@ -890,62 +892,73 @@ class Predictor:
 
     def _infer_cropgroup_from_foodtype(
         self, name: str, activity: str, food_type: str
-    ) -> tuple[str, str] | None:
+    ) -> tuple[str, str, float] | None:
         """Infer cropGroup from foodType and keyword patterns.
 
-        Returns (cropGroup, match_description) or None to fall back to matcher.
+        Returns (cropGroup, match_description, confidence) or None to fall back
+        to matcher.
         """
         text = f"{name} {activity}".lower()
 
-        # Check cropgroup reference data FIRST (before pattern inference)
-        # This gives CSV data priority over hardcoded patterns
+        # Check cropgroup reference data FIRST (before pattern inference).
+        # Require both conf ≥ 0.95 AND textual overlap between the query and
+        # the matched name (substring either direction). This rejects
+        # FoodOn-feature-only matches (e.g. `Black currant` vs `poires pour
+        # transformation` — both fruits, ~0.95-0.96 in feature space, but
+        # zero textual overlap) while keeping legitimate word/exact matches
+        # (`Apple juice` → `apple`, `Pear` → `pear`).
         if self.cropgroup_matcher is not None:
             cropgroup_val, conf, match_name, source = self.cropgroup_matcher.predict(
                 name, translate_fn=self._translate
             )
-            # Only use matches from reference CSV, not ingredients.json
             if conf >= 0.95 and source == "cropgroup.csv":
-                return cropgroup_val, f"matched '{match_name}' in cropgroup.csv"
+                q = name.lower()
+                m = (match_name or "").lower()
+                m_translated = self._translate(match_name).lower() if match_name else ""
+                if (m and (m in q or q in m)) or (
+                    m_translated and (m_translated in q or q in m_translated)
+                ):
+                    return cropgroup_val, f"matched '{match_name}' in cropgroup.csv", conf
 
         # Edge cases: items often misclassified by foodType prediction
         # These patterns take priority over foodType-based logic
         if any(w in text for w in ["cocoa", "cacao", "coffee", "café"]):
-            return "DIVERS", "cocoa/coffee pattern"
+            return "DIVERS", "cocoa/coffee pattern", 1.0
         if "prickly pear" in text or "figue de barbarie" in text:
-            return "VERGERS", "prickly pear pattern"
+            return "VERGERS", "prickly pear pattern", 1.0
         if any(w in text for w in ["grape", "raisin", "wine", "vin"]):
-            return "VIGNES", "grape/wine pattern"
+            return "VIGNES", "grape/wine pattern", 1.0
 
         # Specific grains override default
         if food_type == "grain":
             if any(w in text for w in ["wheat", "flour", "bread", "pasta", "biscuit", "cake", "semolina", "couscous"]):
-                return "BLE TENDRE", "wheat/flour pattern"
+                return "BLE TENDRE", "wheat/flour pattern", 1.0
             if any(w in text for w in ["rice", "basmati", "riz"]):
-                return "RIZ", "rice pattern"
+                return "RIZ", "rice pattern", 1.0
             if any(w in text for w in ["corn", "maize", "maïs", "polenta", "popcorn"]):
-                return "MAIS GRAIN ET ENSILAGE", "corn pattern"
+                return "MAIS GRAIN ET ENSILAGE", "corn pattern", 1.0
             if any(w in text for w in ["barley", "orge", "malt", "beer", "bière"]):
-                return "ORGE", "barley pattern"
-            return "AUTRES CEREALES", "grain default"
+                return "ORGE", "barley pattern", 1.0
+            return "AUTRES CEREALES", "grain default", 1.0
 
         # Specific oilseeds/nuts override default
         if food_type == "nut_oilseed":
             if any(w in text for w in ["sunflower", "tournesol"]):
-                return "TOURNESOL", "sunflower pattern"
+                return "TOURNESOL", "sunflower pattern", 1.0
             if any(w in text for w in ["rapeseed", "canola", "colza"]):
-                return "COLZA", "rapeseed pattern"
+                return "COLZA", "rapeseed pattern", 1.0
             if any(w in text for w in ["olive"]):
-                return "OLIVIERS", "olive pattern"
+                return "OLIVIERS", "olive pattern", 1.0
             if any(w in text for w in ["grape", "wine", "vin", "vinegar", "vinaigre", "raisin"]):
-                return "VIGNES", "grape/wine pattern"
+                return "VIGNES", "grape/wine pattern", 1.0
             if any(w in text for w in ["soy", "soja", "sesame", "sésame", "flax", "lin", "palm", "palme"]):
-                return "AUTRES OLEAGINEUX", "oilseed pattern"
+                return "AUTRES OLEAGINEUX", "oilseed pattern", 1.0
             # Default: nuts (almond, walnut, hazelnut, etc.)
-            return "FRUITS A COQUES", "nut default"
+            return "FRUITS A COQUES", "nut default", 1.0
 
         # Legumes (can have foodType=legume or foodType=vegetable)
         if food_type == "legume":
-            return "LEGUMINEUSES A GRAIN", "legume default"
+            return "LEGUMINEUSES A GRAIN", "legume default", 1.0
 
         # Legume patterns (for items classified as vegetable but are actually legumes)
         # Use word boundary matching to avoid false positives (peaches, coffee beans)
@@ -958,12 +971,12 @@ class Predictor:
             r"\blupin",
         ]
         if any(re.search(p, text) for p in legume_patterns):
-            return "LEGUMINEUSES A GRAIN", "legume pattern"
+            return "LEGUMINEUSES A GRAIN", "legume pattern", 1.0
 
         # Use foodType default for fruit, vegetable, spice, beverage
         default = FOODTYPE_TO_CROPGROUP.get(food_type)
         if default:
-            return default, f"{food_type} default"
+            return default, f"{food_type} default", 1.0
 
         return None  # Fall back to matcher
 
@@ -1636,9 +1649,9 @@ class Predictor:
         # Try pattern-based inference first (catches misclassified items like snow pea)
         pattern_result = self._infer_cropgroup_from_foodtype(name, activity, food_type)
         if pattern_result:
-            cropgroup_val, pattern_desc = pattern_result
+            cropgroup_val, pattern_desc, pattern_conf = pattern_result
             predictions["cropGroup"] = cropgroup_val
-            predictions["cropGroupMatch"] = _match(f"{pattern_desc}", 1.0)
+            predictions["cropGroupMatch"] = _match(f"{pattern_desc}", pattern_conf)
         elif food_type in vegetal_types:
             if self.cropgroup_matcher is not None:
                 # Fall back to nearest neighbor matcher
