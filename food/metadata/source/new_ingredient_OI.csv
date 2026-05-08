@@ -48,7 +48,7 @@ EB_id0060,Cow milk,Lait de vache,"Cow milk {RoW}| milk production, from cow | Cu
 EB_id0062,Cranberry,Canneberge,"Cranberry, at farm {CL} - Adapted from WFLDB U",Agribalyse 3.2,CL,"1,134",TRUE
 EB_id0063,Cucumber,Concombre,"Tomato, fresh grade, open field, at farm (WFLDB)",WFLDB,MX,207,TRUE
 EB_id0064,Cucurbitacea seed,Graines de Cucurbitacées,"Linseed, at farm {CA} - Adapted from WFLDB U",Agribalyse 3.2,CA,443,TRUE
-EB_id0065,Dates,Dattes,"Palm date, conditioned and dried {GLO}| palm date production, conditioned and dried | Cut-off, U - Copied from Ecoinvent U",Agribalyse 3.2,GLO,179,TRUE
+EB_id0065,Dates,Dattes,"Palm fruit bunch {ID}| palm fruit bunch production | Cut-off, U - Adapted from Ecoinvent U",Agribalyse 3.2,ID,91.62712048,TRUE
 EB_id0066,"Dill, fresh","Aneth, frais","Mint, at farm (WFLDB)",WFLDB,IN,63,TRUE
 EB_id0067,"Dried herbs (marjoram, oregano, savory, thyme, basil, rosemary, sage)","Herbes séchées (marjolaine, origan, sarriette, thym, basilic, romarin, sauge)","Mint, at farm (WFLDB)",WFLDB,IN,63,TRUE
 EB_id0069,Durum wheat,Blé dur,"Durum wheat grain, at farm {AU} - Adapted from WFLDB U",Agribalyse 3.2,AU,124,TRUE
@@ -185,4 +185,3 @@ EB_idV05,Poultry,Volaille,"Broiler, conventional, at farm gate {FR} U {{meat-wit
 EB_idV06,Lamb,Agneau,"Lamb, conventional, indoor production system, at farm gate {FR} U",Agribalyse 3.2,FR,Pas de proxy origine,FALSE
 EB_idV07,Pork,Porc,"Mixt pig, conventional, national average, at farm gate {FR} U {{bacon-default-2025}}",Ecobalyse,FR,Pas de proxy origine,FALSE
 EB_idV08,Rabbit,Lapin,"Broiler, conventional, at farm gate {FR} U {{meat-without-bone-chicken-direct-consumption-only-soybean-max}}",Ecobalyse,FR,Pas de proxy origine,FALSE
-

@@ -38,9 +38,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "FRUITS A COQUES",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'caroube' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -98,7 +98,7 @@
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
           "rule": "matched 'almond' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -152,9 +152,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroup": "BLE TENDRE",
         "cropGroupMatch": {
-          "rule": "matched 'chicorée à inuline' in cropgroup.csv",
+          "rule": "wheat/flour pattern",
           "confidence": 1.0
         },
         "scopes": [
@@ -195,7 +195,7 @@
         "cropGroup": "AUTRES CEREALES",
         "cropGroupMatch": {
           "rule": "matched 'blé dur hiver' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -331,7 +331,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -365,20 +365,20 @@
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Apricot in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 1.06,
         "ingredientDensityMatch": {
-          "rule": "Matched with apricot in density.csv",
-          "confidence": 0.98
+          "rule": "Matched with Apricot brandy in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
           "rule": "Matched with apricot in cooked_to_raw.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "scenario": "import",
         "transportCooling": "always",
@@ -389,7 +389,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -447,7 +447,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'carrot' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -481,7 +481,7 @@
         "inediblePart": 0.3,
         "inediblePartMatch": {
           "rule": "Matched with Avocados in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "ingredientCategories": [
           "vegetable_fresh"
@@ -505,7 +505,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'orange' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -562,7 +562,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'brussels sprout' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -659,7 +659,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -718,7 +718,7 @@
         "cropGroup": "RIZ",
         "cropGroupMatch": {
           "rule": "matched 'rice' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -758,7 +758,7 @@
         "cropGroup": "RIZ",
         "cropGroupMatch": {
           "rule": "matched 'rice' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -895,7 +895,7 @@
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
           "rule": "matched 'rosemary' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -935,7 +935,7 @@
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
           "rule": "matched 'rosemary' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -1015,7 +1015,7 @@
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
           "rule": "matched 'tarragon' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -1048,7 +1048,7 @@
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Beetroots in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "ingredientCategories": [
           "vegetable_fresh"
@@ -1130,7 +1130,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'bell pepper' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -1170,7 +1170,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'chili pepper' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -1226,7 +1226,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -1264,9 +1264,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VIGNES",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'grape' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -1306,7 +1306,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -1404,7 +1404,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -1462,7 +1462,7 @@
         "cropGroup": "DIVERS",
         "cropGroupMatch": {
           "rule": "matched 'pepper' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -1499,9 +1499,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroup": "DIVERS",
         "cropGroupMatch": {
-          "rule": "matched 'curcuma' in cropgroup.csv",
+          "rule": "spice_condiment default",
           "confidence": 1.0
         },
         "scopes": [
@@ -1539,9 +1539,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroup": "DIVERS",
         "cropGroupMatch": {
-          "rule": "matched 'ginger' in cropgroup.csv",
+          "rule": "spice_condiment default",
           "confidence": 1.0
         },
         "scopes": [
@@ -1598,7 +1598,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -1656,7 +1656,7 @@
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
           "rule": "matched 'noix' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -1736,7 +1736,7 @@
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
           "rule": "matched 'noix' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -1756,10 +1756,10 @@
         "ingredientCategories": [
           "nut_oilseed_raw"
         ],
-        "ingredientDensity": 0.5,
+        "ingredientDensity": 0.646,
         "ingredientDensityMatch": {
-          "rule": "Matched with pistachio in density.csv",
-          "confidence": 0.98
+          "rule": "Matched with Pistachio, raw, without shell in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -1833,7 +1833,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -1871,9 +1871,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VIGNES",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'grape' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -1911,9 +1911,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "ARBORICULTURE",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'banana' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2243,9 +2243,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES CEREALES",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'avoine' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2326,7 +2326,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'cabbage' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -2341,7 +2341,7 @@
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Jerusalemen artichoke in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.953
         },
         "ingredientCategories": [
           "vegetable_fresh"
@@ -2365,7 +2365,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'carrot' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2405,7 +2405,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'chou-fleur' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2445,7 +2445,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'chou-fleur' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2483,9 +2483,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2501,7 +2501,7 @@
         "inediblePart": 0.6,
         "inediblePartMatch": {
           "rule": "Matched with Artichokes in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.952
         },
         "ingredientCategories": [
           "vegetable_fresh"
@@ -2525,7 +2525,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'fennel' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2583,7 +2583,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'carrot' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -2740,9 +2740,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES OLEAGINEUX",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'autres oleagineux' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2780,9 +2780,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'moutarde' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2822,7 +2822,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'endive' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2902,7 +2902,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'brussels sprout' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2942,7 +2942,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'carrot' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -2982,7 +2982,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'chou-fleur' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -3040,7 +3040,7 @@
         "visible": true,
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "matched 'almond' in cropgroup.csv",
+          "rule": "nut default",
           "confidence": 1.0
         },
         "scopes": [
@@ -3099,7 +3099,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'céleri-rave' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -3155,7 +3155,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'cerise bigarreaux industrie' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -3193,9 +3193,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "ARBORICULTURE",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'banane export' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -3233,9 +3233,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "ARBORICULTURE",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'banane export' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -3294,7 +3294,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'tomato' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -3309,7 +3309,7 @@
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Cucumbers in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "ingredientCategories": [
           "vegetable_fresh"
@@ -3349,7 +3349,7 @@
         "inediblePart": 0.03,
         "inediblePartMatch": {
           "rule": "Matched with Tomatoes in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "ingredientCategories": [
           "vegetable_fresh"
@@ -3470,7 +3470,7 @@
         "visible": true,
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
-          "rule": "matched 'noix' in cropgroup.csv",
+          "rule": "nut default",
           "confidence": 1.0
         },
         "scopes": [
@@ -3494,7 +3494,7 @@
         "ingredientDensity": 0.5,
         "ingredientDensityMatch": {
           "rule": "Matched with walnut in density.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "rawToCookedRatio": 1.0,
         "rawToCookedRatioMatch": {
@@ -3511,7 +3511,7 @@
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
           "rule": "matched 'walnut' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -3568,7 +3568,7 @@
         "cropGroup": "SEMENCES",
         "cropGroupMatch": {
           "rule": "matched 'semences epeautre' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -3608,7 +3608,7 @@
         "cropGroup": "SEMENCES",
         "cropGroupMatch": {
           "rule": "matched 'semences epeautre' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -3623,7 +3623,7 @@
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "Matched with poppy seed in inedible_part.csv",
-          "confidence": 0.98
+          "confidence": 0.961
         },
         "ingredientCategories": [
           "nut_oilseed_raw"
@@ -3648,7 +3648,7 @@
         "cropGroup": "SEMENCES",
         "cropGroupMatch": {
           "rule": "matched 'semences epeautre' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -3745,7 +3745,7 @@
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "cropGroupMatch": {
           "rule": "matched 'chickpea' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -3802,7 +3802,7 @@
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
           "rule": "matched 'chicory' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -3936,9 +3936,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES OLEAGINEUX",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'autres oleagineux' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -3996,7 +3996,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -4169,7 +4169,7 @@
         "cropGroup": "ARBORICULTURE",
         "cropGroupMatch": {
           "rule": "matched 'coffee bean' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -4303,9 +4303,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
+        "cropGroup": "DIVERS",
         "cropGroupMatch": {
-          "rule": "matched 'curcuma' in cropgroup.csv",
+          "rule": "spice_condiment default",
           "confidence": 1.0
         },
         "scopes": [
@@ -4343,9 +4343,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -4385,7 +4385,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -4554,7 +4554,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -4571,13 +4571,13 @@
     "unit": "kg"
   },
   {
-    "activityName": "Palm date, conditioned and dried {GLO}| palm date production, conditioned and dried | Cut-off, U - Copied from Ecoinvent U",
-    "alias": "palm-date-conditioned-and-dried",
+    "activityName": "Palm fruit bunch {ID}| palm fruit bunch production | Cut-off, U - Adapted from Ecoinvent U",
+    "alias": "palm-fruit-bunch",
     "categories": [
       "ingredient"
     ],
-    "displayName": "Palm date, conditioned and dried (GLO)",
-    "id": "c2217717-9043-5329-a35b-dadb4d17feb3",
+    "displayName": "Palm fruit bunch (ID)",
+    "id": "85101672-3eed-5c80-8e27-704cfafbf522",
     "metadata": [
       {
         "alias": "date-default",
@@ -4603,15 +4603,15 @@
           "confidence": 1.0
         },
         "scenario": "import",
-        "transportCooling": "none",
+        "transportCooling": "always",
         "transportCoolingMatch": {
-          "rule": "fruit NOVA 1 → none (perishable)",
+          "rule": "fruit NOVA 1 → always (perishable)",
           "confidence": 1.0
         },
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -4999,7 +4999,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'endive' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -5093,9 +5093,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "ARBORICULTURE",
+        "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'banana' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -5135,7 +5135,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -5266,7 +5266,7 @@
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with French bean in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "ingredientCategories": [
           "vegetable_fresh"
@@ -5288,9 +5288,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "AUTRES OLEAGINEUX",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
         "cropGroupMatch": {
-          "rule": "matched 'soja' in cropgroup.csv",
+          "rule": "legume default",
           "confidence": 1.0
         },
         "scopes": [
@@ -5427,7 +5427,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'carrot' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -5596,9 +5596,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "VERGERS",
+        "cropGroup": "VIGNES",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "grape/wine pattern",
           "confidence": 1.0
         },
         "scopes": [
@@ -5638,7 +5638,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -5679,7 +5679,7 @@
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
           "rule": "matched 'orange' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -5736,7 +5736,7 @@
         "cropGroup": "VIGNES",
         "cropGroupMatch": {
           "rule": "matched 'grape' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -5792,7 +5792,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'poires pour transformation' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -5832,7 +5832,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'orange' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -5872,7 +5872,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'orange' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -5930,7 +5930,7 @@
         "cropGroup": "FRUITS A COQUES",
         "cropGroupMatch": {
           "rule": "matched 'noisettes' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -5988,7 +5988,7 @@
         "cropGroup": "PLANTES A FIBRES",
         "cropGroupMatch": {
           "rule": "matched 'chanvre' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -6096,7 +6096,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'carrot' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -6153,7 +6153,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'orange' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -6266,9 +6266,9 @@
           "confidence": 1.0
         },
         "visible": true,
-        "cropGroup": "PROTEAGINEUX",
+        "cropGroup": "LEGUMINEUSES A GRAIN",
         "cropGroupMatch": {
-          "rule": "matched 'spring faba' in cropgroup.csv",
+          "rule": "legume default",
           "confidence": 1.0
         },
         "scopes": [
@@ -6326,7 +6326,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'melon' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -6422,7 +6422,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'brussels sprout' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -6480,7 +6480,7 @@
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
           "rule": "matched 'moutarde' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -6536,7 +6536,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'fennel' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -6576,7 +6576,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'carrot' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -6616,7 +6616,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'chou-fleur' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -6731,7 +6731,7 @@
         "cropGroup": "OLIVIERS",
         "cropGroupMatch": {
           "rule": "matched 'olive' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -6845,7 +6845,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'orange' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -6903,7 +6903,7 @@
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
           "rule": "matched 'parsley' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -6960,7 +6960,7 @@
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
           "rule": "matched 'poires pour transformation' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -7058,7 +7058,7 @@
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "cropGroupMatch": {
           "rule": "matched 'pea' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -7098,7 +7098,7 @@
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "cropGroupMatch": {
           "rule": "matched 'pea' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -7138,7 +7138,7 @@
         "cropGroup": "LEGUMINEUSES A GRAIN",
         "cropGroupMatch": {
           "rule": "matched 'pea' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -7178,7 +7178,7 @@
         "cropGroup": "PROTEAGINEUX",
         "cropGroupMatch": {
           "rule": "matched 'pois d'hiver' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -7291,7 +7291,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'orange' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -7324,7 +7324,7 @@
         "inediblePart": 0.1,
         "inediblePartMatch": {
           "rule": "Matched with Potatoes in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "ingredientCategories": [
           "vegetable_fresh"
@@ -7462,7 +7462,7 @@
         "visible": true,
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
-          "rule": "matched 'carrot' in cropgroup.csv",
+          "rule": "vegetable default",
           "confidence": 1.0
         },
         "scopes": [
@@ -7576,7 +7576,7 @@
         "visible": true,
         "cropGroup": "VERGERS",
         "cropGroupMatch": {
-          "rule": "matched 'orange' in cropgroup.csv",
+          "rule": "fruit default",
           "confidence": 1.0
         },
         "scopes": [
@@ -7840,7 +7840,7 @@
         "cropGroup": "SEMENCES",
         "cropGroupMatch": {
           "rule": "matched 'semences epeautre' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -7952,7 +7952,7 @@
         "cropGroup": "BLE TENDRE",
         "cropGroupMatch": {
           "rule": "matched 'wheat' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -7992,7 +7992,7 @@
         "cropGroup": "AUTRES CEREALES",
         "cropGroupMatch": {
           "rule": "matched 'millet' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -8220,7 +8220,7 @@
         "cropGroup": "PROTEAGINEUX",
         "cropGroupMatch": {
           "rule": "matched 'pois de printemps' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -8366,7 +8366,7 @@
         "inediblePart": 0.0,
         "inediblePartMatch": {
           "rule": "Matched with sunflower seed in inedible_part.csv",
-          "confidence": 0.98
+          "confidence": 0.96
         },
         "ingredientCategories": [
           "nut_oilseed_raw"
@@ -8391,7 +8391,7 @@
         "cropGroup": "TOURNESOL",
         "cropGroupMatch": {
           "rule": "matched 'sunflower' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -8449,7 +8449,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'potato' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -8506,7 +8506,7 @@
         "cropGroup": "DIVERS",
         "cropGroupMatch": {
           "rule": "matched 'tea' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -8563,7 +8563,7 @@
         "cropGroup": "AUTRES CULTURES INDUSTRIELLES",
         "cropGroupMatch": {
           "rule": "matched 'vanille' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -8595,7 +8595,7 @@
         "inediblePart": 0.2,
         "inediblePartMatch": {
           "rule": "Matched with Cabbage in agb_inedible.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "ingredientCategories": [
           "vegetable_fresh"
@@ -8603,12 +8603,12 @@
         "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
           "rule": "Matched with cabbage in density.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
           "rule": "Matched with cabbage in cooked_to_raw.csv",
-          "confidence": 0.98
+          "confidence": 0.95
         },
         "scenario": "import",
         "transportCooling": "always",
@@ -8620,7 +8620,7 @@
         "cropGroup": "LEGUMES-FLEURS",
         "cropGroupMatch": {
           "rule": "matched 'cabbage' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -8660,7 +8660,7 @@
         "ingredientDensity": 0.65,
         "ingredientDensityMatch": {
           "rule": "Matched with Barley, whole in fao_density.csv",
-          "confidence": 0.98
+          "confidence": 0.952
         },
         "rawToCookedRatio": 2.259,
         "rawToCookedRatioMatch": {
@@ -8677,7 +8677,7 @@
         "cropGroup": "ORGE",
         "cropGroupMatch": {
           "rule": "matched 'barley' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -8718,7 +8718,7 @@
         "ingredientDensity": 0.705,
         "ingredientDensityMatch": {
           "rule": "Matched with Rye, whole in fao_density.csv",
-          "confidence": 0.98
+          "confidence": 0.961
         },
         "rawToCookedRatio": 2.259,
         "rawToCookedRatioMatch": {
@@ -8735,7 +8735,7 @@
         "cropGroup": "AUTRES CEREALES",
         "cropGroupMatch": {
           "rule": "matched 'seigle' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -8844,7 +8844,7 @@
         "cropGroup": "SEMENCES",
         "cropGroupMatch": {
           "rule": "matched 'semences epeautre' in cropgroup.csv",
-          "confidence": 1.0
+          "confidence": 0.95
         },
         "scopes": [
           "food",
@@ -9010,11 +9010,6 @@
           "confidence": 1.0
         },
         "visible": false,
-        "cropGroup": "PRAIRIES PERMANENTES",
-        "cropGroupMatch": {
-          "rule": "matched 'prairies naturelles' in cropgroup.csv",
-          "confidence": 1.0
-        },
         "animalGroup1": "poultry",
         "animalGroup2": "chicken",
         "animalProduct": "meat",
@@ -9053,11 +9048,6 @@
           "confidence": 1.0
         },
         "visible": false,
-        "cropGroup": "PRAIRIES PERMANENTES",
-        "cropGroupMatch": {
-          "rule": "matched 'prairies naturelles' in cropgroup.csv",
-          "confidence": 1.0
-        },
         "animalGroup1": "poultry",
         "animalGroup2": "chicken",
         "animalProduct": "meat",
