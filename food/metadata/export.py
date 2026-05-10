@@ -93,33 +93,24 @@ VARIANTS: dict[Variant, VariantConfig] = {
 
 @dataclass(frozen=True)
 class RowGeo:
-    """Row-level geographic data that may shift the variant config (DOM, antilles)."""
-    production_fr: str = ""   # "" or "DOM"
+    production_fr: str = ""
     antilles: bool = False
 
 
 @dataclass(frozen=True)
 class PredictionRow:
-    """Result of running the predictor on one source-CSV ingredient row.
-
-    Threaded through the CSV writer, JSON writer and final-data enricher.
-    Replaces the 11-key ad-hoc dict that used to flow between those stages.
-    """
     name: str
     french_name: str
     activity_name: str
     source: str
     unit: str
-    predictions: dict          # Predictor output, shape stable per predict.py
+    predictions: dict
     variant: Variant
     geo: RowGeo
     location: str = ""
     visible: bool = True
 
 
-# Sub-variants encoded as a single resolver — single source of truth for
-# (variant, row geo) → display & alias suffixes. Any new sub-variant goes here
-# and only here; downstream code reads from the returned VariantConfig.
 def resolve_variant(variant: Variant, geo: RowGeo) -> VariantConfig:
     if variant is Variant.FR and geo.production_fr == "DOM":
         return VariantConfig(" FR Outre-Mer", "-fr-overseas",
@@ -130,25 +121,14 @@ def resolve_variant(variant: Variant, geo: RowGeo) -> VariantConfig:
     return VARIANTS[variant]
 
 
-# Every alias suffix the codebase may produce — used to strip variant suffixes
-# when reading existing ingredient aliases (ES lookup). Derived, no hardcoded
-# list to keep in sync.
 KNOWN_ALIAS_SUFFIXES: frozenset[str] = frozenset(
     {c.alias_suffix for c in VARIANTS.values()}
     | {"-fr-overseas", "-eu-antilles"}
 )
 
-# =============================================================================
-# DEFERRED SIDE EFFECTS
-# =============================================================================
-# Loading bw2data + .env + animal regexes at module import couples every
-# importer to the full runtime. Cached lazy initializers keep `import export`
-# free of side effects; the first caller pays the cost.
-
 
 @functools.cache
 def _bw_ready():
-    """Load .env, import bw2data, select the project. Idempotent."""
     from dotenv import load_dotenv
     load_dotenv()
     import bw2data
@@ -156,83 +136,40 @@ def _bw_ready():
     return bw2data
 
 
-# =============================================================================
-# ANIMAL DETECTION (from reference/animal.csv)
-# =============================================================================
-
 REFERENCE_DIR = Path(__file__).parent / "reference"
-
-
-def _load_animal_data() -> list[dict]:
-    """Load reference/animal.csv into a list of dicts with a compiled regex."""
-    rows = []
-    with open(REFERENCE_DIR / "animal.csv", encoding="utf-8") as f:
-        for row in csv.DictReader(f):
-            rows.append({
-                "pattern": re.compile(r"\b" + re.escape(row["name"]) + r"\b", re.IGNORECASE),
-                "animalGroup1": row["animalGroup1"],
-                "animalGroup2": row["animalGroup2"],
-                "animalProduct": row["animalProduct"],
-            })
-    return rows
 
 
 @functools.cache
 def _animal_entries() -> tuple[dict, ...]:
-    """Lazy-loaded, immutable view of reference/animal.csv with compiled regexes."""
-    return tuple(_load_animal_data())
+    with open(REFERENCE_DIR / "animal.csv", encoding="utf-8") as f:
+        return tuple({
+            "pattern": re.compile(r"\b" + re.escape(row["name"]) + r"\b", re.IGNORECASE),
+            "animalGroup1": row["animalGroup1"],
+            "animalGroup2": row["animalGroup2"],
+            "animalProduct": row["animalProduct"],
+        } for row in csv.DictReader(f))
 
 
 def detect_animal_fields(name: str, activity_name: str) -> dict:
-    """Detect animalGroup1, animalGroup2, animalProduct from reference CSV."""
     text = f"{name} {activity_name}"
     for entry in _animal_entries():
         if entry["pattern"].search(text):
-            return {
-                "animalGroup1": entry["animalGroup1"],
-                "animalGroup2": entry["animalGroup2"],
-                "animalProduct": entry["animalProduct"],
-            }
+            return {k: entry[k] for k in ("animalGroup1", "animalGroup2", "animalProduct")}
     return {}
 
 
-# =============================================================================
-# HELPERS
-# =============================================================================
-
-
 def generate_alias(name: str) -> str:
-    """Generate alias from English name.
-
-    Singularizes base words, moves processing qualifiers to the end.
-    """
-    alias = name.lower()
-    alias = re.sub(r"[\s_]+", "-", alias)
-    alias = re.sub(r"[^a-z0-9-]", "", alias)
-    alias = re.sub(r"-+", "-", alias)
-    alias = alias.strip("-")
-
+    """Slugify, singularize base words, move processing qualifiers to the end."""
+    alias = re.sub(r"-+", "-",
+                   re.sub(r"[^a-z0-9-]", "",
+                          re.sub(r"[\s_]+", "-", name.lower()))).strip("-")
     if alias in PLURAL_EXCEPTIONS:
         return alias
-
     words = alias.split("-")
-
-    # Separate processing qualifiers from base words (order-preserving)
-    base_words = []
-    qualifier_words = []
-    for w in words:
-        if w in PROCESSING_QUALIFIERS:
-            qualifier_words.append(w)
-        else:
-            base_words.append(w)
-
-    # Singularize base words
-    singularized = []
-    for w in base_words:
-        singular = _inflect_engine.singular_noun(w)
-        singularized.append(singular if singular else w)
-
-    return "-".join(singularized + qualifier_words)
+    base = [w for w in words if w not in PROCESSING_QUALIFIERS]
+    qualifiers = [w for w in words if w in PROCESSING_QUALIFIERS]
+    singularized = [_inflect_engine.singular_noun(w) or w for w in base]
+    return "-".join(singularized + qualifiers)
 
 
 def simplify_for_alias(name: str) -> str:
@@ -298,27 +235,17 @@ def clean_activity_name(activity_name: str) -> str:
     return _MARKER_RE.sub(" ", activity_name).strip()
 
 
-def _format_match(match_info: dict | None) -> str:
-    """Format match rule for CSV output."""
-    if match_info is None:
-        return ""
-    return match_info.get("rule", "")
+def _format_match(m: dict | None) -> str:
+    return m.get("rule", "") if m else ""
 
 
-def _format_conf(match_info: dict | None) -> str:
-    """Format confidence from match info for CSV output."""
-    if match_info is None:
-        return ""
-    conf = match_info.get("confidence")
+def _format_conf(m: dict | None) -> str:
+    conf = (m or {}).get("confidence")
     return f"{conf:.3f}" if conf else ""
 
 
 def get_db_unit(activity_name, location=""):
-    """Return (unit, db_name, location_or_empty).
-
-    The location is only returned when it was needed to disambiguate
-    multiple activities with the same name (e.g. WFLDB).
-    """
+    """Return (unit, db_name, location_or_empty); location returned only when used to disambiguate."""
     bw2data = _bw_ready()
     dbs = ("Agribalyse 3.2", "Ecoinvent 3.9.1", "Ecoinvent 3.11", "WFLDB", "Ecobalyse", "Ginko 2025")
     for db in dbs:
@@ -387,28 +314,14 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
     return results
 
 
-# =============================================================================
-# CSV OUTPUT
-# =============================================================================
-
-
 @dataclass(frozen=True)
 class PredField:
-    """Declarative descriptor for one prediction field in the CSV output.
-
-    `nullable` distinguishes `pred.get(k) or ""` (some predictions return None
-    for "no value") from `pred.get(k, "")` (only missing keys default to "").
-    `fmt` is a `format()` spec; when set, the value is always formatted (with
-    default 0). `has_conf` adds a `<key>Conf` column derived from the *Match dict.
-    """
     key: str
     has_conf: bool = False
     fmt: str | None = None
-    nullable: bool = False
+    nullable: bool = False  # pred.get(k) or "" vs pred.get(k, "")
 
 
-# Order here drives both the CSV column order and the prediction-fields list
-# used by compare_variants. Single source of truth.
 PRED_FIELDS: list[PredField] = [
     PredField("foodType",         has_conf=True),
     PredField("novaGroup",        has_conf=True),
@@ -457,7 +370,6 @@ def csv_row(row: PredictionRow) -> dict[str, str]:
 
 
 def write_csv(results: list[PredictionRow], output_path: str):
-    """Write predictions to CSV file."""
     with open(output_path, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=csv_header())
         writer.writeheader()
@@ -466,58 +378,21 @@ def write_csv(results: list[PredictionRow], output_path: str):
     print(f"CSV written to {output_path}")
 
 
-# =============================================================================
-# JSON OUTPUT (activities.json format)
-# =============================================================================
-
-
 def build_activity_entry(row: PredictionRow, *, alias_override: str | None = None) -> dict:
-    """Build an activity entry in the activities.json format.
-
-    Activity-level alias is derived from `row.activity_name` (LCI process identity);
-    ingredient-level alias is derived from `row.name` (Ecobalyse ingredient identity).
-    They differ when several ingredients reuse the same upstream activity as a
-    proxy (e.g., `fig-eu` ingredient hosted on `peach` activity).
-
-    `alias_override` lets the caller supply a pre-computed activity alias (e.g.
-    geo-disambiguated to break a collision); when None, the alias is generated
-    from the activity name alone.
-    """
+    """Activity alias from LCI activityName (shared across variants); ingredient alias
+    from row.name + variant suffix. They differ when ingredients proxy onto a shared activity."""
     cfg = resolve_variant(row.variant, row.geo)
     predictions = row.predictions
 
-    # Activity alias from LCI activityName only (no variant suffix: an activity
-    # can be shared across variants — same `Apple {IT}` LCI feeds the FR, UE
-    # and OI variants of the apple ingredient). Caller may pass an override to
-    # break a same-alias / different-activity-name collision.
     activity_alias = alias_override or generate_activity_alias(row.activity_name)
-
-    # Ingredient alias from Ecobalyse ingredient name + variant suffix.
-    # simplify_for_alias drops parenthesized clarifications and trailing
-    # alternative-lists (e.g. "Bell pepper (green, yellow, or red)" → "Bell
-    # pepper") so newly added ingredients get a short, stable alias. The full
-    # `item` text remains the displayName/source-of-truth.
     ingredient_alias = generate_alias(simplify_for_alias(row.name)) + cfg.alias_suffix
-
-    # Ingredient displayName from French name + variant suffix
     ingredient_display_name = (row.french_name or row.name) + cfg.display_suffix
 
-    # Activity displayName: variant-neutral, derived from the LCI activityName.
-    # Take the leading product segment (before `{`/`(`/`|`) and append the geo
-    # code from `{…}` to keep the displayName unique across activities sharing
-    # a product name (e.g. `Broccoli (GLO)` vs `Broccoli (CH)`).
-    activity_display_base = re.split(r"[{(|]", row.activity_name, maxsplit=1)[0].strip().rstrip(",").strip()
+    base = re.split(r"[{(|]", row.activity_name, maxsplit=1)[0].strip().rstrip(",").strip()
     geo_code = extract_geo(row.activity_name)
-    activity_display_name = (
-        f"{activity_display_base} ({geo_code.upper()})"
-        if geo_code
-        else activity_display_base
-    )
+    activity_display_name = f"{base} ({geo_code.upper()})" if geo_code else base
 
-    # Activity UUID is keyed by alias (= activityName-derived) to keep stable
-    # identity across variants/exports; two activities sharing a displayName
-    # but pointing to different LCI processes get distinct UUIDs.
-    # Ingredient UUID stays keyed by displayName (its Ecobalyse identity).
+    # UUIDs keyed by alias/displayName so identity stays stable across variants/exports.
     activity_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{activity_alias}"))
     ingredient_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"ingredient:{ingredient_display_name}"))
 
@@ -539,16 +414,10 @@ def build_activity_entry(row: PredictionRow, *, alias_override: str | None = Non
         "transportCoolingMatch": predictions.get("transportCoolingMatch"),
         "visible": row.visible,
     }
-
     if predictions.get("cropGroup"):
         ingredient["cropGroup"] = predictions["cropGroup"]
         ingredient["cropGroupMatch"] = predictions.get("cropGroupMatch")
-
-    animal_fields = detect_animal_fields(row.name, row.activity_name)
-    if animal_fields:
-        ingredient["animalGroup1"] = animal_fields["animalGroup1"]
-        ingredient["animalGroup2"] = animal_fields["animalGroup2"]
-        ingredient["animalProduct"] = animal_fields["animalProduct"]
+    ingredient |= detect_animal_fields(row.name, row.activity_name)
 
     entry = {
         "activityName": row.activity_name,
@@ -567,21 +436,7 @@ def build_activity_entry(row: PredictionRow, *, alias_override: str | None = Non
 
 
 def assemble_activities(rows: list[PredictionRow]) -> list[dict]:
-    """Build activities.json structure: one entry per (geo-resolved) activity alias.
-
-    Several rows can share the same upstream `activity_name` (proxy ingredients);
-    they merge into a single activity entry with multiple ingredients in
-    `metadata`. If two distinct `activity_name` strings collapse to the same
-    activity alias within the variant, both get a geo-disambiguated alias
-    (e.g. `apple-it-eu` vs `apple-es-eu`).
-
-    Single-pass over rows:
-    1. compute base alias per row
-    2. detect collisions (same alias, different activity_name)
-    3. resolve final alias (geo-suffix for colliders)
-    4. build entries once with the final alias
-    5. merge metadata by alias preserving insertion order
-    """
+    """Group rows by activity alias, geo-disambiguating where two activities collapse onto one alias."""
     base_aliases = [generate_activity_alias(r.activity_name) for r in rows]
 
     by_base: dict[str, set[str]] = {}
@@ -624,16 +479,10 @@ def get_input_csv(variant: Variant) -> Path:
 
 
 def fetch_source_csv(variant: Variant) -> Path:
-    """Download the Google Sheet tab for `variant` and overwrite the local source CSV.
-
-    Reads GSHEET_ID and GSHEET_GID_{VARIANT} from the environment (.env).
-    """
+    """Refresh the local source CSV from the Google Sheet tab for `variant`."""
     sheet_id = os.environ["GSHEET_ID"]
     gid = os.environ[f"GSHEET_GID_{variant.value}"]
-    url = (
-        f"https://docs.google.com/spreadsheets/d/{sheet_id}"
-        f"/export?format=csv&gid={gid}"
-    )
+    url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid={gid}"
     target = get_input_csv(variant)
     print(f"Fetching {variant.value} from Google Sheet (gid={gid})...")
     with urlopen(url, timeout=30) as resp:
@@ -645,7 +494,6 @@ def fetch_source_csv(variant: Variant) -> Path:
 
 
 def load_source_csv(variant: Variant) -> pd.DataFrame:
-    """Read the local source CSV for `variant`. No I/O beyond the filesystem."""
     df = pd.read_csv(get_input_csv(variant))
     df.columns = df.columns.str.lower().str.replace("_", " ")
     if "under review" in df.columns:
@@ -656,79 +504,37 @@ def load_source_csv(variant: Variant) -> pd.DataFrame:
     return df
 
 
-def maybe_fetch_then_load(variant: Variant, fetch: bool) -> pd.DataFrame:
-    """Optionally refresh the local source CSV from Google Sheets, then load it."""
-    if fetch:
-        fetch_source_csv(variant)
-    return load_source_csv(variant)
-
-
 def get_output_paths(variant: Variant) -> tuple[Path, Path, Path]:
-    """Generate output paths with variant suffix."""
-    suffix = f"_{variant.value}"
-    return (
-        GENERATED_DIR / f"predictions{suffix}.csv",
-        GENERATED_DIR / f"new_activities{suffix}.json",
-        GENERATED_DIR / f"fichier_final{suffix}.csv",
-    )
+    s = f"_{variant.value}"
+    return (GENERATED_DIR / f"predictions{s}.csv",
+            GENERATED_DIR / f"new_activities{s}.json",
+            GENERATED_DIR / f"fichier_final{s}.csv")
 
-# Impact columns to extract from processes_impacts.json
-IMPACT_COLUMNS = [
-    "acd",
-    "cch",
-    "etf-c",
-    "fru",
-    "fwe",
-    "htc-c",
-    "htn-c",
-    "ior",
-    "ldu",
-    "mru",
-    "ozd",
-    "pco",
-    "pma",
-    "swe",
-    "tre",
-    "wtu",
-    "ecs",
-]
+
+IMPACT_COLUMNS = ["acd", "cch", "etf-c", "fru", "fwe", "htc-c", "htn-c", "ior",
+                  "ldu", "mru", "ozd", "pco", "pma", "swe", "tre", "wtu", "ecs"]
 
 ECOSYSTEMIC_SERVICES_MULTIPLIERS = {
-    "cropDiversity": -1.5,
-    "hedges": -3,
-    "livestockDensity": 3000,
-    "permanentPasture": -7,
-    "plotSize": -4,
+    "cropDiversity": -1.5, "hedges": -3, "livestockDensity": 3000,
+    "permanentPasture": -7, "plotSize": -4,
 }
 
-
-# (result_column, getter) — applied in order to populate the per-row predicted-
-# metadata block in the final CSV. Empty defaults preserve the missing-activity
-# branch (food_meta == {} returns "" for all string keys, "" for categories).
-FOOD_META_COLS: list[tuple[str, "callable"]] = [
-    ("categories",       lambda m: ";".join(m.get("ingredientCategories", []))),
-    ("transportCooling", lambda m: m.get("transportCooling", "")),
-    ("cropGroup",        lambda m: m.get("cropGroup", "")),
-    ("defaultOrigin",    lambda m: m.get("defaultOrigin", "")),
-    ("density",          lambda m: m.get("ingredientDensity", "")),
-    ("inediblePart",     lambda m: m.get("inediblePart", "")),
-    ("rawToCookedRatio", lambda m: m.get("rawToCookedRatio", "")),
+# (result_column, food_meta_key) — `categories` is special-cased (joined with ";").
+FOOD_META_COLS = [
+    ("transportCooling", "transportCooling"),
+    ("cropGroup",        "cropGroup"),
+    ("defaultOrigin",    "defaultOrigin"),
+    ("density",          "ingredientDensity"),
+    ("inediblePart",     "inediblePart"),
+    ("rawToCookedRatio", "rawToCookedRatio"),
 ]
-
-
-def _food_scope_meta(activity: dict | None) -> dict:
-    """Pick the food-scope ingredient metadata from an activity, or {} if absent."""
-    if not activity:
-        return {}
-    return next(
-        (m for m in activity.get("metadata", []) if "food" in m.get("scopes", [])),
-        {},
-    )
 
 
 def _row_food_meta(activity: dict | None) -> dict[str, str]:
-    food_meta = _food_scope_meta(activity)
-    return {col: getter(food_meta) for col, getter in FOOD_META_COLS}
+    m = next((x for x in (activity or {}).get("metadata", []) if "food" in x.get("scopes", [])), {})
+    out: dict[str, str] = {"categories": ";".join(m.get("ingredientCategories", []))}
+    out.update((col, m.get(key, "")) for col, key in FOOD_META_COLS)
+    return out
 
 
 def _row_impacts(process: dict | None) -> dict[str, str]:
@@ -771,67 +577,43 @@ def enrich_row(
     return result
 
 
-def load_processes_by_name(path: Path) -> dict:
-    with open(path) as f:
-        return {p["activityName"]: p for p in json.load(f)}
+def _strip_variant_suffix(alias: str) -> str:
+    """Strip legacy `-2025` then any variant suffix (longest match wins)."""
+    if alias.endswith(OLD_ALIAS_SUFFIX):
+        alias = alias[: -len(OLD_ALIAS_SUFFIX)]
+    for sfx in sorted(KNOWN_ALIAS_SUFFIXES, key=len, reverse=True):
+        if alias.endswith(sfx):
+            return alias[: -len(sfx)]
+    return alias
 
 
-def load_es_by_base_alias(path: Path) -> dict:
-    with open(path) as f:
-        return _build_es_by_base_alias(json.load(f))
-
-
-def load_activities_by_alias(path: Path) -> dict:
-    with open(path) as f:
-        return {a["alias"]: a for a in json.load(f)}
-
-
-def _build_es_by_base_alias(ingredients: list[dict]) -> dict[str, dict]:
-    """Build a base-alias → ecosystemicServices map from ingredients.json.
-
-    ecosystemicServices values are variant-agnostic by design (only `scenario`
-    differs across variants of the same ingredient), so we strip the variant
-    suffix from each alias and pick the first non-empty ES set per base.
-    """
-    # Longest match wins so e.g. "-fr-overseas" is stripped before "-fr".
-    variant_suffixes = sorted(KNOWN_ALIAS_SUFFIXES, key=len, reverse=True)
-
-    def strip_all_suffixes(alias: str) -> str:
-        # Strip legacy `-2025` first, then any variant suffix (longest match wins).
-        if alias.endswith(OLD_ALIAS_SUFFIX):
-            alias = alias[: -len(OLD_ALIAS_SUFFIX)]
-        for sfx in variant_suffixes:
-            if alias.endswith(sfx):
-                return alias[: -len(sfx)]
-        return alias
-
+def build_es_by_base_alias(ingredients: list[dict]) -> dict[str, dict]:
+    """Map base alias → ecosystemicServices, picking the first non-empty entry per base.
+    ES is variant-agnostic; only `scenario` differs across variants of the same ingredient."""
     es_by_base: dict[str, dict] = {}
     for ing in ingredients:
         al = ing.get("alias")
-        if not al:
-            continue
         es = ing.get("ecosystemicServices") or {}
-        if not any(v for v in es.values() if v):
+        if not al or not any(es.values()):
             continue
-        base = strip_all_suffixes(al)
-        es_by_base.setdefault(base, es)
+        es_by_base.setdefault(_strip_variant_suffix(al), es)
     return es_by_base
 
 
-def generate_final_data(variant: Variant, fetch: bool = True):
-    """Generate final CSV with all ingredient data and impacts.
+def _load_json(path: Path):
+    with open(path) as f:
+        return json.load(f)
 
-    Combines:
-    - source/new_ingredient_{variant}.csv (base data)
-    - new_activities.json (predicted metadata)
-    - processes_impacts.json (environmental impacts, matched by activityName)
-    - ingredients.json (ecosystemicServices ONLY, looked up by base alias —
-      ES is variant-agnostic; the rest of the ingredient is not consulted)
-    """
+
+def generate_final_data(variant: Variant, fetch: bool = True):
+    """Combine source CSV + predicted metadata (new_activities.json) + impacts
+    (processes_impacts.json) + ES (ingredients.json, by base alias) into one CSV."""
     output_csv, output_json, final_output_csv = get_output_paths(variant)
 
     print(f"Loading {get_input_csv(variant)}...")
-    source_df = maybe_fetch_then_load(variant, fetch=fetch)
+    if fetch:
+        fetch_source_csv(variant)
+    source_df = load_source_csv(variant)
 
     ecobalyse_data = Path(os.environ["ECOBALYSE_DATA"])
     ecobalyse = Path(os.environ["ECOBALYSE"])
@@ -839,11 +621,11 @@ def generate_final_data(variant: Variant, fetch: bool = True):
     processes_path = ecobalyse_data / "public/data/processes_impacts.json"
     ingredients_path = ecobalyse / "public/data/food/ingredients.json"
     print(f"Loading {processes_path}...")
-    processes_by_name = load_processes_by_name(processes_path)
+    processes_by_name = {p["activityName"]: p for p in _load_json(processes_path)}
     print(f"Loading {output_json}...")
-    activities_by_alias = load_activities_by_alias(output_json)
+    activities_by_alias = {a["alias"]: a for a in _load_json(output_json)}
     print(f"Loading {ingredients_path} (ES lookup only)...")
-    es_by_base_alias = load_es_by_base_alias(ingredients_path)
+    es_by_base_alias = build_es_by_base_alias(_load_json(ingredients_path))
 
     print(
         f"\nLoaded: {len(activities_by_alias)} activities, {len(processes_by_name)} processes,"
@@ -978,51 +760,24 @@ def compare_variants(generated_dir: Path):
 
 
 def main():
-    parser = argparse.ArgumentParser(
-        description="Export predicted ingredients to CSV and JSON"
-    )
-    parser.add_argument(
-        "command",
-        choices=["metadata", "final_data", "remove-old"],
-        help="metadata: export predictions + merge activities. final_data: generate final CSV with impacts. remove-old: remove suffixed entries",
-    )
-    parser.add_argument(
-        "--variant",
-        type=lambda v: Variant[v.upper()],
-        choices=list(Variant),
-        metavar="{FR,ORG,UE,OI,NUE}",
-        help="Variant: FR, ORG, UE, OI, NUE (required, used in output file names)",
-    )
-    parser.add_argument(
-        "--clear-cache",
-        action="store_true",
-        help="Clear translation cache before running",
-    )
-    parser.add_argument(
-        "--add-old-suffix",
-        action="store_true",
-        help="Add '(2025)' suffix to pre-existing ingredient displayNames and '-2025' suffix to their aliases",
-    )
-    parser.add_argument(
-        "--no-fetch",
-        action="store_true",
-        help="Skip Google Sheet fetch, use existing local source/*.csv as-is",
-    )
+    parser = argparse.ArgumentParser(description="Export predicted ingredients to CSV and JSON")
+    parser.add_argument("command", choices=["metadata", "final_data", "remove-old"],
+        help="metadata: export predictions + merge activities. final_data: generate final CSV with impacts. remove-old: remove suffixed entries")
+    parser.add_argument("--variant", type=lambda v: Variant[v.upper()], choices=list(Variant),
+        metavar="{FR,ORG,UE,OI,NUE}", help="Variant (required for metadata/final_data)")
+    parser.add_argument("--clear-cache", action="store_true", help="Clear translation cache before running")
+    parser.add_argument("--add-old-suffix", action="store_true",
+        help="Add '(2025)' suffix to pre-existing ingredient displayNames and '-2025' to their aliases")
+    parser.add_argument("--no-fetch", action="store_true",
+        help="Skip Google Sheet fetch, use existing local source/*.csv as-is")
     args = parser.parse_args()
 
-    # Handle remove-old command (no variant needed)
     if args.command == "remove-old":
-        ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
-        catalog_dir = ECOBALYSE_DATA / "lci_catalog"
-        remove_old(catalog_dir)
+        remove_old(Path(os.environ["ECOBALYSE_DATA"]) / "lci_catalog")
         return
 
-    # Validate --variant is required for metadata and final_data commands
     if args.variant is None:
         parser.error("--variant is required for metadata and final_data commands")
-
-    # Get output paths for this variant
-    output_csv, output_json, final_output_csv = get_output_paths(args.variant)
 
     if args.command == "final_data":
         generate_final_data(args.variant, fetch=not args.no_fetch)
@@ -1032,55 +787,40 @@ def main():
         Predictor.clear_translation_cache()
         print("Translation cache cleared")
 
-    ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
+    ecobalyse_data = Path(os.environ["ECOBALYSE_DATA"])
+    output_csv, output_json, _ = get_output_paths(args.variant)
 
-    # Build predictor from reference CSVs (no ingredients.json training corpus)
     predictor = Predictor()
     predictor.fit()
 
-    # Load input CSV
-    input_csv = get_input_csv(args.variant)
-    print(f"\nLoading {input_csv}...")
-    df = maybe_fetch_then_load(args.variant, fetch=not args.no_fetch)
-
+    print(f"\nLoading {get_input_csv(args.variant)}...")
+    if not args.no_fetch:
+        fetch_source_csv(args.variant)
+    df = load_source_csv(args.variant)
     if "item" not in df.columns or "icv final" not in df.columns:
         raise ValueError("CSV must have 'item' and 'icv final' columns")
 
-    # Predict for all ingredients
     print(f"\nProcessing {len(df)} ingredients...")
     results = predict_all(predictor, df, args.variant)
 
-    # Write outputs
     print(f"\nWriting {len(results)} results...")
     write_csv(results, output_csv)
     write_json(results, output_json)
-
-    # Compare predictions across variants
     compare_variants(GENERATED_DIR)
 
-    # Merge into lci_catalog
-    catalog_dir = ECOBALYSE_DATA / "lci_catalog"
-    if catalog_dir.exists():
-        merge_activities(
-            output_json,
-            catalog_dir,
-            args.add_old_suffix,
-        )
-
-        # Copy reference CSVs to ecobalyse-data
-        ref_src = Path(__file__).parent / "reference"
-        ref_dst = ECOBALYSE_DATA / "food/metadata"
-        ref_dst.mkdir(parents=True, exist_ok=True)
-        for csv_file in sorted(ref_src.glob("*.csv")):
-            shutil.copy2(csv_file, ref_dst / csv_file.name)
-        print(f"Copied reference files to {ref_dst}")
-
-        print(
-            "\nNext step: run 'just export-all' in ecobalyse-data to regenerate ingredients.json"
-        )
-    else:
+    catalog_dir = ecobalyse_data / "lci_catalog"
+    if not catalog_dir.exists():
         print(f"\nWarning: lci_catalog directory does not exist: {catalog_dir}")
+        print("\nDone!")
+        return
 
+    merge_activities(output_json, catalog_dir, args.add_old_suffix)
+    ref_dst = ecobalyse_data / "food/metadata"
+    ref_dst.mkdir(parents=True, exist_ok=True)
+    for csv_file in sorted((Path(__file__).parent / "reference").glob("*.csv")):
+        shutil.copy2(csv_file, ref_dst / csv_file.name)
+    print(f"Copied reference files to {ref_dst}")
+    print("\nNext step: run 'just export-all' in ecobalyse-data to regenerate ingredients.json")
     print("\nDone!")
 
 
