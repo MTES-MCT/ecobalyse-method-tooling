@@ -18,18 +18,25 @@ Outputs:
 
 import argparse
 import csv
+import functools
 import json
 import os
 import re
 import shutil
-import unicodedata
 import uuid
-from collections import Counter
+from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
+from typing import Literal
 from urllib.request import urlopen
 
 import inflect
+import pandas as pd
+from rich.progress import track
+
+# bw2data and dotenv are deliberately imported lazily inside _bw_ready() to
+# keep `import export` side-effect-free (bw2data prints to stderr on import).
+from predict import Predictor
 
 # Catalog read/write/merge primitives live in a side-effect-free module so
 # they can be imported by tools that don't want bw2data/pandas/dotenv.
@@ -37,16 +44,9 @@ from lci_catalog import (
     ECOBALYSE_NAMESPACE,
     OLD_ALIAS_SUFFIX,
     OLD_DISPLAY_SUFFIX,
-    apply_suffixes,
-    dedupe_suffixed_ids,
-    extract_activities_and_ingredients,
     extract_geo,
     load_lci_catalog,
     merge_activities,
-    normalize_alias,
-    normalize_display_name,
-    reassemble,
-    slugify,
     write_lci_catalog,
 )
 
@@ -70,49 +70,91 @@ class Variant(Enum):
     NUE = "NUE"
 
 
-VARIANT_SUFFIX = {
-    Variant.FR: " FR",
-    Variant.BIO: " Bio",
-    Variant.UE: " UE",
-    Variant.OI: " Origine Inconnue",
-    Variant.NUE: " HORS UE",
+Scenario = Literal["reference", "organic", "import"]
+Origin = Literal["France", "EuropeAndMaghreb", "OutOfEuropeAndMaghreb"]
+
+
+@dataclass(frozen=True)
+class VariantConfig:
+    display_suffix: str
+    alias_suffix: str
+    scenario: Scenario
+    origin: Origin
+    is_organic: bool = False
+
+
+VARIANTS: dict[Variant, VariantConfig] = {
+    Variant.FR:  VariantConfig(" FR",              "-fr",       "reference", "France",                False),
+    Variant.BIO: VariantConfig(" Bio",             "-organic",  "organic",   "France",                True),
+    Variant.UE:  VariantConfig(" UE",              "-eu",       "import",    "EuropeAndMaghreb",      False),
+    Variant.OI:  VariantConfig(" Origine Inconnue", "-default", "import",    "OutOfEuropeAndMaghreb", False),
+    Variant.NUE: VariantConfig(" HORS UE",         "-non-eu",   "import",    "OutOfEuropeAndMaghreb", False),
 }
 
-VARIANT_ALIAS_SUFFIX = {
-    Variant.FR: "-fr",
-    Variant.BIO: "-organic",
-    Variant.UE: "-eu",
-    Variant.OI: "-default",
-    Variant.NUE: "-non-eu",
-}
+@dataclass(frozen=True)
+class RowGeo:
+    """Row-level geographic data that may shift the variant config (DOM, antilles)."""
+    production_fr: str = ""   # "" or "DOM"
+    antilles: bool = False
 
-VARIANT_SCENARIO = {
-    Variant.FR: "reference",
-    Variant.BIO: "organic",
-    Variant.UE: "import",
-    Variant.OI: "import",
-    Variant.NUE: "import",
-}
 
-VARIANT_ORIGIN = {
-    Variant.FR: "France",
-    Variant.BIO: "France",
-    Variant.UE: "EuropeAndMaghreb",
-    Variant.OI: "OutOfEuropeAndMaghreb",
-    Variant.NUE: "OutOfEuropeAndMaghreb",
-}
+@dataclass(frozen=True)
+class PredictionRow:
+    """Result of running the predictor on one source-CSV ingredient row.
 
-from dotenv import load_dotenv
+    Threaded through the CSV writer, JSON writer and final-data enricher.
+    Replaces the 11-key ad-hoc dict that used to flow between those stages.
+    """
+    name: str
+    french_name: str
+    activity_name: str
+    source: str
+    unit: str
+    predictions: dict          # Predictor output, shape stable per predict.py
+    variant: Variant
+    geo: RowGeo
+    location: str = ""
+    visible: bool = True
 
-load_dotenv()
 
-import bw2data
-import pandas as pd
-from rich.progress import track
+# Sub-variants encoded as a single resolver — single source of truth for
+# (variant, row geo) → display & alias suffixes. Any new sub-variant goes here
+# and only here; downstream code reads from the returned VariantConfig.
+def resolve_variant(variant: Variant, geo: RowGeo) -> VariantConfig:
+    if variant is Variant.FR and geo.production_fr == "DOM":
+        return VariantConfig(" FR Outre-Mer", "-fr-overseas",
+                             "reference", "France", False)
+    if variant is Variant.UE and geo.antilles:
+        return VariantConfig(" UE Antilles", "-eu-antilles",
+                             "import", "EuropeAndMaghreb", False)
+    return VARIANTS[variant]
 
-from predict import Predictor
 
-bw2data.projects.set_current("ecobalyse")
+# Every alias suffix the codebase may produce — used to strip variant suffixes
+# when reading existing ingredient aliases (ES lookup). Derived, no hardcoded
+# list to keep in sync.
+KNOWN_ALIAS_SUFFIXES: frozenset[str] = frozenset(
+    {c.alias_suffix for c in VARIANTS.values()}
+    | {"-fr-overseas", "-eu-antilles"}
+)
+
+# =============================================================================
+# DEFERRED SIDE EFFECTS
+# =============================================================================
+# Loading bw2data + .env + animal regexes at module import couples every
+# importer to the full runtime. Cached lazy initializers keep `import export`
+# free of side effects; the first caller pays the cost.
+
+
+@functools.cache
+def _bw_ready():
+    """Load .env, import bw2data, select the project. Idempotent."""
+    from dotenv import load_dotenv
+    load_dotenv()
+    import bw2data
+    bw2data.projects.set_current("ecobalyse")
+    return bw2data
+
 
 # =============================================================================
 # ANIMAL DETECTION (from reference/animal.csv)
@@ -135,13 +177,16 @@ def _load_animal_data() -> list[dict]:
     return rows
 
 
-ANIMAL_ENTRIES = _load_animal_data()
+@functools.cache
+def _animal_entries() -> tuple[dict, ...]:
+    """Lazy-loaded, immutable view of reference/animal.csv with compiled regexes."""
+    return tuple(_load_animal_data())
 
 
 def detect_animal_fields(name: str, activity_name: str) -> dict:
     """Detect animalGroup1, animalGroup2, animalProduct from reference CSV."""
     text = f"{name} {activity_name}"
-    for entry in ANIMAL_ENTRIES:
+    for entry in _animal_entries():
         if entry["pattern"].search(text):
             return {
                 "animalGroup1": entry["animalGroup1"],
@@ -274,6 +319,7 @@ def get_db_unit(activity_name, location=""):
     The location is only returned when it was needed to disambiguate
     multiple activities with the same name (e.g. WFLDB).
     """
+    bw2data = _bw_ready()
     dbs = ("Agribalyse 3.2", "Ecoinvent 3.9.1", "Ecoinvent 3.11", "WFLDB", "Ecobalyse", "Ginko 2025")
     for db in dbs:
         activities = [a for a in bw2data.Database(db) if a["name"] == activity_name]
@@ -295,13 +341,9 @@ def fix_unit(unit):
 # =============================================================================
 
 
-def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) -> list:
-    """
-    Predict metadata for all ingredients in the DataFrame.
-
-    Returns list of dicts with: name, french_name, activity_name, source, predictions, variant
-    """
-    results = []
+def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) -> list[PredictionRow]:
+    """Predict metadata for all ingredients in the DataFrame."""
+    results: list[PredictionRow] = []
 
     for _, row in track(
         input_df.iterrows(), total=len(input_df), description="Predicting..."
@@ -321,28 +363,26 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
         csv_location = str(row.get("location", "")).strip() if pd.notna(row.get("location")) else ""
         unit, source, location = get_db_unit(activity_name, csv_location)
 
-        # Extract production location for FR variant handling
-        production_fr = str(row.get("production fr", "")).strip()
-        antilles = str(row.get("antilles", "")).strip().upper() == "TRUE"
+        geo = RowGeo(
+            production_fr=str(row.get("production fr", "")).strip(),
+            antilles=str(row.get("antilles", "")).strip().upper() == "TRUE",
+        )
 
-        ingredient = {"name": name, "activityName": activity_name}
-        predictions = predictor.predict(ingredient)
-
+        predictions = predictor.predict({"name": name, "activityName": activity_name})
         visible = str(row.get("visible", "TRUE")).strip().upper() == "TRUE"
 
-        results.append({
-            "name": name,
-            "french_name": french_name,
-            "activity_name": activity_name,
-            "source": source,
-            "unit": fix_unit(unit),
-            "predictions": predictions,
-            "variant": variant,
-            "production_fr": production_fr,
-            "antilles": antilles,
-            "location": location,
-            "visible": visible,
-        })
+        results.append(PredictionRow(
+            name=name,
+            french_name=french_name,
+            activity_name=activity_name,
+            source=source,
+            unit=fix_unit(unit),
+            predictions=predictions,
+            variant=variant,
+            geo=geo,
+            location=location,
+            visible=visible,
+        ))
 
     return results
 
@@ -352,80 +392,77 @@ def predict_all(predictor: Predictor, input_df: pd.DataFrame, variant: Variant) 
 # =============================================================================
 
 
-def write_csv(results: list, output_path: str):
+@dataclass(frozen=True)
+class PredField:
+    """Declarative descriptor for one prediction field in the CSV output.
+
+    `nullable` distinguishes `pred.get(k) or ""` (some predictions return None
+    for "no value") from `pred.get(k, "")` (only missing keys default to "").
+    `fmt` is a `format()` spec; when set, the value is always formatted (with
+    default 0). `has_conf` adds a `<key>Conf` column derived from the *Match dict.
+    """
+    key: str
+    has_conf: bool = False
+    fmt: str | None = None
+    nullable: bool = False
+
+
+# Order here drives both the CSV column order and the prediction-fields list
+# used by compare_variants. Single source of truth.
+PRED_FIELDS: list[PredField] = [
+    PredField("foodType",         has_conf=True),
+    PredField("novaGroup",        has_conf=True),
+    PredField("processingState",  has_conf=True),
+    PredField("packaging",                       nullable=True),
+    PredField("transportCooling"),
+    PredField("cropGroup",        has_conf=True, nullable=True),
+    PredField("density",          has_conf=True, fmt=".3f"),
+    PredField("inediblePart",     has_conf=True, fmt=".2f"),
+    PredField("rawToCookedRatio", has_conf=True, fmt=".3f"),
+]
+
+
+def csv_header() -> list[str]:
+    cols = ["name", "categories"]
+    for f in PRED_FIELDS:
+        cols.append(f.key)
+        cols.append(f.key + "Match")
+        if f.has_conf:
+            cols.append(f.key + "Conf")
+    return cols
+
+
+def _render_value(field: PredField, pred: dict) -> str:
+    if field.fmt is not None:
+        return format(pred.get(field.key, 0), field.fmt)
+    if field.nullable:
+        return pred.get(field.key) or ""
+    return pred.get(field.key, "")
+
+
+def csv_row(row: PredictionRow) -> dict[str, str]:
+    pred = row.predictions
+    categories = pred.get("categories", [])
+    out: dict[str, str] = {
+        "name": row.name,
+        "categories": ",".join(categories) if categories else "",
+    }
+    for f in PRED_FIELDS:
+        match_info = pred.get(f.key + "Match")
+        out[f.key] = _render_value(f, pred)
+        out[f.key + "Match"] = _format_match(match_info)
+        if f.has_conf:
+            out[f.key + "Conf"] = _format_conf(match_info)
+    return out
+
+
+def write_csv(results: list[PredictionRow], output_path: str):
     """Write predictions to CSV file."""
-    fieldnames = [
-        "name",
-        "categories",
-        "foodType",
-        "foodTypeMatch",
-        "foodTypeConf",
-        "novaGroup",
-        "novaGroupMatch",
-        "novaGroupConf",
-        "processingState",
-        "processingStateMatch",
-        "processingStateConf",
-        "packaging",
-        "packagingMatch",
-        "transportCooling",
-        "transportCoolingMatch",
-        "cropGroup",
-        "cropGroupMatch",
-        "cropGroupConf",
-        "density",
-        "densityMatch",
-        "densityConf",
-        "inediblePart",
-        "inediblePartMatch",
-        "inediblePartConf",
-        "rawToCookedRatio",
-        "rawToCookedRatioMatch",
-        "rawToCookedRatioConf",
-    ]
-
     with open(output_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer = csv.DictWriter(f, fieldnames=csv_header())
         writer.writeheader()
-
         for r in results:
-            pred = r["predictions"]
-            categories = pred.get("categories", [])
-
-            writer.writerow({
-                "name": r["name"],
-                "categories": ",".join(categories) if categories else "",
-                "foodType": pred.get("foodType", ""),
-                "foodTypeMatch": _format_match(pred.get("foodTypeMatch")),
-                "foodTypeConf": _format_conf(pred.get("foodTypeMatch")),
-                "novaGroup": pred.get("novaGroup", ""),
-                "novaGroupMatch": _format_match(pred.get("novaGroupMatch")),
-                "novaGroupConf": _format_conf(pred.get("novaGroupMatch")),
-                "processingState": pred.get("processingState", ""),
-                "processingStateMatch": _format_match(pred.get("processingStateMatch")),
-                "processingStateConf": _format_conf(pred.get("processingStateMatch")),
-                "packaging": pred.get("packaging") or "",
-                "packagingMatch": _format_match(pred.get("packagingMatch")),
-                "transportCooling": pred.get("transportCooling", ""),
-                "transportCoolingMatch": _format_match(
-                    pred.get("transportCoolingMatch")
-                ),
-                "cropGroup": pred.get("cropGroup") or "",
-                "cropGroupMatch": _format_match(pred.get("cropGroupMatch")),
-                "cropGroupConf": _format_conf(pred.get("cropGroupMatch")),
-                "density": f"{pred.get('density', 0):.3f}",
-                "densityMatch": _format_match(pred.get("densityMatch")),
-                "densityConf": _format_conf(pred.get("densityMatch")),
-                "inediblePart": f"{pred.get('inediblePart', 0):.2f}",
-                "inediblePartMatch": _format_match(pred.get("inediblePartMatch")),
-                "inediblePartConf": _format_conf(pred.get("inediblePartMatch")),
-                "rawToCookedRatio": f"{pred.get('rawToCookedRatio', 0):.3f}",
-                "rawToCookedRatioMatch": _format_match(
-                    pred.get("rawToCookedRatioMatch")
-                ),
-                "rawToCookedRatioConf": _format_conf(pred.get("rawToCookedRatioMatch")),
-            })
-
+            writer.writerow(csv_row(r))
     print(f"CSV written to {output_path}")
 
 
@@ -434,68 +471,43 @@ def write_csv(results: list, output_path: str):
 # =============================================================================
 
 
-def build_activity_entry(
-    name: str,
-    french_name: str,
-    activity_name: str,
-    source: str,
-    unit: str,
-    predictions: dict,
-    variant: Variant,
-    production_fr: str = "",
-    location: str = "",
-    visible: bool = True,
-    antilles: bool = False,
-    geo_disambiguate: bool = False,
-) -> dict:
+def build_activity_entry(row: PredictionRow, *, alias_override: str | None = None) -> dict:
     """Build an activity entry in the activities.json format.
 
-    Activity-level alias is derived from `activity_name` (LCI process identity);
-    ingredient-level alias is derived from `name` (Ecobalyse ingredient identity).
+    Activity-level alias is derived from `row.activity_name` (LCI process identity);
+    ingredient-level alias is derived from `row.name` (Ecobalyse ingredient identity).
     They differ when several ingredients reuse the same upstream activity as a
     proxy (e.g., `fig-eu` ingredient hosted on `peach` activity).
 
-    When `geo_disambiguate` is True, the geo code from `{…}` in `activity_name`
-    is inserted before the variant suffix on the activity alias, to break ties
-    between distinct activityNames that collapse to the same alias.
+    `alias_override` lets the caller supply a pre-computed activity alias (e.g.
+    geo-disambiguated to break a collision); when None, the alias is generated
+    from the activity name alone.
     """
-    # Determine suffix based on variant and production location
-    if variant == Variant.FR and production_fr == "DOM":
-        variant_suffix = " FR Outre-Mer"
-        alias_suffix = "-fr-overseas"
-    elif variant == Variant.UE and antilles:
-        variant_suffix = " UE Antilles"
-        alias_suffix = "-eu-antilles"
-    else:
-        variant_suffix = VARIANT_SUFFIX[variant]
-        alias_suffix = VARIANT_ALIAS_SUFFIX[variant]
+    cfg = resolve_variant(row.variant, row.geo)
+    predictions = row.predictions
 
     # Activity alias from LCI activityName only (no variant suffix: an activity
     # can be shared across variants — same `Apple {IT}` LCI feeds the FR, UE
-    # and OI variants of the apple ingredient). Geo is only appended when two
-    # distinct activityNames collide on the base alias.
-    activity_alias = generate_activity_alias(activity_name)
-    if geo_disambiguate:
-        geo = extract_geo(activity_name)
-        if geo:
-            activity_alias = f"{activity_alias}-{geo}"
+    # and OI variants of the apple ingredient). Caller may pass an override to
+    # break a same-alias / different-activity-name collision.
+    activity_alias = alias_override or generate_activity_alias(row.activity_name)
 
     # Ingredient alias from Ecobalyse ingredient name + variant suffix.
     # simplify_for_alias drops parenthesized clarifications and trailing
     # alternative-lists (e.g. "Bell pepper (green, yellow, or red)" → "Bell
     # pepper") so newly added ingredients get a short, stable alias. The full
     # `item` text remains the displayName/source-of-truth.
-    ingredient_alias = generate_alias(simplify_for_alias(name)) + alias_suffix
+    ingredient_alias = generate_alias(simplify_for_alias(row.name)) + cfg.alias_suffix
 
     # Ingredient displayName from French name + variant suffix
-    ingredient_display_name = (french_name if french_name else name) + variant_suffix
+    ingredient_display_name = (row.french_name or row.name) + cfg.display_suffix
 
     # Activity displayName: variant-neutral, derived from the LCI activityName.
     # Take the leading product segment (before `{`/`(`/`|`) and append the geo
     # code from `{…}` to keep the displayName unique across activities sharing
     # a product name (e.g. `Broccoli (GLO)` vs `Broccoli (CH)`).
-    activity_display_base = re.split(r"[{(|]", activity_name, maxsplit=1)[0].strip().rstrip(",").strip()
-    geo_code = extract_geo(activity_name)
+    activity_display_base = re.split(r"[{(|]", row.activity_name, maxsplit=1)[0].strip().rstrip(",").strip()
+    geo_code = extract_geo(row.activity_name)
     activity_display_name = (
         f"{activity_display_base} ({geo_code.upper()})"
         if geo_code
@@ -509,106 +521,93 @@ def build_activity_entry(
     activity_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"activity:{activity_alias}"))
     ingredient_id = str(uuid.uuid5(ECOBALYSE_NAMESPACE, f"ingredient:{ingredient_display_name}"))
 
-    # Scenario from variant
-    scenario = VARIANT_SCENARIO[variant]
-
     ingredient = {
         "alias": ingredient_alias,
-        "defaultOrigin": VARIANT_ORIGIN[variant],
+        "defaultOrigin": cfg.origin,
         "displayName": ingredient_display_name,
         "id": ingredient_id,
         "inediblePart": predictions.get("inediblePart", 0),
         "inediblePartMatch": predictions.get("inediblePartMatch"),
         "ingredientCategories": predictions.get("categories", ["misc"])
-            + (["organic"] if variant == Variant.BIO else []),
+            + (["organic"] if cfg.is_organic else []),
         "ingredientDensity": predictions.get("density", 1.0),
         "ingredientDensityMatch": predictions.get("densityMatch"),
         "rawToCookedRatio": predictions.get("rawToCookedRatio", 1.0),
         "rawToCookedRatioMatch": predictions.get("rawToCookedRatioMatch"),
-        "scenario": scenario,
+        "scenario": cfg.scenario,
         "transportCooling": predictions.get("transportCooling", "none"),
         "transportCoolingMatch": predictions.get("transportCoolingMatch"),
-        "visible": visible,
+        "visible": row.visible,
     }
 
     if predictions.get("cropGroup"):
         ingredient["cropGroup"] = predictions["cropGroup"]
         ingredient["cropGroupMatch"] = predictions.get("cropGroupMatch")
 
-    animal_fields = detect_animal_fields(name, activity_name)
+    animal_fields = detect_animal_fields(row.name, row.activity_name)
     if animal_fields:
         ingredient["animalGroup1"] = animal_fields["animalGroup1"]
         ingredient["animalGroup2"] = animal_fields["animalGroup2"]
         ingredient["animalProduct"] = animal_fields["animalProduct"]
 
     entry = {
-        "activityName": activity_name,
+        "activityName": row.activity_name,
         "alias": activity_alias,
         "categories": ["ingredient"],
         "displayName": activity_display_name,
         "id": activity_id,
         "metadata": [{**ingredient, "scopes": ["food", "food2"]}],
         "scopes": ["food", "food2"],
-        "source": source,
-        "unit": unit,
+        "source": row.source,
+        "unit": row.unit,
     }
-    if location:
-        entry["location"] = location
+    if row.location:
+        entry["location"] = row.location
     return entry
 
 
-def _build_entry_for_row(r: dict, geo_disambiguate: bool = False) -> dict:
-    return build_activity_entry(
-        r["name"],
-        r["french_name"],
-        r["activity_name"],
-        r["source"],
-        r["unit"],
-        r["predictions"],
-        r["variant"],
-        r.get("production_fr", ""),
-        r.get("location", ""),
-        r.get("visible", True),
-        r.get("antilles", False),
-        geo_disambiguate=geo_disambiguate,
-    )
-
-
-def write_json(results: list, output_path: str):
-    """Write activities to JSON, grouped by activity alias.
+def assemble_activities(rows: list[PredictionRow]) -> list[dict]:
+    """Build activities.json structure: one entry per (geo-resolved) activity alias.
 
     Several rows can share the same upstream `activity_name` (proxy ingredients);
     they merge into a single activity entry with multiple ingredients in
     `metadata`. If two distinct `activity_name` strings collapse to the same
-    activity alias within the variant, both fall back to a geo-disambiguated
-    alias (e.g. `apple-it-eu` vs `apple-es-eu`).
+    activity alias within the variant, both get a geo-disambiguated alias
+    (e.g. `apple-it-eu` vs `apple-es-eu`).
+
+    Single-pass over rows:
+    1. compute base alias per row
+    2. detect collisions (same alias, different activity_name)
+    3. resolve final alias (geo-suffix for colliders)
+    4. build entries once with the final alias
+    5. merge metadata by alias preserving insertion order
     """
-    # Pass 1: try without geo disambiguation, detect collisions.
-    base_entries = [_build_entry_for_row(r) for r in results]
-    activity_names_per_alias: dict[str, set[str]] = {}
-    for entry in base_entries:
-        activity_names_per_alias.setdefault(entry["alias"], set()).add(
-            entry["activityName"]
-        )
-    colliding = {a for a, ans in activity_names_per_alias.items() if len(ans) > 1}
-    if colliding:
-        print(f"Geo-disambiguating {len(colliding)} colliding alias(es): {sorted(colliding)}")
+    base_aliases = [generate_activity_alias(r.activity_name) for r in rows]
 
-    # Pass 2: rebuild colliding rows with geo suffix; group all rows by final alias.
+    by_base: dict[str, set[str]] = {}
+    for r, a in zip(rows, base_aliases):
+        by_base.setdefault(a, set()).add(r.activity_name)
+    needs_geo = {a for a, names in by_base.items() if len(names) > 1}
+    if needs_geo:
+        print(f"Geo-disambiguating {len(needs_geo)} colliding alias(es): {sorted(needs_geo)}")
+
     by_alias: dict[str, dict] = {}
-    for r, entry in zip(results, base_entries):
-        if entry["alias"] in colliding:
-            entry = _build_entry_for_row(r, geo_disambiguate=True)
-        key = entry["alias"]
-        if key in by_alias:
-            by_alias[key]["metadata"].extend(entry["metadata"])
+    for r, base in zip(rows, base_aliases):
+        geo = extract_geo(r.activity_name) if base in needs_geo else ""
+        final_alias = f"{base}-{geo}" if geo else base
+        entry = build_activity_entry(r, alias_override=final_alias)
+        if final_alias in by_alias:
+            by_alias[final_alias]["metadata"].extend(entry["metadata"])
         else:
-            by_alias[key] = entry
+            by_alias[final_alias] = entry
+    return list(by_alias.values())
 
-    activities = list(by_alias.values())
+
+def write_json(results: list[PredictionRow], output_path: str):
+    """Write activities to JSON, grouped by activity alias."""
+    activities = assemble_activities(results)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(activities, f, indent=2, ensure_ascii=False)
-
     print(f"JSON written to {output_path} ({len(activities)} activities, {sum(len(a['metadata']) for a in activities)} ingredients)")
 
 
@@ -645,9 +644,8 @@ def fetch_source_csv(variant: Variant) -> Path:
     return target
 
 
-def load_source_csv(variant: Variant, fetch: bool = True) -> pd.DataFrame:
-    if fetch:
-        fetch_source_csv(variant)
+def load_source_csv(variant: Variant) -> pd.DataFrame:
+    """Read the local source CSV for `variant`. No I/O beyond the filesystem."""
     df = pd.read_csv(get_input_csv(variant))
     df.columns = df.columns.str.lower().str.replace("_", " ")
     if "under review" in df.columns:
@@ -656,6 +654,13 @@ def load_source_csv(variant: Variant, fetch: bool = True) -> pd.DataFrame:
             print(f"Forcing visible=FALSE on {int(mask.sum())} rows marked 'under review'")
             df.loc[mask, "visible"] = "FALSE"
     return df
+
+
+def maybe_fetch_then_load(variant: Variant, fetch: bool) -> pd.DataFrame:
+    """Optionally refresh the local source CSV from Google Sheets, then load it."""
+    if fetch:
+        fetch_source_csv(variant)
+    return load_source_csv(variant)
 
 
 def get_output_paths(variant: Variant) -> tuple[Path, Path, Path]:
@@ -697,6 +702,90 @@ ECOSYSTEMIC_SERVICES_MULTIPLIERS = {
 }
 
 
+# (result_column, getter) — applied in order to populate the per-row predicted-
+# metadata block in the final CSV. Empty defaults preserve the missing-activity
+# branch (food_meta == {} returns "" for all string keys, "" for categories).
+FOOD_META_COLS: list[tuple[str, "callable"]] = [
+    ("categories",       lambda m: ";".join(m.get("ingredientCategories", []))),
+    ("transportCooling", lambda m: m.get("transportCooling", "")),
+    ("cropGroup",        lambda m: m.get("cropGroup", "")),
+    ("defaultOrigin",    lambda m: m.get("defaultOrigin", "")),
+    ("density",          lambda m: m.get("ingredientDensity", "")),
+    ("inediblePart",     lambda m: m.get("inediblePart", "")),
+    ("rawToCookedRatio", lambda m: m.get("rawToCookedRatio", "")),
+]
+
+
+def _food_scope_meta(activity: dict | None) -> dict:
+    """Pick the food-scope ingredient metadata from an activity, or {} if absent."""
+    if not activity:
+        return {}
+    return next(
+        (m for m in activity.get("metadata", []) if "food" in m.get("scopes", [])),
+        {},
+    )
+
+
+def _row_food_meta(activity: dict | None) -> dict[str, str]:
+    food_meta = _food_scope_meta(activity)
+    return {col: getter(food_meta) for col, getter in FOOD_META_COLS}
+
+
+def _row_impacts(process: dict | None) -> dict[str, str]:
+    impacts = (process or {}).get("impacts", {})
+    return {col: impacts.get(col, "") for col in IMPACT_COLUMNS}
+
+
+def _row_ecosystemic(es: dict) -> dict[str, float | str]:
+    out: dict[str, float | str] = {}
+    for field, multiplier in ECOSYSTEMIC_SERVICES_MULTIPLIERS.items():
+        raw = es.get(field) or 0
+        out[field] = raw * multiplier if raw else ""
+    return out
+
+
+def enrich_row(
+    row,
+    variant: Variant,
+    activities_by_alias: dict,
+    processes_by_name: dict,
+    es_by_base_alias: dict,
+) -> dict:
+    """Combine source-CSV row + predicted metadata + impacts + ES into one record.
+
+    Pure data transformation: all I/O happens upstream (the three lookup dicts).
+    """
+    result = dict(row)
+    activity_name = clean_activity_name(str(row["icv final"]))
+    geo = RowGeo(
+        production_fr=str(row.get("production fr", "")).strip(),
+        antilles=str(row.get("antilles", "")).strip().upper() == "TRUE",
+    )
+    cfg = resolve_variant(variant, geo)
+    base_alias = generate_alias(row["item"])
+    row_alias = base_alias + cfg.alias_suffix
+
+    result.update(_row_food_meta(activities_by_alias.get(row_alias)))
+    result.update(_row_impacts(processes_by_name.get(activity_name)))
+    result.update(_row_ecosystemic(es_by_base_alias.get(base_alias) or {}))
+    return result
+
+
+def load_processes_by_name(path: Path) -> dict:
+    with open(path) as f:
+        return {p["activityName"]: p for p in json.load(f)}
+
+
+def load_es_by_base_alias(path: Path) -> dict:
+    with open(path) as f:
+        return _build_es_by_base_alias(json.load(f))
+
+
+def load_activities_by_alias(path: Path) -> dict:
+    with open(path) as f:
+        return {a["alias"]: a for a in json.load(f)}
+
+
 def _build_es_by_base_alias(ingredients: list[dict]) -> dict[str, dict]:
     """Build a base-alias → ecosystemicServices map from ingredients.json.
 
@@ -704,20 +793,8 @@ def _build_es_by_base_alias(ingredients: list[dict]) -> dict[str, dict]:
     differs across variants of the same ingredient), so we strip the variant
     suffix from each alias and pick the first non-empty ES set per base.
     """
-    variant_suffixes = sorted(
-        {
-            "-fr-overseas",
-            "-eu-antilles",
-            "-fr",
-            "-eu",
-            "-organic",
-            "-default",
-            "-non-eu",
-            *VARIANT_ALIAS_SUFFIX.values(),
-        },
-        key=len,
-        reverse=True,
-    )
+    # Longest match wins so e.g. "-fr-overseas" is stripped before "-fr".
+    variant_suffixes = sorted(KNOWN_ALIAS_SUFFIXES, key=len, reverse=True)
 
     def strip_all_suffixes(alias: str) -> str:
         # Strip legacy `-2025` first, then any variant suffix (longest match wins).
@@ -753,104 +830,37 @@ def generate_final_data(variant: Variant, fetch: bool = True):
     """
     output_csv, output_json, final_output_csv = get_output_paths(variant)
 
-    # Load source CSV
-    input_csv = get_input_csv(variant)
-    print(f"Loading {input_csv}...")
-    source_df = load_source_csv(variant, fetch=fetch)
+    print(f"Loading {get_input_csv(variant)}...")
+    source_df = maybe_fetch_then_load(variant, fetch=fetch)
 
-    ECOBALYSE_DATA = Path(os.environ["ECOBALYSE_DATA"])
-    ECOBALYSE = Path(os.environ["ECOBALYSE"])
+    ecobalyse_data = Path(os.environ["ECOBALYSE_DATA"])
+    ecobalyse = Path(os.environ["ECOBALYSE"])
 
-    # Load processes_impacts.json - key by activityName for direct matching
-    processes_path = ECOBALYSE_DATA / "public/data/processes_impacts.json"
+    processes_path = ecobalyse_data / "public/data/processes_impacts.json"
+    ingredients_path = ecobalyse / "public/data/food/ingredients.json"
     print(f"Loading {processes_path}...")
-    with open(processes_path) as f:
-        processes_list = json.load(f)
-    processes_by_name = {p["activityName"]: p for p in processes_list}
-
-    # Load new_activities.json to get predicted metadata
+    processes_by_name = load_processes_by_name(processes_path)
     print(f"Loading {output_json}...")
-    with open(output_json) as f:
-        new_activities = json.load(f)
-    # Map alias to full activity (alias is unique; activityName is not)
-    activities_by_alias = {a["alias"]: a for a in new_activities}
-
-    # Load ingredients.json — used ONLY for ecosystemicServices lookup.
-    ingredients_path = ECOBALYSE / "public/data/food/ingredients.json"
+    activities_by_alias = load_activities_by_alias(output_json)
     print(f"Loading {ingredients_path} (ES lookup only)...")
-    with open(ingredients_path) as f:
-        ingredients_list = json.load(f)
-    es_by_base_alias = _build_es_by_base_alias(ingredients_list)
+    es_by_base_alias = load_es_by_base_alias(ingredients_path)
 
     print(
-        f"\nLoaded: {len(new_activities)} activities, {len(processes_by_name)} processes,"
+        f"\nLoaded: {len(activities_by_alias)} activities, {len(processes_by_name)} processes,"
         f" {len(es_by_base_alias)} ecosystemicServices entries (by base alias)"
     )
 
-    # Process each row
     print(f"Processing {len(source_df)} ingredients...")
-    results = []
-    matched_processes = 0
+    results = [
+        enrich_row(row, variant, activities_by_alias, processes_by_name, es_by_base_alias)
+        for _, row in source_df.iterrows()
+    ]
+    matched_processes = sum(
+        1 for _, row in source_df.iterrows()
+        if processes_by_name.get(clean_activity_name(str(row["icv final"])))
+    )
 
-    for _, row in source_df.iterrows():
-        result = dict(row)  # Copy all source columns
-        activity_name = clean_activity_name(str(row["icv final"]))
-
-        # Derive alias the same way build_activity_entry does (alias is unique, activityName is not)
-        antilles = str(row.get("antilles", "")).strip().upper() == "TRUE"
-        if variant == Variant.FR and row.get("production fr") == "DOM":
-            alias_suffix = "-fr-overseas"
-        elif variant == Variant.UE and antilles:
-            alias_suffix = "-eu-antilles"
-        else:
-            alias_suffix = VARIANT_ALIAS_SUFFIX[variant]
-        row_alias = generate_alias(row["item"]) + alias_suffix
-
-        # Get predicted metadata from new_activities.json
-        activity = activities_by_alias.get(row_alias)
-        if activity:
-            food_meta = next((m for m in activity.get("metadata", []) if "food" in m.get("scopes", [])), {})
-            result["categories"] = ";".join(food_meta.get("ingredientCategories", []))
-            result["transportCooling"] = food_meta.get("transportCooling", "")
-            result["cropGroup"] = food_meta.get("cropGroup", "")
-            result["defaultOrigin"] = food_meta.get("defaultOrigin", "")
-            result["density"] = food_meta.get("ingredientDensity", "")
-            result["inediblePart"] = food_meta.get("inediblePart", "")
-            result["rawToCookedRatio"] = food_meta.get("rawToCookedRatio", "")
-        else:
-            result["categories"] = ""
-            result["transportCooling"] = ""
-            result["cropGroup"] = ""
-            result["defaultOrigin"] = ""
-            result["density"] = ""
-            result["inediblePart"] = ""
-            result["rawToCookedRatio"] = ""
-
-        # Get impacts directly from processes_impacts.json by activityName
-        process = processes_by_name.get(activity_name)
-        if process:
-            matched_processes += 1
-            impacts = process.get("impacts", {})
-            for col in IMPACT_COLUMNS:
-                result[col] = impacts.get(col, "")
-        else:
-            for col in IMPACT_COLUMNS:
-                result[col] = ""
-
-        # ecosystemicServices: variant-agnostic — look up from ingredients.json
-        # by base alias (= ingredient identity stripped of variant suffix).
-        # Apply the multiplier defined in ECOSYSTEMIC_SERVICES_MULTIPLIERS.
-        base_alias = generate_alias(row["item"])
-        es = es_by_base_alias.get(base_alias) or {}
-        for field, multiplier in ECOSYSTEMIC_SERVICES_MULTIPLIERS.items():
-            raw = es.get(field) or 0
-            result[field] = raw * multiplier if raw else ""
-
-        results.append(result)
-
-    # Write output
-    output_df = pd.DataFrame(results)
-    output_df.to_csv(final_output_csv, index=False)
+    pd.DataFrame(results).to_csv(final_output_csv, index=False)
     print(f"\nMatched: {matched_processes}/{len(results)} processes with impacts")
     print(f"Final data written to {final_output_csv}")
 
@@ -923,18 +933,10 @@ def remove_old(target_catalog_dir: Path):
     print("Done!")
 
 
-VARIANT_INDEPENDENT_FIELDS = [
-    "foodType",
-    "novaGroup",
-    "processingState",
-    "transportCooling",
-    "cropGroup",
-    "density",
-    "inediblePart",
-    "rawToCookedRatio",
-    "packaging",
-    "categories",
-]
+# Predictions are deterministic from (item, activity_name) — variant should not
+# affect them. Derived from PRED_FIELDS so adding/removing predictor outputs
+# stays in lockstep.
+VARIANT_INDEPENDENT_FIELDS = [f.key for f in PRED_FIELDS] + ["categories"]
 
 
 def compare_variants(generated_dir: Path):
@@ -1039,7 +1041,7 @@ def main():
     # Load input CSV
     input_csv = get_input_csv(args.variant)
     print(f"\nLoading {input_csv}...")
-    df = load_source_csv(args.variant, fetch=not args.no_fetch)
+    df = maybe_fetch_then_load(args.variant, fetch=not args.no_fetch)
 
     if "item" not in df.columns or "icv final" not in df.columns:
         raise ValueError("CSV must have 'item' and 'icv final' columns")
