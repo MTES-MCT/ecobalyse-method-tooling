@@ -538,18 +538,37 @@ class NearestNeighborMatcher:
             name_forms = get_plural_forms(name_low)
             trans_forms = get_plural_forms(trans_low)
             matched = False
-            # Check if any reference name form appears as word in any query form
+            # When ref appears as word in query, ref length is the overlap
+            # (longer ref = more specific). When only the reverse holds (query
+            # in ref, with extra ref words), score by the matched query length
+            # instead — otherwise noisy multi-word refs win on length alone
+            # (e.g. "apricots" → "Apricot brandy" via the "apricot" token).
+            # Tiebreakers (in order): (a) ref starts with matched token —
+            # primary noun beats a noun-phrase modifier (e.g. "Olives, green"
+            # over "Oil, vegetable, olive"); (b) shorter ref wins (less noise,
+            # e.g. "Cassava, raw" over "Cassava, fermented, dried…").
+            def _tiebreak(nf_str: str, matched_word: str) -> tuple[int, int]:
+                return (1 if nf_str.startswith(matched_word) else 0, -len(nf_str))
+
             for qf in query_forms:
                 for nf in name_forms:
-                    if is_word_match(nf, qf) or is_word_match(qf, nf):
-                        word_matches.append((i, len(nf)))
+                    if is_word_match(nf, qf):
+                        word_matches.append((i, len(nf), *_tiebreak(nf, nf)))
+                        matched = True
+                        break
+                    if is_word_match(qf, nf):
+                        word_matches.append((i, len(qf), *_tiebreak(nf, qf)))
                         matched = True
                         break
                 if matched:
                     break
                 for tf in trans_forms:
-                    if is_word_match(tf, qf) or is_word_match(qf, tf):
-                        word_matches.append((i, len(tf)))
+                    if is_word_match(tf, qf):
+                        word_matches.append((i, len(tf), *_tiebreak(tf, tf)))
+                        matched = True
+                        break
+                    if is_word_match(qf, tf):
+                        word_matches.append((i, len(qf), *_tiebreak(tf, qf)))
                         matched = True
                         break
                 if matched:
@@ -558,18 +577,19 @@ class NearestNeighborMatcher:
                 # Original matching logic as fallback
                 # Check if reference name appears as word in query
                 if is_word_match(name_low, query_lower):
-                    word_matches.append((i, len(name_low)))
+                    word_matches.append((i, len(name_low), *_tiebreak(name_low, name_low)))
                 elif is_word_match(trans_low, query_translated):
-                    word_matches.append((i, len(trans_low)))
+                    word_matches.append((i, len(trans_low), *_tiebreak(trans_low, trans_low)))
                 # Check if query appears as word in reference
                 elif is_word_match(query_lower, name_low):
-                    word_matches.append((i, len(query_lower)))
+                    word_matches.append((i, len(query_lower), *_tiebreak(name_low, query_lower)))
                 elif is_word_match(query_translated, trans_low):
-                    word_matches.append((i, len(query_translated)))
+                    word_matches.append((i, len(query_translated), *_tiebreak(trans_low, query_translated)))
 
         if word_matches:
-            # Return the longest word match
-            best_i, _ = max(word_matches, key=lambda x: x[1])
+            # Sort by primary score, then "starts with matched token", then
+            # by shortest ref (less noise).
+            best_i, _, _, _ = max(word_matches, key=lambda x: (x[1], x[2], x[3]))
             value = self.values[best_i]
             if isinstance(value, (int, float, np.number)):
                 value = float(value)
