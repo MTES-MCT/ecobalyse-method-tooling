@@ -352,9 +352,9 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 1.06,
+        "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "Matched with Apricot brandy in fao_density.csv",
+          "rule": "Matched with apricot in density.csv",
           "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
@@ -1836,10 +1836,10 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 1.0,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with carrot in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -2641,10 +2641,10 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.8,
+        "ingredientDensity": 0.745,
         "ingredientDensityMatch": {
-          "rule": "legume default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with Alfalfa, seed in fao_density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -2892,15 +2892,15 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.9,
+        "ingredientDensity": 1.0,
         "ingredientDensityMatch": {
-          "rule": "vegetable default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with onion in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
-          "rule": "vegetable default from food_type_cooked_to_raw.csv",
-          "confidence": 1.0
+          "rule": "Matched with onion in cooked_to_raw.csv",
+          "confidence": 0.95
         },
         "scenario": "reference",
         "transportCooling": "always",
@@ -3915,10 +3915,10 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.85,
+        "ingredientDensity": 0.9,
         "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with peach in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -5250,10 +5250,10 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.85,
+        "ingredientDensity": 0.95,
         "ingredientDensityMatch": {
-          "rule": "fruit default from food_type_density.csv",
-          "confidence": 1.0
+          "rule": "Matched with pear in density.csv",
+          "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
         "rawToCookedRatioMatch": {
@@ -5695,9 +5695,9 @@
         "ingredientCategories": [
           "vegetable_fresh"
         ],
-        "ingredientDensity": 0.65,
+        "ingredientDensity": 0.44,
         "ingredientDensityMatch": {
-          "rule": "Matched with Sweet potato, boiled in fao_density.csv",
+          "rule": "Matched with Sweet potato, raw in fao_density.csv",
           "confidence": 0.95
         },
         "rawToCookedRatio": 0.856,
@@ -6315,9 +6315,9 @@
         "ingredientCategories": [
           "grain_raw"
         ],
-        "ingredientDensity": 0.54,
+        "ingredientDensity": 0.535,
         "ingredientDensityMatch": {
-          "rule": "Matched with Sorghum, fermented flour in fao_density.csv",
+          "rule": "Matched with Sorghum, seed in fao_density.csv",
           "confidence": 0.95
         },
         "rawToCookedRatio": 2.259,
