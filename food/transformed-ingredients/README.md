@@ -139,8 +139,9 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
 
 ```bash
 uv run python generate_transformed_ingredients.py \
-    --activities /path/to/ecobalyse-data/activities.json \
-    --activities-to-create /path/to/ecobalyse-data/activities_to_create.json \
+    --activities           /path/to/ecobalyse/data/lci_catalog \
+    --activities-to-create /path/to/ecobalyse/data/activities_to_create.json \
+    --merge-into-catalog   /path/to/ecobalyse/data/lci_catalog \
     --output-dir . \
     [--volca-url http://localhost:8080] \
     [--max-depth 2] \
