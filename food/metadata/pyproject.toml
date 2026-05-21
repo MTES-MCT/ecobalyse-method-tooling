@@ -24,6 +24,9 @@ dependencies = [
     "colorama>=0.4.6",
     "torch>=2.9.1",
     "sentence-transformers>=5.1.2",
+    # sentence-transformers imports `requests` but does not declare it;
+    # huggingface-hub 1.x no longer pulls it in transitively, so declare it here.
+    "requests>=2.33.0",
     "sentencepiece>=0.2.1",
     "sacremoses>=0.1.1",
     "scikit-learn>=1.7.2",
