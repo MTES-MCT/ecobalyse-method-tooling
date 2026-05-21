@@ -7163,64 +7163,6 @@
     "unit": "kg"
   },
   {
-    "activityName": "Soybean, organic 2025 {BR}| market for soybean | Cut-off, U",
-    "alias": "soybean-organic",
-    "categories": [
-      "ingredient"
-    ],
-    "displayName": "Soybean, organic 2025 (BR)",
-    "id": "bd878da4-6f00-5efb-9351-785453abc93d",
-    "metadata": [
-      {
-        "alias": "soybean-organic",
-        "defaultOrigin": "France",
-        "displayName": "Soja Bio",
-        "id": "4879c02e-05e5-5567-84e5-b7d6d9d3f22a",
-        "inediblePart": 0.5,
-        "inediblePartMatch": {
-          "rule": "nut_oilseed NOVA 1 default from food_type_inedible_part.csv",
-          "confidence": 1.0
-        },
-        "ingredientCategories": [
-          "nut_oilseed_raw",
-          "organic"
-        ],
-        "ingredientDensity": 0.74,
-        "ingredientDensityMatch": {
-          "rule": "Soybean found in fao_density.csv",
-          "confidence": 1.0
-        },
-        "rawToCookedRatio": 2.259,
-        "rawToCookedRatioMatch": {
-          "rule": "Matched with soybean in cooked_to_raw.csv",
-          "confidence": 1.0
-        },
-        "scenario": "organic",
-        "transportCooling": "none",
-        "transportCoolingMatch": {
-          "rule": "nut_oilseed → none (non-perishable)",
-          "confidence": 1.0
-        },
-        "visible": true,
-        "cropGroup": "AUTRES OLEAGINEUX",
-        "cropGroupMatch": {
-          "rule": "matched 'soybean' in cropgroup.csv",
-          "confidence": 1.0
-        },
-        "scopes": [
-          "food",
-          "food2"
-        ]
-      }
-    ],
-    "scopes": [
-      "food",
-      "food2"
-    ],
-    "source": "Ginko 2025",
-    "unit": "kg"
-  },
-  {
     "activityName": "Spring faba bean, organic 2025, reduced protection, at farm gate {FR} U",
     "alias": "spring-faba-bean-organic-reduced-protection",
     "categories": [
