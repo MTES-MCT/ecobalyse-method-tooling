@@ -601,6 +601,29 @@ def merge_activities(
             if ak in cross_source_renames:
                 ing["activity_key"] = cross_source_renames[ak]
 
+    # Cross-batch displayName collisions: extract_activities_and_ingredients's
+    # in-batch dedup only sees one batch at a time, so a legacy activity can
+    # keep its bare displayName even though a freshly-merged new activity (with
+    # a different activityName) carries the same one. Disambiguate by
+    # appending the geo code; new activities claim canonical displayNames
+    # first so legacy ones get the suffix.
+    new_keys = set(added_acts.keys())
+    seen_disp: set[str] = set()
+    for key in sorted(merged_acts, key=lambda k: (0 if k in new_keys else 1, k)):
+        act = merged_acts[key]
+        disp = act.get("displayName")
+        if not disp:
+            continue
+        if disp not in seen_disp:
+            seen_disp.add(disp)
+            continue
+        geo = extract_geo(act.get("activityName", "")).upper()
+        cand = f"{disp} ({geo})" if geo else f"{disp} ({key[0]})"
+        if cand in seen_disp:
+            cand = f"{disp} ({key[0]})"
+        act["displayName"] = cand
+        seen_disp.add(cand)
+
     result = reassemble(merged_acts, merged_ings, other)
 
     write_lci_catalog(result, target_catalog_dir)
