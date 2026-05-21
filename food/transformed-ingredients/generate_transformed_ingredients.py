@@ -101,6 +101,7 @@ DB_MAP: dict[str, str] = {
     "Ginko 2025": "ginko-2025-v2",
     "WFLDB": "wfldb",
     "PastoEco": "pastoeco",
+    "Ecobalyse": "ecobalyse",
 }
 
 
@@ -368,10 +369,13 @@ def resolve_process_ids(
     groups: dict[str, list[VariantInfo]],
     client: Client,
     native_dbs: set[str],
+    loaded_dbs: set[str] | None = None,
 ) -> None:
     """Resolve process_id for each variant in-place. Unresolved variants get None.
     native_dbs: databases with native naming (EcoSpold 2) — SimaPro long names
-    are parsed to extract the real activity name. Other databases keep SimaPro names as-is."""
+    are parsed to extract the real activity name. Other databases keep SimaPro names as-is.
+    loaded_dbs: if provided, variants whose source DB is not loaded are skipped
+    with a warning instead of crashing on 404."""
     cache: dict[tuple[str, str], str | None] = {}
 
     for variants in groups.values():
@@ -385,6 +389,15 @@ def resolve_process_ids(
             if not db_name:
                 print(
                     f"  [WARN] Unknown source database '{v.source}' for alias {v.alias!r}",
+                    file=sys.stderr,
+                )
+                cache[key] = None
+                v.process_id = None
+                continue
+
+            if loaded_dbs is not None and db_name not in loaded_dbs:
+                print(
+                    f"  [WARN] Database {db_name!r} not loaded — skipping alias {v.alias!r}",
                     file=sys.stderr,
                 )
                 cache[key] = None
@@ -908,12 +921,14 @@ def main() -> None:
     # derive the set of DBs hosting transformed food products from declared
     # topology: agribalyse itself plus anything that depends on it.
     dbs = client.list_databases()
+    loaded_dbs = {db.name for db in dbs if db.status == "loaded"}
     native_dbs = {db.name for db in dbs if db.format != "SimaPro CSV"}
-    food_transform_dbs = {AGRIBALYSE_DB} | {
+    food_transform_dbs = ({AGRIBALYSE_DB} | {
         db.name for db in dbs if AGRIBALYSE_DB in db.depends_on
-    }
+    }) & loaded_dbs
+    print(f"Loaded databases: {loaded_dbs}")
     print(f"Native-naming databases: {native_dbs}")
-    print(f"Food-transform databases: {food_transform_dbs}")
+    print(f"Food-transform databases (loaded): {food_transform_dbs}")
 
     # Step 1: Parse and group
     print("Parsing ingredient groups ...")
@@ -925,7 +940,7 @@ def main() -> None:
 
     # Step 2: Resolve process_ids
     print("Resolving process IDs via VoLCA ...")
-    resolve_process_ids(groups, client, native_dbs)
+    resolve_process_ids(groups, client, native_dbs, loaded_dbs)
     resolvable = sum(
         1 for vs in groups.values() if any(v.process_id is not None for v in vs)
     )
