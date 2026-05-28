@@ -236,7 +236,7 @@ def translate_en_to_fr(names: list[str]) -> list[str]:
 
 # Patterns for LCA jargon segments to drop from activity names
 _JARGON_RE = re.compile(
-    r"^at (processing|plant|industrial mill|orchard|farm)"
+    r"^at \S"  # process stage: "at plant", "at processing", truncated "at p"…
     r"|production"
     r"|^for "
     r"|^from "
@@ -245,15 +245,33 @@ _JARGON_RE = re.compile(
 )
 
 
+# Process-stage jargon embedded mid-segment ("Carrot, processing for grated
+# carrots at plant {FR}") — not always comma-delimited, so strip it as a
+# substring from its first occurrence to the segment end.
+_EMBEDDED_JARGON_RE = re.compile(
+    r"\s+at (processing|plant|industrial mill|orchard|farm)\b.*$",
+    re.IGNORECASE,
+)
+
+
+def _clean_segment(segment: str) -> str:
+    """Drop geo-code braces and trailing process-stage jargon from a segment."""
+    segment = re.sub(r"\s*\{[^}]+\}", "", segment)
+    return _EMBEDDED_JARGON_RE.sub("", segment).strip()
+
+
 def extract_short_name(activity_name: str) -> str:
     """Extract a human-readable product name from an Agribalyse activity name.
 
     Strips LCA jargon (location, production method, packaging) and geo codes,
-    keeping only segments that describe the product itself."""
-    clean = re.sub(r"\s*\{[^}]+\}\s*U$", "", activity_name).strip()
-    segments = [s.strip() for s in clean.split(",")]
-    kept = [s for s in segments if not _JARGON_RE.search(s)]
-    return ", ".join(kept) if kept else segments[0]
+    keeping only segments that describe the product itself. A multi-output
+    name ("Frozen banana puree … & Banana peel …") is cut at ' & ' so only
+    the main product is kept."""
+    clean = activity_name.split(" & ")[0]
+    clean = re.sub(r"\s*\{[^}]+\}\s*U$", "", clean).strip()
+    segments = [_clean_segment(s) for s in clean.split(",")]
+    kept = [s for s in segments if s and not _JARGON_RE.search(s)]
+    return ", ".join(kept) if kept else (segments[0] if segments else clean)
 
 
 # `for X` / `from X` qualifiers normally count as jargon and get stripped, but
@@ -270,13 +288,14 @@ def extract_long_name(activity_name: str) -> str:
     existing displayName in lci_catalog/ — the qualifier disambiguates the
     transformed product from its raw counterpart.
     """
-    clean = re.sub(r"\s*\{[^}]+\}\s*U$", "", activity_name).strip()
-    segments = [s.strip() for s in clean.split(",")]
+    clean = activity_name.split(" & ")[0]
+    clean = re.sub(r"\s*\{[^}]+\}\s*U$", "", clean).strip()
+    segments = [_clean_segment(s) for s in clean.split(",")]
     kept = [
         s for s in segments
-        if not _JARGON_RE.search(s) or _QUALIFIER_RE.match(s)
+        if s and (not _JARGON_RE.search(s) or _QUALIFIER_RE.match(s))
     ]
-    return ", ".join(kept) if kept else segments[0]
+    return ", ".join(kept) if kept else (segments[0] if segments else clean)
 
 
 def is_proxy(base_name: str, activity_name: str) -> bool:
@@ -291,6 +310,26 @@ def slugify(text: str) -> str:
     text = text.lower()
     text = re.sub(r"[^a-z0-9]+", "-", text)
     return text.strip("-")
+
+
+# Agribalyse spells some ingredients inconsistently (plurals, two words); map
+# them to the ecobalyse base_ingredients vocabulary so derived aliases reuse an
+# existing base ingredient instead of creating a near-duplicate.
+_CANONICAL_NAME = {
+    "chick peas": "chickpea",
+    "chick pea": "chickpea",
+    "walnuts": "walnut",
+    "lentils": "lentil",
+    "onions": "onion",
+    "hazelnuts": "hazelnut",
+}
+
+
+def _canonicalize(name: str) -> str:
+    """Rewrite known non-canonical ingredient spellings (case-insensitive)."""
+    for variant, canon in _CANONICAL_NAME.items():
+        name = re.sub(rf"\b{re.escape(variant)}\b", canon, name, flags=re.IGNORECASE)
+    return name
 
 
 # ---------------------------------------------------------------------------
@@ -415,6 +454,20 @@ def resolve_process_ids(
                 search_kwargs["geo"] = geo
             results = db_client.search_activities(exact=True, **search_kwargs)
             pid = results[0].process_id if results else None
+            # SimaPro-CSV catalogs store the reference *product* name in
+            # activityName, which no longer equals VoLCA's activity name
+            # (e.g. product "Banana {RoW}|…U" vs activity "banana production
+            # RoW"). When the name lookup misses, match on the product field.
+            # exact=True is name-only server-side, so filter the substring
+            # hits down to an exact product match here.
+            if pid is None and db_name not in native_dbs:
+                by_product = db_client.search_activities(
+                    product=v.activity_name, geo=geo, limit=100
+                )
+                product_matches = [
+                    r for r in by_product if r.product == v.activity_name
+                ]
+                pid = product_matches[0].process_id if product_matches else None
             if pid is None:
                 print(
                     f"  [WARN] Could not resolve '{v.activity_name}' in {db_name!r}",
@@ -565,11 +618,49 @@ def _pid_to_step(
     if pid == supplier_step.process_id:
         return supplier_step
     c = node_info[pid]
+    # Use the reference *product* name, not the activity name: the catalog and
+    # Brightway both key activities on the SimaPro product name (with the
+    # trailing " U"), while VoLCA's activity name drops it.
     return LocalStep(
         process_id=c.process_id,
-        name=c.name,
+        name=c.product,
         classifications=c.classifications,
     )
+
+
+def _product_key(activity_name: str) -> str:
+    """Plural-folded short name — the grouping key for consumer dedup, so
+    'Hazelnut, unshelled' and 'Hazelnuts, unshelled' map to one product."""
+    words = extract_short_name(activity_name).lower().replace(",", "").split()
+    return " ".join(w[:-1] if len(w) > 3 and w.endswith("s") else w for w in words)
+
+
+def dedup_consumers(
+    consumer_to_found: dict[str, set[str]],
+    node_info: dict[str, ConsumerResult],
+) -> dict[str, set[str]]:
+    """Keep one representative consumer per transformed product.
+
+    Several Agribalyse processes collapse to a single product ("Barley flour,
+    at plant" / "… at industrial mill" / "… & Barley bran"; "Hazelnut,
+    unshelled" / "Hazelnuts, unshelled"). Emitting an ingredient for each
+    produces colliding aliases and displayNames, so keep just one: prefer a
+    single-output process (no ' & ') with the shortest — hence plainest —
+    name. The final name tiebreak keeps the choice deterministic.
+    """
+    by_short: dict[str, list[str]] = defaultdict(list)
+    for pid in consumer_to_found:
+        by_short[_product_key(node_info[pid].name)].append(pid)
+
+    def rank(pid: str) -> tuple[bool, int, str]:
+        name = node_info[pid].name
+        return (" & " in name, len(name), name)
+
+    deduped: dict[str, set[str]] = {}
+    for pids in by_short.values():
+        best = min(pids, key=rank)
+        deduped[best] = consumer_to_found[best]
+    return deduped
 
 
 # ---------------------------------------------------------------------------
@@ -580,13 +671,16 @@ def _pid_to_step(
 def derive_alias(
     activity_name: str, variant_suffix: str, existing_aliases: set[str]
 ) -> str | None:
-    """Shortest unique alias built from comma segments of the activity name."""
-    segments = activity_name.split(",")
-    for i in range(1, len(segments) + 1):
-        base = ",".join(segments[:i]).strip()
-        base = re.sub(r"\s*\{[^}]+\}\s*U$", "", base).strip()
-        candidate = f"{slugify(base)}-{variant_suffix}"
-        if candidate not in existing_aliases:
+    """Unique alias built from the jargon-stripped product name.
+
+    Slugifies the short product name (then the long name as a collision
+    fallback) — never raw comma segments, which would leak LCA process stages
+    ("at plant", "at industrial mill") and geo codes into the alias. Returns
+    None when both candidates are already taken."""
+    for name in (extract_short_name(activity_name), extract_long_name(activity_name)):
+        slug = slugify(_canonicalize(name))
+        candidate = f"{slug}-{variant_suffix}"
+        if slug and candidate not in existing_aliases:
             return candidate
     return None
 
@@ -678,6 +772,7 @@ def make_activities_entry(
     fe_block: dict,
     target: VariantInfo,
     french_name: str,
+    english_name: str,
     predictor: Predictor,
 ) -> dict:
     """Build an activities.json entry for a new transformed ingredient variant.
@@ -692,12 +787,13 @@ def make_activities_entry(
     alias = fe_block["alias"]
     display_name = french_name + variant_display_suffix(target.alias)
 
-    # Pass the clean French product name (without " Bio" / " Origine Inconnue"
-    # suffix) and the underlying Agribalyse activity name (without the variant
-    # bracket added for substitution). The suffixes add noise to the
-    # FoodOn/nearest-neighbour matchers inside predict.py.
+    # Classify from the English product name: predict.py's FoodOn /
+    # nearest-neighbour matchers are English-trained, and French input
+    # misclassifies (e.g. "Farine d'orge" → vegetable/LEGUMES-FLEURS instead
+    # of grain/ORGE). Pass the short English name and the underlying Agribalyse
+    # activity name (without the variant bracket added for substitution).
     pred = predictor.predict({
-        "name": french_name,
+        "name": english_name,
         "activityName": fe_block["existingActivity"]["name"],
     })
 
@@ -774,6 +870,7 @@ def make_base_activities_entry(
     alias: str,
     target: VariantInfo,
     french_name: str,
+    english_name: str,
     predictor: Predictor,
 ) -> dict:
     """Build an activities.json entry for the variant a consumer already uses.
@@ -785,8 +882,9 @@ def make_base_activities_entry(
     meta = target.raw_meta
     display_name = french_name + variant_display_suffix(target.alias)
 
+    # English name for classification — see make_activities_entry.
     pred = predictor.predict({
-        "name": french_name,
+        "name": english_name,
         "activityName": existing_activity_name,
     })
 
@@ -971,12 +1069,17 @@ def main() -> None:
         # variant lookup by alias
         variant_by_alias = {v.alias: v for v in variants}
 
-        for consumer_pid, found_aliases in consumer_to_found.items():
-            # Skip consumers that belong to a different ingredient (proxy relationship)
-            consumer_name = node_info[consumer_pid].name
-            if is_proxy(base, consumer_name):
-                continue
+        # Drop proxy consumers (they belong to a different ingredient), then
+        # keep one representative per transformed product.
+        consumer_to_found = {
+            pid: fa
+            for pid, fa in consumer_to_found.items()
+            if not is_proxy(base, node_info[pid].name)
+        }
+        consumer_to_found = dedup_consumers(consumer_to_found, node_info)
 
+        for consumer_pid, found_aliases in consumer_to_found.items():
+            consumer_name = node_info[consumer_pid].name
             missing = [v for v in genuine if v.alias not in found_aliases]
             if not missing:
                 continue
@@ -1081,13 +1184,13 @@ def main() -> None:
     final_ae: list[dict] = []
     for fe, target, short_name, long_name in output_fe:
         french = _pick_french(short_name, long_name, target.alias)
-        ae = make_activities_entry(fe, target, french, predictor)
+        ae = make_activities_entry(fe, target, french, short_name, predictor)
         final_fe.append(fe)
         final_ae.append(ae)
     for existing_name, alias, target, short_name, long_name in output_base:
         french = _pick_french(short_name, long_name, target.alias)
         ae = make_base_activities_entry(
-            existing_name, alias, target, french, predictor
+            existing_name, alias, target, french, short_name, predictor
         )
         final_ae.append(ae)
 
