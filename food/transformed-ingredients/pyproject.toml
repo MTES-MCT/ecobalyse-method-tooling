@@ -16,7 +16,6 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-pyvolca = { path = "../../../../../projets/VoLCA/volca-deploy/volca-public/pyvolca" }
 torch = { index = "pytorch-cpu" }
 
 [[tool.uv.index]]
