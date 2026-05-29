@@ -1,13 +1,13 @@
 [
   {
     "activityCreationType": "from_existing",
-    "alias": "almond-unshelled-organic",
+    "alias": "almond-in-shell-unshelled-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Almond, unshelled, at processing {FR} U"
     },
-    "newName": "Almond, unshelled, at processing {FR} U [almond-in-shell-organic] {{almond-unshelled-organic}}",
+    "newName": "Almond, unshelled, at processing {FR} U [almond-in-shell-organic] {{almond-in-shell-unshelled-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -26,13 +26,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "table-apple-peeled-eu",
+    "alias": "apple-table-peeled-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Table apple, peeled, at processing {FR} U"
     },
-    "newName": "Table apple, peeled, at processing {FR} U [apple-eu] {{table-apple-peeled-eu}}",
+    "newName": "Table apple, peeled, at processing {FR} U [apple-eu] {{apple-table-peeled-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -50,13 +50,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "table-apple-peeled-non-eu",
+    "alias": "apple-table-peeled-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Table apple, peeled, at processing {FR} U"
     },
-    "newName": "Table apple, peeled, at processing {FR} U [apple-non-eu] {{table-apple-peeled-non-eu}}",
+    "newName": "Table apple, peeled, at processing {FR} U [apple-non-eu] {{apple-table-peeled-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -74,13 +74,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "table-apple-peeled-organic",
+    "alias": "apple-table-peeled-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Table apple, peeled, at processing {FR} U"
     },
-    "newName": "Table apple, peeled, at processing {FR} U [apple-organic] {{table-apple-peeled-organic}}",
+    "newName": "Table apple, peeled, at processing {FR} U [apple-organic] {{apple-table-peeled-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -99,13 +99,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "table-apple-peeled-default",
+    "alias": "apple-table-peeled-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Table apple, peeled, at processing {FR} U"
     },
-    "newName": "Table apple, peeled, at processing {FR} U [apple-default] {{table-apple-peeled-default}}",
+    "newName": "Table apple, peeled, at processing {FR} U [apple-default] {{apple-table-peeled-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -222,13 +222,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-apricot-puree-eu",
+    "alias": "apricot-frozen-puree-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen apricot puree, at plant {FR} U"
     },
-    "newName": "Frozen apricot puree, at plant {FR} U [apricot-eu] {{frozen-apricot-puree-eu}}",
+    "newName": "Frozen apricot puree, at plant {FR} U [apricot-eu] {{apricot-frozen-puree-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -250,13 +250,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-apricot-puree-non-eu",
+    "alias": "apricot-frozen-puree-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen apricot puree, at plant {FR} U"
     },
-    "newName": "Frozen apricot puree, at plant {FR} U [apricot-non-eu] {{frozen-apricot-puree-non-eu}}",
+    "newName": "Frozen apricot puree, at plant {FR} U [apricot-non-eu] {{apricot-frozen-puree-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -278,13 +278,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-apricot-puree-organic",
+    "alias": "apricot-frozen-puree-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen apricot puree, at plant {FR} U"
     },
-    "newName": "Frozen apricot puree, at plant {FR} U [apricot-organic] {{frozen-apricot-puree-organic}}",
+    "newName": "Frozen apricot puree, at plant {FR} U [apricot-organic] {{apricot-frozen-puree-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -307,13 +307,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-apricot-puree-default",
+    "alias": "apricot-frozen-puree-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen apricot puree, at plant {FR} U"
     },
-    "newName": "Frozen apricot puree, at plant {FR} U [apricot-default] {{frozen-apricot-puree-default}}",
+    "newName": "Frozen apricot puree, at plant {FR} U [apricot-default] {{apricot-frozen-puree-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -824,13 +824,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "asparagus-peeled-non-eu",
+    "alias": "asparagu-asparagus-peeled-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Asparagus, peeled, at processing {FR} U"
     },
-    "newName": "Asparagus, peeled, at processing {FR} U [asparagu-non-eu] {{asparagus-peeled-non-eu}}",
+    "newName": "Asparagus, peeled, at processing {FR} U [asparagu-non-eu] {{asparagu-asparagus-peeled-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -849,13 +849,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "asparagus-peeled-organic",
+    "alias": "asparagu-asparagus-peeled-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Asparagus, peeled, at processing {FR} U"
     },
-    "newName": "Asparagus, peeled, at processing {FR} U [asparagu-organic] {{asparagus-peeled-organic}}",
+    "newName": "Asparagus, peeled, at processing {FR} U [asparagu-organic] {{asparagu-asparagus-peeled-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -874,13 +874,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "asparagus-peeled-default",
+    "alias": "asparagu-asparagus-peeled-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Asparagus, peeled, at processing {FR} U"
     },
-    "newName": "Asparagus, peeled, at processing {FR} U [asparagu-default] {{asparagus-peeled-default}}",
+    "newName": "Asparagus, peeled, at processing {FR} U [asparagu-default] {{asparagu-asparagus-peeled-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -899,13 +899,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "asparagus-canned-non-eu",
+    "alias": "asparagu-asparagus-canned-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Asparagus, canned {FR} U"
     },
-    "newName": "Asparagus, canned {FR} U [asparagu-non-eu] {{asparagus-canned-non-eu}}",
+    "newName": "Asparagus, canned {FR} U [asparagu-non-eu] {{asparagu-asparagus-canned-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -928,13 +928,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "asparagus-canned-organic",
+    "alias": "asparagu-asparagus-canned-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Asparagus, canned {FR} U"
     },
-    "newName": "Asparagus, canned {FR} U [asparagu-organic] {{asparagus-canned-organic}}",
+    "newName": "Asparagus, canned {FR} U [asparagu-organic] {{asparagu-asparagus-canned-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -957,13 +957,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "asparagus-canned-default",
+    "alias": "asparagu-asparagus-canned-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Asparagus, canned {FR} U"
     },
-    "newName": "Asparagus, canned {FR} U [asparagu-default] {{asparagus-canned-default}}",
+    "newName": "Asparagus, canned {FR} U [asparagu-default] {{asparagu-asparagus-canned-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -1059,13 +1059,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "barley-flour-eu",
+    "alias": "barley-whole-flour-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Barley flour, at plant {FR} U"
     },
-    "newName": "Barley flour, at plant {FR} U [barley-whole-eu] {{barley-flour-eu}}",
+    "newName": "Barley flour, at plant {FR} U [barley-whole-eu] {{barley-whole-flour-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -1086,13 +1086,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "barley-flour-non-eu",
+    "alias": "barley-whole-flour-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Barley flour, at plant {FR} U"
     },
-    "newName": "Barley flour, at plant {FR} U [barley-whole-non-eu] {{barley-flour-non-eu}}",
+    "newName": "Barley flour, at plant {FR} U [barley-whole-non-eu] {{barley-whole-flour-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -1106,6 +1106,35 @@
           },
           "to": {
             "name": "Barley grain {RoW}| barley production | Cut-off, U - Adapted from Ecoinvent U"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "activityCreationType": "from_existing",
+    "alias": "barley-whole-flour-default",
+    "comment": "auto-generated",
+    "database": "Agribalyse 3.2",
+    "existingActivity": {
+      "name": "Barley flour, at plant {FR} U"
+    },
+    "newName": "Barley flour, at plant {FR} U [barley-whole-default] {{barley-whole-flour-default}}",
+    "replacementPlan": {
+      "upstreamPath": [
+        {
+          "name": "Barley flour, at industrial mill {FR} U"
+        }
+      ],
+      "replace": [
+        {
+          "from": {
+            "name": "Barley, consumption mix {FR} U"
+          },
+          "to": {
+            "name": "Barley grain, non-irrigated, at farm (WFLDB)",
+            "database": "WFLDB",
+            "location": "UA"
           }
         }
       ]
@@ -1186,13 +1215,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "1-kg-of-fresh-ground-beef-default",
+    "alias": "beef-1-kg-of-fresh-ground-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Fresh ground beef production, industrial production, French production mix, at plant, 1 kg of fresh ground beef, for processing (PDi) {FR} U"
     },
-    "newName": "Fresh ground beef production, industrial production, French production mix, at plant, 1 kg of fresh ground beef, for processing (PDi) {FR} U [beef-default] {{1-kg-of-fresh-ground-beef-default}}",
+    "newName": "Fresh ground beef production, industrial production, French production mix, at plant, 1 kg of fresh ground beef, for processing (PDi) {FR} U [beef-default] {{beef-1-kg-of-fresh-ground-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -1217,13 +1246,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "1-kg-of-fresh-ground-beef-organic",
+    "alias": "beef-1-kg-of-fresh-ground-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Fresh ground beef production, industrial production, French production mix, at plant, 1 kg of fresh ground beef, for processing (PDi) {FR} U"
     },
-    "newName": "Fresh ground beef production, industrial production, French production mix, at plant, 1 kg of fresh ground beef, for processing (PDi) {FR} U [beef-organic] {{1-kg-of-fresh-ground-beef-organic}}",
+    "newName": "Fresh ground beef production, industrial production, French production mix, at plant, 1 kg of fresh ground beef, for processing (PDi) {FR} U [beef-organic] {{beef-1-kg-of-fresh-ground-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -1247,13 +1276,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "ground-beef-fresh-case-ready-default",
+    "alias": "beef-ground-fresh-case-ready-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Ground beef, fresh, case ready, for direct consumption, at plant {FR} U"
     },
-    "newName": "Ground beef, fresh, case ready, for direct consumption, at plant {FR} U [beef-default] {{ground-beef-fresh-case-ready-default}}",
+    "newName": "Ground beef, fresh, case ready, for direct consumption, at plant {FR} U [beef-default] {{beef-ground-fresh-case-ready-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -1281,13 +1310,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "ground-beef-fresh-default",
+    "alias": "beef-ground-fresh-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Ground beef, fresh, for processing {FR} U"
     },
-    "newName": "Ground beef, fresh, for processing {FR} U [beef-default] {{ground-beef-fresh-default}}",
+    "newName": "Ground beef, fresh, for processing {FR} U [beef-default] {{beef-ground-fresh-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -1315,13 +1344,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "ground-beef-fresh-organic",
+    "alias": "beef-ground-fresh-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Ground beef, fresh, for processing {FR} U"
     },
-    "newName": "Ground beef, fresh, for processing {FR} U [beef-organic] {{ground-beef-fresh-organic}}",
+    "newName": "Ground beef, fresh, for processing {FR} U [beef-organic] {{beef-ground-fresh-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -1877,13 +1906,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-carrot-eu",
+    "alias": "carrot-frozen-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen carrot, production, 1kg of frozen vegetable {FR} U"
     },
-    "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-eu] {{frozen-carrot-eu}}",
+    "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-eu] {{carrot-frozen-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -1900,13 +1929,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-carrot-non-eu",
+    "alias": "carrot-frozen-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen carrot, production, 1kg of frozen vegetable {FR} U"
     },
-    "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-non-eu] {{frozen-carrot-non-eu}}",
+    "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-non-eu] {{carrot-frozen-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -1923,13 +1952,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-carrot-organic",
+    "alias": "carrot-frozen-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen carrot, production, 1kg of frozen vegetable {FR} U"
     },
-    "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-organic] {{frozen-carrot-organic}}",
+    "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-organic] {{carrot-frozen-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -1948,13 +1977,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-carrot-default",
+    "alias": "carrot-frozen-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen carrot, production, 1kg of frozen vegetable {FR} U"
     },
-    "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-default] {{frozen-carrot-default}}",
+    "newName": "Frozen carrot, production, 1kg of frozen vegetable {FR} U [carrot-default] {{carrot-frozen-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2169,118 +2198,6 @@
         {
           "from": {
             "name": "Frozen concentrated carrot puree, consumption mix {FR} U"
-          },
-          "to": {
-            "name": "Carrot, at farm (WFLDB)",
-            "database": "WFLDB",
-            "location": "IL"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "activityCreationType": "from_existing",
-    "alias": "carrot-frozen-eu",
-    "comment": "auto-generated",
-    "database": "Agribalyse 3.2",
-    "existingActivity": {
-      "name": "Carrot, frozen, at processing {FR} U"
-    },
-    "newName": "Carrot, frozen, at processing {FR} U [carrot-eu] {{carrot-frozen-eu}}",
-    "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Carrot, peeled, at processing {FR} U"
-        }
-      ],
-      "replace": [
-        {
-          "from": {
-            "name": "Carrot, consumption mix {FR} U"
-          },
-          "to": {
-            "name": "Carrot {NL}| carrot production | Cut-off, U - Adapted from Ecoinvent U"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "activityCreationType": "from_existing",
-    "alias": "carrot-frozen-non-eu",
-    "comment": "auto-generated",
-    "database": "Agribalyse 3.2",
-    "existingActivity": {
-      "name": "Carrot, frozen, at processing {FR} U"
-    },
-    "newName": "Carrot, frozen, at processing {FR} U [carrot-non-eu] {{carrot-frozen-non-eu}}",
-    "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Carrot, peeled, at processing {FR} U"
-        }
-      ],
-      "replace": [
-        {
-          "from": {
-            "name": "Carrot, consumption mix {FR} U"
-          },
-          "to": {
-            "name": "Carrot {RoW}| carrot production | Cut-off, U - Copied from Ecoinvent U"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "activityCreationType": "from_existing",
-    "alias": "carrot-frozen-organic",
-    "comment": "auto-generated",
-    "database": "Agribalyse 3.2",
-    "existingActivity": {
-      "name": "Carrot, frozen, at processing {FR} U"
-    },
-    "newName": "Carrot, frozen, at processing {FR} U [carrot-organic] {{carrot-frozen-organic}}",
-    "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Carrot, peeled, at processing {FR} U"
-        }
-      ],
-      "replace": [
-        {
-          "from": {
-            "name": "Carrot, consumption mix {FR} U"
-          },
-          "to": {
-            "name": "Carrot, organic 2025, national average, at farm gate {FR} U",
-            "database": "Ginko 2025",
-            "location": "FR"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "activityCreationType": "from_existing",
-    "alias": "carrot-frozen-default",
-    "comment": "auto-generated",
-    "database": "Agribalyse 3.2",
-    "existingActivity": {
-      "name": "Carrot, frozen, at processing {FR} U"
-    },
-    "newName": "Carrot, frozen, at processing {FR} U [carrot-default] {{carrot-frozen-default}}",
-    "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Carrot, peeled, at processing {FR} U"
-        }
-      ],
-      "replace": [
-        {
-          "from": {
-            "name": "Carrot, consumption mix {FR} U"
           },
           "to": {
             "name": "Carrot, at farm (WFLDB)",
@@ -2568,13 +2485,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chickpea-flour-non-eu",
+    "alias": "pea-with-pod-chickpea-flour-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chick pea flour, at plant {FR} U"
     },
-    "newName": "Chick pea flour, at plant {FR} U [pea-with-pod-non-eu] {{chickpea-flour-non-eu}}",
+    "newName": "Chick pea flour, at plant {FR} U [pea-with-pod-non-eu] {{pea-with-pod-chickpea-flour-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -2596,13 +2513,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chickpea-flour-organic",
+    "alias": "pea-with-pod-chickpea-flour-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chick pea flour, at plant {FR} U"
     },
-    "newName": "Chick pea flour, at plant {FR} U [pea-with-pod-organic] {{chickpea-flour-organic}}",
+    "newName": "Chick pea flour, at plant {FR} U [pea-with-pod-organic] {{pea-with-pod-chickpea-flour-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -2625,13 +2542,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chickpea-peeled-non-eu",
+    "alias": "pea-with-pod-chickpea-peeled-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chick peas, peeled, at processing {FR} U"
     },
-    "newName": "Chick peas, peeled, at processing {FR} U [pea-with-pod-non-eu] {{chickpea-peeled-non-eu}}",
+    "newName": "Chick peas, peeled, at processing {FR} U [pea-with-pod-non-eu] {{pea-with-pod-chickpea-peeled-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2649,13 +2566,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chickpea-peeled-organic",
+    "alias": "pea-with-pod-chickpea-peeled-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chick peas, peeled, at processing {FR} U"
     },
-    "newName": "Chick peas, peeled, at processing {FR} U [pea-with-pod-organic] {{chickpea-peeled-organic}}",
+    "newName": "Chick peas, peeled, at processing {FR} U [pea-with-pod-organic] {{pea-with-pod-chickpea-peeled-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2674,13 +2591,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chickpea-canned-non-eu",
+    "alias": "pea-with-pod-chickpea-canned-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chick peas, canned {FR} U"
     },
-    "newName": "Chick peas, canned {FR} U [pea-with-pod-non-eu] {{chickpea-canned-non-eu}}",
+    "newName": "Chick peas, canned {FR} U [pea-with-pod-non-eu] {{pea-with-pod-chickpea-canned-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -2702,13 +2619,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chickpea-canned-organic",
+    "alias": "pea-with-pod-chickpea-canned-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chick peas, canned {FR} U"
     },
-    "newName": "Chick peas, canned {FR} U [pea-with-pod-organic] {{chickpea-canned-organic}}",
+    "newName": "Chick peas, canned {FR} U [pea-with-pod-organic] {{pea-with-pod-chickpea-canned-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -2731,13 +2648,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-peeled-fr",
+    "alias": "chicory-root-peeled-fr",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory, peeled, at processing {FR} U"
     },
-    "newName": "Chicory, peeled, at processing {FR} U [chicory-root-fr] {{chicory-peeled-fr}}",
+    "newName": "Chicory, peeled, at processing {FR} U [chicory-root-fr] {{chicory-root-peeled-fr}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2754,13 +2671,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-peeled-organic",
+    "alias": "chicory-root-peeled-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory, peeled, at processing {FR} U"
     },
-    "newName": "Chicory, peeled, at processing {FR} U [chicory-root-organic] {{chicory-peeled-organic}}",
+    "newName": "Chicory, peeled, at processing {FR} U [chicory-root-organic] {{chicory-root-peeled-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2779,13 +2696,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-powder-instant-fr",
+    "alias": "chicory-root-powder-instant-fr",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory, powder, instant, at plant {FR} U"
     },
-    "newName": "Chicory, powder, instant, at plant {FR} U [chicory-root-fr] {{chicory-powder-instant-fr}}",
+    "newName": "Chicory, powder, instant, at plant {FR} U [chicory-root-fr] {{chicory-root-powder-instant-fr}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -2806,13 +2723,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-powder-instant-organic",
+    "alias": "chicory-root-powder-instant-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory, powder, instant, at plant {FR} U"
     },
-    "newName": "Chicory, powder, instant, at plant {FR} U [chicory-root-organic] {{chicory-powder-instant-organic}}",
+    "newName": "Chicory, powder, instant, at plant {FR} U [chicory-root-organic] {{chicory-root-powder-instant-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -2835,13 +2752,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-roots-washed-and-sorted-cut-into-cossettes-default",
+    "alias": "chicory-root-roots-washed-and-sorted-cut-into-cossettes-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
     },
-    "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-default] {{chicory-roots-washed-and-sorted-cut-into-cossettes-default}}",
+    "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-default] {{chicory-root-roots-washed-and-sorted-cut-into-cossettes-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2859,13 +2776,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-roots-washed-and-sorted-cut-into-cossettes-eu",
+    "alias": "chicory-root-roots-washed-and-sorted-cut-into-cossettes-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
     },
-    "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-eu] {{chicory-roots-washed-and-sorted-cut-into-cossettes-eu}}",
+    "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-eu] {{chicory-root-roots-washed-and-sorted-cut-into-cossettes-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2882,13 +2799,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-roots-washed-and-sorted-cut-into-cossettes-non-eu",
+    "alias": "chicory-root-roots-washed-and-sorted-cut-into-cossettes-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
     },
-    "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-non-eu] {{chicory-roots-washed-and-sorted-cut-into-cossettes-non-eu}}",
+    "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-non-eu] {{chicory-root-roots-washed-and-sorted-cut-into-cossettes-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2905,13 +2822,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-roots-washed-and-sorted-cut-into-cossettes-organic",
+    "alias": "chicory-root-roots-washed-and-sorted-cut-into-cossettes-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
     },
-    "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-organic] {{chicory-roots-washed-and-sorted-cut-into-cossettes-organic}}",
+    "newName": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U [chicory-root-organic] {{chicory-root-roots-washed-and-sorted-cut-into-cossettes-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -2930,13 +2847,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-cossettes-dehydrated-default",
+    "alias": "chicory-root-cossettes-dehydrated-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory cossettes, dehydrated at processing {FR} U"
     },
-    "newName": "Chicory cossettes, dehydrated at processing {FR} U [chicory-root-default] {{chicory-cossettes-dehydrated-default}}",
+    "newName": "Chicory cossettes, dehydrated at processing {FR} U [chicory-root-default] {{chicory-root-cossettes-dehydrated-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -2958,13 +2875,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-cossettes-dehydrated-eu",
+    "alias": "chicory-root-cossettes-dehydrated-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory cossettes, dehydrated at processing {FR} U"
     },
-    "newName": "Chicory cossettes, dehydrated at processing {FR} U [chicory-root-eu] {{chicory-cossettes-dehydrated-eu}}",
+    "newName": "Chicory cossettes, dehydrated at processing {FR} U [chicory-root-eu] {{chicory-root-cossettes-dehydrated-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -2985,13 +2902,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-cossettes-dehydrated-non-eu",
+    "alias": "chicory-root-cossettes-dehydrated-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory cossettes, dehydrated at processing {FR} U"
     },
-    "newName": "Chicory cossettes, dehydrated at processing {FR} U [chicory-root-non-eu] {{chicory-cossettes-dehydrated-non-eu}}",
+    "newName": "Chicory cossettes, dehydrated at processing {FR} U [chicory-root-non-eu] {{chicory-root-cossettes-dehydrated-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -3012,150 +2929,15 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicory-cossettes-dehydrated-organic",
+    "alias": "chicory-root-cossettes-dehydrated-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicory cossettes, dehydrated at processing {FR} U"
     },
-    "newName": "Chicory cossettes, dehydrated at processing {FR} U [chicory-root-organic] {{chicory-cossettes-dehydrated-organic}}",
+    "newName": "Chicory cossettes, dehydrated at processing {FR} U [chicory-root-organic] {{chicory-root-cossettes-dehydrated-organic}}",
     "replacementPlan": {
       "upstreamPath": [
-        {
-          "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
-        }
-      ],
-      "replace": [
-        {
-          "from": {
-            "name": "Chicory roots, consumption mix {FR} U"
-          },
-          "to": {
-            "name": "Chicory roots, organic 2025, at farm gate {FR} U",
-            "database": "Ginko 2025",
-            "location": "FR"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "activityCreationType": "from_existing",
-    "alias": "juice-of-chicory-default",
-    "comment": "auto-generated",
-    "database": "Agribalyse 3.2",
-    "existingActivity": {
-      "name": "Juice of chicory, at processing {FR} U"
-    },
-    "newName": "Juice of chicory, at processing {FR} U [chicory-root-default] {{juice-of-chicory-default}}",
-    "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Roasted and grinded cossettes, at processing {FR} U"
-        },
-        {
-          "name": "Chicory cossettes, dehydrated at processing {FR} U"
-        },
-        {
-          "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
-        }
-      ],
-      "replace": [
-        {
-          "from": {
-            "name": "Chicory roots, consumption mix {FR} U"
-          },
-          "to": {
-            "name": "Chicory witloof, early, conventional, root production, at farm gate {FR} U",
-            "location": "FR"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "activityCreationType": "from_existing",
-    "alias": "juice-of-chicory-eu",
-    "comment": "auto-generated",
-    "database": "Agribalyse 3.2",
-    "existingActivity": {
-      "name": "Juice of chicory, at processing {FR} U"
-    },
-    "newName": "Juice of chicory, at processing {FR} U [chicory-root-eu] {{juice-of-chicory-eu}}",
-    "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Roasted and grinded cossettes, at processing {FR} U"
-        },
-        {
-          "name": "Chicory cossettes, dehydrated at processing {FR} U"
-        },
-        {
-          "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
-        }
-      ],
-      "replace": [
-        {
-          "from": {
-            "name": "Chicory roots, consumption mix {FR} U"
-          },
-          "to": {
-            "name": "Chicory witloof, season, conventional, root production, at farm gate {FR} U"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "activityCreationType": "from_existing",
-    "alias": "juice-of-chicory-non-eu",
-    "comment": "auto-generated",
-    "database": "Agribalyse 3.2",
-    "existingActivity": {
-      "name": "Juice of chicory, at processing {FR} U"
-    },
-    "newName": "Juice of chicory, at processing {FR} U [chicory-root-non-eu] {{juice-of-chicory-non-eu}}",
-    "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Roasted and grinded cossettes, at processing {FR} U"
-        },
-        {
-          "name": "Chicory cossettes, dehydrated at processing {FR} U"
-        },
-        {
-          "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
-        }
-      ],
-      "replace": [
-        {
-          "from": {
-            "name": "Chicory roots, consumption mix {FR} U"
-          },
-          "to": {
-            "name": "Chicory witloof, season, conventional, root production, at farm gate {FR} U"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "activityCreationType": "from_existing",
-    "alias": "juice-of-chicory-organic",
-    "comment": "auto-generated",
-    "database": "Agribalyse 3.2",
-    "existingActivity": {
-      "name": "Juice of chicory, at processing {FR} U"
-    },
-    "newName": "Juice of chicory, at processing {FR} U [chicory-root-organic] {{juice-of-chicory-organic}}",
-    "replacementPlan": {
-      "upstreamPath": [
-        {
-          "name": "Roasted and grinded cossettes, at processing {FR} U"
-        },
-        {
-          "name": "Chicory cossettes, dehydrated at processing {FR} U"
-        },
         {
           "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
         }
@@ -3176,13 +2958,148 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "coconut-milk-or-coconut-cream-organic",
+    "alias": "chicory-root-juice-of-default",
+    "comment": "auto-generated",
+    "database": "Agribalyse 3.2",
+    "existingActivity": {
+      "name": "Juice of chicory, at processing {FR} U"
+    },
+    "newName": "Juice of chicory, at processing {FR} U [chicory-root-default] {{chicory-root-juice-of-default}}",
+    "replacementPlan": {
+      "upstreamPath": [
+        {
+          "name": "Roasted and grinded cossettes, at processing {FR} U"
+        },
+        {
+          "name": "Chicory cossettes, dehydrated at processing {FR} U"
+        },
+        {
+          "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
+        }
+      ],
+      "replace": [
+        {
+          "from": {
+            "name": "Chicory roots, consumption mix {FR} U"
+          },
+          "to": {
+            "name": "Chicory witloof, early, conventional, root production, at farm gate {FR} U",
+            "location": "FR"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "activityCreationType": "from_existing",
+    "alias": "chicory-root-juice-of-eu",
+    "comment": "auto-generated",
+    "database": "Agribalyse 3.2",
+    "existingActivity": {
+      "name": "Juice of chicory, at processing {FR} U"
+    },
+    "newName": "Juice of chicory, at processing {FR} U [chicory-root-eu] {{chicory-root-juice-of-eu}}",
+    "replacementPlan": {
+      "upstreamPath": [
+        {
+          "name": "Roasted and grinded cossettes, at processing {FR} U"
+        },
+        {
+          "name": "Chicory cossettes, dehydrated at processing {FR} U"
+        },
+        {
+          "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
+        }
+      ],
+      "replace": [
+        {
+          "from": {
+            "name": "Chicory roots, consumption mix {FR} U"
+          },
+          "to": {
+            "name": "Chicory witloof, season, conventional, root production, at farm gate {FR} U"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "activityCreationType": "from_existing",
+    "alias": "chicory-root-juice-of-non-eu",
+    "comment": "auto-generated",
+    "database": "Agribalyse 3.2",
+    "existingActivity": {
+      "name": "Juice of chicory, at processing {FR} U"
+    },
+    "newName": "Juice of chicory, at processing {FR} U [chicory-root-non-eu] {{chicory-root-juice-of-non-eu}}",
+    "replacementPlan": {
+      "upstreamPath": [
+        {
+          "name": "Roasted and grinded cossettes, at processing {FR} U"
+        },
+        {
+          "name": "Chicory cossettes, dehydrated at processing {FR} U"
+        },
+        {
+          "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
+        }
+      ],
+      "replace": [
+        {
+          "from": {
+            "name": "Chicory roots, consumption mix {FR} U"
+          },
+          "to": {
+            "name": "Chicory witloof, season, conventional, root production, at farm gate {FR} U"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "activityCreationType": "from_existing",
+    "alias": "chicory-root-juice-of-organic",
+    "comment": "auto-generated",
+    "database": "Agribalyse 3.2",
+    "existingActivity": {
+      "name": "Juice of chicory, at processing {FR} U"
+    },
+    "newName": "Juice of chicory, at processing {FR} U [chicory-root-organic] {{chicory-root-juice-of-organic}}",
+    "replacementPlan": {
+      "upstreamPath": [
+        {
+          "name": "Roasted and grinded cossettes, at processing {FR} U"
+        },
+        {
+          "name": "Chicory cossettes, dehydrated at processing {FR} U"
+        },
+        {
+          "name": "Chicory roots, washed and sorted, cut into cossettes, at processing {FR} U"
+        }
+      ],
+      "replace": [
+        {
+          "from": {
+            "name": "Chicory roots, consumption mix {FR} U"
+          },
+          "to": {
+            "name": "Chicory roots, organic 2025, at farm gate {FR} U",
+            "database": "Ginko 2025",
+            "location": "FR"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "activityCreationType": "from_existing",
+    "alias": "coconut-dehusked-milk-or-cream-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Coconut milk or coconut cream, at plant {FR} U"
     },
-    "newName": "Coconut milk or coconut cream, at plant {FR} U [coconut-dehusked-organic] {{coconut-milk-or-coconut-cream-organic}}",
+    "newName": "Coconut milk or coconut cream, at plant {FR} U [coconut-dehusked-organic] {{coconut-dehusked-milk-or-cream-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -3201,13 +3118,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "coconut-milk-or-coconut-cream-default",
+    "alias": "coconut-dehusked-milk-or-cream-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Coconut milk or coconut cream, at plant {FR} U"
     },
-    "newName": "Coconut milk or coconut cream, at plant {FR} U [coconut-dehusked-default] {{coconut-milk-or-coconut-cream-default}}",
+    "newName": "Coconut milk or coconut cream, at plant {FR} U [coconut-dehusked-default] {{coconut-dehusked-milk-or-cream-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -3435,13 +3352,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicken-egg-raw-without-shell-organic",
+    "alias": "egg-chicken-raw-without-shell-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicken egg, raw, without shell, at plant {FR} U"
     },
-    "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-organic] {{chicken-egg-raw-without-shell-organic}}",
+    "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-organic] {{egg-chicken-raw-without-shell-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -3459,13 +3376,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicken-egg-raw-without-shell-default",
+    "alias": "egg-chicken-raw-without-shell-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicken egg, raw, without shell, at plant {FR} U"
     },
-    "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-default] {{chicken-egg-raw-without-shell-default}}",
+    "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-default] {{egg-chicken-raw-without-shell-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -3484,13 +3401,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicken-egg-raw-without-shell-eu",
+    "alias": "egg-chicken-raw-without-shell-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicken egg, raw, without shell, at plant {FR} U"
     },
-    "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-eu] {{chicken-egg-raw-without-shell-eu}}",
+    "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-eu] {{egg-chicken-raw-without-shell-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -3509,13 +3426,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chicken-egg-raw-without-shell-non-eu",
+    "alias": "egg-chicken-raw-without-shell-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chicken egg, raw, without shell, at plant {FR} U"
     },
-    "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-non-eu] {{chicken-egg-raw-without-shell-non-eu}}",
+    "newName": "Chicken egg, raw, without shell, at plant {FR} U [egg-non-eu] {{egg-chicken-raw-without-shell-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -4067,13 +3984,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "courgette-or-zucchini-pulp-and-peel-frozen-non-eu",
+    "alias": "zucchini-courgette-or-pulp-and-peel-frozen-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Courgette or zucchini, pulp and peel, frozen, at processing {FR} U"
     },
-    "newName": "Courgette or zucchini, pulp and peel, frozen, at processing {FR} U [zucchini-non-eu] {{courgette-or-zucchini-pulp-and-peel-frozen-non-eu}}",
+    "newName": "Courgette or zucchini, pulp and peel, frozen, at processing {FR} U [zucchini-non-eu] {{zucchini-courgette-or-pulp-and-peel-frozen-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -4095,13 +4012,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "courgette-or-zucchini-pulp-and-peel-frozen-organic",
+    "alias": "zucchini-courgette-or-pulp-and-peel-frozen-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Courgette or zucchini, pulp and peel, frozen, at processing {FR} U"
     },
-    "newName": "Courgette or zucchini, pulp and peel, frozen, at processing {FR} U [zucchini-organic] {{courgette-or-zucchini-pulp-and-peel-frozen-organic}}",
+    "newName": "Courgette or zucchini, pulp and peel, frozen, at processing {FR} U [zucchini-organic] {{zucchini-courgette-or-pulp-and-peel-frozen-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -4149,13 +4066,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-peach-puree-fr",
+    "alias": "peach-frozen-puree-fr",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen peach puree, at plant {ES} U"
     },
-    "newName": "Frozen peach puree, at plant {ES} U [peach-fr] {{frozen-peach-puree-fr}}",
+    "newName": "Frozen peach puree, at plant {ES} U [peach-fr] {{peach-frozen-puree-fr}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -4176,13 +4093,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-peach-puree-organic",
+    "alias": "peach-frozen-puree-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen peach puree, at plant {ES} U"
     },
-    "newName": "Frozen peach puree, at plant {ES} U [peach-organic] {{frozen-peach-puree-organic}}",
+    "newName": "Frozen peach puree, at plant {ES} U [peach-organic] {{peach-frozen-puree-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -4205,13 +4122,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-peach-puree-default",
+    "alias": "peach-frozen-puree-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen peach puree, at plant {ES} U"
     },
-    "newName": "Frozen peach puree, at plant {ES} U [peach-default] {{frozen-peach-puree-default}}",
+    "newName": "Frozen peach puree, at plant {ES} U [peach-default] {{peach-frozen-puree-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -4234,13 +4151,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-peach-puree-non-eu",
+    "alias": "peach-frozen-puree-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen peach puree, at plant {ES} U"
     },
-    "newName": "Frozen peach puree, at plant {ES} U [peach-non-eu] {{frozen-peach-puree-non-eu}}",
+    "newName": "Frozen peach puree, at plant {ES} U [peach-non-eu] {{peach-frozen-puree-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -4631,13 +4548,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-concentrated-grape-juice-fr",
+    "alias": "grape-frozen-concentrated-juice-fr",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen concentrated grape juice, at processing {IT} U"
     },
-    "newName": "Frozen concentrated grape juice, at processing {IT} U [grape-fr] {{frozen-concentrated-grape-juice-fr}}",
+    "newName": "Frozen concentrated grape juice, at processing {IT} U [grape-fr] {{grape-frozen-concentrated-juice-fr}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -4654,13 +4571,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-concentrated-grape-juice-organic",
+    "alias": "grape-frozen-concentrated-juice-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen concentrated grape juice, at processing {IT} U"
     },
-    "newName": "Frozen concentrated grape juice, at processing {IT} U [grape-organic] {{frozen-concentrated-grape-juice-organic}}",
+    "newName": "Frozen concentrated grape juice, at processing {IT} U [grape-organic] {{grape-frozen-concentrated-juice-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -4775,13 +4692,61 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "hazelnut-unshelled-default",
+    "alias": "hazelnut-in-shell-unshelled-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Hazelnut, unshelled, at plant {IT} U"
     },
-    "newName": "Hazelnut, unshelled, at plant {IT} U [hazelnut-in-shell-default] {{hazelnut-unshelled-default}}",
+    "newName": "Hazelnut, unshelled, at plant {IT} U [hazelnut-in-shell-non-eu] {{hazelnut-in-shell-unshelled-non-eu}}",
+    "replacementPlan": {
+      "upstreamPath": [],
+      "replace": [
+        {
+          "from": {
+            "name": "Hazelnut, in shell, at farm {IT} - Adapted from WFLDB U"
+          },
+          "to": {
+            "name": "Hazelnut, in shell, at farm {TR} - Adapted from WFLDB U"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "activityCreationType": "from_existing",
+    "alias": "hazelnut-in-shell-unshelled-organic",
+    "comment": "auto-generated",
+    "database": "Agribalyse 3.2",
+    "existingActivity": {
+      "name": "Hazelnut, unshelled, at plant {IT} U"
+    },
+    "newName": "Hazelnut, unshelled, at plant {IT} U [hazelnut-in-shell-organic] {{hazelnut-in-shell-unshelled-organic}}",
+    "replacementPlan": {
+      "upstreamPath": [],
+      "replace": [
+        {
+          "from": {
+            "name": "Hazelnut, in shell, at farm {IT} - Adapted from WFLDB U"
+          },
+          "to": {
+            "name": "Hazelnut, in shell, at farm, organic 2025 {IT}",
+            "database": "Ginko 2025",
+            "location": "IT"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "activityCreationType": "from_existing",
+    "alias": "hazelnut-in-shell-unshelled-default",
+    "comment": "auto-generated",
+    "database": "Agribalyse 3.2",
+    "existingActivity": {
+      "name": "Hazelnut, unshelled, at plant {IT} U"
+    },
+    "newName": "Hazelnut, unshelled, at plant {IT} U [hazelnut-in-shell-default] {{hazelnut-in-shell-unshelled-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -4800,13 +4765,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "hazelnut-oil-organic",
+    "alias": "hazelnut-in-shell-oil-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Hazelnut oil, at plant {FR} U"
     },
-    "newName": "Hazelnut oil, at plant {FR} U [hazelnut-in-shell-organic] {{hazelnut-oil-organic}}",
+    "newName": "Hazelnut oil, at plant {FR} U [hazelnut-in-shell-organic] {{hazelnut-in-shell-oil-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -4829,13 +4794,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "hazelnut-oil-default",
+    "alias": "hazelnut-in-shell-oil-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Hazelnut oil, at plant {FR} U"
     },
-    "newName": "Hazelnut oil, at plant {FR} U [hazelnut-in-shell-default] {{hazelnut-oil-default}}",
+    "newName": "Hazelnut oil, at plant {FR} U [hazelnut-in-shell-default] {{hazelnut-in-shell-oil-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -5486,13 +5451,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chive-or-spring-onion-peeled-eu",
+    "alias": "onion-chive-or-spring-peeled-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chive or spring onion, peeled, at processing {FR} U"
     },
-    "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-eu] {{chive-or-spring-onion-peeled-eu}}",
+    "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-eu] {{onion-chive-or-spring-peeled-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5509,13 +5474,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chive-or-spring-onion-peeled-non-eu",
+    "alias": "onion-chive-or-spring-peeled-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chive or spring onion, peeled, at processing {FR} U"
     },
-    "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-non-eu] {{chive-or-spring-onion-peeled-non-eu}}",
+    "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-non-eu] {{onion-chive-or-spring-peeled-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5532,13 +5497,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chive-or-spring-onion-peeled-organic",
+    "alias": "onion-chive-or-spring-peeled-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chive or spring onion, peeled, at processing {FR} U"
     },
-    "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-organic] {{chive-or-spring-onion-peeled-organic}}",
+    "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-organic] {{onion-chive-or-spring-peeled-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5557,13 +5522,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "chive-or-spring-onion-peeled-default",
+    "alias": "onion-chive-or-spring-peeled-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Chive or spring onion, peeled, at processing {FR} U"
     },
-    "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-default] {{chive-or-spring-onion-peeled-default}}",
+    "newName": "Chive or spring onion, peeled, at processing {FR} U [onion-default] {{onion-chive-or-spring-peeled-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5582,13 +5547,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-onion-eu",
+    "alias": "onion-frozen-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen onion, production, 1kg of frozen vegetable {FR} U"
     },
-    "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-eu] {{frozen-onion-eu}}",
+    "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-eu] {{onion-frozen-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5605,13 +5570,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-onion-non-eu",
+    "alias": "onion-frozen-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen onion, production, 1kg of frozen vegetable {FR} U"
     },
-    "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-non-eu] {{frozen-onion-non-eu}}",
+    "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-non-eu] {{onion-frozen-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5628,13 +5593,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-onion-organic",
+    "alias": "onion-frozen-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen onion, production, 1kg of frozen vegetable {FR} U"
     },
-    "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-organic] {{frozen-onion-organic}}",
+    "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-organic] {{onion-frozen-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5653,13 +5618,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-onion-default",
+    "alias": "onion-frozen-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen onion, production, 1kg of frozen vegetable {FR} U"
     },
-    "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-default] {{frozen-onion-default}}",
+    "newName": "Frozen onion, production, 1kg of frozen vegetable {FR} U [onion-default] {{onion-frozen-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5678,13 +5643,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-pear-puree-fr",
+    "alias": "pear-frozen-puree-fr",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen pear puree, at processing {BE} U"
     },
-    "newName": "Frozen pear puree, at processing {BE} U [pear-fr] {{frozen-pear-puree-fr}}",
+    "newName": "Frozen pear puree, at processing {BE} U [pear-fr] {{pear-frozen-puree-fr}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5701,13 +5666,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-pear-puree-non-eu",
+    "alias": "pear-frozen-puree-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen pear puree, at processing {BE} U"
     },
-    "newName": "Frozen pear puree, at processing {BE} U [pear-non-eu] {{frozen-pear-puree-non-eu}}",
+    "newName": "Frozen pear puree, at processing {BE} U [pear-non-eu] {{pear-frozen-puree-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5725,13 +5690,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-pear-puree-organic",
+    "alias": "pear-frozen-puree-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen pear puree, at processing {BE} U"
     },
-    "newName": "Frozen pear puree, at processing {BE} U [pear-organic] {{frozen-pear-puree-organic}}",
+    "newName": "Frozen pear puree, at processing {BE} U [pear-organic] {{pear-frozen-puree-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -5750,13 +5715,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-pear-puree-default",
+    "alias": "pear-frozen-puree-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen pear puree, at processing {BE} U"
     },
-    "newName": "Frozen pear puree, at processing {BE} U [pear-default] {{frozen-pear-puree-default}}",
+    "newName": "Frozen pear puree, at processing {BE} U [pear-default] {{pear-frozen-puree-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -6042,13 +6007,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-concentrated-pineapple-juice-default",
+    "alias": "pineapple-frozen-concentrated-juice-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen concentrated pineapple juice, at plant {CR} U"
     },
-    "newName": "Frozen concentrated pineapple juice, at plant {CR} U [pineapple-default] {{frozen-concentrated-pineapple-juice-default}}",
+    "newName": "Frozen concentrated pineapple juice, at plant {CR} U [pineapple-default] {{pineapple-frozen-concentrated-juice-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -6070,13 +6035,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-concentrated-pineapple-juice-organic",
+    "alias": "pineapple-frozen-concentrated-juice-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen concentrated pineapple juice, at plant {CR} U"
     },
-    "newName": "Frozen concentrated pineapple juice, at plant {CR} U [pineapple-organic] {{frozen-concentrated-pineapple-juice-organic}}",
+    "newName": "Frozen concentrated pineapple juice, at plant {CR} U [pineapple-organic] {{pineapple-frozen-concentrated-juice-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -6818,13 +6783,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "frozen-raspberry-puree-organic",
+    "alias": "raspberry-frozen-puree-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Frozen raspberry puree, at plant {FR} U"
     },
-    "newName": "Frozen raspberry puree, at plant {FR} U [raspberry-organic] {{frozen-raspberry-puree-organic}}",
+    "newName": "Frozen raspberry puree, at plant {FR} U [raspberry-organic] {{raspberry-frozen-puree-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -6843,13 +6808,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-flour-eu",
+    "alias": "rice-raw-flour-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice flour, at plant {FR} U"
     },
-    "newName": "Rice flour, at plant {FR} U [rice-raw-eu] {{rice-flour-eu}}",
+    "newName": "Rice flour, at plant {FR} U [rice-raw-eu] {{rice-raw-flour-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -6870,13 +6835,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-flour-non-eu",
+    "alias": "rice-raw-flour-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice flour, at plant {FR} U"
     },
-    "newName": "Rice flour, at plant {FR} U [rice-raw-non-eu] {{rice-flour-non-eu}}",
+    "newName": "Rice flour, at plant {FR} U [rice-raw-non-eu] {{rice-raw-flour-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -6897,13 +6862,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-flour-organic",
+    "alias": "rice-raw-flour-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice flour, at plant {FR} U"
     },
-    "newName": "Rice flour, at plant {FR} U [rice-raw-organic] {{rice-flour-organic}}",
+    "newName": "Rice flour, at plant {FR} U [rice-raw-organic] {{rice-raw-flour-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -6926,13 +6891,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-bran-eu",
+    "alias": "rice-raw-bran-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice bran, at plant {FR} U"
     },
-    "newName": "Rice bran, at plant {FR} U [rice-raw-eu] {{rice-bran-eu}}",
+    "newName": "Rice bran, at plant {FR} U [rice-raw-eu] {{rice-raw-bran-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -6953,13 +6918,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-bran-non-eu",
+    "alias": "rice-raw-bran-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice bran, at plant {FR} U"
     },
-    "newName": "Rice bran, at plant {FR} U [rice-raw-non-eu] {{rice-bran-non-eu}}",
+    "newName": "Rice bran, at plant {FR} U [rice-raw-non-eu] {{rice-raw-bran-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -6980,13 +6945,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-bran-organic",
+    "alias": "rice-raw-bran-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice bran, at plant {FR} U"
     },
-    "newName": "Rice bran, at plant {FR} U [rice-raw-organic] {{rice-bran-organic}}",
+    "newName": "Rice bran, at plant {FR} U [rice-raw-organic] {{rice-raw-bran-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7009,13 +6974,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-noodle-dried-eu",
+    "alias": "rice-raw-noodle-dried-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice noodle, dried, at plant {FR} U"
     },
-    "newName": "Rice noodle, dried, at plant {FR} U [rice-raw-eu] {{rice-noodle-dried-eu}}",
+    "newName": "Rice noodle, dried, at plant {FR} U [rice-raw-eu] {{rice-raw-noodle-dried-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7042,13 +7007,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-noodle-dried-non-eu",
+    "alias": "rice-raw-noodle-dried-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice noodle, dried, at plant {FR} U"
     },
-    "newName": "Rice noodle, dried, at plant {FR} U [rice-raw-non-eu] {{rice-noodle-dried-non-eu}}",
+    "newName": "Rice noodle, dried, at plant {FR} U [rice-raw-non-eu] {{rice-raw-noodle-dried-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7075,13 +7040,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rice-noodle-dried-organic",
+    "alias": "rice-raw-noodle-dried-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rice noodle, dried, at plant {FR} U"
     },
-    "newName": "Rice noodle, dried, at plant {FR} U [rice-raw-organic] {{rice-noodle-dried-organic}}",
+    "newName": "Rice noodle, dried, at plant {FR} U [rice-raw-organic] {{rice-raw-noodle-dried-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7110,13 +7075,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rye-flour-eu",
+    "alias": "rye-whole-flour-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rye flour, at plant {FR} U"
     },
-    "newName": "Rye flour, at plant {FR} U [rye-whole-eu] {{rye-flour-eu}}",
+    "newName": "Rye flour, at plant {FR} U [rye-whole-eu] {{rye-whole-flour-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7137,13 +7102,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rye-flour-non-eu",
+    "alias": "rye-whole-flour-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rye flour, at plant {FR} U"
     },
-    "newName": "Rye flour, at plant {FR} U [rye-whole-non-eu] {{rye-flour-non-eu}}",
+    "newName": "Rye flour, at plant {FR} U [rye-whole-non-eu] {{rye-whole-flour-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7164,13 +7129,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "rye-flour-default",
+    "alias": "rye-whole-flour-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Rye flour, at plant {FR} U"
     },
-    "newName": "Rye flour, at plant {FR} U [rye-whole-default] {{rye-flour-default}}",
+    "newName": "Rye flour, at plant {FR} U [rye-whole-default] {{rye-whole-flour-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7516,13 +7481,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "sunflower-oil-non-eu",
+    "alias": "sunflower-seed-oil-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Sunflower oil, at plant {FR} U"
     },
-    "newName": "Sunflower oil, at plant {FR} U [sunflower-seed-non-eu] {{sunflower-oil-non-eu}}",
+    "newName": "Sunflower oil, at plant {FR} U [sunflower-seed-non-eu] {{sunflower-seed-oil-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7543,13 +7508,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "sunflower-oil-organic",
+    "alias": "sunflower-seed-oil-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Sunflower oil, at plant {FR} U"
     },
-    "newName": "Sunflower oil, at plant {FR} U [sunflower-seed-organic] {{sunflower-oil-organic}}",
+    "newName": "Sunflower oil, at plant {FR} U [sunflower-seed-organic] {{sunflower-seed-oil-organic}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7572,13 +7537,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "sunflower-oil-default",
+    "alias": "sunflower-seed-oil-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Sunflower oil, at plant {FR} U"
     },
-    "newName": "Sunflower oil, at plant {FR} U [sunflower-seed-default] {{sunflower-oil-default}}",
+    "newName": "Sunflower oil, at plant {FR} U [sunflower-seed-default] {{sunflower-seed-oil-default}}",
     "replacementPlan": {
       "upstreamPath": [
         {
@@ -7601,13 +7566,42 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "sunflower-grain-unshelled-non-eu",
+    "alias": "sunflower-seed-oil-eu",
+    "comment": "auto-generated",
+    "database": "Agribalyse 3.2",
+    "existingActivity": {
+      "name": "Sunflower oil, at plant {FR} U"
+    },
+    "newName": "Sunflower oil, at plant {FR} U [sunflower-seed-eu] {{sunflower-seed-oil-eu}}",
+    "replacementPlan": {
+      "upstreamPath": [
+        {
+          "name": "Sunflower oil, refined, low dehulling at plant {FR} U"
+        }
+      ],
+      "replace": [
+        {
+          "from": {
+            "name": "Sunflower grain, consumption mix {FR} U"
+          },
+          "to": {
+            "name": "Sunflower, at farm (WFLDB)",
+            "database": "WFLDB",
+            "location": "HU"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "activityCreationType": "from_existing",
+    "alias": "sunflower-seed-grain-unshelled-non-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Sunflower grain, unshelled, at processing {FR} U"
     },
-    "newName": "Sunflower grain, unshelled, at processing {FR} U [sunflower-seed-non-eu] {{sunflower-grain-unshelled-non-eu}}",
+    "newName": "Sunflower grain, unshelled, at processing {FR} U [sunflower-seed-non-eu] {{sunflower-seed-grain-unshelled-non-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -7624,13 +7618,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "sunflower-grain-unshelled-organic",
+    "alias": "sunflower-seed-grain-unshelled-organic",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Sunflower grain, unshelled, at processing {FR} U"
     },
-    "newName": "Sunflower grain, unshelled, at processing {FR} U [sunflower-seed-organic] {{sunflower-grain-unshelled-organic}}",
+    "newName": "Sunflower grain, unshelled, at processing {FR} U [sunflower-seed-organic] {{sunflower-seed-grain-unshelled-organic}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -7649,13 +7643,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "sunflower-grain-unshelled-default",
+    "alias": "sunflower-seed-grain-unshelled-default",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Sunflower grain, unshelled, at processing {FR} U"
     },
-    "newName": "Sunflower grain, unshelled, at processing {FR} U [sunflower-seed-default] {{sunflower-grain-unshelled-default}}",
+    "newName": "Sunflower grain, unshelled, at processing {FR} U [sunflower-seed-default] {{sunflower-seed-grain-unshelled-default}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [
@@ -7674,13 +7668,13 @@
   },
   {
     "activityCreationType": "from_existing",
-    "alias": "sunflower-grain-unshelled-eu",
+    "alias": "sunflower-seed-grain-unshelled-eu",
     "comment": "auto-generated",
     "database": "Agribalyse 3.2",
     "existingActivity": {
       "name": "Sunflower grain, unshelled, at processing {FR} U"
     },
-    "newName": "Sunflower grain, unshelled, at processing {FR} U [sunflower-seed-eu] {{sunflower-grain-unshelled-eu}}",
+    "newName": "Sunflower grain, unshelled, at processing {FR} U [sunflower-seed-eu] {{sunflower-seed-grain-unshelled-eu}}",
     "replacementPlan": {
       "upstreamPath": [],
       "replace": [

@@ -98,7 +98,7 @@ DB_MAP: dict[str, str] = {
     "Agribalyse 3.2": AGRIBALYSE_DB,
     "Ecoinvent 3.9.1": "ecoinvent-3-9-1-adapted",
     "Ecoinvent 3.11": "ecoinvent-3-11-adapted",
-    "Ginko 2025": "ginko-2025-v2",
+    "Ginko 2025": "ginko-2025-2",
     "WFLDB": "wfldb",
     "PastoEco": "pastoeco",
     "Ecobalyse": "ecobalyse",
@@ -668,19 +668,42 @@ def dedup_consumers(
 # ---------------------------------------------------------------------------
 
 
+def _anchor_to_base(slug: str, base_ingredient: str) -> str:
+    """Prefix the slug with its base ingredient so infer_base_ingredient resolves it.
+
+    baseIngredient inference is a prefix match against base_ingredients.json, so
+    an alias must begin with its canonical base. Most product names already lead
+    with the ingredient ("Carrot, peeled" -> carrot-...), but qualifier-first
+    names ("Frozen carrot", "Juice of chicory") don't, so we move the base to the
+    front. The base tokens are de-duplicated from the remainder to avoid
+    "carrot-frozen-carrot"."""
+    if slug == base_ingredient or slug.startswith(base_ingredient + "-"):
+        return slug
+    base_tokens = set(base_ingredient.split("-"))
+    rest = [t for t in slug.split("-") if t not in base_tokens]
+    return "-".join([base_ingredient, *rest]) if rest else base_ingredient
+
+
 def derive_alias(
-    activity_name: str, variant_suffix: str, existing_aliases: set[str]
+    activity_name: str,
+    variant_suffix: str,
+    base_ingredient: str,
+    existing_aliases: set[str],
 ) -> str | None:
-    """Unique alias built from the jargon-stripped product name.
+    """Unique alias built from the jargon-stripped product name, anchored to its
+    base ingredient.
 
     Slugifies the short product name (then the long name as a collision
     fallback) — never raw comma segments, which would leak LCA process stages
-    ("at plant", "at industrial mill") and geo codes into the alias. Returns
-    None when both candidates are already taken."""
+    ("at plant", "at industrial mill") and geo codes into the alias. The slug is
+    anchored to base_ingredient so the resulting alias always resolves via
+    infer_base_ingredient. Returns None when both candidates are already taken."""
     for name in (extract_short_name(activity_name), extract_long_name(activity_name)):
         slug = slugify(_canonicalize(name))
-        candidate = f"{slug}-{variant_suffix}"
-        if slug and candidate not in existing_aliases:
+        if not slug:
+            continue
+        candidate = f"{_anchor_to_base(slug, base_ingredient)}-{variant_suffix}"
+        if candidate not in existing_aliases:
             return candidate
     return None
 
@@ -718,7 +741,11 @@ def make_from_existing(
         replace_from_step = steps[-1]
 
     variant_suffix = variant_short_suffix(target.alias)
-    alias = derive_alias(steps[0].name, variant_suffix, existing_aliases)
+    base_ingredient = strip_variant_suffix(target.alias)
+    assert base_ingredient is not None  # target.alias always carries a variant suffix
+    alias = derive_alias(
+        steps[0].name, variant_suffix, base_ingredient, existing_aliases
+    )
     if alias is None:
         return None  # all prefixes taken — skip
 
@@ -1117,8 +1144,10 @@ def main() -> None:
                 if base_target is None:
                     continue
                 variant_suffix = variant_short_suffix(base_target.alias)
+                base_ingredient = strip_variant_suffix(base_target.alias)
+                assert base_ingredient is not None  # raw variant alias has a suffix
                 base_alias = derive_alias(
-                    existing_name, variant_suffix, all_generated_aliases
+                    existing_name, variant_suffix, base_ingredient, all_generated_aliases
                 )
                 if base_alias is None:
                     continue
