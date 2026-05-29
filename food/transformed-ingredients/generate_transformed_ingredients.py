@@ -2,10 +2,13 @@
 
 Strategy
 --------
-Ecobalyse tracks raw ingredients in three variants per ingredient family:
-  - FR  (alias suffix -fr):      French production, Agribalyse reference activity
-  - OI  (alias suffix -default): Import origin, may use Ecoinvent or other DB
-  - BIO (alias suffix -organic): Organic, Agribalyse or Ginko organic activity
+Ecobalyse tracks raw ingredients in several variants per ingredient family,
+identified by an alias suffix and collapsed to three scenarios:
+  - -fr      (reference): French production, Agribalyse reference activity
+  - -organic (organic):   Organic, Agribalyse or Ginko organic activity
+  - -default (import):    Import / unknown origin, may use Ecoinvent or other DB
+  - -eu      (import):    European origin
+  - -non-eu  (import):    Non-European origin
 
 Agribalyse also contains many *transformed* products (frozen vegetables, purees,
 juices, at-plant products ...) that use one of these raw ingredient activities

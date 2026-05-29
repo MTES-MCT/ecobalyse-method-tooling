@@ -4,7 +4,7 @@ Two independent Python scripts that support the Ecobalyse "composant" /
 transformed-ingredient workflow. Both talk to a running Volca server (an
 LCA engine) loaded with an Agribalyse database (and optionally Ecoinvent,
 WFLDB, Ginko, …) and produce artefacts consumed by the Ecobalyse data
-pipeline (`activities.json` / `activities_to_create.json` / composant CSV).
+pipeline (`lci_catalog/` / `activities_to_create.json` / composant CSV).
 
 They solve two different problems and can be run independently.
 
@@ -83,9 +83,11 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
 
 ### How it works
 
-1. Parse `activities.json`, group ingredients by base name, and collect
-   their known variants (`-fr` / `-organic` / `-default`) with associated
-   activity / source / location.
+1. Walk the `lci_catalog/` directory (per-activity files grouped by source
+   slug, which replaced the monolithic `activities.json`), group ingredients
+   by base name, and collect their known variants (`-fr` / `-organic` /
+   `-default` / `-eu` / `-non-eu`) with associated activity / source /
+   location.
 2. For each variant, call Volca `get_consumers` (`include_edges=True`,
    no server-side preset) and keep the full BFS subgraph. Transformed-
    product filtering is applied client-side on
@@ -117,7 +119,8 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
 ### Inputs
 
 - A reachable Volca server (default `http://localhost:8080`).
-- Ecobalyse `activities.json` (raw ingredient variants + metadata).
+- Ecobalyse `lci_catalog/` directory (raw ingredient variants + metadata,
+  one file per activity; replaces the old monolithic `activities.json`).
 - Ecobalyse `activities_to_create.json` (existing aliases to avoid
   duplicates).
 - A flat `ingredients.json` for training the metadata predictor (defaults
@@ -127,8 +130,8 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
 
 - `generated_activities_to_create.json` — `from_existing` substitution
   blocks to merge into `activities_to_create.json`.
-- `generated_activities.json` — new activity entries to merge into
-  `activities.json`.
+- `generated_activities.json` — new activity entries to merge into the
+  `lci_catalog/` (done automatically with `--merge-into-catalog`).
 - `.predictor.pkl` — cached predictor, sibling of the script,
   git-ignored — regenerated on first run, reused afterwards.
 - `.translation_cache.json` — persistent English → French cache; the
