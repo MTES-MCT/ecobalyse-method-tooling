@@ -840,7 +840,6 @@ def make_activities_entry(
         "activityName": fe_block["newName"],
         "alias": alias,
         "categories": ["ingredient", "material"],
-        "database": "Ecobalyse",
         "displayName": display_name,
         "id": str(uuid4()),
         "metadata": [
@@ -926,7 +925,6 @@ def make_base_activities_entry(
         "activityName": existing_activity_name,
         "alias": alias,
         "categories": ["ingredient", "material"],
-        "database": "Agribalyse 3.2",
         "displayName": display_name,
         "id": str(uuid4()),
         "metadata": [
