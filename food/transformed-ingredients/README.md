@@ -119,19 +119,22 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
 ### Inputs
 
 - A reachable Volca server (default `http://localhost:8080`).
-- Ecobalyse `lci_catalog/` directory (raw ingredient variants + metadata,
-  one file per activity; replaces the old monolithic `activities.json`).
-- Ecobalyse `activities_to_create.json` (existing aliases to avoid
-  duplicates).
-- A flat `ingredients.json` for training the metadata predictor (defaults
-  to `public/data/food/ingredients.json` next to `--activities`).
+- The path to the ecobalyse repository. Every input is derived from it:
+  - `data/lci_catalog/` — raw ingredient variants + metadata, one file per
+    activity (replaces the old monolithic `activities.json`); also the merge
+    target.
+  - `data/activities_to_create.json` — existing aliases to avoid duplicates;
+    also where the generated `from_existing` blocks are appended.
+  - `public/data/food/ingredients.json` — flat ingredients file used to train
+    the metadata predictor.
 
 ### Outputs
 
 - `generated_activities_to_create.json` — `from_existing` substitution
   blocks to merge into `activities_to_create.json`.
-- `generated_activities.json` — new activity entries to merge into the
-  `lci_catalog/` (done automatically with `--merge-into-catalog`).
+- `generated_activities.json` — new activity entries merged into the
+  `lci_catalog/` automatically (pass `--no-merge` to skip and only write the
+  generated files).
 - `.predictor.pkl` — cached predictor, sibling of the script,
   git-ignored — regenerated on first run, reused afterwards.
 - `.translation_cache.json` — persistent English → French cache; the
@@ -141,14 +144,11 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
 ### Usage
 
 ```bash
-uv run python generate_transformed_ingredients.py \
-    --activities           /path/to/ecobalyse/data/lci_catalog \
-    --activities-to-create /path/to/ecobalyse/data/activities_to_create.json \
-    --merge-into-catalog   /path/to/ecobalyse/data/lci_catalog \
-    --output-dir . \
+uv run python generate_transformed_ingredients.py /path/to/ecobalyse \
+    [--output-dir .] \
     [--volca-url http://localhost:8080] \
     [--max-depth 2] \
-    [--training-ingredients /path/to/public/data/food/ingredients.json]
+    [--no-merge]
 
 uv run python generate_transformed_ingredients.py --help
 ```

@@ -58,11 +58,18 @@ Outputs two files:
   generated_activities_to_create.json  — from_existing blocks to merge into activities_to_create.json
   generated_activities.json            — new entries to merge into activities.json
 
+All inputs live at known locations inside the ecobalyse repository, so the
+only required argument is the path to that repo:
+    data/lci_catalog                  raw ingredient variants + metadata
+    data/activities_to_create.json    existing aliases + merge target
+    public/data/food/ingredients.json predictor training set
+
 Usage:
-    python generate_transformed_ingredients.py \\
-        --activities /path/to/ecobalyse-data/lci_catalog \\
-        --output-dir /path/to/output \\
-        [--volca-url http://localhost:8080]
+    python generate_transformed_ingredients.py /path/to/ecobalyse \\
+        [--output-dir .] \\
+        [--volca-url http://localhost:8080] \\
+        [--max-depth 2] \\
+        [--no-merge]
 """
 
 import argparse
@@ -411,13 +418,11 @@ def resolve_process_ids(
     groups: dict[str, list[VariantInfo]],
     client: Client,
     native_dbs: set[str],
-    loaded_dbs: set[str] | None = None,
 ) -> None:
     """Resolve process_id for each variant in-place. Unresolved variants get None.
     native_dbs: databases with native naming (EcoSpold 2) — SimaPro long names
     are parsed to extract the real activity name. Other databases keep SimaPro names as-is.
-    loaded_dbs: if provided, variants whose source DB is not loaded are skipped
-    with a warning instead of crashing on 404."""
+    All databases referenced here are guaranteed loaded (checked upfront in main)."""
     cache: dict[tuple[str, str], str | None] = {}
 
     for variants in groups.values():
@@ -431,15 +436,6 @@ def resolve_process_ids(
             if not db_name:
                 print(
                     f"  [WARN] Unknown source database '{v.source}' for alias {v.alias!r}",
-                    file=sys.stderr,
-                )
-                cache[key] = None
-                v.process_id = None
-                continue
-
-            if loaded_dbs is not None and db_name not in loaded_dbs:
-                print(
-                    f"  [WARN] Database {db_name!r} not loaded — skipping alias {v.alias!r}",
                     file=sys.stderr,
                 )
                 cache[key] = None
@@ -963,29 +959,23 @@ def make_base_activities_entry(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument(
-        "--activities",
-        default="lci_catalog",
-        help="Path to the lci_catalog/ directory (per-activity files grouped by "
-        "source slug, replacing the old activities.json). Default: lci_catalog",
-    )
-    parser.add_argument(
-        "--activities-to-create",
-        default="activities_to_create.json",
-        help="Path to activities_to_create.json (used to skip existing aliases)",
+        "ecobalyse",
+        help="Path to the ecobalyse repository. All inputs are derived from it: "
+        "data/lci_catalog, data/activities_to_create.json, and "
+        "public/data/food/ingredients.json (predictor training set).",
     )
     parser.add_argument(
         "--output-dir",
         default=".",
-        help="Directory for output files (default: current directory)",
+        help="Directory for the generated_*.json output files (default: current directory)",
     )
     parser.add_argument(
-        "--merge-into-catalog",
-        default=None,
-        help="If set, merge generated_activities.json directly into the given "
-        "lci_catalog/ directory using food/metadata/lci_catalog.py:merge_activities. "
-        "The catalog is rewritten in place (existing UUIDs preserved, "
-        "ingredient alias collisions get the legacy '-2025' / ' (2025)' marker). "
-        "Typically points at the same lci_catalog as --activities to round-trip.",
+        "--no-merge",
+        action="store_true",
+        help="Only write the generated_*.json files; do not merge them back into "
+        "data/lci_catalog and data/activities_to_create.json (dry run). When merging, "
+        "the catalog is rewritten in place (existing UUIDs preserved, ingredient alias "
+        "collisions get the legacy '-2025' / ' (2025)' marker).",
     )
     parser.add_argument(
         "--volca-url",
@@ -998,16 +988,26 @@ def main() -> None:
         default=2,
         help="Max BFS depth for get_consumers (default: 2 = direct + one intermediate like market mix)",
     )
-    parser.add_argument(
-        "--training-ingredients",
-        default=None,
-        help="Path to flat ingredients.json used to train the metadata predictor "
-        "(default: sibling public/data/food/ingredients.json next to --activities)",
-    )
     args = parser.parse_args()
 
+    # All inputs live at known locations inside the ecobalyse repository.
+    ecobalyse = Path(args.ecobalyse)
+    activities_path = ecobalyse / "data" / "lci_catalog"
+    atc_path = ecobalyse / "data" / "activities_to_create.json"
+    training_path = ecobalyse / "public" / "data" / "food" / "ingredients.json"
+    if not activities_path.is_dir():
+        parser.error(
+            f"{activities_path} not found — pass the path to the ecobalyse "
+            "repository (expected <ecobalyse>/data/lci_catalog inside it)."
+        )
+    if not training_path.exists():
+        parser.error(
+            f"{training_path} not found — pass the main ecobalyse repository "
+            "(predictor training set expected at "
+            "<ecobalyse>/public/data/food/ingredients.json inside it)."
+        )
+
     # Load inputs
-    activities_path = Path(args.activities)
     print(f"Loading {activities_path} ...")
     activities_json = load_lci_catalog(activities_path)
     print(f"  {len(activities_json)} activities loaded from catalog")
@@ -1020,7 +1020,6 @@ def main() -> None:
     # Without all three, a transformed product like "banana puree organic"
     # would emit alias "banana-organic" — which already names the raw Ginko
     # ingredient — and the merge would clobber it across source slugs.
-    atc_path = Path(args.activities_to_create)
     existing_aliases: set[str] = set()
     if atc_path.exists():
         with atc_path.open() as f:
@@ -1066,9 +1065,24 @@ def main() -> None:
         f"  {len(all_groups)} total groups, {len(groups)} actionable (have substitutable variants)"
     )
 
+    # Every database an actionable variant draws from must be loaded in VoLCA.
+    # Skipping a missing one would silently emit an incomplete catalog, so fail
+    # fast and report exactly what to load.
+    missing_dbs = {
+        DB_MAP[v.source]
+        for vs in groups.values()
+        for v in vs
+        if v.source in DB_MAP and DB_MAP[v.source] not in loaded_dbs
+    }
+    if missing_dbs:
+        sys.exit(
+            f"Required databases not loaded in VoLCA: {', '.join(sorted(missing_dbs))}. "
+            "Load them into VoLCA and retry."
+        )
+
     # Step 2: Resolve process_ids
     print("Resolving process IDs via VoLCA ...")
-    resolve_process_ids(groups, client, native_dbs, loaded_dbs)
+    resolve_process_ids(groups, client, native_dbs)
     resolvable = sum(
         1 for vs in groups.values() if any(v.process_id is not None for v in vs)
     )
@@ -1191,10 +1205,6 @@ def main() -> None:
         print(f"  {en} → {fr}")
 
     # Train (or load cached) metadata predictor from existing ingredients
-    if args.training_ingredients:
-        training_path = Path(args.training_ingredients)
-    else:
-        training_path = activities_path.parent / "public/data/food/ingredients.json"
     predictor = load_or_train_predictor(training_path)
 
     def _pick_french(short_en: str, long_en: str, variant_alias: str) -> str:
@@ -1244,17 +1254,15 @@ def main() -> None:
     print(f"  {len(final_fe)} from_existing blocks → {fe_path}")
     print(f"  {len(final_ae)} activities.json entries → {ae_path}")
 
-    if args.merge_into_catalog:
-        catalog_dir = Path(args.merge_into_catalog)
-        print(f"\nMerging {ae_path.name} into {catalog_dir} ...")
-        merge_activities(ae_path, catalog_dir)
+    if not args.no_merge:
+        print(f"\nMerging {ae_path.name} into {activities_path} ...")
+        merge_activities(ae_path, activities_path)
 
-        # Also append the from_existing blocks to the target's
-        # activities_to_create.json (sibling of lci_catalog/), de-duped on alias.
-        target_atc = catalog_dir.parent / "activities_to_create.json"
+        # Also append the from_existing blocks to the same
+        # activities_to_create.json read above for existing aliases, de-duped on alias.
         existing_atc: list[dict] = []
-        if target_atc.exists():
-            with target_atc.open() as f:
+        if atc_path.exists():
+            with atc_path.open() as f:
                 existing_atc = json.load(f)
         existing_atc_aliases = {
             e.get("alias") for e in existing_atc if e.get("alias")
@@ -1264,12 +1272,12 @@ def main() -> None:
         ]
         if new_blocks:
             existing_atc.extend(new_blocks)
-            with target_atc.open("w") as f:
+            with atc_path.open("w") as f:
                 json.dump(existing_atc, f, indent=2, ensure_ascii=False)
         skipped = len(final_fe) - len(new_blocks)
         print(
             f"  Appended {len(new_blocks)} from_existing blocks "
-            f"(skipped {skipped} already present) → {target_atc}"
+            f"(skipped {skipped} already present) → {atc_path}"
         )
 
 
