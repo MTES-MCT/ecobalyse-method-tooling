@@ -54,9 +54,14 @@ Algorithm:
    already removed the inedible fraction) and rawToCookedRatio to 1.0.
    Only scenario and defaultOrigin come from the target raw variant.
 
-Outputs two files:
+Outputs three files:
   generated_activities_to_create.json  — from_existing blocks to merge into activities_to_create.json
   generated_activities.json            — new entries to merge into activities.json
+  transformed_ingredients.csv          — review report, one row per generated
+                                         variant (metadata + prediction
+                                         provenance + replacement depth/path;
+                                         `ecs` left empty, filled by the
+                                         ecobalyse pipeline)
 
 All inputs live at known locations inside the ecobalyse repository, so the
 only required argument is the path to that repo:
@@ -91,6 +96,8 @@ if str(_METADATA_DIR) not in sys.path:
     sys.path.insert(0, str(_METADATA_DIR))
 from predict import Predictor  # noqa: E402
 from lci_catalog import load_lci_catalog, merge_activities  # noqa: E402
+
+from report import build_row, write_csv  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -794,47 +801,42 @@ def load_or_train_predictor(training_ingredients_path: Path) -> Predictor:
     return p
 
 
+def processed_categories(pred: dict, scenario: str) -> list[str]:
+    """Ingredient categories for a transformed variant, from the prediction.
+
+    Predictor sometimes returns "_raw" / "_fresh" category tokens because
+    the NOVA keyword classifier does not fire on juice/puree/peeled names.
+    Transformed ingredients are always processed, so rewrite the category
+    suffix to match the ecobalyse convention (grain_processed,
+    vegetable_processed, …). Append the variant tag ("organic") last.
+    """
+    categories = [
+        c.replace("_raw", "_processed").replace("_fresh", "_processed")
+        for c in (pred.get("categories") or [])
+    ]
+    if scenario == "organic" and "organic" not in categories:
+        categories.append("organic")
+    return categories
+
+
 def make_activities_entry(
     fe_block: dict,
     target: VariantInfo,
     french_name: str,
-    english_name: str,
-    predictor: Predictor,
+    pred: dict,
 ) -> dict:
     """Build an activities.json entry for a new transformed ingredient variant.
 
     Physical metadata (density, transportCooling, rawToCookedRatio, categories,
-    cropGroup) is predicted from the transformed-product name via ../metadata/
-    predict.py. Variant identity (scenario, defaultOrigin) comes from the
-    target raw variant. inediblePart is hardcoded to 0 — transformation has
-    already removed the inedible fraction.
+    cropGroup) comes from `pred`, the ../metadata/predict.py output for the
+    transformed-product name. Variant identity (scenario, defaultOrigin) comes
+    from the target raw variant. inediblePart is hardcoded to 0 — transformation
+    has already removed the inedible fraction.
     """
     meta = target.raw_meta
     alias = fe_block["alias"]
     display_name = french_name + variant_display_suffix(target.alias)
-
-    # Classify from the English product name: predict.py's FoodOn /
-    # nearest-neighbour matchers are English-trained, and French input
-    # misclassifies (e.g. "Farine d'orge" → vegetable/LEGUMES-FLEURS instead
-    # of grain/ORGE). Pass the short English name and the underlying Agribalyse
-    # activity name (without the variant bracket added for substitution).
-    pred = predictor.predict({
-        "name": english_name,
-        "activityName": fe_block["existingActivity"]["name"],
-    })
-
-    # Predictor sometimes returns "_raw" / "_fresh" category tokens because
-    # the NOVA keyword classifier does not fire on juice/puree/peeled names.
-    # Transformed ingredients are always processed, so rewrite the category
-    # suffix to match the ecobalyse convention (grain_processed,
-    # vegetable_processed, …). Append the variant tag ("organic") last.
-    base_categories = pred.get("categories") or []
-    ing_categories = [
-        c.replace("_raw", "_processed").replace("_fresh", "_processed")
-        for c in base_categories
-    ]
-    if target.scenario == "organic" and "organic" not in ing_categories:
-        ing_categories.append("organic")
+    ing_categories = processed_categories(pred, target.scenario)
 
     return {
         "activityName": fe_block["newName"],
@@ -895,8 +897,7 @@ def make_base_activities_entry(
     alias: str,
     target: VariantInfo,
     french_name: str,
-    english_name: str,
-    predictor: Predictor,
+    pred: dict,
 ) -> dict:
     """Build an activities.json entry for the variant a consumer already uses.
 
@@ -906,20 +907,7 @@ def make_base_activities_entry(
     """
     meta = target.raw_meta
     display_name = french_name + variant_display_suffix(target.alias)
-
-    # English name for classification — see make_activities_entry.
-    pred = predictor.predict({
-        "name": english_name,
-        "activityName": existing_activity_name,
-    })
-
-    base_categories = pred.get("categories") or []
-    ing_categories = [
-        c.replace("_raw", "_processed").replace("_fresh", "_processed")
-        for c in base_categories
-    ]
-    if target.scenario == "organic" and "organic" not in ing_categories:
-        ing_categories.append("organic")
+    ing_categories = processed_categories(pred, target.scenario)
 
     return {
         "activityName": existing_activity_name,
@@ -1219,20 +1207,55 @@ def main() -> None:
         existing_display_names.add(long_fr + suffix)
         return long_fr
 
-    # Build final outputs
+    # Build final outputs, plus one report row per generated variant.
+    # Rows must be built here, before merge_by_activity_name collapses
+    # entries — afterwards there is no longer one entry per variant.
+    #
+    # Classification uses the English product name: predict.py's FoodOn /
+    # nearest-neighbour matchers are English-trained, and French input
+    # misclassifies (e.g. "Farine d'orge" → vegetable/LEGUMES-FLEURS instead
+    # of grain/ORGE). Always the SHORT name (even when _pick_french falls
+    # back to the long one) and the underlying Agribalyse activity name
+    # (without the variant bracket added for substitution).
     final_fe: list[dict] = []
     final_ae: list[dict] = []
+    report_rows: list[dict] = []
     for fe, target, short_name, long_name in output_fe:
         french = _pick_french(short_name, long_name, target.alias)
-        ae = make_activities_entry(fe, target, french, short_name, predictor)
+        existing_name = fe["existingActivity"]["name"]
+        pred = predictor.predict({"name": short_name, "activityName": existing_name})
+        ae = make_activities_entry(fe, target, french, pred)
         final_fe.append(fe)
         final_ae.append(ae)
+        report_rows.append(build_row(
+            kind="from_existing",
+            base_ingredient=strip_variant_suffix(target.alias) or "",
+            variant_short=variant_short_suffix(target.alias),
+            display_name=ae["displayName"],
+            alias=ae["alias"],
+            meta=ae["metadata"][0],
+            pred=pred,
+            fe=fe,
+            existing_name=existing_name,
+            target_source=target.source,
+        ))
     for existing_name, alias, target, short_name, long_name in output_base:
         french = _pick_french(short_name, long_name, target.alias)
-        ae = make_base_activities_entry(
-            existing_name, alias, target, french, short_name, predictor
-        )
+        pred = predictor.predict({"name": short_name, "activityName": existing_name})
+        ae = make_base_activities_entry(existing_name, alias, target, french, pred)
         final_ae.append(ae)
+        report_rows.append(build_row(
+            kind="existing",
+            base_ingredient=strip_variant_suffix(target.alias) or "",
+            variant_short=variant_short_suffix(target.alias),
+            display_name=ae["displayName"],
+            alias=alias,
+            meta=ae["metadata"][0],
+            pred=pred,
+            fe=None,
+            existing_name=existing_name,
+            target_source=target.source,
+        ))
 
     # Collapse entries sharing an activityName (happens when a consumer uses
     # several raw variants natively — e.g. both -fr and -default): keep one
@@ -1242,15 +1265,18 @@ def main() -> None:
     # Write outputs
     fe_path = output_dir / "generated_activities_to_create.json"
     ae_path = output_dir / "generated_activities.json"
+    csv_path = output_dir / "transformed_ingredients.csv"
 
     with fe_path.open("w") as f:
         json.dump(final_fe, f, indent=2, ensure_ascii=False)
     with ae_path.open("w") as f:
         json.dump(final_ae, f, indent=2, ensure_ascii=False)
+    write_csv(report_rows, csv_path)
 
     print(f"\nDone.")
     print(f"  {len(final_fe)} from_existing blocks → {fe_path}")
     print(f"  {len(final_ae)} activities.json entries → {ae_path}")
+    print(f"  {len(report_rows)} report rows → {csv_path}")
 
     if not args.no_merge:
         print(f"\nMerging {ae_path.name} into {activities_path} ...")

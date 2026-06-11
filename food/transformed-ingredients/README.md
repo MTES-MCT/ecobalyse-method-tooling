@@ -135,6 +135,14 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
 - `generated_activities.json` — new activity entries merged into the
   `lci_catalog/` automatically (pass `--no-merge` to skip and only write the
   generated files).
+- `transformed_ingredients.csv` — review report, one row per generated
+  variant: base ingredient, display name, alias, variant, the lci_catalog
+  metadata block, prediction provenance (rule + confidence, in the
+  value/Match/Conf style of `../metadata` predictions.csv), and the
+  upstream-replacement specifics (existing activity, replacement depth =
+  number of intermediate upstream steps, path, replaced/replacement
+  activities). The `ecs` column is left empty: the environmental cost is
+  produced later by the ecobalyse pipeline (`just export-all`).
 - `.predictor.pkl` — cached predictor, sibling of the script,
   git-ignored — regenerated on first run, reused afterwards.
 - `.translation_cache.json` — persistent English → French cache; the
@@ -184,6 +192,8 @@ uv sync
 | `transform_params_all.csv` | Output of `extract_transform_params.py --all` |
 | `generated_activities_to_create.json` | Output of `generate_transformed_ingredients.py` |
 | `generated_activities.json` | Output of `generate_transformed_ingredients.py` |
+| `transformed_ingredients.csv` | Output of `generate_transformed_ingredients.py` (review report) |
+| `report.py` | Report row building + CSV writing for `generate_transformed_ingredients.py` |
 | `translation_corrections.csv` | Manual post-translation overrides applied after MarianMT EN→FR |
 | `.translation_cache.json` | Auto-generated translation cache |
 | `.predictor.pkl` | Cached metadata predictor (auto-generated) |
