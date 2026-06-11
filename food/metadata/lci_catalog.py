@@ -109,7 +109,9 @@ def write_lci_catalog(activities: list[dict], catalog_dir: Path) -> None:
       - subdirectory = slugify(activity["source"])
       - filename = activity["alias"] + ".json"
       - the `alias` field is removed from the on-disk payload
-      - JSON is dumped with indent=2 and ensure_ascii=False
+      - JSON is dumped with indent=2, ensure_ascii=False and sort_keys=True
+        (the on-disk convention — without it every file would be rewritten
+        with `metadata` last, the insertion order `reassemble` produces)
 
     Files no longer present in `activities` are deleted, so the catalog
     matches the merged result (same semantics as the previous full
@@ -128,7 +130,7 @@ def write_lci_catalog(activities: list[dict], catalog_dir: Path) -> None:
 
         payload = {k: v for k, v in activity.items() if k != "alias"}
         with open(source_dir / f"{alias}.json", "w", encoding="utf-8") as f:
-            json.dump(payload, f, indent=2, ensure_ascii=False)
+            json.dump(payload, f, indent=2, ensure_ascii=False, sort_keys=True)
             f.write("\n")
 
     for path in catalog_dir.glob("*/*.json"):
@@ -478,20 +480,37 @@ def merge_activities(
 
     # Strip the `-2025` suffix from activity-level aliases. The `-2025`
     # namespace is for ingredients only; activities (= LCI process handles)
-    # should never carry it. Three cases per activity whose alias ends in
-    # `-2025`:
-    # 1. Canonical alias claimed elsewhere → drop the `-2025` snapshot
-    #    (superseded). Its legacy ingredients are dropped too; their
-    #    `xxx-2025` aliases are remapped to `xxx` so feed.json references
-    #    follow.
-    # 2. activityName has `{{xxx-2025}}` marker → keep as-is. The marker is
+    # should never carry it. Four cases per activity whose alias ends in
+    # `-2025`, in priority order:
+    # 1. activityName has `{{xxx-2025}}` marker → keep as-is. The marker is
     #    the BW DB lookup key (created from `activities_to_create.json`'s
     #    `newName`); stripping the alias would break test consistency
     #    (`creation_alias != export_alias`) and the matching `bin/export.py
     #    processes` search.
-    # 3. Otherwise → rename: strip `-2025` from alias and the activity-level
+    # 2. Hosts an ingredient alias referenced by feed.json → keep as-is.
+    #    feed.json is an external contract: its entries name specific feed
+    #    processes (e.g. `alfalfa-organic-2025` = Agribalyse alfalfa hay),
+    #    while the canonical-alias claimant is usually an unrelated process
+    #    (e.g. the Ginko consumer ingredient `alfalfa-organic`). Dropping
+    #    or renaming here would silently rewire ES computations.
+    # 3. Canonical alias claimed elsewhere → drop the `-2025` snapshot
+    #    (superseded merge artifact). Its legacy ingredients are dropped
+    #    along with it.
+    # 4. Otherwise → rename: strip `-2025` from alias and the activity-level
     #    displayName suffix `(2025)`. Update ingredient `activity_key`
-    #    references and regenerate the UUID from the new alias.
+    #    references; keep the UUID.
+    feed_path = target_catalog_dir.parent / "food/ecosystemic_services/feed.json"
+    feed_data: dict[str, dict] = {}
+    if feed_path.exists():
+        with open(feed_path, encoding="utf-8") as f:
+            feed_data = json.load(f)
+    feed_aliases = set(feed_data) | {a for q in feed_data.values() for a in q}
+    feed_pinned_keys = {
+        ing["activity_key"]
+        for ing in merged_ings.values()
+        if ing.get("alias") in feed_aliases
+    }
+
     canonical_aliases = {alias for (_src, alias) in merged_acts}
     marker_re = re.compile(r"\{\{[^}]+\}\}")
     legacy_keys_to_drop: set[tuple[str, str]] = set()
@@ -500,25 +519,17 @@ def merge_activities(
         src_slug, alias = key
         if not alias.endswith(OLD_ALIAS_SUFFIX):
             continue
+        act = merged_acts[key]
+        if marker_re.search(act.get("activityName", "")):
+            continue  # Curated `-2025` activity; needs cross-repo cleanup.
+        if key in feed_pinned_keys:
+            continue  # feed.json references its ingredient aliases.
         canonical_alias = alias[: -len(OLD_ALIAS_SUFFIX)]
         if canonical_alias in canonical_aliases:
             legacy_keys_to_drop.add(key)
             continue
-        act = merged_acts[key]
-        if marker_re.search(act.get("activityName", "")):
-            continue  # Curated `-2025` activity; needs cross-repo cleanup.
         legacy_renames[key] = (src_slug, canonical_alias)
         canonical_aliases.add(canonical_alias)
-    # Track ingredient alias renames induced by activity drops, so feed.json
-    # references to dropped legacy ingredient aliases follow the canonical.
-    for key in legacy_keys_to_drop:
-        for ing in list(merged_ings.values()):
-            if ing.get("activity_key") != key:
-                continue
-            ing_alias = ing.get("alias") or ""
-            if ing_alias.endswith(OLD_ALIAS_SUFFIX):
-                canonical_ing_alias = ing_alias[: -len(OLD_ALIAS_SUFFIX)]
-                alias_renames.setdefault(ing_alias, canonical_ing_alias)
     for key in legacy_keys_to_drop:
         del merged_acts[key]
     if legacy_keys_to_drop:
@@ -543,26 +554,21 @@ def merge_activities(
             if ak in legacy_renames:
                 ing["activity_key"] = legacy_renames[ak]
 
-    # Update feed.json keys to match renamed ingredient aliases
-    feed_path = target_catalog_dir.parent / "food/ecosystemic_services/feed.json"
-    if feed_path.exists():
-        with open(feed_path, encoding="utf-8") as f:
-            feed_data = json.load(f)
-
-        if alias_renames:
-            updated_feed = {}
-            renamed_count = 0
-            for key, value in feed_data.items():
-                new_key = alias_renames.get(key, key)
-                new_value = {alias_renames.get(k, k): v for k, v in value.items()}
-                updated_feed[new_key] = new_value
-                if new_key != key:
-                    renamed_count += 1
-            feed_data = updated_feed
-            print(f"feed.json: renamed {renamed_count} top-level keys")
-
-        with open(feed_path, "w", encoding="utf-8") as f:
-            json.dump(feed_data, f, indent=2, ensure_ascii=False)
+    # Update feed.json to follow renamed ingredient aliases (a rename keeps
+    # pointing at the same process under its new alias). Leave the file
+    # untouched when nothing changed.
+    if feed_data:
+        updated_feed = {
+            alias_renames.get(key, key): {
+                alias_renames.get(k, k): v for k, v in value.items()
+            }
+            for key, value in feed_data.items()
+        }
+        if updated_feed != feed_data:
+            renamed = sum(1 for k in feed_data if alias_renames.get(k, k) != k)
+            print(f"feed.json: renamed {renamed} top-level keys")
+            with open(feed_path, "w", encoding="utf-8") as f:
+                json.dump(updated_feed, f, indent=2, ensure_ascii=False)
 
     # Disambiguate cross-source same-alias collisions. Activities are keyed by
     # (src_slug, alias) internally, but lci_catalog filenames must have
