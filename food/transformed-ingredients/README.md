@@ -136,13 +136,13 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
   `lci_catalog/` automatically (pass `--no-merge` to skip and only write the
   generated files).
 - `transformed_ingredients.csv` — review report, one row per generated
-  variant: base ingredient, display name, alias, variant, the lci_catalog
-  metadata block, prediction provenance (rule + confidence, in the
-  value/Match/Conf style of `../metadata` predictions.csv), and the
-  upstream-replacement specifics (existing activity, replacement depth =
-  number of intermediate upstream steps, path, replaced/replacement
-  activities). The `ecs` column is left empty: the environmental cost is
-  produced later by the ecobalyse pipeline (`just export-all`).
+  variant: base ingredient, existing activity, variant, display name,
+  alias, the lci_catalog metadata block, and the upstream-replacement
+  specifics (replacement depth = number of intermediate upstream steps,
+  path, replaced/replacement activities). The `ecs` column is left empty
+  by the generator: the environmental cost is produced by the ecobalyse
+  pipeline (`just import-all && just export-all`) and backfilled into the
+  CSV afterwards with `uv run python report.py /path/to/ecobalyse`.
 - `.predictor.pkl` — cached predictor, sibling of the script,
   git-ignored — regenerated on first run, reused afterwards.
 - `.translation_cache.json` — persistent English → French cache; the

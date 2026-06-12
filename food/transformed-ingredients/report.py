@@ -2,16 +2,16 @@
 
 One row per generated variant (pre-merge granularity: a variant = one
 from_existing block or one base activities entry), combining:
-  - identity: base ingredient, French display name, alias, variant suffix
+  - identity: base ingredient, existing activity, variant suffix, French
+    display name, alias
   - the metadata block written to lci_catalog (predicted or hardcoded)
-  - prediction provenance (rule + confidence) in the value/Match/Conf
-    style of ../metadata/export.py predictions.csv
-  - upstream-replacement specifics: existing activity, replacement depth,
-    upstream path, replaced/replacement activities
+  - upstream-replacement specifics: replacement depth, upstream path,
+    replaced/replacement activities
 
-The `ecs` column is left empty on purpose: the environmental cost is
-produced by the ecobalyse pipeline (`just export-all`) once the activities
-are actually created; recomputing it here would not match (no complements).
+The `ecs` column is left empty by the generator: the environmental cost is
+produced by the ecobalyse pipeline (`just import-all && just export-all`)
+once the activities are actually created; recomputing it here would not
+match (no complements).
 
 Pure row-building; the only side effect is write_csv.
 """
@@ -19,18 +19,12 @@ Pure row-building; the only side effect is write_csv.
 import csv
 from pathlib import Path
 
-# Fields whose prediction provenance is reported. cropGroup, density and
-# transportCooling values already appear as metadata columns; foodType and
-# novaGroup only exist in the predictor output so they get a value column
-# too. inediblePart and rawToCookedRatio are hardcoded by the generator
-# (0 / 1.0), hence no provenance.
-PROVENANCE_FIELDS = ["cropGroup", "density", "transportCooling", "foodType", "novaGroup"]
-
 COLUMNS = [
     "Ingrédient de base",
+    "Activité existante",
+    "Variante",
     "Nom",
     "Alias",
-    "Variante",
     "ecs",
     "scenario",
     "defaultOrigin",
@@ -40,20 +34,7 @@ COLUMNS = [
     "ingredientDensity",
     "rawToCookedRatio",
     "transportCooling",
-    "cropGroupMatch",
-    "cropGroupConf",
-    "densityMatch",
-    "densityConf",
-    "transportCoolingMatch",
-    "transportCoolingConf",
-    "foodType",
-    "foodTypeMatch",
-    "foodTypeConf",
-    "novaGroup",
-    "novaGroupMatch",
-    "novaGroupConf",
     "Type de création",
-    "Activité existante",
     "Nouveau nom",
     "Profondeur",
     "Chemin amont",
@@ -61,15 +42,6 @@ COLUMNS = [
     "Remplaçant (to)",
     "Base cible (source)",
 ]
-
-
-def _format_match(m: dict | None) -> str:
-    return m.get("rule", "") if m else ""
-
-
-def _format_conf(m: dict | None) -> str:
-    conf = (m or {}).get("confidence")
-    return f"{conf:.3f}" if conf else ""
 
 
 def _format_value(v) -> str:
@@ -92,7 +64,6 @@ def build_row(
     display_name: str,
     alias: str,
     meta: dict,
-    pred: dict,
     fe: dict | None,
     existing_name: str,
     target_source: str,
@@ -101,18 +72,18 @@ def build_row(
 
     kind: "from_existing" (substitution block) or "existing" (the consumer
     already uses this variant natively — no replacement, fe is None).
-    meta is the single metadata block of the generated activities entry;
-    pred is the raw predictor output (carries the *Match provenance dicts).
+    meta is the single metadata block of the generated activities entry.
     """
     plan = fe["replacementPlan"] if fe else None
     upstream = [s["name"] for s in plan["upstreamPath"]] if plan else []
     replace = plan["replace"][0] if plan else None
 
-    row = {
+    return {
         "Ingrédient de base": base_ingredient,
+        "Activité existante": existing_name,
+        "Variante": variant_short,
         "Nom": display_name,
         "Alias": alias,
-        "Variante": variant_short,
         "ecs": "",
         "scenario": _format_value(meta.get("scenario")),
         "defaultOrigin": _format_value(meta.get("defaultOrigin")),
@@ -122,10 +93,7 @@ def build_row(
         "ingredientDensity": _format_value(meta.get("ingredientDensity")),
         "rawToCookedRatio": _format_value(meta.get("rawToCookedRatio")),
         "transportCooling": _format_value(meta.get("transportCooling")),
-        "foodType": _format_value(pred.get("foodType")),
-        "novaGroup": _format_value(pred.get("novaGroup")),
         "Type de création": kind,
-        "Activité existante": existing_name,
         "Nouveau nom": fe["newName"] if fe else "",
         "Profondeur": str(len(upstream)) if plan else "",
         "Chemin amont": " → ".join(upstream),
@@ -133,11 +101,6 @@ def build_row(
         "Remplaçant (to)": _format_to(replace["to"]) if replace else "",
         "Base cible (source)": target_source,
     }
-    for key in PROVENANCE_FIELDS:
-        m = pred.get(key + "Match")
-        row[key + "Match"] = _format_match(m)
-        row[key + "Conf"] = _format_conf(m)
-    return row
 
 
 def write_csv(rows: list[dict[str, str]], path: Path) -> None:
@@ -149,3 +112,67 @@ def write_csv(rows: list[dict[str, str]], path: Path) -> None:
         writer = csv.DictWriter(f, fieldnames=COLUMNS)
         writer.writeheader()
         writer.writerows(ordered)
+
+
+def ecs_join_key(row: dict[str, str]) -> str:
+    """activityName under which the ecobalyse pipeline exports this row's process.
+
+    from_existing rows are created under their newName (variant bracket and
+    {{alias}} marker included, kept verbatim by the export); existing rows
+    reference the existing activity directly.
+    """
+    return row["Nouveau nom"] or row["Activité existante"]
+
+
+def fill_ecs(
+    rows: list[dict[str, str]], ecs_by_activity_name: dict[str, float]
+) -> tuple[list[dict[str, str]], list[str]]:
+    """Fill the ecs column from pipeline impacts; also return unmatched keys."""
+    filled, missing = [], []
+    for row in rows:
+        ecs = ecs_by_activity_name.get(ecs_join_key(row))
+        if ecs is None:
+            missing.append(ecs_join_key(row))
+        filled.append(row | {"ecs": "" if ecs is None else f"{ecs:.6g}"})
+    return filled, missing
+
+
+def _main() -> None:
+    """Backfill the ecs column of transformed_ingredients.csv from the
+    ecobalyse pipeline output (run after `just import-all && just export-all`)."""
+    import argparse
+    import json
+    import sys
+
+    parser = argparse.ArgumentParser(description=_main.__doc__)
+    parser.add_argument(
+        "ecobalyse",
+        help="Path to the ecobalyse repository "
+        "(reads data/public/data/processes_impacts.json)",
+    )
+    parser.add_argument("--csv", default="transformed_ingredients.csv")
+    args = parser.parse_args()
+
+    csv_path = Path(args.csv)
+    with csv_path.open(newline="", encoding="utf-8") as f:
+        rows = list(csv.DictReader(f))
+
+    impacts_path = (
+        Path(args.ecobalyse) / "data" / "public" / "data" / "processes_impacts.json"
+    )
+    with impacts_path.open(encoding="utf-8") as f:
+        ecs_by_name = {
+            p["activityName"]: p["impacts"]["ecs"]
+            for p in json.load(f)
+            if "ecs" in (p.get("impacts") or {})
+        }
+
+    filled, missing = fill_ecs(rows, ecs_by_name)
+    write_csv(filled, csv_path)
+    print(f"{len(filled) - len(missing)}/{len(filled)} ecs filled → {csv_path}")
+    for key in missing:
+        print(f"  [WARN] no process found for: {key}", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    _main()
