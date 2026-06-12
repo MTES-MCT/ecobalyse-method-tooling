@@ -58,10 +58,9 @@ Outputs three files:
   generated_activities_to_create.json  — from_existing blocks to merge into activities_to_create.json
   generated_activities.json            — new entries to merge into activities.json
   transformed_ingredients.csv          — review report, one row per generated
-                                         variant (metadata + prediction
-                                         provenance + replacement depth/path;
-                                         `ecs` left empty, filled by the
-                                         ecobalyse pipeline)
+                                         variant (metadata + replacement
+                                         depth/path; `ecs` left empty, filled
+                                         from the ecobalyse pipeline output)
 
 All inputs live at known locations inside the ecobalyse repository, so the
 only required argument is the path to that repo:
@@ -1234,7 +1233,6 @@ def main() -> None:
             display_name=ae["displayName"],
             alias=ae["alias"],
             meta=ae["metadata"][0],
-            pred=pred,
             fe=fe,
             existing_name=existing_name,
             target_source=target.source,
@@ -1251,7 +1249,6 @@ def main() -> None:
             display_name=ae["displayName"],
             alias=alias,
             meta=ae["metadata"][0],
-            pred=pred,
             fe=None,
             existing_name=existing_name,
             target_source=target.source,
