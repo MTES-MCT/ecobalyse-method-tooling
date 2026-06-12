@@ -151,12 +151,23 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
 
 ### Usage
 
+The full workflow is three steps — generate, run the ecobalyse pipeline,
+backfill the `ecs` column of the report:
+
 ```bash
+# 1. Generate (merges into the ecobalyse repo unless --no-merge)
 uv run python generate_transformed_ingredients.py /path/to/ecobalyse \
     [--output-dir .] \
     [--volca-url http://localhost:8080] \
     [--max-depth 2] \
     [--no-merge]
+
+# 2. In the ecobalyse repo: create the activities and compute the impacts
+just import-all && just export-all
+
+# 3. Backfill ecs into transformed_ingredients.csv from the pipeline output
+#    (same ecobalyse path as step 1)
+uv run python report.py /path/to/ecobalyse
 
 uv run python generate_transformed_ingredients.py --help
 ```
