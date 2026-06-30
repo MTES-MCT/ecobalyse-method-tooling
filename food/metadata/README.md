@@ -208,10 +208,11 @@ New Ingredient
 │   └─────────────────────────────────────────────────────────┘     │
 │                          │                                        │
 │                          ▼ (if no exact match)                    │
-│   PRIORITY 1.5: Semantic Near-Exact Match (confidence = 0.98)     │
+│   PRIORITY 1.5: Semantic Near-Exact Match (confidence ≥ 0.95)     │
 │   ┌─────────────────────────────────────────────────────────┐     │
-│   │ Sentence-transformer embedding similarity > 0.9         │     │
-│   │ Handles plurals like "Avocado" ≈ "Avocados"            │     │
+│   │ Sentence-transformer embedding similarity ≥ 0.95        │     │
+│   │ Confidence = the actual similarity, not a fixed value   │     │
+│   │ Handles plurals like "Avocado" ≈ "Avocados"             │     │
 │   └─────────────────────────────────────────────────────────┘     │
 │                          │                                        │
 │                          ▼ (if no semantic match)                 │
@@ -388,7 +389,7 @@ DETECTION_PATTERNS = {
 | Match Type | Confidence |
 |------------|------------|
 | Exact match | 1.0 |
-| Semantic near-exact match | 0.98 |
+| Semantic near-exact match | ≥ 0.95 (= actual cosine similarity) |
 | Word boundary match | 0.95 |
 | FoodOn + regex similarity | 0.0 - 1.0 (cosine) |
 

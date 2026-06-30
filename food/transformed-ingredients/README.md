@@ -116,6 +116,71 @@ ingredient variant `V_src` (e.g. `radish-fr`), generate new variants of
    `rawToCookedRatio = 1.0` are hardcoded. Only `scenario` and
    `defaultOrigin` come from the target raw variant.
 
+### Metadata invariants (per transformed product)
+
+A single transformed product (e.g. *Jus de pomme*) is emitted once per raw
+variant — `FR` / `Bio` / `UE` / `HORS UE` / `Origine Inconnue` — which
+collapse into three `scenario` values (`reference` / `organic` / `import`).
+Across those variants of the **same** product, the metadata splits cleanly:
+
+| Column | Same across variants? | Source |
+|--------|:---------------------:|--------|
+| `scenario` | **No** | the variant *is* the scenario (`reference` / `organic` / `import`) |
+| `defaultOrigin` | **No** | the target raw variant (`France` / `EuropeAndMaghreb` / `OutOfEuropeAndMaghreb`) |
+| `ingredientCategories` | **No** (only the bio variant) | predicted from the name, **plus** an `organic` tag appended when `scenario == organic` |
+| `cropGroup` | Yes | predicted from the product name |
+| `ingredientDensity` | Yes | predicted from the product name |
+| `transportCooling` | Yes | predicted from the product name |
+| `inediblePart` | Yes — always `0` | hardcoded (transformation already removed the inedible fraction) |
+| `rawToCookedRatio` | Yes — always `1.0` | hardcoded (does not apply to an already-transformed ingredient) |
+
+In short, the *physical* metadata is identical for every variant of a
+product (it is predicted from the product name, which the variant suffix
+does not change); only the *variant identity* (`scenario`, `defaultOrigin`,
+and the `organic` category tag) differs.
+
+> Verified on the current outputs: 504 rows / 106 distinct products —
+> `rawToCookedRatio` is `1.0` and `inediblePart` is `0` on every row, and
+> `cropGroup` / `ingredientDensity` / `transportCooling` are constant within
+> each product. Beware of grouping by *base ingredient* instead of *product*:
+> one base ingredient (`apple`) yields several products (juice 0.85 vs peeled
+> apple 0.9), so its density looks variable when it is not.
+
+### How each field is derived: base variants vs transformed ingredients
+
+Both pipelines use the **same** `predict.py` `Predictor` (FoodOn ontology +
+nearest-neighbour matchers + foodType/NOVA defaults — no ML model). Every
+per-field matcher (`density_matcher`, `inedible_matcher`, …) is one shared
+`NearestNeighborMatcher` class fitted on a different reference table; its
+4-stage cascade (exact text → semantic embedding ≥ 0.95 → word-boundary →
+FoodOn+regex cosine) is documented in
+[`../metadata/README.md`](../metadata/README.md). The
+difference between the two pipelines is the **input** and the **overrides**:
+
+- `../metadata/export.py` feeds the predictor the **raw ingredient name**
+  and keeps every predicted field.
+- the generator here feeds it the **transformed-product name** (e.g. *apple
+  juice* instead of *apple*) and then overrides the fields that no longer
+  apply to an already-transformed product.
+
+| Field | Base variants — `../metadata` | Transformed ingredients — here |
+|-------|-------------------------------|--------------------------------|
+| `scenario` | Hardcoded per variant: `FR`→`reference`, `BIO`→`organic`, `UE`/`OI`/`NUE`→`import` (`export.py` `VariantConfig`) | **Copied** from the target raw variant (`target.scenario`) — *not* re-derived |
+| `defaultOrigin` | Hardcoded per variant: `FR`/`BIO`→`France`, `UE`→`EuropeAndMaghreb`, `OI`/`NUE`→`OutOfEuropeAndMaghreb` | **Copied** from the target raw variant (`raw_meta["defaultOrigin"]`) |
+| `cropGroup` | Pattern inference from foodType + name (wheat→`BLE TENDRE`, olive→`OLIVIERS`, …), matcher fallback on `reference/cropgroup.csv`; `None` for animal products | Predicted from the **transformed name**, with **fallback to the raw variant's** `cropGroup` (`pred.get("cropGroup") or meta.get("cropGroup")`) |
+| `ingredientCategories` | Rule from (foodType, NOVA): NOVA 1→`*_fresh`/`*_raw`, NOVA 2+→`*_processed`; `organic` appended for the `BIO` variant | Predicted, then `_raw`/`_fresh` **rewritten to `_processed`** (a transformed product is always processed); `organic` appended when `scenario == organic` (`processed_categories`) |
+| `inediblePart` | 3-tier: name keywords (*fillet*, *peeled*→0.0) → matcher → foodType+NOVA default | **Hardcoded `0`** — transformation already removed the inedible fraction |
+| `ingredientDensity` | 3-tier: text/semantic match on FAO+custom density CSVs → matcher → foodType default (`fruit` 0.85, `grain` 0.75, …) | Predicted from the **transformed name** (`pred.get("density")`) |
+| `rawToCookedRatio` | 3-tier: keywords (*dried*+foodType, poultry 0.755, …) → matcher → foodType default (`grain` 2.259, `meat` 0.792, …) | **Hardcoded `1.0`** — the ratio does not apply to an already-transformed ingredient |
+| `transportCooling` | Packaging keywords (*frozen*→`always`, *canned*→`none`) → rules (NOVA 1 + perishable→`always`) → matcher | Predicted from the **transformed name** (`pred.get("transportCooling")`) — the packaging keywords in the product name drive it (e.g. *frozen purée*→`always`, *canned*→`none`) |
+
+In other words: `scenario` / `defaultOrigin` are **inherited** from the raw
+variant (identity, not predicted), `inediblePart` / `rawToCookedRatio` are
+**forced** to the post-transformation constants, and the remaining physical
+fields are **re-predicted from the transformed name** — which is why they are
+identical across all variants of a product but differ from the underlying raw
+ingredient.
+
 ### Inputs
 
 - A reachable Volca server (default `http://localhost:8080`).
