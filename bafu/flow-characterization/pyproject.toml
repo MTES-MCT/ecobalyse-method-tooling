@@ -1,0 +1,10 @@
+[project]
+name = "flow-characterization"
+version = "0.1.0"
+description = "List the BAFU biosphere flows that the EF 3.1 method does not characterize"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = [
+    "bw2data==4.7",
+    "python-dotenv>=1.0.0",
+]
