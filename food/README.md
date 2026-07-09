@@ -11,7 +11,6 @@ table below, then open that folder's README.
 | [`metadata/`](metadata/) | Predict ingredient metadata (foodType, NOVA group, density, cropGroup, …) for new ingredients, and export them into Ecobalyse's `ingredients.json` + impacts CSV. |
 | [`transformed-ingredients/`](transformed-ingredients/) | Reverse-engineer per-transformation parameters (yield, electricity, heat, allocation, …) for the "composant" module, and generate transformed-ingredient variants (organic / import / …) from an existing one. |
 | [`agribalyse_recipe/`](agribalyse_recipe/) | Extract the ingredient bill of materials (recipe) of any Agribalyse transformed product to Excel. |
-| [`brightway_vs_volca/`](brightway_vs_volca/) | Diagonal parity clouds comparing ecobalyse-Brightway vs VoLCA on the same database and EF 3.1 method (currently BAFU), to validate the Brightway import and localize every diverging impact category. |
 
 ## Shared context
 
