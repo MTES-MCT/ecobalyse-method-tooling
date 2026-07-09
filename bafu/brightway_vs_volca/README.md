@@ -66,6 +66,32 @@ report:
   synonyms/mapping in the ecobalyse repo.
 - Electricity (kWh vs MJ) is reconciled by the unit factor, not a real divergence.
 
+## Findings (BAFU 2026v1, EF 3.1 adapted 1.03 both sides, 2026-07)
+
+Global median VoLCA/ecobalyse = **1.0000**, ~73 % of points within ±5 % (81 % once long-term
+emissions are aligned). Every diverging category was attributed:
+
+| Divergence | Cause | Status |
+|---|---|---|
+| Eutrophication freshwater ×4.9, Ionising radiation ×3.8 | ecobalyse `noLT` zeroes long-term CFs (Phosphate groundwater long-term, Radon-222); VoLCA keeps them | intended adaptation; both collapse to ~1.00 with `--exclude-long-term` |
+| Resource use fossils ×1.65 on nuclear | ecobalyse `uraniumFRU` (−40 % on uranium fossil CF) | intended (artificial) adaptation |
+| Ecotoxicity / Human toxicity inorganics ~0.91 | VoLCA groundwater CF resolution (below) | VoLCA defect, nothing to fix in ecobalyse |
+
+### The VoLCA groundwater issue
+
+The inorganics gap is essentially one flow, `Iron, ion` emitted to **water/groundwater
+(non long-term)**. Inventory amounts and CFs are identical on both sides where both characterize;
+the divergence is CF resolution for the groundwater subcompartment. The 1.03 method CSV has no
+explicit `Water;groundwater` line for that flow (only `(unspecified)` = 2108.5 and
+`groundwater, long-term` = 0), because the 1.03 changelog deliberately removed subcompartment
+lines equal to unspecified: they "will automatically be characterised with the same CF as the
+unspecified subcompartment" (SimaPro fallback semantics). Brightway applies that fallback;
+VoLCA applies it for `river` and `lake` but **not** for `groundwater` (the flow simply vanishes,
+and its score is identical with and without `exclude-long-term`), most likely because its
+compartment mapping folds `groundwater` onto `groundwater, long-term` (explicit CF 0), shadowing
+the fallback. Any groundwater emission whose method only defines the unspecified CF is lost by
+VoLCA; the small residual `Chloride` gap has the same signature. To be reported upstream to VoLCA.
+
 ## Provenance
 
 The VoLCA plumbing (activities, bulk `impacts` POST, unit factors, scatter/report layout) is
