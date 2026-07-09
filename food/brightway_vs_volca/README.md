@@ -40,7 +40,14 @@ VOLCA_COLLECTIONS=Environmental Footprint 3.1 (adapted 1.03),Environmental Footp
 ```bash
 uv run compare.py --report etat.html          # full matched panel
 uv run compare.py --sample 500 --report etat.html   # quick sample
+uv run compare.py --sample 500 --exclude-long-term --report etat.html   # both sides drop long-term
 ```
+
+`--exclude-long-term` asks VoLCA to drop long-term emissions too, matching ecobalyse's `noLT`
+strategy, so `Eutrophication freshwater` and `Ionising radiation` become comparable (otherwise
+VoLCA counts long-term groundwater phosphate / long-term radon that ecobalyse zeroes). It uses
+per-activity VoLCA calls (the bulk endpoint has no such flag), so it is slower — pair it with
+`--sample`.
 
 First run starts the engine and parses BAFU + the EF methods (a few minutes; later runs hit the
 cache). It writes a CSV of rows (`product, category, ecobalyse, v0, ...`) and a self-contained HTML

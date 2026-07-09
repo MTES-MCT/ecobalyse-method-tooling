@@ -115,7 +115,7 @@ def load_activities() -> dict[str, tuple[str, str]]:
 
 
 def volca_impacts(pids: list[str], collection: str, chunk: int = 300) -> dict[str, dict]:
-    """processId -> {category: score} for one collection, scored in bulk."""
+    """processId -> {category: score} for one collection, scored in bulk (long-term INcluded)."""
     out: dict[str, dict] = {}
     url = f"{BASE_URL}/api/v1/db/{VOLCA_DB}/impacts/{quote(collection, safe='')}"
     for i in range(0, len(pids), chunk):
@@ -124,6 +124,21 @@ def volca_impacts(pids: list[str], collection: str, chunk: int = 300) -> dict[st
         for e in r.json()["results"]:
             out[e["processId"]] = {x["methodName"]: x["score"] for x in e["impacts"]["results"]}
         print(f"  {collection}: {min(i + chunk, len(pids))}/{len(pids)}", file=sys.stderr)
+    return out
+
+
+def volca_impacts_no_lt(pids: list[str], collection: str) -> dict[str, dict]:
+    """Same, but with exclude-long-term=true, to match ecobalyse's noLT strategy. Per-activity
+    (the bulk endpoint does not accept the flag), so slower — use --sample for this mode."""
+    out: dict[str, dict] = {}
+    coll = quote(collection, safe="")
+    for i, pid in enumerate(pids):
+        url = f"{BASE_URL}/api/v1/db/{VOLCA_DB}/activity/{quote(pid, safe='')}/impacts/{coll}"
+        r = requests.get(url, params={"exclude-long-term": "true"})
+        r.raise_for_status()
+        out[pid] = {x["methodName"]: x["score"] for x in r.json()["results"]}
+        if (i + 1) % 200 == 0 or i + 1 == len(pids):
+            print(f"  {collection} (excl-LT): {i + 1}/{len(pids)}", file=sys.stderr)
     return out
 
 
@@ -416,6 +431,12 @@ def main():
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--out", default="brightway_vs_volca.csv")
     ap.add_argument("--report", default="etat_des_lieux.html")
+    ap.add_argument(
+        "--exclude-long-term",
+        action="store_true",
+        help="ask VoLCA to drop long-term emissions too, matching ecobalyse's noLT strategy "
+        "(per-activity calls, slower — pair with --sample). Makes fwe/IR comparable.",
+    )
     args = ap.parse_args()
 
     srv = start_engine()
@@ -452,9 +473,10 @@ def main():
 
         pids = sorted({acts[k][0] for k in matched})
         series = [(c.split("adapted ")[-1].rstrip(")") or c, f"v{i}") for i, c in enumerate(COLLECTIONS)]
+        fetch = volca_impacts_no_lt if args.exclude_long_term else volca_impacts
         volca = {}
         for (label, field), coll in zip(series, COLLECTIONS):
-            by_pid = volca_impacts(pids, coll)
+            by_pid = fetch(pids, coll)
             volca[field] = {k: by_pid.get(acts[k][0], {}) for k in matched}
     finally:
         srv.stop()
