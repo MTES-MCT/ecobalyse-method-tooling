@@ -1,0 +1,14 @@
+[project]
+name = "brightway-vs-volca"
+version = "0.1.0"
+description = "Diagonal parity clouds: ecobalyse-Brightway vs VoLCA on BAFU, EF 3.1"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = [
+    "pyvolca>=0.7.1",
+    "requests>=2.31",
+    "bw2data==4.7",
+    "bw2calc==2.5.0",
+    "python-dotenv>=1.0.0",
+    "matplotlib>=3.8",
+]

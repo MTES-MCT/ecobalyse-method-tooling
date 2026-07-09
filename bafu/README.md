@@ -10,6 +10,7 @@ table below, then open that folder's README.
 | Folder | Go here when you want to… |
 |--------|---------------------------|
 | [`flow-characterization/`](flow-characterization/) | List the BAFU biosphere flows the EF 3.1 method does not characterize, to target the mapping / synonym work instead of guessing. |
+| [`brightway_vs_volca/`](brightway_vs_volca/) | Diagonal parity clouds comparing ecobalyse-Brightway vs VoLCA on BAFU (same base, same EF 3.1 method), to validate the import and localize every diverging impact category. |
 
 ## Shared context
 
