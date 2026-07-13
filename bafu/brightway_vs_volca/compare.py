@@ -225,21 +225,31 @@ UNIT_CANON = {
     "person kilometer": "pkm", "pkm": "pkm", "personkm": "pkm",
     "unit": "unit", "p": "unit", "Item(s)": "unit", "dimensionless": "unit",
 }
-# factor to multiply the ecobalyse value by to express it per 1 VoLCA unit.
-CANON_FACTORS = {
-    ("kWh", "MJ"): 1 / 3.6, ("MJ", "kWh"): 3.6,
-    ("kWh", "J"): 1 / 3.6e6, ("J", "kWh"): 3.6e6,
-    ("MJ", "J"): 1e-6, ("J", "MJ"): 1e6,
-    ("m", "km"): 1e-3, ("km", "m"): 1e3,
+# magnitude of each unit in its dimension's base (energy=J, length=m). Deriving the
+# conversion from this makes the inverse pairs impossible to get backwards (the previous
+# hand-written table had km<->m inverted, planting a spurious 1e6 second diagonal).
+UNIT_BASE = {
+    "J": ("energy", 1.0), "MJ": ("energy", 1e6), "kWh": ("energy", 3.6e6),
+    "m": ("length", 1.0), "km": ("length", 1e3),
 }
 
 
 def unit_factor(eco_unit: str, volca_unit: str):
+    """factor to multiply the ecobalyse value by to express it per 1 VoLCA unit, or None
+    if the two units are not comparable."""
     ce = UNIT_CANON.get(eco_unit, eco_unit)
     cv = UNIT_CANON.get(volca_unit, volca_unit)
     if ce == cv:
         return 1.0
-    return CANON_FACTORS.get((ce, cv))
+    be, bv = UNIT_BASE.get(ce), UNIT_BASE.get(cv)
+    if be and bv and be[0] == bv[0]:  # same physical dimension
+        return bv[1] / be[1]  # impact per 1 eco-unit -> per 1 volca-unit
+    return None
+
+
+assert unit_factor("kWh", "MJ") == 1 / 3.6  # electricity, the real rescaling
+assert unit_factor("kilometer", "meter") == 1e-3  # transport: per km -> per m
+assert unit_factor("kg", "megajoule") is None  # cross-dimension = not comparable
 
 
 # ------------------------------------------------------------------- report ---
