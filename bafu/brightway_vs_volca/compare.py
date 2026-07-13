@@ -390,7 +390,7 @@ def build_report(rows, path, series, meta):
         )
 
     html = f"""<!doctype html><html lang="fr"><head><meta charset="utf-8">
-<title>BAFU 2026v1 — ecobalyse-Brightway vs VoLCA (EF 3.1)</title>
+<title>{EB_DATABASE} — ecobalyse-Brightway vs VoLCA (EF 3.1)</title>
 <style>
  body{{font-family:-apple-system,Segoe UI,Roboto,sans-serif;margin:24px;color:#111827;line-height:1.4}}
  h1{{font-size:22px}} h2{{font-size:17px;margin-top:34px;border-bottom:2px solid #e5e7eb;padding-bottom:4px}}
@@ -402,7 +402,7 @@ def build_report(rows, path, series, meta):
  .gaps tbody tr:nth-child(even){{background:#f9fafb}}
  svg{{max-width:100%;height:auto}} .meta{{color:#6b7280;font-size:12px}}
 </style></head><body>
-<h1>BAFU 2026v1 — ecobalyse-Brightway vs VoLCA (EF 3.1)</h1>
+<h1>{EB_DATABASE} — ecobalyse-Brightway vs VoLCA (EF 3.1)</h1>
 <p class="lead">Même base (le même export SimaPro CSV de BAFU) et même méthode calculées par deux
 moteurs indépendants. x = ecobalyse-Brightway, y = chaque collection VoLCA. Sur la diagonale = accord.
 Une catégorie qui diverge pointe un écart moteur/couverture à investiguer (cf. Water Use en 1.03).</p>
