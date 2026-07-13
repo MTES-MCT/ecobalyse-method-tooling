@@ -5,7 +5,7 @@ description = "Diagonal parity clouds: ecobalyse-Brightway vs VoLCA on BAFU, EF 
 readme = "README.md"
 requires-python = "==3.12.*"
 dependencies = [
-    "pyvolca>=0.7.1",
+    "pyvolca>=0.7.2",
     "requests>=2.31",
     "bw2data==4.7",
     "bw2calc==2.5.0",
