@@ -26,18 +26,23 @@ Run (uv resolves the two deps automatically)::
         --agribalyse "/path/to/AGB32_final.CSV.zip" \
         --select Pizza --select Bread --out recipes.xlsx
 
-    # the whole Agribalyse food catalogue
+    # the whole Agribalyse food catalogue, edible ingredients only
     uv run extract_agribalyse_recipes.py \
         --agribalyse "/path/to/AGB32_final.CSV.zip" \
-        --all --limit 0 --out all_recipes.xlsx
+        --all --limit 0 --ingredients-only --out all_recipes.xlsx
 
 Selection: --select NAME (substring), --classification "System=Value", or --all
 (shortcut for the food catalogue). --limit caps each selector (0 = no cap).
+--ingredients-only keeps only edible inputs (Category type = material, recipe
+water included), dropping cooking, [Dummy] operations, waste treatment,
+electricity, heat and transport.
 
 The "recipe" is just the process's technosphere inputs: get_activity(pid)
 .technosphere_inputs gives (ingredient name, amount, unit, upstream process).
 Each row is classified (raw_material / water / electricity / heat / transport /
 other) so you can keep only the food ingredients if you want.
+
+Docs: https://www.volca.run/docs/python/
 """
 
 from __future__ import annotations
@@ -99,14 +104,44 @@ _HEADER = [
 ]
 
 
-def recipe_rows(client: Client, pid: str) -> list[list]:
-    """One row per technosphere input of `pid` — its ingredient bill."""
+# Roles (from classify_exchange) an edible ingredient can carry: kg inputs are
+# `raw_material`; gram-based dairy/sugar/chocolate fall to `other`; `water` is
+# recipe water, kept because its amount matters. Every other role — wastewater,
+# biowaste, electricity, heat, transport, cleaning, infrastructure — is never an
+# ingredient, so material-tagged waste treatment is dropped even though
+# Agribalyse also tags it `material`.
+_INGREDIENT_ROLES = {"raw_material", "other", "water"}
+
+# Food is weighed or counted, never a gas/bulk volume. This drops the last
+# material-tagged utilities that share a food role — natural gas, compressed
+# air — the only inputs left in m3 once waste and tap water are gone.
+_NON_FOOD_UNITS = {"m3"}
+
+
+def recipe_rows(client: Client, pid: str,
+                ingredient_pids: set[str] | None = None) -> list[list]:
+    """One row per technosphere input of `pid` — its ingredient bill.
+
+    When `ingredient_pids` is given, keep only edible ingredients: inputs whose
+    producing activity is tagged `Category type = material` (excludes cooking,
+    [Dummy] operations, waste treatment, electricity, heat, transport), whose
+    role is a food role — including recipe water, dropping biowaste treatment
+    (also `material`) — and whose unit is a food unit (drops natural gas and
+    compressed air, the last `material` utilities, billed in m3).
+    """
     act = client.get_activity(pid)
     fu_amount = act.product_amount if act.product_amount is not None else 1.0
     fu_unit = act.product_unit or act.unit
     rows = []
     for e in act.technosphere_inputs:
         if e.is_reference:  # the product itself, not an ingredient
+            continue
+        role = classify_exchange(e)
+        if ingredient_pids is not None and (
+            e.target_process_id not in ingredient_pids
+            or role not in _INGREDIENT_ROLES
+            or (e.unit or "").lower() in _NON_FOOD_UNITS
+        ):
             continue
         rows.append([
             act.process_id,
@@ -117,10 +152,23 @@ def recipe_rows(client: Client, pid: str) -> list[list]:
             e.flow_name,
             e.amount,
             e.unit,
-            classify_exchange(e),
+            role,
             e.target_process_id or "",
         ])
     return rows
+
+
+def material_pids(client: Client) -> set[str]:
+    """Process-ids of every `Category type = material` activity.
+
+    Agribalyse tags real edible materials (flour, butter, oils, …) `material`,
+    while cooking/mixing are `processing`, energy is `energy`, transport
+    `transport`, and end-of-life is `waste treatment`. One classification sweep
+    gives the whole set; membership then filters a recipe to its ingredients.
+    """
+    res = client.search_activities(
+        classification="Category type", classification_value="material", limit=200)
+    return {a.process_id for a in res}
 
 
 # The Agribalyse composite/prepared foods (pizza, ratatouille, yogurt cake, ...)
@@ -177,6 +225,10 @@ def main() -> None:
                          f"({_FOOD_CATALOGUE[0]}={_FOOD_CATALOGUE[1]}). Pair with --limit 0 for everything.")
     ap.add_argument("--limit", type=int, default=3,
                     help="Max products per selector (0 = no cap; extracts all matches).")
+    ap.add_argument("--ingredients-only", action="store_true",
+                    help="Keep only edible ingredients (Category type = material, "
+                         "recipe water included); drop cooking, [Dummy] operations, "
+                         "waste treatment, electricity, heat and transport.")
     ap.add_argument("--out", default="agribalyse_recipes.xlsx")
     ap.add_argument("--engine-version", default=None,
                     help="VoLCA release tag (default: latest)")
@@ -226,6 +278,10 @@ def main() -> None:
             print(f"3. Loading {args.db_name} (first load parses the CSV; later loads hit the cache) ...")
             client.load_database(args.db_name)
 
+            keep = material_pids(client) if args.ingredients_only else None
+            if keep is not None:
+                print(f"   ingredients-only: {len(keep)} 'material' activities eligible")
+
             print("4. Extracting recipes ...")
             wb = Workbook()
             ws = wb.active
@@ -233,7 +289,7 @@ def main() -> None:
             ws.append(_HEADER)
             n_products = n_rows = 0
             for product in selected_products(client, selects, classifications, args.limit):
-                rows = recipe_rows(client, product.process_id)
+                rows = recipe_rows(client, product.process_id, keep)
                 for row in rows:
                     ws.append(row)
                 n_products += 1
