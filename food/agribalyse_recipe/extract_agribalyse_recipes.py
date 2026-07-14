@@ -1,23 +1,24 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["pyvolca>=0.7.1", "openpyxl"]
+# dependencies = ["pyvolca>=0.8.0", "openpyxl"]
 # ///
 """Extract Agribalyse recipes (ingredient bill of materials) to Excel.
 
-Self-contained: downloads the VoLCA engine binary + reference-data bundle,
-starts it locally, loads an Agribalyse database, and writes one row per
-ingredient for every selected transformed product::
+Self-contained: downloads the VoLCA engine binary, starts it locally, uploads
+an Agribalyse database (once — later runs reuse the uploaded copy), and writes
+one row per ingredient for every selected transformed product::
 
     1 kg "Pizza, ..."  ->  X kg tomato + Y kg cheese + Z kg flour + ...
 
 What `volca.download()` gives you and what it does NOT
 -----------------------------------------------------
-`download()` fetches the engine binary and the *reference-data* bundle
-(flow synonyms, units, compartments, geographies). It does NOT ship any LCA
-database. You supply Agribalyse yourself — the official SimaPro CSV export is
-a free public download from ADEME (data.gouv.fr / doc.agribalyse.fr). Pass its
-path with --agribalyse. A Brightway/Excel export of Agribalyse works too — the
-engine detects the format from the file.
+`download()` fetches the engine binary and the reference-data bundle. It does
+NOT ship any LCA database. You supply Agribalyse yourself — the official
+SimaPro CSV export is a free public download from ADEME (data.gouv.fr /
+doc.agribalyse.fr). Pass its path with --agribalyse. A Brightway/Excel export
+of Agribalyse works too — the engine detects the format from the file. The
+upload persists in the engine's shared install dir, so a re-run skips the
+upload; pass --replace to re-upload after the source file changed.
 
 Run (uv resolves the two deps automatically)::
 
@@ -48,7 +49,6 @@ Docs: https://www.volca.run/docs/python/
 from __future__ import annotations
 
 import argparse
-import json
 import tempfile
 from itertools import islice
 from pathlib import Path
@@ -57,37 +57,6 @@ from openpyxl import Workbook
 
 from volca import Client, Server, download
 from volca.agribalyse import classify_exchange
-
-# Reference-data blocks resolve against the downloaded bundle: the engine
-# rewrites any "data/..." path to "$VOLCA_DATA_DIR/...", which Server points at
-# the bundle installed by download(). Only these four files ship in the bundle.
-_CONFIG_TEMPLATE = """\
-geographies = "data/geographies.csv"
-
-[server]
-port = {port}
-host = "127.0.0.1"
-
-[[databases]]
-name = "{db_name}"
-path = {db_path}
-load = false
-
-[[flow-synonyms]]
-name = "flows"
-path = "data/flows.csv"
-active = true
-
-[[compartment-mappings]]
-name = "compartments"
-path = "data/compartments.csv"
-active = true
-
-[[units]]
-name = "units"
-path = "data/units.csv"
-active = true
-"""
 
 # Recipe columns: functional unit of the product, then one ingredient per row.
 _HEADER = [
@@ -216,6 +185,9 @@ def main() -> None:
                          "format: SimaPro CSV (.csv/.csv.zip), EcoSpold, ILCD, or a "
                          "Brightway/Excel export (.xlsx).")
     ap.add_argument("--db-name", default="agribalyse-3.2")
+    ap.add_argument("--replace", action="store_true",
+                    help="Delete the previously uploaded database and re-upload "
+                         "from --agribalyse (use after the source file changed).")
     ap.add_argument("--select", action="append", default=[],
                     help="Product-name substring to extract (repeatable).")
     ap.add_argument("--classification", action="append", default=[], metavar="SYSTEM=VALUE",
@@ -257,12 +229,10 @@ def main() -> None:
     print(f"   data    {inst.data_dir}  (engine {inst.version}, data {inst.data_version})")
 
     with tempfile.TemporaryDirectory() as tmp:
+        # The engine insists on an existing config file; an empty one means
+        # "all defaults" — the database arrives via upload, not via TOML.
         config = Path(tmp) / "volca.toml"
-        config.write_text(_CONFIG_TEMPLATE.format(
-            # json.dumps produces a valid TOML basic string: quotes the path and
-            # escapes backslashes (Windows paths) and any embedded quote.
-            port=args.port, db_name=args.db_name, db_path=json.dumps(db_path),
-        ))
+        config.write_text("")
 
         print("2. Starting engine ...")
         # Pass the binary from download() explicitly so the exact downloaded
@@ -273,10 +243,23 @@ def main() -> None:
         srv = Server(config=str(config), port=args.port, binary=str(inst.binary))
         srv.start(idle_timeout=1800, wait_timeout=args.startup_timeout)
         try:
-            client = Client(base_url=srv.base_url, db=args.db_name)
+            client = Client(base_url=srv.base_url)
 
-            print(f"3. Loading {args.db_name} (first load parses the CSV; later loads hit the cache) ...")
-            client.load_database(args.db_name)
+            # Uploads persist under the engine's install dir and are keyed by a
+            # slug derived from --db-name; the human name is kept as
+            # display_name, which is how a previous run's upload is recognised.
+            existing = {d.display_name: d.name for d in client.list_databases()}
+            slug = existing.get(args.db_name)
+            if slug is not None and args.replace:
+                print(f"3. Deleting previously uploaded {args.db_name} ...")
+                client.delete_database(slug)
+                slug = None
+            if slug is None:
+                print(f"3. Uploading {args.db_name} (once; later runs reuse it) ...")
+                slug = client.upload_database(db_path, args.db_name)["slug"]
+            client = client.use(slug)
+            print(f"   Loading {slug} (first load parses the CSV; later loads hit the cache) ...")
+            client.load_database(slug)
 
             keep = material_pids(client) if args.ingredients_only else None
             if keep is not None:
