@@ -75,7 +75,7 @@ requires-dist = [
     { name = "bw2data", specifier = "==4.7" },
     { name = "matplotlib", specifier = ">=3.8" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
-    { name = "pyvolca", specifier = ">=0.7.2" },
+    { name = "pyvolca", specifier = ">=0.8.0" },
     { name = "requests", specifier = ">=2.31" },
 ]
 
@@ -669,15 +669,15 @@ wheels = [
 
 [[package]]
 name = "pyvolca"
-version = "0.7.2"
+version = "0.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "platformdirs" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/85/b0/6d00a84c28d115927465947f70911400facd11c3d7224d1170695321a139/pyvolca-0.7.2.tar.gz", hash = "sha256:7f8697635f496020aca7681a4a1648898c3a58c2464f409e76deb9fd92e75ccb", size = 132182, upload-time = "2026-07-11T11:29:57.793Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0c/15/2bcaf318ac15642c224d5290f23d2bb3759cd3b823822016cd183f7169bb/pyvolca-0.8.0.tar.gz", hash = "sha256:1bb3acf6152080f8b80d964499e22956daeae0f4704b34c7fea925493deaef3c", size = 151612, upload-time = "2026-07-13T23:09:35.31Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7f/de/0123f0b5fbee500522ffce30eb3a8bd29fda7ed9d4aa5a3c3ed65fef2db8/pyvolca-0.7.2-py3-none-any.whl", hash = "sha256:2003c6d6957224568043947d0b66fad6aeb0f0c1b9fbced3c98b2a4804eb3cce", size = 75229, upload-time = "2026-07-11T11:29:56.618Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/5e/d0bb4d808598095d757f8369599bbb73c5c923209440527f01a86abf7cbd/pyvolca-0.8.0-py3-none-any.whl", hash = "sha256:117b01b858eb2185de0699a3fa597bce78c76a884f6972794e82e936a0244272", size = 83896, upload-time = "2026-07-13T23:09:33.749Z" },
 ]
 
 [[package]]

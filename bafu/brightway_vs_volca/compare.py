@@ -24,12 +24,9 @@ import math
 import os
 import re
 import sys
-import tempfile
 from collections import defaultdict
 from pathlib import Path
-from urllib.parse import quote
 
-import requests
 from dotenv import load_dotenv
 
 load_dotenv()  # BRIGHTWAY2_DIR must be set before bw2data is imported
@@ -55,44 +52,26 @@ BAFU_DB_PATH = env("BAFU_DB_PATH")
 VOLCA_CONFIG_BASE = env("VOLCA_CONFIG_BASE")
 VOLCA_BINARY = os.environ.get("VOLCA_BINARY")
 COLLECTIONS = [c.strip() for c in env("VOLCA_COLLECTIONS").split(",") if c.strip()]
-BASE_URL = f"http://localhost:{VOLCA_PORT}"
 
 
 # --------------------------------------------------------------- VoLCA engine ---
 
 
-def build_config(port: int) -> str:
-    """Base config (EF methods + curated refdata) + a [[databases]] block for BAFU."""
-    base = Path(VOLCA_CONFIG_BASE).read_text()
-    block = (
-        f'\n[[databases]]\nname = "{VOLCA_DB}"\n'
-        f"path = {_toml_str(BAFU_DB_PATH)}\nload = false\n"
-    )
-    tmp = tempfile.NamedTemporaryFile("w", suffix=".toml", delete=False)
-    tmp.write(base + block)
-    tmp.close()
-    return tmp.name
-
-
-def _toml_str(s: str) -> str:
-    import json
-
-    return json.dumps(s)  # valid TOML basic string (quotes + escapes)
-
-
 def start_engine():
-    """Return a started pyvolca Server (spawned on a dedicated port), or connect if alive."""
+    """Return a started pyvolca Server (spawned on a dedicated port), or connect if alive.
+
+    The base config carries the EF methods + curated refdata but no database:
+    BAFU is uploaded once via ensure_database and reused on later runs."""
     from volca import Server
 
-    config = build_config(VOLCA_PORT)
     if VOLCA_BINARY:
-        srv = Server(config=config, port=VOLCA_PORT, binary=VOLCA_BINARY)
+        srv = Server(config=VOLCA_CONFIG_BASE, port=VOLCA_PORT, binary=VOLCA_BINARY)
     else:
         try:
             from volca import download
 
             inst = download()
-            srv = Server(config=config, port=VOLCA_PORT, binary=str(inst.binary))
+            srv = Server(config=VOLCA_CONFIG_BASE, port=VOLCA_PORT, binary=str(inst.binary))
         except Exception as e:  # no prebuilt binary and download failed
             sys.exit(
                 f"cannot obtain a VoLCA binary ({e}). Set VOLCA_BINARY in .env to a "
@@ -103,31 +82,44 @@ def start_engine():
     return srv
 
 
-def load_activities() -> dict[str, tuple[str, str]]:
+def ensure_database(client):
+    """Upload the BAFU CSV once (keyed by display name), load it, and return a
+    client targeting its slug. Later runs find the persisted upload and skip
+    straight to load."""
+    existing = {d.display_name: d.name for d in client.list_databases()}
+    slug = existing.get(VOLCA_DB)
+    if slug is None:
+        print(f"uploading {BAFU_DB_PATH} as {VOLCA_DB} (once; later runs reuse it) ...", file=sys.stderr)
+        slug = client.upload_database(BAFU_DB_PATH, VOLCA_DB)["slug"]
+    client = client.use(slug)
+    client.load_database(slug)
+    return client
+
+
+def load_activities(client) -> dict[str, tuple[str, str]]:
     """key -> (processId, productUnit). VoLCA's productName is the same string as the Brightway
     activity name ('core {LOC} U'), so both sides key through bw_key to line up exactly."""
-    r = requests.get(f"{BASE_URL}/api/v1/db/{VOLCA_DB}/activities", params={"limit": 20000})
-    r.raise_for_status()
     return {
-        bw_key(a["productName"]): (a["processId"], a["productUnit"])
-        for a in r.json()["results"]
+        bw_key(a.product_name): (a.process_id, a.product_unit)
+        for a in client.search_activities(limit=20000)
     }
 
 
 def volca_impacts(
-    pids: list[str], collection: str, chunk: int = 300, exclude_long_term: bool = False
+    client, pids: list[str], collection: str, chunk: int = 300, exclude_long_term: bool = False
 ) -> dict[str, dict]:
     """processId -> {category: score} for one collection, scored in bulk. `exclude_long_term`
     matches ecobalyse's noLT strategy (VoLCA drops delayed long-term emissions at query time,
     no method patch needed)."""
     out: dict[str, dict] = {}
-    url = f"{BASE_URL}/api/v1/db/{VOLCA_DB}/impacts/{quote(collection, safe='')}"
-    params = {"exclude-long-term": "true"} if exclude_long_term else {}
     for i in range(0, len(pids), chunk):
-        r = requests.post(url, params=params, json={"processIds": pids[i : i + chunk]})
-        r.raise_for_status()
-        for e in r.json()["results"]:
-            out[e["processId"]] = {x["methodName"]: x["score"] for x in e["impacts"]["results"]}
+        scored = client.score_activities(
+            pids[i : i + chunk],
+            collection=collection,
+            exclude_long_term=True if exclude_long_term else None,
+        )
+        for sa in scored.results:
+            out[sa.process_id] = {x.method_name: x.score for x in sa.impacts.results}
         print(f"  {collection}: {min(i + chunk, len(pids))}/{len(pids)}", file=sys.stderr)
     return out
 
@@ -443,8 +435,8 @@ def main():
     try:
         from volca import Client
 
-        Client(base_url=srv.base_url, db=VOLCA_DB).load_database(VOLCA_DB)
-        acts = load_activities()
+        client = ensure_database(Client(base_url=srv.base_url, password=srv.password))
+        acts = load_activities(client)
         print(f"VoLCA activities: {len(acts)}", file=sys.stderr)
 
         matched = sorted(set(acts) & bw_keys())
@@ -475,7 +467,7 @@ def main():
         series = [(c.split("adapted ")[-1].rstrip(")") or c, f"v{i}") for i, c in enumerate(COLLECTIONS)]
         volca = {}
         for (label, field), coll in zip(series, COLLECTIONS):
-            by_pid = volca_impacts(pids, coll, exclude_long_term=args.exclude_long_term)
+            by_pid = volca_impacts(client, pids, coll, exclude_long_term=args.exclude_long_term)
             volca[field] = {k: by_pid.get(acts[k][0], {}) for k in matched}
     finally:
         srv.stop()
