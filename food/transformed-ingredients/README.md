@@ -253,9 +253,8 @@ Install / sync dependencies once:
 uv sync
 ```
 
-> `pyvolca` is sourced from a local path (see `[tool.uv.sources]` in
-> `pyproject.toml`); make sure the sibling Volca checkout is present at
-> the expected location, or update that entry before running `uv sync`.
+> `pyvolca` comes from PyPI (`pyvolca>=0.8.0`); the scripts expect a
+> running VoLCA engine ≥ 0.9.1 (wire format 2).
 
 ---
 

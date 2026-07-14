@@ -583,15 +583,15 @@ wheels = [
 
 [[package]]
 name = "pyvolca"
-version = "0.5.0"
+version = "0.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "platformdirs" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/b1/d3/68468b2114a8a8bb011c463e3b3e04ef442e27a6eb3575700193d8333205/pyvolca-0.5.0.tar.gz", hash = "sha256:0c2e446436ef80f3aab60ba201ee6f754728e955c97c387d1c8c9d3a902ba51a", size = 110967, upload-time = "2026-05-27T21:17:19.105Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/0c/15/2bcaf318ac15642c224d5290f23d2bb3759cd3b823822016cd183f7169bb/pyvolca-0.8.0.tar.gz", hash = "sha256:1bb3acf6152080f8b80d964499e22956daeae0f4704b34c7fea925493deaef3c", size = 151612, upload-time = "2026-07-13T23:09:35.31Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/53/22/b3eb89db0fd26e965de118b54bb2dec0fe1502b3e3f55641f6dab7b532e6/pyvolca-0.5.0-py3-none-any.whl", hash = "sha256:ce92fe123a5acf2475e4800a1cf35dfc92a9cae0653336daa3196b1fad619d72", size = 66141, upload-time = "2026-05-27T21:17:17.732Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/5e/d0bb4d808598095d757f8369599bbb73c5c923209440527f01a86abf7cbd/pyvolca-0.8.0-py3-none-any.whl", hash = "sha256:117b01b858eb2185de0699a3fa597bce78c76a884f6972794e82e936a0244272", size = 83896, upload-time = "2026-07-13T23:09:33.749Z" },
 ]
 
 [[package]]
@@ -1144,7 +1144,7 @@ dependencies = [
 requires-dist = [
     { name = "pandas", specifier = ">=2.3.3" },
     { name = "pronto", specifier = ">=2.7.2" },
-    { name = "pyvolca" },
+    { name = "pyvolca", specifier = ">=0.8.0" },
     { name = "sacremoses", specifier = ">=0.1.1" },
     { name = "scikit-learn", specifier = ">=1.7.2" },
     { name = "sentence-transformers", specifier = ">=5.1.2" },
