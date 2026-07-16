@@ -2,6 +2,7 @@ import base64
 import csv
 import io
 import json
+from pathlib import Path
 
 import ipywidgets
 import pandas
@@ -10,8 +11,10 @@ from matplotlib import pyplot
 
 print("Please wait...")
 
+NOTEBOOK_DIR = Path(__file__).resolve().parent
+
 IMPACTS = {}
-with open("../../../ecobalyse/public/data/impacts.json") as f:
+with open(NOTEBOOK_DIR / "../../../ecobalyse/public/data/impacts.json") as f:
     IMPACTS = json.load(f)
 
 
@@ -44,7 +47,9 @@ def csv_button(contents):
     )
 
 
-all_processes = json.load(open("../../../ecobalyse/public/data/processes_impacts.json"))
+all_processes = json.load(
+    open(NOTEBOOK_DIR / "../../../ecobalyse/public/data/processes_impacts.json")
+)
 textile_processes = [p for p in all_processes if "textile" in p.get("scopes", [])]
 csvfile = io.StringIO()
 writer = csv.DictWriter(

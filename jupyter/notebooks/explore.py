@@ -7,8 +7,11 @@ if True:  # just to bypass the ruff warning
 import math
 import os
 import sys
+from pathlib import Path
 
 from IPython.display import Markdown, display
+
+NOTEBOOK_DIR = Path(__file__).resolve().parent
 
 if True:
     sys.stdout = open(os.devnull, "w")
@@ -30,14 +33,14 @@ import pandas
 import pandas.io.formats.style
 from bw2data.utils import get_activity, get_node
 
-Illustration = open("bw2.svg").read()
+Illustration = open(NOTEBOOK_DIR / "bw2.svg").read()
 BIOSPHERE = "biosphere3"
 PROJECTS = [p.name for p in bw2data.projects]
 EF31 = "Environmental Footprint 3.1 (adapted)"
 VISITED = []  # visited activities since the last search
 LIMIT = 100
 IMPACTS = {}
-with open("../../../ecobalyse/data/impacts.json") as f:
+with open(NOTEBOOK_DIR / "../../../ecobalyse/data/impacts.json") as f:
     IMPACTS = json.load(f)
 
 
