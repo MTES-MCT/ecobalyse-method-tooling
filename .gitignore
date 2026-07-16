@@ -2,3 +2,6 @@ __pycache__/
 food/transformed-ingredients/.predictor.pkl
 food/transformed-ingredients/.translation_cache.json
 volca_data/
+.ipynb_checkpoints/
+jupyter/.jupyter/
+jupyter/.jupyter_ystore.db
