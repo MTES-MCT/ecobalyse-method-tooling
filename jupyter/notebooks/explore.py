@@ -30,14 +30,14 @@ import pandas
 import pandas.io.formats.style
 from bw2data.utils import get_activity, get_node
 
-Illustration = open("notebooks/bw2.svg").read()
+Illustration = open("bw2.svg").read()
 BIOSPHERE = "biosphere3"
 PROJECTS = [p.name for p in bw2data.projects]
 EF31 = "Environmental Footprint 3.1 (adapted)"
 VISITED = []  # visited activities since the last search
 LIMIT = 100
 IMPACTS = {}
-with open("impacts.json") as f:
+with open("../../../ecobalyse/data/impacts.json") as f:
     IMPACTS = json.load(f)
 
 

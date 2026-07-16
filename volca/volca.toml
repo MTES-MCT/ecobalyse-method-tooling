@@ -1,0 +1,316 @@
+# VoLCA Ecobalyse configuration
+# Loads all SimaPro CSV databases + EF3.1 method with Ecobalyse scoring
+#
+# Every path here assumes the standard Docker mount point: `just volca` and
+# the production systemd unit both bind-mount a data directory to /data
+# (see volca/README.md for the expected layout). This lets the exact same
+# file run unmodified in local dev and in production.
+
+geographies = "/data/geographies.csv"
+
+[server]
+port = 8080
+
+# == Databases ==
+# Slugs use kebab-case with dots replaced by dashes to match the
+# ecobalyse-data lci_catalog directory naming convention.
+
+[[databases]]
+name = "agribalyse-3-2"
+displayName = "Agribalyse 3.2"
+path = "/data/dbfiles/AGB32_final.CSV.zip"
+load = false
+default = true
+
+[[databases]]
+name = "ecoinvent-3-9-1-adapted"
+displayName = "Ecoinvent 3.9.1 (adapted)"
+path = "/data/dbfiles/Ecoinvent3.9.1.CSV.zip"
+load = false
+
+[[databases]]
+name = "ecoinvent-3-11-adapted"
+displayName = "Ecoinvent 3.11 (adapted)"
+path = "/data/dbfiles/Ecoinvent3.11.CSV.zip"
+load = false
+
+[[databases]]
+name = "ginko-2025-v2"
+displayName = "Ginko 2025"
+path = "/data/dbfiles/ginko2025.2.csv.zip"
+load = false
+
+[[databases]]
+name = "pastoeco"
+displayName = "PastoEco"
+path = "/data/dbfiles/pastoeco.2.CSV.zip"
+load = false
+depends = ["agribalyse-3-2"]
+
+[[databases]]
+name = "woolmark"
+displayName = "Woolmark"
+path = "/data/dbfiles/wool.2.CSV.zip"
+load = false
+
+[[databases]]
+name = "wfldb"
+displayName = "WFLDB"
+path = "/data/dbfiles/WFLDB.CSV.zip"
+load = false
+
+# == Methods ==
+#
+# Method path is a directory bundling:
+#   - Environmental Footprint 3.1 (adapted) SimaPro CSV
+#   - biomaps.olca.json (openLCA JSON-LD ImpactCategory, regionalized)
+# Both are parsed into the SAME MethodCollection so the EFC scoring set below
+# can reference EF3.1 categories AND the Biomaps category in one formula.
+
+[[methods]]
+name = "Environmental Footprint 3.1 (adapted)"
+path = "/data/methods/ef31-biomaps"
+active = true
+
+  # ECS scoring (Ecobalyse Environmental Cost)
+  [[methods.scoring]]
+  name = "ECS"
+  unit = "Pts"
+  displayMultiplier = 1e6
+
+    [methods.scoring.variables]
+    cch = "Climate change"
+    acd = "Acidification"
+    fwe = "Eutrophication, freshwater"
+    swe = "Eutrophication, marine"
+    tre = "Eutrophication, terrestrial"
+    etfo1 = "Ecotoxicity, freshwater - organics - p.1"
+    etfo2 = "Ecotoxicity, freshwater - organics - p.2"
+    etfi = "Ecotoxicity, freshwater - inorganics"
+    fru = "Resource use, fossils"
+    mru = "Resource use, minerals and metals"
+    ior = "Ionising radiation"
+    ldu = "Land use"
+    ozd = "Ozone depletion"
+    pco = "Photochemical ozone formation"
+    pma = "Particulate matter"
+    wtu = "Water use"
+
+    [methods.scoring.computed]
+    etf = "2 * (etfo1 + etfo2) + etfi"
+
+    [methods.scoring.normalization]
+    cch = 7553.08
+    acd = 55.5695
+    etf = 98120.0
+    fwe = 1.60685
+    swe = 19.5452
+    tre = 176.755
+    fru = 65004.3
+    mru = 0.0636226
+    ior = 4220.16
+    ldu = 819498.0
+    ozd = 0.053648
+    pco = 40.8592
+    pma = 0.000595367
+    wtu = 11468.7
+
+    [methods.scoring.weighting]
+    cch = 0.2106
+    acd = 0.0491
+    etf = 0.2106
+    fwe = 0.0222
+    swe = 0.0235
+    tre = 0.0294
+    fru = 0.0659
+    mru = 0.0598
+    ior = 0.0397
+    ldu = 0.0629
+    ozd = 0.05
+    pco = 0.0379
+    pma = 0.071
+    wtu = 0.0674
+
+    [methods.scoring.scores]
+    total = "cch + acd + etf + fwe + swe + tre + fru + mru + ior + ldu + ozd + pco + pma + wtu"
+
+  # EFC scoring (EcoFoodChoice Beta) — adds Biomaps biodiversity-loss
+  # alongside the EF 3.1 indicators with the EFC-specific weights.
+  # Ecotoxicity, freshwater is split into:
+  #   - inorganics  (raw EF 3.1 category)
+  #   - organics    (computed as p.1 + p.2)
+  # Each variable gets its own normalization + weighting; total sums them.
+  [[methods.scoring]]
+  name = "EFC"
+  unit = "Pts"
+  displayMultiplier = 1e6
+
+    [methods.scoring.variables]
+    cch = "Climate change"
+    acd = "Acidification"
+    fwe = "Eutrophication, freshwater"
+    swe = "Eutrophication, marine"
+    tre = "Eutrophication, terrestrial"
+    etfi = "Ecotoxicity, freshwater - inorganics"
+    etfo1 = "Ecotoxicity, freshwater - organics - p.1"
+    etfo2 = "Ecotoxicity, freshwater - organics - p.2"
+    fru = "Resource use, fossils"
+    mru = "Resource use, minerals and metals"
+    ior = "Ionising radiation"
+    ldu = "Land use"
+    ozd = "Ozone depletion"
+    pco = "Photochemical ozone formation"
+    pma = "Particulate matter"
+    wtu = "Water use"
+    bio = "Biomaps - Biodiversity Loss Potential"
+
+    [methods.scoring.computed]
+    etfo = "etfo1 + etfo2"
+
+    [methods.scoring.normalization]
+    acd = 55.6
+    cch = 7550.0
+    fwe = 1.60685
+    swe = 19.5
+    tre = 177.0
+    ior = 4220.0
+    ldu = 819000.0
+    ozd = 0.0523
+    pma = 0.000595
+    pco = 40.9
+    fru = 65000.0
+    mru = 0.0636
+    wtu = 11500.0
+    bio = 189000.0
+    etfi = 15300.0
+    etfo = 41400.0
+
+    [methods.scoring.weighting]
+    acd = 4.0
+    cch = 11.0
+    fwe = 3.0
+    swe = 3.0
+    tre = 3.0
+    ior = 5.0
+    ldu = 8.0
+    ozd = 5.0
+    pma = 5.0
+    pco = 4.0
+    fru = 7.0
+    mru = 6.0
+    wtu = 9.0
+    bio = 11.0
+    etfi = 8.5
+    etfo = 8.5
+
+    [methods.scoring.scores]
+    total = "cch + acd + fwe + swe + tre + ior + ldu + ozd + pco + pma + fru + mru + wtu + bio + etfi + etfo"
+
+  # PEF single score (EF 3.1 normalization and weighting)
+  [[methods.scoring]]
+  name = "PEF"
+  unit = "µPts PEF"
+  displayMultiplier = 1e6
+
+    [methods.scoring.variables]
+    acd = "Acidification"
+    cch = "Climate change"
+    etf1 = "Ecotoxicity, freshwater - part 1"
+    etf2 = "Ecotoxicity, freshwater - part 2"
+    pma = "Particulate matter"
+    swe = "Eutrophication, marine"
+    fwe = "Eutrophication, freshwater"
+    tre = "Eutrophication, terrestrial"
+    htc = "Human toxicity, cancer"
+    htn = "Human toxicity, non-cancer"
+    ior = "Ionising radiation"
+    ldu = "Land use"
+    ozd = "Ozone depletion"
+    pco = "Photochemical ozone formation"
+    fru = "Resource use, fossils"
+    mru = "Resource use, minerals and metals"
+    wtu = "Water use"
+
+    [methods.scoring.normalization]
+    acd = 55.5695
+    cch = 7553.08
+    etf1 = 56716.6
+    etf2 = 56716.6
+    pma = 0.000595367
+    swe = 19.5452
+    fwe = 1.60685
+    tre = 176.755
+    htc = 1.72529e-05
+    htn = 0.000128736
+    ior = 4220.16
+    ldu = 819498.0
+    ozd = 0.0523484
+    pco = 40.8592
+    fru = 65004.3
+    mru = 0.0636226
+    wtu = 11468.7
+
+    [methods.scoring.weighting]
+    acd = 0.062
+    cch = 0.2106
+    etf1 = 0.0192
+    etf2 = 0.0192
+    pma = 0.0896
+    swe = 0.0296
+    fwe = 0.028
+    tre = 0.0371
+    htc = 0.0213
+    htn = 0.0184
+    ior = 0.0501
+    ldu = 0.0794
+    ozd = 0.0631
+    pco = 0.0478
+    fru = 0.0832
+    mru = 0.0755
+    wtu = 0.0851
+
+    [methods.scoring.scores]
+    total = "acd + cch + etf1 + etf2 + pma + swe + fwe + tre + htc + htn + ior + ldu + ozd + pco + fru + mru + wtu"
+
+  # Ecobalyse corrected indicators (raw characterized values, no normalization)
+  [[methods.scoring]]
+  name = "ecobalyse"
+  unit = ""
+
+    [methods.scoring.variables]
+    etfo1 = "Ecotoxicity, freshwater - organics - p.1"
+    etfo2 = "Ecotoxicity, freshwater - organics - p.2"
+    etfi = "Ecotoxicity, freshwater - inorganics"
+    etf1 = "Ecotoxicity, freshwater - part 1"
+    etf2 = "Ecotoxicity, freshwater - part 2"
+    htco = "Human toxicity, cancer - organics"
+    htno = "Human toxicity, non-cancer - organics"
+
+    [methods.scoring.weighting]
+    etfo1 = 1.0
+    etfo2 = 1.0
+    etfi = 1.0
+    etf1 = 1.0
+    etf2 = 1.0
+    htco = 1.0
+    htno = 1.0
+
+    [methods.scoring.scores]
+    etf = "etf1 + etf2"
+    etf-c = "2 * (etfo1 + etfo2) + etfi"
+    htc-c = "2 * htco"
+    htn-c = "2 * htno"
+
+[[flow-synonyms]]
+name = "Default flow synonyms"
+path = "/data/flows.csv"
+active = true
+
+[[compartment-mappings]]
+name = "Default compartment mapping"
+path = "/data/compartments.csv"
+active = true
+
+[[units]]
+name = "Default units"
+path = "/data/units.csv"

@@ -1,0 +1,24 @@
+[project]
+name = "jupyter"
+version = "0.1.0"
+description = "JupyterLab, wired to the ecobalyse Brightway project, for exploring LCA databases"
+readme = "README.md"
+requires-python = "==3.12.*"
+dependencies = [
+    "ipywidgets>=8.1.5",
+    "jupyter-collaboration>=3.0.1",
+    "jupyterlab>=4.5.9",
+    "jupytext>=1.16",
+    "notebook>=7.3.0",
+    "matplotlib~=3.10.7",
+    "pandas",
+    "python-dotenv>=1.0.0",
+
+    # Brightway (same pins as ecobalyse/data, to read the same project)
+    "bw2analyzer == 0.11.8",
+    "bw2calc == 2.5.0",
+    "bw2data == 4.7",
+    "bw2io[multifunctional] == 0.9.17",
+    "bw2parameters == 1.1.0",
+    'pypardiso ~= 0.4; platform_machine!="arm64" and platform_machine!="aarch64"',
+]

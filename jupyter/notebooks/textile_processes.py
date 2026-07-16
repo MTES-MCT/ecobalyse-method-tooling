@@ -11,7 +11,7 @@ from matplotlib import pyplot
 print("Please wait...")
 
 IMPACTS = {}
-with open("/home/jovyan/ecobalyse/public/data/impacts.json") as f:
+with open("../../../ecobalyse/public/data/impacts.json") as f:
     IMPACTS = json.load(f)
 
 
@@ -22,12 +22,10 @@ def scores(impacts):
         + list(
             {
                 trigram: impacts[trigram]
-                / IMPACTS[trigram]["ecs"]["normalization"]
-                * IMPACTS[trigram]["ecs"]["weighting"]
+                / IMPACTS[trigram]["ecoscore"]["normalization"]
+                * IMPACTS[trigram]["ecoscore"]["weighting"]
                 for trigram in [
-                    t
-                    for t in IMPACTS.keys()
-                    if t not in ("ecs", "htn-c", "etf-c", "htc-c", "name")
+                    t for t in IMPACTS.keys() if t not in ("ecs", "htn", "etf", "htc", "name")
                 ]
             }.items()
         )
@@ -46,7 +44,8 @@ def csv_button(contents):
     )
 
 
-textile_processes = json.load(open("../ecobalyse/public/data/textile/processes.json"))
+all_processes = json.load(open("../../../ecobalyse/public/data/processes_impacts.json"))
+textile_processes = [p for p in all_processes if "textile" in p.get("scopes", [])]
 csvfile = io.StringIO()
 writer = csv.DictWriter(
     csvfile, fieldnames=["name"] + list(textile_processes[0]["impacts"].keys())
@@ -54,7 +53,7 @@ writer = csv.DictWriter(
 writer.writeheader()
 for p in textile_processes:
     line = p["impacts"]
-    line["name"] = p["name"]
+    line["name"] = p.get("displayName") or p["activityName"]
     writer.writerow(line)
 
 csvfile.seek(0)
