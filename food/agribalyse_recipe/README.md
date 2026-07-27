@@ -135,5 +135,6 @@ stage that packs in nothing.
 
 ## Self-check
 
-`uv run test_packaging_rows.py` — asserts on the pure row builder (scaling,
-grams to kilos, which exchanges are kept), no engine and no network needed.
+`uv run test_packaging_rows.py` — asserts on the row builder (scaling, grams to
+kilos, which exchanges are kept) and on the walk down a packaging stage (the
+division by the food the stage packs), no engine and no network needed.

@@ -113,22 +113,22 @@ _INGREDIENT_ROLES = {"raw_material", "other", "water"}
 _NON_FOOD_UNITS = {"m3"}
 
 
-def product_columns(activity) -> list:
+def product_columns(activity: ActivityDetail) -> list:
     """The five product columns every row of a product repeats.
 
-    Takes a search result or a fetched activity — both carry the product's
-    amount and unit, the fetched one also a bare `unit` as last resort. One
-    definition so ingredient and packaging rows can never disagree on the
-    functional unit they are expressed against.
+    Built once per product, from the fetched activity, and handed to both the
+    ingredient and the packaging rows — so the two can never disagree on the
+    functional unit they are expressed against, nor on the amount the packaging
+    bill is scaled by.
     """
     amount = activity.product_amount if activity.product_amount is not None else 1.0
-    unit = activity.product_unit or getattr(activity, "unit", None) or ""
+    unit = activity.product_unit or activity.unit or ""
     return [activity.process_id, activity.activity_name, activity.location, amount, unit]
 
 
-def recipe_rows(client: Client, pid: str,
+def recipe_rows(act: ActivityDetail,
                 ingredient_pids: set[str] | None = None) -> list[list]:
-    """One row per technosphere input of `pid` — its ingredient bill.
+    """One row per technosphere input of `act` — its ingredient bill.
 
     When `ingredient_pids` is given, keep only edible ingredients: inputs whose
     producing activity is tagged `Category type = material` (excludes cooking,
@@ -137,7 +137,6 @@ def recipe_rows(client: Client, pid: str,
     (also `material`) — and whose unit is a food unit (drops natural gas and
     compressed air, the last `material` utilities, billed in m3).
     """
-    act = client.get_activity(pid)
     prefix = product_columns(act)
     rows = []
     for e in act.technosphere_inputs:
@@ -198,11 +197,18 @@ def packaging_role(flow_name: str) -> str | None:
     material into a component, "<material>, …, Production …" for the material
     itself. Both dropped families are matched on their trailing comma, because
     "Cardboard, Corrugated, Production and shaping" is a material, not a step.
+
+    A name is matched segment by segment, because an export may or may not
+    carry the library prefix ("00_Pack_AGB_Lib |Transport, for all type …") and
+    the end-of-life names carry a "| CFF : EoL …" suffix of their own. Matching
+    the whole string would let a prefixed transport through, and it would come
+    out a material — grams of freight silently counted as packaging mass.
     """
-    name = flow_name or ""
-    if "End of Life" in name:
+    parts = [p.strip() for p in (flow_name or "").split("|")]
+    if any("End of Life" in p for p in parts):
         return "packaging_eol"
-    if name.startswith("Transport,") or "processing," in name or "finishing," in name:
+    if any(p.startswith("Transport,") or "processing," in p or "finishing," in p
+           for p in parts):
         return None
     return "packaging_material"
 
@@ -237,7 +243,7 @@ def packaging_rows(prefix: list, system_name: str, scale: float,
     return rows
 
 
-def packaging_stages(client: Client, product) -> list[str]:
+def packaging_stages(client: Client, product: ActivityDetail) -> list[str]:
     """Process-ids of the packaging stage(s) packing this product.
 
     Direct consumers only. A stage two hops away belongs to another product
@@ -295,33 +301,42 @@ def component_rows(client: Client, cache: dict, prefix: list, system_name: str,
     return rows + packaging_rows(prefix, system_name, scale, materials)
 
 
-def stage_system(client: Client, cache: dict, stage_id: str) -> tuple | None:
+def stage_system(client: Client, cache: dict, stage_id: str,
+                 food_pid: str | None = None) -> tuple[ActivityDetail, float] | None:
     """The packaging system of a stage and how many of it one unit of the packed
     food carries — None for a stage that packs in nothing.
 
     The stage holds two inputs: the packaging system, and the food it packs.
-    Dividing by the food amount is what turns "per unit packaged" into "per unit
-    of food", rather than assuming the 1 kg for 1 kg Agribalyse happens to use
-    ("No losses assumed at packaging").
+    The food is the input whose target is `food_pid` — the very recipe we walked
+    down from — and not merely "whatever is not packaging", so a third input on
+    the stage cannot quietly become the divisor. Dividing by the food amount is
+    what turns "per unit packaged" into "per unit of food", rather than assuming
+    the 1 kg for 1 kg Agribalyse happens to use ("No losses assumed at
+    packaging"). A stage carrying several candidates says so and keeps the
+    first — silence there would be a wrong factor on every row of the product.
     """
     stage = fetch_activity(client, stage_id, cache)
-    system = system_amount = food_amount = None
+    systems, foods = [], []
     for e in stage.technosphere_inputs:
         if e.is_reference or not e.target_process_id:
             continue
         target = fetch_activity(client, e.target_process_id, cache)
-        if _is_packaging(target):
-            system, system_amount = target, e.amount
-        else:
-            food_amount = e.amount
+        bucket = systems if _is_packaging(target) else foods
+        bucket.append((target, e.amount))
+    named = [f for f in foods if f[0].process_id == food_pid]
+    foods = named or foods
     # A "No pack" stage (raw fruit sold loose) holds the food and nothing else.
-    if system is None or not food_amount:
+    if not systems or not foods or not foods[0][1]:
         return None
-    return system, system_amount / food_amount / (system.product_amount or 1.0)
+    if len(systems) > 1 or len(foods) > 1:
+        print(f"   ! {stage.activity_name[:56]:56} {len(systems)} packaging and "
+              f"{len(foods)} food input(s), keeping the first of each")
+    system, system_amount = systems[0]
+    return system, system_amount / foods[0][1] / (system.product_amount or 1.0)
 
 
 def product_packaging_rows(client: Client, cache: dict, prefix: list,
-                           stage_ids: list[str]) -> list[list]:
+                           food_pid: str, stage_ids: list[str]) -> list[list]:
     """Rows for every distinct packaging system this product is packed in.
 
     One recipe often stands in for a whole family of Ciqual products — 28
@@ -332,7 +347,7 @@ def product_packaging_rows(client: Client, cache: dict, prefix: list,
     """
     systems = {}
     for stage_id in stage_ids:
-        found = stage_system(client, cache, stage_id)
+        found = stage_system(client, cache, stage_id, food_pid)
         if found is not None:
             systems.setdefault((found[0].process_id, found[1]), found)
     rows = []
@@ -480,12 +495,16 @@ def main() -> None:
             pad = [""] if args.packaging else []
             ws.append(_HEADER + ([_PACKAGING_HEADER] if args.packaging else []))
             n_products = n_rows = n_packaging = 0
-            cache: dict = {}  # packaging components, shared by whole subcategories
+            # Every activity fetched: the products themselves, their packaging
+            # stages, and the components whole subcategories share.
+            cache: dict = {}
             for product in selected_products(client, selects, classifications, args.limit):
-                rows = recipe_rows(client, product.process_id, keep)
-                stages = packaging_stages(client, product) if args.packaging else []
+                act = fetch_activity(client, product.process_id, cache)
+                prefix = product_columns(act)  # one source for both kinds of row
+                rows = recipe_rows(act, keep)
+                stages = packaging_stages(client, act) if args.packaging else []
                 pack = product_packaging_rows(
-                    client, cache, product_columns(product), stages)
+                    client, cache, prefix, act.process_id, stages)
                 for row in rows:
                     ws.append(row + pad)
                 for row in pack:
@@ -503,7 +522,7 @@ def main() -> None:
                     note = ", no packaging (No pack)"
                 else:
                     note = ", no packaging stage"
-                print(f"   {product.activity_name[:64]:64}  {len(rows)} ingredients{note}")
+                print(f"   {act.activity_name[:64]:64}  {len(rows)} ingredients{note}")
 
             wb.save(args.out)
             packaging_note = f", {n_packaging} packaging rows" if args.packaging else ""
