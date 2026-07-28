@@ -19,7 +19,7 @@ to check the one division the whole bill hangs on.
 from dataclasses import dataclass, field
 
 from extract_agribalyse_recipes import (
-    packaging_amount, packaging_role, packaging_rows, stage_system)
+    packaging_amount, packaging_role, packaging_rows, product_columns, stage_system)
 
 
 @dataclass
@@ -40,6 +40,10 @@ class Detail:
     classifications: dict
     product_amount: float
     technosphere_inputs: list = field(default_factory=list)
+    product_name: str | None = None
+    product_unit: str | None = None
+    unit: str | None = None
+    location: str = "FR"
 
 
 PREFIX = ["pizza_pid", "Pizza, vegetables or pizza 4 seasons, at plant {FR}", "FR", 1.0, "kg"]
@@ -53,6 +57,28 @@ BAG = [
     Exchange("Plastic finishing, Plastic pouch shaping, Gate to Gate {Mix (FR;RER)}", 263.16, "cm2"),
     Exchange("Plastic, LDPE waste (films), End of Life {FR} | CFF : EoL with R2 = 6,20 %", 9.1, "g"),
 ]
+
+
+CHEESE = "Abondance cheese production, from cow's milk, hard cheese, French production mix"
+
+
+def test_co_products_are_told_apart_by_their_product_name():
+    """One multi-output activity, three processes: only the flow name differs.
+
+    Labelling the rows with the activity name gave three products called
+    "Abondance cheese production, …" with different amounts and no way to tell
+    the cheese from the cream.
+    """
+    cheese = Detail("cheese_pid", CHEESE, RECIPE, 1.0,
+                    product_name=f"{CHEESE}, at plant, 1 kg of Abondance cheese (PGi) {{FR}} U",
+                    product_unit="kg")
+    cream = Detail("cream_pid", CHEESE, RECIPE, 0.0686462,
+                   product_name=f"{CHEESE}, at plant, 1 kg of cream (PGi) {{FR}} U",
+                   product_unit="kg")
+    assert product_columns(cheese)[1] != product_columns(cream)[1]
+    assert product_columns(cream) == ["cream_pid", cream.product_name, "FR", 0.0686462, "kg"]
+    # No product flow name (single-output export): the activity name still names it.
+    assert product_columns(Detail("p", CHEESE, RECIPE, 1.0, product_unit="kg"))[1] == CHEESE
 
 
 def test_role_keeps_materials_and_end_of_life_only():

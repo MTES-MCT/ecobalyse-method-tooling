@@ -16,6 +16,13 @@ public download from ADEME. The engine auto-detects the format: SimaPro CSV
 (`.csv`, `.csv.zip`, `.7z`), EcoSpold, ILCD, or a Brightway/Excel export
 (`.xlsx`).
 
+The engine release is pinned (`_ENGINE_VERSION`, currently 0.9.1) rather than
+tracking the latest: engine and pyvolca version independently and must agree on
+the JSON wire revision, which neither version number announces — engine 0.9.3
+speaks wire 3 while every released pyvolca (≤ 0.8.2) decodes wire 2, so "latest"
+warns and can return rows that fail to decode. `--engine-version TAG` overrides
+it; move the pin once a pyvolca speaking the newer wire ships.
+
 ## Run
 
 ```bash
@@ -27,7 +34,7 @@ uv run extract_agribalyse_recipes.py \
 # the whole food catalogue, edible ingredients only
 uv run extract_agribalyse_recipes.py \
     --agribalyse "/path/to/AGB32_final.CSV.zip" \
-    --all --limit 0 --ingredients-only --out all_recipes.xlsx
+    --all --ingredients-only --out all_recipes.xlsx
 
 # every recipe with its ingredients and its packaging, in one sheet
 uv run extract_agribalyse_recipes.py \
@@ -38,8 +45,10 @@ uv run extract_agribalyse_recipes.py \
 
 Selection: `--select NAME` (substring, repeatable), `--classification
 "System=Value"` (e.g. `"Category=Agricultural\Food\Recipes"`), or `--all`
-(shortcut for the food catalogue). `--limit` caps each selector (0 = no cap);
-truncation is always reported, never silent.
+(shortcut for the food catalogue). `--limit` caps each selector (0 = no cap;
+default 3, lifted by `--all`); truncation is always reported, never silent.
+`--agribalyse` is only read on the first run, which uploads the export into the
+engine — later runs reuse the uploaded copy (`--replace` re-uploads it).
 
 ## `--ingredients-only`
 
@@ -136,5 +145,7 @@ stage that packs in nothing.
 ## Self-check
 
 `uv run test_packaging_rows.py` — asserts on the row builder (scaling, grams to
-kilos, which exchanges are kept) and on the walk down a packaging stage (the
-division by the food the stage packs), no engine and no network needed.
+kilos, which exchanges are kept), on the walk down a packaging stage (the
+division by the food the stage packs), and on the product columns (co-products
+of one activity told apart by their product flow name), no engine and no network
+needed.

@@ -30,10 +30,11 @@ Run (uv resolves the two deps automatically)::
     # the whole Agribalyse food catalogue, edible ingredients only
     uv run extract_agribalyse_recipes.py \
         --agribalyse "/path/to/AGB32_final.CSV.zip" \
-        --all --limit 0 --ingredients-only --out all_recipes.xlsx
+        --all --ingredients-only --out all_recipes.xlsx
 
 Selection: --select NAME (substring), --classification "System=Value", or --all
-(shortcut for the food catalogue). --limit caps each selector (0 = no cap).
+(shortcut for the food catalogue, uncapped). --limit caps each selector
+(0 = no cap; default 3, lifted by --all).
 --ingredients-only keeps only edible inputs (Category type = material, recipe
 water included), dropping cooking, [Dummy] operations, waste treatment,
 electricity, heat and transport.
@@ -79,6 +80,14 @@ from openpyxl import Workbook
 from volca import ActivityDetail, ClassificationFilter, Client, Server, download
 from volca.agribalyse import classify_exchange
 
+# Pinned, not "latest": engine and pyvolca version independently, and the wire
+# revision they must share is not implied by either number. Engine 0.9.3 speaks
+# wire 3 while every pyvolca released so far (≤0.8.2) decodes wire 2, so
+# "latest" warns and may return rows that fail to decode. 0.9.1 is the engine
+# this extraction was run against. Move it when a pyvolca decoding wire 3 ships,
+# or pass --engine-version to try another one.
+_ENGINE_VERSION = "0.9.1"
+
 # Recipe columns: functional unit of the product, then one ingredient per row.
 _HEADER = [
     "product_process_id",
@@ -123,7 +132,11 @@ def product_columns(activity: ActivityDetail) -> list:
     """
     amount = activity.product_amount if activity.product_amount is not None else 1.0
     unit = activity.product_unit or activity.unit or ""
-    return [activity.process_id, activity.activity_name, activity.location, amount, unit]
+    # The product flow name, not the activity name: a multi-output activity
+    # (cheese production -> cheese + cream + whey) yields one process per
+    # co-product, all sharing the activity name — only the flow tells them apart.
+    name = activity.product_name or activity.activity_name
+    return [activity.process_id, name, activity.location, amount, unit]
 
 
 def recipe_rows(act: ActivityDetail,
@@ -396,12 +409,24 @@ def selected_products(client: Client, selects: list[str],
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--agribalyse", required=True,
-                    help="Path to the Agribalyse source. The engine auto-detects the "
-                         "format: SimaPro CSV (.csv/.csv.zip), EcoSpold, ILCD, or a "
-                         "Brightway/Excel export (.xlsx).")
-    ap.add_argument("--db-name", default="agribalyse-3.2")
+    # Not __doc__: argparse reflows it into an unreadable wall. The doc lives
+    # at the top of this file and in README.md.
+    ap = argparse.ArgumentParser(
+        description="Extract Agribalyse recipes (ingredient bill of materials) "
+                    "to Excel: one row per ingredient of every selected product, "
+                    "plus its packaging with --packaging. Downloads and runs the "
+                    "VoLCA engine locally. Examples and details: README.md.")
+    ap.add_argument("--agribalyse", default=None, metavar="FILE",
+                    help="The Agribalyse export to upload: the official ADEME SimaPro "
+                         "CSV (e.g. AGB32_final.CSV.zip, free from doc.agribalyse.fr); "
+                         "EcoSpold, ILCD or a Brightway/Excel .xlsx also work (format "
+                         "auto-detected). Only read on the first run, which uploads it "
+                         "into the engine — later runs reuse the uploaded copy and "
+                         "ignore this flag unless --replace is given.")
+    ap.add_argument("--db-name", default="agribalyse-3.2",
+                    help="Name the upload is stored under in the engine (default: "
+                         "%(default)s). Use distinct names to keep several "
+                         "Agribalyse versions side by side.")
     ap.add_argument("--replace", action="store_true",
                     help="Delete the previously uploaded database and re-upload "
                          "from --agribalyse (use after the source file changed).")
@@ -411,9 +436,9 @@ def main() -> None:
                     help='Select by classification, e.g. "Category=Agricultural\\Food" (repeatable).')
     ap.add_argument("--all", action="store_true",
                     help="Extract the whole Agribalyse food catalogue "
-                         f"({_FOOD_CATALOGUE[0]}={_FOOD_CATALOGUE[1]}). Pair with --limit 0 for everything.")
-    ap.add_argument("--limit", type=int, default=3,
-                    help="Max products per selector (0 = no cap; extracts all matches).")
+                         f"({_FOOD_CATALOGUE[0]}={_FOOD_CATALOGUE[1]}), uncapped unless --limit says otherwise.")
+    ap.add_argument("--limit", type=int, default=None,
+                    help="Max products per selector (0 = no cap). Default: 3, or no cap with --all.")
     ap.add_argument("--ingredients-only", action="store_true",
                     help="Keep only edible ingredients (Category type = material, "
                          "recipe water included); drop cooking, [Dummy] operations, "
@@ -423,10 +448,15 @@ def main() -> None:
                          "sheet: materials and their end of life, per functional unit, "
                          "with role packaging_material / packaging_eol and a "
                          f"{_PACKAGING_HEADER} column. Independent of --ingredients-only.")
-    ap.add_argument("--out", default="agribalyse_recipes.xlsx")
-    ap.add_argument("--engine-version", default=None,
-                    help="VoLCA release tag (default: latest)")
-    ap.add_argument("--port", type=int, default=8123)
+    ap.add_argument("--out", default="agribalyse_recipes.xlsx",
+                    help="Output Excel file (default: %(default)s).")
+    ap.add_argument("--engine-version", default=_ENGINE_VERSION, metavar="TAG",
+                    help="VoLCA engine release to download and run (default: "
+                         "%(default)s, pinned because a newer engine may speak a wire "
+                         "revision this pyvolca cannot decode).")
+    ap.add_argument("--port", type=int, default=8123,
+                    help="TCP port for the local engine started by this script "
+                         "(default: 8123). Only change it if the port is taken.")
     ap.add_argument("--startup-timeout", type=int, default=600,
                     help="Seconds to wait for the engine to become ready")
     args = ap.parse_args()
@@ -439,11 +469,27 @@ def main() -> None:
         classifications.append((system, value))
     if args.all:
         classifications.append(_FOOD_CATALOGUE)
+    if args.limit is None:
+        # --all means all: no cap unless the user asked for one explicitly.
+        args.limit = 0 if args.all else 3
     selects = args.select
     if not selects and not classifications:
         selects = ["Pizza"]  # demo default when nothing is asked for
 
-    db_path = str(Path(args.agribalyse).expanduser().resolve())
+    db_path = Path(args.agribalyse).expanduser().resolve() if args.agribalyse else None
+    have_file = db_path is not None and db_path.is_file()
+    # --replace deletes the upload before re-uploading, so refuse now rather
+    # than after: an unreadable file would leave the machine with no database.
+    if args.replace and not have_file:
+        ap.error(f"--replace re-uploads the database, so --agribalyse must name a "
+                 f"readable file{'' if db_path is None else f': {db_path}'}")
+    # A missing file is otherwise not fatal: it is only read when nothing is
+    # uploaded yet, and a command line kept from the first run must keep working
+    # once the drive holding the export is gone.
+    if db_path is not None and not have_file:
+        print(f"   ! --agribalyse: no such file: {db_path} — ignored, "
+              f"only the uploaded {args.db_name} can be used")
+        db_path = None
 
     print("1. Downloading VoLCA engine + reference data ...")
     inst = download(version=args.engine_version)
@@ -477,8 +523,17 @@ def main() -> None:
                 client.delete_database(slug)
                 slug = None
             if slug is None:
+                if db_path is None:
+                    raise SystemExit(
+                        f"Database {args.db_name!r} is not uploaded yet on this "
+                        "machine — pass --agribalyse FILE (see --help).")
                 print(f"3. Uploading {args.db_name} (once; later runs reuse it) ...")
                 slug = client.upload_database(db_path, args.db_name)["slug"]
+            elif db_path is not None:
+                # The file was passed but is NOT re-read — say so, or a changed
+                # CSV looks mysteriously without effect.
+                print(f"3. Reusing the uploaded {args.db_name}; --agribalyse not re-read "
+                      "(pass --replace after the source file changed).")
             client = client.use(slug)
             print(f"   Loading {slug} (first load parses the CSV; later loads hit the cache) ...")
             client.load_database(slug)
@@ -522,7 +577,9 @@ def main() -> None:
                     note = ", no packaging (No pack)"
                 else:
                     note = ", no packaging stage"
-                print(f"   {act.activity_name[:64]:64}  {len(rows)} ingredients{note}")
+                # Full name, no truncation: co-products of one activity differ
+                # only at the tail ("..., 1 kg of cream (PGi) {FR} U").
+                print(f"   {len(rows):3} ingredients{note}  {prefix[1]}")
 
             wb.save(args.out)
             packaging_note = f", {n_packaging} packaging rows" if args.packaging else ""
