@@ -19,8 +19,8 @@ to check the one division the whole bill hangs on.
 from dataclasses import dataclass, field
 
 from extract_agribalyse_recipes import (
-    ingredient_targets, packaging_amount, packaging_role, packaging_rows,
-    product_columns, stage_system)
+    ingredient_targets, material_mass, packaging_amount, packaging_role,
+    packaging_rows, product_columns, stage_system)
 
 
 @dataclass
@@ -182,6 +182,20 @@ def test_rows_scale_the_bill_and_drop_conversion_and_transport():
     assert rows[0][10] == SYSTEM
     assert rows[0][9] == ""  # the material link is unresolved in the database
     assert len(rows[0]) == 11  # the ten recipe columns plus packaging_system
+
+
+def test_the_system_mass_counts_the_matter_once():
+    """The summary sheet's mass, on the bag: 21,81 g of LDPE and nothing else.
+
+    Counting the end of life too would double the packaging of every product,
+    and adding the pallet would add pieces to kilos.
+    """
+    rows = packaging_rows(PREFIX, SYSTEM, BAGS_PER_KG, BAG)
+    assert abs(material_mass(rows) - 0.0098145 * BAGS_PER_KG) < 1e-15
+    pallet = packaging_rows(PREFIX, SYSTEM, 1.0, [
+        Exchange("Wood, EUR-flat pallet, Production {RER} | CFF : production", 2e-5, "p")])
+    assert material_mass(pallet) == 0.0
+    assert material_mass([]) == 0.0
 
 
 def test_no_material_gives_no_row():

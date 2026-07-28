@@ -46,6 +46,11 @@ foods: pizza, ratatouille, aioli, ...), and for each of them:
   life are kept; the conversion and upstream-transport processes that also live
   in a packaging element's inventory are dropped — a choice, not an oversight.
 
+Two sheets, the same packaging seen from two heights: `packaging_systems` holds
+one row per system, the black box an impact engine can resolve on its own, and
+`recipes` holds the detail — ingredients, and one row per packaging material,
+which is what a model that swaps or drops a material needs.
+
 Docs: https://www.volca.run/docs/python/
 """
 
@@ -97,6 +102,23 @@ _HEADER = [
     # rows. The material family needs no column of its own — it opens the
     # material name ("Plastic, LDPE, ...", "Cardboard, Flat, ...").
     "packaging_system",
+]
+
+# The summary sheet: one row per packaging system a product is packed in, the
+# same walk seen from above. Its five product columns are those of the detail
+# sheet, so the two join on `product_process_id` + `packaging_system`.
+_SYSTEM_HEADER = _HEADER[:5] + [
+    "packaging_system",
+    "system_process_id",
+    # How many of that system one functional unit of the product carries: a
+    # 425 g system counts 2.35 times per kg of food.
+    "systems_per_functional_unit",
+    # What the system is authored for: 0.425 kg of packed food, 1 kg, ...
+    "system_reference_amount",
+    "system_reference_unit",
+    # Total of the system's material rows on the detail sheet — what saves a
+    # pivot when all you want is "how much packaging per kg".
+    "material_mass_kg",
 ]
 
 # Roles (from classify_exchange) an edible ingredient can carry: kg inputs are
@@ -365,26 +387,50 @@ def stage_system(client: Client, cache: dict, stage_id: str,
     return system, system_amount / foods[0][1] / (system.product_amount or 1.0)
 
 
-def product_packaging_rows(client: Client, cache: dict, prefix: list,
-                           food_pid: str, stage_ids: list[str]) -> list[list]:
-    """Rows for every distinct packaging system this product is packed in.
+def material_mass(rows: list[list]) -> float:
+    """Packaging material of these rows, in kg — pure, tested.
+
+    Materials only: an end-of-life row is the same matter on its way out, not
+    matter added. Rows left in another unit (a pallet counted in pieces) are out
+    too, so this is a mass and not a mixed sum.
+    """
+    return sum(r[6] for r in rows if r[8] == "packaging_material" and r[7] == "kg")
+
+
+def packaging_sheets(client: Client, cache: dict, prefix: list, food_pid: str,
+                     stage_ids: list[str]) -> tuple[list[list], list[list]]:
+    """The same walk written twice: material rows, and one row per system.
 
     One recipe often stands in for a whole family of Ciqual products — 28
     breakfast cereals share one — and each of those products has its own
     packaging stage naming the very same system. Writing the bill once per stage
     would repeat it 28 times, so systems are deduplicated: a product genuinely
     offered in a glass jar and in a plastic pot still keeps both bills.
+
+    The summary row is the packaging as a single process — enough to hand to the
+    engine, which resolves the rest — while the material rows are what a
+    parametric model needs, a mass per material one can swap or drop.
     """
     systems = {}
     for stage_id in stage_ids:
         found = stage_system(client, cache, stage_id, food_pid)
         if found is not None:
             systems.setdefault((found[0].process_id, found[1]), found)
-    rows = []
+    materials, summary = [], []
     for system, per_food in systems.values():
-        rows += component_rows(client, cache, prefix, system.activity_name,
-                               system.process_id, prefix[3] * per_food)
-    return rows
+        scale = prefix[3] * per_food
+        rows = component_rows(client, cache, prefix, system.activity_name,
+                              system.process_id, scale)
+        materials += rows
+        summary.append(prefix + [
+            system.activity_name,
+            system.process_id,
+            scale,
+            system.product_amount,
+            system.product_unit or system.unit or "",
+            material_mass(rows),
+        ])
+    return materials, summary
 
 
 def selected_recipes(client: Client, limit: int) -> list:
@@ -493,10 +539,14 @@ def main() -> None:
 
             print("4. Extracting recipes ...")
             wb = Workbook()
-            ws = wb.active
-            ws.title = "recipes"
+            # The summary first — the packaging as one line per system — and the
+            # detail behind it: ingredients and packaging materials.
+            ws_sys = wb.active
+            ws_sys.title = "packaging_systems"
+            ws_sys.append(_SYSTEM_HEADER)
+            ws = wb.create_sheet("recipes")
             ws.append(_HEADER)
-            n_products = n_rows = n_packaging = 0
+            n_products = n_rows = n_packaging = n_systems = 0
             # Every activity fetched: the recipes themselves, their packaging
             # stages, and the components whole subcategories share.
             cache: dict = {}
@@ -506,16 +556,20 @@ def main() -> None:
                 prefix = product_columns(act)  # one source for both kinds of row
                 rows = recipe_rows(act, targets, keep)
                 stages = packaging_stages(client, act)
-                pack = product_packaging_rows(client, cache, prefix, act.process_id, stages)
+                pack, systems = packaging_sheets(client, cache, prefix,
+                                                 act.process_id, stages)
                 for row in rows + pack:
                     ws.append(row)
+                for row in systems:
+                    ws_sys.append(row)
                 n_products += 1
                 n_rows += len(rows)
                 n_packaging += len(pack)
+                n_systems += len(systems)
                 # Never silent: a recipe without packaging says which of the two
                 # cases it is — no stage at all, or a stage packing in nothing.
                 if pack:
-                    note = f", {len(pack)} packaging in {len({r[10] for r in pack})} system(s)"
+                    note = f", {len(pack)} packaging in {len(systems)} system(s)"
                 elif stages:
                     note = ", no packaging (No pack)"
                 else:
@@ -525,8 +579,9 @@ def main() -> None:
                 print(f"   {len(rows):3} ingredients{note}  {prefix[1]}")
 
             wb.save(args.out)
-            print(f"\nDone: {n_products} recipes, {n_rows} ingredient rows, "
-                  f"{n_packaging} packaging rows -> {args.out}")
+            print(f"\nDone: {n_products} recipes, {n_systems} packaging systems, "
+                  f"{n_rows} ingredient rows, {n_packaging} packaging rows "
+                  f"-> {args.out}")
         finally:
             srv.stop()
 

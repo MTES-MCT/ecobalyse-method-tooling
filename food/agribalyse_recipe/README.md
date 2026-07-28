@@ -82,13 +82,20 @@ Pizza, … | Chilled | Cardboard | at packaging {FR}     Category = Agricultural
 ```
 
 The script finds that stage — the recipe's direct consumer under
-`Agricultural\Food\Packaging` — walks the system, its components and their
-materials, and writes the rows to the **same sheet** as the ingredients, with
-role `packaging_material` or `packaging_eol` and the `packaging_system` column
-naming the system they come from. Amounts are per functional unit of the
-product, in kg:
-a 450 g packaging system is counted 1/0,45 = 2,22 times per kg, so the pizza's
-9,81 g plastic bag becomes 21,8 g/kg.
+`Agricultural\Food\Packaging` — then walks **upwards** into the system, its
+components and their materials, stopping as soon as an input is no longer itself
+a packaging (`Cardboard, Flat, Production {FR}` is a material: its mass is
+written and the walk goes no further, how that cardboard is made being the
+engine's business at impact time).
+
+The walk is written twice. The `packaging_systems` sheet keeps the system as a
+single process — a black box, but one an impact engine resolves on its own. The
+`recipes` sheet holds the materials, next to the ingredients, with role
+`packaging_material` or `packaging_eol` and the `packaging_system` column naming
+where they come from — which is what you need to compare formats or change one.
+Amounts are per functional unit of the product, in kg: a 450 g packaging system
+is counted 1/0,45 = 2,22 times per kg, so the pizza's 9,81 g plastic bag becomes
+21,8 g/kg.
 
 Kept: the packaging materials and their end of life. Dropped: the conversion
 steps (`Cardboard finishing, cutting and folding`, `Plastic processing, Cast
@@ -149,6 +156,25 @@ solve was never affected: `get_supply_chain` places the right palm oil under the
 biscuit, and `get_consumers` agrees. Only the reported identifier was ambiguous.
 
 ## Output columns
+
+Two sheets, the same packaging seen from two heights. The first five columns are
+the same in both, so they join on `product_process_id` + `packaging_system`.
+
+**`packaging_systems`** — the packaging as a single process, one row per system.
+Enough on its own if you only want an impact: the engine resolves everything
+below that process id.
+
+| Column | Meaning |
+|--------|---------|
+| `product_process_id`, `product_name`, `location` | the recipe |
+| `functional_unit_amount`, `functional_unit` | its functional unit (typically 1 kg) |
+| `packaging_system`, `system_process_id` | the packaging system it is packed in |
+| `systems_per_functional_unit` | how many of it one functional unit carries — a 425 g system counts 1/0,425 = 2,35 times per kg |
+| `system_reference_amount`, `system_reference_unit` | what the system is authored for (0,425 kg of packed food) |
+| `material_mass_kg` | total of its material rows on the second sheet — materials only, no end of life, no pallet counted in pieces |
+
+**`recipes`** — the detail: ingredients, and one row per packaging material.
+What a model that swaps or drops a material needs.
 
 | Column | Meaning |
 |--------|---------|
