@@ -2,68 +2,49 @@
 # requires-python = ">=3.10"
 # dependencies = ["pyvolca>=0.8.0", "openpyxl"]
 # ///
-"""Extract Agribalyse recipes (ingredient bill of materials) to Excel.
+"""Extract the Agribalyse recipes — ingredients and packaging — to Excel.
 
 Self-contained: downloads the VoLCA engine binary, starts it locally, uploads
-an Agribalyse database (once — later runs reuse the uploaded copy), and writes
-one row per ingredient for every selected transformed product::
+an Agribalyse database (once — later runs reuse the uploaded copy), and writes,
+for every recipe of the catalogue, one row per edible ingredient and one row
+per packaging material::
 
-    1 kg "Pizza, ..."  ->  X kg tomato + Y kg cheese + Z kg flour + ...
-
-What `volca.download()` gives you and what it does NOT
------------------------------------------------------
-`download()` fetches the engine binary and the reference-data bundle. It does
-NOT ship any LCA database. You supply Agribalyse yourself — the official
-SimaPro CSV export is a free public download from ADEME (data.gouv.fr /
-doc.agribalyse.fr). Pass its path with --agribalyse. A Brightway/Excel export
-of Agribalyse works too — the engine detects the format from the file. The
-upload persists in the engine's shared install dir, so a re-run skips the
-upload; pass --replace to re-upload after the source file changed.
+    1 kg "Aioli sauce, ..."  ->  0.728 kg olive oil + 0.108 kg garlic + ...
+                             ->  67.4 g PET + 33.7 g cardboard + ...
 
 Run (uv resolves the two deps automatically)::
 
-    # a few products by name
     uv run extract_agribalyse_recipes.py \
-        --agribalyse "/path/to/AGB32_final.CSV.zip" \
-        --select Pizza --select Bread --out recipes.xlsx
+        --agribalyse "/path/to/AGB32_final.CSV.zip" --out recipes.xlsx
 
-    # the whole Agribalyse food catalogue, edible ingredients only
-    uv run extract_agribalyse_recipes.py \
-        --agribalyse "/path/to/AGB32_final.CSV.zip" \
-        --all --ingredients-only --out all_recipes.xlsx
+`download()` fetches the engine binary and the reference-data bundle, not any
+LCA database: you supply Agribalyse yourself, the official SimaPro CSV export
+being a free public download from ADEME (doc.agribalyse.fr). The upload
+persists in the engine's install dir, so later runs skip it; pass --replace
+after the source file changed.
 
-Selection: --select NAME (substring), --classification "System=Value", or --all
-(shortcut for the food catalogue, uncapped). --limit caps each selector
-(0 = no cap; default 3, lifted by --all).
---ingredients-only keeps only edible inputs (Category type = material, recipe
-water included), dropping cooking, [Dummy] operations, waste treatment,
-electricity, heat and transport.
+What is written
+---------------
+Every process classified `Category=Agricultural\\Food\\Recipes` (the composite
+foods: pizza, ratatouille, aioli, ...), and for each of them:
 
-The "recipe" is just the process's technosphere inputs: get_activity(pid)
-.technosphere_inputs gives (ingredient name, amount, unit, upstream process).
-Each row is classified (raw_material / water / electricity / heat / transport /
-other) so you can keep only the food ingredients if you want.
+- its **edible ingredients**, recipe water included. An input is kept when its
+  producing activity is tagged `Category type = material`, its role is a food
+  role, and its unit is a food unit — which drops cooking, [Dummy] operations,
+  waste treatment, electricity, heat, transport, and the m3-billed utilities.
+- its **packaging**, found one stage downstream: a recipe carries none, so the
+  bill is read off the "at packaging" process that consumes it::
 
---packaging: the packaging bill in the same sheet
---------------------------------------------------
-A recipe carries no packaging — Agribalyse models it one stage downstream::
-
-    Pizza, ... | Chilled | Cardboard | at packaging {FR}
-    |-- 1 kg  Pizza, ..., at plant {FR}                        <- the recipe
-    +-- 1 kg  Pizzas, chilled, 450g | Packaging System, N0, ...
-              |-- N1 elements (bag, cardboard support, labels)
+    Aioli sauce, ... | Chilled | Pack proxy | at packaging {FR}
+    |-- 1 kg  Aioli sauce, ..., recipe, at plant {FR}          <- the recipe
+    +-- 1 kg  Mayonnaise, 425g | Packaging System, N0, ...
+              |-- N1 elements (squeeze bottle, cap, label)
               +-- N2/N3 grouping box and pallet
 
---packaging finds that stage (the recipe's direct consumer under Category
-"Agricultural\\Food\\Packaging"), reads its bill of materials and appends the
-rows to the same sheet as the ingredients, with role `packaging_material` or
-`packaging_eol` and one extra column, `packaging_system`. Amounts are per
-functional unit of the product, like the ingredient rows: a 450 g packaging
-system counts 2.22 times per kg, and the engine does that scaling.
-
-Kept: packaging materials and their end of life. Dropped: the conversion and
-upstream-transport processes that also live in a packaging element's inventory
-— a choice, not an oversight.
+  Amounts are per functional unit of the product, like the ingredient rows: a
+  425 g packaging system counts 2.35 times per kg. Materials and their end of
+  life are kept; the conversion and upstream-transport processes that also live
+  in a packaging element's inventory are dropped — a choice, not an oversight.
 
 Docs: https://www.volca.run/docs/python/
 """
@@ -84,11 +65,23 @@ from volca.agribalyse import classify_exchange
 # revision they must share is not implied by either number. Engine 0.9.3 speaks
 # wire 3 while every pyvolca released so far (≤0.8.2) decodes wire 2, so
 # "latest" warns and may return rows that fail to decode. 0.9.1 is the engine
-# this extraction was run against. Move it when a pyvolca decoding wire 3 ships,
-# or pass --engine-version to try another one.
+# this extraction was run against; move it when a pyvolca decoding wire 3 ships.
 _ENGINE_VERSION = "0.9.1"
 
-# Recipe columns: functional unit of the product, then one ingredient per row.
+# Fixed because nothing here is a real choice: the display name keys the
+# uploaded copy, the port only has to be free, and the timeout is generous
+# because the very first engine run indexes its reference methods before it
+# serves.
+_DB_NAME = "agribalyse-3.2"
+_PORT = 8123
+_STARTUP_TIMEOUT = 600
+
+# The composite/prepared foods (pizza, ratatouille, aioli, ...). Their
+# lifecycle stages — at packaging, at distribution, at supermarket, at
+# consumer — live under sibling branches and are not recipes: they carry
+# logistics, cold and retail losses, not a bill of ingredients.
+_RECIPES = ("Category", "Agricultural\\Food\\Recipes")
+
 _HEADER = [
     "product_process_id",
     "product_name",
@@ -100,13 +93,11 @@ _HEADER = [
     "ingredient_unit",
     "role",
     "ingredient_process_id",
+    # Which packaging system a packaging row comes from; empty on ingredient
+    # rows. The material family needs no column of its own — it opens the
+    # material name ("Plastic, LDPE, ...", "Cardboard, Flat, ...").
+    "packaging_system",
 ]
-
-# Appended by --packaging: which packaging system a packaging row comes from,
-# empty on ingredient rows. The material family needs no column of its own —
-# it opens the material name ("Plastic, LDPE, ...", "Cardboard, Flat, ...").
-_PACKAGING_HEADER = "packaging_system"
-
 
 # Roles (from classify_exchange) an edible ingredient can carry: kg inputs are
 # `raw_material`; gram-based dairy/sugar/chocolate fall to `other`; `water` is
@@ -125,10 +116,9 @@ _NON_FOOD_UNITS = {"m3"}
 def product_columns(activity: ActivityDetail) -> list:
     """The five product columns every row of a product repeats.
 
-    Built once per product, from the fetched activity, and handed to both the
-    ingredient and the packaging rows — so the two can never disagree on the
-    functional unit they are expressed against, nor on the amount the packaging
-    bill is scaled by.
+    Built once per product and handed to both the ingredient and the packaging
+    rows — so the two can never disagree on the functional unit they are
+    expressed against, nor on the amount the packaging bill is scaled by.
     """
     amount = activity.product_amount if activity.product_amount is not None else 1.0
     unit = activity.product_unit or activity.unit or ""
@@ -139,36 +129,56 @@ def product_columns(activity: ActivityDetail) -> list:
     return [activity.process_id, name, activity.location, amount, unit]
 
 
-def recipe_rows(act: ActivityDetail,
-                ingredient_pids: set[str] | None = None) -> list[list]:
-    """One row per technosphere input of `act` — its ingredient bill.
+def ingredient_targets(payload: dict) -> dict[str, str]:
+    """Process-id of the product each input flow actually comes from, by name.
 
-    When `ingredient_pids` is given, keep only edible ingredients: inputs whose
-    producing activity is tagged `Category type = material` (excludes cooking,
-    [Dummy] operations, waste treatment, electricity, heat, transport), whose
-    role is a food role — including recipe water, dropping biowaste treatment
-    (also `material`) — and whose unit is a food unit (drops natural gas and
-    compressed air, the last `material` utilities, billed in m3).
+    The typed `target_process_id` names the target *activity*, and an activity
+    with several co-products reports one of them arbitrarily: the biscuit's
+    "Palm oil, crude, consumption mix" comes back as the process of "Palm
+    kernel oil, crude" — a different oil. Over the whole catalogue that was one
+    resolvable target in eight, and 628 rows even pointed at their own product,
+    which would send a recursion in circles.
+
+    The raw exchange carries the pair that does name the product: `flowId` for
+    the product flow, `activityLinkId` for the activity producing it, and a
+    process-id is exactly their join. The engine's own solve already follows
+    this pair — only the reported id was ambiguous.
+
+    Inputs only, because a self-consuming recipe (the nuoc mam sauce takes
+    0.183 kg of itself) carries its own flow twice: once as the reference
+    product, whose activity link is the all-zero uuid, and once as the input.
+    Keyed by name, the two collide and the last one seen would win.
+    """
+    targets = {}
+    for ed in (payload.get("activity") or {}).get("exchanges") or []:
+        ex = ed.get("exchange") or {}
+        activity_id, flow_id = ex.get("activityLinkId"), ex.get("flowId")
+        if (ex.get("tag") == "TechnosphereExchange" and ex.get("role") == "Input"
+                and activity_id and flow_id):
+            targets[ed.get("flowName") or ""] = f"{activity_id}_{flow_id}"
+    return targets
+
+
+def recipe_rows(act: ActivityDetail, targets: dict[str, str],
+                ingredient_pids: set[str]) -> list[list]:
+    """One row per edible ingredient of `act` — pure, tested.
+
+    Kept when the producing activity is tagged `Category type = material`, the
+    role is a food role (recipe water included, biowaste treatment excluded
+    though it is `material` too), and the unit is a food unit.
     """
     prefix = product_columns(act)
     rows = []
     for e in act.technosphere_inputs:
         if e.is_reference:  # the product itself, not an ingredient
             continue
+        pid = targets.get(e.flow_name, "")
         role = classify_exchange(e)
-        if ingredient_pids is not None and (
-            e.target_process_id not in ingredient_pids
-            or role not in _INGREDIENT_ROLES
-            or (e.unit or "").lower() in _NON_FOOD_UNITS
-        ):
+        if (pid not in ingredient_pids
+                or role not in _INGREDIENT_ROLES
+                or (e.unit or "").lower() in _NON_FOOD_UNITS):
             continue
-        rows.append(prefix + [
-            e.flow_name,
-            e.amount,
-            e.unit,
-            role,
-            e.target_process_id or "",
-        ])
+        rows.append(prefix + [e.flow_name, e.amount, e.unit, role, pid, ""])
     return rows
 
 
@@ -187,17 +197,15 @@ def material_pids(client: Client) -> set[str]:
 
 # Packaging sits one stage downstream of the recipe: an "at packaging" process
 # consuming the recipe plus one packaging system (PACK_AGB project, 2024). Its
-# Category places it under this branch, which is how the stage is recognised —
-# both when walking down from the recipe and when the selection already matched
-# a stage process.
+# Category places it under this branch, which is how the stage is recognised.
 _PACKAGING_CATEGORY = "Agricultural\\Food\\Packaging"
 
-# Packaging material exchanges are authored in grams, and the released engine
-# (0.9.3) leaves gram-denominated links unresolved: the solved supply chain
-# reaches the grouping box, billed in kg, but never the retail elements. So the
-# bill is read from each level's own exchanges and scaled here — engine
-# independent, at the price of an empty `ingredient_process_id` on the material
-# rows, whose target the database itself does not resolve.
+# Packaging material exchanges are authored in grams, and the engine leaves
+# gram-denominated links unresolved: the solved supply chain reaches the
+# grouping box, billed in kg, but never the retail elements. So the bill is read
+# from each level's own exchanges and scaled here — engine independent, at the
+# price of an empty `ingredient_process_id` on the material rows, whose target
+# the database itself does not resolve.
 _UNIT_TO_KG = {"g": 0.001, "kg": 1.0, "ton": 1000.0}
 
 
@@ -261,20 +269,29 @@ def packaging_stages(client: Client, product: ActivityDetail) -> list[str]:
 
     Direct consumers only. A stage two hops away belongs to another product
     that uses this one as an ingredient — counting it would hang someone
-    else's packaging on this recipe. A product that already is a stage is
-    returned as is, so `--select Pizza --packaging` also works on the stage
-    processes the same search matches. Several stages mean several packaging
+    else's packaging on this recipe. Several stages mean several packaging
     variants (chilled and frozen, glass and PET): all are kept, told apart by
     the `packaging_system` column.
     """
-    if "at packaging" in (product.product_name or ""):
-        return [product.process_id]
     consumers = client.get_consumers(
         product.process_id,
         classification_filters=[ClassificationFilter("Category", _PACKAGING_CATEGORY)],
         max_depth=1,
     ).consumers
     return [c.process_id for c in consumers]
+
+
+def fetch_recipe(client: Client, pid: str) -> tuple[ActivityDetail, dict]:
+    """Typed activity plus the corrected target ids of its inputs.
+
+    One call serves both views: `ActivityDetail.from_json` is exactly what the
+    typed `get_activity` does with this very payload, and the ids that view
+    drops are read off the same raw exchanges. Only a recipe needs the ids —
+    packaging materials are unresolved in the database anyway — so this is not
+    cached, being asked once per recipe.
+    """
+    payload = client.call("get_activity", process_id=pid)
+    return ActivityDetail.from_json(payload), ingredient_targets(payload)
 
 
 def fetch_activity(client: Client, pid: str, cache: dict) -> ActivityDetail:
@@ -370,52 +387,31 @@ def product_packaging_rows(client: Client, cache: dict, prefix: list,
     return rows
 
 
-# The Agribalyse composite/prepared foods (pizza, ratatouille, yogurt cake, ...)
-# live under this classification. --all is a shortcut for it; override with
-# --classification "System=Value" for any other slice (contains-match).
-_FOOD_CATALOGUE = ("Category", "Agricultural\\Food")
-
-
-def _take(results, limit: int, label: str) -> list:
-    """First `limit` results (all if limit == 0), fetching pages lazily.
+def selected_recipes(client: Client, limit: int) -> list:
+    """The recipes to extract — all of them, or the first `limit` for a dry run.
 
     islice stops after `limit`, so a capped run never pulls the whole
     catalogue; `len(results)` reports the server-side total for the warning.
+    Truncation is always said out loud, never silent.
     """
-    kept = list(islice(results, limit)) if limit else list(results)
-    total = len(results)
+    system, value = _RECIPES
+    res = client.search_activities(
+        classification=system, classification_value=value, limit=limit or 200)
+    kept = list(islice(res, limit)) if limit else list(res)
+    total = len(res)
     if limit and total > len(kept):
-        print(f"  {label}: {total} matches, keeping first {len(kept)} (raise --limit / --limit 0 for all)")
+        print(f"  {total} recipes, keeping the first {len(kept)} (--limit 0 for all)")
     else:
-        print(f"  {label}: {len(kept)} products")
+        print(f"  {len(kept)} recipes")
     return kept
 
 
-def selected_products(client: Client, selects: list[str],
-                      classifications: list[tuple[str, str]], limit: int):
-    """Yield every selected product, from name terms and classification slices.
-
-    `limit` caps each selector (0 = no cap). Truncation is always reported —
-    never a silent cut.
-    """
-    page = limit or 200  # wire page size; islice bounds the total taken
-    for query in selects:
-        res = client.search_activities(name=query, limit=page)
-        yield from _take(res, limit, repr(query))
-    for system, value in classifications:
-        res = client.search_activities(
-            classification=system, classification_value=value, limit=page)
-        yield from _take(res, limit, f"{system}={value}")
-
-
 def main() -> None:
-    # Not __doc__: argparse reflows it into an unreadable wall. The doc lives
-    # at the top of this file and in README.md.
     ap = argparse.ArgumentParser(
-        description="Extract Agribalyse recipes (ingredient bill of materials) "
-                    "to Excel: one row per ingredient of every selected product, "
-                    "plus its packaging with --packaging. Downloads and runs the "
-                    "VoLCA engine locally. Examples and details: README.md.")
+        description="Extract the Agribalyse recipes to Excel: one row per edible "
+                    "ingredient and one row per packaging material, per functional "
+                    "unit of the product. Downloads and runs the VoLCA engine "
+                    "locally. Details: README.md.")
     ap.add_argument("--agribalyse", default=None, metavar="FILE",
                     help="The Agribalyse export to upload: the official ADEME SimaPro "
                          "CSV (e.g. AGB32_final.CSV.zip, free from doc.agribalyse.fr); "
@@ -423,58 +419,15 @@ def main() -> None:
                          "auto-detected). Only read on the first run, which uploads it "
                          "into the engine — later runs reuse the uploaded copy and "
                          "ignore this flag unless --replace is given.")
-    ap.add_argument("--db-name", default="agribalyse-3.2",
-                    help="Name the upload is stored under in the engine (default: "
-                         "%(default)s). Use distinct names to keep several "
-                         "Agribalyse versions side by side.")
     ap.add_argument("--replace", action="store_true",
-                    help="Delete the previously uploaded database and re-upload "
-                         "from --agribalyse (use after the source file changed).")
-    ap.add_argument("--select", action="append", default=[],
-                    help="Product-name substring to extract (repeatable).")
-    ap.add_argument("--classification", action="append", default=[], metavar="SYSTEM=VALUE",
-                    help='Select by classification, e.g. "Category=Agricultural\\Food" (repeatable).')
-    ap.add_argument("--all", action="store_true",
-                    help="Extract the whole Agribalyse food catalogue "
-                         f"({_FOOD_CATALOGUE[0]}={_FOOD_CATALOGUE[1]}), uncapped unless --limit says otherwise.")
-    ap.add_argument("--limit", type=int, default=None,
-                    help="Max products per selector (0 = no cap). Default: 3, or no cap with --all.")
-    ap.add_argument("--ingredients-only", action="store_true",
-                    help="Keep only edible ingredients (Category type = material, "
-                         "recipe water included); drop cooking, [Dummy] operations, "
-                         "waste treatment, electricity, heat and transport.")
-    ap.add_argument("--packaging", action="store_true",
-                    help="Also write the packaging bill of each product in the same "
-                         "sheet: materials and their end of life, per functional unit, "
-                         "with role packaging_material / packaging_eol and a "
-                         f"{_PACKAGING_HEADER} column. Independent of --ingredients-only.")
+                    help="Delete the previously uploaded database and re-upload from "
+                         "--agribalyse (use after the source file changed).")
+    ap.add_argument("--limit", type=int, default=0, metavar="N",
+                    help="Extract only the first N recipes, for a dry run "
+                         "(default: 0, every recipe).")
     ap.add_argument("--out", default="agribalyse_recipes.xlsx",
                     help="Output Excel file (default: %(default)s).")
-    ap.add_argument("--engine-version", default=_ENGINE_VERSION, metavar="TAG",
-                    help="VoLCA engine release to download and run (default: "
-                         "%(default)s, pinned because a newer engine may speak a wire "
-                         "revision this pyvolca cannot decode).")
-    ap.add_argument("--port", type=int, default=8123,
-                    help="TCP port for the local engine started by this script "
-                         "(default: 8123). Only change it if the port is taken.")
-    ap.add_argument("--startup-timeout", type=int, default=600,
-                    help="Seconds to wait for the engine to become ready")
     args = ap.parse_args()
-
-    classifications: list[tuple[str, str]] = []
-    for spec in args.classification:
-        if "=" not in spec:
-            ap.error(f"--classification must be SYSTEM=VALUE, got {spec!r}")
-        system, value = spec.split("=", 1)
-        classifications.append((system, value))
-    if args.all:
-        classifications.append(_FOOD_CATALOGUE)
-    if args.limit is None:
-        # --all means all: no cap unless the user asked for one explicitly.
-        args.limit = 0 if args.all else 3
-    selects = args.select
-    if not selects and not classifications:
-        selects = ["Pizza"]  # demo default when nothing is asked for
 
     db_path = Path(args.agribalyse).expanduser().resolve() if args.agribalyse else None
     have_file = db_path is not None and db_path.is_file()
@@ -488,11 +441,11 @@ def main() -> None:
     # once the drive holding the export is gone.
     if db_path is not None and not have_file:
         print(f"   ! --agribalyse: no such file: {db_path} — ignored, "
-              f"only the uploaded {args.db_name} can be used")
+              f"only the uploaded {_DB_NAME} can be used")
         db_path = None
 
     print("1. Downloading VoLCA engine + reference data ...")
-    inst = download(version=args.engine_version)
+    inst = download(version=_ENGINE_VERSION)
     print(f"   binary  {inst.binary}")
     print(f"   data    {inst.data_dir}  (engine {inst.version}, data {inst.data_version})")
 
@@ -504,74 +457,64 @@ def main() -> None:
 
         print("2. Starting engine ...")
         # Pass the binary from download() explicitly so the exact downloaded
-        # version is used, not whatever the default lookup finds first on PATH
-        # or in the shared install root.
-        # startup_timeout is generous: the very first engine run after a fresh
-        # download indexes any bundled reference methods before it serves.
-        srv = Server(config=str(config), port=args.port, binary=str(inst.binary))
-        srv.start(idle_timeout=1800, wait_timeout=args.startup_timeout)
+        # version is used, not whatever the default lookup finds first on PATH.
+        srv = Server(config=str(config), port=_PORT, binary=str(inst.binary))
+        srv.start(idle_timeout=1800, wait_timeout=_STARTUP_TIMEOUT)
         try:
             client = Client(base_url=srv.base_url)
 
             # Uploads persist under the engine's install dir and are keyed by a
-            # slug derived from --db-name; the human name is kept as
-            # display_name, which is how a previous run's upload is recognised.
+            # slug derived from the display name, which is how a previous run's
+            # upload is recognised.
             existing = {d.display_name: d.name for d in client.list_databases()}
-            slug = existing.get(args.db_name)
+            slug = existing.get(_DB_NAME)
             if slug is not None and args.replace:
-                print(f"3. Deleting previously uploaded {args.db_name} ...")
+                print(f"3. Deleting previously uploaded {_DB_NAME} ...")
                 client.delete_database(slug)
                 slug = None
             if slug is None:
                 if db_path is None:
                     raise SystemExit(
-                        f"Database {args.db_name!r} is not uploaded yet on this "
+                        f"Database {_DB_NAME!r} is not uploaded yet on this "
                         "machine — pass --agribalyse FILE (see --help).")
-                print(f"3. Uploading {args.db_name} (once; later runs reuse it) ...")
-                slug = client.upload_database(db_path, args.db_name)["slug"]
+                print(f"3. Uploading {_DB_NAME} (once; later runs reuse it) ...")
+                slug = client.upload_database(db_path, _DB_NAME)["slug"]
             elif db_path is not None:
                 # The file was passed but is NOT re-read — say so, or a changed
                 # CSV looks mysteriously without effect.
-                print(f"3. Reusing the uploaded {args.db_name}; --agribalyse not re-read "
+                print(f"3. Reusing the uploaded {_DB_NAME}; --agribalyse not re-read "
                       "(pass --replace after the source file changed).")
             client = client.use(slug)
             print(f"   Loading {slug} (first load parses the CSV; later loads hit the cache) ...")
             client.load_database(slug)
 
-            keep = material_pids(client) if args.ingredients_only else None
-            if keep is not None:
-                print(f"   ingredients-only: {len(keep)} 'material' activities eligible")
+            keep = material_pids(client)
+            print(f"   {len(keep)} 'material' activities eligible as ingredients")
 
             print("4. Extracting recipes ...")
             wb = Workbook()
             ws = wb.active
             ws.title = "recipes"
-            # Without --packaging the sheet is exactly what it always was.
-            pad = [""] if args.packaging else []
-            ws.append(_HEADER + ([_PACKAGING_HEADER] if args.packaging else []))
+            ws.append(_HEADER)
             n_products = n_rows = n_packaging = 0
-            # Every activity fetched: the products themselves, their packaging
+            # Every activity fetched: the recipes themselves, their packaging
             # stages, and the components whole subcategories share.
             cache: dict = {}
-            for product in selected_products(client, selects, classifications, args.limit):
-                act = fetch_activity(client, product.process_id, cache)
+            for product in selected_recipes(client, args.limit):
+                act, targets = fetch_recipe(client, product.process_id)
+                cache[act.process_id] = act  # the packaging walk meets it again
                 prefix = product_columns(act)  # one source for both kinds of row
-                rows = recipe_rows(act, keep)
-                stages = packaging_stages(client, act) if args.packaging else []
-                pack = product_packaging_rows(
-                    client, cache, prefix, act.process_id, stages)
-                for row in rows:
-                    ws.append(row + pad)
-                for row in pack:
+                rows = recipe_rows(act, targets, keep)
+                stages = packaging_stages(client, act)
+                pack = product_packaging_rows(client, cache, prefix, act.process_id, stages)
+                for row in rows + pack:
                     ws.append(row)
                 n_products += 1
                 n_rows += len(rows)
                 n_packaging += len(pack)
-                # Never silent: a product without packaging says which of the two
+                # Never silent: a recipe without packaging says which of the two
                 # cases it is — no stage at all, or a stage packing in nothing.
-                if not args.packaging:
-                    note = ""
-                elif pack:
+                if pack:
                     note = f", {len(pack)} packaging in {len({r[10] for r in pack})} system(s)"
                 elif stages:
                     note = ", no packaging (No pack)"
@@ -582,9 +525,8 @@ def main() -> None:
                 print(f"   {len(rows):3} ingredients{note}  {prefix[1]}")
 
             wb.save(args.out)
-            packaging_note = f", {n_packaging} packaging rows" if args.packaging else ""
-            print(f"\nDone: {n_products} products, {n_rows} ingredient rows"
-                  f"{packaging_note} -> {args.out}")
+            print(f"\nDone: {n_products} recipes, {n_rows} ingredient rows, "
+                  f"{n_packaging} packaging rows -> {args.out}")
         finally:
             srv.stop()
 

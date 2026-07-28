@@ -1,17 +1,18 @@
 # Agribalyse recipe extraction
 
-Extracts the **ingredient bill** of Agribalyse transformed products to Excel —
-one row per technosphere input:
+Extracts every Agribalyse recipe to Excel — its **edible ingredients** and its
+**packaging**, per functional unit of the product, one row each:
 
 ```
-1 kg "Pizza, …"  ->  X kg tomato + Y kg cheese + Z kg flour + …
+1 kg "Aioli sauce, …"  ->  0,728 kg olive oil + 0,108 kg garlic + …
+                       ->  67,4 g PET + 33,7 g cardboard + …
 ```
 
 `extract_agribalyse_recipes.py` is self-contained (PEP 723 inline deps, run with
 [uv](https://docs.astral.sh/uv/)): it downloads the VoLCA engine binary +
 reference-data bundle via [pyvolca](https://www.volca.run/docs/python/), starts
-it locally, loads the Agribalyse database you point it at, and writes the recipe
-rows. You supply Agribalyse yourself — the official SimaPro CSV export is a free
+it locally, loads the Agribalyse database you point it at, and writes the rows.
+You supply Agribalyse yourself — the official SimaPro CSV export is a free
 public download from ADEME. The engine auto-detects the format: SimaPro CSV
 (`.csv`, `.csv.zip`, `.7z`), EcoSpold, ILCD, or a Brightway/Excel export
 (`.xlsx`).
@@ -20,41 +21,42 @@ The engine release is pinned (`_ENGINE_VERSION`, currently 0.9.1) rather than
 tracking the latest: engine and pyvolca version independently and must agree on
 the JSON wire revision, which neither version number announces — engine 0.9.3
 speaks wire 3 while every released pyvolca (≤ 0.8.2) decodes wire 2, so "latest"
-warns and can return rows that fail to decode. `--engine-version TAG` overrides
-it; move the pin once a pyvolca speaking the newer wire ships.
+warns and can return rows that fail to decode. Move the pin once a pyvolca
+speaking the newer wire ships. The database name, the port and the startup
+timeout are constants next to it, for the same reason: none of them is a choice.
 
 ## Run
 
 ```bash
-# a few products by name
+# first run: uploads the export, then extracts every recipe
 uv run extract_agribalyse_recipes.py \
-    --agribalyse "/path/to/AGB32_final.CSV.zip" \
-    --select Pizza --select Bread --out recipes.xlsx
+    --agribalyse "/path/to/AGB32_final.CSV.zip" --out recipes.xlsx
 
-# the whole food catalogue, edible ingredients only
-uv run extract_agribalyse_recipes.py \
-    --agribalyse "/path/to/AGB32_final.CSV.zip" \
-    --all --ingredients-only --out all_recipes.xlsx
+# later runs reuse the uploaded copy
+uv run extract_agribalyse_recipes.py --out recipes.xlsx
 
-# every recipe with its ingredients and its packaging, in one sheet
-uv run extract_agribalyse_recipes.py \
-    --agribalyse "/path/to/AGB32_final.CSV.zip" \
-    --classification 'Category=Agricultural\Food\Recipes' --limit 0 \
-    --ingredients-only --packaging --out recipes_and_packaging.xlsx
+# a dry run on the first 20 recipes
+uv run extract_agribalyse_recipes.py --limit 20 --out sample.xlsx
 ```
 
-Selection: `--select NAME` (substring, repeatable), `--classification
-"System=Value"` (e.g. `"Category=Agricultural\Food\Recipes"`), or `--all`
-(shortcut for the food catalogue). `--limit` caps each selector (0 = no cap;
-default 3, lifted by `--all`); truncation is always reported, never silent.
-`--agribalyse` is only read on the first run, which uploads the export into the
-engine — later runs reuse the uploaded copy (`--replace` re-uploads it).
+Four options, and no selection to make: the run always covers the 763 processes
+of `Category=Agricultural\Food\Recipes` — the composite foods — and always
+writes both the ingredients and the packaging. `--limit N` is for a dry run and
+says out loud what it left out. `--agribalyse` is only read on the first run,
+which uploads the export into the engine; later runs reuse the uploaded copy
+(`--replace` re-uploads it after the source file changed).
 
-## `--ingredients-only`
+The **lifecycle stages** of those foods (`at packaging`, `at distribution`,
+`at supermarket`, `at consumer`) are deliberately out: they carry logistics,
+cold and retail losses, not a bill of ingredients — which is where the transport
+and electricity rows came from when the whole `Agricultural\Food` branch was
+extracted.
 
-Keeps only the edible ingredients and drops everything else a recipe pulls in —
-cooking, `[Dummy]` operations, waste treatment, electricity, heat, transport.
-An input is kept when all three hold:
+## What counts as an ingredient
+
+Only the edible inputs; cooking, `[Dummy]` operations, waste treatment,
+electricity, heat and transport are dropped. An input is kept when all three
+hold:
 
 - its producing activity is tagged **`Category type = material`** (Agribalyse's
   tag for edible materials; cooking is `processing`, energy `energy`, transport
@@ -67,7 +69,7 @@ An input is kept when all three hold:
 One classification sweep builds the `material` set once; membership plus the
 role and unit guards then filter each recipe.
 
-## `--packaging`
+## Packaging
 
 A recipe carries no packaging — Agribalyse models it one stage downstream:
 
@@ -79,11 +81,12 @@ Pizza, … | Chilled | Cardboard | at packaging {FR}     Category = Agricultural
          └─ 0,167 p N2/N3 grouping and logistics: cardboard box (120 boxes), pallet
 ```
 
-`--packaging` finds that stage — the recipe's direct consumer under
+The script finds that stage — the recipe's direct consumer under
 `Agricultural\Food\Packaging` — walks the system, its components and their
-materials, and appends the rows to the **same sheet** as the ingredients, with
-role `packaging_material` or `packaging_eol` and one added column,
-`packaging_system`. Amounts are per functional unit of the product, in kg:
+materials, and writes the rows to the **same sheet** as the ingredients, with
+role `packaging_material` or `packaging_eol` and the `packaging_system` column
+naming the system they come from. Amounts are per functional unit of the
+product, in kg:
 a 450 g packaging system is counted 1/0,45 = 2,22 times per kg, so the pizza's
 9,81 g plastic bag becomes 21,8 g/kg.
 
@@ -128,19 +131,33 @@ stage that packs in nothing.
   recipe instead: the stage for light mayonnaise consumes the full-fat
   mayonnaise recipe, so the light recipe has no consumer at all. `no packaging
   (No pack)` means the stage exists and packs in nothing, like raw fruit sold
-  loose. Selecting the stage processes themselves (`Category=Agricultural\Food\Packaging`)
-  reaches the packaging of those products, attached to the stage instead of the recipe.
+  loose.
+
+## `ingredient_process_id` names the co-product, not the activity
+
+The typed `target_process_id` pyvolca reports is the target **activity**'s, and
+an activity with several co-products answers with one of them arbitrarily: the
+biscuit's `Palm oil, crude, consumption mix` came back as the process of `Palm
+kernel oil, crude` — a different oil. Over the whole food branch that was one
+resolvable target in eight (2 321 of 19 174), plus 628 rows pointing at their
+own product, which would send a recursion in circles.
+
+The raw exchange carries the pair that does name the product — `flowId` for the
+product flow, `activityLinkId` for the activity producing it — and a process-id
+is exactly their join, which is what this column now holds. The engine's own
+solve was never affected: `get_supply_chain` places the right palm oil under the
+biscuit, and `get_consumers` agrees. Only the reported identifier was ambiguous.
 
 ## Output columns
 
 | Column | Meaning |
 |--------|---------|
-| `product_process_id`, `product_name`, `location` | the transformed product |
+| `product_process_id`, `product_name`, `location` | the recipe (product flow name, so co-products of one activity stay distinct) |
 | `functional_unit_amount`, `functional_unit` | its functional unit (typically 1 kg) |
-| `ingredient_name`, `ingredient_amount`, `ingredient_unit` | one input of the recipe, or one packaging material |
-| `role` | `raw_material` / `other` / `water` / … (from `classify_exchange`), or `packaging_material` / `packaging_eol` |
+| `ingredient_name`, `ingredient_amount`, `ingredient_unit` | one edible ingredient, or one packaging material |
+| `role` | `raw_material` / `other` / `water` (from `classify_exchange`), or `packaging_material` / `packaging_eol` |
 | `ingredient_process_id` | the ingredient's own process, to recurse further (empty on packaging materials) |
-| `packaging_system` | `--packaging` only: which packaging system the row comes from, empty on ingredient rows |
+| `packaging_system` | which packaging system the row comes from, empty on ingredient rows |
 
 ## Self-check
 

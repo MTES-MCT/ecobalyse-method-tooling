@@ -19,7 +19,8 @@ to check the one division the whole bill hangs on.
 from dataclasses import dataclass, field
 
 from extract_agribalyse_recipes import (
-    packaging_amount, packaging_role, packaging_rows, product_columns, stage_system)
+    ingredient_targets, packaging_amount, packaging_role, packaging_rows,
+    product_columns, stage_system)
 
 
 @dataclass
@@ -79,6 +80,64 @@ def test_co_products_are_told_apart_by_their_product_name():
     assert product_columns(cream) == ["cream_pid", cream.product_name, "FR", 0.0686462, "kg"]
     # No product flow name (single-output export): the activity name still names it.
     assert product_columns(Detail("p", CHEESE, RECIPE, 1.0, product_unit="kg"))[1] == CHEESE
+
+
+def test_targets_name_the_co_product_not_the_activity():
+    """The biscuit's palm oil, as the engine really answers it.
+
+    `targetProcessId` is the activity's, and this activity has two co-products,
+    so it comes back as the palm *kernel* oil process. The right process id is
+    the join of the activity link and the product flow the exchange names.
+    """
+    activity = "1b4df3b8-0019-5f36-9599-80eff1c2eaeb"
+    palm_oil = "15f14424-e40e-5eeb-a615-788e58bdae22"
+    palm_kernel_oil = "41e9c0e8-6667-5323-9fb2-735f96ec8b67"
+    payload = {"activity": {"exchanges": [{
+        "exchange": {"tag": "TechnosphereExchange", "role": "Input",
+                     "flowId": palm_oil, "amount": 0.0597,
+                     "activityLinkId": activity},
+        "flowName": "Palm oil, crude, consumption mix {FR} U",
+        "targetProcessId": f"{activity}_{palm_kernel_oil}",
+    }]}}
+    targets = ingredient_targets(payload)
+    assert targets["Palm oil, crude, consumption mix {FR} U"] == f"{activity}_{palm_oil}"
+
+
+def test_targets_skip_what_carries_no_link():
+    """Biosphere exchanges and unlinked technosphere inputs name no product."""
+    payload = {"activity": {"exchanges": [
+        {"exchange": {"tag": "BiosphereExchange", "flowId": "f", "amount": 1.0,
+                      "role": "Input"},
+         "flowName": "Carbon dioxide"},
+        {"exchange": {"tag": "TechnosphereExchange", "flowId": "f",
+                      "amount": 1.0, "role": "Input", "activityLinkId": None},
+         "flowName": "Transport, freight"},
+    ]}}
+    assert ingredient_targets(payload) == {}
+    assert ingredient_targets({}) == {}
+
+
+def test_the_reference_product_never_wins_over_the_input():
+    """A self-consuming recipe, as Agribalyse writes the nuoc mam sauce.
+
+    Its own flow appears twice under one name: the reference product, linked to
+    the all-zero activity, and the 0,183 kg input linked to the recipe itself.
+    Keyed by name they collide, and the reference product must never be the one
+    that lands in the sheet — whatever order the exchanges arrive in.
+    """
+    activity, flow = "ae9e9916-3ec3-51d6-9a58-6b61cc0d30ff", "4ce102de-3da6-5caf-a6aa-481f8a55034f"
+    name = "Nuoc mam sauce or fish sauce, prepacked, recipe, at plant {FR} U"
+    reference = {"exchange": {"tag": "TechnosphereExchange", "role": "ReferenceProduct",
+                              "flowId": flow, "amount": 1.0,
+                              "activityLinkId": "00000000-0000-0000-0000-000000000000"},
+                 "flowName": name}
+    consumed = {"exchange": {"tag": "TechnosphereExchange", "role": "Input",
+                             "flowId": flow, "amount": 0.183,
+                             "activityLinkId": activity},
+                "flowName": name}
+    for order in ([reference, consumed], [consumed, reference]):
+        assert ingredient_targets({"activity": {"exchanges": order}}) == {
+            name: f"{activity}_{flow}"}
 
 
 def test_role_keeps_materials_and_end_of_life_only():
