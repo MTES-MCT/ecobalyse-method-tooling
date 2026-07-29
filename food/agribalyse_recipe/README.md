@@ -37,14 +37,22 @@ uv run extract_agribalyse_recipes.py --out recipes.xlsx
 
 # a dry run on the first 20 recipes
 uv run extract_agribalyse_recipes.py --limit 20 --out sample.xlsx
+
+# every process of the database, not only the recipes
+uv run extract_agribalyse_recipes.py --all --out agribalyse_all.xlsx
 ```
 
-Four options, and no selection to make: the run always covers the 763 processes
-of `Category=Agricultural\Food\Recipes` — the composite foods — and always
-writes both the ingredients and the packaging. `--limit N` is for a dry run and
-says out loud what it left out. `--agribalyse` is only read on the first run,
-which uploads the export into the engine; later runs reuse the uploaded copy
-(`--replace` re-uploads it after the source file changed).
+No selection to make: the run covers the 763 processes of
+`Category=Agricultural\Food\Recipes` — the composite foods — or, with `--all`,
+every process of the database, and always writes both the ingredients and the
+packaging. `--limit N` is for a dry run and says out loud what it left out.
+`--agribalyse` is only read on the first run, which uploads the export into the
+engine; later runs reuse the uploaded copy (`--replace` re-uploads it after the
+source file changed).
+
+Nothing needs to be installed beyond [uv](https://docs.astral.sh/uv/) and the
+Agribalyse export: the script itself fetches its Python dependencies and the
+VoLCA engine binary on first run.
 
 The **lifecycle stages** of those foods (`at packaging`, `at distribution`,
 `at supermarket`, `at consumer`) are deliberately out: they carry logistics,

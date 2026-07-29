@@ -26,7 +26,8 @@ after the source file changed.
 What is written
 ---------------
 Every process classified `Category=Agricultural\\Food\\Recipes` (the composite
-foods: pizza, ratatouille, aioli, ...), and for each of them:
+foods: pizza, ratatouille, aioli, ...) — or every process of the database with
+--all — and for each of them:
 
 - its **edible ingredients**, recipe water included. An input is kept when its
   producing activity is tagged `Category type = material`, its role is a food
@@ -314,22 +315,25 @@ def system_rows(client: Client, cache: dict, prefix: list, food_pid: str,
     ] for system, per_food in systems.values()]
 
 
-def selected_recipes(client: Client, limit: int) -> list:
-    """The recipes to extract — all of them, or the first `limit` for a dry run.
+def selected_products(client: Client, limit: int, everything: bool) -> list:
+    """The products to extract — the recipes by default, every process of the
+    database with --all, the first `limit` of either for a dry run.
 
     islice stops after `limit`, so a capped run never pulls the whole
     catalogue; `len(results)` reports the server-side total for the warning.
     Truncation is always said out loud, never silent.
     """
     system, value = _RECIPES
-    res = client.search_activities(
-        classification=system, classification_value=value, limit=limit or 200)
+    kwargs = {} if everything else {
+        "classification": system, "classification_value": value}
+    res = client.search_activities(limit=limit or 200, **kwargs)
     kept = list(islice(res, limit)) if limit else list(res)
     total = len(res)
+    label = "processes" if everything else "recipes"
     if limit and total > len(kept):
-        print(f"  {total} recipes, keeping the first {len(kept)} (--limit 0 for all)")
+        print(f"  {total} {label}, keeping the first {len(kept)} (--limit 0 for all)")
     else:
-        print(f"  {len(kept)} recipes")
+        print(f"  {len(kept)} {label}")
     return kept
 
 
@@ -349,9 +353,15 @@ def main() -> None:
     ap.add_argument("--replace", action="store_true",
                     help="Delete the previously uploaded database and re-upload from "
                          "--agribalyse (use after the source file changed).")
+    ap.add_argument("--all", action="store_true",
+                    help="Extract every process of the database, not only the "
+                         "recipes (Category=Agricultural\\Food\\Recipes). The "
+                         "ingredient filters still apply to each process's inputs; "
+                         "packaging only exists for the food products a packaging "
+                         "stage consumes.")
     ap.add_argument("--limit", type=int, default=0, metavar="N",
-                    help="Extract only the first N recipes, for a dry run "
-                         "(default: 0, every recipe).")
+                    help="Extract only the first N products, for a dry run "
+                         "(default: 0, no cap).")
     ap.add_argument("--out", default="agribalyse_recipes.xlsx",
                     help="Output Excel file (default: %(default)s).")
     args = ap.parse_args()
@@ -418,7 +428,7 @@ def main() -> None:
             keep = material_pids(client)
             print(f"   {len(keep)} 'material' activities eligible as ingredients")
 
-            print("4. Extracting recipes ...")
+            print("4. Extracting ...")
             wb = Workbook()
             ws = wb.active
             ws.title = "ingredients"
@@ -429,7 +439,7 @@ def main() -> None:
             # Every activity fetched: the recipes themselves, their packaging
             # stages, and the systems whole subcategories share.
             cache: dict = {}
-            for product in selected_recipes(client, args.limit):
+            for product in selected_products(client, args.limit, args.all):
                 act, targets = fetch_recipe(client, product.process_id)
                 cache[act.process_id] = act  # the packaging walk meets it again
                 prefix = product_columns(act)  # one source for both kinds of row
@@ -456,7 +466,7 @@ def main() -> None:
                 print(f"   {len(rows):3} ingredients{note}  {prefix[1]}")
 
             wb.save(args.out)
-            print(f"\nDone: {n_products} recipes, {n_systems} packaging systems, "
+            print(f"\nDone: {n_products} products, {n_systems} packaging systems, "
                   f"{n_rows} ingredient rows -> {args.out}")
         finally:
             srv.stop()
