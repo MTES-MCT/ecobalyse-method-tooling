@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["pyvolca>=0.8.0", "openpyxl"]
+# dependencies = ["pyvolca>=0.8.2", "openpyxl"]
 # ///
 """Extract the Agribalyse recipes — ingredients and packaging — to Excel.
 
@@ -63,11 +63,10 @@ from volca import ActivityDetail, ClassificationFilter, Client, Server, download
 from volca.agribalyse import classify_exchange
 
 # Pinned, not "latest": engine and pyvolca version independently, and the wire
-# revision they must share is not implied by either number. Engine 0.9.3 speaks
-# wire 3 while every pyvolca released so far (≤0.8.2) decodes wire 2, so
-# "latest" warns and may return rows that fail to decode. 0.9.1 is the engine
-# this extraction was run against; move it when a pyvolca decoding wire 3 ships.
-_ENGINE_VERSION = "0.9.1"
+# revision they must share is not implied by either number — pyvolca's PyPI
+# page carries the compatibility table. pyvolca ≥ 0.8.2 decodes wire 2 and 3,
+# which 0.9.3 speaks; this pair is what the extraction was validated against.
+_ENGINE_VERSION = "0.9.3"
 
 # Fixed because nothing here is a real choice: the display name keys the
 # uploaded copy, the port only has to be free, and the timeout is generous

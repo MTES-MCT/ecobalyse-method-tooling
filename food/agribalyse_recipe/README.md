@@ -17,13 +17,14 @@ public download from ADEME. The engine auto-detects the format: SimaPro CSV
 (`.csv`, `.csv.zip`, `.7z`), EcoSpold, ILCD, or a Brightway/Excel export
 (`.xlsx`).
 
-The engine release is pinned (`_ENGINE_VERSION`, currently 0.9.1) rather than
+The engine release is pinned (`_ENGINE_VERSION`, currently 0.9.3) rather than
 tracking the latest: engine and pyvolca version independently and must agree on
-the JSON wire revision, which neither version number announces — engine 0.9.3
-speaks wire 3 while every released pyvolca (≤ 0.8.2) decodes wire 2, so "latest"
-warns and can return rows that fail to decode. Move the pin once a pyvolca
-speaking the newer wire ships. The database name, the port and the startup
-timeout are constants next to it, for the same reason: none of them is a choice.
+the JSON wire revision, which neither version number announces — the
+compatibility table on [pyvolca's PyPI page](https://pypi.org/project/pyvolca/)
+is the authority. pyvolca ≥ 0.8.2 (required by the script) decodes wire 2 and 3,
+which engine 0.9.3 speaks; move the pin together with that table. The database
+name, the port and the startup timeout are constants next to it, for the same
+reason: none of them is a choice.
 
 ## Run
 
