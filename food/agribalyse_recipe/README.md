@@ -1,11 +1,11 @@
 # Agribalyse recipe extraction
 
 Extracts every Agribalyse recipe to Excel — its **edible ingredients** and its
-**packaging**, per functional unit of the product, one row each:
+**packaging**, per functional unit of the product:
 
 ```
 1 kg "Aioli sauce, …"  ->  0,728 kg olive oil + 0,108 kg garlic + …
-                       ->  67,4 g PET + 33,7 g cardboard + …
+                       ->  2,35 × "Mayonnaise, 425g | Packaging System, N0, …"
 ```
 
 `extract_agribalyse_recipes.py` is self-contained (PEP 723 inline deps, run with
@@ -77,52 +77,26 @@ A recipe carries no packaging — Agribalyse models it one stage downstream:
 Pizza, … | Chilled | Cardboard | at packaging {FR}     Category = Agricultural\Food\Packaging\…
 ├─ 1 kg  Pizza, …, at plant {FR}                       Category = Agricultural\Food\Recipes  ← the recipe
 └─ 1 kg  Pizzas, chilled, 450g | Packaging System, N0, All, Cardboard support with plastic bag
-         ├─ 1 p    N1 retail elements: bag, cardboard support, two labels
-         └─ 0,167 p N2/N3 grouping and logistics: cardboard box (120 boxes), pallet
 ```
 
 The script finds that stage — the recipe's direct consumer under
-`Agricultural\Food\Packaging` — then walks **upwards** into the system, its
-components and their materials, stopping as soon as an input is no longer itself
-a packaging (`Cardboard, Flat, Production {FR}` is a material: its mass is
-written and the walk goes no further, how that cardboard is made being the
-engine's business at impact time).
-
-The walk is written twice. The `packaging_systems` sheet keeps the system as a
-single process — a black box, but one an impact engine resolves on its own. The
-`recipes` sheet holds the materials, next to the ingredients, with role
-`packaging_material` or `packaging_eol` and the `packaging_system` column naming
-where they come from — which is what you need to compare formats or change one.
-Amounts are per functional unit of the product, in kg: a 450 g packaging system
-is counted 1/0,45 = 2,22 times per kg, so the pizza's 9,81 g plastic bag becomes
-21,8 g/kg.
-
-Kept: the packaging materials and their end of life. Dropped: the conversion
-steps (`Cardboard finishing, cutting and folding`, `Plastic processing, Cast
-film extrusion`) and the packaging's own upstream transport — a choice, not an
-oversight.
+`Agricultural\Food\Packaging` — and writes the packaging system it consumes as
+a single process: a black box, but one an impact engine resolves on its own.
+`systems_per_functional_unit` says how many of it one functional unit of the
+product carries — a 450 g system is counted 1/0,45 = 2,22 times per kg —
+computed by dividing the stage's system amount by the food amount it packs,
+not by assuming the 1 kg for 1 kg Agribalyse happens to use.
 
 Over the 763 processes of `Category=Agricultural\Food\Recipes` in Agribalyse
-3.2: 741 recipes come out with a packaging bill (8 681 rows, a median of 130 g
-of packaging material per kg of food), 17 have no packaging stage and 5 have a
-stage that packs in nothing.
+3.2: 741 recipes come out with a packaging system, 17 have no packaging stage
+and 5 have a stage that packs in nothing.
 
 ### Things to know before reading the numbers
 
-- **The bill is read from the exchanges, not from the solved supply chain.**
-  Packaging materials are authored in grams and the released engine (0.9.3)
-  leaves gram-denominated links unresolved — asking the solver would silently
-  return the grouping box alone, in kg, and no primary packaging at all. So each
-  level is walked and scaled here, and `ingredient_process_id` stays empty on
-  material rows: the database itself does not resolve their target. The rows do
-  match, to the digit, what engine 0.9.4 computes once it resolves them.
-- **One row per material per component**, not per material: the pizza's LDPE
-  shows up twice, 21,8 g for the bag and 2,65 g for the secondary film. Sum them
-  in a pivot if you want the material total.
-- **One bill per distinct packaging system, not per stage.** A recipe often
+- **One row per distinct packaging system, not per stage.** A recipe often
   stands in for a whole family of Ciqual products — 28 breakfast cereals share
   one — and each of those products has its own packaging stage naming the same
-  system. Those stages collapse into one bill; a product genuinely offered in a
+  system. Those stages collapse into one row; a product genuinely offered in a
   glass jar and in a plastic pot keeps both, and the run prints how many systems
   each product ended up with.
 - **A packaging system belongs to a format and a subcategory.** The pizza system
@@ -157,12 +131,22 @@ biscuit, and `get_consumers` agrees. Only the reported identifier was ambiguous.
 
 ## Output columns
 
-Two sheets, the same packaging seen from two heights. The first five columns are
-the same in both, so they join on `product_process_id` + `packaging_system`.
+Two sheets. The first five columns are the same in both, so they join on
+`product_process_id`.
 
-**`packaging_systems`** — the packaging as a single process, one row per system.
-Enough on its own if you only want an impact: the engine resolves everything
-below that process id.
+**`ingredients`** — one row per edible ingredient.
+
+| Column | Meaning |
+|--------|---------|
+| `product_process_id`, `product_name`, `location` | the recipe (product flow name, so co-products of one activity stay distinct) |
+| `functional_unit_amount`, `functional_unit` | its functional unit (typically 1 kg) |
+| `ingredient_name`, `ingredient_amount`, `ingredient_unit` | one edible ingredient |
+| `role` | `raw_material` / `other` / `water` (from `classify_exchange`) |
+| `ingredient_process_id` | the ingredient's own process, to recurse further |
+
+**`packaging`** — the packaging as a single process, one row per system.
+Enough on its own for an impact: the engine resolves everything below that
+process id.
 
 | Column | Meaning |
 |--------|---------|
@@ -171,24 +155,10 @@ below that process id.
 | `packaging_system`, `system_process_id` | the packaging system it is packed in |
 | `systems_per_functional_unit` | how many of it one functional unit carries — a 425 g system counts 1/0,425 = 2,35 times per kg |
 | `system_reference_amount`, `system_reference_unit` | what the system is authored for (0,425 kg of packed food) |
-| `material_mass_kg` | total of its material rows on the second sheet — materials only, no end of life, no pallet counted in pieces |
-
-**`recipes`** — the detail: ingredients, and one row per packaging material.
-What a model that swaps or drops a material needs.
-
-| Column | Meaning |
-|--------|---------|
-| `product_process_id`, `product_name`, `location` | the recipe (product flow name, so co-products of one activity stay distinct) |
-| `functional_unit_amount`, `functional_unit` | its functional unit (typically 1 kg) |
-| `ingredient_name`, `ingredient_amount`, `ingredient_unit` | one edible ingredient, or one packaging material |
-| `role` | `raw_material` / `other` / `water` (from `classify_exchange`), or `packaging_material` / `packaging_eol` |
-| `ingredient_process_id` | the ingredient's own process, to recurse further (empty on packaging materials) |
-| `packaging_system` | which packaging system the row comes from, empty on ingredient rows |
 
 ## Self-check
 
-`uv run test_packaging_rows.py` — asserts on the row builder (scaling, grams to
-kilos, which exchanges are kept), on the walk down a packaging stage (the
-division by the food the stage packs), and on the product columns (co-products
-of one activity told apart by their product flow name), no engine and no network
-needed.
+`uv run test_extract.py` — asserts on the walk down a packaging stage
+(the division by the food the stage packs), on the corrected ingredient target
+ids, and on the product columns (co-products of one activity told apart by
+their product flow name), no engine and no network needed.
