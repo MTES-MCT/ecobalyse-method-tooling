@@ -25,9 +25,8 @@ after the source file changed.
 
 What is written
 ---------------
-Every process classified `Category=Agricultural\\Food\\Recipes` (the composite
-foods: pizza, ratatouille, aioli, ...), or the ~2 500 Ciqual products with
---scope ciqual; and for each of them:
+The ~2 500 products of the Ciqual table, or the 763 composite foods with
+--scope recipes; and for each of them:
 
 - its **edible ingredients**, recipe water included. An input is kept when its
   producing activity is tagged `Category type = material`, its role is a food
@@ -85,9 +84,13 @@ _STARTUP_TIMEOUT = 600
 # authored as a clean bill of ingredients, one recipe standing in for a whole
 # family of Ciqual products. `ciqual` are the ~2 500 products of the Ciqual
 # table — the figure Agribalyse is published on — each being the "at consumer"
-# process, the one carrying the Ciqual code in its name; 1 100 of them are
+# process, the one carrying the Ciqual code in its name; 1 066 of them are
 # backed by one of those recipes and the rest by a transformation or a
 # consumption mix, which is what an apple has instead of a recipe.
+#
+# Neither covers the other: a Ciqual product carries a code and a single
+# packaging format, while 52 recipes — falafel, seitan, plant-based sausages —
+# are reached by no Ciqual product at all.
 _SCOPES = {
     "recipes": ("Agricultural\\Food\\Recipes", "recipes"),
     "ciqual": ("Agricultural\\Food\\Preparation", "Ciqual products"),
@@ -474,12 +477,13 @@ def main() -> None:
     ap.add_argument("--replace", action="store_true",
                     help="Delete the previously uploaded database and re-upload from "
                          "--agribalyse (use after the source file changed).")
-    ap.add_argument("--scope", choices=sorted(_SCOPES), default="recipes",
-                    help="What to extract. 'recipes' (default): the 763 composite "
-                         "foods, with their bill of ingredients. 'ciqual': the "
-                         "~2 500 products of the Ciqual table, for their packaging "
-                         "— their ingredient rows only hold the lifecycle link, not "
-                         "a recipe.")
+    ap.add_argument("--scope", choices=sorted(_SCOPES), default="ciqual",
+                    help="What a row is about. 'ciqual' (default): one row per "
+                         "product of the Ciqual table, 2 451 of them, each with its "
+                         "own code and packaging format. 'recipes': one row per "
+                         "composite food, 763 of them, a recipe standing in for a "
+                         "whole family — the only way to see the 52 recipes no "
+                         "Ciqual product reaches.")
     ap.add_argument("--limit", type=int, default=0, metavar="N",
                     help="Extract only the first N products, for a dry run "
                          "(default: 0, no cap).")

@@ -29,34 +29,34 @@ reason: none of them is a choice.
 ## Run
 
 ```bash
-# first run: uploads the export, then extracts every recipe
+# first run: uploads the export, then extracts every Ciqual product
 uv run extract_agribalyse_recipes.py \
-    --agribalyse "/path/to/AGB32_final.CSV.zip" --out recipes.xlsx
+    --agribalyse "/path/to/AGB32_final.CSV.zip" --out agribalyse_ciqual.xlsx
 
 # later runs reuse the uploaded copy
-uv run extract_agribalyse_recipes.py --out recipes.xlsx
+uv run extract_agribalyse_recipes.py --out agribalyse_ciqual.xlsx
 
-# a dry run on the first 20 recipes
+# a dry run on the first 20 products
 uv run extract_agribalyse_recipes.py --limit 20 --out sample.xlsx
 
-# the packaging of the ~2 500 Ciqual products
-uv run extract_agribalyse_recipes.py --scope ciqual --out agribalyse_ciqual.xlsx
+# one row per recipe instead of one per product
+uv run extract_agribalyse_recipes.py --scope recipes --out agribalyse_recipes.xlsx
 ```
 
-`--scope` says what a run covers, and both sheets are always written:
+`--scope` says what a row is *about*, and both sheets are always written:
 
-| Scope | Products | What it is for |
-|-------|----------|----------------|
-| `recipes` (default) | the 763 composite foods | one row per recipe, which stands in for a whole family of Ciqual products |
-| `ciqual` | the 2 451 products of the Ciqual table | one row per product, each with its own Ciqual code and its own packaging format |
+| Scope | Rows | What it is |
+|-------|------|------------|
+| `ciqual` (default) | the 2 451 products of the Ciqual table | one row per product, each with its own Ciqual code and its own packaging format |
+| `recipes` | the 763 composite foods | one row per recipe, which stands in for a whole family of Ciqual products |
 
-Both write the same two sheets, ingredients and packaging; they differ in what a
-row is *about*. A recipe is shared — the aioli recipe stands for every Ciqual
-aioli — while a Ciqual product is a single food with a single code, so
-`ciqual` is the one to join on a Ciqual table. Its ingredients are those of the
-food at the bottom of its lifecycle chain: a real recipe for 1 100 of them, a
-transformation or a consumption mix for the rest, an apple having no recipe to
-speak of.
+**Neither covers the other.** A Ciqual product carries a code, a single packaging
+format and the ingredients of the food at the bottom of its lifecycle chain — a
+real recipe for 1 066 of them, a transformation or a consumption mix for the
+rest, an apple having no recipe to speak of. But 52 recipes are reached by no
+Ciqual product at all, 48 of them carrying ingredients, and they are not
+marginal: falafel, seitan steak, plant-based sausages, soy-and-wheat nuggets,
+rice noodles. Those are only visible under `--scope recipes`.
 
 `--limit N` is for a dry run and says out loud what it left out. `--agribalyse`
 is only read on the first run, which uploads the export into the engine; later
