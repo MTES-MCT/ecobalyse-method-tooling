@@ -49,7 +49,7 @@ uv run extract_agribalyse_recipes.py --scope ciqual --out agribalyse_ciqual.xlsx
 |-------|----------|----------------|
 | `recipes` (default) | the 763 composite foods | their bill of ingredients, and their packaging |
 | `ciqual` | the 2 451 products of the Ciqual table | their packaging — the ingredient rows only hold the lifecycle link, not a recipe |
-| `all` | the 21 510 processes of the database | a fallback; the ingredient rows are misleading outside the recipes (see below) |
+| `all` | the 21 510 processes of the database | a fallback; the ingredient rows are misleading outside the recipes (see below), and a product's packaging is repeated at each of its lifecycle stages — 10 692 rows for 1 540 distinct bills |
 
 `--limit N` is for a dry run and says out loud what it left out. `--agribalyse`
 is only read on the first run, which uploads the export into the engine; later
