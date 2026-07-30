@@ -15,7 +15,8 @@ a dict's `get` and no client at all is enough to check it.
 from dataclasses import dataclass, field
 
 from extract_agribalyse_recipes import (
-    ingredient_targets, packaging_of, product_columns, stage_bill, system_rows)
+    ingredient_targets, packed_as, product_columns, recipe_rows, stage_bill,
+    system_rows)
 
 
 @dataclass
@@ -277,11 +278,12 @@ def fetcher(cache):
 def test_a_ciqual_product_finds_its_packaging_down_the_chain():
     """The Ciqual product is three stages downstream of what packs it."""
     cache = ciqual_chain()
-    bills = ({"stage_pid": [(cache["system_pid"], BAGS_PER_KG)]},
+    bills = ({"stage_pid": ("recipe_pid", [(cache["system_pid"], BAGS_PER_KG)])},
              {"recipe_pid": [(cache["system_pid"], BAGS_PER_KG)]})
     fetch = fetcher(cache)
-    entries = packaging_of(fetch, bills, "consumer_pid", fetch("consumer_pid"))
-    assert entries == bills[0]["stage_pid"]
+    food_pid, entries = packed_as(fetch, bills, "consumer_pid", fetch("consumer_pid"))
+    assert food_pid == "recipe_pid"
+    assert entries == bills[0]["stage_pid"][1]
     # Per kilo of packed food, the losses downstream left out: 2,35 and not 2,49.
     assert abs(entries[0][1] - BAGS_PER_KG) < 1e-12
 
@@ -296,10 +298,10 @@ def test_a_recipe_never_inherits_the_packaging_of_an_ingredient():
     cache["unpacked_pid"] = Detail(
         "unpacked_pid", "Light aioli, recipe, at plant {FR}", RECIPE, 1.0,
         [Exchange("Aioli, recipe, at plant {FR}", 0.9, "kg", "recipe_pid")])
-    bills = ({"stage_pid": [(cache["system_pid"], BAGS_PER_KG)]},
+    bills = ({"stage_pid": ("recipe_pid", [(cache["system_pid"], BAGS_PER_KG)])},
              {"recipe_pid": [(cache["system_pid"], BAGS_PER_KG)]})
     fetch = fetcher(cache)
-    assert packaging_of(fetch, bills, "unpacked_pid", fetch("unpacked_pid")) is None
+    assert packed_as(fetch, bills, "unpacked_pid", fetch("unpacked_pid")) is None
 
 
 def test_a_ciqual_product_gets_its_own_format_not_its_cousins():
@@ -310,14 +312,14 @@ def test_a_ciqual_product_gets_its_own_format_not_its_cousins():
     """
     cache = ciqual_chain()
     other = Detail("other_pid", "Aioli, 1kg | Packaging System", SYSTEM_CAT, 1.0)
-    bills = ({"stage_pid": [(cache["system_pid"], BAGS_PER_KG)]},
+    bills = ({"stage_pid": ("recipe_pid", [(cache["system_pid"], BAGS_PER_KG)])},
              {"recipe_pid": [(cache["system_pid"], BAGS_PER_KG), (other, 1.0)]})
     fetch = fetcher(cache)
-    entries = packaging_of(fetch, bills, "consumer_pid", fetch("consumer_pid"))
+    food_pid, entries = packed_as(fetch, bills, "consumer_pid", fetch("consumer_pid"))
     assert [s.process_id for s, _ in entries] == ["system_pid"]
     # The recipe itself, asked directly, still stands for the whole family.
     recipe_node = fetch("recipe_pid")
-    assert len(packaging_of(fetch, bills, "recipe_pid", recipe_node)) == 2
+    assert len(packed_as(fetch, bills, "recipe_pid", recipe_node)[1]) == 2
 
 
 def test_a_product_packed_in_nothing_is_not_a_product_with_no_stage():
@@ -325,8 +327,32 @@ def test_a_product_packed_in_nothing_is_not_a_product_with_no_stage():
     cache = ciqual_chain()
     fetch = fetcher(cache)
     node = fetch("consumer_pid")
-    assert packaging_of(fetch, ({"stage_pid": []}, {}), "consumer_pid", node) == []
-    assert packaging_of(fetch, ({}, {}), "consumer_pid", node) is None
+    assert packed_as(fetch, ({"stage_pid": ("recipe_pid", [])}, {}),
+                     "consumer_pid", node) == ("recipe_pid", [])
+    assert packed_as(fetch, ({}, {}), "consumer_pid", node) is None
+
+
+MATERIALS = {"oil_pid", "garlic_pid"}
+
+
+def test_ingredients_are_rescaled_to_the_unit_the_row_declares():
+    """The grain maize is authored per ton, the Ciqual product weighs a kilo.
+
+    Copying the amounts across would read a thousand times too high; the recipe
+    scope is untouched, a recipe being billed on its own functional unit.
+    """
+    food = Detail("maize_pid", "Dried grain maize, at processing {FR}", RECIPE, 1000.0,
+                  [Exchange("Olive oil, at plant {FR}", 800.0, "kg", "oil_pid")],
+                  product_unit="kg")
+    ciqual = ["ciqual_pid", "Pop-corn … at consumer {FR} [Ciqual code: 9641]", "FR", 1.0, "kg"]
+    targets = {"Olive oil, at plant {FR}": "oil_pid"}
+    rows = recipe_rows(ciqual, food, targets, MATERIALS)
+    assert len(rows) == 1
+    assert rows[0][:5] == ciqual          # labelled with the Ciqual product
+    assert rows[0][6] == 0.8              # and not the 800 kg the ton is billed on
+    # A recipe labels its own rows, so nothing is rescaled there.
+    own = product_columns(food)
+    assert recipe_rows(own, food, targets, MATERIALS)[0][6] == 800.0
 
 
 def test_rows_scale_by_the_functional_unit():

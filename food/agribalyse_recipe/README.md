@@ -47,8 +47,16 @@ uv run extract_agribalyse_recipes.py --scope ciqual --out agribalyse_ciqual.xlsx
 
 | Scope | Products | What it is for |
 |-------|----------|----------------|
-| `recipes` (default) | the 763 composite foods | their bill of ingredients, and their packaging |
-| `ciqual` | the 2 451 products of the Ciqual table | their packaging — the ingredient rows only hold the lifecycle link, not a recipe |
+| `recipes` (default) | the 763 composite foods | one row per recipe, which stands in for a whole family of Ciqual products |
+| `ciqual` | the 2 451 products of the Ciqual table | one row per product, each with its own Ciqual code and its own packaging format |
+
+Both write the same two sheets, ingredients and packaging; they differ in what a
+row is *about*. A recipe is shared — the aioli recipe stands for every Ciqual
+aioli — while a Ciqual product is a single food with a single code, so
+`ciqual` is the one to join on a Ciqual table. Its ingredients are those of the
+food at the bottom of its lifecycle chain: a real recipe for 1 100 of them, a
+transformation or a consumption mix for the rest, an apple having no recipe to
+speak of.
 
 `--limit N` is for a dry run and says out loud what it left out. `--agribalyse`
 is only read on the first run, which uploads the export into the engine; later
@@ -61,21 +69,11 @@ VoLCA engine binary on first run.
 
 The **lifecycle stages** of those foods (`at packaging`, `at distribution`,
 `at supermarket`, `at consumer`) carry logistics, cold and retail losses, not a
-bill of ingredients — which is where the transport and electricity rows came
-from when the whole `Agricultural\Food` branch was extracted. `--scope ciqual`
-covers the last of them on purpose, the `at consumer` process being the Ciqual
-product itself, and for its packaging only.
+bill of ingredients: their own inputs are never read as a recipe. `--scope
+ciqual` starts from the last of them, the `at consumer` process being the Ciqual
+product itself, but reads both sheets off the food at the bottom of its chain.
 
 ## What counts as an ingredient
-
-**Only inside `--scope recipes`.** A recipe is authored by Agribalyse as a clean
-bill of ingredients, which is what the three guards below isolate. They do not
-travel: on a process copied from ecoinvent (`yogurt production`) the very same
-guards keep the whole factory inventory — the Petit-Suisse comes out with 39
-rows of which one, its 1,13 kg of cow milk, is an ingredient; the other 38 are
-the cleaning station (nitric acid, soda, EDTA) and the refrigerant. So the
-ingredient rows of a `ciqual` run are not a recipe, and the packaging is what
-that scope is for.
 
 Only the edible inputs; cooking, `[Dummy]` operations, waste treatment,
 electricity, heat and transport are dropped. An input is kept when all three
@@ -91,6 +89,20 @@ hold:
 
 One classification sweep builds the `material` set once; membership plus the
 role and unit guards then filter each recipe.
+
+These guards isolate a recipe because Agribalyse authors one as a clean bill of
+ingredients. They do not travel that far: on a process copied from ecoinvent
+(`yogurt production`) the very same guards keep the whole factory inventory —
+the Petit-Suisse comes out with 39 rows of which one, its 1,13 kg of cow milk,
+is an ingredient, the other 38 being the cleaning station (nitric acid, soda,
+EDTA) and the refrigerant. The `ciqual` scope stays clear of that by construction:
+it reads the food its packaging stage names, which is a recipe, a transformation
+or a consumption mix, never a factory.
+
+Amounts are per the functional unit the row declares. A recipe labels its own
+rows, so nothing is rescaled there; a Ciqual product reads a food that may be
+billed on another unit — the white wine mix per 0,75 kg, the grain maize per
+ton — and the amounts are brought back to the product's kilo.
 
 ## Packaging
 
@@ -208,13 +220,15 @@ biscuit, and `get_consumers` agrees. Only the reported identifier was ambiguous.
 ## Output columns
 
 Two sheets. The first five columns are the same in both, so they join on
-`product_process_id`.
+`product_process_id`. They name the extracted product — the recipe under
+`--scope recipes`, the Ciqual product under `--scope ciqual` — while the
+ingredients and the packaging both describe the food that product is.
 
 **`ingredients`** — one row per edible ingredient.
 
 | Column | Meaning |
 |--------|---------|
-| `product_process_id`, `product_name`, `location` | the recipe (product flow name, so co-products of one activity stay distinct) |
+| `product_process_id`, `product_name`, `location` | the product (product flow name, so co-products of one activity stay distinct) |
 | `functional_unit_amount`, `functional_unit` | its functional unit (typically 1 kg) |
 | `ingredient_name`, `ingredient_amount`, `ingredient_unit` | one edible ingredient |
 | `role` | `raw_material` / `other` / `water` (from `classify_exchange`) |

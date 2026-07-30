@@ -82,11 +82,12 @@ _STARTUP_TIMEOUT = 600
 # What a run covers, and how each is found.
 #
 # `recipes` are the composite/prepared foods (pizza, ratatouille, aioli, ...),
-# authored as a clean bill of ingredients — the only place the ingredient rows
-# mean anything. `ciqual` are the ~2 500 products of the Ciqual table — the
-# figure Agribalyse is published on — each being the "at consumer" process, the
-# one carrying the Ciqual code in its name; they are extracted for their
-# packaging, their ingredient rows holding only the lifecycle link.
+# authored as a clean bill of ingredients, one recipe standing in for a whole
+# family of Ciqual products. `ciqual` are the ~2 500 products of the Ciqual
+# table — the figure Agribalyse is published on — each being the "at consumer"
+# process, the one carrying the Ciqual code in its name; 1 100 of them are
+# backed by one of those recipes and the rest by a transformation or a
+# consumption mix, which is what an apple has instead of a recipe.
 _SCOPES = {
     "recipes": ("Agricultural\\Food\\Recipes", "recipes"),
     "ciqual": ("Agricultural\\Food\\Preparation", "Ciqual products"),
@@ -179,17 +180,24 @@ def ingredient_targets(payload: dict) -> dict[str, str]:
     return targets
 
 
-def recipe_rows(act: ActivityDetail, targets: dict[str, str],
+def recipe_rows(prefix: list, food: ActivityDetail, targets: dict[str, str],
                 ingredient_pids: set[str]) -> list[list]:
-    """One row per edible ingredient of `act` — pure, tested.
+    """One row per edible ingredient of `food`, labelled `prefix` — pure, tested.
 
     Kept when the producing activity is tagged `Category type = material`, the
     role is a food role (recipe water included, biowaste treatment excluded
     though it is `material` too), and the unit is a food unit.
+
+    `food` is the product itself for a recipe, and the food at the bottom of its
+    lifecycle chain for a Ciqual product, which is never its own recipe. The two
+    can be billed on different functional units, so the amounts are rescaled to
+    the one the row declares: the white wine mix is authored per 0,75 kg and the
+    grain maize per ton, which read next to a 1 kg product would be a thousand
+    times too high.
     """
-    prefix = product_columns(act)
+    scale = prefix[3] / (food.product_amount or 1.0)
     rows = []
-    for e in act.technosphere_inputs:
+    for e in food.technosphere_inputs:
         if e.is_reference:  # the product itself, not an ingredient
             continue
         pid = targets.get(e.flow_name, "")
@@ -198,7 +206,7 @@ def recipe_rows(act: ActivityDetail, targets: dict[str, str],
                 or role not in _INGREDIENT_ROLES
                 or (e.unit or "").lower() in _NON_FOOD_UNITS):
             continue
-        rows.append(prefix + [e.flow_name, e.amount, e.unit, role, pid])
+        rows.append(prefix + [e.flow_name, e.amount * scale, e.unit, role, pid])
     return rows
 
 
@@ -318,8 +326,8 @@ def stage_bill(stage: ActivityDetail, targets: dict[str, str], resolve) -> tuple
 def packaging_bills(client: Client, fetch) -> tuple[dict[str, list], dict[str, list]]:
     """One sweep of the packaging branch, read two ways.
 
-    `by_stage` keeps each stage's own bill, and `by_food` gathers, per packed
-    food, every system any stage packs it in. The two differ because one recipe
+    `by_stage` keeps each stage's own `(food, bill)`, and `by_food` gathers, per
+    packed food, every system any stage packs it in. The two differ because one recipe
     stands in for a whole family of Ciqual products — 28 breakfast cereals share
     one — each with its own stage: asking the recipe gives the whole family's
     formats, while asking one product's stage gives that product's.
@@ -337,7 +345,7 @@ def packaging_bills(client: Client, fetch) -> tuple[dict[str, list], dict[str, l
         if found is None:
             continue
         food_pid, entries = found
-        by_stage[a.process_id] = entries
+        by_stage[a.process_id] = found
         known = by_food.setdefault(food_pid, [])
         for system, per_food in entries:
             if not any(s.process_id == system.process_id and q == per_food
@@ -359,15 +367,16 @@ _LIFECYCLE_CATEGORIES = (
 )
 
 
-def packaging_of(fetch, bills: tuple, pid: str, node: tuple,
-                 depth: int = 0) -> list | None:
-    """The packaging of a product: its own, or the one of its lifecycle stage.
+def packed_as(fetch, bills: tuple, pid: str, node: tuple,
+              depth: int = 0) -> tuple | None:
+    """What a product really is, and what packs it: `(food, packaging entries)`.
 
-    A recipe or an "at plant" process is packed directly, so it is in `by_food`
-    already. A Ciqual product is not: it is the "at consumer" process, three
-    stages downstream of its packaging, and the walk follows that chain — at
-    consumer, at retail, at distribution — until it lands on the stage. None
-    when nothing packs this product.
+    A recipe or an "at plant" process is the food, and is in `by_food` already.
+    A Ciqual product is neither its own recipe nor its own packaging: it is the
+    "at consumer" process, three stages downstream of both, and the walk follows
+    that chain — at consumer, at retail, at distribution — until it lands on the
+    stage, which names the food it packs. None when nothing packs this product,
+    a recipe that no stage consumes staying its own food.
 
     The stage is answered from `by_stage`, and only what falls through to
     `by_food` gets the union over a whole Ciqual family: a product asks its own
@@ -390,7 +399,7 @@ def packaging_of(fetch, bills: tuple, pid: str, node: tuple,
     if pid in by_stage:
         return by_stage[pid]
     if pid in by_food:
-        return by_food[pid]
+        return pid, by_food[pid]
     if depth >= len(_LIFECYCLE_CATEGORIES):
         return None
     stage, targets = node
@@ -407,7 +416,7 @@ def packaging_of(fetch, bills: tuple, pid: str, node: tuple,
             continue
         if not target[0].classifications.get("Category", "").startswith("Agricultural\\Food"):
             continue
-        found = packaging_of(fetch, bills, target_pid, target, depth + 1)
+        found = packed_as(fetch, bills, target_pid, target, depth + 1)
         if found is not None:
             return found
     return None
@@ -562,8 +571,13 @@ def main() -> None:
             for product in selected_products(client, args.limit, args.scope):
                 act, targets = fetch_recipe(client, product.process_id)
                 prefix = product_columns(act)  # one source for both kinds of row
-                rows = recipe_rows(act, targets, keep)
-                entries = packaging_of(fetch, bills, act.process_id, (act, targets))
+                # A Ciqual product is neither its own recipe nor its own
+                # packaging: both are read off the food at the bottom of its
+                # lifecycle chain, so the two sheets describe the same thing.
+                found = packed_as(fetch, bills, act.process_id, (act, targets))
+                food_pid, entries = found if found is not None else (act.process_id, None)
+                food = (act, targets) if food_pid == act.process_id else fetch(food_pid)
+                rows = recipe_rows(prefix, food[0], food[1], keep)
                 systems = system_rows(prefix, entries or [])
                 for row in rows:
                     ws.append(row)
