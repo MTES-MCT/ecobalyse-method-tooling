@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["pyvolca>=0.8.2", "openpyxl"]
+# dependencies = ["pyvolca>=0.9.0", "openpyxl"]
 # ///
 """Self-check for the row builders — no engine, no network.
 
@@ -15,8 +15,8 @@ a dict's `get` and no client at all is enough to check it.
 from dataclasses import dataclass, field
 
 from extract_agribalyse_recipes import (
-    ingredient_targets, packed_as, product_columns, recipe_rows, stage_bill,
-    system_rows)
+    family_bill, ingredient_targets, product_columns, recipe_rows, stage_bill,
+    stage_of, system_rows)
 
 
 @dataclass
@@ -275,61 +275,85 @@ def fetcher(cache):
     return fetch
 
 
-def test_a_ciqual_product_finds_its_packaging_down_the_chain():
-    """The Ciqual product is three stages downstream of what packs it."""
-    cache = ciqual_chain()
-    bills = ({"stage_pid": ("recipe_pid", [(cache["system_pid"], BAGS_PER_KG)])},
-             {"recipe_pid": [(cache["system_pid"], BAGS_PER_KG)]})
-    fetch = fetcher(cache)
-    food_pid, entries = packed_as(fetch, bills, "consumer_pid", fetch("consumer_pid"))
-    assert food_pid == "recipe_pid"
-    assert entries == bills[0]["stage_pid"][1]
-    # Per kilo of packed food, the losses downstream left out: 2,35 and not 2,49.
-    assert abs(entries[0][1] - BAGS_PER_KG) < 1e-12
+@dataclass
+class Entry:
+    """The three fields stage_of reads off a SupplyChainEntry."""
+    process_id: str
+    depth: int
+    classifications: dict
+    activity_name: str = ""
 
 
-def test_a_recipe_never_inherits_the_packaging_of_an_ingredient():
-    """A recipe with no stage of its own comes out unpacked, not packed in oil.
+def test_the_shallowest_packaging_entry_is_the_stage_not_the_proxy():
+    """The product's filtered chain is flat; depth alone ranks it.
 
-    Walking an ingredient link would hang the olive-oil bottle on the aioli;
-    only the lifecycle links are followed, and a recipe carries none.
+    The product's own stage arrives at depth 3; its system, the proxy food the
+    stage consumes (a stage too, undotted) and the frying oil's stage all sit
+    deeper. The shallowest undotted entry is the product's stage, whatever
+    order the server answers in — the old walk took the first found instead,
+    and 78 pan-fried products came out packed in their oil's bottle, the
+    fried beef's "ingredients" being the oil's.
     """
-    cache = ciqual_chain()
-    cache["unpacked_pid"] = Detail(
-        "unpacked_pid", "Light aioli, recipe, at plant {FR}", RECIPE, 1.0,
-        [Exchange("Aioli, recipe, at plant {FR}", 0.9, "kg", "recipe_pid")])
-    bills = ({"stage_pid": ("recipe_pid", [(cache["system_pid"], BAGS_PER_KG)])},
-             {"recipe_pid": [(cache["system_pid"], BAGS_PER_KG)]})
-    fetch = fetcher(cache)
-    assert packed_as(fetch, bills, "unpacked_pid", fetch("unpacked_pid")) is None
+    chain = [Entry("system_pid", 4, SYSTEM_CAT, SYSTEM),
+             Entry("oil_stage_pid", 4, STAGE_CAT, "Sunflower oil | at packaging {FR}"),
+             Entry("proxy_pid", 4, STAGE_CAT, "Sandwich, French bread | at packaging {FR}"),
+             Entry("stage_pid", 3, STAGE_CAT, "Aioli | at packaging {FR}")]
+    assert stage_of(chain) == "stage_pid"
+    assert stage_of([]) is None
+
+
+def test_a_system_is_never_the_stage_even_at_min_depth():
+    """A chain holding only dotted entries names no stage.
+
+    The heir of the 236 invented rows: read as stages, the systems came out
+    packed in themselves the day every process was swept.
+    """
+    assert stage_of([Entry("system_pid", 3, SYSTEM_CAT, SYSTEM),
+                     Entry("element_pid", 4, SYSTEM_CAT, "Plastic bag element {FR}")]) is None
 
 
 def test_a_ciqual_product_gets_its_own_format_not_its_cousins():
     """28 breakfast cereals share one recipe, each in its own bag.
 
-    Asking the recipe gives the whole family's formats; a Ciqual product must
-    ask its own stage, or every cereal would come out in 28 packagings at once.
+    The product's filtered chain only ever holds its own stage — the cousin's
+    stage is not upstream of it — so the product's format is right by
+    construction. The recipe, asked through its consumers, still stands for
+    the whole family.
     """
     cache = ciqual_chain()
-    other = Detail("other_pid", "Aioli, 1kg | Packaging System", SYSTEM_CAT, 1.0)
-    bills = ({"stage_pid": ("recipe_pid", [(cache["system_pid"], BAGS_PER_KG)])},
-             {"recipe_pid": [(cache["system_pid"], BAGS_PER_KG), (other, 1.0)]})
+    cache["other_stage_pid"] = Detail(
+        "other_stage_pid", "Aioli, 1kg | at packaging {FR}", STAGE_CAT, 1.0,
+        [Exchange("Aioli, 1kg | Packaging System", 1.0, "kg", "other_pid"),
+         Exchange("Aioli, recipe, at plant {FR}", 1.0, "kg", "recipe_pid")])
+    cache["other_pid"] = Detail("other_pid", "Aioli, 1kg | Packaging System",
+                                SYSTEM_CAT, 1.0)
     fetch = fetcher(cache)
-    food_pid, entries = packed_as(fetch, bills, "consumer_pid", fetch("consumer_pid"))
+    assert stage_of([Entry("stage_pid", 3, STAGE_CAT)]) == "stage_pid"
+    _, entries = stage_bill(*fetch("stage_pid"), lambda p: fetch(p)[0])
     assert [s.process_id for s, _ in entries] == ["system_pid"]
-    # The recipe itself, asked directly, still stands for the whole family.
-    recipe_node = fetch("recipe_pid")
-    assert len(packed_as(fetch, bills, "recipe_pid", recipe_node)[1]) == 2
+    family = family_bill([cache["stage_pid"], cache["other_stage_pid"]],
+                         fetch, "recipe_pid")
+    assert [s.process_id for s, _ in family] == ["system_pid", "other_pid"]
 
 
-def test_a_product_packed_in_nothing_is_not_a_product_with_no_stage():
-    """'No pack' answers with an empty bill; unknown answers with None."""
+def test_no_packing_consumer_is_not_no_pack():
+    """None when nothing packs the food, an empty bill when a stage packs it in nothing.
+
+    A consumer outside the packaging branch (the recipe an other recipe
+    consumes) never packs; a stage packing a different food does not count
+    either — its bill names another divisor.
+    """
     cache = ciqual_chain()
+    cache["unpacked_pid"] = Detail(
+        "unpacked_pid", "Light aioli, recipe, at plant {FR}", RECIPE, 1.0,
+        [Exchange("Aioli, recipe, at plant {FR}", 0.9, "kg", "recipe_pid")])
+    cache["nopack_pid"] = Detail(
+        "nopack_pid", "Fruit | at packaging {FR}", STAGE_CAT, 1.0,
+        [Exchange("Aioli, recipe, at plant {FR}", 1.0, "kg", "recipe_pid")])
     fetch = fetcher(cache)
-    node = fetch("consumer_pid")
-    assert packed_as(fetch, ({"stage_pid": ("recipe_pid", [])}, {}),
-                     "consumer_pid", node) == ("recipe_pid", [])
-    assert packed_as(fetch, ({}, {}), "consumer_pid", node) is None
+    assert family_bill([cache["unpacked_pid"]], fetch, "recipe_pid") is None
+    assert family_bill([cache["nopack_pid"]], fetch, "recipe_pid") == []
+    assert family_bill([cache["stage_pid"]], fetch, "water_pid") is None
 
 
 MATERIALS = {"oil_pid", "garlic_pid"}

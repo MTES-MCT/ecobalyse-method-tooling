@@ -21,8 +21,9 @@ The engine release is pinned (`_ENGINE_VERSION`, currently 0.9.3) rather than
 tracking the latest: engine and pyvolca version independently and must agree on
 the JSON wire revision, which neither version number announces — the
 compatibility table on [pyvolca's PyPI page](https://pypi.org/project/pyvolca/)
-is the authority. pyvolca ≥ 0.8.2 (required by the script) decodes wire 2 and 3,
-which engine 0.9.3 speaks; move the pin together with that table. The database
+is the authority. pyvolca ≥ 0.9.0 (required by the script — it is the release
+whose supply-chain entries carry `depth`) decodes wire 2 to 4, which engine
+0.9.3 speaks; move the pin together with that table. The database
 name, the port and the startup timeout are constants next to it, for the same
 reason: none of them is a choice.
 
@@ -52,11 +53,11 @@ uv run extract_agribalyse_recipes.py --scope recipes --out agribalyse_recipes.xl
 
 **Neither covers the other.** A Ciqual product carries a code, a single packaging
 format and the ingredients of the food at the bottom of its lifecycle chain — a
-real recipe for 1 066 of them, a transformation or a consumption mix for the
-rest, an apple having no recipe to speak of. But 52 recipes are reached by no
-Ciqual product at all, 48 of them carrying ingredients, and they are not
-marginal: falafel, seitan steak, plant-based sausages, soy-and-wheat nuggets,
-rice noodles. Those are only visible under `--scope recipes`.
+real recipe for most of them, a transformation or a consumption mix for the
+rest, an apple having no recipe to speak of. But 17 recipes are reached by no
+Ciqual product at all, 13 of them carrying ingredients: rice noodles,
+reconstituted broths, the ITK yogurt variants, snail in parsley butter, anchovy
+fillets, grated carrots. Those are only visible under `--scope recipes`.
 
 `--limit N` is for a dry run and says out loud what it left out. `--agribalyse`
 is only read on the first run, which uploads the export into the engine; later
@@ -114,12 +115,14 @@ Pizza, … | Chilled | Cardboard | at packaging {FR}     Category = Agricultural
 └─ 1 kg  Pizzas, chilled, 450g | Packaging System, N0, All, Cardboard support with plastic bag
 ```
 
-The script sweeps those stages once — every process under
-`Agricultural\Food\Packaging` — and each one names the food it packs and the
-system it packs it in. A product then only looks itself up. Reading it in this
-direction, rather than asking each product "who packs you?", is what makes the
-sheet complete: over the whole database the question-per-product version lost
-8 products and invented 236 rows (see below).
+The script asks each product for its **supply chain filtered on that branch** —
+one engine call, and the `depth` each entry carries (pyvolca ≥ 0.9.0) names the
+product's own stage: the shallowest undotted entry. A recipe is asked the other
+way round, its packaging sitting among its direct **consumers**. Either way the
+quantities are then read off the stage's own bill, not off the solver: the
+division stays exact, and the two silent failures a naive reading produced —
+8 products losing their packaging, 236 invented rows — stay guarded (see
+below).
 
 The system is written as a single process: a black box, but one an impact engine
 resolves on its own. `systems_per_functional_unit` says how many of it one
@@ -146,9 +149,15 @@ Aioli … | at consumer {FR} [Ciqual code: 11168]     Preparation
          └─ 1 kg  Aioli sauce …, recipe, at plant {FR}
 ```
 
-`--scope ciqual` follows that chain, and only it: an ingredient link is never
-followed, or a recipe with no stage of its own would come out packed in one of
-its ingredients' bottles. All 2 451 Ciqual products reach their stage — 2 294
+`--scope ciqual` reads that chain in one filtered call, four levels deep — the
+bound the chain above shows — and takes the shallowest undotted entry: the
+product's own stage always sits above whatever packaging its ingredients carry.
+That ranking is load-bearing. A product cooked *at consumer level* (the
+pan-fried beef, the falafel, the puree reconstituted with milk) consumes its
+raw product **and** its frying fat, both with a packaging stage upstream — and
+the walk that took the first stage found, instead of the shallowest, shipped
+78 such products packed in their oil's bottle, the fried beef's "ingredients"
+being the sunflower oil's. All 2 451 Ciqual products reach their stage — 2 294
 with a system, 157 packed in nothing.
 
 The quantity stays **per kilo of the packed food**, so the aioli reads
@@ -170,10 +179,12 @@ twice:
 - a stage's food can itself be an `at packaging` process, Agribalyse packing the
   wholemeal sandwich by consuming the French-bread sandwich as a proxy. Both
   inputs then look like packaging, the stage is left with no food, and 8 products
-  (sandwiches, Petit-Suisse, margarines) silently lost their packaging;
-- and a packaging system, asked "who packs you?", answers with the stage that
-  consumes it — which yielded 236 rows stating that a packaging system is packed
-  in itself.
+  (sandwiches, Petit-Suisse, margarines) silently lost their packaging — the
+  dotted test in `stage_bill` is what keeps the proxy readable as a food;
+- and a packaging system read as a stage comes out packed in itself — 236 such
+  rows the day every process was swept. In the filtered chain the system can
+  even be the shallowest entry; `stage_of` never lets a dotted entry be the
+  stage.
 
 ### Things to know before reading the numbers
 
@@ -248,7 +259,8 @@ process id.
 
 ## Self-check
 
-`uv run test_extract.py` — asserts on the walk down a packaging stage
-(the division by the food the stage packs), on the corrected ingredient target
-ids, and on the product columns (co-products of one activity told apart by
-their product flow name), no engine and no network needed.
+`uv run test_extract.py` — asserts on the reading of a packaging stage (the
+division by the food the stage packs, the stage picked as the shallowest
+undotted entry of the filtered chain), on the corrected ingredient target ids,
+and on the product columns (co-products of one activity told apart by their
+product flow name), no engine and no network needed.

@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["pyvolca>=0.8.2", "openpyxl"]
+# dependencies = ["pyvolca>=0.9.0", "openpyxl"]
 # ///
 """Extract the Agribalyse products to Excel: ingredients and packaging. See README.md."""
 
@@ -13,7 +13,7 @@ from pathlib import Path
 
 from openpyxl import Workbook
 
-from volca import ActivityDetail, Client, Server, download
+from volca import ActivityDetail, ClassificationFilter, Client, Server, download
 from volca.agribalyse import classify_exchange
 
 # Pinned: engine and pyvolca must agree on a wire revision neither number announces.
@@ -123,7 +123,7 @@ _PACKAGING_CATEGORY = "Agricultural\\Food\\Packaging"
 _UNLINKED = "00000000-0000-0000-0000-000000000000"
 
 
-def is_packaging_system(act: ActivityDetail) -> bool:
+def is_packaging_system(act) -> bool:
     """A packaging, not a packed food: PACK_AGB files systems under a dotted segment, stages under food families."""
     return any(p.startswith(".")
                for p in act.classifications.get("Category", "").split("\\"))
@@ -156,64 +156,36 @@ def stage_bill(stage: ActivityDetail, targets: dict[str, str], resolve) -> tuple
         for system, system_amount in systems[:1]]
 
 
-def packaging_bills(client: Client, fetch) -> tuple[dict[str, list], dict[str, list]]:
-    """One sweep of the packaging branch: each stage's own bill, and the union per packed food."""
-    by_stage: dict[str, list] = {}
-    by_food: dict[str, list] = {}
-    for a in client.search_activities(classification="Category",
-                                      classification_value=_PACKAGING_CATEGORY,
-                                      limit=200):
-        stage, targets = fetch(a.process_id)
-        found = stage_bill(stage, targets, lambda pid: fetch(pid)[0])
-        if found is None:
+# consumer <- retail <- distribution <- packaging: the bound the old lifecycle walk enforced.
+_STAGE_DEPTH = 4
+
+
+def stage_of(entries) -> str | None:
+    """The product's own packaging stage: the shallowest non-system entry of its filtered supply chain."""
+    stages = sorted((e for e in entries if not is_packaging_system(e)),
+                    key=lambda e: e.depth)
+    if len(stages) > 1 and stages[0].depth == stages[1].depth:
+        print(f"   ! two packaging stages at depth {stages[0].depth}, "
+              f"keeping {stages[0].activity_name[:52]}")
+    return stages[0].process_id if stages else None
+
+
+def family_bill(consumers, fetch, pid) -> list | None:
+    """Union of the formats of every stage packing this food; None if no stage packs it, empty if packed in nothing."""
+    packed, entries = False, []
+    for c in consumers:
+        if (not c.classifications.get("Category", "").startswith(_PACKAGING_CATEGORY)
+                or is_packaging_system(c)):
             continue
-        food_pid, entries = found
-        by_stage[a.process_id] = found
-        known = by_food.setdefault(food_pid, [])
-        for system, per_food in entries:
+        found = stage_bill(*fetch(c.process_id), lambda p: fetch(p)[0])
+        if found is None or found[0] != pid:
+            continue
+        packed = True
+        for system, per_food in found[1]:
             if not any(s.process_id == system.process_id and q == per_food
-                       for s, q in known):
-                known.append((system, per_food))
-    return by_stage, by_food
-
-
-# at consumer <- at retail <- at distribution <- at packaging: the only links followed.
-_LIFECYCLE_CATEGORIES = (
-    "Agricultural\\Food\\Preparation",
-    "Agricultural\\Food\\Retail",
-    "Agricultural\\Food\\Distribution",
-    _PACKAGING_CATEGORY,
-)
-
-
-def packed_as(fetch, bills: tuple, pid: str, node: tuple,
-              depth: int = 0) -> tuple | None:
-    """What a product is and what packs it, `(food, entries)`, walking a Ciqual product down its lifecycle to its stage."""
-    by_stage, by_food = bills
-    if pid in by_stage:
-        return by_stage[pid]
-    if pid in by_food:
-        return pid, by_food[pid]
-    if depth >= len(_LIFECYCLE_CATEGORIES):
-        return None
-    stage, targets = node
-    if not stage.classifications.get("Category", "").startswith(_LIFECYCLE_CATEGORIES):
-        return None
-    for e in stage.technosphere_inputs:
-        if e.is_reference:
-            continue
-        target_pid = targets.get(e.flow_name)
-        if not target_pid or target_pid.startswith(_UNLINKED):
-            continue
-        target = fetch(target_pid)
-        if is_packaging_system(target[0]):
-            continue
-        if not target[0].classifications.get("Category", "").startswith("Agricultural\\Food"):
-            continue
-        found = packed_as(fetch, bills, target_pid, target, depth + 1)
-        if found is not None:
-            return found
-    return None
+                       for s, q in entries):
+                entries.append((system, per_food))
+    return entries if packed else None
 
 
 def system_rows(prefix: list, entries: list) -> list[list]:
@@ -262,7 +234,7 @@ def main() -> None:
                          "product of the Ciqual table, 2 451 of them, each with its "
                          "own code and packaging format. 'recipes': one row per "
                          "composite food, 763 of them, a recipe standing in for a "
-                         "whole family — the only way to see the 52 recipes no "
+                         "whole family — the only way to see the 17 recipes no "
                          "Ciqual product reaches.")
     ap.add_argument("--limit", type=int, default=0, metavar="N",
                     help="Extract only the first N products, for a dry run "
@@ -329,12 +301,7 @@ def main() -> None:
             def fetch(pid):
                 return fetch_cached(client, pid, cache)
 
-            print("4. Reading the packaging stages ...")
-            bills = packaging_bills(client, fetch)
-            print(f"   {len(bills[0])} packaging stages, {sum(len(v) for v in bills[1].values())} "
-                  f"(food, packaging system) pairs over {len(bills[1])} packed foods")
-
-            print("5. Extracting ...")
+            print("4. Extracting ...")
             wb = Workbook()
             ws = wb.active
             ws.title = "ingredients"
@@ -346,7 +313,18 @@ def main() -> None:
                 act, targets = fetch_recipe(client, product.process_id)
                 prefix = product_columns(act)
                 # Both sheets describe the food at the bottom of the product's chain.
-                found = packed_as(fetch, bills, act.process_id, (act, targets))
+                if args.scope == "ciqual":
+                    chain = client.get_supply_chain(
+                        act.process_id, max_depth=_STAGE_DEPTH, limit=200,
+                        classification_filters=[
+                            ClassificationFilter("Category", _PACKAGING_CATEGORY)])
+                    spid = stage_of(chain.entries)
+                    found = (stage_bill(*fetch(spid), lambda p: fetch(p)[0])
+                             if spid else None)
+                else:
+                    got = client.get_consumers(act.process_id, max_depth=1, limit=200)
+                    entries = family_bill(got.consumers, fetch, act.process_id)
+                    found = (act.process_id, entries) if entries is not None else None
                 food_pid, entries = found if found is not None else (act.process_id, None)
                 food = (act, targets) if food_pid == act.process_id else fetch(food_pid)
                 rows = recipe_rows(prefix, food[0], food[1], keep)
