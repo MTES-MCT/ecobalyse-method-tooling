@@ -39,17 +39,22 @@ uv run extract_agribalyse_recipes.py --out recipes.xlsx
 # a dry run on the first 20 recipes
 uv run extract_agribalyse_recipes.py --limit 20 --out sample.xlsx
 
-# every process of the database, not only the recipes
-uv run extract_agribalyse_recipes.py --all --out agribalyse_all.xlsx
+# the packaging of the ~2 500 Ciqual products
+uv run extract_agribalyse_recipes.py --scope ciqual --out agribalyse_ciqual.xlsx
 ```
 
-No selection to make: the run covers the 763 processes of
-`Category=Agricultural\Food\Recipes` — the composite foods — or, with `--all`,
-every process of the database, and always writes both the ingredients and the
-packaging. `--limit N` is for a dry run and says out loud what it left out.
-`--agribalyse` is only read on the first run, which uploads the export into the
-engine; later runs reuse the uploaded copy (`--replace` re-uploads it after the
-source file changed).
+`--scope` says what a run covers, and both sheets are always written:
+
+| Scope | Products | What it is for |
+|-------|----------|----------------|
+| `recipes` (default) | the 763 composite foods | their bill of ingredients, and their packaging |
+| `ciqual` | the 2 451 products of the Ciqual table | their packaging — the ingredient rows only hold the lifecycle link, not a recipe |
+| `all` | the 21 510 processes of the database | a fallback; the ingredient rows are misleading outside the recipes (see below) |
+
+`--limit N` is for a dry run and says out loud what it left out. `--agribalyse`
+is only read on the first run, which uploads the export into the engine; later
+runs reuse the uploaded copy (`--replace` re-uploads it after the source file
+changed).
 
 Nothing needs to be installed beyond [uv](https://docs.astral.sh/uv/) and the
 Agribalyse export: the script itself fetches its Python dependencies and the
@@ -62,6 +67,15 @@ and electricity rows came from when the whole `Agricultural\Food` branch was
 extracted.
 
 ## What counts as an ingredient
+
+**Only inside `--scope recipes`.** A recipe is authored by Agribalyse as a clean
+bill of ingredients, which is what the three guards below isolate. They do not
+travel: on a process copied from ecoinvent (`yogurt production`) the very same
+guards keep the whole factory inventory — the Petit-Suisse comes out with 39
+rows of which one, its 1,13 kg of cow milk, is an ingredient; the other 38 are
+the cleaning station (nitric acid, soda, EDTA) and the refrigerant. So the
+ingredient rows of a `ciqual` or `all` run are not a recipe, and the packaging
+is what those scopes are for.
 
 Only the edible inputs; cooking, `[Dummy]` operations, waste treatment,
 electricity, heat and transport are dropped. An input is kept when all three
@@ -104,6 +118,31 @@ it packs, not by assuming the 1 kg for 1 kg Agribalyse happens to use.
 Over Agribalyse 3.2: 2 286 packaging stages, giving 1 540 (product, system)
 pairs. Restricted to the 763 recipes, 746 of them come out with a packaging
 system, for 820 rows.
+
+### A Ciqual product is three stages downstream
+
+The product of the Ciqual table — the one carrying `[Ciqual code: 11168]` in its
+name — is the `at consumer` process, and nothing packs *it*: its packaging sits
+back up its own lifecycle chain.
+
+```
+Aioli … | at consumer {FR} [Ciqual code: 11168]     Preparation
+└─ 1,05 kg  Aioli … | at retail {FR}                Retail
+   └─ 1,01 kg  Aioli … | at distribution {FR}       Distribution
+      └─ 1 kg  Aioli … | at packaging {FR}          Packaging   ← the stage
+         ├─ 1 kg  Mayonnaise, 425g | Packaging System, N0, All, Plastic squeeze
+         └─ 1 kg  Aioli sauce …, recipe, at plant {FR}
+```
+
+`--scope ciqual` follows that chain, and only it: an ingredient link is never
+followed, or a recipe with no stage of its own would come out packed in one of
+its ingredients' bottles. All 2 451 Ciqual products reach their stage — 2 294
+with a system, 157 packed in nothing.
+
+The quantity stays **per kilo of the packed food**, so the aioli reads
+2,35 systems and not the 2,61 that folding in the 11 % of retail and consumer
+losses would give. That is the number Ecobalyse expects, applying those losses
+itself.
 
 ### Telling a packaging from a packed food
 

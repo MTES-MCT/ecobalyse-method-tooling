@@ -26,8 +26,9 @@ after the source file changed.
 What is written
 ---------------
 Every process classified `Category=Agricultural\\Food\\Recipes` (the composite
-foods: pizza, ratatouille, aioli, ...) — or every process of the database with
---all — and for each of them:
+foods: pizza, ratatouille, aioli, ...), or the ~2 500 Ciqual products with
+--scope ciqual, or every process of the database with --scope all; and for each
+of them:
 
 - its **edible ingredients**, recipe water included. An input is kept when its
   producing activity is tagged `Category type = material`, its role is a food
@@ -42,7 +43,10 @@ foods: pizza, ratatouille, aioli, ...) — or every process of the database with
 
   The system is written as one row, as a single process — the black box an
   impact engine resolves on its own — with how many of it one functional unit
-  of the product carries: a 425 g system counts 2.35 times per kg.
+  of the product carries: a 425 g system counts 2.35 times per kg. A Ciqual
+  product sits three stages further downstream (at consumer, at retail, at
+  distribution), so its own packaging is fetched by following that chain back
+  to the stage.
 
 Two sheets: `ingredients` holds the ingredient rows, `packaging` the system
 rows; they join on `product_process_id`.
@@ -76,11 +80,19 @@ _DB_NAME = "agribalyse-3.2"
 _PORT = 8123
 _STARTUP_TIMEOUT = 600
 
-# The composite/prepared foods (pizza, ratatouille, aioli, ...). Their
-# lifecycle stages — at packaging, at distribution, at supermarket, at
-# consumer — live under sibling branches and are not recipes: they carry
-# logistics, cold and retail losses, not a bill of ingredients.
-_RECIPES = ("Category", "Agricultural\\Food\\Recipes")
+# What a run covers, and how each is found.
+#
+# `recipes` are the composite/prepared foods (pizza, ratatouille, aioli, ...),
+# authored as a clean bill of ingredients. `ciqual` are the ~2 500 products of
+# the Ciqual table — the figure Agribalyse is published on — each being the "at
+# consumer" process, the one carrying the Ciqual code in its name; their
+# ingredient rows only hold the lifecycle link, their packaging being what they
+# are asked for. `all` adds every other process, background chemistry included.
+_SCOPES = {
+    "recipes": ("Category", "Agricultural\\Food\\Recipes", "recipes"),
+    "ciqual": ("Category", "Agricultural\\Food\\Preparation", "Ciqual products"),
+    "all": (None, None, "processes"),
+}
 
 _HEADER = [
     "product_process_id",
@@ -217,12 +229,17 @@ def fetch_recipe(client: Client, pid: str) -> tuple[ActivityDetail, dict]:
     return ActivityDetail.from_json(payload), ingredient_targets(payload)
 
 
-def fetch_activity(client: Client, pid: str, cache: dict) -> ActivityDetail:
-    """`get_activity`, remembered. Packaging systems are shared by every product
-    of a subcategory, so the same handful of them is asked for again and
-    again — once each is enough."""
+def fetch_cached(client: Client, pid: str, cache: dict) -> tuple[ActivityDetail, dict]:
+    """`fetch_recipe`, remembered — for the packaging side only.
+
+    Packaging systems are shared by every product of a subcategory and a
+    lifecycle chain is walked over and over, so the same handful of processes is
+    asked for again and again; once each is enough. The product loop keeps using
+    the uncached `fetch_recipe`, holding every one of the 21 510 payloads being
+    the one way to run out of memory here.
+    """
     if pid not in cache:
-        cache[pid] = client.get_activity(pid)
+        cache[pid] = fetch_recipe(client, pid)
     return cache[pid]
 
 
@@ -300,34 +317,102 @@ def stage_bill(stage: ActivityDetail, targets: dict[str, str], resolve) -> tuple
         for system, system_amount in systems[:1]]
 
 
-def packaging_by_food(client: Client, cache: dict) -> dict[str, list]:
-    """Every packaged food of the database and the system(s) it is packed in.
+def packaging_bills(client: Client, fetch) -> tuple[dict[str, list], dict[str, list]]:
+    """One sweep of the packaging branch, read two ways.
 
-    One sweep of the packaging branch, so a product only has to look itself up
-    afterwards. Systems are deduplicated because one recipe stands in for a
-    whole family of Ciqual products — 28 breakfast cereals share one — and each
-    of those products has its own stage naming the very same system; a product
-    genuinely offered in a glass jar and in a plastic pot keeps both.
+    `by_stage` keeps each stage's own bill, and `by_food` gathers, per packed
+    food, every system any stage packs it in. The two differ because one recipe
+    stands in for a whole family of Ciqual products — 28 breakfast cereals share
+    one — each with its own stage: asking the recipe gives the whole family's
+    formats, while asking one product's stage gives that product's.
 
     A food packed in nothing gets an empty list, which is how the run can still
     report "no packaging (No pack)" apart from "no packaging stage".
     """
-    bill: dict[str, list] = {}
+    by_stage: dict[str, list] = {}
+    by_food: dict[str, list] = {}
     for a in client.search_activities(classification="Category",
                                       classification_value=_PACKAGING_CATEGORY,
                                       limit=200):
-        stage, targets = fetch_recipe(client, a.process_id)
-        found = stage_bill(stage, targets,
-                           lambda pid: fetch_activity(client, pid, cache))
+        stage, targets = fetch(a.process_id)
+        found = stage_bill(stage, targets, lambda pid: fetch(pid)[0])
         if found is None:
             continue
         food_pid, entries = found
-        known = bill.setdefault(food_pid, [])
+        by_stage[a.process_id] = entries
+        known = by_food.setdefault(food_pid, [])
         for system, per_food in entries:
             if not any(s.process_id == system.process_id and q == per_food
                        for s, q in known):
                 known.append((system, per_food))
-    return bill
+    return by_stage, by_food
+
+
+# The lifecycle a Ciqual product is modelled through, downstream of the
+# packaging: at consumer <- at retail <- at distribution <- at packaging. Only
+# these links are followed to find a product's packaging — an ingredient link
+# never is, or a recipe with no stage of its own would silently inherit the
+# packaging of one of its ingredients.
+_LIFECYCLE_CATEGORIES = (
+    "Agricultural\\Food\\Preparation",
+    "Agricultural\\Food\\Retail",
+    "Agricultural\\Food\\Distribution",
+    _PACKAGING_CATEGORY,
+)
+
+
+def packaging_of(fetch, bills: tuple, pid: str, node: tuple,
+                 depth: int = 0) -> list | None:
+    """The packaging of a product: its own, or the one of its lifecycle stage.
+
+    A recipe or an "at plant" process is packed directly, so it is in `by_food`
+    already. A Ciqual product is not: it is the "at consumer" process, three
+    stages downstream of its packaging, and the walk follows that chain — at
+    consumer, at retail, at distribution — until it lands on the stage. None
+    when nothing packs this product.
+
+    The stage is answered from `by_stage`, and only what falls through to
+    `by_food` gets the union over a whole Ciqual family: a product asks its own
+    stage, so a cereal packed in a 500 g bag does not also come out in the 27
+    other formats its recipe stands in for.
+
+    Only lifecycle links are followed, never an ingredient link, or a recipe
+    with no stage of its own would inherit the packaging of one of its
+    ingredients — the aioli would come out packed in an olive-oil bottle.
+
+    The quantity that comes back is per unit of the *packed* food, which is what
+    Ecobalyse expects and what the aioli was validated on: 2,35 systems per kg,
+    not the 2,61 that folding in the retail and consumer losses would give.
+
+    `fetch` maps a process-id to `(detail, corrected target ids)`, and `node` is
+    that pair for `pid` itself — handed in rather than fetched, so a run over
+    every process of the database does not end up holding all 21 510 payloads.
+    """
+    by_stage, by_food = bills
+    if pid in by_stage:
+        return by_stage[pid]
+    if pid in by_food:
+        return by_food[pid]
+    if depth >= len(_LIFECYCLE_CATEGORIES):
+        return None
+    stage, targets = node
+    if not stage.classifications.get("Category", "").startswith(_LIFECYCLE_CATEGORIES):
+        return None
+    for e in stage.technosphere_inputs:
+        if e.is_reference:
+            continue
+        target_pid = targets.get(e.flow_name)
+        if not target_pid or target_pid.startswith(_UNLINKED):
+            continue
+        target = fetch(target_pid)
+        if is_packaging_system(target[0]):
+            continue
+        if not target[0].classifications.get("Category", "").startswith("Agricultural\\Food"):
+            continue
+        found = packaging_of(fetch, bills, target_pid, target, depth + 1)
+        if found is not None:
+            return found
+    return None
 
 
 def system_rows(prefix: list, entries: list) -> list[list]:
@@ -347,21 +432,20 @@ def system_rows(prefix: list, entries: list) -> list[list]:
     ] for system, per_food in entries]
 
 
-def selected_products(client: Client, limit: int, everything: bool) -> list:
-    """The products to extract — the recipes by default, every process of the
-    database with --all, the first `limit` of either for a dry run.
+def selected_products(client: Client, limit: int, scope: str) -> list:
+    """The products to extract, and the first `limit` of them for a dry run.
 
     islice stops after `limit`, so a capped run never pulls the whole
     catalogue; `len(results)` reports the server-side total for the warning.
     Truncation is always said out loud, never silent.
     """
-    system, value = _RECIPES
-    kwargs = {} if everything else {
-        "classification": system, "classification_value": value}
+    kwargs = {} if scope == "all" else {
+        "classification": _SCOPES[scope][0],
+        "classification_value": _SCOPES[scope][1]}
     res = client.search_activities(limit=limit or 200, **kwargs)
     kept = list(islice(res, limit)) if limit else list(res)
     total = len(res)
-    label = "processes" if everything else "recipes"
+    label = _SCOPES[scope][2]
     if limit and total > len(kept):
         print(f"  {total} {label}, keeping the first {len(kept)} (--limit 0 for all)")
     else:
@@ -385,12 +469,13 @@ def main() -> None:
     ap.add_argument("--replace", action="store_true",
                     help="Delete the previously uploaded database and re-upload from "
                          "--agribalyse (use after the source file changed).")
-    ap.add_argument("--all", action="store_true",
-                    help="Extract every process of the database, not only the "
-                         "recipes (Category=Agricultural\\Food\\Recipes). The "
-                         "ingredient filters still apply to each process's inputs; "
-                         "packaging only exists for the food products a packaging "
-                         "stage consumes.")
+    ap.add_argument("--scope", choices=sorted(_SCOPES), default="recipes",
+                    help="What to extract. 'recipes' (default): the 763 composite "
+                         "foods, with their bill of ingredients. 'ciqual': the "
+                         "~2 500 products of the Ciqual table, for their packaging "
+                         "— their ingredient rows only hold the lifecycle link, not "
+                         "a recipe. 'all': every process of the database, background "
+                         "chemistry included.")
     ap.add_argument("--limit", type=int, default=0, metavar="N",
                     help="Extract only the first N products, for a dry run "
                          "(default: 0, no cap).")
@@ -460,13 +545,16 @@ def main() -> None:
             keep = material_pids(client)
             print(f"   {len(keep)} 'material' activities eligible as ingredients")
 
-            # Every activity fetched: the packaging stages and the systems whole
-            # subcategories share, then the products themselves.
+            # Everything the packaging side fetches: the stages, the systems
+            # whole subcategories share, and the lifecycle chains walked down.
             cache: dict = {}
+            def fetch(pid):
+                return fetch_cached(client, pid, cache)
+
             print("4. Reading the packaging stages ...")
-            packaging = packaging_by_food(client, cache)
-            print(f"   {sum(len(v) for v in packaging.values())} (product, packaging "
-                  f"system) pairs over {len(packaging)} packed products")
+            bills = packaging_bills(client, fetch)
+            print(f"   {len(bills[0])} packaging stages, {sum(len(v) for v in bills[1].values())} "
+                  f"(food, packaging system) pairs over {len(bills[1])} packed foods")
 
             print("5. Extracting ...")
             wb = Workbook()
@@ -476,11 +564,12 @@ def main() -> None:
             ws_sys = wb.create_sheet("packaging")
             ws_sys.append(_SYSTEM_HEADER)
             n_products = n_rows = n_systems = 0
-            for product in selected_products(client, args.limit, args.all):
+            for product in selected_products(client, args.limit, args.scope):
                 act, targets = fetch_recipe(client, product.process_id)
                 prefix = product_columns(act)  # one source for both kinds of row
                 rows = recipe_rows(act, targets, keep)
-                systems = system_rows(prefix, packaging.get(act.process_id, []))
+                entries = packaging_of(fetch, bills, act.process_id, (act, targets))
+                systems = system_rows(prefix, entries or [])
                 for row in rows:
                     ws.append(row)
                 for row in systems:
@@ -492,7 +581,7 @@ def main() -> None:
                 # cases it is — no stage at all, or a stage packing in nothing.
                 if systems:
                     note = f", {len(systems)} packaging system(s)"
-                elif act.process_id in packaging:
+                elif entries is not None:
                     note = ", no packaging (No pack)"
                 else:
                     note = ", no packaging stage"

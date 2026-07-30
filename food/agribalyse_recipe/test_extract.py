@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["pyvolca>=0.8.0", "openpyxl"]
+# dependencies = ["pyvolca>=0.8.2", "openpyxl"]
 # ///
 """Self-check for the row builders — no engine, no network.
 
@@ -15,7 +15,7 @@ a dict's `get` and no client at all is enough to check it.
 from dataclasses import dataclass, field
 
 from extract_agribalyse_recipes import (
-    ingredient_targets, product_columns, stage_bill, system_rows)
+    ingredient_targets, packaging_of, product_columns, stage_bill, system_rows)
 
 
 @dataclass
@@ -232,6 +232,101 @@ def test_an_unlinked_input_is_no_food():
     )
     _, entries = bill(cache)
     assert abs(entries[0][1] - BAGS_PER_KG) < 1e-12
+
+
+CONSUMER_CAT = {"Category": "Agricultural\\Food\\Preparation\\Sauces"}
+RETAIL_CAT = {"Category": "Agricultural\\Food\\Retail\\Sauces"}
+DISTRIB_CAT = {"Category": "Agricultural\\Food\\Distribution\\Sauces"}
+
+
+def ciqual_chain() -> dict:
+    """The aioli as Agribalyse models it, from the shelf back to the plant.
+
+    at consumer <- at retail <- at distribution <- at packaging <- recipe,
+    each step consuming a little more than a kilo for the losses ahead of it.
+    """
+    return {
+        "consumer_pid": Detail("consumer_pid", "Aioli | at consumer {FR} [Ciqual code: 11007]",
+                               CONSUMER_CAT, 1.0,
+                               [Exchange("Aioli | at retail {FR}", 1.05, "kg", "retail_pid"),
+                                Exchange("Tap water {FR}", 0.7, "kg", "water_pid")]),
+        "retail_pid": Detail("retail_pid", "Aioli | at retail {FR}", RETAIL_CAT, 1.0,
+                             [Exchange("Aioli | at distribution {FR}", 1.01, "kg",
+                                       "distribution_pid")]),
+        "distribution_pid": Detail("distribution_pid", "Aioli | at distribution {FR}",
+                                   DISTRIB_CAT, 1.0,
+                                   [Exchange("Aioli | at packaging {FR}", 1.0, "kg",
+                                             "stage_pid")]),
+        "stage_pid": Detail("stage_pid", "Aioli | at packaging {FR}", STAGE_CAT, 1.0,
+                            [Exchange(SYSTEM, 1.0, "kg", "system_pid"),
+                             Exchange("Aioli, recipe, at plant {FR}", 1.0, "kg", "recipe_pid")]),
+        "system_pid": Detail("system_pid", SYSTEM, SYSTEM_CAT, 0.45),
+        "recipe_pid": Detail("recipe_pid", "Aioli, recipe, at plant {FR}", RECIPE, 1.0),
+        "water_pid": Detail("water_pid", "Tap water {FR}", {"Category": "Others"}, 1.0),
+    }
+
+
+def fetcher(cache):
+    """`(detail, targets)` for a fixture, the flow names resolving to themselves."""
+    def fetch(pid):
+        det = cache[pid]
+        return det, {e.flow_name: e.target_process_id for e in det.technosphere_inputs}
+    return fetch
+
+
+def test_a_ciqual_product_finds_its_packaging_down_the_chain():
+    """The Ciqual product is three stages downstream of what packs it."""
+    cache = ciqual_chain()
+    bills = ({"stage_pid": [(cache["system_pid"], BAGS_PER_KG)]},
+             {"recipe_pid": [(cache["system_pid"], BAGS_PER_KG)]})
+    fetch = fetcher(cache)
+    entries = packaging_of(fetch, bills, "consumer_pid", fetch("consumer_pid"))
+    assert entries == bills[0]["stage_pid"]
+    # Per kilo of packed food, the losses downstream left out: 2,35 and not 2,49.
+    assert abs(entries[0][1] - BAGS_PER_KG) < 1e-12
+
+
+def test_a_recipe_never_inherits_the_packaging_of_an_ingredient():
+    """A recipe with no stage of its own comes out unpacked, not packed in oil.
+
+    Walking an ingredient link would hang the olive-oil bottle on the aioli;
+    only the lifecycle links are followed, and a recipe carries none.
+    """
+    cache = ciqual_chain()
+    cache["unpacked_pid"] = Detail(
+        "unpacked_pid", "Light aioli, recipe, at plant {FR}", RECIPE, 1.0,
+        [Exchange("Aioli, recipe, at plant {FR}", 0.9, "kg", "recipe_pid")])
+    bills = ({"stage_pid": [(cache["system_pid"], BAGS_PER_KG)]},
+             {"recipe_pid": [(cache["system_pid"], BAGS_PER_KG)]})
+    fetch = fetcher(cache)
+    assert packaging_of(fetch, bills, "unpacked_pid", fetch("unpacked_pid")) is None
+
+
+def test_a_ciqual_product_gets_its_own_format_not_its_cousins():
+    """28 breakfast cereals share one recipe, each in its own bag.
+
+    Asking the recipe gives the whole family's formats; a Ciqual product must
+    ask its own stage, or every cereal would come out in 28 packagings at once.
+    """
+    cache = ciqual_chain()
+    other = Detail("other_pid", "Aioli, 1kg | Packaging System", SYSTEM_CAT, 1.0)
+    bills = ({"stage_pid": [(cache["system_pid"], BAGS_PER_KG)]},
+             {"recipe_pid": [(cache["system_pid"], BAGS_PER_KG), (other, 1.0)]})
+    fetch = fetcher(cache)
+    entries = packaging_of(fetch, bills, "consumer_pid", fetch("consumer_pid"))
+    assert [s.process_id for s, _ in entries] == ["system_pid"]
+    # The recipe itself, asked directly, still stands for the whole family.
+    recipe_node = fetch("recipe_pid")
+    assert len(packaging_of(fetch, bills, "recipe_pid", recipe_node)) == 2
+
+
+def test_a_product_packed_in_nothing_is_not_a_product_with_no_stage():
+    """'No pack' answers with an empty bill; unknown answers with None."""
+    cache = ciqual_chain()
+    fetch = fetcher(cache)
+    node = fetch("consumer_pid")
+    assert packaging_of(fetch, ({"stage_pid": []}, {}), "consumer_pid", node) == []
+    assert packaging_of(fetch, ({}, {}), "consumer_pid", node) is None
 
 
 def test_rows_scale_by_the_functional_unit():
