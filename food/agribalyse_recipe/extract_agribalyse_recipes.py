@@ -2,55 +2,7 @@
 # requires-python = ">=3.10"
 # dependencies = ["pyvolca>=0.8.2", "openpyxl"]
 # ///
-"""Extract the Agribalyse recipes — ingredients and packaging — to Excel.
-
-Self-contained: downloads the VoLCA engine binary, starts it locally, uploads
-an Agribalyse database (once — later runs reuse the uploaded copy), and writes,
-for every recipe of the catalogue, one row per edible ingredient and one row
-per packaging system::
-
-    1 kg "Aioli sauce, ..."  ->  0.728 kg olive oil + 0.108 kg garlic + ...
-                             ->  2.35 x "Mayonnaise, 425g | Packaging System, ..."
-
-Run (uv resolves the two deps automatically)::
-
-    uv run extract_agribalyse_recipes.py \
-        --agribalyse "/path/to/AGB32_final.CSV.zip" --out recipes.xlsx
-
-`download()` fetches the engine binary and the reference-data bundle, not any
-LCA database: you supply Agribalyse yourself, the official SimaPro CSV export
-being a free public download from ADEME (doc.agribalyse.fr). The upload
-persists in the engine's install dir, so later runs skip it; pass --replace
-after the source file changed.
-
-What is written
----------------
-The ~2 500 products of the Ciqual table, or the 763 composite foods with
---scope recipes; and for each of them:
-
-- its **edible ingredients**, recipe water included. An input is kept when its
-  producing activity is tagged `Category type = material`, its role is a food
-  role, and its unit is a food unit — which drops cooking, [Dummy] operations,
-  waste treatment, electricity, heat, transport, and the m3-billed utilities.
-- its **packaging**, found one stage downstream: a recipe carries none, so it
-  is read off the "at packaging" process that consumes it::
-
-    Aioli sauce, ... | Chilled | Pack proxy | at packaging {FR}
-    |-- 1 kg  Aioli sauce, ..., recipe, at plant {FR}          <- the recipe
-    +-- 1 kg  Mayonnaise, 425g | Packaging System, N0, ...     <- the system
-
-  The system is written as one row, as a single process — the black box an
-  impact engine resolves on its own — with how many of it one functional unit
-  of the product carries: a 425 g system counts 2.35 times per kg. A Ciqual
-  product sits three stages further downstream (at consumer, at retail, at
-  distribution), so its own packaging is fetched by following that chain back
-  to the stage.
-
-Two sheets: `ingredients` holds the ingredient rows, `packaging` the system
-rows; they join on `product_process_id`.
-
-Docs: https://www.volca.run/docs/python/
-"""
+"""Extract the Agribalyse products to Excel: ingredients and packaging. See README.md."""
 
 from __future__ import annotations
 
@@ -64,33 +16,14 @@ from openpyxl import Workbook
 from volca import ActivityDetail, Client, Server, download
 from volca.agribalyse import classify_exchange
 
-# Pinned, not "latest": engine and pyvolca version independently, and the wire
-# revision they must share is not implied by either number — pyvolca's PyPI
-# page carries the compatibility table. pyvolca ≥ 0.8.2 decodes wire 2 and 3,
-# which 0.9.3 speaks; this pair is what the extraction was validated against.
+# Pinned: engine and pyvolca must agree on a wire revision neither number announces.
 _ENGINE_VERSION = "0.9.3"
 
-# Fixed because nothing here is a real choice: the display name keys the
-# uploaded copy, the port only has to be free, and the timeout is generous
-# because the very first engine run indexes its reference methods before it
-# serves.
 _DB_NAME = "agribalyse-3.2"
 _PORT = 8123
 _STARTUP_TIMEOUT = 600
 
-# What a run covers, and how each is found.
-#
-# `recipes` are the composite/prepared foods (pizza, ratatouille, aioli, ...),
-# authored as a clean bill of ingredients, one recipe standing in for a whole
-# family of Ciqual products. `ciqual` are the ~2 500 products of the Ciqual
-# table — the figure Agribalyse is published on — each being the "at consumer"
-# process, the one carrying the Ciqual code in its name; 1 066 of them are
-# backed by one of those recipes and the rest by a transformation or a
-# consumption mix, which is what an apple has instead of a recipe.
-#
-# Neither covers the other: a Ciqual product carries a code and a single
-# packaging format, while 52 recipes — falafel, seitan, plant-based sausages —
-# are reached by no Ciqual product at all.
+# What a row is about: a Ciqual product (the "at consumer" process) or a recipe.
 _SCOPES = {
     "recipes": ("Agricultural\\Food\\Recipes", "recipes"),
     "ciqual": ("Agricultural\\Food\\Preparation", "Ciqual products"),
@@ -109,70 +42,32 @@ _HEADER = [
     "ingredient_process_id",
 ]
 
-# The packaging sheet: one row per packaging system a product is packed in.
-# Its five product columns are those of the ingredient sheet, so the two join
-# on `product_process_id`.
+# Same five product columns as _HEADER, so the two sheets join on product_process_id.
 _SYSTEM_HEADER = _HEADER[:5] + [
     "packaging_system",
     "system_process_id",
-    # How many of that system one functional unit of the product carries: a
-    # 425 g system counts 2.35 times per kg of food.
     "systems_per_functional_unit",
-    # What the system is authored for: 0.425 kg of packed food, 1 kg, ...
     "system_reference_amount",
     "system_reference_unit",
 ]
 
-# Roles (from classify_exchange) an edible ingredient can carry: kg inputs are
-# `raw_material`; gram-based dairy/sugar/chocolate fall to `other`; `water` is
-# recipe water, kept because its amount matters. Every other role — wastewater,
-# biowaste, electricity, heat, transport, cleaning, infrastructure — is never an
-# ingredient, so material-tagged waste treatment is dropped even though
-# Agribalyse also tags it `material`.
+# Food roles from classify_exchange; every other role is never an ingredient.
 _INGREDIENT_ROLES = {"raw_material", "other", "water"}
 
-# Food is weighed or counted, never a gas/bulk volume. This drops the last
-# material-tagged utilities that share a food role — natural gas, compressed
-# air — the only inputs left in m3 once waste and tap water are gone.
+# Food is weighed or counted: m3 is the natural gas and compressed air left over.
 _NON_FOOD_UNITS = {"m3"}
 
 
 def product_columns(activity: ActivityDetail) -> list:
-    """The five product columns every row of a product repeats.
-
-    Built once per product and handed to both the ingredient and the packaging
-    rows — so the two can never disagree on the functional unit they are
-    expressed against, nor on the amount the packaging bill is scaled by.
-    """
+    """The five product columns every row repeats — the product flow name, not the activity's."""
     amount = activity.product_amount if activity.product_amount is not None else 1.0
     unit = activity.product_unit or activity.unit or ""
-    # The product flow name, not the activity name: a multi-output activity
-    # (cheese production -> cheese + cream + whey) yields one process per
-    # co-product, all sharing the activity name — only the flow tells them apart.
     name = activity.product_name or activity.activity_name
     return [activity.process_id, name, activity.location, amount, unit]
 
 
 def ingredient_targets(payload: dict) -> dict[str, str]:
-    """Process-id of the product each input flow actually comes from, by name.
-
-    The typed `target_process_id` names the target *activity*, and an activity
-    with several co-products reports one of them arbitrarily: the biscuit's
-    "Palm oil, crude, consumption mix" comes back as the process of "Palm
-    kernel oil, crude" — a different oil. Over the whole catalogue that was one
-    resolvable target in eight, and 628 rows even pointed at their own product,
-    which would send a recursion in circles.
-
-    The raw exchange carries the pair that does name the product: `flowId` for
-    the product flow, `activityLinkId` for the activity producing it, and a
-    process-id is exactly their join. The engine's own solve already follows
-    this pair — only the reported id was ambiguous.
-
-    Inputs only, because a self-consuming recipe (the nuoc mam sauce takes
-    0.183 kg of itself) carries its own flow twice: once as the reference
-    product, whose activity link is the all-zero uuid, and once as the input.
-    Keyed by name, the two collide and the last one seen would win.
-    """
+    """Process-id of the product each input comes from: activityLinkId + flowId, the typed one naming an arbitrary co-product."""
     targets = {}
     for ed in (payload.get("activity") or {}).get("exchanges") or []:
         ex = ed.get("exchange") or {}
@@ -185,23 +80,11 @@ def ingredient_targets(payload: dict) -> dict[str, str]:
 
 def recipe_rows(prefix: list, food: ActivityDetail, targets: dict[str, str],
                 ingredient_pids: set[str]) -> list[list]:
-    """One row per edible ingredient of `food`, labelled `prefix` — pure, tested.
-
-    Kept when the producing activity is tagged `Category type = material`, the
-    role is a food role (recipe water included, biowaste treatment excluded
-    though it is `material` too), and the unit is a food unit.
-
-    `food` is the product itself for a recipe, and the food at the bottom of its
-    lifecycle chain for a Ciqual product, which is never its own recipe. The two
-    can be billed on different functional units, so the amounts are rescaled to
-    the one the row declares: the white wine mix is authored per 0,75 kg and the
-    grain maize per ton, which read next to a 1 kg product would be a thousand
-    times too high.
-    """
+    """One row per edible ingredient of `food`, rescaled to the functional unit `prefix` declares."""
     scale = prefix[3] / (food.product_amount or 1.0)
     rows = []
     for e in food.technosphere_inputs:
-        if e.is_reference:  # the product itself, not an ingredient
+        if e.is_reference:
             continue
         pid = targets.get(e.flow_name, "")
         role = classify_exchange(e)
@@ -214,93 +97,40 @@ def recipe_rows(prefix: list, food: ActivityDetail, targets: dict[str, str],
 
 
 def material_pids(client: Client) -> set[str]:
-    """Process-ids of every `Category type = material` activity.
-
-    Agribalyse tags real edible materials (flour, butter, oils, …) `material`,
-    while cooking/mixing are `processing`, energy is `energy`, transport
-    `transport`, and end-of-life is `waste treatment`. One classification sweep
-    gives the whole set; membership then filters a recipe to its ingredients.
-    """
+    """Process-ids of every `Category type = material` activity — Agribalyse's tag for edible matter."""
     res = client.search_activities(
         classification="Category type", classification_value="material", limit=200)
     return {a.process_id for a in res}
 
 
 def fetch_recipe(client: Client, pid: str) -> tuple[ActivityDetail, dict]:
-    """Typed activity plus the corrected target ids of its inputs.
-
-    One call serves both views: `ActivityDetail.from_json` is exactly what the
-    typed `get_activity` does with this very payload, and the ids that view
-    drops are read off the same raw exchanges. Not cached: each recipe is
-    asked for once.
-    """
+    """Typed activity plus the corrected target ids of its inputs, off one raw payload."""
     payload = client.call("get_activity", process_id=pid)
     return ActivityDetail.from_json(payload), ingredient_targets(payload)
 
 
 def fetch_cached(client: Client, pid: str, cache: dict) -> tuple[ActivityDetail, dict]:
-    """`fetch_recipe`, remembered — for the packaging side only.
-
-    Packaging systems are shared by every product of a subcategory and a
-    lifecycle chain is walked over and over, so the same handful of processes is
-    asked for again and again; once each is enough. The product loop keeps using
-    the uncached `fetch_recipe`: holding every selected product's payload as
-    well is the one way to run out of memory here.
-    """
+    """`fetch_recipe`, remembered — for the packaging side, whose processes are asked for again and again."""
     if pid not in cache:
         cache[pid] = fetch_recipe(client, pid)
     return cache[pid]
 
 
-# Packaging sits one stage downstream of the food: an "at packaging" process
-# consuming the food plus one packaging system (PACK_AGB project, 2024). The
-# bill is read from those stages rather than by asking each product "who packs
-# you?": one sweep of this branch sees every stage of the database, which is
-# what makes the sheet complete.
+# An "at packaging" process consumes the food plus one packaging system (PACK_AGB, 2024).
 _PACKAGING_CATEGORY = "Agricultural\\Food\\Packaging"
 
-# An unlinked input: Agribalyse writes an all-zero activity link for an exchange
-# it does not connect to a producer, and the join with the flow names no process.
+# Agribalyse writes an all-zero activity link for an input it connects to no producer.
 _UNLINKED = "00000000-0000-0000-0000-000000000000"
 
 
 def is_packaging_system(act: ActivityDetail) -> bool:
-    """A packaging system or one of its elements, as opposed to a packed food.
-
-    Both sit under `Agricultural\\Food\\Packaging`, so the branch alone cannot
-    tell them apart: PACK_AGB files the systems and their elements under a
-    dotted segment (".Packaging systems", ".Packaging II and III") and the
-    stages under the food families. The distinction is load-bearing because a
-    stage's food may itself be a packaging stage — Agribalyse packs the
-    wholemeal sandwich by consuming the French-bread sandwich as a proxy — and
-    reading "under Packaging" as "is a packaging" then leaves the stage with no
-    food at all, hence with no row.
-    """
+    """A packaging, not a packed food: PACK_AGB files systems under a dotted segment, stages under food families."""
     return any(p.startswith(".")
                for p in act.classifications.get("Category", "").split("\\"))
 
 
 def stage_bill(stage: ActivityDetail, targets: dict[str, str], resolve) -> tuple | None:
-    """The food a packaging stage packs, and what it is packed in — pure, tested.
-
-    Returns `(food process-id, [(system, systems per unit of food)])`, or None
-    when the process is not a stage at all: a packaging system or element, which
-    consumes no food. The list is empty for a stage that packs in nothing ("No
-    pack", raw fruit sold loose) — a list rather than an optional system so the
-    caller can still tell "no stage" from "a stage that packs nothing".
-
-    The food is an input classified under `Agricultural` and not a packaging;
-    that positive test is what keeps a third input — electricity, waste — from
-    quietly becoming the divisor. Dividing by the food amount is what turns "per
-    unit packaged" into "per unit of food", rather than assuming the 1 kg for
-    1 kg Agribalyse happens to use ("No losses assumed at packaging"). A stage
-    carrying several candidates says so and keeps the first: silence there would
-    be a wrong factor on every row of the product.
-
-    `resolve` maps a process-id to its `ActivityDetail`; `targets` holds the
-    corrected ids, because the food is often a co-product and the id the typed
-    view reports would name an arbitrary sibling.
-    """
+    """`(food, [(system, systems per unit of food)])` of a packaging stage; None if it is not one, empty list if it packs nothing."""
     foods, systems = [], []
     for e in stage.technosphere_inputs:
         if e.is_reference:
@@ -327,17 +157,7 @@ def stage_bill(stage: ActivityDetail, targets: dict[str, str], resolve) -> tuple
 
 
 def packaging_bills(client: Client, fetch) -> tuple[dict[str, list], dict[str, list]]:
-    """One sweep of the packaging branch, read two ways.
-
-    `by_stage` keeps each stage's own `(food, bill)`, and `by_food` gathers, per
-    packed food, every system any stage packs it in. The two differ because one recipe
-    stands in for a whole family of Ciqual products — 28 breakfast cereals share
-    one — each with its own stage: asking the recipe gives the whole family's
-    formats, while asking one product's stage gives that product's.
-
-    A food packed in nothing gets an empty list, which is how the run can still
-    report "no packaging (No pack)" apart from "no packaging stage".
-    """
+    """One sweep of the packaging branch: each stage's own bill, and the union per packed food."""
     by_stage: dict[str, list] = {}
     by_food: dict[str, list] = {}
     for a in client.search_activities(classification="Category",
@@ -357,11 +177,7 @@ def packaging_bills(client: Client, fetch) -> tuple[dict[str, list], dict[str, l
     return by_stage, by_food
 
 
-# The lifecycle a Ciqual product is modelled through, downstream of the
-# packaging: at consumer <- at retail <- at distribution <- at packaging. Only
-# these links are followed to find a product's packaging — an ingredient link
-# never is, or a recipe with no stage of its own would silently inherit the
-# packaging of one of its ingredients.
+# at consumer <- at retail <- at distribution <- at packaging: the only links followed.
 _LIFECYCLE_CATEGORIES = (
     "Agricultural\\Food\\Preparation",
     "Agricultural\\Food\\Retail",
@@ -372,32 +188,7 @@ _LIFECYCLE_CATEGORIES = (
 
 def packed_as(fetch, bills: tuple, pid: str, node: tuple,
               depth: int = 0) -> tuple | None:
-    """What a product really is, and what packs it: `(food, packaging entries)`.
-
-    A recipe or an "at plant" process is the food, and is in `by_food` already.
-    A Ciqual product is neither its own recipe nor its own packaging: it is the
-    "at consumer" process, three stages downstream of both, and the walk follows
-    that chain — at consumer, at retail, at distribution — until it lands on the
-    stage, which names the food it packs. None when nothing packs this product,
-    a recipe that no stage consumes staying its own food.
-
-    The stage is answered from `by_stage`, and only what falls through to
-    `by_food` gets the union over a whole Ciqual family: a product asks its own
-    stage, so a cereal packed in a 500 g bag does not also come out in the 27
-    other formats its recipe stands in for.
-
-    Only lifecycle links are followed, never an ingredient link, or a recipe
-    with no stage of its own would inherit the packaging of one of its
-    ingredients — the aioli would come out packed in an olive-oil bottle.
-
-    The quantity that comes back is per unit of the *packed* food, which is what
-    Ecobalyse expects and what the aioli was validated on: 2,35 systems per kg,
-    not the 2,61 that folding in the retail and consumer losses would give.
-
-    `fetch` maps a process-id to `(detail, corrected target ids)`, and `node` is
-    that pair for `pid` itself — handed in rather than fetched, so the products
-    of a run are not all held in the cache on top of their chains.
-    """
+    """What a product is and what packs it, `(food, entries)`, walking a Ciqual product down its lifecycle to its stage."""
     by_stage, by_food = bills
     if pid in by_stage:
         return by_stage[pid]
@@ -426,13 +217,7 @@ def packed_as(fetch, bills: tuple, pid: str, node: tuple,
 
 
 def system_rows(prefix: list, entries: list) -> list[list]:
-    """The packaging rows of one product — pure, tested.
-
-    The row is the packaging as a single process, enough to hand to the engine,
-    which resolves the rest. Quantities are per functional unit of the product,
-    so a grain billed by the ton carries a thousand times the systems a kilo
-    does.
-    """
+    """The packaging rows of one product, the system as a single process, per functional unit."""
     return [prefix + [
         system.activity_name,
         system.process_id,
@@ -443,12 +228,7 @@ def system_rows(prefix: list, entries: list) -> list[list]:
 
 
 def selected_products(client: Client, limit: int, scope: str) -> list:
-    """The products to extract, and the first `limit` of them for a dry run.
-
-    islice stops after `limit`, so a capped run never pulls the whole
-    catalogue; `len(results)` reports the server-side total for the warning.
-    Truncation is always said out loud, never silent.
-    """
+    """The products to extract; a `limit` truncates for a dry run and says so."""
     value, label = _SCOPES[scope]
     res = client.search_activities(classification="Category",
                                    classification_value=value, limit=limit or 200)
@@ -493,14 +273,11 @@ def main() -> None:
 
     db_path = Path(args.agribalyse).expanduser().resolve() if args.agribalyse else None
     have_file = db_path is not None and db_path.is_file()
-    # --replace deletes the upload before re-uploading, so refuse now rather
-    # than after: an unreadable file would leave the machine with no database.
+    # Refuse now: --replace deletes the upload first, leaving the machine with none.
     if args.replace and not have_file:
         ap.error(f"--replace re-uploads the database, so --agribalyse must name a "
                  f"readable file{'' if db_path is None else f': {db_path}'}")
-    # A missing file is otherwise not fatal: it is only read when nothing is
-    # uploaded yet, and a command line kept from the first run must keep working
-    # once the drive holding the export is gone.
+    # Otherwise not fatal: the file is only read when nothing is uploaded yet.
     if db_path is not None and not have_file:
         print(f"   ! --agribalyse: no such file: {db_path} — ignored, "
               f"only the uploaded {_DB_NAME} can be used")
@@ -512,22 +289,18 @@ def main() -> None:
     print(f"   data    {inst.data_dir}  (engine {inst.version}, data {inst.data_version})")
 
     with tempfile.TemporaryDirectory() as tmp:
-        # The engine insists on an existing config file; an empty one means
-        # "all defaults" — the database arrives via upload, not via TOML.
+        # The engine insists on a config file; an empty one means all defaults.
         config = Path(tmp) / "volca.toml"
         config.write_text("")
 
         print("2. Starting engine ...")
-        # Pass the binary from download() explicitly so the exact downloaded
-        # version is used, not whatever the default lookup finds first on PATH.
+        # The binary from download(), not whatever the lookup finds first on PATH.
         srv = Server(config=str(config), port=_PORT, binary=str(inst.binary))
         srv.start(idle_timeout=1800, wait_timeout=_STARTUP_TIMEOUT)
         try:
             client = Client(base_url=srv.base_url)
 
-            # Uploads persist under the engine's install dir and are keyed by a
-            # slug derived from the display name, which is how a previous run's
-            # upload is recognised.
+            # Uploads persist under the engine's install dir, keyed by a slug.
             existing = {d.display_name: d.name for d in client.list_databases()}
             slug = existing.get(_DB_NAME)
             if slug is not None and args.replace:
@@ -542,8 +315,7 @@ def main() -> None:
                 print(f"3. Uploading {_DB_NAME} (once; later runs reuse it) ...")
                 slug = client.upload_database(db_path, _DB_NAME)["slug"]
             elif db_path is not None:
-                # The file was passed but is NOT re-read — say so, or a changed
-                # CSV looks mysteriously without effect.
+                # Say it, or a changed CSV looks mysteriously without effect.
                 print(f"3. Reusing the uploaded {_DB_NAME}; --agribalyse not re-read "
                       "(pass --replace after the source file changed).")
             client = client.use(slug)
@@ -553,8 +325,6 @@ def main() -> None:
             keep = material_pids(client)
             print(f"   {len(keep)} 'material' activities eligible as ingredients")
 
-            # Everything the packaging side fetches: the stages, the systems
-            # whole subcategories share, and the lifecycle chains walked down.
             cache: dict = {}
             def fetch(pid):
                 return fetch_cached(client, pid, cache)
@@ -574,10 +344,8 @@ def main() -> None:
             n_products = n_rows = n_systems = 0
             for product in selected_products(client, args.limit, args.scope):
                 act, targets = fetch_recipe(client, product.process_id)
-                prefix = product_columns(act)  # one source for both kinds of row
-                # A Ciqual product is neither its own recipe nor its own
-                # packaging: both are read off the food at the bottom of its
-                # lifecycle chain, so the two sheets describe the same thing.
+                prefix = product_columns(act)
+                # Both sheets describe the food at the bottom of the product's chain.
                 found = packed_as(fetch, bills, act.process_id, (act, targets))
                 food_pid, entries = found if found is not None else (act.process_id, None)
                 food = (act, targets) if food_pid == act.process_id else fetch(food_pid)
@@ -590,16 +358,14 @@ def main() -> None:
                 n_products += 1
                 n_rows += len(rows)
                 n_systems += len(systems)
-                # Never silent: a product without packaging says which of the two
-                # cases it is — no stage at all, or a stage packing in nothing.
+                # Never silent: no stage at all, or a stage packing in nothing.
                 if systems:
                     note = f", {len(systems)} packaging system(s)"
                 elif entries is not None:
                     note = ", no packaging (No pack)"
                 else:
                     note = ", no packaging stage"
-                # Full name, no truncation: co-products of one activity differ
-                # only at the tail ("..., 1 kg of cream (PGi) {FR} U").
+                # Full name: co-products differ only at the tail.
                 print(f"   {len(rows):3} ingredients{note}  {prefix[1]}")
 
             wb.save(args.out)
