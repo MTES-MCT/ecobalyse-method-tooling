@@ -49,7 +49,6 @@ uv run extract_agribalyse_recipes.py --scope ciqual --out agribalyse_ciqual.xlsx
 |-------|----------|----------------|
 | `recipes` (default) | the 763 composite foods | their bill of ingredients, and their packaging |
 | `ciqual` | the 2 451 products of the Ciqual table | their packaging — the ingredient rows only hold the lifecycle link, not a recipe |
-| `all` | the 21 510 processes of the database | a fallback; the ingredient rows are misleading outside the recipes (see below), and a product's packaging is repeated at each of its lifecycle stages — 10 692 rows for 1 540 distinct bills |
 
 `--limit N` is for a dry run and says out loud what it left out. `--agribalyse`
 is only read on the first run, which uploads the export into the engine; later
@@ -61,10 +60,11 @@ Agribalyse export: the script itself fetches its Python dependencies and the
 VoLCA engine binary on first run.
 
 The **lifecycle stages** of those foods (`at packaging`, `at distribution`,
-`at supermarket`, `at consumer`) are deliberately out: they carry logistics,
-cold and retail losses, not a bill of ingredients — which is where the transport
-and electricity rows came from when the whole `Agricultural\Food` branch was
-extracted.
+`at supermarket`, `at consumer`) carry logistics, cold and retail losses, not a
+bill of ingredients — which is where the transport and electricity rows came
+from when the whole `Agricultural\Food` branch was extracted. `--scope ciqual`
+covers the last of them on purpose, the `at consumer` process being the Ciqual
+product itself, and for its packaging only.
 
 ## What counts as an ingredient
 
@@ -74,8 +74,8 @@ travel: on a process copied from ecoinvent (`yogurt production`) the very same
 guards keep the whole factory inventory — the Petit-Suisse comes out with 39
 rows of which one, its 1,13 kg of cow milk, is an ingredient; the other 38 are
 the cleaning station (nitric acid, soda, EDTA) and the refrigerant. So the
-ingredient rows of a `ciqual` or `all` run are not a recipe, and the packaging
-is what those scopes are for.
+ingredient rows of a `ciqual` run are not a recipe, and the packaging is what
+that scope is for.
 
 Only the edible inputs; cooking, `[Dummy]` operations, waste treatment,
 electricity, heat and transport are dropped. An input is kept when all three

@@ -27,8 +27,7 @@ What is written
 ---------------
 Every process classified `Category=Agricultural\\Food\\Recipes` (the composite
 foods: pizza, ratatouille, aioli, ...), or the ~2 500 Ciqual products with
---scope ciqual, or every process of the database with --scope all; and for each
-of them:
+--scope ciqual; and for each of them:
 
 - its **edible ingredients**, recipe water included. An input is kept when its
   producing activity is tagged `Category type = material`, its role is a food
@@ -83,15 +82,14 @@ _STARTUP_TIMEOUT = 600
 # What a run covers, and how each is found.
 #
 # `recipes` are the composite/prepared foods (pizza, ratatouille, aioli, ...),
-# authored as a clean bill of ingredients. `ciqual` are the ~2 500 products of
-# the Ciqual table — the figure Agribalyse is published on — each being the "at
-# consumer" process, the one carrying the Ciqual code in its name; their
-# ingredient rows only hold the lifecycle link, their packaging being what they
-# are asked for. `all` adds every other process, background chemistry included.
+# authored as a clean bill of ingredients — the only place the ingredient rows
+# mean anything. `ciqual` are the ~2 500 products of the Ciqual table — the
+# figure Agribalyse is published on — each being the "at consumer" process, the
+# one carrying the Ciqual code in its name; they are extracted for their
+# packaging, their ingredient rows holding only the lifecycle link.
 _SCOPES = {
-    "recipes": ("Category", "Agricultural\\Food\\Recipes", "recipes"),
-    "ciqual": ("Category", "Agricultural\\Food\\Preparation", "Ciqual products"),
-    "all": (None, None, "processes"),
+    "recipes": ("Agricultural\\Food\\Recipes", "recipes"),
+    "ciqual": ("Agricultural\\Food\\Preparation", "Ciqual products"),
 }
 
 _HEADER = [
@@ -235,8 +233,8 @@ def fetch_cached(client: Client, pid: str, cache: dict) -> tuple[ActivityDetail,
     Packaging systems are shared by every product of a subcategory and a
     lifecycle chain is walked over and over, so the same handful of processes is
     asked for again and again; once each is enough. The product loop keeps using
-    the uncached `fetch_recipe`, holding every one of the 21 510 payloads being
-    the one way to run out of memory here.
+    the uncached `fetch_recipe`: holding every selected product's payload as
+    well is the one way to run out of memory here.
     """
     if pid not in cache:
         cache[pid] = fetch_recipe(client, pid)
@@ -385,8 +383,8 @@ def packaging_of(fetch, bills: tuple, pid: str, node: tuple,
     not the 2,61 that folding in the retail and consumer losses would give.
 
     `fetch` maps a process-id to `(detail, corrected target ids)`, and `node` is
-    that pair for `pid` itself — handed in rather than fetched, so a run over
-    every process of the database does not end up holding all 21 510 payloads.
+    that pair for `pid` itself — handed in rather than fetched, so the products
+    of a run are not all held in the cache on top of their chains.
     """
     by_stage, by_food = bills
     if pid in by_stage:
@@ -439,13 +437,11 @@ def selected_products(client: Client, limit: int, scope: str) -> list:
     catalogue; `len(results)` reports the server-side total for the warning.
     Truncation is always said out loud, never silent.
     """
-    kwargs = {} if scope == "all" else {
-        "classification": _SCOPES[scope][0],
-        "classification_value": _SCOPES[scope][1]}
-    res = client.search_activities(limit=limit or 200, **kwargs)
+    value, label = _SCOPES[scope]
+    res = client.search_activities(classification="Category",
+                                   classification_value=value, limit=limit or 200)
     kept = list(islice(res, limit)) if limit else list(res)
     total = len(res)
-    label = _SCOPES[scope][2]
     if limit and total > len(kept):
         print(f"  {total} {label}, keeping the first {len(kept)} (--limit 0 for all)")
     else:
@@ -474,8 +470,7 @@ def main() -> None:
                          "foods, with their bill of ingredients. 'ciqual': the "
                          "~2 500 products of the Ciqual table, for their packaging "
                          "— their ingredient rows only hold the lifecycle link, not "
-                         "a recipe. 'all': every process of the database, background "
-                         "chemistry included.")
+                         "a recipe.")
     ap.add_argument("--limit", type=int, default=0, metavar="N",
                     help="Extract only the first N products, for a dry run "
                          "(default: 0, no cap).")
