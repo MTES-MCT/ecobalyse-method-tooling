@@ -59,7 +59,7 @@ from pathlib import Path
 
 from openpyxl import Workbook
 
-from volca import ActivityDetail, ClassificationFilter, Client, Server, download
+from volca import ActivityDetail, Client, Server, download
 from volca.agribalyse import classify_exchange
 
 # Pinned, not "latest": engine and pyvolca version independently, and the wire
@@ -205,29 +205,6 @@ def material_pids(client: Client) -> set[str]:
     return {a.process_id for a in res}
 
 
-# Packaging sits one stage downstream of the recipe: an "at packaging" process
-# consuming the recipe plus one packaging system (PACK_AGB project, 2024). Its
-# Category places it under this branch, which is how the stage is recognised.
-_PACKAGING_CATEGORY = "Agricultural\\Food\\Packaging"
-
-
-def packaging_stages(client: Client, product: ActivityDetail) -> list[str]:
-    """Process-ids of the packaging stage(s) packing this product.
-
-    Direct consumers only. A stage two hops away belongs to another product
-    that uses this one as an ingredient — counting it would hang someone
-    else's packaging on this recipe. Several stages mean several packaging
-    variants (chilled and frozen, glass and PET): all are kept, told apart by
-    the `packaging_system` column.
-    """
-    consumers = client.get_consumers(
-        product.process_id,
-        classification_filters=[ClassificationFilter("Category", _PACKAGING_CATEGORY)],
-        max_depth=1,
-    ).consumers
-    return [c.process_id for c in consumers]
-
-
 def fetch_recipe(client: Client, pid: str) -> tuple[ActivityDetail, dict]:
     """Typed activity plus the corrected target ids of its inputs.
 
@@ -249,69 +226,125 @@ def fetch_activity(client: Client, pid: str, cache: dict) -> ActivityDetail:
     return cache[pid]
 
 
-def _is_packaging(act: ActivityDetail) -> bool:
-    return _PACKAGING_CATEGORY in act.classifications.get("Category", "")
+# Packaging sits one stage downstream of the food: an "at packaging" process
+# consuming the food plus one packaging system (PACK_AGB project, 2024). The
+# bill is read from those stages rather than by asking each product "who packs
+# you?": one sweep of this branch sees every stage of the database, which is
+# what makes the sheet complete.
+_PACKAGING_CATEGORY = "Agricultural\\Food\\Packaging"
+
+# An unlinked input: Agribalyse writes an all-zero activity link for an exchange
+# it does not connect to a producer, and the join with the flow names no process.
+_UNLINKED = "00000000-0000-0000-0000-000000000000"
 
 
-def stage_system(client: Client, cache: dict, stage_id: str,
-                 food_pid: str | None = None) -> tuple[ActivityDetail, float] | None:
-    """The packaging system of a stage and how many of it one unit of the packed
-    food carries — None for a stage that packs in nothing.
+def is_packaging_system(act: ActivityDetail) -> bool:
+    """A packaging system or one of its elements, as opposed to a packed food.
 
-    The stage holds two inputs: the packaging system, and the food it packs.
-    The food is the input whose target is `food_pid` — the very recipe we walked
-    down from — and not merely "whatever is not packaging", so a third input on
-    the stage cannot quietly become the divisor. Dividing by the food amount is
-    what turns "per unit packaged" into "per unit of food", rather than assuming
-    the 1 kg for 1 kg Agribalyse happens to use ("No losses assumed at
-    packaging"). A stage carrying several candidates says so and keeps the
-    first — silence there would be a wrong factor on every row of the product.
+    Both sit under `Agricultural\\Food\\Packaging`, so the branch alone cannot
+    tell them apart: PACK_AGB files the systems and their elements under a
+    dotted segment (".Packaging systems", ".Packaging II and III") and the
+    stages under the food families. The distinction is load-bearing because a
+    stage's food may itself be a packaging stage — Agribalyse packs the
+    wholemeal sandwich by consuming the French-bread sandwich as a proxy — and
+    reading "under Packaging" as "is a packaging" then leaves the stage with no
+    food at all, hence with no row.
     """
-    stage = fetch_activity(client, stage_id, cache)
-    systems, foods = [], []
+    return any(p.startswith(".")
+               for p in act.classifications.get("Category", "").split("\\"))
+
+
+def stage_bill(stage: ActivityDetail, targets: dict[str, str], resolve) -> tuple | None:
+    """The food a packaging stage packs, and what it is packed in — pure, tested.
+
+    Returns `(food process-id, [(system, systems per unit of food)])`, or None
+    when the process is not a stage at all: a packaging system or element, which
+    consumes no food. The list is empty for a stage that packs in nothing ("No
+    pack", raw fruit sold loose) — a list rather than an optional system so the
+    caller can still tell "no stage" from "a stage that packs nothing".
+
+    The food is an input classified under `Agricultural` and not a packaging;
+    that positive test is what keeps a third input — electricity, waste — from
+    quietly becoming the divisor. Dividing by the food amount is what turns "per
+    unit packaged" into "per unit of food", rather than assuming the 1 kg for
+    1 kg Agribalyse happens to use ("No losses assumed at packaging"). A stage
+    carrying several candidates says so and keeps the first: silence there would
+    be a wrong factor on every row of the product.
+
+    `resolve` maps a process-id to its `ActivityDetail`; `targets` holds the
+    corrected ids, because the food is often a co-product and the id the typed
+    view reports would name an arbitrary sibling.
+    """
+    foods, systems = [], []
     for e in stage.technosphere_inputs:
-        if e.is_reference or not e.target_process_id:
+        if e.is_reference:
             continue
-        target = fetch_activity(client, e.target_process_id, cache)
-        bucket = systems if _is_packaging(target) else foods
-        bucket.append((target, e.amount))
-    named = [f for f in foods if f[0].process_id == food_pid]
-    foods = named or foods
-    # A "No pack" stage (raw fruit sold loose) holds the food and nothing else.
-    if not systems or not foods or not foods[0][1]:
+        pid = targets.get(e.flow_name)
+        if not pid or pid.startswith(_UNLINKED):
+            continue
+        target = resolve(pid)
+        if target is None:
+            continue
+        if is_packaging_system(target):
+            systems.append((target, e.amount))
+        elif target.classifications.get("Category", "").startswith("Agricultural"):
+            foods.append((target, e.amount))
+    if not foods or not foods[0][1]:
         return None
     if len(systems) > 1 or len(foods) > 1:
         print(f"   ! {stage.activity_name[:56]:56} {len(systems)} packaging and "
               f"{len(foods)} food input(s), keeping the first of each")
-    system, system_amount = systems[0]
-    return system, system_amount / foods[0][1] / (system.product_amount or 1.0)
+    food, food_amount = foods[0]
+    return food.process_id, [
+        (system, system_amount / food_amount / (system.product_amount or 1.0))
+        for system, system_amount in systems[:1]]
 
 
-def system_rows(client: Client, cache: dict, prefix: list, food_pid: str,
-                stage_ids: list[str]) -> list[list]:
-    """One packaging row per distinct system the product is packed in.
+def packaging_by_food(client: Client, cache: dict) -> dict[str, list]:
+    """Every packaged food of the database and the system(s) it is packed in.
 
-    One recipe often stands in for a whole family of Ciqual products — 28
-    breakfast cereals share one — and each of those products has its own
-    packaging stage naming the very same system. Writing it once per stage
-    would repeat it 28 times, so systems are deduplicated: a product genuinely
-    offered in a glass jar and in a plastic pot still keeps both rows.
+    One sweep of the packaging branch, so a product only has to look itself up
+    afterwards. Systems are deduplicated because one recipe stands in for a
+    whole family of Ciqual products — 28 breakfast cereals share one — and each
+    of those products has its own stage naming the very same system; a product
+    genuinely offered in a glass jar and in a plastic pot keeps both.
 
-    The row is the packaging as a single process — enough to hand to the
-    engine, which resolves the rest.
+    A food packed in nothing gets an empty list, which is how the run can still
+    report "no packaging (No pack)" apart from "no packaging stage".
     """
-    systems = {}
-    for stage_id in stage_ids:
-        found = stage_system(client, cache, stage_id, food_pid)
-        if found is not None:
-            systems.setdefault((found[0].process_id, found[1]), found)
+    bill: dict[str, list] = {}
+    for a in client.search_activities(classification="Category",
+                                      classification_value=_PACKAGING_CATEGORY,
+                                      limit=200):
+        stage, targets = fetch_recipe(client, a.process_id)
+        found = stage_bill(stage, targets,
+                           lambda pid: fetch_activity(client, pid, cache))
+        if found is None:
+            continue
+        food_pid, entries = found
+        known = bill.setdefault(food_pid, [])
+        for system, per_food in entries:
+            if not any(s.process_id == system.process_id and q == per_food
+                       for s, q in known):
+                known.append((system, per_food))
+    return bill
+
+
+def system_rows(prefix: list, entries: list) -> list[list]:
+    """The packaging rows of one product — pure, tested.
+
+    The row is the packaging as a single process, enough to hand to the engine,
+    which resolves the rest. Quantities are per functional unit of the product,
+    so a grain billed by the ton carries a thousand times the systems a kilo
+    does.
+    """
     return [prefix + [
         system.activity_name,
         system.process_id,
         prefix[3] * per_food,
         system.product_amount,
         system.product_unit or system.unit or "",
-    ] for system, per_food in systems.values()]
+    ] for system, per_food in entries]
 
 
 def selected_products(client: Client, limit: int, everything: bool) -> list:
@@ -427,7 +460,15 @@ def main() -> None:
             keep = material_pids(client)
             print(f"   {len(keep)} 'material' activities eligible as ingredients")
 
-            print("4. Extracting ...")
+            # Every activity fetched: the packaging stages and the systems whole
+            # subcategories share, then the products themselves.
+            cache: dict = {}
+            print("4. Reading the packaging stages ...")
+            packaging = packaging_by_food(client, cache)
+            print(f"   {sum(len(v) for v in packaging.values())} (product, packaging "
+                  f"system) pairs over {len(packaging)} packed products")
+
+            print("5. Extracting ...")
             wb = Workbook()
             ws = wb.active
             ws.title = "ingredients"
@@ -435,16 +476,11 @@ def main() -> None:
             ws_sys = wb.create_sheet("packaging")
             ws_sys.append(_SYSTEM_HEADER)
             n_products = n_rows = n_systems = 0
-            # Every activity fetched: the recipes themselves, their packaging
-            # stages, and the systems whole subcategories share.
-            cache: dict = {}
             for product in selected_products(client, args.limit, args.all):
                 act, targets = fetch_recipe(client, product.process_id)
-                cache[act.process_id] = act  # the packaging walk meets it again
                 prefix = product_columns(act)  # one source for both kinds of row
                 rows = recipe_rows(act, targets, keep)
-                stages = packaging_stages(client, act)
-                systems = system_rows(client, cache, prefix, act.process_id, stages)
+                systems = system_rows(prefix, packaging.get(act.process_id, []))
                 for row in rows:
                     ws.append(row)
                 for row in systems:
@@ -452,11 +488,11 @@ def main() -> None:
                 n_products += 1
                 n_rows += len(rows)
                 n_systems += len(systems)
-                # Never silent: a recipe without packaging says which of the two
+                # Never silent: a product without packaging says which of the two
                 # cases it is — no stage at all, or a stage packing in nothing.
                 if systems:
                     note = f", {len(systems)} packaging system(s)"
-                elif stages:
+                elif act.process_id in packaging:
                     note = ", no packaging (No pack)"
                 else:
                     note = ", no packaging stage"

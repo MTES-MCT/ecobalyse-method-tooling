@@ -8,14 +8,14 @@
 
 Fixtures are read off Agribalyse 3.2: the chilled pizza packed in a 450 g
 system, so 1/0,45 = 2,2222 systems per kg of pizza, which is the one division
-the packaging sheet hangs on. `fetch_activity` reads its cache before it reads
-the client, so a pre-filled cache and no client at all is enough to check it.
+the packaging sheet hangs on. `stage_bill` takes its resolver as an argument, so
+a dict's `get` and no client at all is enough to check it.
 """
 
 from dataclasses import dataclass, field
 
 from extract_agribalyse_recipes import (
-    ingredient_targets, product_columns, stage_system)
+    ingredient_targets, product_columns, stage_bill, system_rows)
 
 
 @dataclass
@@ -127,19 +127,35 @@ def test_the_reference_product_never_wins_over_the_input():
             name: f"{activity}_{flow}"}
 
 
-PACKAGING = {"Category": "Agricultural\\Food\\Packaging"}
+# A stage is filed under a food family; a system or element under a dotted
+# segment. That dot is the only thing telling a packaging from a packed food,
+# both living under Agricultural\Food\Packaging.
+STAGE_CAT = {"Category": "Agricultural\\Food\\Packaging\\Cereal products\\Pizzas"}
+SYSTEM_CAT = {"Category": "Agricultural\\Food\\Packaging\\Cereal products\\.Packaging systems"}
 RECIPE = {"Category": "Agricultural\\Food\\Recipes"}
 
 
 def packaging_stage(*inputs) -> dict:
-    """A stage packing 1 kg of pizza in a 450 g system, plus whatever is asked."""
-    cache = {
-        "system_pid": Detail("system_pid", SYSTEM, PACKAGING, 0.45),
+    """A stage packing 1 kg of pizza in a 450 g system, plus whatever is asked.
+
+    The keys are the corrected process-ids the stage's exchanges resolve to, so
+    a test only has to hand `stage_bill` the cache's `get`.
+    """
+    return {
+        "system_pid": Detail("system_pid", SYSTEM, SYSTEM_CAT, 0.45),
         "pizza_pid": Detail("pizza_pid", "Pizza, at plant {FR}", RECIPE, 1.0),
-        "stage_pid": Detail("stage_pid", "Pizza | at packaging {FR}", PACKAGING, 1.0,
+        "stage_pid": Detail("stage_pid", "Pizza | at packaging {FR}", STAGE_CAT, 1.0,
                             list(inputs)),
     }
-    return cache
+
+
+def bill(cache, targets=None):
+    """`stage_bill` on the fixture, with the flow names resolving to themselves."""
+    stage = cache["stage_pid"]
+    if targets is None:
+        targets = {e.flow_name: e.target_process_id
+                   for e in stage.technosphere_inputs}
+    return stage_bill(stage, targets, cache.get)
 
 
 def test_stage_divides_by_the_food_it_packs():
@@ -147,13 +163,14 @@ def test_stage_divides_by_the_food_it_packs():
         Exchange(SYSTEM, 1.0, "kg", "system_pid"),
         Exchange("Pizza, at plant {FR}", 1.0, "kg", "pizza_pid"),
     )
-    system, per_food = stage_system(None, cache, "stage_pid", "pizza_pid")
-    assert system is cache["system_pid"]
-    assert abs(per_food - BAGS_PER_KG) < 1e-12  # 2,2222 systems per kg of pizza
+    food_pid, entries = bill(cache)
+    assert food_pid == "pizza_pid"
+    assert entries[0][0] is cache["system_pid"]
+    assert abs(entries[0][1] - BAGS_PER_KG) < 1e-12  # 2,2222 systems per kg of pizza
 
 
 def test_an_extra_input_does_not_become_the_divisor():
-    """The stage names the recipe it packs; anything else is not the food."""
+    """The food is an agricultural input; anything else is not."""
     cache = packaging_stage(
         Exchange(SYSTEM, 1.0, "kg", "system_pid"),
         Exchange("Pizza, at plant {FR}", 1.0, "kg", "pizza_pid"),
@@ -161,13 +178,71 @@ def test_an_extra_input_does_not_become_the_divisor():
     )
     cache["electricity_pid"] = Detail(
         "electricity_pid", "Electricity", {"Category": "Energy"}, 1.0)
-    _, per_food = stage_system(None, cache, "stage_pid", "pizza_pid")
-    assert abs(per_food - BAGS_PER_KG) < 1e-12  # not 1/0,5/0,45 = 4,44
+    _, entries = bill(cache)
+    assert abs(entries[0][1] - BAGS_PER_KG) < 1e-12  # not 1/0,5/0,45 = 4,44
 
 
 def test_a_stage_packing_nothing_gives_nothing():
+    """'No pack', raw fruit sold loose: a stage, but an empty bill."""
     cache = packaging_stage(Exchange("Fruit, at plant {FR}", 1.0, "kg", "pizza_pid"))
-    assert stage_system(None, cache, "stage_pid", "pizza_pid") is None
+    assert bill(cache) == ("pizza_pid", [])
+
+
+def test_a_packaging_system_is_not_a_stage():
+    """An N0 system holds its elements and no food, so it packs nothing.
+
+    Read as a stage it would come out packed in itself: 236 such rows appeared
+    the day the extraction was run over every process of the database, each
+    claiming a packaging system is packed in a packaging system.
+    """
+    cache = packaging_stage()
+    cache["stage_pid"] = Detail(
+        "stage_pid", SYSTEM, SYSTEM_CAT, 0.45,
+        [Exchange("Plastic bag element {FR}", 1.0, "p", "element_pid")])
+    cache["element_pid"] = Detail("element_pid", "Plastic bag element {FR}",
+                                  SYSTEM_CAT, 1.0)
+    assert bill(cache) is None
+
+
+def test_the_food_can_itself_be_a_packaging_stage():
+    """Agribalyse packs the wholemeal sandwich by consuming the French-bread one.
+
+    The proxy food is itself an "at packaging" process, so "under Packaging"
+    does not mean "is a packaging" — telling them apart by the dotted segment is
+    what keeps this stage from losing its food, and its row.
+    """
+    cache = packaging_stage(
+        Exchange(SYSTEM, 1.0, "kg", "system_pid"),
+        Exchange("Sandwich, French bread | at packaging {FR}", 1.0, "kg", "proxy_pid"),
+    )
+    cache["proxy_pid"] = Detail("proxy_pid", "Sandwich, French bread | at packaging {FR}",
+                                STAGE_CAT, 1.0)
+    food_pid, entries = bill(cache)
+    assert food_pid == "proxy_pid"
+    assert abs(entries[0][1] - BAGS_PER_KG) < 1e-12
+
+
+def test_an_unlinked_input_is_no_food():
+    """An all-zero activity link names no process, so it cannot be the divisor."""
+    zero = "00000000-0000-0000-0000-000000000000_f00d"
+    cache = packaging_stage(
+        Exchange(SYSTEM, 1.0, "kg", "system_pid"),
+        Exchange("Unlinked something {FR}", 0.5, "kg", zero),
+        Exchange("Pizza, at plant {FR}", 1.0, "kg", "pizza_pid"),
+    )
+    _, entries = bill(cache)
+    assert abs(entries[0][1] - BAGS_PER_KG) < 1e-12
+
+
+def test_rows_scale_by_the_functional_unit():
+    """Maize is billed by the ton: 10 bags per kg is 10 000 per functional unit."""
+    prefix = ["maize_pid", "Dried grain maize, at processing {FR} U", "FR", 1000.0, "kg"]
+    system = Detail("bag_pid", "Pop corn, 100g | Packaging System", SYSTEM_CAT, 0.1,
+                    product_unit="kg")
+    rows = system_rows(prefix, [(system, 10.0)])
+    assert rows == [prefix + ["Pop corn, 100g | Packaging System", "bag_pid",
+                              10000.0, 0.1, "kg"]]
+    assert system_rows(prefix, []) == []
 
 
 if __name__ == "__main__":

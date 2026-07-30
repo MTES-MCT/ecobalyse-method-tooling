@@ -88,17 +88,41 @@ Pizza, … | Chilled | Cardboard | at packaging {FR}     Category = Agricultural
 └─ 1 kg  Pizzas, chilled, 450g | Packaging System, N0, All, Cardboard support with plastic bag
 ```
 
-The script finds that stage — the recipe's direct consumer under
-`Agricultural\Food\Packaging` — and writes the packaging system it consumes as
-a single process: a black box, but one an impact engine resolves on its own.
-`systems_per_functional_unit` says how many of it one functional unit of the
-product carries — a 450 g system is counted 1/0,45 = 2,22 times per kg —
-computed by dividing the stage's system amount by the food amount it packs,
-not by assuming the 1 kg for 1 kg Agribalyse happens to use.
+The script sweeps those stages once — every process under
+`Agricultural\Food\Packaging` — and each one names the food it packs and the
+system it packs it in. A product then only looks itself up. Reading it in this
+direction, rather than asking each product "who packs you?", is what makes the
+sheet complete: over the whole database the question-per-product version lost
+8 products and invented 236 rows (see below).
 
-Over the 763 processes of `Category=Agricultural\Food\Recipes` in Agribalyse
-3.2: 741 recipes come out with a packaging system, 17 have no packaging stage
-and 5 have a stage that packs in nothing.
+The system is written as a single process: a black box, but one an impact engine
+resolves on its own. `systems_per_functional_unit` says how many of it one
+functional unit of the product carries — a 450 g system is counted 1/0,45 = 2,22
+times per kg — obtained by dividing the stage's system amount by the food amount
+it packs, not by assuming the 1 kg for 1 kg Agribalyse happens to use.
+
+Over Agribalyse 3.2: 2 286 packaging stages, giving 1 540 (product, system)
+pairs. Restricted to the 763 recipes, 746 of them come out with a packaging
+system, for 820 rows.
+
+### Telling a packaging from a packed food
+
+Both sit under `Agricultural\Food\Packaging`, so the branch alone cannot separate
+them. PACK_AGB files the systems and their elements under a **dotted segment**
+(`.Packaging systems`, `.Packaging II and III`) and the stages under the food
+families, which is the distinction the script uses — 1 558 dotted processes, and
+not one of them consumes a food, so the rule holds throughout the database.
+
+It is load-bearing because reading "under Packaging" as "is a packaging" fails
+twice:
+
+- a stage's food can itself be an `at packaging` process, Agribalyse packing the
+  wholemeal sandwich by consuming the French-bread sandwich as a proxy. Both
+  inputs then look like packaging, the stage is left with no food, and 8 products
+  (sandwiches, Petit-Suisse, margarines) silently lost their packaging;
+- and a packaging system, asked "who packs you?", answers with the stage that
+  consumes it — which yielded 236 rows stating that a packaging system is packed
+  in itself.
 
 ### Things to know before reading the numbers
 
@@ -108,6 +132,10 @@ and 5 have a stage that packs in nothing.
   system. Those stages collapse into one row; a product genuinely offered in a
   glass jar and in a plastic pot keeps both, and the run prints how many systems
   each product ended up with.
+- **The quantity is per functional unit, which is not always a kilo.** Dried
+  grain maize is billed by the ton, so its 10 bags per kg are written
+  10 000 — read `systems_per_functional_unit` next to `functional_unit_amount`,
+  never alone.
 - **A packaging system belongs to a format and a subcategory.** The pizza system
   may not be reused to represent the same packaging for another product — PACK_AGB
   says so explicitly, and these inventories are not meant for comparing packaging
