@@ -9,7 +9,7 @@ Extracts the **edible ingredients** and **packaging systems** of Agribalyse 3.2 
 
 The methodology, database structure, results and silent failure modes are documented in:
 
-**[The beef was packed in its frying oil's bottle](https://volca.run/blog/agribalyse-ingredients-packaging-extraction/)**
+**[Extracting ingredients and packaging from Agribalyse: traps to avoid](https://volca.run/blog/agribalyse-ingredients-packaging-extraction/)**
 
 ## Run
 
