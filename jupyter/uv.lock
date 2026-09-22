@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = "==3.12.*"
 resolution-markers = [
     "sys_platform == 'win32'",
@@ -889,6 +889,7 @@ dependencies = [
     { name = "pandas" },
     { name = "pypardiso", marker = "platform_machine != 'aarch64' and platform_machine != 'arm64'" },
     { name = "python-dotenv" },
+    { name = "pyvolca" },
 ]
 
 [package.metadata]
@@ -907,6 +908,7 @@ requires-dist = [
     { name = "pandas" },
     { name = "pypardiso", marker = "platform_machine != 'aarch64' and platform_machine != 'arm64'", specifier = "~=0.4" },
     { name = "python-dotenv", specifier = ">=1.0.0" },
+    { name = "pyvolca", specifier = ">=0.9.0" },
 ]
 
 [[package]]
@@ -1631,7 +1633,7 @@ name = "pexpect"
 version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ptyprocess", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "ptyprocess" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [
@@ -1928,6 +1930,19 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/f7/ff/3cc9165fd44106973cd7ac9facb674a65ed853494592541d339bdc9a30eb/python_json_logger-4.1.0.tar.gz", hash = "sha256:b396b9e3ed782b09ff9d6e4f1683d46c83ad0d35d2e407c09a9ebbf038f88195", size = 17573, upload-time = "2026-03-29T04:39:56.805Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/27/be/0631a861af4d1c875f096c07d34e9a63639560a717130e7a87cbc82b7e3f/python_json_logger-4.1.0-py3-none-any.whl", hash = "sha256:132994765cf75bf44554be9aa49b06ef2345d23661a96720262716438141b6b2", size = 15021, upload-time = "2026-03-29T04:39:55.266Z" },
+]
+
+[[package]]
+name = "pyvolca"
+version = "0.12.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "platformdirs" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/94/77/90bd8717b7b008f93bb5ba49eb8f81027b2aa4362e4bb9e37f7ef3455699/pyvolca-0.12.1.tar.gz", hash = "sha256:2ce0430d3d1e57a630a96ac4182f1b9839453c6c30dca0ba5ff26d85b6736580", size = 222843, upload-time = "2026-09-20T12:57:47.106Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e9/58/493b2a27cd92ff8bea9a629c7f52ed22bf51be80be70e5e16def7ccab21b/pyvolca-0.12.1-py3-none-any.whl", hash = "sha256:80ea30c6ab077c2266981dde858631d734b0f38498891b381c9c00f7e2a24474", size = 119530, upload-time = "2026-09-20T12:57:45.47Z" },
 ]
 
 [[package]]

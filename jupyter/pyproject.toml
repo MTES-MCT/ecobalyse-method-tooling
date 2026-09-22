@@ -13,6 +13,7 @@ dependencies = [
     "matplotlib~=3.10.7",
     "pandas",
     "python-dotenv>=1.0.0",
+    "pyvolca>=0.9.0",
 
     # Brightway (same pins as ecobalyse/data, to read the same project)
     "bw2analyzer == 0.11.8",
