@@ -50,7 +50,7 @@ Neither scope contains the other. Seventeen recipes are reached by no Ciqual pro
 
 The workbook contains two sheets joined on `product_process_id`:
 
-- `ingredients`: product identity and functional unit, ingredient name, amount, unit, role and `ingredient_process_id`;
+- `ingredients`: product identity and functional unit, ingredient name, amount, unit, role and `ingredient_process_id` (the ingredient's own product, not just its producing activity: they differ for co-products);
 - `packaging`: product identity and functional unit, packaging-system name and process ID, systems per functional unit, and the system reference amount and unit.
 
 The packaging is kept as a process that an impact engine can resolve, not expanded into a material list.
