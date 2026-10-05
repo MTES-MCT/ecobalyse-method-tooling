@@ -415,6 +415,7 @@ def display_main_data(method, impact_category, activity):
 
     # IMPACTS
     scores = dict()
+    ecs = None  # only computed for EF 3.1
     try:
         # Some processes have negative production amounts (e.g., waste treatment processes that
         # consume 1 kg of waste rather than produce it). We need to get the sign of the production
