@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["pyvolca>=0.12", "openpyxl", "matplotlib"]
+# dependencies = ["pyvolca==0.12.1", "openpyxl", "matplotlib"]
 # ///
 """Hold ecoinvent processes against the BAFU processes a mapping sheet points them to.
 
@@ -15,12 +15,11 @@ process, draws, and writes one CSV line per pair saying what became of it.
 
 VOLCA_BINARY with VOLCA_DATA_DIR runs a local engine build and its data instead of the
 release, which is then not downloaded.
-
-pyvolca documentation: https://www.volca.run/docs/python/
 """
 
 import argparse
 import csv
+import json
 import os
 import re
 import statistics
@@ -67,6 +66,8 @@ BANDS = ((1.1, "10%"), (1.5, "×1.5"), (2, "×2"), (10, "×10"))
 SINGLE_SCORES = ("ECS", "PEF")
 TABLES = ("ECS", "Climate change")  # the two indicators the sheet itself tracks a gap on
 LABELS_PER_GRAPH = 3
+# Pinned: engine and pyvolca must agree on a wire revision neither number announces.
+_ENGINE_VERSION = "0.14.0"
 COLLECTION = "EF 3.1"  # the method as this tool loads it; the engine also carries its own built-in ones
 THREADS = 8  # parallel scoring requests: the engine gains little past this
 CHUNK = 250  # processes per request
@@ -213,20 +214,26 @@ def db_name(path: Path) -> str:
 
 def config_toml(ecoinvent: Path, bafu: Path, method: Path) -> str:
     """The engine configuration: both databases, and the method with its single scores."""
+
+    def toml_path(path: Path) -> str:
+        # absolute, since the engine reads relative paths from the config's own temporary
+        # folder; JSON quoting is a valid TOML string, Windows backslashes included
+        return json.dumps(str(path.resolve()))
+
     return f"""[server]
 port = 0
 
 [[databases]]
 name = "{db_name(ecoinvent)}"
-path = "{ecoinvent}"
+path = {toml_path(ecoinvent)}
 
 [[databases]]
 name = "{db_name(bafu)}"
-path = "{bafu}"
+path = {toml_path(bafu)}
 
 [[methods]]
 name = "{COLLECTION}"
-path = "{method}"
+path = {toml_path(method)}
 {SCORING}"""
 
 
@@ -249,7 +256,7 @@ def engine(toml: str, binary: str) -> Iterator[str]:
 def installation() -> tuple[str, Path]:
     """The engine binary and its data directory: a local build when named, else the release."""
     if "VOLCA_BINARY" not in os.environ:
-        installed = volca.download()
+        installed = volca.download(version=_ENGINE_VERSION)
         return str(installed.binary), installed.data_dir
     if "VOLCA_DATA_DIR" not in os.environ:
         sys.exit("VOLCA_BINARY needs VOLCA_DATA_DIR, the data directory of the same build")

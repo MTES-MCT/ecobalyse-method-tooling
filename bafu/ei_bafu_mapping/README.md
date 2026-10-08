@@ -14,12 +14,12 @@ uv run compare_mapping.py mapping.xlsx \
   --top 30
 ```
 
-It stands on its own: it downloads the latest engine release, starts it on a free port,
+It stands on its own: it downloads the engine release pinned in the script (`_ENGINE_VERSION`), starts it on a free port,
 loads both databases from their files and stops it at the end. `VOLCA_BINARY` (with
 `VOLCA_DATA_DIR`) runs a local build instead.
 
 Linux, macOS and Windows alike: `uv` brings its own Python, and the engine release
-carries a build for each. On Windows, run the same line from PowerShell.
+carries a build for each. On Windows, run the command from PowerShell, on one line.
 
 ## What it reads
 
@@ -37,7 +37,9 @@ carries a build for each. On Windows, run the same line from PowerShell.
 - **A method collection** (`--method`), any SimaPro method export, zipped or as the
   plain CSV. Ecobalyse uses EF 3.1 adapted 1.03. The ECS
   and PEF single scores are declared on top of it inside the script, on EF 3.1 category
-  names, so another family of method needs those two blocks rewritten.
+  names, so another family of method needs those two blocks rewritten. This ECS is the
+  Ecobalyse weighting on EF 3.1 alone, without Ecobalyse's own corrections: it ranks the
+  pairs, it is not the figure the ecobalyse pipeline publishes.
 
 ## What it writes
 
@@ -93,5 +95,3 @@ about the mapping.
   published table on sixty processes under EF 3.1 adapted 1.03: the median ratio is
   1.0000 on that sub-category and on the climate change total, and sixty of sixty sit
   inside the one percent band.
-- A scoring run takes about two minutes, most of it scoring some 19 000 ecoinvent
-  processes.
