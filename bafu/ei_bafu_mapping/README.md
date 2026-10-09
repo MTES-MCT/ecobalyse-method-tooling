@@ -3,43 +3,93 @@
 `compare_mapping.py` reads a mapping workbook that pairs ecoinvent 3.11 processes with
 BAFU 2026 processes, scores both processes of every pair on EF 3.1, and shows how far
 apart they are: one scatter per impact category plus the ECS and PEF single scores, each
-point one pair, coloured by the technical grade the workbook gives it.
+point one pair, coloured by the technical grade the workbook gives it. It also writes one
+CSV line per pair and prints the widest gaps.
 
-```bash
-cd ecobalyse-method-tooling/bafu/ei_bafu_mapping
-uv run compare_mapping.py mapping.xlsx \
-  --ecoinvent Ecoinvent3.11.CSV.zip \
-  --bafu "BAFU-2026 v1_ecoSpold v1.zip" \
-  --method "Environmental Footprint 3.1 (adapted).1.03.CSV.zip" \
-  --top 30
+## What you need
+
+- **The mapping workbook** (`.xlsx`), sheet `Matching Full`. The script reads these
+  columns, by position, and stops with a message naming the first one that differs:
+
+  | Column | Header | Read as |
+  |---|---|---|
+  | A | `EI 3.11 dataset` | the ecoinvent process, written the SimaPro way: `product {GEO}\| activity` |
+  | D | `Unit` | its unit |
+  | E | `BAFU Name` | the BAFU process |
+  | F | `Geography` | its location |
+  | G | `unit` | its unit |
+  | H | `conversion` | one BAFU unit in ecoinvent units, when the two units measure different things |
+  | I | `Source` | |
+  | J | `Tech Grade` | 0 (no match) to 3 (perfect match) |
+  | K | `Geo Grade` | |
+
+- **ecoinvent 3.11, cut-off, exported from SimaPro as CSV** (zipped or not). The export
+  carries the names with a ` | Cut-off, U` suffix, which the script expects.
+- **BAFU 2026 as its EcoSpold 1 archive**, the `.zip` as BAFU distributes it.
+- **The impact method, exported from SimaPro as CSV**: EF 3.1 adapted 1.03 is the one
+  Ecobalyse uses.
+
+The script needs no other installation than `uv`: `uv` brings its own Python and the
+libraries the script declares, and the script downloads the VoLCA engine itself.
+
+## Install, once (Windows)
+
+1. Download this repository: on its GitHub page, **Code → Download ZIP**, then extract it.
+2. Open PowerShell (Start menu, type `PowerShell`) and install `uv`:
+
+   ```powershell
+   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+
+   Close PowerShell and open it again, so it finds `uv`.
+
+On Linux or macOS, `curl -LsSf https://astral.sh/uv/install.sh | sh` installs `uv`, and
+`git clone` gets the repository.
+
+## Run
+
+In PowerShell, go to this folder, then run the script with your four files. The backtick
+at the end of a line continues the command on the next one; quote paths that hold spaces.
+
+```powershell
+cd C:\path\to\ecobalyse-method-tooling\bafu\ei_bafu_mapping
+uv run compare_mapping.py "C:\data\mapping.xlsx" `
+  --ecoinvent "C:\data\Ecoinvent3.11.CSV.zip" `
+  --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" `
+  --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip"
 ```
 
-It stands on its own: it downloads the latest engine release, starts it on a free port,
-loads both databases from their files and stops it at the end. `VOLCA_BINARY` (with
-`VOLCA_DATA_DIR`) runs a local build instead.
+On Linux or macOS, the same command ends its lines with `\` instead of a backtick.
 
-Linux, macOS and Windows alike: `uv` brings its own Python, and the engine release
-carries a build for each. On Windows, run the command from PowerShell, on one line.
+The first run downloads the latest engine release; every run starts the engine on a free
+port of your machine, loads both databases from their files, scores every mapped
+process and stops the engine at the end. Expect several minutes: loading and scoring the
+whole of ecoinvent is most of it. The results land next to the workbook (see below).
 
-## What it reads
+Options, all optional:
 
-- **The workbook**, sheet `Matching Full` by default (`--sheet`). The script checks the
-  header of the columns it reads and stops if the layout differs. Its `conversion`
-  column gives one BAFU unit in ecoinvent units (0.2778 kWh for one MJ, 1200 kg for one
-  car). The script reads it only between units of different dimensions, and only when
-  the two units the workbook writes measure what the engine reads on each side: a
-  factor written between other units would be applied to the wrong quantity.
-- **ecoinvent 3.11 as a SimaPro CSV export** (`--ecoinvent`): the workbook writes its
-  names the SimaPro way, `product {GEO}| activity`, which the export carries with a
-  ` | Cut-off, U` suffix.
-- **BAFU 2026 as its EcoSpold 1 archive** (`--bafu`), joined on the name and location
-  the workbook gives.
-- **A method collection** (`--method`), any SimaPro method export, zipped or as the
-  plain CSV. Ecobalyse uses EF 3.1 adapted 1.03. The ECS
-  and PEF single scores are declared on top of it inside the script, on EF 3.1 category
-  names, so another family of method needs those two blocks rewritten. This ECS is the
-  Ecobalyse weighting on EF 3.1 alone, without Ecobalyse's own corrections: it ranks the
-  pairs, it is not the figure the ecobalyse pipeline publishes.
+| Option | Default | Effect |
+|---|---|---|
+| `--sheet NAME` | `Matching Full` | the sheet to read |
+| `--top N` | 20 | how many of the widest gaps to list at the end |
+| `--min-grade N` | 2 | lowest technical grade the statistics and gap lists count |
+| `--long-term` | off | count emissions beyond a hundred years, on both sides |
+
+`VOLCA_BINARY` (with `VOLCA_DATA_DIR`, the data directory of the same build), set as
+environment variables, runs a local engine build instead of the downloaded release.
+
+## How it reads the inputs
+
+- **The workbook**: the `conversion` column is read only between units of different
+  dimensions (0.2778 kWh for one MJ, 1200 kg for one car), and only when the two units
+  the workbook writes measure what the engine reads on each side: a factor written
+  between other units would be applied to the wrong quantity.
+- **ecoinvent** is joined on the SimaPro name of column A, **BAFU** on the name and
+  location of columns E and F.
+- **The method**: the ECS and PEF single scores are declared on top of it inside the
+  script, on EF 3.1 category names, so another family of method needs those two blocks
+  rewritten. This ECS is the Ecobalyse weighting on EF 3.1 alone, without Ecobalyse's own
+  corrections: it ranks the pairs, it is not the figure the ecobalyse pipeline publishes.
 
 ## What it writes
 
@@ -87,11 +137,8 @@ about the mapping.
   two spellings brings the median to 1.001.
 - The ecoinvent side agrees with Brightway on the ecoinvent 3.11 processes Ecobalyse
   publishes.
-- Land use climate change was unreadable on the BAFU side up to v0.12.0: the engine gave
-  BAFU's fossil and biogenic methane the factor of land transformation methane, matched
-  through their shared CAS number, which put that sub-category hundreds of times above
-  what BAFU publishes. From v0.13.0 a factor whose name matches no flow stays unmatched
-  where the registry says the method named another substance. Measured against the
-  published table on sixty processes under EF 3.1 adapted 1.03: the median ratio is
-  1.0000 on that sub-category and on the climate change total, and sixty of sixty sit
-  inside the one percent band.
+- Land use climate change on the BAFU side matches the published table: measured on
+  sixty processes under EF 3.1 adapted 1.03, the median ratio is 1.0000 on that
+  sub-category and on the climate change total. Engines before v0.13.0 gave BAFU's
+  fossil and biogenic methane the factor of land transformation methane, which put that
+  sub-category hundreds of times too high.
