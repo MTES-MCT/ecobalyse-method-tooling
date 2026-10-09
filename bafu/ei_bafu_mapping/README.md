@@ -27,7 +27,9 @@ CSV line per pair and prints the widest gaps.
   carries the names with a ` | Cut-off, U` suffix, which the script expects.
 - **BAFU 2026 as its EcoSpold 1 archive**, the `.zip` as BAFU distributes it.
 - **The impact method, exported from SimaPro as CSV**: EF 3.1 adapted 1.03 is the one
-  Ecobalyse uses.
+  Ecobalyse uses. Export it with its version in the file name (`… (adapted).1.03.CSV.zip`):
+  an export without a version can come from a release whose category names differ, and
+  the run then stops (see "When it stops").
 
 The script needs no other installation than `uv`: `uv` brings its own Python and the
 libraries the script declares, and the script downloads the VoLCA engine itself.
@@ -77,6 +79,28 @@ Options, all optional:
 
 `VOLCA_BINARY` (with `VOLCA_DATA_DIR`, the data directory of the same build), set as
 environment variables, runs a local engine build instead of the downloaded release.
+
+## When it stops
+
+- **`the engine returned no ECS, PEF: this method names other categories`**: the method
+  file has a category the two single scores read under another name. A release without a
+  version number splits "Ecotoxicity, freshwater - organics" into two parts, `p.1` and
+  `p.2`, which the script does not know. Pass adapted 1.03 or 1.05.
+- **`CERTIFICATE_VERIFY_FAILED` while downloading the engine**: this Python does not trust
+  the certificates of the download site. In PowerShell, point it at the bundle that
+  `certifi` ships, then run the same command again:
+
+  ```powershell
+  $env:SSL_CERT_FILE = (uv run --with certifi python -c "import certifi; print(certifi.where())")
+  ```
+
+  The variable holds for this window only. `setx SSL_CERT_FILE "<that path>"` keeps it,
+  from the next window on. Behind a company firewall that re-signs web traffic, the
+  bundle of your IT department is the one to give instead.
+- **`Engine exited with code 3221225781 before reporting its bound port`** (Windows): that
+  code is `0xC0000135`, a DLL the engine needs is missing. Install the latest Microsoft
+  Visual C++ Redistributable x64 (`vc_redist.x64.exe`), or run the engine's `.exe` by
+  hand: Windows then names the missing DLL.
 
 ## How it reads the inputs
 
