@@ -11,6 +11,7 @@ table below, then open that folder's README.
 |--------|---------------------------|
 | [`flow-characterization/`](flow-characterization/) | List the BAFU biosphere flows the EF 3.1 method does not characterize, to target the mapping / synonym work instead of guessing. |
 | [`brightway_vs_volca/`](brightway_vs_volca/) | Diagonal parity clouds comparing ecobalyse-Brightway vs VoLCA on BAFU (same base, same EF 3.1 method), to validate the import and localize every diverging impact category. |
+| [`ei_bafu_mapping/`](ei_bafu_mapping/) | Check a workbook mapping ecoinvent 3.11 processes to BAFU processes: score both sides of every pair on EF 3.1 with VoLCA, one scatter per category plus the ECS and PEF single scores, the widest gaps listed, one CSV line per pair. Downloads and starts its own engine. |
 
 ## Shared context
 
