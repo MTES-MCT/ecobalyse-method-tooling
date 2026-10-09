@@ -47,19 +47,14 @@ On Linux or macOS, `curl -LsSf https://astral.sh/uv/install.sh | sh` installs `u
 
 ## Run
 
-In PowerShell, run the script from its address on GitHub with your four files. The
-backtick at the end of a line continues the command on the next one; quote paths that
-hold spaces.
+In PowerShell, run the script from its address on GitHub with your four files, all on
+one line; quote paths that hold spaces.
 
 ```powershell
-uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/ei_bafu_mapping/compare_mapping.py `
-  "C:\data\mapping.xlsx" `
-  --ecoinvent "C:\data\Ecoinvent3.11.CSV.zip" `
-  --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" `
-  --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip"
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/ei_bafu_mapping/compare_mapping.py "C:\data\mapping.xlsx" --ecoinvent "C:\data\Ecoinvent3.11.CSV.zip" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip"
 ```
 
-On Linux or macOS, the same command ends its lines with `\` instead of a backtick.
+The same command runs on Linux or macOS, with paths of those systems.
 
 Each run takes the script as it stands on `main`, so there is nothing to update. To run
 a fixed copy instead, download
