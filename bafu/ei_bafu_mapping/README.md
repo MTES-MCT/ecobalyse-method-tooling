@@ -34,32 +34,37 @@ libraries the script declares, and the script downloads the VoLCA engine itself.
 
 ## Install, once (Windows)
 
-1. Download this repository: on its GitHub page, **Code → Download ZIP**, then extract it.
-2. Open PowerShell (Start menu, type `PowerShell`) and install `uv`:
+Open PowerShell (Start menu, type `PowerShell`) and install `uv`:
 
-   ```powershell
-   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-   ```
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
 
-   Close PowerShell and open it again, so it finds `uv`.
+Close PowerShell and open it again, so it finds `uv`. There is nothing else to install,
+not even this repository: the script declares what it needs and `uv` fetches it.
 
-On Linux or macOS, `curl -LsSf https://astral.sh/uv/install.sh | sh` installs `uv`, and
-`git clone` gets the repository.
+On Linux or macOS, `curl -LsSf https://astral.sh/uv/install.sh | sh` installs `uv`.
 
 ## Run
 
-In PowerShell, go to this folder, then run the script with your four files. The backtick
-at the end of a line continues the command on the next one; quote paths that hold spaces.
+In PowerShell, run the script from its address on GitHub with your four files. The
+backtick at the end of a line continues the command on the next one; quote paths that
+hold spaces.
 
 ```powershell
-cd C:\path\to\ecobalyse-method-tooling\bafu\ei_bafu_mapping
-uv run compare_mapping.py "C:\data\mapping.xlsx" `
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/ei_bafu_mapping/compare_mapping.py `
+  "C:\data\mapping.xlsx" `
   --ecoinvent "C:\data\Ecoinvent3.11.CSV.zip" `
   --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" `
   --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip"
 ```
 
 On Linux or macOS, the same command ends its lines with `\` instead of a backtick.
+
+Each run takes the script as it stands on `main`, so there is nothing to update. To run
+a fixed copy instead, download
+[`compare_mapping.py`](compare_mapping.py) (**Download raw file** on its GitHub page) and
+pass its path to `uv run` in place of the address.
 
 The first run downloads the latest engine release; every run starts the engine on a free
 port of your machine, loads both databases from their files, scores every mapped
