@@ -127,8 +127,9 @@ counts long-term emissions, so the two conventions never overwrite each other:
   empty is left out. The grey bands are ±10% and
   a factor 2. The three widest gaps among well graded pairs are named on each graph.
 - `… - Matching Full.csv`: every distinct pair, with a `status` saying whether it was
-  compared or why not (a name absent from a database, units of different dimensions
-  with no conversion in the workbook), a `conversion` column saying where the unit
+  compared or why not (no BAFU process in the workbook, a workbook cell in error such as
+  `#REF!`, a name absent from a database, units of different dimensions with no
+  conversion in the workbook), a `conversion` column saying where the unit
   factor came from, `unit table` or `sheet`, and both scores of every category.
 
 The terminal report counts what was compared, then gives per category the median

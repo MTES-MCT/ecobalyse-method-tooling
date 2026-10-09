@@ -149,8 +149,8 @@ def cell(value: object) -> str:
     return f"{value:g}" if isinstance(value, float | int) else str(value)
 
 
-def read_sheet(path: Path, sheet: str) -> tuple[list[Pair], int]:
-    """Read the pairs a mapping sheet proposes, once each, and how many rows map to nothing.
+def read_sheet(path: Path, sheet: str) -> tuple[list[Pair], list[tuple[Pair, str]]]:
+    """Read the pairs a mapping sheet proposes, once each, and the rows that name no BAFU process, with why.
 
     Stops the run if the sheet's header is not the one this reads.
     """
@@ -165,16 +165,20 @@ def read_sheet(path: Path, sheet: str) -> tuple[list[Pair], int]:
         if header[col] != name:
             sys.exit(f"{sheet}: column {col + 1} is {header[col]!r}, expected {name!r}")
     pairs: dict[Pair, None] = {}
-    unmapped = 0
+    unmapped: dict[Pair, str] = {}
     for row in rows:
         ecoinvent, e_unit, bafu, geo, b_unit, conversion, source, tech, geo_grade = (row[c] for c in COLUMNS.values())
-        if bafu in (None, 0, "#N/A"):
-            unmapped += 1
+        if ecoinvent is None:  # a blank line under the table
+            continue
+        if bafu in (None, 0, "#N/A") or str(bafu).startswith("#"):
+            # a spreadsheet error other than #N/A (#REF!, ...) is a broken sheet, not a missing process
+            why = "no BAFU process in the sheet" if bafu in (None, 0, "#N/A") else f"sheet cell in error: {bafu}"
+            unmapped.setdefault(Pair(*map(cell, (ecoinvent, e_unit)), "", "", "", "", *map(cell, (source, tech, geo_grade))), why)
         else:
             # the conversion kept whole: "%g" would round 1/3.6 to six digits
             texts = (*map(cell, (ecoinvent, e_unit, bafu, geo, b_unit)), str(conversion))
             pairs.setdefault(Pair(*texts, *map(cell, (source, tech, geo_grade))))
-    return list(pairs), unmapped
+    return list(pairs), list(unmapped.items())
 
 
 def key(name: str) -> str:
@@ -513,7 +517,7 @@ def main() -> None:
 
     with phase(f"reading {args.sheet}"):
         pairs, unmapped = read_sheet(args.mapping, args.sheet)
-    print(f"{len(pairs)} distinct pairs, {unmapped} rows mapped to nothing")
+    print(f"{len(pairs)} distinct pairs, {len(unmapped)} ecoinvent rows without a BAFU process")
     binary, data_dir = installation()
     units = unit_table((data_dir / "units.csv").read_text())
     toml = config_toml(args.ecoinvent, args.bafu, args.method)
@@ -534,7 +538,7 @@ def main() -> None:
         bafu = index(listed[bafu_db], lambda a: (key(a.activity_name), a.location))
         matched = [(p, match(p, ecoinvent, bafu, units)) for p in pairs]
         found = [m for _, m in matched if isinstance(m, Match)]
-        failed = [(p, m) for p, m in matched if isinstance(m, str)]
+        failed = unmapped + [(p, m) for p, m in matched if isinstance(m, str)]
         ei_pids, bafu_pids = list({m.ecoinvent.process_id for m in found}), list({m.bafu.process_id for m in found})
         with phase(f"scoring {len(ei_pids)} ecoinvent processes"):
             ei_scores = score(url, ei_db, ei_pids, args.long_term)
