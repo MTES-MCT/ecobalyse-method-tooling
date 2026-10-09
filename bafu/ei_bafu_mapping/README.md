@@ -14,7 +14,7 @@ uv run compare_mapping.py mapping.xlsx \
   --top 30
 ```
 
-It stands on its own: it downloads the engine release pinned in the script (`_ENGINE_VERSION`), starts it on a free port,
+It stands on its own: it downloads the latest engine release, starts it on a free port,
 loads both databases from their files and stops it at the end. `VOLCA_BINARY` (with
 `VOLCA_DATA_DIR`) runs a local build instead.
 

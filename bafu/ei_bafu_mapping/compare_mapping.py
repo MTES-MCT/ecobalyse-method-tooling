@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["pyvolca==0.12.1", "openpyxl", "matplotlib"]
+# dependencies = ["pyvolca>=0.12", "openpyxl", "matplotlib"]
 # ///
 """Hold ecoinvent processes against the BAFU processes a mapping sheet points them to.
 
@@ -66,8 +66,6 @@ BANDS = ((1.1, "10%"), (1.5, "×1.5"), (2, "×2"), (10, "×10"))
 SINGLE_SCORES = ("ECS", "PEF")
 TABLES = ("ECS", "Climate change")  # the two indicators the sheet itself tracks a gap on
 LABELS_PER_GRAPH = 3
-# Pinned: engine and pyvolca must agree on a wire revision neither number announces.
-_ENGINE_VERSION = "0.14.0"
 COLLECTION = "EF 3.1"  # the method as this tool loads it; the engine also carries its own built-in ones
 THREADS = 8  # parallel scoring requests: the engine gains little past this
 CHUNK = 250  # processes per request
@@ -256,7 +254,7 @@ def engine(toml: str, binary: str) -> Iterator[str]:
 def installation() -> tuple[str, Path]:
     """The engine binary and its data directory: a local build when named, else the release."""
     if "VOLCA_BINARY" not in os.environ:
-        installed = volca.download(version=_ENGINE_VERSION)
+        installed = volca.download()
         return str(installed.binary), installed.data_dir
     if "VOLCA_DATA_DIR" not in os.environ:
         sys.exit("VOLCA_BINARY needs VOLCA_DATA_DIR, the data directory of the same build")
