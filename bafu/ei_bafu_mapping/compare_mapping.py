@@ -159,8 +159,14 @@ def read_sheet(path: Path, sheet: str) -> tuple[list[Pair], list[tuple[Pair, str
             positions.append(header.index(name, positions[-1] + 1))
         except ValueError:
             sys.exit(f"{sheet}: no column {name!r} after {previous!r}")
+    # a name met again before the next column read is two candidates, as when a second proposal
+    # copies a header: say so rather than read whichever comes first
+    for name, here, after in zip(COLUMNS, positions, positions[1:]):
+        if name in header[here + 1 : after]:
+            sys.exit(f"{sheet}: two columns {name!r} before {header[after]!r}, rename the one not to read")
     pairs: dict[Pair, None] = {}
-    unmapped: dict[Pair, str] = {}
+    # keyed with its reason too: two rows alike but for what their BAFU cell holds stay two lines
+    unmapped: dict[tuple[Pair, str], None] = {}
     for row in rows:
         ecoinvent, e_unit, bafu, geo, b_unit, conversion, source, tech, geo_grade = (row[c] for c in positions)
         if ecoinvent is None:  # a blank line under the table
@@ -170,12 +176,12 @@ def read_sheet(path: Path, sheet: str) -> tuple[list[Pair], list[tuple[Pair, str
             # what the cell holds is kept, an empty cell and a #N/A can mean different things to the sheet's author
             written = "empty" if bafu is None else cell(bafu)
             why = f"no BAFU process in the sheet: {written}" if bafu in (None, 0, "#N/A") else f"sheet cell in error: {bafu}"
-            unmapped.setdefault(Pair(*map(cell, (ecoinvent, e_unit)), "", "", "", "", *map(cell, (source, tech, geo_grade))), why)
+            unmapped.setdefault((Pair(*map(cell, (ecoinvent, e_unit)), "", "", "", "", *map(cell, (source, tech, geo_grade))), why))
         else:
             # the conversion kept whole: "%g" would round 1/3.6 to six digits
             texts = (*map(cell, (ecoinvent, e_unit, bafu, geo, b_unit)), str(conversion))
             pairs.setdefault(Pair(*texts, *map(cell, (source, tech, geo_grade))))
-    return list(pairs), list(unmapped.items())
+    return list(pairs), list(unmapped)
 
 
 def key(name: str) -> str:

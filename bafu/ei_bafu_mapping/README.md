@@ -11,8 +11,9 @@ CSV line per pair and prints the widest gaps.
 - **The mapping workbook** (`.xlsx`), sheet `Matching Full`. The script finds these
   columns by their header, in this order, and stops with a message naming the first one
   it cannot find. Other columns may sit between them (a second BAFU proposal, notes):
-  they are not read. Of the two headed `Geography`, the one read is the first after
-  `BAFU Name`. The letters below are those of the workbook without added columns:
+  they are not read, as long as their header differs from the columns read: a second
+  `BAFU Name` before the next column stops the run, since either could be the one meant.
+  Of the two headed `Geography`, the one read is the first after `BAFU Name`. The letters below are those of the workbook without added columns:
 
   | Column | Header | Read as |
   |---|---|---|
