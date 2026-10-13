@@ -30,6 +30,7 @@ from collections import Counter
 from collections.abc import Iterator
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
+from itertools import pairwise
 from math import copysign, log
 from pathlib import Path
 from typing import Literal, NamedTuple
@@ -42,18 +43,10 @@ import openpyxl  # noqa: E402
 import volca  # noqa: E402
 from volca import Activity, Client, Server  # noqa: E402
 
-# the sheet's columns this reads, by position: its header names two of them "Geography"
-COLUMNS = {
-    "EI 3.11 dataset": 0,
-    "Unit": 3,
-    "BAFU Name": 4,
-    "Geography": 5,
-    "unit": 6,
-    "conversion": 7,
-    "Source": 8,
-    "Tech\nGrade": 9,
-    "Geo Grade": 10,
-}
+# the sheet's columns this reads, by header, in the order the sheet puts them: each is the first
+# of its name after the previous one, so columns added in between are skipped, and of the two the
+# header names "Geography" the one read is BAFU's, after "BAFU Name"
+COLUMNS = ("EI 3.11 dataset", "Unit", "BAFU Name", "Geography", "unit", "conversion", "Source", "Tech\nGrade", "Geo Grade")
 # the technical grade, as the sheet's evaluation rules word it, drawn from the least trusted up
 GRADES = {
     "0": ("0, no match", "lightgrey"),
@@ -157,22 +150,26 @@ def read_sheet(path: Path, sheet: str) -> tuple[list[Pair], list[tuple[Pair, str
     ws = openpyxl.load_workbook(path, read_only=True, data_only=True)[sheet]
     rows = ws.iter_rows(values_only=True)
     # the header is the first row opening on the first column's name: editions put it on row 1 or 2
-    first = next(iter(COLUMNS))
-    header = next((r for r in rows if r and r[0] == first), None)
+    header = next((r for r in rows if r and r[0] == COLUMNS[0]), None)
     if header is None:
-        sys.exit(f"{sheet}: no header row starting with {first!r}")
-    for name, col in COLUMNS.items():
-        if header[col] != name:
-            sys.exit(f"{sheet}: column {col + 1} is {header[col]!r}, expected {name!r}")
+        sys.exit(f"{sheet}: no header row starting with {COLUMNS[0]!r}")
+    positions = [0]
+    for previous, name in pairwise(COLUMNS):
+        try:
+            positions.append(header.index(name, positions[-1] + 1))
+        except ValueError:
+            sys.exit(f"{sheet}: no column {name!r} after {previous!r}")
     pairs: dict[Pair, None] = {}
     unmapped: dict[Pair, str] = {}
     for row in rows:
-        ecoinvent, e_unit, bafu, geo, b_unit, conversion, source, tech, geo_grade = (row[c] for c in COLUMNS.values())
+        ecoinvent, e_unit, bafu, geo, b_unit, conversion, source, tech, geo_grade = (row[c] for c in positions)
         if ecoinvent is None:  # a blank line under the table
             continue
         if bafu in (None, 0, "#N/A") or str(bafu).startswith("#"):
-            # a spreadsheet error other than #N/A (#REF!, ...) is a broken sheet, not a missing process
-            why = "no BAFU process in the sheet" if bafu in (None, 0, "#N/A") else f"sheet cell in error: {bafu}"
+            # a spreadsheet error other than #N/A (#REF!, ...) is a broken sheet, not a missing process;
+            # what the cell holds is kept, an empty cell and a #N/A can mean different things to the sheet's author
+            written = "empty" if bafu is None else cell(bafu)
+            why = f"no BAFU process in the sheet: {written}" if bafu in (None, 0, "#N/A") else f"sheet cell in error: {bafu}"
             unmapped.setdefault(Pair(*map(cell, (ecoinvent, e_unit)), "", "", "", "", *map(cell, (source, tech, geo_grade))), why)
         else:
             # the conversion kept whole: "%g" would round 1/3.6 to six digits
@@ -475,7 +472,7 @@ def report(results: list[Result], failed: list[tuple[Pair, str]], min_grade: int
 def write_csv(results: list[Result], failed: list[tuple[Pair, str]], path: Path) -> None:
     """Keep every pair, compared or not, with both scores of every category."""
     categories = list(results[0][1]) if results else []
-    head = ["source", "tech grade", "geo grade", "ecoinvent", "BAFU", "BAFU location", "status", "unit", "conversion"]
+    head = ["source", "tech grade", "geo grade", "ecoinvent", "BAFU", "BAFU location", "status", "unit", "conversion", "factor"]
     with path.open("w", newline="") as f:
         out = csv.writer(f)
         out.writerow(head + [f"{c} {side}" for c in categories for side in ("ecoinvent", "BAFU")])
@@ -483,7 +480,7 @@ def write_csv(results: list[Result], failed: list[tuple[Pair, str]], path: Path)
             p = m.pair
             fixed = [p.source, p.tech_grade, p.geo_grade, p.ecoinvent, p.bafu, p.geo, "compared"]
             out.writerow(
-                fixed + [m.ecoinvent.product_unit, m.conversion] + [v for c in categories for v in compared[c]]
+                fixed + [m.ecoinvent.product_unit, m.conversion, m.scale] + [v for c in categories for v in compared[c]]
             )
         for p, reason in failed:
             out.writerow([p.source, p.tech_grade, p.geo_grade, p.ecoinvent, p.bafu, p.geo, reason])

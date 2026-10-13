@@ -8,8 +8,11 @@ CSV line per pair and prints the widest gaps.
 
 ## What you need
 
-- **The mapping workbook** (`.xlsx`), sheet `Matching Full`. The script reads these
-  columns, by position, and stops with a message naming the first one that differs:
+- **The mapping workbook** (`.xlsx`), sheet `Matching Full`. The script finds these
+  columns by their header, in this order, and stops with a message naming the first one
+  it cannot find. Other columns may sit between them (a second BAFU proposal, notes):
+  they are not read. Of the two headed `Geography`, the one read is the first after
+  `BAFU Name`. The letters below are those of the workbook without added columns:
 
   | Column | Header | Read as |
   |---|---|---|
@@ -127,10 +130,13 @@ counts long-term emissions, so the two conventions never overwrite each other:
   empty is left out. The grey bands are ±10% and
   a factor 2. The three widest gaps among well graded pairs are named on each graph.
 - `… - Matching Full.csv`: every distinct pair, with a `status` saying whether it was
-  compared or why not (no BAFU process in the workbook, a workbook cell in error such as
-  `#REF!`, a name absent from a database, units of different dimensions with no
-  conversion in the workbook), a `conversion` column saying where the unit
-  factor came from, `unit table` or `sheet`, and both scores of every category.
+  compared or why not (no BAFU process in the workbook, followed by what its cell holds,
+  `#N/A`, `0` or `empty`, a workbook cell in error such as `#REF!`, a name absent from a
+  database, units of different dimensions with no conversion in the workbook), a
+  `conversion` column saying where the unit factor came from, `unit table` or `sheet`,
+  a `factor` column giving it: how many BAFU units stand for one ecoinvent unit, the
+  number the BAFU scores are multiplied by (negative when one side's reference amount
+  is negative, as a waste treatment's is), and both scores of every category.
 
 The terminal report counts what was compared, then gives per category the median
 BAFU / ecoinvent ratio, how many pairs sit within 10%, within a factor 1.5, 2 and 10
