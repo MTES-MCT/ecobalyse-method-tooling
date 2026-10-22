@@ -43,7 +43,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import openpyxl  # noqa: E402
 import volca  # noqa: E402
 from volca import Activity, Client, ScoringRow, Server, UnitDefinition, VoLCAError  # noqa: E402
-from volca.compare_plot import BANDS, DifferentMeasures, Point, band_shares, fold, per_left_unit, widest  # noqa: E402
+from volca.compare_plot import BANDS, Point, band_shares, fold, widest  # noqa: E402
 
 # the sheet's columns this reads, by header, in the order the sheet puts them: each is the first
 # of its name after the previous one, so columns added in between are skipped, and of the two the
@@ -215,15 +215,15 @@ def key(name: str) -> str:
     return " ".join(name.split()).lower()
 
 
-def unit_of(units: UnitTable, name: str) -> tuple[str, UnitDefinition] | str:
-    """Read a unit name as the engine does, as the table spells it, or say why it cannot be read.
+def unit_of(units: UnitTable, name: str) -> UnitDefinition | str:
+    """Read a unit name as the engine does, or say why it cannot be read.
 
     The exact spelling first; failing that, the one row equal to it with case folded. Several
     such rows (MJ and mJ for "mj") are different units, so the name is refused, not guessed.
     """
     if name in units:
-        return name, units[name]
-    folded = [(spelling, unit) for spelling, unit in units.items() if spelling.lower() == name.lower()]
+        return units[name]
+    folded = [unit for spelling, unit in units.items() if spelling.lower() == name.lower()]
     if len(folded) == 1:
         return folded[0]
     return f"unit {name!r}: {len(folded)} rows of the unit table read it"
@@ -277,10 +277,9 @@ def match(pair: Pair, ecoinvent: dict, bafu: dict, units: UnitTable) -> Match | 
         return e_unit
     if isinstance(b_unit, str):
         return b_unit
-    scale = per_left_unit(e_unit[0], b_unit[0], units)
-    if not isinstance(scale, DifferentMeasures):
-        return Match(pair, e, b, scale, "unit table")
-    scale = sheet_factor(pair, (e.product_unit, e_unit[1]), (b.product_unit, b_unit[1]), units)
+    if e_unit.dimension == b_unit.dimension:
+        return Match(pair, e, b, e_unit.factor / b_unit.factor, "unit table")
+    scale = sheet_factor(pair, (e.product_unit, e_unit), (b.product_unit, b_unit), units)
     return scale if isinstance(scale, str) else Match(pair, e, b, scale, "sheet")
 
 
@@ -307,9 +306,9 @@ def sheet_factor(
         sheet_unit = unit_of(units, spelling)
         if isinstance(sheet_unit, str):
             return f"the sheet's {side} {sheet_unit}"
-        if sheet_unit[1].dimension != unit.dimension:
+        if sheet_unit.dimension != unit.dimension:
             return f"the sheet writes {spelling} on the {side} side, the engine reads {read}"
-        written[side] = sheet_unit[1]
+        written[side] = sheet_unit
     # one engine ecoinvent unit, in the sheet's ecoinvent units, in its BAFU units, in the engine's
     return ecoinvent[1].factor / written["ecoinvent"].factor / conversion * written["BAFU"].factor / bafu[1].factor
 
