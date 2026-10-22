@@ -86,7 +86,7 @@ environment variables, runs a local engine build instead of the downloaded relea
 
 ## When it stops
 
-- **`the engine returned no ECS, PEF: this method names other categories`**: the method
+- **`ECS reads categories the method lacks (…): is it EF 3.1 adapted?`**: the method
   file has a category the two single scores read under another name. A release without a
   version number splits "Ecotoxicity, freshwater - organics" into two parts, `p.1` and
   `p.2`, which the script does not know. Pass adapted 1.03 or 1.05.
@@ -115,8 +115,9 @@ environment variables, runs a local engine build instead of the downloaded relea
 - **ecoinvent** is joined on the SimaPro name of column A, **BAFU** on the name and
   location of columns E and F.
 - **The method**: the ECS and PEF single scores are declared on top of it inside the
-  script, on EF 3.1 category names, so another family of method needs those two blocks
-  rewritten. This ECS is the Ecobalyse weighting on EF 3.1 alone, without Ecobalyse's own
+  script, on EF 3.1 category names, so another family of method needs those two lists
+  rewritten. They are added to a copy of the method, `ef-3-1-ecs-pef`, which the engine
+  keeps between runs and the script replaces each time. This ECS is the Ecobalyse weighting on EF 3.1 alone, without Ecobalyse's own
   corrections: it ranks the pairs, it is not the figure the ecobalyse pipeline publishes.
 
 ## What it writes
@@ -136,8 +137,10 @@ counts long-term emissions, so the two conventions never overwrite each other:
   database, units of different dimensions with no conversion in the workbook), a
   `conversion` column saying where the unit factor came from, `unit table` or `sheet`,
   a `factor` column giving it: how many BAFU units stand for one ecoinvent unit, the
-  number the BAFU scores are multiplied by (negative when one side's reference amount
-  is negative, as a waste treatment's is), and both scores of every category.
+  number the BAFU scores are multiplied by, and both scores of every category. A score
+  is per one unit of what its process does: a waste market written with -1 kg and a
+  treatment written with +1 kg both score the treatment of one kilogram, so the factor
+  is never negative.
 
 The terminal report counts what was compared, then gives per category the median
 BAFU / ecoinvent ratio, how many pairs sit within 10%, within a factor 1.5, 2 and 10
