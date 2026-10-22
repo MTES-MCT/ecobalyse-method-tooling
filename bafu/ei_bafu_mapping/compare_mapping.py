@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.12"
-# dependencies = ["pyvolca>=0.12", "openpyxl", "matplotlib"]
+# dependencies = ["pyvolca>=0.14", "openpyxl", "matplotlib"]
 # ///
 """Hold ecoinvent processes against the BAFU processes a mapping sheet points them to.
 
@@ -11,6 +11,10 @@ grade the sheet gives the pair. The command stands on its own: it installs the e
 starts it on a free port, loads both databases from their files, scores every mapped
 process, draws, and writes one CSV line per pair saying what became of it.
 
+A score is per one unit of what its process does: a waste market written with -1 kg and
+a treatment written with +1 kg both score the treatment of one kilogram, so only the
+units are put on one basis, never the signs.
+
     uv run compare_mapping.py mapping.xlsx --ecoinvent ei.zip --bafu bafu.zip --method ef31.zip
 
 VOLCA_BINARY with VOLCA_DATA_DIR runs a local engine build and its data instead of the
@@ -19,19 +23,16 @@ release, which is then not downloaded.
 
 import argparse
 import csv
-import json
 import os
 import re
 import statistics
 import sys
-import tempfile
 import time
 from collections import Counter
 from collections.abc import Iterator
-from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
-from itertools import pairwise
-from math import copysign, log
+from dataclasses import dataclass
+from itertools import accumulate, pairwise
 from pathlib import Path
 from typing import Literal, NamedTuple
 
@@ -41,7 +42,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import openpyxl  # noqa: E402
 import volca  # noqa: E402
-from volca import Activity, Client, Server  # noqa: E402
+from volca import Activity, Client, ScoringRow, Server, UnitDefinition, VoLCAError  # noqa: E402
+from volca.compare_plot import BANDS, Point, band_shares, fold, widest  # noqa: E402
 
 # the sheet's columns this reads, by header, in the order the sheet puts them: each is the first
 # of its name after the previous one, so columns added in between are skipped, and of the two the
@@ -54,38 +56,62 @@ GRADES = {
     "2": ("2, partial match or good proxy", "tab:blue"),
     "3": ("3, perfect match", "tab:green"),
 }
-# how close a pair counts as: the widest factor between the two sides, whichever way round
-BANDS = ((1.1, "10%"), (1.5, "×1.5"), (2, "×2"), (10, "×10"))
-SINGLE_SCORES = ("ECS", "PEF")
 TABLES = ("ECS", "Climate change")  # the two indicators the sheet itself tracks a gap on
 LABELS_PER_GRAPH = 3
 COLLECTION = "EF 3.1"  # the method as this tool loads it; the engine also carries its own built-in ones
+# the method with both single scores added, as the engine names a copy: a collection read
+# from a file is not changed in place
+SCORED = "ef-3-1-ecs-pef"
 THREADS = 8  # parallel scoring requests: the engine gains little past this
 CHUNK = 250  # processes per request
 
-# Ecobalyse's environmental cost and the EF 3.1 single score, on the adapted names.
-# Ecobalyse's own corrections (uranium in fossil resources) are left out: this is EF 3.1.
-# Both read freshwater ecotoxicity as its two parts: from adapted 1.05 on, the whole
-# category carries almost no factor of its own and scores near zero.
-SCORING = """
-[[methods.scoring]]
-name = "ECS"
-unit = "Pts"
-variables = { cch = "Climate change", acd = "Acidification", fwe = "Eutrophication, freshwater", swe = "Eutrophication, marine", tre = "Eutrophication, terrestrial", etfo = "Ecotoxicity, freshwater - organics", etfi = "Ecotoxicity, freshwater - inorganics", fru = "Resource use, fossils", mru = "Resource use, minerals and metals", ior = "Ionising radiation", ldu = "Land use", ozd = "Ozone depletion", pco = "Photochemical ozone formation", pma = "Particulate matter", wtu = "Water use" }
-computed = { etf = "2 * etfo + etfi" }
-normalization = { cch = 7553.08, acd = 55.5695, etf = 98120.0, fwe = 1.60685, swe = 19.5452, tre = 176.755, fru = 65004.3, mru = 0.0636226, ior = 4220.16, ldu = 819498.0, ozd = 0.053648, pco = 40.8592, pma = 0.000595367, wtu = 11468.7 }
-weighting = { cch = 0.2106, acd = 0.0491, etf = 0.2106, fwe = 0.0222, swe = 0.0235, tre = 0.0294, fru = 0.0659, mru = 0.0598, ior = 0.0397, ldu = 0.0629, ozd = 0.05, pco = 0.0379, pma = 0.071, wtu = 0.0674 }
-scores = { total = "cch + acd + etf + fwe + swe + tre + fru + mru + ior + ldu + ozd + pco + pma + wtu" }
-
-[[methods.scoring]]
-name = "PEF"
-unit = "Pt"
-variables = { acd = "Acidification", cch = "Climate change", etfo = "Ecotoxicity, freshwater - organics", etfi = "Ecotoxicity, freshwater - inorganics", pma = "Particulate matter", swe = "Eutrophication, marine", fwe = "Eutrophication, freshwater", tre = "Eutrophication, terrestrial", htc = "Human toxicity, cancer", htn = "Human toxicity, non-cancer", ior = "Ionising radiation", ldu = "Land use", ozd = "Ozone depletion", pco = "Photochemical ozone formation", fru = "Resource use, fossils", mru = "Resource use, minerals and metals", wtu = "Water use" }
-computed = { etf = "etfo + etfi" }
-normalization = { acd = 55.5695, cch = 7553.08, etf = 56716.6, pma = 0.000595367, swe = 19.5452, fwe = 1.60685, tre = 176.755, htc = 1.72529e-05, htn = 0.000128736, ior = 4220.16, ldu = 819498.0, ozd = 0.0523484, pco = 40.8592, fru = 65004.3, mru = 0.0636226, wtu = 11468.7 }
-weighting = { acd = 0.062, cch = 0.2106, etf = 0.0192, pma = 0.0896, swe = 0.0296, fwe = 0.028, tre = 0.0371, htc = 0.0213, htn = 0.0184, ior = 0.0501, ldu = 0.0794, ozd = 0.0631, pco = 0.0478, fru = 0.0832, mru = 0.0755, wtu = 0.0851 }
-scores = { total = "acd + cch + etf + pma + swe + fwe + tre + htc + htn + ior + ldu + ozd + pco + fru + mru + wtu" }
-"""
+# Ecobalyse's environmental cost and the EF 3.1 single score, on the adapted names: each
+# row a category's terms, its normalization and its weight. Ecobalyse's own corrections
+# (uranium in fossil resources) are left out: this is EF 3.1. Both read freshwater
+# ecotoxicity as its two parts: from adapted 1.05 on, the whole category carries almost
+# no factor of its own and scores near zero.
+SINGLE_SCORES = {
+    "ECS": (
+        "Pts",
+        [
+            ({"Climate change": 1}, 7553.08, 0.2106),
+            ({"Acidification": 1}, 55.5695, 0.0491),
+            ({"Ecotoxicity, freshwater - organics": 2, "Ecotoxicity, freshwater - inorganics": 1}, 98120.0, 0.2106),
+            ({"Eutrophication, freshwater": 1}, 1.60685, 0.0222),
+            ({"Eutrophication, marine": 1}, 19.5452, 0.0235),
+            ({"Eutrophication, terrestrial": 1}, 176.755, 0.0294),
+            ({"Resource use, fossils": 1}, 65004.3, 0.0659),
+            ({"Resource use, minerals and metals": 1}, 0.0636226, 0.0598),
+            ({"Ionising radiation": 1}, 4220.16, 0.0397),
+            ({"Land use": 1}, 819498.0, 0.0629),
+            ({"Ozone depletion": 1}, 0.053648, 0.05),
+            ({"Photochemical ozone formation": 1}, 40.8592, 0.0379),
+            ({"Particulate matter": 1}, 0.000595367, 0.071),
+            ({"Water use": 1}, 11468.7, 0.0674),
+        ],
+    ),
+    "PEF": (
+        "Pt",
+        [
+            ({"Acidification": 1}, 55.5695, 0.062),
+            ({"Climate change": 1}, 7553.08, 0.2106),
+            ({"Ecotoxicity, freshwater - organics": 1, "Ecotoxicity, freshwater - inorganics": 1}, 56716.6, 0.0192),
+            ({"Particulate matter": 1}, 0.000595367, 0.0896),
+            ({"Eutrophication, marine": 1}, 19.5452, 0.0296),
+            ({"Eutrophication, freshwater": 1}, 1.60685, 0.028),
+            ({"Eutrophication, terrestrial": 1}, 176.755, 0.0371),
+            ({"Human toxicity, cancer": 1}, 1.72529e-05, 0.0213),
+            ({"Human toxicity, non-cancer": 1}, 0.000128736, 0.0184),
+            ({"Ionising radiation": 1}, 4220.16, 0.0501),
+            ({"Land use": 1}, 819498.0, 0.0794),
+            ({"Ozone depletion": 1}, 0.0523484, 0.0631),
+            ({"Photochemical ozone formation": 1}, 40.8592, 0.0478),
+            ({"Resource use, fossils": 1}, 65004.3, 0.0832),
+            ({"Resource use, minerals and metals": 1}, 0.0636226, 0.0755),
+            ({"Water use": 1}, 11468.7, 0.0851),
+        ],
+    ),
+}
 
 
 class Pair(NamedTuple):
@@ -112,11 +138,11 @@ class Match(NamedTuple):
     conversion: Literal["unit table", "sheet"]  # where the scale's unit factor comes from
 
 
-class Unit(NamedTuple):
-    """What the engine's units.csv says of one unit."""
+@dataclass(frozen=True)
+class Gap(Point):
+    """One pair on one category, both sides positive, labelled with its ecoinvent name."""
 
-    dimension: str
-    factor: float  # to the dimension's reference unit
+    match: Match
 
 
 # process id -> category or single score -> value
@@ -124,8 +150,8 @@ Scores = dict[str, dict[str, float]]
 # category -> (ecoinvent, BAFU), both for one unit of the ecoinvent product
 Compared = dict[str, tuple[float, float]]
 Result = tuple[Match, Compared]
-# unit name as units.csv spells it -> the unit
-UnitTable = dict[str, Unit]
+# unit name as the engine's unit table spells it -> the unit
+UnitTable = dict[str, UnitDefinition]
 
 
 @contextmanager
@@ -189,16 +215,7 @@ def key(name: str) -> str:
     return " ".join(name.split()).lower()
 
 
-def unit_table(text: str) -> UnitTable:
-    """Read the engine's units.csv, every name spelled as the file spells it."""
-    return {
-        row["name"]: Unit(row["dimension"], float(row["factor"]))
-        for row in csv.DictReader(text.splitlines())
-        if row["name"] and not row["name"].startswith("#")
-    }
-
-
-def unit_of(units: UnitTable, name: str) -> Unit | str:
+def unit_of(units: UnitTable, name: str) -> UnitDefinition | str:
     """Read a unit name as the engine does, or say why it cannot be read.
 
     The exact spelling first; failing that, the one row equal to it with case folded. Several
@@ -209,7 +226,7 @@ def unit_of(units: UnitTable, name: str) -> Unit | str:
     folded = [unit for spelling, unit in units.items() if spelling.lower() == name.lower()]
     if len(folded) == 1:
         return folded[0]
-    return f"unit {name!r}: {len(folded)} rows of units.csv read it"
+    return f"unit {name!r}: {len(folded)} rows of the unit table read it"
 
 
 def db_name(path: Path) -> str:
@@ -217,55 +234,20 @@ def db_name(path: Path) -> str:
     return "map-" + re.sub(r"[^a-z0-9]+", "-", path.stem.lower()).strip("-")
 
 
-def config_toml(ecoinvent: Path, bafu: Path, method: Path) -> str:
-    """The engine configuration: both databases, and the method with its single scores."""
-
-    def toml_path(path: Path) -> str:
-        # absolute, since the engine reads relative paths from the config's own temporary
-        # folder; JSON quoting is a valid TOML string, Windows backslashes included
-        return json.dumps(str(path.resolve()))
-
-    return f"""[server]
-port = 0
-
-[[databases]]
-name = "{db_name(ecoinvent)}"
-path = {toml_path(ecoinvent)}
-
-[[databases]]
-name = "{db_name(bafu)}"
-path = {toml_path(bafu)}
-
-[[methods]]
-name = "{COLLECTION}"
-path = {toml_path(method)}
-{SCORING}"""
-
-
-@contextmanager
-def engine(toml: str, binary: str) -> Iterator[str]:
-    """Start an engine of this tool's own on a free port. Yields its URL, stops it on the way out."""
-    with tempfile.TemporaryDirectory() as tmp:
-        path = Path(tmp) / "volca.toml"
-        path.write_text(toml)
-        server = Server(str(path), port="auto", binary=binary)
-        # a released engine counts idle time from a request's arrival, not while it runs:
-        # the default 300 s would stop it under a long scoring
-        server.start(idle_timeout=3600)
-        try:
-            yield server.base_url
-        finally:
-            server.stop()
-
-
-def installation() -> tuple[str, Path]:
-    """The engine binary and its data directory: a local build when named, else the release."""
-    if "VOLCA_BINARY" not in os.environ:
-        installed = volca.download()
-        return str(installed.binary), installed.data_dir
-    if "VOLCA_DATA_DIR" not in os.environ:
-        sys.exit("VOLCA_BINARY needs VOLCA_DATA_DIR, the data directory of the same build")
-    return os.environ["VOLCA_BINARY"], Path(os.environ["VOLCA_DATA_DIR"])
+def with_single_scores(client: Client) -> str:
+    """A copy of the method with ECS and PEF added; stops the run if it lacks a category they read."""
+    for old in client.list_method_collections():  # the engine keeps a previous run's copy
+        if old["name"] == SCORED:
+            client.delete_method_collection(SCORED)
+    copy = client.copy_method_collection(COLLECTION, SCORED)["name"]
+    ids = {m.name: m.id for m in client.list_methods() if m.collection == copy}
+    for name, (unit, rows) in SINGLE_SCORES.items():
+        missing = sorted({category for terms, _, _ in rows for category in terms} - ids.keys())
+        if missing:
+            sys.exit(f"{name} reads categories the method lacks ({', '.join(missing)}): is it EF 3.1 adapted?")
+        scoring = [ScoringRow(" + ".join(terms), {ids[c]: k for c, k in terms.items()}, norm, weight) for terms, norm, weight in rows]
+        client.create_scoring_set(copy, name, scoring, unit=unit)
+    return copy
 
 
 def catalogue(client: Client) -> list[Activity]:
@@ -296,18 +278,14 @@ def match(pair: Pair, ecoinvent: dict, bafu: dict, units: UnitTable) -> Match | 
     if isinstance(b_unit, str):
         return b_unit
     if e_unit.dimension == b_unit.dimension:
-        per_unit, conversion = e_unit.factor / b_unit.factor, "unit table"
-    else:
-        per_unit, conversion = sheet_factor(pair, (e.product_unit, e_unit), (b.product_unit, b_unit), units), "sheet"
-        if isinstance(per_unit, str):
-            return per_unit
-    # a score is for one reference unit, the sign of the product amount included, as
-    # Ecobalyse's comparison against Brightway established
-    scale = copysign(per_unit, b.product_amount) * copysign(1, e.product_amount)
-    return Match(pair, e, b, scale, conversion)
+        return Match(pair, e, b, e_unit.factor / b_unit.factor, "unit table")
+    scale = sheet_factor(pair, (e.product_unit, e_unit), (b.product_unit, b_unit), units)
+    return scale if isinstance(scale, str) else Match(pair, e, b, scale, "sheet")
 
 
-def sheet_factor(pair: Pair, ecoinvent: tuple[str, Unit], bafu: tuple[str, Unit], units: UnitTable) -> float | str:
+def sheet_factor(
+    pair: Pair, ecoinvent: tuple[str, UnitDefinition], bafu: tuple[str, UnitDefinition], units: UnitTable
+) -> float | str:
     """How many of the engine's BAFU units one of its ecoinvent units is, by the sheet's conversion, or why not.
 
     Only for units that measure different things, where the unit table cannot answer. The
@@ -335,33 +313,22 @@ def sheet_factor(pair: Pair, ecoinvent: tuple[str, Unit], bafu: tuple[str, Unit]
     return ecoinvent[1].factor / written["ecoinvent"].factor / conversion * written["BAFU"].factor / bafu[1].factor
 
 
-def score(url: str, db: str, pids: list[str], long_term: bool) -> Scores:
-    """Score processes in parallel batches, every category and both single scores.
+def score(client: Client, collection: str, pids: list[str], long_term: bool) -> Scores:
+    """Score processes, every category of the method and both single scores.
 
     Stops the run if the engine leaves any of them unanswered.
     """
-
-    def batch(chunk: list[str]) -> volca.BatchScores:
+    categories = {m.name for m in client.list_methods() if m.collection == collection}
+    try:
         # EF stops at a hundred years, and both databases mark what comes later the same way,
         # so the switch moves the two sides together
-        return Client(url, db=db).score_activities(chunk, collection=COLLECTION, top_flows=0, exclude_long_term=not long_term)
-
-    chunks = [pids[i : i + CHUNK] for i in range(0, len(pids), CHUNK)]
-    with ThreadPoolExecutor(THREADS) as pool:
-        batches = list(pool.map(batch, chunks))
-    unscored = [pid for b in batches for pid in b.not_found + b.invalid + b.unscorable]
-    if unscored:
-        sys.exit(f"{db}: the engine did not score {unscored}")
-    scored = [s for b in batches for s in b.results]
-    # a scoring set naming one category the method does not have is dropped whole, and
-    # only the engine's log says so: stop here rather than on a missing key later
-    missing = [name for name in SINGLE_SCORES if scored and name not in scored[0].impacts.scoring_results]
-    if missing:
-        sys.exit(f"{db}: the engine returned no {', '.join(missing)}: this method names other categories")
+        rows = client.score_table(pids, collection=collection, chunk=CHUNK, workers=THREADS, exclude_long_term=not long_term)
+    except VoLCAError as e:
+        sys.exit(f"{client.db}: {e}")
     return {
-        s.process_id: {r.category: r.score for r in s.impacts.results}
-        | {name: s.impacts.scoring_results[name]["total"] for name in SINGLE_SCORES}
-        for s in scored
+        row["process_id"]: {c: v for c, v in row.items() if c in categories}
+        | {name: row[f"{name} Single score"] for name in SINGLE_SCORES}
+        for row in rows
     }
 
 
@@ -372,25 +339,14 @@ def compare(m: Match, ecoinvent: Scores, bafu: Scores) -> Compared:
     return {c: (e[c], b[c] * m.scale) for c in order}
 
 
-def positive(results: list[Result], category: str) -> list[tuple[float, float, Match]]:
+def positive(results: list[Result], category: str) -> list[Gap]:
     """The pairs one category can be judged on: a ratio against zero says nothing, a log scale draws neither."""
-    return [(x, y, m) for m, c in results for x, y in [c[category]] if x > 0 and y > 0]
+    return [Gap(m.pair.ecoinvent, x, y, m) for m, c in results for x, y in [c[category]] if x > 0 and y > 0]
 
 
-def widest(points: list[tuple[float, float, Match]], count: int) -> list[tuple[float, float, Match]]:
-    """The pairs furthest from agreement, a factor 10 up scoring like a factor 10 down."""
-    return sorted(points, key=lambda p: abs(log(p[1] / p[0])), reverse=True)[:count]
-
-
-def fold(ratio: float) -> str:
-    """A ratio as the factor it is: ×3.2 or ÷3.2."""
-    return f"×{ratio:.3g}" if ratio >= 1 else f"÷{1 / ratio:.3g}"
-
-
-def proximity(ratios: list[float]) -> list[float]:
-    """The share of pairs inside each band, a factor up counting like the same factor down."""
-    folds = [max(ratio, 1 / ratio) for ratio in ratios]
-    return [sum(fold <= edge for fold in folds) / len(folds) for edge, _ in BANDS]
+def within(ratios: list[float]) -> list[float]:
+    """The share of pairs inside each band, a narrower band counted in the wider ones."""
+    return list(accumulate(band_shares(ratios)[label] for _, label in BANDS))
 
 
 def trusted(results: list[Result], min_grade: int) -> list[Result]:
@@ -409,20 +365,20 @@ def draw(results: list[Result], labelled: list[Result], path: Path) -> None:
         ax.set_visible(False)
     for ax, category in zip(axes.flat, categories):
         # the least trusted first, so the better grades are drawn over them
-        points = sorted(positive(results, category), key=lambda p: rank_of[p[2].pair.tech_grade])
+        points = sorted(positive(results, category), key=lambda p: rank_of[p.match.pair.tech_grade])
         left_out = len(results) - len(points)
         ax.set_title(category + (f"  ({left_out} ≤ 0 not drawn)" if left_out else ""), fontsize=9)
         if not points:
             continue
-        xs, ys, drawn = zip(*points)
-        ax.scatter(xs, ys, c=[style[m.pair.tech_grade][1] for m in drawn], s=4, alpha=0.5, rasterized=True)
+        xs, ys = [p.left for p in points], [p.right for p in points]
+        ax.scatter(xs, ys, c=[style[p.match.pair.tech_grade][1] for p in points], s=4, alpha=0.5, rasterized=True)
         middle = statistics.median(xs)
-        for rank, (x, y, m) in enumerate(widest(positive(labelled, category), LABELS_PER_GRAPH)):
-            right = x > middle  # names near the right edge grow leftwards
-            ax.scatter([x], [y], s=30, facecolor="none", edgecolor="black", zorder=3)
+        for rank, p in enumerate(widest(positive(labelled, category), LABELS_PER_GRAPH)):
+            right = p.left > middle  # names near the right edge grow leftwards
+            ax.scatter([p.left], [p.right], s=30, facecolor="none", edgecolor="black", zorder=3)
             ax.annotate(
-                f"{m.pair.ecoinvent[:40]} {fold(y / x)}",
-                (x, y),
+                f"{p.label[:40]} {fold(p.right / p.left)}",
+                (p.left, p.right),
                 xytext=(-6 if right else 6, 3 + 10 * rank),  # stack them, they crowd
                 textcoords="offset points",
                 ha="right" if right else "left",
@@ -458,21 +414,21 @@ def report(results: list[Result], failed: list[tuple[Pair, str]], min_grade: int
         print(f"  {count:6}  {GRADES.get(grade, (grade,))[0]}")
     graded = trusted(results, min_grade)
     print(f"\nBAFU / ecoinvent per category, on the {len(graded)} pairs graded {min_grade} or more:")
-    columns = " ".join(f"{'within ' + label:>11}" for _, label in BANDS)
+    columns = " ".join(f"{'within ' + label:>12}" for _, label in BANDS)
     print(f"  {'category':45} {'pairs':>6} {'median':>7} {columns} {'BAFU lower':>11}")
     for category in results[0][1]:
-        ratios = [y / x for x, y, _ in positive(graded, category)]
+        ratios = [p.right / p.left for p in positive(graded, category)]
         if not ratios:
             print(f"  {category:45} nothing to compare")
             continue
-        shares = " ".join(f"{share:11.0%}" for share in proximity(ratios))
+        shares = " ".join(f"{share:12.0%}" for share in within(ratios))
         lower = sum(ratio < 1 for ratio in ratios) / len(ratios)
         print(f"  {category:45} {len(ratios):6} {statistics.median(ratios):7.3f} {shares} {lower:11.0%}")
     for category in TABLES:
         print(f"\nThe {top} widest gaps on {category}, pairs graded {min_grade} or more:")
-        for x, y, m in widest(positive(graded, category), top):
-            p = m.pair
-            print(f"  {fold(y / x):>9}  {p.ecoinvent}  ->  {p.bafu} {{{p.geo}}}  ({p.source}, grade {p.tech_grade})")
+        for gap in widest(positive(graded, category), top):
+            p = gap.match.pair
+            print(f"  {fold(gap.right / gap.left):>9}  {p.ecoinvent}  ->  {p.bafu} {{{p.geo}}}  ({p.source}, grade {p.tech_grade})")
 
 
 def write_csv(results: list[Result], failed: list[tuple[Pair, str]], path: Path) -> None:
@@ -521,22 +477,23 @@ def main() -> None:
     with phase(f"reading {args.sheet}"):
         pairs, unmapped = read_sheet(args.mapping, args.sheet)
     print(f"{len(pairs)} distinct pairs, {len(unmapped)} ecoinvent rows without a BAFU process")
-    binary, data_dir = installation()
-    units = unit_table((data_dir / "units.csv").read_text())
-    toml = config_toml(args.ecoinvent, args.bafu, args.method)
     ei_db, bafu_db = db_name(args.ecoinvent), db_name(args.bafu)
+    if "VOLCA_BINARY" not in os.environ:
+        volca.download()  # the latest release, once per release
 
-    with engine(toml, binary) as url:
-        version = Client(url).get_version()
-        print(f"VoLCA {version.version} ({version.git_hash}) on {url}")
+    with Server(databases={ei_db: args.ecoinvent, bafu_db: args.bafu}, methods={COLLECTION: args.method}) as server:
+        client = Client(server.base_url)
+        version = client.get_version()
+        print(f"VoLCA {version.version} ({version.git_hash}) on {server.base_url}")
         counted = "counted" if args.long_term else "excluded"
         print(f"{args.method.name}, long-term emissions {counted}")
+        units = client.unit_table()
+        scored = with_single_scores(client)
         listed = {}
         for db in (ei_db, bafu_db):
             with phase(f"loading {db}"):
-                client = Client(url, db=db)
                 client.load_database(db)
-                listed[db] = catalogue(client)
+                listed[db] = catalogue(client.use(db))
         ecoinvent = index(listed[ei_db], lambda a: key(a.product_name.rsplit(" | ", 1)[0]))
         bafu = index(listed[bafu_db], lambda a: (key(a.activity_name), a.location))
         matched = [(p, match(p, ecoinvent, bafu, units)) for p in pairs]
@@ -544,9 +501,9 @@ def main() -> None:
         failed = unmapped + [(p, m) for p, m in matched if isinstance(m, str)]
         ei_pids, bafu_pids = list({m.ecoinvent.process_id for m in found}), list({m.bafu.process_id for m in found})
         with phase(f"scoring {len(ei_pids)} ecoinvent processes"):
-            ei_scores = score(url, ei_db, ei_pids, args.long_term)
+            ei_scores = score(client.use(ei_db), scored, ei_pids, args.long_term)
         with phase(f"scoring {len(bafu_pids)} BAFU processes"):
-            bafu_scores = score(url, bafu_db, bafu_pids, args.long_term)
+            bafu_scores = score(client.use(bafu_db), scored, bafu_pids, args.long_term)
 
     results = [(m, compare(m, ei_scores, bafu_scores)) for m in found]
     write_csv(results, failed, csv_path)
