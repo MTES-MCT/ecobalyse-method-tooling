@@ -256,18 +256,20 @@ def read_workbook_mapping(path: Path) -> list[tuple[tuple, Target | None]]:
         sys.exit(f"{path}: no sheet {sheet!r}, the one this reads")
     rows = wb[sheet].iter_rows(values_only=True)
     # the header is the first row opening on the first column's name: editions put it on row 1 or 2
-    header = next((r for r in rows if r and r[0] == COLUMNS[0]), None)
+    header = next((r for r in rows if r and norm(r[0]) == norm(COLUMNS[0])), None)
     if header is None:
         sys.exit(f"{path}: no header row starting with {COLUMNS[0]!r} in sheet {sheet!r}")
+    # compared through norm: an edition writing "Unit" or "Conversion" is the same column
+    titles = [norm(t) for t in header]
     positions = [0]
     for previous, name in pairwise(COLUMNS):
         try:
-            positions.append(header.index(name, positions[-1] + 1))
+            positions.append(titles.index(norm(name), positions[-1] + 1))
         except ValueError:
             sys.exit(f"{path}: no column {name!r} after {previous!r}")
     # a name met again before the next column read is two candidates: say so rather than read whichever comes first
     for name, here, after in zip(COLUMNS, positions, positions[1:]):
-        if name in header[here + 1 : after]:
+        if norm(name) in titles[here + 1 : after]:
             sys.exit(f"{path}: two columns {name!r} before {header[after]!r}, rename the one not to read")
     found = []
     for row in rows:

@@ -32,9 +32,9 @@ def workbook(header: list, *rows: list) -> Path:
 
 def test_columns_found_by_header() -> None:
     """A column added before BAFU's (the « bis » of 28 October) must not shift what is read,
-    and the ecoinvent "Geography" on the left must not be taken for BAFU's."""
+    the ecoinvent "Geography" on the left must not be taken for BAFU's, and capitals in a title do not matter."""
     path = workbook(
-        ["EI 3.11 dataset", "Identifiant", "Geography", "EI Unit", "bis", "BAFU Name", "Geography", "unit", "conversion"],
+        ["EI 3.11 dataset", "Identifiant", "Geography", "EI Unit", "bis", "BAFU Name", "Geography", "Unit", "Conversion"],
         [KETTLE, "", "GLO", "unit", 0, "Convector radiator", "CH", "kg", 1.2],
         ["dryer {GLO}| market for dryer", "", "GLO", "unit", 0, "Dryer", "#N/A", "", ""],
     )
