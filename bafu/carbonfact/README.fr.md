@@ -1,0 +1,265 @@
+# Les procédés Carbonfact, avec BAFU en arrière-plan
+
+Carbonfact publie huit classeurs Brightway, un par étape de fabrication
+textile (filature, tricotage, tissage, teinture, impression, ennoblissement,
+confection, usage). Chacun nomme ses fournisseurs dans ecoinvent 3.12 cut-off.
+`carbonfact_bafu.py` réunit toutes les étapes en une seule base, Carbonfact,
+et la charge deux fois : telle que publiée, sur ecoinvent, puis reliée à BAFU
+par une correspondance d’ecoinvent 3.11 vers BAFU. Il calcule chaque procédé
+sur les deux, trace l’un contre l’autre, et peut exporter la version BAFU pour
+un autre outil.
+
+[README.md](README.md) dit la même chose en anglais.
+
+## Ce qu’il faut
+
+- **Le dossier Carbonfact** (`Carbonfact database`, un sous-dossier par étape).
+- **La correspondance** d’ecoinvent 3.11 vers BAFU, au choix :
+  - le classeur de l’expert (`.xlsx`), feuille `Matching Full`, ses colonnes
+    trouvées par leur titre, dans cet ordre : `EI 3.11 dataset`, `BAFU Name`,
+    `Geography`, `unit`, `conversion`, quelles que soient les colonnes entre elles ;
+  - ou la correspondance exportée depuis la page de correspondance de VoLCA
+    (`.csv`), faite avec ecoinvent 3.11 comme source. Seules les lignes
+    décidées sont lues : une suggestion que personne n’a acceptée ne relie
+    rien.
+- **ecoinvent 3.12 cut-off**, son archive ecoSpold02. ecoinvent la livre en
+  `.7z`, qui demande d’avoir installé [7-Zip](https://www.7-zip.org/) ; un
+  `.zip` des mêmes fichiers ne demande rien.
+- **BAFU**, son archive ecoSpold v1, le `.zip` tel que BAFU le distribue.
+- **La méthode d’impact**, EF 3.1 adapted exportée de SimaPro en CSV : la
+  version adapted 1.03 est celle qu’utilise Ecobalyse.
+- Facultatif, **la table de correspondance d’ecoinvent**, `Correspondence File
+  v3.11 - v.3.12.xlsx` (`--correspondence`). La correspondance vers BAFU est
+  écrite pour la 3.11 ; sans ce fichier, un fournisseur 3.12 est cherché sous
+  le même nom, et le script liste ceux qu’il ne trouve pas.
+
+Le script ne demande rien d’autre que `uv`, qui apporte son propre Python et
+les bibliothèques que le script déclare ; le script télécharge lui-même le
+moteur VoLCA.
+
+## Installer, une fois (Windows)
+
+Ouvrir PowerShell (menu Démarrer, taper `PowerShell`) et installer `uv` :
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Fermer PowerShell et le rouvrir, pour qu’il trouve `uv`. Sous Linux ou macOS,
+`curl -LsSf https://astral.sh/uv/install.sh | sh` l’installe.
+
+## Lancer
+
+Dans PowerShell, sur une seule ligne, chaque chemin entre guillemets, aucun ne
+finissant par `\` (PowerShell y lirait l’échappement du guillemet fermant) :
+
+```powershell
+uv run carbonfact_bafu.py "C:\data\Carbonfact database" "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip" --correspondence "C:\data\Correspondence File v3.11 - v.3.12.xlsx"
+```
+
+Le premier lancement télécharge le moteur, et le moteur lit ecoinvent dans son
+archive, ce qui prend plusieurs minutes. Il décompresse chaque archive dans un
+dossier à côté d’elle, du même nom suivi de `.d`, et y garde ce qu’il a lu :
+les lancements suivants prennent quelques minutes.
+
+Options, toutes facultatives :
+
+| Option | Effet |
+|---|---|
+| `--correspondence FICHIER` | chercher un fournisseur 3.12 sous son nom 3.11 |
+| `--complement FICHIER` | vos propres choix BAFU, dans les colonnes de `mapping.csv`, à la place de ceux inscrits dans le script (plus bas) ; ils l’emportent sur la correspondance |
+| `--export FORMAT` | écrire aussi la version BAFU en `brightway`, `simapro`, `ecospold2` ou `openlca` |
+| `--no-quality` | sauter le rapport de qualité |
+| `--out DOSSIER` | où écrire, par défaut `<dossier Carbonfact> - BAFU` à côté de lui |
+| `--top N` | combien des plus grands écarts lister, 20 par défaut |
+
+`VOLCA_BINARY` et `VOLCA_DATA_DIR`, posées en variables d’environnement, font
+tourner un moteur compilé localement au lieu de celui téléchargé.
+
+## Ce qu’il écrit
+
+Dans `<dossier Carbonfact> - BAFU` :
+
+- `mapping.csv` : pour chaque fournisseur ecoinvent, le procédé BAFU auquel il
+  est relié, `opposite` dans `direction` quand BAFU le compte dans l’autre sens
+  (plus bas), le jeu de données 3.11 sous lequel la correspondance a été lue,
+  et un `status` qui dit pourquoi un fournisseur n’en a pas ;
+- `comparison.csv` : chaque activité, son étape, le chiffre de changement
+  climatique que Carbonfact publie pour elle (vide pour les treize qui n’en
+  ont pas : le mélange de chaleur, les colorants, les encres), puis chaque
+  catégorie et le score ECS, avec ecoinvent en arrière-plan et avec BAFU ;
+- `comparison.svg` : un nuage par catégorie, l’arrière-plan ecoinvent en
+  abscisse, BAFU en ordonnée, une couleur par étape ; les bandes grises
+  marquent ±10 % et un facteur 2 ;
+- `quality.csv` : le rapport de qualité du moteur sur la version BAFU ;
+- avec `--export`, `carbonfact.<format>.<ext>` : la version BAFU, chaque entrée écrite
+  sous le procédé BAFU auquel elle est reliée, dans une base nommée d’après
+  l’archive BAFU (`bafu-2026-v1-ecospold-v1` pour `BAFU-2026 v1_ecoSpold
+  v1.zip`). Relue à côté de BAFU sous ce nom, elle se relie aux mêmes
+  fournisseurs sans correspondance, et donne les mêmes scores.
+
+Le terminal dit à quel point la version ecoinvent approche les chiffres de
+Carbonfact, puis, par catégorie, le rapport médian BAFU / ecoinvent et la part
+des activités à moins de 10 %, d’un facteur 1,5, 2 et 10, et finit par les
+plus grands écarts sur ECS et sur le changement climatique.
+
+## Ce qui a été mesuré
+
+Avec la correspondance de l’expert du 28 octobre 2026 telle quelle, les choix
+inscrits dans le script (plus bas) et EF 3.1 adapted 1.03 : sur
+ecoinvent, le changement climatique est à moins de 0,03 % du chiffre que
+publie Carbonfact, pour chacune des 294 activités qui en ont un. Sur BAFU, le
+rapport médian BAFU / ecoinvent vaut 0,84 sur le changement climatique, avec
+99 % des activités à moins d’un facteur 1,5, et 0,77 sur ECS, où les procédés
+d’ennoblissement et de teinture sortent neuf à vingt-cinq fois plus bas que sur
+ecoinvent.
+
+Cet écart vient presque entièrement de l’écotoxicité de l’eau douce,
+inorganiques, environ cent fois plus basse sur BAFU pour « Fabric finishing,
+Softening, Exhaust, Jet ». Il vient du marché des eaux usées d’ecoinvent pour
+le reste du monde, qui envoie une partie de l’eau à la rivière sans traitement,
+avec le chlore qu’elle contient, un flux qu’EF 3.1 pèse lourdement. BAFU traite
+la même eau dans une station suisse. L’écart est une différence entre les deux
+bases, pas une erreur de la reliaison.
+
+La consommation d’eau sort légèrement négative sur BAFU pour le lavage et le
+lavage à la main de la phase d’usage. C’était déjà le cas avant que le sens
+soit lu, et ce n’est pas examiné ici.
+
+## Quand il s’arrête
+
+- **`none for … : not in the mapping`**, suivi de **`Name a BAFU supplier for
+  each in a --complement file`** : certains fournisseurs ecoinvent n’ont pas
+  d’équivalent BAFU. Copier `mapping.csv`, remplir `target_product` et
+  `target_location` pour ces lignes, et le passer avec `--complement`. Quand
+  le statut ajoute `--correspondence may find it`, passer d’abord la table de
+  correspondance.
+- **`no column … after …`** ou **`two columns …`** : les titres du classeur
+  ont changé ; le message nomme la colonne qui manque, ou le titre trouvé deux
+  fois, à renommer sur la colonne à ne pas lire.
+- **`… differs between the steps …`** : un même nom d’activité est écrit de
+  deux façons dans deux classeurs ; le script ne choisit pas.
+- **`VoLCA … is too old`** : il faut un moteur plus récent que la dernière
+  version publiée. Chaque lancement télécharge la dernière, le problème se
+  règle donc de lui-même à la suivante.
+- **`7z extraction failed`** : installer 7-Zip, ou passer un `.zip`.
+- **`CERTIFICATE_VERIFY_FAILED` en téléchargeant le moteur** : indiquer à
+  Python les certificats que fournit `certifi`, puis relancer :
+
+  ```powershell
+  $env:SSL_CERT_FILE = (uv run --with certifi python -c "import certifi; print(certifi.where())")
+  ```
+
+- **`Engine exited with code 3221225781`** (Windows) : il manque une DLL au
+  moteur ; installer la dernière version de Microsoft Visual C++
+  Redistributable x64 (`vc_redist.x64.exe`).
+
+## Les choix inscrits dans le script
+
+Les étapes utilisent 112 fournisseurs ecoinvent distincts. Le script porte un
+choix BAFU pour les douze ci-dessous, et l’applique quoi que dise le classeur,
+sauf si `--complement` en donne d’autres. Le classeur décide pour la centaine
+restante. Ces choix sont des **propositions, non validées** : chacun devrait
+être vérifié par quelqu’un qui connaît les deux bases, et la correspondance
+corrigée à la source quand c’est possible.
+
+Chaque ligne est là parce que le classeur du 9 octobre 2026
+(`mapping.20261009.xlsx`) n’a rien pour elle. Le classeur du 28 octobre 2026
+en remplit plusieurs par une proposition automatique (`Semantic2`, sa source
+la moins fiable), et deux d’entre elles tombaient loin : la bouilloire allait
+vers « Household devices production plant » {CH}, une usine entière par
+appareil, ce qui rendait le repassage environ 290 000 fois plus élevé que sur
+ecoinvent, et le sèche-linge vers « Technical wood drying, infrastructure »
+{RER}, sept fois plus élevé. Les choix ci-dessous l’emportent sur ces
+propositions, si bien que le script donne le même résultat quel que soit le
+classeur reçu. L’appareil pèse peu dans ces activités, de toute façon : une
+minute de repassage consomme 0,027 kWh, qui comptent bien plus que le fer.
+
+| fournisseur ecoinvent 3.12 | pourquoi `mapping.20261009.xlsx` n’a rien | choix BAFU | solidité |
+|---|---|---|---|
+| market for alkyl sulfate (C12-14) {GLO} | la correspondance dit #N/A | Fatty alcohol sulfate, mix, at plant {RER} | proche |
+| market for chemical, organic, unspecified {GLO} | nouveau en 3.12, pas de jeu de données 3.11 | Chemicals organic, at plant {GLO} | ce que donne la correspondance pour « chemical, organic » en 3.11 |
+| market for polytetrafluoroethylene {GLO} | nouveau en 3.12, pas de jeu de données 3.11 | Tetrafluoroethylene, at plant {RER} | approximation : le monomère, pas le polymère |
+| market for dryer {GLO} | la correspondance dit #N/A | Washing machine, at retailer {CH} | approximation faible : BAFU n’a pas de sèche-linge |
+| market for electric kettle {GLO} | la correspondance dit #N/A | Convector radiator {CH}, 1,2 kg par appareil | approximation faible du fer : BAFU n’a pas de petit électroménager ; c’est l’électricité, pas le fer, qui fait l’essentiel du repassage |
+| market for tissue paper {GLO} | la correspondance dit #N/A | Paper, woodfree, uncoated, at regional storage {RER} | proche |
+| market for waste mineral oil {RoW} | la correspondance dit #N/A | Disposal, used mineral oil, 10% water, to hazardous waste incineration {CH} | proche |
+| market for wastewater from textile production {RoW} | la correspondance dit #N/A | Treatment, sewage, to wastewater treatment, class 3 {CH} | comme le « wastewater, average » de la correspondance |
+| market for cationic resin {RoW} | coquille dans la correspondance : « Cationic resin, at plan », sans lieu | Cationic resin, at plant {CH} | l’intention de la correspondance |
+| market for polyethylene, high density, granulate {RER} | découpé par région en 3.12, la correspondance a le {GLO} de la 3.11 | Polyethylene, HDPE, granulate, at plant {RER} | le choix de la correspondance pour {GLO} |
+| market for polypropylene, granulate {RER} | découpé par région en 3.12, la correspondance a le {GLO} de la 3.11 | Polypropylene, granulate, at plant {RER} | le choix de la correspondance pour {GLO} |
+| market for polypropylene, granulate {RoW} | découpé par région en 3.12, la correspondance a le {GLO} de la 3.11 | Polypropylene, granulate, at plant {RER} | le choix de la correspondance pour {GLO} |
+
+## Correspondances à revoir
+
+La correspondance relie les fournisseurs suivants, et Carbonfact les utilise,
+mais le procédé BAFU qu’elle nomme est un autre produit ou un autre service. Le
+script les applique tels quels ; ils sont listés pour que la correspondance
+puisse être améliorée. La liste a été relue à la main contre le classeur du
+28 octobre 2026.
+
+Clairement un autre produit :
+
+| fournisseur ecoinvent | procédé BAFU que donne la correspondance |
+|---|---|
+| market for enzymes {GLO}, enzymes production {RER} | Potato starch, at plant {DE} |
+| market for aluminium chloride {GLO} | Aluminium fluoride, at plant {RER} |
+| market for citric acid {GLO} | Sulphuric acid, liquid, at plant {RER} |
+| market for copper sulfate {GLO} | Copper oxide, at plant {RER} |
+| market for cyanuric chloride {GLO} | Hydrogen cyanide, at plant {RER} |
+| market for magnesium chloride, from titanium sponge production {GLO} | Titanium dioxide, chloride process, at plant {RER} |
+| market for naphthalene sulfonic acid {GLO} | Polyphenylene sulfide, at plant {GLO} |
+| market for o-phenylene diamine {GLO} | Polyphenylene sulfide, at plant {GLO} |
+| market for polyacrylamide {GLO} | Polylactide, granulate, at plant {GLO} |
+| market for sodium amide {RoW} | Sodium chloride, powder, at plant {RER} |
+| market for sodium nitrite {RoW} | Sodium dichromate, at plant {RER} |
+
+Approximations à regarder une seconde fois :
+
+| fournisseur ecoinvent | procédé BAFU que donne la correspondance | doute |
+|---|---|---|
+| market for cooling energy {GLO} | Heat, from natural gas {AT} | le froid n’est pas de la chaleur ; le facteur 0,599 de la correspondance relie deux unités d’énergie, le moteur convertit donc des MJ en MJ à 1 et ne l’applique pas |
+| market for 2-nitroaniline {GLO} | Dinitroaniline-compounds, at regional storehouse {RER} | une famille d’herbicides, pas l’intermédiaire de colorant |
+| market for sodium hydrosulfide {GLO} | Hydrogen sulphide, H2S, at plant {RER} | le précurseur, pas le produit |
+| market for methacrylic acid {GLO} | Methyl methacrylate, at plant {RER} | l’ester, pas l’acide |
+| market for carton board box production, with gravure printing {GLO} | Packaging, corrugated board, mixed fibre, single wall, at plant {RER} | sans impression |
+| market for printed paper {GLO} | Paper, newsprint, at plant {CH} | sans impression |
+| market for waste packaging paper {RoW} | Waste paper, mixed, from public collection, for further treatment {RER} | une matière collectée, pas un traitement de déchet |
+| market for waste polypropylene {RoW} | xx Disposal, polypropylene, 15.9% water, to sanitary landfill {CH} | un nom BAFU qui commence par « xx », à demander à BAFU |
+| market for ethanol, … from fermentation {RoW} | Ethanol, 95% in H2O, from sugar cane, at fermentation plant {BR} | une seule matière première et un seul pays pour le reste du monde |
+
+## Vérifier le script
+
+`uv run test_carbonfact_bafu.py` vérifie la lecture du classeur et l’ordre
+entre les choix inscrits dans le script et la correspondance, sans le moteur.
+
+## Comment il marche
+
+- **Une seule base.** Les activités de tous les classeurs vont dans un seul
+  classeur Brightway nommé Carbonfact. Une activité que plusieurs étapes
+  partagent (le mélange de chaleur, quatre colorants) n’est gardée qu’une
+  fois ; les étapes l’écrivent avec des unités orthographiées différemment
+  (MJ, megajoule) et des majuscules, que le script lit comme identiques, et
+  toute autre différence arrête le calcul.
+- **Reliaison.** Chaque fournisseur ecoinvent est ramené à la 3.11 (avec la
+  table de correspondance, sinon sous son propre nom), cherché dans les choix
+  inscrits dans le script et, là où ils n’ont rien, dans la correspondance.
+  Deux fournisseurs ecoinvent partagent un même produit et un même lieu
+  (« heat, district or industrial, other than natural gas » {RoW}, au
+  charbon et au fioul léger) mais vont vers deux procédés BAFU différents ;
+  une reliaison repère une entrée par son produit et son lieu, la version BAFU
+  nomme donc ses entrées ecoinvent d’après leur activité.
+- **Sens.** ecoinvent compte un déchet comme une sortie négative de son marché
+  (« market for wastewater from textile production », −1 m³), BAFU comme la
+  sortie positive d’un traitement (« Treatment, sewage, … class 3 », +1 m³).
+  Une ligne qui garderait le signe d’ecoinvent ferait traiter par BAFU un
+  volume négatif, et compter des crédits. Une fois les deux bases chargées, le
+  script demande à chacune la quantité de référence de chaque fournisseur et
+  de son procédé BAFU, et marque `opposite` les lignes où les signes
+  diffèrent ; le moteur retourne ces lignes. Une correspondance exportée de la
+  page de correspondance de VoLCA porte déjà cette colonne.
+- **ECS** est la pondération d’Ecobalyse sur EF 3.1 seule, sans les
+  corrections propres à Ecobalyse. Le script l’ajoute comme jeu de scores à
+  une copie de la méthode une fois le moteur démarré.
+- La reliaison vit dans la mémoire du moteur, que le script arrête à la fin :
+  `--export` est le moyen de garder la version BAFU.
