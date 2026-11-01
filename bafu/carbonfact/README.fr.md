@@ -54,8 +54,13 @@ Dans PowerShell, sur une seule ligne, chaque chemin entre guillemets, aucun ne
 finissant par `\` (PowerShell y lirait l’échappement du guillemet fermant) :
 
 ```powershell
-uv run carbonfact_bafu.py "C:\data\Carbonfact database" "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip" --correspondence "C:\data\Correspondence File v3.11 - v.3.12.xlsx"
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py "C:\data\Carbonfact database" "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip" --correspondence "C:\data\Correspondence File v3.11 - v.3.12.xlsx"
 ```
+
+`uv` va chercher le script dans ce dépôt : rien à télécharger à la main, et
+chaque lancement prend la dernière version. Pour garder une version, remplacer
+`main` dans l’adresse par un numéro de commit. Depuis une copie du dépôt, lancer
+plutôt `uv run carbonfact_bafu.py` dans ce dossier.
 
 Le premier lancement télécharge le moteur, et le moteur lit ecoinvent dans son
 archive, ce qui prend plusieurs minutes. Il décompresse chaque archive dans un

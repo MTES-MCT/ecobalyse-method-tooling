@@ -52,8 +52,13 @@ In PowerShell, on one line, each path in quotes, none ending with a `\`
 (PowerShell would read it as escaping the closing quote):
 
 ```powershell
-uv run carbonfact_bafu.py "C:\data\Carbonfact database" "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip" --correspondence "C:\data\Correspondence File v3.11 - v.3.12.xlsx"
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py "C:\data\Carbonfact database" "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip" --correspondence "C:\data\Correspondence File v3.11 - v.3.12.xlsx"
 ```
+
+`uv` fetches the script from this repository, so there is nothing to download
+by hand; each run takes the latest version. To keep one version, replace `main`
+in the address by a commit number. From a copy of the repository, run
+`uv run carbonfact_bafu.py` in this folder instead.
 
 The first run downloads the engine, and the engine reads ecoinvent from its
 archive, which takes several minutes. It unpacks each archive into a folder
