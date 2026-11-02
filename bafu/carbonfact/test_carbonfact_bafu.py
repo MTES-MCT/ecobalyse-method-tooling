@@ -2,7 +2,7 @@
 # requires-python = ">=3.12"
 # dependencies = ["pyvolca[plot]>=0.14", "openpyxl"]
 # ///
-"""Self-check of the mapping reader and of who decides a supplier: no engine, no network.
+"""Self-check of the mapping reader, of who decides a supplier and of how two versions pair: no engine, no network.
 
     uv run test_carbonfact_bafu.py
 """
@@ -74,6 +74,23 @@ def test_new_in_312() -> None:
     s = cf.Supplier("market for something new", "something new", "GLO", "kg")
     back = {("market for something new", "something new", "GLO"): set()}
     assert cf.from_mapping(s, back, {}).status == "new in ecoinvent 3.12, no 3.11 dataset to map from"
+
+
+def test_pairing_by_name_product_place() -> None:
+    """Two versions pair activity by activity; what one side lacks is set apart, and a
+    reference written in another unit stops the run, since a score is per one reference unit."""
+    dye = ("Fabric dyeing", "dyed fabric", "GLO")
+    left = {dye: {"unit": "kg", "ECS": 2.0}, ("Only here", "x", "GLO"): {"unit": "kg", "ECS": 1.0}}
+    right = {dye: {"unit": "kg", "ECS": 1.0}}
+    l, r, only_left, only_right = cf.paired(left, right)
+    assert (l, r) == ({dye: {"ECS": 2.0}}, {dye: {"ECS": 1.0}})
+    assert (only_left, only_right) == ([("Only here", "x", "GLO")], [])
+    try:
+        cf.paired(left, {dye: {"unit": "m2", "ECS": 1.0}})
+    except SystemExit as stop:
+        assert "different units" in str(stop)
+    else:
+        raise AssertionError("two units were compared")
 
 
 if __name__ == "__main__":

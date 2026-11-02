@@ -1,41 +1,31 @@
 # Carbonfact processes, with BAFU in the background
 
-Carbonfact publishes eight Brightway workbooks, one per textile process step
-(spinning, knitting, weaving, dyeing, printing, finishing, assembly, use
-phase), each naming its suppliers in ecoinvent 3.12 cut-off.
-`carbonfact_bafu.py` gathers every step into one database, Carbonfact, and
-loads it twice: as published, on ecoinvent, and relinked onto BAFU through an
-ecoinvent 3.11 to BAFU mapping. It scores every process on both, draws one
-against the other, and can export the BAFU version for another tool.
+Carbonfact publishes eight databases in the Brightway format (one `.xlsx`
+workbook each), one per textile process step: spinning, knitting, weaving,
+dyeing, printing, finishing, assembly, use phase. Each names its suppliers in
+ecoinvent 3.12 cut-off, and none calls another's processes: shared processes,
+such as the heat mix, are copied into every database that uses them.
+`carbonfact_bafu.py` therefore works one database at a time, and a new
+database goes through it the same way as the first eight. It has three
+independent commands:
+
+| Command | What it does | What it writes |
+|---|---|---|
+| `relink` | puts a database on BAFU: each ecoinvent supplier replaced by its BAFU equivalent | the database on BAFU, and the mapping it applied |
+| `compare` | scores two versions of a database, each on its own background, one against the other | a table, a figure, a summary in the terminal |
+| `quality` | the engine's structural quality report of a database | a table of the defects found |
+
+Most of the time, the three run in a row on one database: `relink`, then
+`compare` between the published database and its BAFU version, then `quality`
+on the BAFU version.
 
 [README.fr.md](README.fr.md) says the same in French.
 
-## What you need
-
-- **The Carbonfact folder** (`Carbonfact database`, one sub-folder per step).
-- **The mapping**, from ecoinvent 3.11 to BAFU, either:
-  - the expert workbook (`.xlsx`), sheet `Matching Full`, its columns found by
-    their title, in this order: `EI 3.11 dataset`, `BAFU Name`, `Geography`,
-    `unit`, `conversion`, whatever other columns lie between;
-  - or the mapping exported from VoLCA's mapping page (`.csv`), made with
-    ecoinvent 3.11 as source. Only decided rows are read: a suggestion nobody
-    accepted links nothing.
-- **ecoinvent 3.12 cut-off**, its ecoSpold02 archive. ecoinvent ships it as
-  `.7z`, which needs [7-Zip](https://www.7-zip.org/) installed; a `.zip` of the
-  same files needs nothing.
-- **BAFU**, its ecoSpold v1 archive, the `.zip` as BAFU distributes it.
-- **The impact method**, EF 3.1 adapted exported from SimaPro as CSV: adapted
-  1.03 is the one Ecobalyse uses.
-- Optional, **ecoinvent's correspondence file**, `Correspondence File v3.11 -
-  v.3.12.xlsx` (`--correspondence`). The mapping is written against 3.11; without
-  this file a 3.12 supplier is looked up under the same name, and the script
-  lists the ones it misses.
+## Install, once (Windows)
 
 The script needs no other installation than `uv`, which brings its own Python
 and the libraries the script declares; the script downloads the VoLCA engine
 itself.
-
-## Install, once (Windows)
 
 Open PowerShell (Start menu, type `PowerShell`) and install `uv`:
 
@@ -48,12 +38,9 @@ Close PowerShell and open it again, so it finds `uv`. On Linux or macOS,
 
 ## Run
 
-In PowerShell, on one line, each path in quotes, none ending with a `\`
-(PowerShell would read it as escaping the closing quote):
-
-```powershell
-uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py "C:\data\Carbonfact database" "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip" --correspondence "C:\data\Correspondence File v3.11 - v.3.12.xlsx"
-```
+Each command runs in PowerShell, on one line, each path in quotes, none ending
+with a `\` (PowerShell would read it as escaping the closing quote). The
+examples take the dyeing database.
 
 `uv` fetches the script from this repository, so there is nothing to download
 by hand; each run takes the latest version. To keep one version, replace `main`
@@ -63,52 +50,104 @@ in the address by a commit number. From a copy of the repository, run
 The first run downloads the engine, and the engine reads ecoinvent from its
 archive, which takes several minutes. It unpacks each archive into a folder
 beside it, named after it with `.d` added, and keeps what it read there, so the
-next runs take a couple of minutes.
+next runs take seconds.
 
-Options, all optional:
+Each command writes beside the database it is given, under that database's
+name followed by what it made; `--out FOLDER` writes elsewhere.
+`uv run carbonfact_bafu.py <command> --help` describes every option.
 
-| Option | Effect |
-|---|---|
-| `--correspondence FILE` | look a 3.12 supplier up under its 3.11 name |
-| `--complement FILE` | your own BAFU choices, in the columns of `mapping.csv`, instead of the ones built into the script (below); they win over the mapping |
-| `--export FORMAT` | also write the BAFU version as `brightway`, `simapro`, `ecospold2` or `openlca` |
-| `--no-quality` | skip the quality report |
-| `--out FOLDER` | where to write, by default `<Carbonfact folder> - BAFU` beside it |
-| `--top N` | how many of the widest gaps to list, 20 by default |
+### `relink`: putting a database on BAFU
+
+```powershell
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py relink "C:\data\Dyeing_Inventory_Brightway.xlsx" --mapping "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --correspondence "C:\data\Correspondence File v3.11 - v.3.12.xlsx"
+```
+
+It needs:
+
+- **the database**, a Brightway workbook whose suppliers are in ecoinvent 3.12
+  cut-off;
+- **the mapping** from ecoinvent 3.11 to BAFU (`--mapping`), either:
+  - the expert workbook (`.xlsx`), sheet `Matching Full`, its columns found by
+    their title, in this order: `EI 3.11 dataset`, `BAFU Name`, `Geography`,
+    `unit`, `conversion`, whatever other columns lie between;
+  - or the mapping exported from VoLCA's mapping page (`.csv`), made with
+    ecoinvent 3.11 as source. Only decided rows are read: a suggestion nobody
+    accepted links nothing;
+- **ecoinvent 3.12 cut-off** (`--ecoinvent`), its ecoSpold02 archive. ecoinvent
+  ships it as `.7z`, which needs [7-Zip](https://www.7-zip.org/) installed; a
+  `.zip` of the same files needs nothing;
+- **BAFU** (`--bafu`), its ecoSpold v1 archive, the `.zip` as BAFU distributes
+  it;
+- optional, **ecoinvent's correspondence file**, `Correspondence File v3.11 -
+  v.3.12.xlsx` (`--correspondence`). The mapping is written against 3.11;
+  without this file a 3.12 supplier is looked up under the same name, and the
+  script lists the ones it misses.
+
+It writes:
+
+- `Dyeing_Inventory_Brightway.bafu.brightway.xlsx`: the database on BAFU, each
+  input written under the BAFU process it is linked to, attached to a database
+  named after the BAFU archive (`bafu-2026-v1-ecospold-v1` for `BAFU-2026
+  v1_ecoSpold v1.zip`). Read again beside BAFU under that name, it links to the
+  same suppliers with no mapping, and gives the same scores. `--format simapro`,
+  `ecospold2` or `openlca` writes it in another format, and the name follows:
+  `….bafu.simapro.csv`, `….bafu.ecospold2.zip`, `….bafu.openlca.zip`;
+- `Dyeing_Inventory_Brightway.bafu.mapping.csv`: for each ecoinvent supplier,
+  the BAFU process it is linked to, `opposite` in `direction` when BAFU counts
+  it the other way (below), the 3.11 dataset the mapping was read under, and a
+  `status` saying why a supplier has none.
+
+`--complement FILE` gives your own BAFU choices, in the columns of that file,
+instead of the ones built into the script (below); they win over the mapping.
+
+### `compare`: two versions of a database, one against the other
+
+```powershell
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py compare "C:\data\Dyeing_Inventory_Brightway.xlsx" "C:\data\Dyeing_Inventory_Brightway.bafu.brightway.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip" --reported "C:\data\Carbonfact_Dyeing_DB_LCIA.csv"
+```
+
+The two versions can be in any format the engine reads, not necessarily the
+same one: activities pair on their name, product and place. The engine looks
+for each version's suppliers in ecoinvent and BAFU, and says which it found for
+each. It also needs **the impact method** (`--method`), EF 3.1 adapted exported
+from SimaPro as CSV: adapted 1.03 is the one Ecobalyse uses. `--reported`,
+optional, gives the results Carbonfact publishes for the database
+(`Carbonfact_<step>_DB_LCIA.csv`), to check that the first version finds them
+again.
+
+It writes, under the name of the second version:
+
+- `….comparison.csv`: each activity, then each category and the ECS score, for
+  the first version and for the second;
+- `….comparison.svg`: one scatter per category, the first version across, the
+  second up; the grey bands mark ±10 % and a factor 2.
+
+The terminal says, when `--reported` is given, how close the first version
+comes to Carbonfact's figures, then, per category, the median ratio between the
+two versions and the share of activities within 10 %, a factor 1.5, 2 and 10,
+and ends with the widest gaps on ECS and on climate change (`--top`, 20 by
+default). An activity found on one side only is listed, then left out.
+
+### `quality`: the quality report
+
+```powershell
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py quality "C:\data\Dyeing_Inventory_Brightway.bafu.brightway.xlsx"
+```
+
+It needs only the database, in any format the engine reads, and writes
+`….quality.csv`: the structural defects the engine finds, such as a process
+without a reference, an allocation that does not add up to 100 % or missing
+metadata. Inputs the database does not make itself are listed for information:
+they come from the background. This report is not a data quality rating (DQR):
+the script neither reads nor writes the DQR Carbonfact publishes.
 
 `VOLCA_BINARY` with `VOLCA_DATA_DIR`, set as environment variables, run a local
 engine build instead of the downloaded one.
 
-## What it writes
-
-In `<Carbonfact folder> - BAFU`:
-
-- `mapping.csv`: for every ecoinvent supplier, the BAFU process it is relinked
-  to, `opposite` in `direction` where BAFU counts it the other way (below), the
-  3.11 dataset the mapping was read under, and a `status` saying why a supplier
-  has none;
-- `comparison.csv`: each activity, its step, the climate change figure Carbonfact
-  reports for it (blank for the thirteen it reports none for: the heat mix, the
-  dyes, the inks), then every category and the ECS score with ecoinvent in the
-  background and with BAFU;
-- `comparison.svg`: one scatter per category, ecoinvent background across, BAFU
-  background up, coloured by step; the grey bands are ±10 % and a factor 2;
-- `quality.csv`: the engine's quality report of the BAFU version;
-- with `--export`, `carbonfact.<format>.<ext>`: the BAFU version, each input written
-  under the BAFU process it is linked to, in a database named after the BAFU
-  archive (`bafu-2026-v1-ecospold-v1` for `BAFU-2026 v1_ecoSpold v1.zip`). Read
-  again beside BAFU under that name, it links to the same suppliers with no
-  mapping, and gives the same scores.
-
-The terminal says how close the ecoinvent version comes to Carbonfact's own
-figures, then per category the median ratio BAFU / ecoinvent and the share of
-activities within 10 %, a factor 1.5, 2 and 10, and ends with the widest gaps
-on ECS and on climate change.
-
 ## What was measured
 
 With the expert mapping of 28 October 2026 as it comes, the built-in choices
-(below) and EF 3.1 adapted 1.03: on ecoinvent, climate change is within
+(below) and EF 3.1 adapted 1.03, on the eight databases: on ecoinvent, climate change is within
 0.03 % of the figure Carbonfact reports, on each of the 294 activities it
 reports one for. On BAFU, the median ratio BAFU / ecoinvent is 0.84 on climate
 change, with 99 % of the activities within a factor 1.5, and
@@ -130,14 +169,18 @@ examined here.
 
 - **`none for … : not in the mapping`**, followed by **`Name a BAFU supplier for
   each in a --complement file`**: some ecoinvent suppliers have no BAFU
-  equivalent. Copy `mapping.csv`, fill `target_product` and `target_location`
+  equivalent. Copy `….bafu.mapping.csv`, fill `target_product` and `target_location`
   for those rows, and pass it with `--complement`. When the status adds
   `--correspondence may find it`, pass the correspondence file first.
 - **`no column … after …`** or **`two columns …`**: the workbook's titles
   changed; the message names the column it misses, or the title found twice,
   which must be renamed on the column not to read.
-- **`… differs between the steps …`**: one activity name is written two
-  different ways in two workbooks; the script will not pick one.
+- **`… inputs find no supplier in …`**: a version calls suppliers neither
+  ecoinvent nor BAFU has; the message lists them.
+- **`references in different units`** or **`several activities answer to …`**
+  (`compare`): the two versions write an activity in different units, or one
+  version has two activities of the same name, product and place; the script
+  will not pick.
 - **`VoLCA … is too old`**: this needs an engine more recent than the latest
   release. Each run downloads the latest one, so it resolves itself once it is
   out.
@@ -155,7 +198,7 @@ examined here.
 
 ## The choices built into the script
 
-The steps use 112 distinct ecoinvent suppliers. The script carries a BAFU choice
+The eight databases use 112 distinct ecoinvent suppliers. The script carries a BAFU choice
 for the twelve below, and uses it whatever the workbook says, unless
 `--complement` gives others. The workbook decides for the other hundred. The
 choices are **proposals, not validated**: each should be checked by someone who
@@ -228,15 +271,11 @@ Proxies worth a second look:
 ## Checking the script
 
 `uv run test_carbonfact_bafu.py` checks the workbook reader and the order
-between the built-in choices and the mapping, without the engine.
+between the built-in choices and the mapping, and how the activities of two
+versions pair, without the engine.
 
 ## How it works
 
-- **One database.** Every workbook's activities go into one Brightway workbook
-  named Carbonfact. An activity several steps share (the heat mix, four dyes) is
-  kept once; the steps write it with different unit spellings (MJ, megajoule) and
-  capitals, which the script reads as the same, and any other difference stops
-  the run.
 - **Relinking.** Each ecoinvent supplier is walked back to 3.11 (with the
   correspondence file, else under its own name), looked up in the built-in
   choices and, where they have nothing, in the mapping. Two ecoinvent
@@ -255,5 +294,3 @@ between the built-in choices and the mapping, without the engine.
 - **ECS** is Ecobalyse's weighting on EF 3.1 alone, without Ecobalyse's own
   corrections. The script adds it as a scoring set to a copy of the method once
   the engine has started.
-- The relink lives in the engine's memory, which the script stops at the end:
-  `--export` is the way to keep the BAFU version.

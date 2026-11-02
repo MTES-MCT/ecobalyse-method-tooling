@@ -2,28 +2,24 @@
 # requires-python = ">=3.12"
 # dependencies = ["pyvolca[plot]>=0.14", "openpyxl"]
 # ///
-"""Put the Carbonfact processes on BAFU, and see what it changes.
+"""Put a Carbonfact database on BAFU, compare its scores on both, and check it.
 
 Carbonfact ships one Brightway workbook per process step, each naming its
-suppliers in ecoinvent 3.12 cut-off. This gathers every step into one database,
-Carbonfact, and loads it twice: as published, on ecoinvent, and relinked onto
-BAFU through an ecoinvent 3.11 to BAFU mapping. Every process is scored on both
-and the two are drawn against each other.
+suppliers in ecoinvent 3.12 cut-off and none naming another step's. Each
+command works on one such database, so a new one is handled the same way:
 
-    uv run carbonfact_bafu.py "Carbonfact database" MAPPING \\
-        --ecoinvent "ecoinvent 3.12_cutoff_ecoSpold02.7z" \\
-        --bafu "BAFU-2026 v1_ecoSpold v1.zip" \\
+    relink   writes the database on BAFU: each ecoinvent supplier replaced by
+             its BAFU equivalent, through an ecoinvent 3.11 to BAFU mapping;
+    compare  scores two versions of a database, on their own background each,
+             and draws one against the other;
+    quality  writes the engine's structural quality report of a database.
+
+    uv run carbonfact_bafu.py relink Dyeing_Inventory_Brightway.xlsx --mapping mapping.xlsx \\
+        --ecoinvent "ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "BAFU-2026 v1_ecoSpold v1.zip"
+    uv run carbonfact_bafu.py compare Dyeing_Inventory_Brightway.xlsx Dyeing_Inventory_Brightway.bafu.brightway.xlsx \\
+        --ecoinvent "ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "BAFU-2026 v1_ecoSpold v1.zip" \\
         --method "Environmental Footprint 3.1 (adapted).1.03.CSV.zip"
-
-MAPPING is either the expert workbook (.xlsx, sheet "Matching Full") or the
-mapping CSV exported by VoLCA's mapping page (.csv); both must have ecoinvent
-3.11 as source. A 3.12 supplier is looked up under the same name in 3.11, or
-under its 3.11 name with --correspondence.
-
-Written next to the Carbonfact folder, in "<folder> - BAFU": mapping.csv (the
-relink recipe, and why a supplier has no BAFU equivalent), comparison.csv and
-comparison.svg, quality.csv (the engine's quality report of the BAFU version),
-and with --export the BAFU version as a file another tool can open.
+    uv run carbonfact_bafu.py quality Dyeing_Inventory_Brightway.bafu.brightway.xlsx
 
 The engine is downloaded on first run. VOLCA_BINARY with VOLCA_DATA_DIR runs a
 local engine build and its data instead.
@@ -36,8 +32,10 @@ import os
 import re
 import statistics
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
+from collections.abc import Iterator
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 from dataclasses import dataclass, replace
 from itertools import pairwise
 from pathlib import Path
@@ -49,7 +47,6 @@ from volca.compare_plot import BANDS, Point, band_shares, fold, scatter_grid, wi
 
 NEEDS = (0, 16, 0)  # keeps a mapping's links through finalize, exports under the linked supplier
 ECOINVENT, COLLECTION, WITH_ECS = "ecoinvent-3.12", "EF 3.1", "ef-3-1-with-ecs"  # a copy's name, as the engine keeps it
-ON_ECOINVENT, ON_BAFU = "carbonfact-ecoinvent", "carbonfact"
 EXTENSION = {"brightway": "xlsx", "simapro": "csv", "ecospold2": "zip", "openlca": "zip"}
 TABLES = ("ECS", "Climate change")
 ECS_COLUMN = "ECS Single score"  # score_table names a set's column after the set and its score
@@ -125,51 +122,31 @@ class Resolution:
     opposite: bool = False  # the BAFU process writes its reference with the other sign
 
 
-# -- the Carbonfact workbooks -------------------------------------------------
+
+
+# -- the Carbonfact workbook --------------------------------------------------
 
 Block = list[list]  # one activity: its "Activity" row down to its last exchange
 
 
-def blocks(path: Path) -> list[Block]:
-    """Every activity of a workbook, its database renamed Carbonfact, blank cells and rows trimmed."""
-    found: list[Block] = []
+def blocks(path: Path) -> tuple[str, list[Block]]:
+    """A workbook's database name and every activity, blank cells and rows trimmed."""
+    database, found = None, []
     for row in openpyxl.load_workbook(path, read_only=True).worksheets[0].iter_rows(values_only=True):
-        row = ["Carbonfact" if re.fullmatch(r"Carbonfact_.*_DB", str(c)) else c for c in row]
+        row = list(row)
         while row and row[-1] is None:
             row.pop()
-        if row and row[0] == "Activity":
+        if row and row[0] == "Database":
+            database = row[1] if len(row) > 1 else None
+        elif row and row[0] == "Activity":
             found.append([])
         if found and row:
             found[-1].append(row)
         elif row and row[0] != "Database":
             sys.exit(f"{path}: row {row} comes before the first activity, and this script does not read it")
-    return found
-
-
-def merge(folder: Path, units: dict) -> tuple[list[Block], dict[str, list[str]]]:
-    """One database of every step, each activity once, and the steps each activity comes from.
-
-    An activity met in several steps must say the same thing in each: case,
-    spacing and unit spelling (MJ, megajoule) aside.
-    """
-    workbooks = sorted(folder.glob("*/*_Inventory_Brightway.xlsx"))
-    if not workbooks:
-        sys.exit(f"no <step>/<step>_Inventory_Brightway.xlsx in {folder}: is it the Carbonfact folder?")
-
-    def meaning(block: Block) -> list:
-        # exact spelling first: mJ and MJ are two units
-        return [[units.get(c) or units.get(norm(c)) or norm(c) if isinstance(c, str) else c for c in row] for row in block]
-
-    kept: dict[str, Block] = {}
-    steps: dict[str, list[str]] = defaultdict(list)
-    for path in workbooks:
-        for block in blocks(path):
-            name = block[0][1]
-            if name in kept and meaning(kept[name]) != meaning(block):
-                sys.exit(f"{name!r} differs between the steps {', '.join(steps[name])} and {path.parent.name}")
-            kept.setdefault(name, block)
-            steps[name].append(path.parent.name)
-    return list(kept.values()), steps
+    if not database or not found:
+        sys.exit(f"{path}: no Database row or no activity, is it a Brightway workbook?")
+    return str(database), found
 
 
 def exchanges(block: Block):
@@ -186,24 +163,25 @@ def is_background(f: dict) -> bool:
     return f.get("type") == "technosphere" and str(f.get("database") or "").startswith("ecoinvent")
 
 
-def workbook(activities: list[Block], by_activity: bool) -> bytes:
-    """The Brightway workbook of the merged database.
 
-    by_activity clears the reference product of every ecoinvent input: two
-    ecoinvent activities can make one product in one place (hard coal and light
-    fuel oil furnaces both make "heat, district or industrial, other than natural
-    gas" in RoW) and map to different BAFU processes, while a relink recipe keys
-    an input on its name and place. Without a product, a Brightway input is
-    named after its activity.
+
+def workbook(database: str, activities: list[Block]) -> bytes:
+    """The Brightway workbook to relink, every ecoinvent input named after its activity.
+
+    Two ecoinvent activities can make one product in one place (hard coal and
+    light fuel oil furnaces both make "heat, district or industrial, other than
+    natural gas" in RoW) and map to different BAFU processes, while a relink
+    recipe keys an input on its name and place. Without a product, a Brightway
+    input is named after its activity.
     """
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = "data"
-    ws.append(["Database", "Carbonfact"])
+    ws.append(["Database", database])
     for block in activities:
         rows = [list(row) for row in block]
         for f, row, header in exchanges(rows):
-            if by_activity and is_background(f):
+            if is_background(f):
                 row += [None] * (len(header) - len(row))  # its blank end cells were trimmed
                 row[header.index("reference product")] = None
         ws.append([])
@@ -214,13 +192,20 @@ def workbook(activities: list[Block], by_activity: bool) -> bytes:
     return out.getvalue()
 
 
-def reported_climate(folder: Path) -> dict[str, float]:
-    reported = {}
-    for path in folder.glob("*/Carbonfact_*_DB_LCIA.csv"):
-        with path.open(newline="", encoding="utf-8") as fh:
-            reported |= {row["Activity"]: float(row["GHG"]) for row in csv.DictReader(fh)}
-    return reported
+def reported_climate(path: Path) -> dict[str, float]:
+    """Carbonfact's own climate change per activity, from its <step>_DB_LCIA.csv."""
+    with path.open(newline="", encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh))
+    if rows and not {"Activity", "GHG"} <= rows[0].keys():
+        sys.exit(f"{path}: no Activity or GHG column, is it Carbonfact's LCIA results?")
+    return {row["Activity"]: float(row["GHG"]) for row in rows}
 
+
+def beside(base: Path, out: Path | None, suffix: str) -> Path:
+    """Where a command writes what it made of a database: next to it, its name kept, unless --out says another folder."""
+    folder = out or base.resolve().parent
+    folder.mkdir(parents=True, exist_ok=True)
+    return folder / f"{base.stem}.{suffix}"
 
 # -- the mapping --------------------------------------------------------------
 
@@ -433,12 +418,36 @@ def fresh_upload(c: Client, source: bytes, name: str) -> str:
     return c.upload_database(source, name=name)["slug"]
 
 
-def load(c: Client, source: bytes, name: str, dependency: str, mapping: str | None = None) -> str:
-    """Upload the merged database, link it to one dependency only, and load it, or stop saying what is missing."""
+
+
+@contextmanager
+def running(databases: dict[str, Path], methods: dict[str, Path] | None = None) -> Iterator[Client]:
+    """An engine started on these files, recent enough for this script, stopped on the way out."""
+    if "VOLCA_BINARY" not in os.environ:
+        volca.download()  # the latest release, once per release
+    with Server(databases=databases, methods=methods or {}) as server:
+        c = Client(server.base_url)
+        version = c.get_version().version
+        found = re.match(r"(\d+)\.(\d+)\.(\d+)", version)
+        if not found or tuple(map(int, found.groups())) < NEEDS:
+            sys.exit(f"VoLCA {version} is too old, this needs {'.'.join(map(str, NEEDS))} or later. Each run downloads the latest "
+                     "release; until one is recent enough, set VOLCA_BINARY and VOLCA_DATA_DIR to a local build.")
+        print(f"VoLCA {version}")
+        yield c
+
+
+def load(c: Client, source: bytes | Path, name: str, dependency: str | None = None, mapping: str | None = None) -> str:
+    """Upload a database and load it, or stop saying what is missing.
+
+    With a dependency, it is linked to that one only; without, to those the
+    engine finds its suppliers in, which are printed.
+    """
     slug = fresh_upload(c, source, name)
-    for dep in c.get_setup(slug).get("dependencies") or []:
-        if dep.get("status") == "selected" and dep["databaseName"] != dependency:
-            c.remove_dependency(dep["databaseName"], db_name=slug)
+    selected = [d["databaseName"] for d in c.get_setup(slug).get("dependencies") or [] if d.get("status") == "selected"]
+    if dependency:
+        for other in selected:
+            if other != dependency:
+                c.remove_dependency(other, db_name=slug)
     if mapping:
         c.relink(dependency, mapping, db_name=slug)
     setup = c.get_setup(slug)
@@ -446,65 +455,183 @@ def load(c: Client, source: bytes, name: str, dependency: str, mapping: str | No
         missing = "".join(
             f"\n  {m['productName']} {m.get('locations')}: {m.get('reason')} {m.get('detail') or ''}" for m in setup.get("missingSuppliers") or []
         )
-        sys.exit(f"{name}: {setup.get('unresolvedLinks')} inputs find no supplier in {dependency}:{missing}")
+        sys.exit(f"{name}: {setup.get('unresolvedLinks')} inputs find no supplier in {dependency or ', '.join(selected)}:{missing}")
+    if not dependency:
+        print(f"  {name} takes its suppliers from {', '.join(selected) or 'itself alone'}")
     c.finalize_database(slug)
     return slug
 
 
-def score(c: Client, slug: str, collection: str) -> dict[str, dict[str, float]]:
-    """Every activity's score on ECS and every category, by activity name."""
+def drop(c: Client, slug: str) -> None:
+    c.unload_database(slug)
+    c.delete_database(slug)
+
+
+Key = tuple[str, str, str]  # activity, product, place: what tells two activities apart in both versions
+
+
+def score(c: Client, slug: str, collection: str) -> dict[Key, dict]:
+    """Every activity's reference unit and score on ECS and every category."""
     db = c.use(slug)
-    rows = db.score_table([a.process_id for a in db.search_activities()], collection=collection)
+    activities = db.search_activities()
+    twice = [k for k, n in Counter((a.activity_name, a.product_name, a.location) for a in activities).items() if n > 1]
+    if twice:
+        sys.exit(f"{slug}: several activities answer to {twice[:5]}, which version's would pair with which is a guess")
+    key = {a.process_id: (a.activity_name, a.product_name, a.location) for a in activities}
+    rows = db.score_table(list(key), collection=collection)
     # The method file brings its own weighting set too, which is not a category.
     categories = {m.name for m in c.list_methods() if m.collection == collection}
-    return {row["activity_name"]: {"ECS": row[ECS_COLUMN]} | {k: v for k, v in row.items() if k in categories} for row in rows}
+    return {
+        key[row["process_id"]]: {"unit": row["product_unit"], "ECS": row[ECS_COLUMN]} | {k: v for k, v in row.items() if k in categories}
+        for row in rows
+    }
 
 
 # -- the comparison -----------------------------------------------------------
 
 
-def positive(ecoinvent: dict, bafu: dict, category: str) -> list[Point]:
+def paired(left: dict[Key, dict], right: dict[Key, dict]) -> tuple[dict[Key, dict], dict[Key, dict], list[Key], list[Key]]:
+    """The activities found in both, each side's scores for them, and what only one side has.
+
+    A score is per one reference unit: two versions writing one activity's
+    reference in different units cannot be read against each other.
+    """
+    both = sorted(left.keys() & right.keys())
+    units = [k for k in both if left[k]["unit"] != right[k]["unit"]]
+    if units:
+        sys.exit("references in different units: " + "; ".join(f"{k[0]} {left[k]['unit']} / {right[k]['unit']}" for k in units))
+    strip = lambda side: {k: {c: v for c, v in side[k].items() if c != "unit"} for k in both}  # noqa: E731
+    return strip(left), strip(right), sorted(left.keys() - right.keys()), sorted(right.keys() - left.keys())
+
+
+def label(k: Key) -> str:
+    return f"{k[0]} {{{k[2]}}}"
+
+
+def positive(left: dict, right: dict, category: str) -> list[Point]:
     """The activities one category can be judged on: a ratio against zero says nothing, a log scale draws neither."""
-    return [Point(name, e[category], bafu[name][category]) for name, e in ecoinvent.items() if e[category] > 0 and bafu[name][category] > 0]
+    return [Point(label(k), s[category], right[k][category]) for k, s in left.items() if s[category] > 0 and right[k][category] > 0]
 
 
-def report(ecoinvent: dict, bafu: dict, reported: dict, steps: dict, top: int) -> None:
-    climate = [(ecoinvent[n]["Climate change"], ghg) for n, ghg in reported.items() if n in ecoinvent and ghg]
-    if climate:
-        worst = max(abs(v / ghg - 1) for v, ghg in climate)
-        print(f"On ecoinvent, climate change is within {worst:.2%} of what Carbonfact reports, on {len(climate)} activities.")
-    print(f"\nBAFU background / ecoinvent background, {len(bafu)} activities:")
-    print(f"  {'category':45} {'median':>7} " + " ".join(f"{'within ' + label:>11}" for _, label in BANDS))
-    for category in next(iter(ecoinvent.values())):
-        ratios = [p.right / p.left for p in positive(ecoinvent, bafu, category)]
+def report(left: dict, right: dict, names: tuple[str, str], top: int) -> None:
+    print(f"\n{names[1]} / {names[0]}, {len(left)} activities:")
+    print(f"  {'category':45} {'median':>7} " + " ".join(f"{'within ' + band:>11}" for _, band in BANDS))
+    for category in next(iter(left.values())):
+        ratios = [p.right / p.left for p in positive(left, right, category)]
         if ratios:
             within, total = band_shares(ratios), 0.0
             shares = ""
-            for _, label in BANDS:
-                total += within[label]
+            for _, band in BANDS:
+                total += within[band]
                 shares += f" {total:11.0%}"
             print(f"  {category:45} {statistics.median(ratios):7.3f}{shares}")
     for category in TABLES:
         print(f"\nThe {top} widest gaps on {category}:")
-        for p in widest(positive(ecoinvent, bafu, category), top):
-            print(f"  {fold(p.right / p.left):>9}  {p.label}  ({', '.join(steps[p.label])})")
+        for p in widest(positive(left, right, category), top):
+            print(f"  {fold(p.right / p.left):>9}  {p.label}")
 
 
+def check_reported(left: dict, reported: dict[str, float]) -> None:
+    """How close the left version comes to the climate change Carbonfact reports for each activity."""
+    climate = [(s["Climate change"], reported[k[0]]) for k, s in left.items() if reported.get(k[0])]
+    if not climate:
+        sys.exit("no activity of the left database is in the reported results")
+    worst = max(abs(v / ghg - 1) for v, ghg in climate)
+    print(f"The left database is within {worst:.2%} of the climate change Carbonfact reports, on {len(climate)} activities.")
 
 
-def draw(ecoinvent: dict, bafu: dict, steps: dict, path: Path) -> None:
-    """One scatter per category, coloured by step, the three widest gaps named."""
-    points = {category: positive(ecoinvent, bafu, category) for category in next(iter(ecoinvent.values()))}
-    scatter_grid(points, path, colour={name: s[0] for name, s in steps.items()}, labels=("ecoinvent 3.12 background", "BAFU background"))
-
-
-def write_comparison(ecoinvent: dict, bafu: dict, reported: dict, steps: dict, path: Path) -> None:
-    categories = list(next(iter(ecoinvent.values())))
+def write_comparison(left: dict, right: dict, names: tuple[str, str], path: Path) -> None:
+    categories = list(next(iter(left.values())))
     with path.open("w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
-        w.writerow(["step", "activity", "Carbonfact reported GHG"] + [f"{c} {side}" for c in categories for side in ("ecoinvent", "BAFU")])
-        for name in sorted(ecoinvent, key=lambda n: (steps[n][0], n)):
-            w.writerow(["; ".join(steps[name]), name, reported.get(name, "")] + [s[name][c] for c in categories for s in (ecoinvent, bafu)])
+        w.writerow(["activity", "product", "location"] + [f"{c} {side}" for c in categories for side in names])
+        for k in left:
+            w.writerow([*k] + [s[k][c] for c in categories for s in (left, right)])
+
+
+# -- the commands -------------------------------------------------------------
+
+
+def relink(args) -> None:
+    database, activities = blocks(args.base)
+    print(f"{len(activities)} activities in {database}")
+    # One per name and place, as the recipe keys them: a workbook can spell one unit two ways (kWh, kilowatt hour).
+    suppliers = {
+        (norm(f["name"]), f["location"]): Supplier(" ".join(str(f["name"]).split()), " ".join(str(f.get("reference product") or "").split()), f["location"], f["unit"])
+        for block in reversed(activities) for f, _, _ in exchanges(block) if is_background(f)
+    }.values()
+    complement = read_complement(args.complement.read_text(encoding="utf-8"), str(args.complement)) if args.complement else read_complement(COMPLEMENT, "built-in")
+    back, mapping = read_correspondence(args.correspondence), read_mapping(args.mapping)
+    resolutions = [resolve(s, back, mapping, complement) for s in suppliers]
+    gaps = sorted((r for r in resolutions if r.target is None), key=lambda r: r.supplier.activity)
+    print(f"{len(resolutions) - len(gaps)} of {len(resolutions)} ecoinvent suppliers have a BAFU equivalent")
+    recipe_path = beside(args.base, args.out, "bafu.mapping.csv")
+    for r in gaps:
+        hint = "; --correspondence may find it under its 3.11 name" if r.status == "not in the mapping" and not args.correspondence else ""
+        print(f"  none for {r.supplier.activity} {{{r.supplier.location}}}: {r.status}{hint}")
+    if gaps:
+        recipe_path.write_text(recipe(resolutions), encoding="utf-8")
+        sys.exit(f"Name a BAFU supplier for each in a --complement file, in the columns of {recipe_path}.")
+
+    bafu = db_name(args.bafu)
+    with running({ECOINVENT: args.ecoinvent, bafu: args.bafu}) as c:
+        print("loading ecoinvent and BAFU (the first time, several minutes)...")
+        c.load_database(ECOINVENT)
+        c.load_database(bafu)
+        resolutions = directed(c, bafu, resolutions)
+        print(f"  {sum(r.opposite for r in resolutions)} suppliers that BAFU counts the other way, turned")
+        relinked = recipe(resolutions)
+        recipe_path.write_text(relinked, encoding="utf-8")
+        slug = load(c, workbook(database, activities), f"{database} on BAFU", bafu, relinked)
+        written = beside(args.base, args.out, f"bafu.{args.format}.{EXTENSION[args.format]}")
+        c.export_to_file(args.format, str(written), db_name=slug)
+        drop(c, slug)
+    print(f"written: {written}\n         {recipe_path}")
+
+
+def compare(args) -> None:
+    if args.left.resolve() == args.right.resolve():
+        sys.exit("a database compared with itself says nothing")
+    # two versions of one name in two folders would give two columns of one title
+    names = (args.left.name, args.right.name) if args.left.name != args.right.name else (str(args.left), str(args.right))
+    # read before the long scoring, so a wrong file stops the run at once
+    reported = reported_climate(args.reported) if args.reported else None
+    bafu = db_name(args.bafu)
+    with running({ECOINVENT: args.ecoinvent, bafu: args.bafu}, {COLLECTION: args.method}) as c:
+        print("loading ecoinvent and BAFU (the first time, several minutes)...")
+        c.load_database(ECOINVENT)
+        c.load_database(bafu)
+        collection = with_ecs(c)
+        slugs = [load(c, path, f"{side}: {path.stem}") for side, path in (("left", args.left), ("right", args.right))]
+        print("scoring...")
+        left, right = (score(c, slug, collection) for slug in slugs)
+        for slug in slugs:
+            drop(c, slug)
+    left, right, only_left, only_right = paired(left, right)
+    for name, only in zip(names, (only_left, only_right)):
+        if only:
+            print(f"  {len(only)} activities only in {name}, left out: {'; '.join(label(k) for k in only[:10])}{' ...' if len(only) > 10 else ''}")
+    if not left:
+        sys.exit("no activity is in both databases")
+    table, figure = beside(args.right, args.out, "comparison.csv"), beside(args.right, args.out, "comparison.svg")
+    write_comparison(left, right, names, table)
+    points = {category: positive(left, right, category) for category in next(iter(left.values()))}
+    scatter_grid(points, figure, labels=names)
+    print(f"\nwritten: {table}\n         {figure}")
+    if reported is not None:
+        check_reported(left, reported)
+    report(left, right, names, args.top)
+
+
+def quality(args) -> None:
+    written = beside(args.base, args.out, "quality.csv")
+    with running({}) as c:
+        # The report reads the database as staged: no background needs to be loaded.
+        slug = fresh_upload(c, args.base, args.base.stem)
+        c.get_setup(slug)  # what parses an upload: the report reads the parsed database
+        written.write_bytes(c.quality_report_csv(slug))
+        c.delete_database(slug)
+    print(f"written: {written}")
 
 
 # -- main ---------------------------------------------------------------------
@@ -512,85 +639,46 @@ def write_comparison(ecoinvent: dict, bafu: dict, reported: dict, steps: dict, p
 
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("carbonfact", type=Path, help="the 'Carbonfact database' folder, one sub-folder per step")
-    ap.add_argument("mapping", type=Path, help="ecoinvent 3.11 to BAFU: the expert workbook (.xlsx) or the mapping page's export (.csv)")
-    ap.add_argument("--ecoinvent", type=Path, required=True, help="ecoinvent 3.12 cut-off, its ecoSpold02 archive")
-    ap.add_argument("--bafu", type=Path, required=True, help="BAFU, its ecoSpold v1 archive")
-    ap.add_argument("--method", type=Path, required=True, help="EF 3.1 adapted, its SimaPro CSV export")
-    ap.add_argument("--correspondence", type=Path, help="ecoinvent's 'Correspondence File v3.11 - v.3.12.xlsx', for suppliers renamed in 3.12")
-    ap.add_argument("--complement", type=Path, help="BAFU suppliers chosen by hand, in mapping.csv's columns; they win over the mapping and replace the built-in ones")
-    ap.add_argument("--export", choices=sorted(EXTENSION), help="also write the BAFU version in this format")
-    ap.add_argument("--no-quality", action="store_true", help="skip the engine's quality report")
-    ap.add_argument("--out", type=Path, help="where to write (default: '<carbonfact folder> - BAFU' beside it)")
-    ap.add_argument("--top", type=int, default=20, help="how many of the widest gaps to list")
+    ap = argparse.ArgumentParser(description="Put a Carbonfact database on BAFU, compare its scores on both, and check it.")
+    commands = ap.add_subparsers(dest="command", required=True)
+
+    def backgrounds(p: argparse.ArgumentParser) -> None:
+        p.add_argument("--ecoinvent", type=Path, required=True, help="ecoinvent 3.12 cut-off, its ecoSpold02 archive")
+        p.add_argument("--bafu", type=Path, required=True, help="BAFU, its ecoSpold v1 archive")
+
+    def out(p: argparse.ArgumentParser) -> None:
+        p.add_argument("--out", type=Path, help="the folder to write in (default: the database's own)")
+
+    p = commands.add_parser("relink", help="write a database on BAFU, as <name>.bafu.<format>.<ext>, and the mapping it applied")
+    p.add_argument("base", type=Path, help="a Brightway workbook whose suppliers are in ecoinvent 3.12 cut-off")
+    p.add_argument("--mapping", type=Path, required=True, help="ecoinvent 3.11 to BAFU: the expert workbook (.xlsx) or the mapping page's export (.csv)")
+    backgrounds(p)
+    p.add_argument("--correspondence", type=Path, help="ecoinvent's 'Correspondence File v3.11 - v.3.12.xlsx', for suppliers renamed in 3.12")
+    p.add_argument("--complement", type=Path, help="BAFU suppliers chosen by hand, in the mapping CSV's columns; they win over the mapping and replace the built-in ones")
+    p.add_argument("--format", choices=sorted(EXTENSION), default="brightway", help="the format to write (default: %(default)s)")
+    out(p)
+    p.set_defaults(run=relink)
+
+    p = commands.add_parser("compare", help="score two versions of a database, each on its own background, one against the other")
+    p.add_argument("left", type=Path, help="the reference version, the one on ecoinvent say, in any format the engine reads")
+    p.add_argument("right", type=Path, help="the version to judge against it, the one on BAFU say")
+    backgrounds(p)
+    p.add_argument("--method", type=Path, required=True, help="EF 3.1 adapted, its SimaPro CSV export")
+    p.add_argument("--reported", type=Path, help="Carbonfact's <step>_DB_LCIA.csv, to check the left version against its climate change")
+    p.add_argument("--top", type=int, default=20, help="how many of the widest gaps to list (default: %(default)s)")
+    out(p)
+    p.set_defaults(run=compare)
+
+    p = commands.add_parser("quality", help="write the engine's structural quality report of a database, as <name>.quality.csv")
+    p.add_argument("base", type=Path, help="a database in any format the engine reads")
+    out(p)
+    p.set_defaults(run=quality)
+
     args = ap.parse_args()
-    for given in (args.carbonfact, args.mapping, args.ecoinvent, args.bafu, args.method, args.correspondence, args.complement):
-        if given is not None and not given.exists():
+    for name, given in vars(args).items():
+        if isinstance(given, Path) and name != "out" and not given.exists():
             sys.exit(f"not found: {given}")
-    out = args.out or args.carbonfact.resolve().with_name(args.carbonfact.resolve().name + " - BAFU")
-    out.mkdir(parents=True, exist_ok=True)
-
-    bafu = db_name(args.bafu)
-    if "VOLCA_BINARY" not in os.environ:
-        volca.download()  # the latest release, once per release
-    server = Server(databases={ECOINVENT: args.ecoinvent, bafu: args.bafu}, methods={COLLECTION: args.method})
-    server.start()
-    try:
-        c = Client(server.base_url)
-        version = c.get_version().version
-        found = re.match(r"(\d+)\.(\d+)\.(\d+)", version)
-        if not found or tuple(map(int, found.groups())) < NEEDS:
-            sys.exit(f"VoLCA {version} is too old, this needs {'.'.join(map(str, NEEDS))} or later. Each run downloads the latest "
-                     "release; until one is recent enough, set VOLCA_BINARY and VOLCA_DATA_DIR to a local build.")
-        units = c.unit_table()
-        activities, steps = merge(args.carbonfact, units)
-        print(f"{len(activities)} Carbonfact activities from {len({s for ss in steps.values() for s in ss})} steps")
-
-        # One per name and place, as the recipe keys them: the steps spell one unit two ways (kWh, kilowatt hour).
-        suppliers = {
-            (norm(f["name"]), f["location"]): Supplier(" ".join(str(f["name"]).split()), " ".join(str(f.get("reference product") or "").split()), f["location"], f["unit"])
-            for block in reversed(activities) for f, _, _ in exchanges(block) if is_background(f)
-        }.values()
-        complement = read_complement(args.complement.read_text(encoding="utf-8"), str(args.complement)) if args.complement else read_complement(COMPLEMENT, "built-in")
-        back, mapping = read_correspondence(args.correspondence), read_mapping(args.mapping)
-        resolutions = [resolve(s, back, mapping, complement) for s in suppliers]
-        gaps = sorted((r for r in resolutions if r.target is None), key=lambda r: r.supplier.activity)
-        print(f"{len(resolutions) - len(gaps)} of {len(resolutions)} ecoinvent suppliers have a BAFU equivalent")
-        for r in gaps:
-            hint = "; --correspondence may find it under its 3.11 name" if r.status == "not in the mapping" and not args.correspondence else ""
-            print(f"  none for {r.supplier.activity} {{{r.supplier.location}}}: {r.status}{hint}")
-        if gaps:
-            (out / "mapping.csv").write_text(recipe(resolutions), encoding="utf-8")
-            sys.exit(f"Name a BAFU supplier for each in a --complement file, in the columns of {out / 'mapping.csv'}.")
-
-        print(f"VoLCA {version}, loading ecoinvent and BAFU (the first time, several minutes)...")
-        c.load_database(ECOINVENT)
-        c.load_database(bafu)
-        resolutions = directed(c, bafu, resolutions)
-        print(f"  {sum(r.opposite for r in resolutions)} suppliers that BAFU counts the other way, turned")
-        relink = recipe(resolutions)
-        (out / "mapping.csv").write_text(relink, encoding="utf-8")
-        collection = with_ecs(c)
-        on_ecoinvent = load(c, workbook(activities, by_activity=False), ON_ECOINVENT, ECOINVENT)
-        on_bafu = load(c, workbook(activities, by_activity=True), ON_BAFU, bafu, relink)
-        print("scoring...")
-        ecoinvent, bafu_scores = score(c, on_ecoinvent, collection), score(c, on_bafu, collection)
-        if not args.no_quality:
-            (out / "quality.csv").write_bytes(c.quality_report_csv(on_bafu))
-        if args.export:
-            c.export_to_file(args.export, str(out / f"carbonfact.{args.export}.{EXTENSION[args.export]}"), db_name=on_bafu)
-        for slug in (on_ecoinvent, on_bafu):
-            c.unload_database(slug)
-            c.delete_database(slug)
-    finally:
-        server.stop()
-
-    reported = reported_climate(args.carbonfact)
-    write_comparison(ecoinvent, bafu_scores, reported, steps, out / "comparison.csv")
-    draw(ecoinvent, bafu_scores, steps, out / "comparison.svg")
-    report(ecoinvent, bafu_scores, reported, steps, args.top)
-    print(f"\nwritten in {out}")
+    args.run(args)
 
 
 if __name__ == "__main__":
