@@ -60,7 +60,7 @@ base suivi de ce qu’elle produit ; `--out DOSSIER` écrit ailleurs.
 ### `relink` : la BAFUisation
 
 ```powershell
-uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py relink "C:\data\Dyeing_Inventory_Brightway.xlsx" --mapping "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --correspondence "C:\data\Correspondence File v3.11 - v.3.12.xlsx"
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py relink "C:\data\Dyeing_Inventory_Brightway.xlsx" --mapping "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip"
 ```
 
 Il faut :
@@ -81,10 +81,13 @@ Il faut :
   rien ;
 - **BAFU** (`--bafu`), son archive ecoSpold v1, le `.zip` tel que BAFU le
   distribue ;
-- facultatif, **la table de correspondance d’ecoinvent**, `Correspondence File
-  v3.11 - v.3.12.xlsx` (`--correspondence`). La correspondance vers BAFU est
-  écrite pour la 3.11 ; sans ce fichier, un fournisseur 3.12 est cherché sous le
-  même nom, et le script liste ceux qu’il ne trouve pas.
+- seulement si le script le demande, **la table de correspondance
+  d’ecoinvent**, `Correspondence File v3.11 - v.3.12.xlsx` (`--correspondence`).
+  La correspondance vers BAFU est écrite pour la 3.11 : un fournisseur renommé
+  en 3.12 n’y est pas trouvé sous son nouveau nom. Le script porte les
+  renommages dont les huit bases ont besoin (plus bas) et cherche tout autre
+  fournisseur sous son propre nom ; s’il en manque un, il s’arrête et propose ce
+  fichier, qui remplace alors les renommages inscrits dans le script.
 
 Il écrit :
 
@@ -231,7 +234,7 @@ soit lu, et ce n’est pas examiné ici.
 ## Les choix inscrits dans le script
 
 Les huit bases utilisent 112 fournisseurs ecoinvent distincts. Le script porte un
-choix BAFU pour les douze ci-dessous, et l’applique quoi que dise le classeur,
+choix BAFU pour les neuf ci-dessous, et l’applique quoi que dise le classeur,
 sauf si `--complement` en donne d’autres. Le classeur décide pour la centaine
 restante. Ces choix sont des **propositions, non validées** : chacun devrait
 être vérifié par quelqu’un qui connaît les deux bases, et la correspondance
@@ -260,9 +263,18 @@ minute de repassage consomme 0,027 kWh, qui comptent bien plus que le fer.
 | market for waste mineral oil {RoW} | la correspondance dit #N/A | Disposal, used mineral oil, 10% water, to hazardous waste incineration {CH} | proche |
 | market for wastewater from textile production {RoW} | la correspondance dit #N/A | Treatment, sewage, to wastewater treatment, class 3 {CH} | comme le « wastewater, average » de la correspondance |
 | market for cationic resin {RoW} | coquille dans la correspondance : « Cationic resin, at plan », sans lieu | Cationic resin, at plant {CH} | l’intention de la correspondance |
-| market for polyethylene, high density, granulate {RER} | découpé par région en 3.12, la correspondance a le {GLO} de la 3.11 | Polyethylene, HDPE, granulate, at plant {RER} | le choix de la correspondance pour {GLO} |
-| market for polypropylene, granulate {RER} | découpé par région en 3.12, la correspondance a le {GLO} de la 3.11 | Polypropylene, granulate, at plant {RER} | le choix de la correspondance pour {GLO} |
-| market for polypropylene, granulate {RoW} | découpé par région en 3.12, la correspondance a le {GLO} de la 3.11 | Polypropylene, granulate, at plant {RER} | le choix de la correspondance pour {GLO} |
+
+Trois autres fournisseurs ne sont pas des choix mais des renommages : ecoinvent
+3.12 découpe par région un marché que la 3.11 avait pour le monde, et la
+correspondance ne connaît que ce dernier. Le script les lit comme le fait la
+table de correspondance d’ecoinvent, si bien que la correspondance décide pour
+eux ; `--correspondence` remplace ces trois-là par la table entière.
+
+| fournisseur ecoinvent 3.12 | lu comme le jeu de données 3.11 |
+|---|---|
+| market for polyethylene, high density, granulate {RER} | market for polyethylene, high density, granulate {GLO} |
+| market for polypropylene, granulate {RER} | market for polypropylene, granulate {GLO} |
+| market for polypropylene, granulate {RoW} | market for polypropylene, granulate {GLO} |
 
 ## Correspondances à revoir
 
@@ -311,7 +323,8 @@ des activités de deux versions et ce qu’une fusion ne garde qu’une fois, sa
 ## Comment il marche
 
 - **Reliaison.** Chaque fournisseur ecoinvent est ramené à la 3.11 (avec la
-  table de correspondance, sinon sous son propre nom), cherché dans les choix
+  table de correspondance, sinon les renommages inscrits dans le script, sinon
+  sous son propre nom), cherché dans les choix
   inscrits dans le script et, là où ils n’ont rien, dans la correspondance.
   Deux fournisseurs ecoinvent partagent un même produit et un même lieu
   (« heat, district or industrial, other than natural gas » {RoW}, au

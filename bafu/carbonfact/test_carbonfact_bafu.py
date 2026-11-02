@@ -93,6 +93,16 @@ def test_pairing_by_name_product_place() -> None:
         raise AssertionError("two units were compared")
 
 
+def test_built_in_renames() -> None:
+    """Without the correspondence file, the polypropylene market 3.12 splits by region is
+    still read as the 3.11 one for the world, the only one the mapping knows."""
+    rer = cf.Supplier("market for polypropylene, granulate", "", "RER", "kg")
+    granulate = cf.Target("Polypropylene, granulate, at plant", "RER", "kg", 1)
+    mapping = {("market for polypropylene, granulate", "polypropylene, granulate", "GLO"): {granulate}}
+    assert cf.from_mapping(rer, cf.read_correspondence(None), mapping).target == granulate
+    assert cf.from_mapping(rer, {}, mapping).target is None, "the check proves nothing"
+
+
 def dye(heat: list, amount: float) -> list:
     """A dye as the engine writes it in Brightway, its heat line given."""
     header = ["name", "amount", "reference product", "location", "unit", "categories", "type", "comment", "database"]

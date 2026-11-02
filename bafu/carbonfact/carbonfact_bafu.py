@@ -89,9 +89,15 @@ market for tissue paper,GLO,"Paper, woodfree, uncoated, at regional storage",RER
 market for waste mineral oil,RoW,"Disposal, used mineral oil, 10% water, to hazardous waste incineration",CH,,,
 market for wastewater from textile production,RoW,"Treatment, sewage, to wastewater treatment, class 3",CH,,,
 market for cationic resin,RoW,"Cationic resin, at plant",CH,,,
-"market for polyethylene, high density, granulate",RER,"Polyethylene, HDPE, granulate, at plant",RER,,,
-"market for polypropylene, granulate",RER,"Polypropylene, granulate, at plant",RER,,,
-"market for polypropylene, granulate",RoW,"Polypropylene, granulate, at plant",RER,,,
+"""
+
+# ecoinvent 3.12 suppliers the mapping knows under another 3.11 dataset, as
+# ecoinvent's correspondence file gives them: --correspondence replaces these.
+# 3.12 splits these markets by region where 3.11 had one for the world.
+CORRESPONDENCE = """activity,product,location,activity_311,product_311,location_311
+"market for polyethylene, high density, granulate","polyethylene, high density, granulate",RER,"market for polyethylene, high density, granulate","polyethylene, high density, granulate",GLO
+"market for polypropylene, granulate","polypropylene, granulate",RER,"market for polypropylene, granulate","polypropylene, granulate",GLO
+"market for polypropylene, granulate","polypropylene, granulate",RoW,"market for polypropylene, granulate","polypropylene, granulate",GLO
 """
 
 
@@ -223,17 +229,18 @@ def beside(base: Path, out: Path | None, suffix: str) -> Path:
 
 
 def read_correspondence(path: Path | None) -> dict[tuple, set[tuple]]:
-    """ecoinvent 3.12 (activity, product, place) and (activity, place) -> 3.11 keys.
+    """ecoinvent 3.12 (activity, product, place) and (activity, place) -> 3.11 keys, from the file, else the built-in ones.
 
     A dataset new in 3.12 maps to the empty set: it has no 3.11 predecessor.
     """
     if path is None:
-        return {}
-    ws = openpyxl.load_workbook(path, read_only=True)["Cut-off"]
+        pairs = [((r["activity"], r["product"], r["location"]), (r["activity_311"], r["product_311"], r["location_311"])) for r in csv.DictReader(io.StringIO(CORRESPONDENCE))]
+    else:
+        rows = openpyxl.load_workbook(path, read_only=True)["Cut-off"].iter_rows(min_row=3, values_only=True)
+        pairs = [((row[16], row[22], row[17]), (row[3], row[9], row[4])) for row in rows]
     back = defaultdict(set)
-    for row in ws.iter_rows(min_row=3, values_only=True):
-        old = (norm(row[3]), norm(row[9]), row[4])
-        new = (norm(row[16]), norm(row[22]), row[17])
+    for (na, np, nl), (oa, op, ol) in pairs:
+        old, new = (norm(oa), norm(op), ol), (norm(na), norm(np), nl)
         if new[0]:
             for key in (new, (new[0], "", new[2])):
                 back[key].update([old] if old[0] else [])
@@ -741,7 +748,7 @@ def main() -> None:
     p.add_argument("base", type=Path, help="a Brightway workbook whose suppliers are in ecoinvent 3.12 cut-off")
     p.add_argument("--mapping", type=Path, required=True, help="ecoinvent 3.11 to BAFU: the expert workbook (.xlsx) or the mapping page's export (.csv)")
     backgrounds(p)
-    p.add_argument("--correspondence", type=Path, help="ecoinvent's 'Correspondence File v3.11 - v.3.12.xlsx', for suppliers renamed in 3.12")
+    p.add_argument("--correspondence", type=Path, help="ecoinvent's 'Correspondence File v3.11 - v.3.12.xlsx', for suppliers renamed in 3.12; it replaces the built-in renames, and is needed only when the script asks for it")
     p.add_argument("--complement", type=Path, help="BAFU suppliers chosen by hand, in the mapping CSV's columns; they win over the mapping and replace the built-in ones")
     p.add_argument("--format", choices=sorted(EXTENSION), default="brightway", help="the format to write (default: %(default)s)")
     out(p)

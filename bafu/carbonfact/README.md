@@ -60,7 +60,7 @@ name followed by what it made; `--out FOLDER` writes elsewhere.
 ### `relink`: putting a database on BAFU
 
 ```powershell
-uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py relink "C:\data\Dyeing_Inventory_Brightway.xlsx" --mapping "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --correspondence "C:\data\Correspondence File v3.11 - v.3.12.xlsx"
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py relink "C:\data\Dyeing_Inventory_Brightway.xlsx" --mapping "C:\data\mapping.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip"
 ```
 
 It needs:
@@ -79,10 +79,12 @@ It needs:
   `.zip` of the same files needs nothing;
 - **BAFU** (`--bafu`), its ecoSpold v1 archive, the `.zip` as BAFU distributes
   it;
-- optional, **ecoinvent's correspondence file**, `Correspondence File v3.11 -
-  v.3.12.xlsx` (`--correspondence`). The mapping is written against 3.11;
-  without this file a 3.12 supplier is looked up under the same name, and the
-  script lists the ones it misses.
+- only when the script asks for it, **ecoinvent's correspondence file**,
+  `Correspondence File v3.11 - v.3.12.xlsx` (`--correspondence`). The mapping is
+  written against 3.11, so a supplier renamed in 3.12 is not found under its
+  new name. The script carries the renames the eight databases need (below)
+  and looks up every other supplier under its own name; when one is missing,
+  it stops and suggests this file, which then replaces the built-in renames.
 
 It writes:
 
@@ -217,7 +219,7 @@ examined here.
 ## The choices built into the script
 
 The eight databases use 112 distinct ecoinvent suppliers. The script carries a BAFU choice
-for the twelve below, and uses it whatever the workbook says, unless
+for the nine below, and uses it whatever the workbook says, unless
 `--complement` gives others. The workbook decides for the other hundred. The
 choices are **proposals, not validated**: each should be checked by someone who
 knows both databases, and the mapping corrected upstream where it can be.
@@ -245,9 +247,17 @@ than the iron.
 | market for waste mineral oil {RoW} | mapping says #N/A | Disposal, used mineral oil, 10% water, to hazardous waste incineration {CH} | close |
 | market for wastewater from textile production {RoW} | mapping says #N/A | Treatment, sewage, to wastewater treatment, class 3 {CH} | same as the mapping's « wastewater, average » |
 | market for cationic resin {RoW} | typo in the mapping: « Cationic resin, at plan », no location | Cationic resin, at plant {CH} | the mapping's intent |
-| market for polyethylene, high density, granulate {RER} | split by region in 3.12, the mapping has the 3.11 {GLO} | Polyethylene, HDPE, granulate, at plant {RER} | the mapping's choice for {GLO} |
-| market for polypropylene, granulate {RER} | split by region in 3.12, the mapping has the 3.11 {GLO} | Polypropylene, granulate, at plant {RER} | the mapping's choice for {GLO} |
-| market for polypropylene, granulate {RoW} | split by region in 3.12, the mapping has the 3.11 {GLO} | Polypropylene, granulate, at plant {RER} | the mapping's choice for {GLO} |
+
+Three more suppliers are not choices but renames: ecoinvent 3.12 splits by
+region a market 3.11 had for the world, and the mapping knows only the latter.
+The script reads them as ecoinvent's correspondence file does, so the mapping
+decides for them; `--correspondence` replaces these three with the whole file.
+
+| ecoinvent 3.12 supplier | read as the 3.11 dataset |
+|---|---|
+| market for polyethylene, high density, granulate {RER} | market for polyethylene, high density, granulate {GLO} |
+| market for polypropylene, granulate {RER} | market for polypropylene, granulate {GLO} |
+| market for polypropylene, granulate {RoW} | market for polypropylene, granulate {GLO} |
 
 ## Mappings to review
 
@@ -295,7 +305,7 @@ versions pair, and what a merge keeps once, without the engine.
 ## How it works
 
 - **Relinking.** Each ecoinvent supplier is walked back to 3.11 (with the
-  correspondence file, else under its own name), looked up in the built-in
+  correspondence file, else the built-in renames, else under its own name), looked up in the built-in
   choices and, where they have nothing, in the mapping. Two ecoinvent
   suppliers share one product and place (« heat, district or industrial, other
   than natural gas » {RoW}, from hard coal and from light fuel oil) but map to
