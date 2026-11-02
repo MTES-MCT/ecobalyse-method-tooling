@@ -2,17 +2,18 @@
 # requires-python = ">=3.12"
 # dependencies = ["pyvolca[plot]>=0.14", "openpyxl"]
 # ///
-"""Put a Carbonfact database on BAFU, compare its scores on both, and check it.
+"""Put a Carbonfact database on BAFU, compare its scores on both, check it, and merge several into one.
 
 Carbonfact ships one Brightway workbook per process step, each naming its
-suppliers in ecoinvent 3.12 cut-off and none naming another step's. Each
-command works on one such database, so a new one is handled the same way:
+suppliers in ecoinvent 3.12 cut-off and none naming another step's. The first
+three commands work on one such database, so a new one is handled the same way:
 
     relink   writes the database on BAFU: each ecoinvent supplier replaced by
              its BAFU equivalent, through an ecoinvent 3.11 to BAFU mapping;
     compare  scores two versions of a database, on their own background each,
              and draws one against the other;
-    quality  writes the engine's structural quality report of a database.
+    quality  writes the engine's structural quality report of a database;
+    merge    writes several databases as one, each activity they share once.
 
     uv run carbonfact_bafu.py relink Dyeing_Inventory_Brightway.xlsx --mapping mapping.xlsx \\
         --ecoinvent "ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "BAFU-2026 v1_ecoSpold v1.zip"
@@ -20,6 +21,8 @@ command works on one such database, so a new one is handled the same way:
         --ecoinvent "ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "BAFU-2026 v1_ecoSpold v1.zip" \\
         --method "Environmental Footprint 3.1 (adapted).1.03.CSV.zip"
     uv run carbonfact_bafu.py quality Dyeing_Inventory_Brightway.bafu.brightway.xlsx
+    uv run carbonfact_bafu.py merge Dyeing_Inventory_Brightway.bafu.brightway.xlsx Printing_Inventory_Brightway.bafu.ecospold2.zip \\
+        --bafu "BAFU-2026 v1_ecoSpold v1.zip" --format ecospold2
 
 The engine is downloaded on first run. VOLCA_BINARY with VOLCA_DATA_DIR runs a
 local engine build and its data instead.
@@ -37,8 +40,9 @@ from collections.abc import Iterator
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import contextmanager
 from dataclasses import dataclass, replace
-from itertools import pairwise
+from itertools import pairwise, takewhile
 from pathlib import Path
+from typing import IO
 
 import openpyxl
 import volca
@@ -129,8 +133,9 @@ class Resolution:
 Block = list[list]  # one activity: its "Activity" row down to its last exchange
 
 
-def blocks(path: Path) -> tuple[str, list[Block]]:
+def blocks(path: Path | IO[bytes], label: str | None = None) -> tuple[str, list[Block]]:
     """A workbook's database name and every activity, blank cells and rows trimmed."""
+    label = label or str(path)
     database, found = None, []
     for row in openpyxl.load_workbook(path, read_only=True).worksheets[0].iter_rows(values_only=True):
         row = list(row)
@@ -143,9 +148,9 @@ def blocks(path: Path) -> tuple[str, list[Block]]:
         if found and row:
             found[-1].append(row)
         elif row and row[0] != "Database":
-            sys.exit(f"{path}: row {row} comes before the first activity, and this script does not read it")
+            sys.exit(f"{label}: row {row} comes before the first activity, and this script does not read it")
     if not database or not found:
-        sys.exit(f"{path}: no Database row or no activity, is it a Brightway workbook?")
+        sys.exit(f"{label}: no Database row or no activity, is it a Brightway workbook?")
     return str(database), found
 
 
@@ -165,8 +170,8 @@ def is_background(f: dict) -> bool:
 
 
 
-def workbook(database: str, activities: list[Block]) -> bytes:
-    """The Brightway workbook to relink, every ecoinvent input named after its activity.
+def by_activity(activities: list[Block]) -> list[Block]:
+    """The activities to relink, every ecoinvent input named after its activity.
 
     Two ecoinvent activities can make one product in one place (hard coal and
     light fuel oil furnaces both make "heat, district or industrial, other than
@@ -174,18 +179,25 @@ def workbook(database: str, activities: list[Block]) -> bytes:
     recipe keys an input on its name and place. Without a product, a Brightway
     input is named after its activity.
     """
-    wb = openpyxl.Workbook()
-    ws = wb.active
-    ws.title = "data"
-    ws.append(["Database", database])
+    named = []
     for block in activities:
         rows = [list(row) for row in block]
         for f, row, header in exchanges(rows):
             if is_background(f):
                 row += [None] * (len(header) - len(row))  # its blank end cells were trimmed
                 row[header.index("reference product")] = None
+        named.append(rows)
+    return named
+
+
+def workbook(database: str, activities: list[Block]) -> bytes:
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "data"
+    ws.append(["Database", database])
+    for block in activities:
         ws.append([])
-        for row in rows:
+        for row in block:
             ws.append(row)
     out = io.BytesIO()
     wb.save(out)
@@ -455,7 +467,7 @@ def load(c: Client, source: bytes | Path, name: str, dependency: str | None = No
         missing = "".join(
             f"\n  {m['productName']} {m.get('locations')}: {m.get('reason')} {m.get('detail') or ''}" for m in setup.get("missingSuppliers") or []
         )
-        sys.exit(f"{name}: {setup.get('unresolvedLinks')} inputs find no supplier in {dependency or ', '.join(selected)}:{missing}")
+        sys.exit(f"{name}: {setup.get('unresolvedLinks')} inputs find no supplier in {dependency or ', '.join(selected) or 'the databases given'}:{missing}")
     if not dependency:
         print(f"  {name} takes its suppliers from {', '.join(selected) or 'itself alone'}")
     c.finalize_database(slug)
@@ -485,6 +497,52 @@ def score(c: Client, slug: str, collection: str) -> dict[Key, dict]:
         key[row["process_id"]]: {"unit": row["product_unit"], "ECS": row[ECS_COLUMN]} | {k: v for k, v in row.items() if k in categories}
         for row in rows
     }
+
+
+# -- the merge ----------------------------------------------------------------
+
+
+def identity(block: Block) -> Key:
+    fields = {row[0]: row[1] for row in takewhile(lambda row: row[0] != "Exchanges", block) if len(row) > 1}
+    return block[0][1], fields.get("reference product"), fields.get("location")
+
+
+def merged(own: str, databases: list[tuple[str, list[Block]]]) -> list[Block]:
+    """Every activity of these databases once, or a stop naming one they write differently.
+
+    Carbonfact copies a process several steps use (the heat mix, a dye) into
+    each step: the same in all, it is kept once; written two ways, which one a
+    merge should keep is not its call.
+    """
+
+    def line(f: dict) -> tuple:
+        return f["type"], f.get("reference product") or f["name"], f["unit"], f.get("categories"), f["amount"]
+
+    def alike(f: dict, g: dict) -> bool:
+        # ecoSpold 2 keeps neither the place nor the activity of a line within the database
+        # itself (own): read back, such a line names its product alone, and only its product can be compared.
+        if f.get("database") == own == g.get("database") and not (f.get("location") and g.get("location")):
+            return line(f) == line(g)
+        return f == g
+
+    def same(a: Block, b: Block) -> bool:
+        lines = [[f for f, _, _ in exchanges(x)] for x in (a, b)]
+        return (
+            a[: a.index(["Exchanges"])] == b[: b.index(["Exchanges"])]
+            and len(lines[0]) == len(lines[1])
+            and all(alike(f, g) for f, g in zip(*lines))
+        )
+
+    kept: dict[Key, Block] = {}
+    origin: dict[Key, str] = {}
+    for name, activities in databases:
+        for block in activities:
+            k = identity(block)
+            if k in kept and not same(kept[k], block):
+                sys.exit(f"{label(k)} is written differently in {origin[k]} and {name}")
+            kept.setdefault(k, block)
+            origin.setdefault(k, name)
+    return list(kept.values())
 
 
 # -- the comparison -----------------------------------------------------------
@@ -582,7 +640,7 @@ def relink(args) -> None:
         print(f"  {sum(r.opposite for r in resolutions)} suppliers that BAFU counts the other way, turned")
         relinked = recipe(resolutions)
         recipe_path.write_text(relinked, encoding="utf-8")
-        slug = load(c, workbook(database, activities), f"{database} on BAFU", bafu, relinked)
+        slug = load(c, workbook(database, by_activity(activities)), f"{database} on BAFU", bafu, relinked)
         written = beside(args.base, args.out, f"bafu.{args.format}.{EXTENSION[args.format]}")
         c.export_to_file(args.format, str(written), db_name=slug)
         drop(c, slug)
@@ -634,17 +692,47 @@ def quality(args) -> None:
     print(f"written: {written}")
 
 
+def merge(args) -> None:
+    folder = args.out or Path.cwd()
+    folder.mkdir(parents=True, exist_ok=True)
+    written = folder / f"{args.name}.{args.format}.{EXTENSION[args.format]}"
+    backgrounds = {name: path for name, path in ((ECOINVENT, args.ecoinvent), (args.bafu and db_name(args.bafu), args.bafu)) if path}
+    with running(backgrounds) as c:
+        # The engine loads a database only once it finds every supplier.
+        print(f"loading {' and '.join(backgrounds) or 'no background'} (the first time, several minutes)...")
+        for name in backgrounds:
+            c.load_database(name)
+        databases = []
+        names = [path.name for path in args.bases]
+        for path in args.bases:
+            label = path.name if names.count(path.name) == 1 else str(path)  # one name in two folders
+            slug = load(c, path, path.stem)
+            # Read through the engine's own Brightway writing, which spells one thing one way in every database.
+            databases.append((label, blocks(io.BytesIO(c.export_database("brightway", db_name=slug)), label)))
+            drop(c, slug)
+        names = {database for _, (database, _) in databases}
+        if len(names) != 1:
+            sys.exit(f"the engine named its exports {sorted(names)}: which name their links point to is unclear")
+        own = names.pop()
+        activities = merged(own, [(name, found) for name, (_, found) in databases])
+        print(f"{len(activities)} activities in {len(databases)} databases")
+        slug = load(c, workbook(own, activities), args.name)
+        c.export_to_file(args.format, str(written), db_name=slug)
+        drop(c, slug)
+    print(f"written: {written}")
+
+
 # -- main ---------------------------------------------------------------------
 
 
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    ap = argparse.ArgumentParser(description="Put a Carbonfact database on BAFU, compare its scores on both, and check it.")
+    ap = argparse.ArgumentParser(description="Put a Carbonfact database on BAFU, compare its scores on both, check it, and merge several into one.")
     commands = ap.add_subparsers(dest="command", required=True)
 
-    def backgrounds(p: argparse.ArgumentParser) -> None:
-        p.add_argument("--ecoinvent", type=Path, required=True, help="ecoinvent 3.12 cut-off, its ecoSpold02 archive")
-        p.add_argument("--bafu", type=Path, required=True, help="BAFU, its ecoSpold v1 archive")
+    def backgrounds(p: argparse.ArgumentParser, required: bool = True) -> None:
+        p.add_argument("--ecoinvent", type=Path, required=required, help="ecoinvent 3.12 cut-off, its ecoSpold02 archive")
+        p.add_argument("--bafu", type=Path, required=required, help="BAFU, its ecoSpold v1 archive")
 
     def out(p: argparse.ArgumentParser) -> None:
         p.add_argument("--out", type=Path, help="the folder to write in (default: the database's own)")
@@ -674,10 +762,19 @@ def main() -> None:
     out(p)
     p.set_defaults(run=quality)
 
+    p = commands.add_parser("merge", help="write several databases as one, as <name>.<format>.<ext>, each activity they share once")
+    p.add_argument("bases", type=Path, nargs="+", help="the databases, in any formats the engine reads, on ecoinvent, BAFU or both")
+    backgrounds(p, required=False)  # those the databases take their suppliers from
+    p.add_argument("--format", choices=sorted(EXTENSION), default="brightway", help="the format to write (default: %(default)s)")
+    p.add_argument("--name", default="merged", help="the merged database's name, and its file's (default: %(default)s)")
+    p.add_argument("--out", type=Path, help="the folder to write in (default: the current one)")
+    p.set_defaults(run=merge)
+
     args = ap.parse_args()
     for name, given in vars(args).items():
-        if isinstance(given, Path) and name != "out" and not given.exists():
-            sys.exit(f"not found: {given}")
+        for path in given if isinstance(given, list) else [given]:
+            if isinstance(path, Path) and name != "out" and not path.exists():
+                sys.exit(f"not found: {path}")
     args.run(args)
 
 

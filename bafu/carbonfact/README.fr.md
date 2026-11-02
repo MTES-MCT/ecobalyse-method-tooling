@@ -6,17 +6,19 @@ impression, ennoblissement, confection, usage. Chacune nomme ses fournisseurs
 dans ecoinvent 3.12 cut-off, et aucune n’appelle les procédés d’une autre : les
 procédés communs, comme le mélange de chaleur, sont recopiés dans chaque base qui
 s’en sert. `carbonfact_bafu.py` travaille donc base par base, et une nouvelle
-base se traite de la même façon que les huit premières. Il a trois commandes,
-indépendantes :
+base se traite de la même façon que les huit premières ; seul `merge` en prend
+plusieurs. Il a quatre commandes, indépendantes :
 
 | Commande | Ce qu’elle fait | Ce qu’elle écrit |
 |---|---|---|
 | `relink` | la BAFUisation : chaque fournisseur ecoinvent remplacé par son équivalent BAFU | la base sur BAFU, et la correspondance appliquée |
 | `compare` | calcule deux versions d’une base, chacune sur son arrière-plan, et les compare | un tableau, un graphique, un résumé dans le terminal |
 | `quality` | le rapport de qualité structurel du moteur sur une base | un tableau des défauts trouvés |
+| `merge` | réunit plusieurs bases en une, chaque activité commune une seule fois | la base réunie |
 
 Le plus souvent, on enchaîne les trois sur une base : `relink`, puis `compare`
-entre la base publiée et sa version BAFU, puis `quality` sur la version BAFU.
+entre la base publiée et sa version BAFU, puis `quality` sur la version BAFU. `merge` vient à la fin, quand on veut une
+seule base pour toutes les étapes.
 
 [README.md](README.md) dit la même chose en anglais.
 
@@ -149,6 +151,22 @@ pour information : elles viennent de l’arrière-plan. Ce rapport n’est pas 
 indicateur de qualité des données (DQR) : le script ne lit ni n’écrit la DQR que
 Carbonfact publie.
 
+### `merge` : réunir plusieurs bases
+
+```powershell
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py merge "C:\data\Dyeing_Inventory_Brightway.bafu.brightway.xlsx" "C:\data\Printing_Inventory_Brightway.bafu.ecospold2.zip" `
+  --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --format ecospold2
+```
+
+Il prend des bases dans n’importe quels formats que lit le moteur, sur
+ecoinvent, sur BAFU ou les unes sur l’un et les autres sur l’autre, et les
+arrière-plans où elles prennent leurs fournisseurs : `--ecoinvent`, `--bafu`
+ou les deux. Il écrit `merged.<format>.<extension>` dans le dossier courant
+(`--name` et `--out` changent le nom et le dossier). Une activité que plusieurs
+bases recopient, comme le mélange de chaleur, n’est gardée qu’une fois ; écrite
+différemment dans deux d’entre elles, elle arrête la fusion, car choisir laquelle
+garder ne revient pas au script.
+
 `VOLCA_BINARY` et `VOLCA_DATA_DIR`, posées en variables d’environnement, font
 tourner un moteur compilé localement au lieu de celui téléchargé.
 
@@ -192,6 +210,9 @@ soit lu, et ce n’est pas examiné ici.
   (`compare`) : les deux versions n’écrivent pas une activité dans la même
   unité, ou une version a deux activités de même nom, produit et lieu ; le
   script ne choisit pas.
+- **`… is written differently in … and …`** (`merge`) : deux bases recopient
+  une même activité mais ne l’écrivent pas de la même façon, une base sur
+  ecoinvent et sa version BAFU par exemple ; le script ne choisit pas.
 - **`VoLCA … is too old`** : il faut un moteur plus récent que la dernière
   version publiée. Chaque lancement télécharge la dernière, le problème se
   règle donc de lui-même à la suivante.
@@ -284,8 +305,8 @@ Approximations à regarder une seconde fois :
 ## Vérifier le script
 
 `uv run test_carbonfact_bafu.py` vérifie la lecture du classeur et l’ordre
-entre les choix inscrits dans le script et la correspondance, et l’appariement
-des activités de deux versions, sans le moteur.
+entre les choix inscrits dans le script et la correspondance, l’appariement
+des activités de deux versions et ce qu’une fusion ne garde qu’une fois, sans le moteur.
 
 ## Comment il marche
 

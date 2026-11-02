@@ -6,18 +6,19 @@ dyeing, printing, finishing, assembly, use phase. Each names its suppliers in
 ecoinvent 3.12 cut-off, and none calls another's processes: shared processes,
 such as the heat mix, are copied into every database that uses them.
 `carbonfact_bafu.py` therefore works one database at a time, and a new
-database goes through it the same way as the first eight. It has three
-independent commands:
+database goes through it the same way as the first eight; only `merge` takes
+several. It has four independent commands:
 
 | Command | What it does | What it writes |
 |---|---|---|
 | `relink` | puts a database on BAFU: each ecoinvent supplier replaced by its BAFU equivalent | the database on BAFU, and the mapping it applied |
 | `compare` | scores two versions of a database, each on its own background, one against the other | a table, a figure, a summary in the terminal |
 | `quality` | the engine's structural quality report of a database | a table of the defects found |
+| `merge` | writes several databases as one, each activity they share once | the merged database |
 
 Most of the time, the three run in a row on one database: `relink`, then
 `compare` between the published database and its BAFU version, then `quality`
-on the BAFU version.
+on the BAFU version. `merge` comes last, when one database of every step is wanted.
 
 [README.fr.md](README.fr.md) says the same in French.
 
@@ -141,6 +142,20 @@ metadata. Inputs the database does not make itself are listed for information:
 they come from the background. This report is not a data quality rating (DQR):
 the script neither reads nor writes the DQR Carbonfact publishes.
 
+### `merge`: several databases as one
+
+```powershell
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py merge "C:\data\Dyeing_Inventory_Brightway.bafu.brightway.xlsx" "C:\data\Printing_Inventory_Brightway.bafu.ecospold2.zip" `
+  --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --format ecospold2
+```
+
+It takes databases in any formats the engine reads, on ecoinvent, on BAFU or
+some on each, and the backgrounds they take their suppliers from: `--ecoinvent`,
+`--bafu` or both. It writes `merged.<format>.<extension>` in the current folder
+(`--name` and `--out` change the name and the folder). An activity that several
+databases copy, such as the heat mix, is kept once; written differently in two
+of them, it stops the merge, since which one to keep is not the script's call.
+
 `VOLCA_BINARY` with `VOLCA_DATA_DIR`, set as environment variables, run a local
 engine build instead of the downloaded one.
 
@@ -181,6 +196,9 @@ examined here.
   (`compare`): the two versions write an activity in different units, or one
   version has two activities of the same name, product and place; the script
   will not pick.
+- **`… is written differently in … and …`** (`merge`): two databases copy one
+  activity but do not write it the same way, a database on ecoinvent and its
+  BAFU version for instance; the script will not pick.
 - **`VoLCA … is too old`**: this needs an engine more recent than the latest
   release. Each run downloads the latest one, so it resolves itself once it is
   out.
@@ -271,8 +289,8 @@ Proxies worth a second look:
 ## Checking the script
 
 `uv run test_carbonfact_bafu.py` checks the workbook reader and the order
-between the built-in choices and the mapping, and how the activities of two
-versions pair, without the engine.
+between the built-in choices and the mapping, how the activities of two
+versions pair, and what a merge keeps once, without the engine.
 
 ## How it works
 

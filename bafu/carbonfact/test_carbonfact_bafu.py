@@ -2,7 +2,7 @@
 # requires-python = ">=3.12"
 # dependencies = ["pyvolca[plot]>=0.14", "openpyxl"]
 # ///
-"""Self-check of the mapping reader, of who decides a supplier and of how two versions pair: no engine, no network.
+"""Self-check of the mapping reader, of who decides a supplier, of how two versions pair and of what a merge keeps: no engine, no network.
 
     uv run test_carbonfact_bafu.py
 """
@@ -91,6 +91,35 @@ def test_pairing_by_name_product_place() -> None:
         assert "different units" in str(stop)
     else:
         raise AssertionError("two units were compared")
+
+
+def dye(heat: list, amount: float) -> list:
+    """A dye as the engine writes it in Brightway, its heat line given."""
+    header = ["name", "amount", "reference product", "location", "unit", "categories", "type", "comment", "database"]
+    return [
+        ["Activity", "Azo dyes production"], ["reference product", "azo dyes"], ["location", "GLO"], ["Exchanges"], header,
+        ["azo dyes", 1, "azo dyes", "GLO", "kg", None, "production", None, "own"],
+        ["Tap water, at user", amount, "Tap water, at user", "RER", "kg", None, "technosphere", None, "bafu"],
+        heat,
+    ]
+
+
+def test_merge_keeps_a_shared_activity_once() -> None:
+    """Two steps copy one dye: kept once, even when one step was read back from ecoSpold 2, which
+    names a line within the database by its product, with no place. Written two ways, it stops."""
+    heat = ["Heat, for textile processes, production mix", 12.6, "heat, for textile processes", "GLO", "MJ", None, "technosphere", None, "own"]
+    from_ecospold2 = ["heat, for textile processes", 12.6, "heat, for textile processes", None, "MJ", None, "technosphere", None, "own"]
+    from_ecospold2_dye = dye(from_ecospold2, 0.5)
+    from_ecospold2_dye[5][3] = None
+    assert cf.merged("own", [("dyeing", [dye(heat, 0.5)]), ("printing", [from_ecospold2_dye])]) == [dye(heat, 0.5)]
+    coal = ["Heat, production mix, coal", 12.6, "heat, for textile processes", "GLO", "MJ", None, "technosphere", None, "own"]
+    for other in (dye(heat, 0.6), dye(coal, 0.5)):  # another amount, another maker of the same heat
+        try:
+            cf.merged("own", [("dyeing", [dye(heat, 0.5)]), ("printing", [other])])
+        except SystemExit as stop:
+            assert "written differently in dyeing and printing" in str(stop)
+        else:
+            raise AssertionError("two versions of one dye were merged")
 
 
 if __name__ == "__main__":
