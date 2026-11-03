@@ -259,6 +259,12 @@ decides for them; `--correspondence` replaces these three with the whole file.
 | market for polypropylene, granulate {RER} | market for polypropylene, granulate {GLO} |
 | market for polypropylene, granulate {RoW} | market for polypropylene, granulate {GLO} |
 
+The workbook of 3 November 2026 gives « Dummy » for « market for magnesium
+chloride, from titanium sponge production » {GLO}, a placeholder with no BAFU
+process behind it, so `relink` stops on the finishing database until the
+mapping or `--complement` names one. The workbook of 28 October gave
+« Titanium dioxide, chloride process, at plant » {RER}, another product.
+
 ## Mappings to review
 
 The mapping links the following suppliers, and Carbonfact uses them, but the
@@ -275,7 +281,6 @@ Clearly a different product:
 | market for citric acid {GLO} | Sulphuric acid, liquid, at plant {RER} |
 | market for copper sulfate {GLO} | Copper oxide, at plant {RER} |
 | market for cyanuric chloride {GLO} | Hydrogen cyanide, at plant {RER} |
-| market for magnesium chloride, from titanium sponge production {GLO} | Titanium dioxide, chloride process, at plant {RER} |
 | market for naphthalene sulfonic acid {GLO} | Polyphenylene sulfide, at plant {GLO} |
 | market for o-phenylene diamine {GLO} | Polyphenylene sulfide, at plant {GLO} |
 | market for polyacrylamide {GLO} | Polylactide, granulate, at plant {GLO} |
@@ -286,7 +291,7 @@ Proxies worth a second look:
 
 | ecoinvent supplier | BAFU process the mapping gives | doubt |
 |---|---|---|
-| market for cooling energy {GLO} | Heat, from natural gas {AT} | cooling is not heat; the mapping's factor 0.599 is between two energy units, so the engine converts MJ to MJ at 1 and does not apply it |
+| market for cooling energy {GLO} | Heat, from natural gas {ENTSO-E}, 1.67 MJ of heat per MJ of cold | cooling is not heat, though an absorption chiller does turn heat into cold at about this rate |
 | market for 2-nitroaniline {GLO} | Dinitroaniline-compounds, at regional storehouse {RER} | a family of herbicides, not the dye intermediate |
 | market for sodium hydrosulfide {GLO} | Hydrogen sulphide, H2S, at plant {RER} | precursor, not the product |
 | market for methacrylic acid {GLO} | Methyl methacrylate, at plant {RER} | the ester, not the acid |
@@ -311,6 +316,14 @@ versions pair, and what a merge keeps once, without the engine.
   than natural gas » {RoW}, from hard coal and from light fuel oil) but map to
   different BAFU processes; a relink keys an input on its product and place, so
   the BAFU version names its ecoinvent inputs after their activity instead.
+- **Conversion.** The mapping's `conversion` says how many units of the
+  ecoinvent product make one unit of the BAFU process: 2.17 kg of urea per kg
+  of « Urea, as N », 0.599 MJ of cold per MJ of heat. The engine applies it only
+  between units that measure different things (pieces to kilograms); between
+  kilograms and kilograms, or megajoules and megajoules, it converts by its unit
+  table and ignores the factor. The script therefore multiplies those lines
+  itself (1 kg of urea becomes 0.46 kg of « Urea, as N ») and prints each one
+  it changes.
 - **Direction.** ecoinvent counts a waste as a negative output of its market
   (« market for wastewater from textile production », −1 m³), BAFU as the
   positive output of a treatment (« Treatment, sewage, … class 3 », +1 m³). A

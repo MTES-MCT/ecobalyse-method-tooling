@@ -46,7 +46,7 @@ from typing import IO
 
 import openpyxl
 import volca
-from volca import Client, DatabaseStatus, ScoringRow, Server, VoLCAError
+from volca import Client, DatabaseStatus, ScoringRow, Server, UnitDefinition, VoLCAError
 from volca.compare_plot import BANDS, Point, band_shares, fold, scatter_grid, widest
 
 NEEDS = (0, 16, 0)  # keeps a mapping's links through finalize, exports under the linked supplier
@@ -176,8 +176,8 @@ def is_background(f: dict) -> bool:
 
 
 
-def by_activity(activities: list[Block]) -> list[Block]:
-    """The activities to relink, every ecoinvent input named after its activity.
+def by_activity(activities: list[Block], scales: dict[tuple, float]) -> list[Block]:
+    """The activities to relink, every ecoinvent input named after its activity, its amount scaled where scales says.
 
     Two ecoinvent activities can make one product in one place (hard coal and
     light fuel oil furnaces both make "heat, district or industrial, other than
@@ -192,6 +192,11 @@ def by_activity(activities: list[Block]) -> list[Block]:
             if is_background(f):
                 row += [None] * (len(header) - len(row))  # its blank end cells were trimmed
                 row[header.index("reference product")] = None
+                scale = scales.get((norm(f["name"]), f["location"]))
+                if scale is not None:
+                    if not isinstance(f["amount"], (int, float)):
+                        sys.exit(f"{block[0][1]}: the amount of {f['name']} is {f['amount']!r}, which the script cannot scale")
+                    row[header.index("amount")] = f["amount"] * scale
         named.append(rows)
     return named
 
@@ -357,6 +362,28 @@ def from_mapping(s: Supplier, back: dict, mapping: dict) -> Resolution:
     if len(real) > 1:
         return Resolution(s, label, None, "the mapping gives several BAFU processes: " + " / ".join(sorted({t.name for t in real})))
     return Resolution(s, label, next(iter(real)), "mapped")
+
+
+def scale_by_hand(r: Resolution, units: dict[str, UnitDefinition]) -> float:
+    """What the script multiplies a line by itself, for a conversion the engine would not apply.
+
+    The engine applies a mapping's conversion only between units of different
+    measures (1 p of 1200 kg), and converts kWh to MJ by its unit table. Urea
+    "as N" is a kilo of nitrogen where ecoinvent's is a kilo of urea: both are
+    kg, the engine would link 1 kg to 1 kg, and the mapping's 2.17 kg of urea
+    per kg of nitrogen is lost. The script divides the line by it instead, net
+    of what the unit table already converts (0.2778 kWh per MJ is the table's).
+    """
+    t = r.target
+    if t is None or not isinstance(t.conversion, (int, float)) or t.conversion in (0, 1):
+        return 1
+    folded = {norm(k): v for k, v in units.items()}
+    source, target = (units.get(u) or folded.get(norm(u)) for u in (r.supplier.unit, t.unit))
+    if norm(r.supplier.unit) == norm(t.unit):
+        return 1 / t.conversion
+    if source and target and source.dimension == target.dimension:
+        return target.factor / (source.factor * t.conversion)
+    return 1  # different measures: the engine applies it
 
 
 def recipe(resolutions: list[Resolution]) -> str:
@@ -645,9 +672,16 @@ def relink(args) -> None:
         c.load_database(bafu)
         resolutions = directed(c, bafu, resolutions)
         print(f"  {sum(r.opposite for r in resolutions)} suppliers that BAFU counts the other way, turned")
+        units = c.unit_table()
+        scales = {r: k for r in resolutions if abs((k := scale_by_hand(r, units)) - 1) > 1e-9}
+        for r, k in scales.items():
+            print(f"  {r.supplier.activity} {{{r.supplier.location}}}: {r.target.conversion} {r.supplier.unit} per {r.target.unit} of {r.target.name}, the line multiplied by {k:.4g}")
+        # Written without its conversion, which the line already carries.
+        resolutions = [replace(r, target=replace(r.target, conversion=1), status=f"{r.status}, amount multiplied by {scales[r]:.6g}") if r in scales else r for r in resolutions]
         relinked = recipe(resolutions)
         recipe_path.write_text(relinked, encoding="utf-8")
-        slug = load(c, workbook(database, by_activity(activities)), f"{database} on BAFU", bafu, relinked)
+        lines = {(norm(r.supplier.activity), r.supplier.location): k for r, k in scales.items()}
+        slug = load(c, workbook(database, by_activity(activities, lines)), f"{database} on BAFU", bafu, relinked)
         written = beside(args.base, args.out, f"bafu.{args.format}.{EXTENSION[args.format]}")
         c.export_to_file(args.format, str(written), db_name=slug)
         drop(c, slug)

@@ -276,6 +276,13 @@ eux ; `--correspondence` remplace ces trois-là par la table entière.
 | market for polypropylene, granulate {RER} | market for polypropylene, granulate {GLO} |
 | market for polypropylene, granulate {RoW} | market for polypropylene, granulate {GLO} |
 
+Le classeur du 3 novembre 2026 donne « Dummy » pour « market for magnesium
+chloride, from titanium sponge production » {GLO}, un emplacement vide sans
+procédé BAFU derrière ; `relink` s’arrête donc sur la base d’ennoblissement
+tant que la correspondance ou `--complement` n’en nomme pas un. Le classeur du
+28 octobre donnait « Titanium dioxide, chloride process, at plant » {RER}, un
+autre produit.
+
 ## Correspondances à revoir
 
 La correspondance relie les fournisseurs suivants, et Carbonfact les utilise,
@@ -293,7 +300,6 @@ Clairement un autre produit :
 | market for citric acid {GLO} | Sulphuric acid, liquid, at plant {RER} |
 | market for copper sulfate {GLO} | Copper oxide, at plant {RER} |
 | market for cyanuric chloride {GLO} | Hydrogen cyanide, at plant {RER} |
-| market for magnesium chloride, from titanium sponge production {GLO} | Titanium dioxide, chloride process, at plant {RER} |
 | market for naphthalene sulfonic acid {GLO} | Polyphenylene sulfide, at plant {GLO} |
 | market for o-phenylene diamine {GLO} | Polyphenylene sulfide, at plant {GLO} |
 | market for polyacrylamide {GLO} | Polylactide, granulate, at plant {GLO} |
@@ -304,7 +310,7 @@ Approximations à regarder une seconde fois :
 
 | fournisseur ecoinvent | procédé BAFU que donne la correspondance | doute |
 |---|---|---|
-| market for cooling energy {GLO} | Heat, from natural gas {AT} | le froid n’est pas de la chaleur ; le facteur 0,599 de la correspondance relie deux unités d’énergie, le moteur convertit donc des MJ en MJ à 1 et ne l’applique pas |
+| market for cooling energy {GLO} | Heat, from natural gas {ENTSO-E}, 1,67 MJ de chaleur par MJ de froid | le froid n’est pas de la chaleur, même si une machine à absorption change bien la chaleur en froid à peu près à ce taux |
 | market for 2-nitroaniline {GLO} | Dinitroaniline-compounds, at regional storehouse {RER} | une famille d’herbicides, pas l’intermédiaire de colorant |
 | market for sodium hydrosulfide {GLO} | Hydrogen sulphide, H2S, at plant {RER} | le précurseur, pas le produit |
 | market for methacrylic acid {GLO} | Methyl methacrylate, at plant {RER} | l’ester, pas l’acide |
@@ -331,6 +337,14 @@ des activités de deux versions et ce qu’une fusion ne garde qu’une fois, sa
   charbon et au fioul léger) mais vont vers deux procédés BAFU différents ;
   une reliaison repère une entrée par son produit et son lieu, la version BAFU
   nomme donc ses entrées ecoinvent d’après leur activité.
+- **Conversion.** La colonne `conversion` de la correspondance dit combien
+  d’unités du produit ecoinvent font une unité du procédé BAFU : 2,17 kg d’urée
+  par kg de « Urea, as N », 0,599 MJ de froid par MJ de chaleur. Le moteur ne
+  l’applique qu’entre unités qui mesurent des choses différentes (des pièces en
+  kilogrammes) ; entre kilogrammes, ou entre mégajoules, il convertit par sa
+  table d’unités et ignore le facteur. Le script multiplie donc lui-même ces
+  lignes (1 kg d’urée devient 0,46 kg de « Urea, as N ») et affiche chacune
+  de celles qu’il change.
 - **Sens.** ecoinvent compte un déchet comme une sortie négative de son marché
   (« market for wastewater from textile production », −1 m³), BAFU comme la
   sortie positive d’un traitement (« Treatment, sewage, … class 3 », +1 m³).
