@@ -56,7 +56,7 @@ def test_two_candidate_columns_stop() -> None:
 
 def test_mapping_wins() -> None:
     """The mapping decides where it names a BAFU process; a choice written in the
-    script fills only what it leaves without one (#N/A, « Dummy »)."""
+    script fills only what it leaves without one (#N/A)."""
     kettle = cf.Supplier("market for electric kettle", "electric kettle", "GLO", "unit")
     dryer = cf.Supplier("market for dryer", "dryer", "GLO", "unit")
     drying = cf.Target("Technical wood drying, infrastructure", "RER", "Item(s)", 1)
@@ -67,6 +67,31 @@ def test_mapping_wins() -> None:
     by_hand = cf.read_complement(cf.COMPLEMENT, "built-in")
     assert cf.resolve(kettle, {}, mapping, by_hand).target.name == "Convector radiator"
     assert cf.resolve(dryer, {}, mapping, by_hand).target == drying
+
+
+def test_dummy_drops_the_line() -> None:
+    """« Dummy » is the mapping's word for an ecoinvent inventory empty in practice: the line
+    is dropped, so it scores nothing, and no choice written in the script stands in for it."""
+    chloride = "magnesium chloride, from titanium sponge production"
+    path = workbook(
+        ["EI 3.11 dataset", "EI Unit", "BAFU Name", "Geography", "unit", "conversion"],
+        [f"{chloride} {{GLO}}| market for {chloride}", "kg", "Dummy", "#N/A", "#N/A", "#N/A"],
+    )
+    found = dict(cf.read_workbook_mapping(path))
+    key = (f"market for {chloride}", chloride, "GLO")
+    assert found[key] is cf.DUMMY
+    supplier = cf.Supplier(f"market for {chloride}", chloride, "GLO", "kg")
+    by_hand = {(f"market for {chloride}", "GLO"): cf.Target("Magnesium sulphate, at plant", "RER", "", 1)}
+    assert cf.resolve(supplier, {}, {key: {cf.DUMMY}}, by_hand).target is cf.DUMMY
+    header = ["name", "amount", "reference product", "location", "unit", "categories", "type", "comment", "database"]
+    block = [
+        ["Activity", "Finishing"], header,
+        ["finishing", 1, "finishing", "GLO", "kg", None, "production", None, "own"],
+        [f"market for {chloride}", 0.2, chloride, "GLO", "kg", None, "technosphere", None, "ecoinvent-3.12"],
+        ["market for tap water", 3, "tap water", "GLO", "kg", None, "technosphere", None, "ecoinvent-3.12"],
+    ]
+    (kept,) = cf.by_activity([block], {}, frozenset({(f"market for {chloride}", "GLO")}))
+    assert [row[0] for row in kept] == ["Activity", "name", "finishing", "market for tap water"]
 
 
 def test_new_in_312() -> None:

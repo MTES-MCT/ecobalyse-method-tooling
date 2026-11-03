@@ -235,19 +235,19 @@ soit lu, et ce n’est pas examiné ici.
 
 ## Les choix inscrits dans le script
 
-La correspondance décide d’abord. Le script porte un choix BAFU pour les dix
+La correspondance décide d’abord. Le script porte un choix BAFU pour les neuf
 fournisseurs ci-dessous, et ne l’utilise que là où la correspondance ne nomme
-aucun procédé BAFU : une ligne qui dit #N/A ou « Dummy », un fournisseur
-nouveau en ecoinvent 3.12, ou un fournisseur que la correspondance n’a pas.
+aucun procédé BAFU : une ligne qui dit #N/A, un fournisseur nouveau en
+ecoinvent 3.12, ou un fournisseur que la correspondance n’a pas.
 `--complement` donne d’autres choix à leur place. Ces choix sont des
 **propositions, non validées** : chacun devrait être vérifié par quelqu’un qui
 connaît les deux bases, et la correspondance corrigée à la source quand c’est
 possible.
 
-Avec le classeur du 3 novembre 2026, cinq d’entre eux servent encore : le
-sulfate d’alkyle, le produit chimique organique, le polytétrafluoroéthylène,
-la bouilloire et le chlorure de magnésium. La correspondance nomme désormais
-un procédé pour les cinq autres, et c’est lui qui sert ; pour le sèche-linge,
+Avec le classeur du 3 novembre 2026, quatre d’entre eux servent encore : le
+sulfate d’alkyle, le produit chimique organique, le polytétrafluoroéthylène
+et la bouilloire. La correspondance nomme désormais un procédé pour les cinq
+autres, et c’est lui qui sert ; pour le sèche-linge,
 c’est « Technical wood drying, infrastructure » {RER}, qui sortait sept fois
 plus haut qu’ecoinvent avec le classeur du 28 octobre.
 
@@ -261,8 +261,13 @@ plus haut qu’ecoinvent avec le classeur du 28 octobre.
 | market for tissue paper {GLO} | la correspondance dit #N/A | Paper, woodfree, uncoated, at regional storage {RER} | proche |
 | market for waste mineral oil {RoW} | la correspondance dit #N/A | Disposal, used mineral oil, 10% water, to hazardous waste incineration {CH} | proche |
 | market for wastewater from textile production {RoW} | la correspondance dit #N/A | Treatment, sewage, to wastewater treatment, class 3 {CH} | comme le « wastewater, average » de la correspondance |
-| market for magnesium chloride, from titanium sponge production {GLO} | « Dummy » dans le classeur du 3 novembre 2026 | Magnesium sulphate, at plant {RER} | approximation : un autre sel de magnésium, BAFU n’a pas de chlorure de magnésium |
 | market for cationic resin {RoW} | coquille dans la correspondance : « Cationic resin, at plan », sans lieu | Cationic resin, at plant {CH} | l’intention de la correspondance |
+
+Une ligne qui dit « Dummy » n’est pas un manque : la correspondance y marque un
+inventaire ecoinvent vide en pratique, sans impact. La ligne qui y mène est
+retirée, elle ne compte donc pour rien, et aucun choix ne la remplace. Le
+classeur du 3 novembre 2026 le dit du chlorure de magnésium issu de la
+production d’éponge de titane, entre autres.
 
 Trois autres fournisseurs ne sont pas des choix mais des renommages : ecoinvent
 3.12 découpe par région un marché que la 3.11 avait pour le monde, et la

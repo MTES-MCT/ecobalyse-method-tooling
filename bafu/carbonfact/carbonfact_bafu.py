@@ -89,7 +89,6 @@ market for tissue paper,GLO,"Paper, woodfree, uncoated, at regional storage",RER
 market for waste mineral oil,RoW,"Disposal, used mineral oil, 10% water, to hazardous waste incineration",CH,,,
 market for wastewater from textile production,RoW,"Treatment, sewage, to wastewater treatment, class 3",CH,,,
 market for cationic resin,RoW,"Cationic resin, at plant",CH,,,
-"market for magnesium chloride, from titanium sponge production",GLO,"Magnesium sulphate, at plant",RER,,,
 """
 
 # ecoinvent 3.12 suppliers the mapping knows under another 3.11 dataset, as
@@ -122,6 +121,10 @@ class Target:
     location: str
     unit: str
     conversion: object
+
+
+# what the mapping writes for an ecoinvent inventory that is empty in practice: the line is dropped, it scores nothing
+DUMMY = Target("Dummy", "", "", None)
 
 
 @dataclass(frozen=True)
@@ -177,8 +180,9 @@ def is_background(f: dict) -> bool:
 
 
 
-def by_activity(activities: list[Block], scales: dict[tuple, float]) -> list[Block]:
-    """The activities to relink, every ecoinvent input named after its activity, its amount scaled where scales says.
+def by_activity(activities: list[Block], scales: dict[tuple, float], dropped: frozenset = frozenset()) -> list[Block]:
+    """The activities to relink, every ecoinvent input named after its activity, its amount scaled where scales says,
+    the inputs dropped says removed.
 
     Two ecoinvent activities can make one product in one place (hard coal and
     light fuel oil furnaces both make "heat, district or industrial, other than
@@ -188,7 +192,8 @@ def by_activity(activities: list[Block], scales: dict[tuple, float]) -> list[Blo
     """
     named = []
     for block in activities:
-        rows = [list(row) for row in block]
+        gone = {id(row) for f, row, _ in exchanges(block) if is_background(f) and (norm(f["name"]), f["location"]) in dropped}
+        rows = [list(row) for row in block if id(row) not in gone]
         for f, row, header in exchanges(rows):
             if is_background(f):
                 row += [None] * (len(header) - len(row))  # its blank end cells were trimmed
@@ -288,7 +293,12 @@ def read_workbook_mapping(path: Path) -> list[tuple[tuple, Target | None]]:
         if not parsed:
             continue
         # "#N/A" in the place column: the sheet's lookup did not find the name in BAFU
-        target = None if not name or str(location or "#").startswith("#") else Target(str(name), str(location), str(unit), conversion)
+        if norm(name) == "dummy":
+            target = DUMMY
+        elif not name or str(location or "#").startswith("#"):
+            target = None
+        else:
+            target = Target(str(name), str(location), str(unit), conversion)
         found.append(((norm(parsed["activity"]), norm(parsed["product"]), parsed["geo"]), target))
     return found
 
@@ -362,7 +372,8 @@ def from_mapping(s: Supplier, back: dict, mapping: dict) -> Resolution:
         return Resolution(s, label, None, "the mapping gives no BAFU equivalent")
     if len(real) > 1:
         return Resolution(s, label, None, "the mapping gives several BAFU processes: " + " / ".join(sorted({t.name for t in real})))
-    return Resolution(s, label, next(iter(real)), "mapped")
+    target = next(iter(real))
+    return Resolution(s, label, target, "the mapping says Dummy, an empty inventory: the line is dropped" if target is DUMMY else "mapped")
 
 
 def scale_by_hand(r: Resolution, units: dict[str, UnitDefinition]) -> float:
@@ -393,7 +404,7 @@ def recipe(resolutions: list[Resolution]) -> str:
     w = csv.writer(out)
     w.writerow(["source_product", "source_location", "target_product", "target_location", "conversion", "source_unit", "target_unit", "direction", "ecoinvent_3_11", "status"])
     for r in sorted(resolutions, key=lambda r: (r.target is None, r.supplier.activity, r.supplier.location)):
-        t = r.target
+        t = None if r.target is DUMMY else r.target  # its status says why it has no BAFU process
         # The engine reads a conversion only between units of different measures
         # (MJ of fuel for 1 kg); kWh to MJ it converts by itself.
         convert = t is not None and isinstance(t.conversion, (int, float)) and t.conversion > 0 and t.conversion != 1
@@ -671,7 +682,11 @@ def relink(args) -> None:
         print("loading ecoinvent and BAFU (the first time, several minutes)...")
         c.load_database(ECOINVENT)
         c.load_database(bafu)
-        resolutions = directed(c, bafu, resolutions)
+        dropped = frozenset((norm(r.supplier.activity), r.supplier.location) for r in resolutions if r.target is DUMMY)
+        for r in resolutions:
+            if r.target is DUMMY:
+                print(f"  {r.supplier.activity} {{{r.supplier.location}}}: {r.status}")
+        resolutions = directed(c, bafu, [r for r in resolutions if r.target is not DUMMY])
         print(f"  {sum(r.opposite for r in resolutions)} suppliers that BAFU counts the other way, turned")
         units = c.unit_table()
         scales = {r: k for r in resolutions if abs((k := scale_by_hand(r, units)) - 1) > 1e-9}
@@ -682,7 +697,7 @@ def relink(args) -> None:
         relinked = recipe(resolutions)
         recipe_path.write_text(relinked, encoding="utf-8")
         lines = {(norm(r.supplier.activity), r.supplier.location): k for r, k in scales.items()}
-        slug = load(c, workbook(database, by_activity(activities, lines)), f"{database} on BAFU", bafu, relinked)
+        slug = load(c, workbook(database, by_activity(activities, lines, dropped)), f"{database} on BAFU", bafu, relinked)
         written = beside(args.base, args.out, f"bafu.{args.format}.{EXTENSION[args.format]}")
         c.export_to_file(args.format, str(written), db_name=slug)
         drop(c, slug)

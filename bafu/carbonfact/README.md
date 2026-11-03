@@ -221,16 +221,16 @@ examined here.
 
 ## The choices built into the script
 
-The mapping decides first. The script carries a BAFU choice for the ten
+The mapping decides first. The script carries a BAFU choice for the nine
 suppliers below, and uses it only where the mapping names no BAFU process for
-one: a row saying #N/A or « Dummy », a supplier new in ecoinvent 3.12, or one
-the mapping lacks. `--complement` gives other choices in their place. The
+one: a row saying #N/A, a supplier new in ecoinvent 3.12, or one the mapping
+lacks. `--complement` gives other choices in their place. The
 choices are **proposals, not validated**: each should be checked by someone who
 knows both databases, and the mapping corrected upstream where it can be.
 
-With the workbook of 3 November 2026, five of them are still used: alkyl
-sulfate, organic chemical, polytetrafluoroethylene, the kettle and magnesium
-chloride. The mapping now names a process for the other five, and that process
+With the workbook of 3 November 2026, four of them are still used: alkyl
+sulfate, organic chemical, polytetrafluoroethylene and the kettle. The mapping
+now names a process for the other five, and that process
 is used; for the dryer it is « Technical wood drying, infrastructure » {RER},
 which came out seven times higher than ecoinvent on the 28 October workbook.
 
@@ -245,7 +245,11 @@ which came out seven times higher than ecoinvent on the 28 October workbook.
 | market for waste mineral oil {RoW} | mapping says #N/A | Disposal, used mineral oil, 10% water, to hazardous waste incineration {CH} | close |
 | market for wastewater from textile production {RoW} | mapping says #N/A | Treatment, sewage, to wastewater treatment, class 3 {CH} | same as the mapping's « wastewater, average » |
 | market for cationic resin {RoW} | typo in the mapping: « Cationic resin, at plan », no location | Cationic resin, at plant {CH} | the mapping's intent |
-| market for magnesium chloride, from titanium sponge production {GLO} | « Dummy » in the workbook of 3 November 2026 | Magnesium sulphate, at plant {RER} | proxy: another magnesium salt, BAFU has no magnesium chloride |
+
+A row saying « Dummy » is no gap: the mapping marks an ecoinvent inventory that
+is empty in practice, without impact. The line to it is dropped, so it scores
+nothing, and no choice stands in for it. The workbook of 3 November 2026 says
+so of the magnesium chloride from titanium sponge production, among others.
 
 Three more suppliers are not choices but renames: ecoinvent 3.12 splits by
 region a market 3.11 had for the world, and the mapping knows only the latter.
