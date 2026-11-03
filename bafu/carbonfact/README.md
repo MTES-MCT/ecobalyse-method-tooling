@@ -101,7 +101,8 @@ It writes:
   `status` saying why a supplier has none.
 
 `--complement FILE` gives your own BAFU choices, in the columns of that file,
-instead of the ones built into the script (below); they win over the mapping.
+instead of the ones built into the script (below); like those, they fill only
+what the mapping leaves without a BAFU process.
 
 ### `compare`: two versions of a database, one against the other
 
@@ -218,25 +219,20 @@ examined here.
 
 ## The choices built into the script
 
-The eight databases use 112 distinct ecoinvent suppliers. The script carries a BAFU choice
-for the nine below, and uses it whatever the workbook says, unless
-`--complement` gives others. The workbook decides for the other hundred. The
+The mapping decides first. The script carries a BAFU choice for the ten
+suppliers below, and uses it only where the mapping names no BAFU process for
+one: a row saying #N/A or « Dummy », a supplier new in ecoinvent 3.12, or one
+the mapping lacks. `--complement` gives other choices in their place. The
 choices are **proposals, not validated**: each should be checked by someone who
 knows both databases, and the mapping corrected upstream where it can be.
 
-Each row is there because the workbook of 9 October 2026
-(`mapping.20261009.xlsx`) has nothing for it. The workbook of 28 October 2026
-fills several of them with an automatic proposal (`Semantic2`, its least
-reliable source), and two of those were far off: the kettle went to « Household
-devices production plant » {CH}, a whole factory per appliance, which made
-ironing about 290 000 times higher than on ecoinvent, and the dryer to
-« Technical wood drying, infrastructure » {RER}, seven times higher. The
-choices below win over such proposals, so the script gives the same result
-whichever workbook it is given. The appliance is a small share of these
-activities anyway: one minute of ironing uses 0.027 kWh, which weighs far more
-than the iron.
+With the workbook of 3 November 2026, five of them are still used: alkyl
+sulfate, organic chemical, polytetrafluoroethylene, the kettle and magnesium
+chloride. The mapping now names a process for the other five, and that process
+is used; for the dryer it is « Technical wood drying, infrastructure » {RER},
+which came out seven times higher than ecoinvent on the 28 October workbook.
 
-| ecoinvent 3.12 supplier | why `mapping.20261009.xlsx` has nothing | BAFU choice | strength |
+| ecoinvent 3.12 supplier | why a mapping had nothing | BAFU choice | strength |
 |---|---|---|---|
 | market for alkyl sulfate (C12-14) {GLO} | mapping says #N/A | Fatty alcohol sulfate, mix, at plant {RER} | close |
 | market for chemical, organic, unspecified {GLO} | new in 3.12, no 3.11 dataset | Chemicals organic, at plant {GLO} | what the mapping gives for the 3.11 « chemical, organic » |
@@ -247,6 +243,7 @@ than the iron.
 | market for waste mineral oil {RoW} | mapping says #N/A | Disposal, used mineral oil, 10% water, to hazardous waste incineration {CH} | close |
 | market for wastewater from textile production {RoW} | mapping says #N/A | Treatment, sewage, to wastewater treatment, class 3 {CH} | same as the mapping's « wastewater, average » |
 | market for cationic resin {RoW} | typo in the mapping: « Cationic resin, at plan », no location | Cationic resin, at plant {CH} | the mapping's intent |
+| market for magnesium chloride, from titanium sponge production {GLO} | « Dummy » in the workbook of 3 November 2026 | Magnesium sulphate, at plant {RER} | proxy: another magnesium salt, BAFU has no magnesium chloride |
 
 Three more suppliers are not choices but renames: ecoinvent 3.12 splits by
 region a market 3.11 had for the world, and the mapping knows only the latter.
@@ -258,12 +255,6 @@ decides for them; `--correspondence` replaces these three with the whole file.
 | market for polyethylene, high density, granulate {RER} | market for polyethylene, high density, granulate {GLO} |
 | market for polypropylene, granulate {RER} | market for polypropylene, granulate {GLO} |
 | market for polypropylene, granulate {RoW} | market for polypropylene, granulate {GLO} |
-
-The workbook of 3 November 2026 gives « Dummy » for « market for magnesium
-chloride, from titanium sponge production » {GLO}, a placeholder with no BAFU
-process behind it, so `relink` stops on the finishing database until the
-mapping or `--complement` names one. The workbook of 28 October gave
-« Titanium dioxide, chloride process, at plant » {RER}, another product.
 
 ## Mappings to review
 
@@ -292,6 +283,7 @@ Proxies worth a second look:
 | ecoinvent supplier | BAFU process the mapping gives | doubt |
 |---|---|---|
 | market for cooling energy {GLO} | Heat, from natural gas {ENTSO-E}, 1.67 MJ of heat per MJ of cold | cooling is not heat, though an absorption chiller does turn heat into cold at about this rate |
+| market for dryer {GLO} | Technical wood drying, infrastructure {RER} | a drying plant for timber, not a household appliance |
 | market for 2-nitroaniline {GLO} | Dinitroaniline-compounds, at regional storehouse {RER} | a family of herbicides, not the dye intermediate |
 | market for sodium hydrosulfide {GLO} | Hydrogen sulphide, H2S, at plant {RER} | precursor, not the product |
 | market for methacrylic acid {GLO} | Methyl methacrylate, at plant {RER} | the ester, not the acid |
@@ -303,15 +295,15 @@ Proxies worth a second look:
 
 ## Checking the script
 
-`uv run test_carbonfact_bafu.py` checks the workbook reader and the order
-between the built-in choices and the mapping, how the activities of two
+`uv run test_carbonfact_bafu.py` checks the workbook reader, that the mapping
+decides before the built-in choices, how the activities of two
 versions pair, and what a merge keeps once, without the engine.
 
 ## How it works
 
 - **Relinking.** Each ecoinvent supplier is walked back to 3.11 (with the
-  correspondence file, else the built-in renames, else under its own name), looked up in the built-in
-  choices and, where they have nothing, in the mapping. Two ecoinvent
+  correspondence file, else the built-in renames, else under its own name), looked up in the mapping
+  and, where it has no BAFU process, in the built-in choices. Two ecoinvent
   suppliers share one product and place (« heat, district or industrial, other
   than natural gas » {RoW}, from hard coal and from light fuel oil) but map to
   different BAFU processes; a relink keys an input on its product and place, so

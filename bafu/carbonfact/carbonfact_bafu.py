@@ -77,8 +77,8 @@ ECS = [
     ({"Water use": 1}, 11468.7, 0.0674),
 ]
 
-# BAFU suppliers chosen by hand, in mapping.csv's columns. They win over the
-# workbook, whose automatic proposals can be far off: the README says how strong each one is.
+# BAFU suppliers chosen by hand, in mapping.csv's columns, for what the mapping
+# leaves without a BAFU process: the README says how strong each one is.
 COMPLEMENT = """source_product,source_location,target_product,target_location,conversion,source_unit,target_unit
 market for alkyl sulfate (C12-14),GLO,"Fatty alcohol sulfate, mix, at plant",RER,,,
 "market for chemical, organic, unspecified",GLO,"Chemicals organic, at plant",GLO,,,
@@ -89,6 +89,7 @@ market for tissue paper,GLO,"Paper, woodfree, uncoated, at regional storage",RER
 market for waste mineral oil,RoW,"Disposal, used mineral oil, 10% water, to hazardous waste incineration",CH,,,
 market for wastewater from textile production,RoW,"Treatment, sewage, to wastewater treatment, class 3",CH,,,
 market for cationic resin,RoW,"Cationic resin, at plant",CH,,,
+"market for magnesium chloride, from titanium sponge production",GLO,"Magnesium sulphate, at plant",RER,,,
 """
 
 # ecoinvent 3.12 suppliers the mapping knows under another 3.11 dataset, as
@@ -340,10 +341,10 @@ def read_complement(text: str, source: str) -> dict[tuple, Target]:
 
 
 def resolve(s: Supplier, back: dict, mapping: dict, complement: dict) -> Resolution:
-    """The hand choice for a supplier, else the mapping's answer."""
+    """The mapping's answer for a supplier, else the hand choice."""
     found = from_mapping(s, back, mapping)
     by_hand = complement.get((norm(s.activity), s.location))
-    return Resolution(s, found.ecoinvent_311, by_hand, "chosen by hand") if by_hand else found
+    return Resolution(s, found.ecoinvent_311, by_hand, "chosen by hand") if by_hand and found.target is None else found
 
 
 def from_mapping(s: Supplier, back: dict, mapping: dict) -> Resolution:
@@ -783,7 +784,7 @@ def main() -> None:
     p.add_argument("--mapping", type=Path, required=True, help="ecoinvent 3.11 to BAFU: the expert workbook (.xlsx) or the mapping page's export (.csv)")
     backgrounds(p)
     p.add_argument("--correspondence", type=Path, help="ecoinvent's 'Correspondence File v3.11 - v.3.12.xlsx', for suppliers renamed in 3.12; it replaces the built-in renames, and is needed only when the script asks for it")
-    p.add_argument("--complement", type=Path, help="BAFU suppliers chosen by hand, in the mapping CSV's columns; they win over the mapping and replace the built-in ones")
+    p.add_argument("--complement", type=Path, help="BAFU suppliers chosen by hand, in the mapping CSV's columns; used where the mapping has no BAFU process, in place of the built-in ones")
     p.add_argument("--format", choices=sorted(EXTENSION), default="brightway", help="the format to write (default: %(default)s)")
     out(p)
     p.set_defaults(run=relink)

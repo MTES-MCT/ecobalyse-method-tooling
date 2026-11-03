@@ -106,8 +106,8 @@ Il écrit :
   fournisseur n’en a pas.
 
 `--complement FICHIER` donne vos propres choix BAFU, dans les colonnes de ce
-fichier, à la place de ceux inscrits dans le script (plus bas) ; ils l’emportent
-sur la correspondance.
+fichier, à la place de ceux inscrits dans le script (plus bas) ; comme eux, ils
+ne remplissent que ce que la correspondance laisse sans procédé BAFU.
 
 ### `compare` : comparer deux versions d’une base
 
@@ -233,26 +233,23 @@ soit lu, et ce n’est pas examiné ici.
 
 ## Les choix inscrits dans le script
 
-Les huit bases utilisent 112 fournisseurs ecoinvent distincts. Le script porte un
-choix BAFU pour les neuf ci-dessous, et l’applique quoi que dise le classeur,
-sauf si `--complement` en donne d’autres. Le classeur décide pour la centaine
-restante. Ces choix sont des **propositions, non validées** : chacun devrait
-être vérifié par quelqu’un qui connaît les deux bases, et la correspondance
-corrigée à la source quand c’est possible.
+La correspondance décide d’abord. Le script porte un choix BAFU pour les dix
+fournisseurs ci-dessous, et ne l’utilise que là où la correspondance ne nomme
+aucun procédé BAFU : une ligne qui dit #N/A ou « Dummy », un fournisseur
+nouveau en ecoinvent 3.12, ou un fournisseur que la correspondance n’a pas.
+`--complement` donne d’autres choix à leur place. Ces choix sont des
+**propositions, non validées** : chacun devrait être vérifié par quelqu’un qui
+connaît les deux bases, et la correspondance corrigée à la source quand c’est
+possible.
 
-Chaque ligne est là parce que le classeur du 9 octobre 2026
-(`mapping.20261009.xlsx`) n’a rien pour elle. Le classeur du 28 octobre 2026
-en remplit plusieurs par une proposition automatique (`Semantic2`, sa source
-la moins fiable), et deux d’entre elles tombaient loin : la bouilloire allait
-vers « Household devices production plant » {CH}, une usine entière par
-appareil, ce qui rendait le repassage environ 290 000 fois plus élevé que sur
-ecoinvent, et le sèche-linge vers « Technical wood drying, infrastructure »
-{RER}, sept fois plus élevé. Les choix ci-dessous l’emportent sur ces
-propositions, si bien que le script donne le même résultat quel que soit le
-classeur reçu. L’appareil pèse peu dans ces activités, de toute façon : une
-minute de repassage consomme 0,027 kWh, qui comptent bien plus que le fer.
+Avec le classeur du 3 novembre 2026, cinq d’entre eux servent encore : le
+sulfate d’alkyle, le produit chimique organique, le polytétrafluoroéthylène,
+la bouilloire et le chlorure de magnésium. La correspondance nomme désormais
+un procédé pour les cinq autres, et c’est lui qui sert ; pour le sèche-linge,
+c’est « Technical wood drying, infrastructure » {RER}, qui sortait sept fois
+plus haut qu’ecoinvent avec le classeur du 28 octobre.
 
-| fournisseur ecoinvent 3.12 | pourquoi `mapping.20261009.xlsx` n’a rien | choix BAFU | solidité |
+| fournisseur ecoinvent 3.12 | pourquoi une correspondance n’avait rien | choix BAFU | solidité |
 |---|---|---|---|
 | market for alkyl sulfate (C12-14) {GLO} | la correspondance dit #N/A | Fatty alcohol sulfate, mix, at plant {RER} | proche |
 | market for chemical, organic, unspecified {GLO} | nouveau en 3.12, pas de jeu de données 3.11 | Chemicals organic, at plant {GLO} | ce que donne la correspondance pour « chemical, organic » en 3.11 |
@@ -262,6 +259,7 @@ minute de repassage consomme 0,027 kWh, qui comptent bien plus que le fer.
 | market for tissue paper {GLO} | la correspondance dit #N/A | Paper, woodfree, uncoated, at regional storage {RER} | proche |
 | market for waste mineral oil {RoW} | la correspondance dit #N/A | Disposal, used mineral oil, 10% water, to hazardous waste incineration {CH} | proche |
 | market for wastewater from textile production {RoW} | la correspondance dit #N/A | Treatment, sewage, to wastewater treatment, class 3 {CH} | comme le « wastewater, average » de la correspondance |
+| market for magnesium chloride, from titanium sponge production {GLO} | « Dummy » dans le classeur du 3 novembre 2026 | Magnesium sulphate, at plant {RER} | approximation : un autre sel de magnésium, BAFU n’a pas de chlorure de magnésium |
 | market for cationic resin {RoW} | coquille dans la correspondance : « Cationic resin, at plan », sans lieu | Cationic resin, at plant {CH} | l’intention de la correspondance |
 
 Trois autres fournisseurs ne sont pas des choix mais des renommages : ecoinvent
@@ -275,13 +273,6 @@ eux ; `--correspondence` remplace ces trois-là par la table entière.
 | market for polyethylene, high density, granulate {RER} | market for polyethylene, high density, granulate {GLO} |
 | market for polypropylene, granulate {RER} | market for polypropylene, granulate {GLO} |
 | market for polypropylene, granulate {RoW} | market for polypropylene, granulate {GLO} |
-
-Le classeur du 3 novembre 2026 donne « Dummy » pour « market for magnesium
-chloride, from titanium sponge production » {GLO}, un emplacement vide sans
-procédé BAFU derrière ; `relink` s’arrête donc sur la base d’ennoblissement
-tant que la correspondance ou `--complement` n’en nomme pas un. Le classeur du
-28 octobre donnait « Titanium dioxide, chloride process, at plant » {RER}, un
-autre produit.
 
 ## Correspondances à revoir
 
@@ -311,6 +302,7 @@ Approximations à regarder une seconde fois :
 | fournisseur ecoinvent | procédé BAFU que donne la correspondance | doute |
 |---|---|---|
 | market for cooling energy {GLO} | Heat, from natural gas {ENTSO-E}, 1,67 MJ de chaleur par MJ de froid | le froid n’est pas de la chaleur, même si une machine à absorption change bien la chaleur en froid à peu près à ce taux |
+| market for dryer {GLO} | Technical wood drying, infrastructure {RER} | une installation de séchage du bois, pas un appareil ménager |
 | market for 2-nitroaniline {GLO} | Dinitroaniline-compounds, at regional storehouse {RER} | une famille d’herbicides, pas l’intermédiaire de colorant |
 | market for sodium hydrosulfide {GLO} | Hydrogen sulphide, H2S, at plant {RER} | le précurseur, pas le produit |
 | market for methacrylic acid {GLO} | Methyl methacrylate, at plant {RER} | l’ester, pas l’acide |
@@ -322,16 +314,17 @@ Approximations à regarder une seconde fois :
 
 ## Vérifier le script
 
-`uv run test_carbonfact_bafu.py` vérifie la lecture du classeur et l’ordre
-entre les choix inscrits dans le script et la correspondance, l’appariement
+`uv run test_carbonfact_bafu.py` vérifie la lecture du classeur, que la
+correspondance décide avant les choix inscrits dans le script, l’appariement
 des activités de deux versions et ce qu’une fusion ne garde qu’une fois, sans le moteur.
 
 ## Comment il marche
 
 - **Reliaison.** Chaque fournisseur ecoinvent est ramené à la 3.11 (avec la
   table de correspondance, sinon les renommages inscrits dans le script, sinon
-  sous son propre nom), cherché dans les choix
-  inscrits dans le script et, là où ils n’ont rien, dans la correspondance.
+  sous son propre nom), cherché dans la
+  correspondance et, là où elle n’a pas de procédé BAFU, dans les choix inscrits
+  dans le script.
   Deux fournisseurs ecoinvent partagent un même produit et un même lieu
   (« heat, district or industrial, other than natural gas » {RoW}, au
   charbon et au fioul léger) mais vont vers deux procédés BAFU différents ;

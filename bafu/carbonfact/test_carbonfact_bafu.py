@@ -54,19 +54,19 @@ def test_two_candidate_columns_stop() -> None:
         raise AssertionError("a doubled column was read")
 
 
-def test_hand_choice_wins() -> None:
-    """The workbook's automatic proposal for the kettle was a whole factory per appliance:
-    a choice written in the script must win over it, and the workbook decide the rest."""
+def test_mapping_wins() -> None:
+    """The mapping decides where it names a BAFU process; a choice written in the
+    script fills only what it leaves without one (#N/A, « Dummy »)."""
     kettle = cf.Supplier("market for electric kettle", "electric kettle", "GLO", "unit")
-    iron = cf.Supplier("market for iron", "iron", "GLO", "kg")
-    factory = cf.Target("Household devices production plant", "CH", "unit", 1)
+    dryer = cf.Supplier("market for dryer", "dryer", "GLO", "unit")
+    drying = cf.Target("Technical wood drying, infrastructure", "RER", "Item(s)", 1)
     mapping = {
-        ("market for electric kettle", "electric kettle", "GLO"): {factory},
-        ("market for iron", "iron", "GLO"): {cf.Target("Iron, at plant", "RER", "kg", 1)},
+        ("market for electric kettle", "electric kettle", "GLO"): {None},
+        ("market for dryer", "dryer", "GLO"): {drying},
     }
     by_hand = cf.read_complement(cf.COMPLEMENT, "built-in")
     assert cf.resolve(kettle, {}, mapping, by_hand).target.name == "Convector radiator"
-    assert cf.resolve(iron, {}, mapping, by_hand).target.name == "Iron, at plant"
+    assert cf.resolve(dryer, {}, mapping, by_hand).target == drying
 
 
 def test_new_in_312() -> None:
