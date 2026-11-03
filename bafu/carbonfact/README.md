@@ -93,8 +93,10 @@ It writes:
   named after the BAFU archive (`bafu-2026-v1-ecospold-v1` for `BAFU-2026
   v1_ecoSpold v1.zip`). Read again beside BAFU under that name, it links to the
   same suppliers with no mapping, and gives the same scores. `--format simapro`,
-  `ecospold2` or `openlca` writes it in another format, and the name follows:
-  `….bafu.simapro.csv`, `….bafu.ecospold2.zip`, `….bafu.openlca.zip`;
+  `ecospold2`, `openlca` or `ilcd` writes it in another format, and the name
+  follows: `….bafu.simapro.csv`, `….bafu.ecospold2.zip`, `….bafu.openlca.zip`,
+  `….bafu.ilcd.zip`. The ILCD package names each BAFU supplier by its product
+  and its location, which is how a reader finds it again beside BAFU;
 - `Dyeing_Inventory_Brightway.bafu.mapping.csv`: for each ecoinvent supplier,
   the BAFU process it is linked to, `opposite` in `direction` when BAFU counts
   it the other way (below), the 3.11 dataset the mapping was read under, and a

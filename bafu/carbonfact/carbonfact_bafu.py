@@ -51,7 +51,7 @@ from volca.compare_plot import BANDS, Point, band_shares, fold, scatter_grid, wi
 
 NEEDS = (0, 16, 0)  # keeps a mapping's links through finalize, exports under the linked supplier
 ECOINVENT, COLLECTION, WITH_ECS = "ecoinvent-3.12", "EF 3.1", "ef-3-1-with-ecs"  # a copy's name, as the engine keeps it
-EXTENSION = {"brightway": "xlsx", "simapro": "csv", "ecospold2": "zip", "openlca": "zip"}
+EXTENSION = {"brightway": "xlsx", "simapro": "csv", "ecospold2": "zip", "openlca": "zip", "ilcd": "zip"}
 TABLES = ("ECS", "Climate change")
 ECS_COLUMN = "ECS Single score"  # score_table names a set's column after the set and its score
 # "polypropylene, granulate {RER}| polypropylene production, granulate | Cut-off, U"

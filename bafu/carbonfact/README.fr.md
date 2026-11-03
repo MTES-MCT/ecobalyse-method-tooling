@@ -96,9 +96,11 @@ Il écrit :
   base nommée d’après l’archive BAFU (`bafu-2026-v1-ecospold-v1` pour
   `BAFU-2026 v1_ecoSpold v1.zip`). Relue à côté de BAFU sous ce nom, elle se
   relie aux mêmes fournisseurs sans correspondance, et donne les mêmes scores.
-  `--format simapro`, `ecospold2` ou `openlca` l’écrit dans un autre format, et
-  le nom suit : `….bafu.simapro.csv`, `….bafu.ecospold2.zip`,
-  `….bafu.openlca.zip` ;
+  `--format simapro`, `ecospold2`, `openlca` ou `ilcd` l’écrit dans un autre
+  format, et le nom suit : `….bafu.simapro.csv`, `….bafu.ecospold2.zip`,
+  `….bafu.openlca.zip`, `….bafu.ilcd.zip`. Le paquet ILCD désigne chaque
+  fournisseur BAFU par son produit et son lieu, ce qui permet à un lecteur de
+  le retrouver à côté de BAFU ;
 - `Dyeing_Inventory_Brightway.bafu.mapping.csv` : pour chaque fournisseur
   ecoinvent, le procédé BAFU auquel il est relié, `opposite` dans `direction`
   quand BAFU le compte dans l’autre sens (plus bas), le jeu de données 3.11 sous
