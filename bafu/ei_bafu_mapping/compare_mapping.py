@@ -48,7 +48,7 @@ from volca.compare_plot import BANDS, Point, band_shares, fold, widest  # noqa: 
 # the sheet's columns this reads, by header, in the order the sheet puts them: each is the first
 # of its name after the previous one, so columns added in between are skipped, and of the two the
 # header names "Geography" the one read is BAFU's, after "BAFU Name"
-COLUMNS = ("EI 3.11 dataset", "Unit", "BAFU Name", "Geography", "unit", "conversion", "Source", "Tech\nGrade", "Geo Grade")
+COLUMNS = ("EI 3.11 dataset", "EI Unit", "BAFU Name", "Geography", "unit", "conversion", "Source", "Tech\nGrade", "Geo Grade")
 # the technical grade, as the sheet's evaluation rules word it, drawn from the least trusted up
 GRADES = {
     "0": ("0, no match", "lightgrey"),
@@ -114,6 +114,10 @@ SINGLE_SCORES = {
 }
 
 
+# what an empty conversion cell reads, as the sheet's BAFU name does
+NO_CONVERSION = ("None", "#N/A", "0")
+
+
 class Pair(NamedTuple):
     """One mapping the sheet proposes."""
 
@@ -134,7 +138,8 @@ class Match(NamedTuple):
     pair: Pair
     ecoinvent: Activity
     bafu: Activity
-    scale: float  # multiplies the BAFU score to give it for one unit of the ecoinvent product
+    scale: float  # multiplies the BAFU score to give it for one unit of the ecoinvent product, as the sheet writes it
+    per_unit: float  # multiplies the ecoinvent score likewise: the engine records an hour as 3600 s
     conversion: Literal["unit table", "sheet"]  # where the scale's unit factor comes from
 
 
@@ -264,7 +269,7 @@ def index(activities: list[Activity], key_of) -> dict:
 
 
 def match(pair: Pair, ecoinvent: dict, bafu: dict, units: UnitTable) -> Match | str:
-    """Find both processes of a pair and the factor between their units, or say why not."""
+    """Find both processes of a pair and the factors that put them on one sheet ecoinvent unit, or say why not."""
     es = ecoinvent.get(key(pair.ecoinvent), [])
     bs = bafu.get((key(pair.bafu), pair.geo), [])
     if len(es) != 1:
@@ -277,40 +282,41 @@ def match(pair: Pair, ecoinvent: dict, bafu: dict, units: UnitTable) -> Match | 
         return e_unit
     if isinstance(b_unit, str):
         return b_unit
-    if e_unit.dimension == b_unit.dimension:
-        return Match(pair, e, b, e_unit.factor / b_unit.factor, "unit table")
-    scale = sheet_factor(pair, (e.product_unit, e_unit), (b.product_unit, b_unit), units)
-    return scale if isinstance(scale, str) else Match(pair, e, b, scale, "sheet")
-
-
-def sheet_factor(
-    pair: Pair, ecoinvent: tuple[str, UnitDefinition], bafu: tuple[str, UnitDefinition], units: UnitTable
-) -> float | str:
-    """How many of the engine's BAFU units one of its ecoinvent units is, by the sheet's conversion, or why not.
-
-    Only for units that measure different things, where the unit table cannot answer. The
-    conversion is written between the sheet's two units, so each must measure what the
-    engine reads on its side; the unit table then bridges the sheet's spelling and the engine's.
-    """
-    # an empty cell reads None, #N/A or 0, as the sheet's BAFU name does
-    if pair.conversion in ("None", "#N/A", "0"):
-        return f"units measure different things: {ecoinvent[0]} and {bafu[0]}, and the sheet gives no conversion"
+    sheet_e = written(units, "ecoinvent", pair.ecoinvent_unit, e.product_unit, e_unit)
+    if isinstance(sheet_e, str):
+        return sheet_e
+    per_unit = sheet_e.factor / e_unit.factor
+    # the sheet's conversion wins even between units of one dimension: kg of a chemical against
+    # kg "as N", one plant against one plant of another size
+    if pair.conversion in NO_CONVERSION:
+        if e_unit.dimension == b_unit.dimension:
+            return Match(pair, e, b, sheet_e.factor / b_unit.factor, per_unit, "unit table")
+        return f"units measure different things: {e.product_unit} and {b.product_unit}, and the sheet gives no conversion"
     try:
         conversion = float(pair.conversion)
     except ValueError:
         return f"the sheet's conversion {pair.conversion!r} is not a number"
     if conversion <= 0:
         return f"the sheet's conversion {pair.conversion!r} is not a positive number"
-    written = {}
-    for side, spelling, (read, unit) in (("ecoinvent", pair.ecoinvent_unit, ecoinvent), ("BAFU", pair.bafu_unit, bafu)):
-        sheet_unit = unit_of(units, spelling)
-        if isinstance(sheet_unit, str):
-            return f"the sheet's {side} {sheet_unit}"
-        if sheet_unit.dimension != unit.dimension:
-            return f"the sheet writes {spelling} on the {side} side, the engine reads {read}"
-        written[side] = sheet_unit
-    # one engine ecoinvent unit, in the sheet's ecoinvent units, in its BAFU units, in the engine's
-    return ecoinvent[1].factor / written["ecoinvent"].factor / conversion * written["BAFU"].factor / bafu[1].factor
+    sheet_b = written(units, "BAFU", pair.bafu_unit, b.product_unit, b_unit)
+    if isinstance(sheet_b, str):
+        return sheet_b
+    # one sheet ecoinvent unit, in the sheet's BAFU units, in the engine's
+    return Match(pair, e, b, sheet_b.factor / conversion / b_unit.factor, per_unit, "sheet")
+
+
+def written(units: UnitTable, side: str, spelling: str, read: str, unit: UnitDefinition) -> UnitDefinition | str:
+    """The unit the sheet writes on one side, if it measures what the engine reads there, or why not.
+
+    The sheet's conversion is written between the sheet's two units; the unit table then
+    bridges the sheet's spelling and the engine's.
+    """
+    sheet_unit = unit_of(units, spelling)
+    if isinstance(sheet_unit, str):
+        return f"the sheet's {side} {sheet_unit}"
+    if sheet_unit.dimension != unit.dimension:
+        return f"the sheet writes {spelling} on the {side} side, the engine reads {read}"
+    return sheet_unit
 
 
 def score(client: Client, collection: str, pids: list[str], long_term: bool) -> Scores:
@@ -336,7 +342,7 @@ def compare(m: Match, ecoinvent: Scores, bafu: Scores) -> Compared:
     """Put both processes of a pair side by side, single scores first."""
     e, b = ecoinvent[m.ecoinvent.process_id], bafu[m.bafu.process_id]
     order = [*SINGLE_SCORES, *(c for c in e if c not in SINGLE_SCORES)]
-    return {c: (e[c], b[c] * m.scale) for c in order}
+    return {c: (e[c] * m.per_unit, b[c] * m.scale) for c in order}
 
 
 def positive(results: list[Result], category: str) -> list[Gap]:
@@ -408,7 +414,7 @@ def report(results: list[Result], failed: list[tuple[Pair, str]], min_grade: int
     for reason, count in Counter(reason for _, reason in failed).most_common():
         print(f"  {count:6}  {reason}")
     by_sheet = sum(m.conversion == "sheet" for m, _ in results)
-    print(f"  of the compared, {by_sheet} put on one unit by the sheet's conversion, units measuring different things")
+    print(f"  of the compared, {by_sheet} put on one unit by the sheet's conversion")
     print("\nTechnical grade of the compared pairs:")
     for grade, count in sorted(Counter(m.pair.tech_grade for m, _ in results).items()):
         print(f"  {count:6}  {GRADES.get(grade, (grade,))[0]}")
@@ -442,7 +448,7 @@ def write_csv(results: list[Result], failed: list[tuple[Pair, str]], path: Path)
             p = m.pair
             fixed = [p.source, p.tech_grade, p.geo_grade, p.ecoinvent, p.bafu, p.geo, "compared"]
             out.writerow(
-                fixed + [m.ecoinvent.product_unit, m.conversion, m.scale] + [v for c in categories for v in compared[c]]
+                fixed + [m.pair.ecoinvent_unit, m.conversion, m.scale] + [v for c in categories for v in compared[c]]
             )
         for p, reason in failed:
             out.writerow([p.source, p.tech_grade, p.geo_grade, p.ecoinvent, p.bafu, p.geo, reason])

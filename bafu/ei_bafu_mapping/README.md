@@ -18,11 +18,11 @@ CSV line per pair and prints the widest gaps.
   | Column | Header | Read as |
   |---|---|---|
   | A | `EI 3.11 dataset` | the ecoinvent process, written the SimaPro way: `product {GEO}\| activity` |
-  | D | `Unit` | its unit |
+  | D | `EI Unit` | its unit, the one the comparison is written in |
   | E | `BAFU Name` | the BAFU process |
   | F | `Geography` | its location |
   | G | `unit` | its unit |
-  | H | `conversion` | one BAFU unit in ecoinvent units, when the two units measure different things |
+  | H | `conversion` | one BAFU unit in ecoinvent units, when the unit names alone do not say it |
   | I | `Source` | |
   | J | `Tech Grade` | 0 (no match) to 3 (perfect match) |
   | K | `Geo Grade` | |
@@ -108,10 +108,13 @@ environment variables, runs a local engine build instead of the downloaded relea
 
 ## How it reads the inputs
 
-- **The workbook**: the `conversion` column is read only between units of different
-  dimensions (0.2778 kWh for one MJ, 1200 kg for one car), and only when the two units
-  the workbook writes measure what the engine reads on each side: a factor written
-  between other units would be applied to the wrong quantity.
+- **The workbook**: the `conversion` column, when filled, wins over the unit table, between
+  units of different dimensions (0.2778 kWh for one MJ, 1200 kg for one car) as between
+  units of one: a chemical BAFU counts in kg "as N" against the same chemical in kg, a
+  plant of another size counted in units on both sides. It is read only when the two
+  units the workbook writes measure what the engine reads on each side: a factor written
+  between other units would be applied to the wrong quantity. Left empty, the unit table
+  puts units of one dimension on one basis.
 - **ecoinvent** is joined on the SimaPro name of column A, **BAFU** on the name and
   location of columns E and F.
 - **The method**: the ECS and PEF single scores are declared on top of it inside the
@@ -126,16 +129,17 @@ Next to the workbook, named after it and the sheet, plus ` - long-term` when the
 counts long-term emissions, so the two conventions never overwrite each other:
 
 - `… - Matching Full.svg`: the scatters. x is the ecoinvent process, y the BAFU process,
-  both for one unit of the ecoinvent product. The engine's unit table converts units that
-  measure the same thing; between units that do not (m3 of gas against MJ, a car counted
-  in units against kg), the workbook's `conversion` column does, and a pair it leaves
-  empty is left out. The grey bands are ±10% and
+  both for one unit of the ecoinvent product as column D writes it: an hour of machine
+  operation, though the engine records it as 3600 s. The workbook's `conversion` column puts
+  the two units on one basis when filled; empty, the engine's unit table does for units
+  that measure the same thing, and a pair whose units do not (m3 of gas against MJ, a car
+  counted in units against kg) is left out. The grey bands are ±10% and
   a factor 2. The three widest gaps among well graded pairs are named on each graph.
 - `… - Matching Full.csv`: every distinct pair, with a `status` saying whether it was
   compared or why not (no BAFU process in the workbook, followed by what its cell holds,
   `#N/A`, `0` or `empty`, a workbook cell in error such as `#REF!`, a name absent from a
-  database, units of different dimensions with no conversion in the workbook), a
-  `conversion` column saying where the unit factor came from, `unit table` or `sheet`,
+  database, units of different dimensions with no conversion in the workbook), a `unit`
+  column, the workbook's ecoinvent unit, a `conversion` column saying where the unit factor came from, `unit table` or `sheet`,
   a `factor` column giving it: how many BAFU units stand for one ecoinvent unit, the
   number the BAFU scores are multiplied by, and both scores of every category. A score
   is per one unit of what its process does: a waste market written with -1 kg and a
