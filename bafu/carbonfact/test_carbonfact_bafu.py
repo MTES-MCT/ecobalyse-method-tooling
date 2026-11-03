@@ -35,11 +35,11 @@ def test_columns_found_by_header() -> None:
     the ecoinvent "Geography" on the left must not be taken for BAFU's, and capitals in a title do not matter."""
     path = workbook(
         ["EI 3.11 dataset", "Identifiant", "Geography", "EI Unit", "bis", "BAFU Name", "Geography", "Unit", "Conversion"],
-        [KETTLE, "", "GLO", "unit", 0, "Convector radiator", "CH", "kg", 1.2],
+        [KETTLE, "", "GLO", "unit", 0, "Convector radiator", "CH", "kg", 1.5],
         ["dryer {GLO}| market for dryer", "", "GLO", "unit", 0, "Dryer", "#N/A", "", ""],
     )
     found = dict(cf.read_workbook_mapping(path))
-    assert found[("market for electric kettle", "electric kettle", "GLO")] == cf.Target("Convector radiator", "CH", "kg", 1.2)
+    assert found[("market for electric kettle", "electric kettle", "GLO")] == cf.Target("Convector radiator", "CH", "kg", 1.5)
     assert found[("market for dryer", "dryer", "GLO")] is None, "a #N/A place names no BAFU process"
 
 

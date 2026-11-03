@@ -257,7 +257,7 @@ plus haut qu’ecoinvent avec le classeur du 28 octobre.
 | market for chemical, organic, unspecified {GLO} | nouveau en 3.12, pas de jeu de données 3.11 | Chemicals organic, at plant {GLO} | ce que donne la correspondance pour « chemical, organic » en 3.11 |
 | market for polytetrafluoroethylene {GLO} | nouveau en 3.12, pas de jeu de données 3.11 | Tetrafluoroethylene, at plant {RER} | approximation : le monomère, pas le polymère |
 | market for dryer {GLO} | la correspondance dit #N/A | Washing machine, at retailer {CH} | approximation faible : BAFU n’a pas de sèche-linge |
-| market for electric kettle {GLO} | la correspondance dit #N/A | Convector radiator {CH}, 1,2 kg par appareil | approximation faible du fer : BAFU n’a pas de petit électroménager ; c’est l’électricité, pas le fer, qui fait l’essentiel du repassage |
+| market for electric kettle {GLO} | la correspondance dit #N/A | Convector radiator {CH}, 1,5 kg par appareil, la masse qu’ecoinvent donne à sa bouilloire | approximation faible du fer : BAFU n’a pas de petit électroménager ; c’est l’électricité, pas le fer, qui fait l’essentiel du repassage |
 | market for tissue paper {GLO} | la correspondance dit #N/A | Paper, woodfree, uncoated, at regional storage {RER} | proche |
 | market for waste mineral oil {RoW} | la correspondance dit #N/A | Disposal, used mineral oil, 10% water, to hazardous waste incineration {CH} | proche |
 | market for wastewater from textile production {RoW} | la correspondance dit #N/A | Treatment, sewage, to wastewater treatment, class 3 {CH} | comme le « wastewater, average » de la correspondance |

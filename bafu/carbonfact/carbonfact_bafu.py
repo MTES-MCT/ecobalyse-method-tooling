@@ -84,7 +84,7 @@ market for alkyl sulfate (C12-14),GLO,"Fatty alcohol sulfate, mix, at plant",RER
 "market for chemical, organic, unspecified",GLO,"Chemicals organic, at plant",GLO,,,
 market for polytetrafluoroethylene,GLO,"Tetrafluoroethylene, at plant",RER,,,
 market for dryer,GLO,"Washing machine, at retailer",CH,,,
-market for electric kettle,GLO,Convector radiator,CH,1.2,unit,kg
+market for electric kettle,GLO,Convector radiator,CH,1.5,unit,kg
 market for tissue paper,GLO,"Paper, woodfree, uncoated, at regional storage",RER,,,
 market for waste mineral oil,RoW,"Disposal, used mineral oil, 10% water, to hazardous waste incineration",CH,,,
 market for wastewater from textile production,RoW,"Treatment, sewage, to wastewater treatment, class 3",CH,,,

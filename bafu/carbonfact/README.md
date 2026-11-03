@@ -240,7 +240,7 @@ which came out seven times higher than ecoinvent on the 28 October workbook.
 | market for chemical, organic, unspecified {GLO} | new in 3.12, no 3.11 dataset | Chemicals organic, at plant {GLO} | what the mapping gives for the 3.11 « chemical, organic » |
 | market for polytetrafluoroethylene {GLO} | new in 3.12, no 3.11 dataset | Tetrafluoroethylene, at plant {RER} | proxy: the monomer, not the polymer |
 | market for dryer {GLO} | mapping says #N/A | Washing machine, at retailer {CH} | weak proxy: BAFU has no dryer |
-| market for electric kettle {GLO} | mapping says #N/A | Convector radiator {CH}, 1.2 kg per appliance | weak proxy for the iron: BAFU has no small appliance; the electricity, not the iron, makes most of ironing |
+| market for electric kettle {GLO} | mapping says #N/A | Convector radiator {CH}, 1.5 kg per appliance, the mass ecoinvent gives its kettle | weak proxy for the iron: BAFU has no small appliance; the electricity, not the iron, makes most of ironing |
 | market for tissue paper {GLO} | mapping says #N/A | Paper, woodfree, uncoated, at regional storage {RER} | close |
 | market for waste mineral oil {RoW} | mapping says #N/A | Disposal, used mineral oil, 10% water, to hazardous waste incineration {CH} | close |
 | market for wastewater from textile production {RoW} | mapping says #N/A | Treatment, sewage, to wastewater treatment, class 3 {CH} | same as the mapping's « wastewater, average » |
