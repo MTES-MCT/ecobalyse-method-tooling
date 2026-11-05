@@ -339,12 +339,11 @@ des activités de deux versions et ce qu’une fusion ne garde qu’une fois, sa
   nomme donc ses entrées ecoinvent d’après leur activité.
 - **Conversion.** La colonne `conversion` de la correspondance dit combien
   d’unités du produit ecoinvent font une unité du procédé BAFU : 2,17 kg d’urée
-  par kg de « Urea, as N », 0,599 MJ de froid par MJ de chaleur. Le moteur ne
-  l’applique qu’entre unités qui mesurent des choses différentes (des pièces en
-  kilogrammes) ; entre kilogrammes, ou entre mégajoules, il convertit par sa
-  table d’unités et ignore le facteur. Le script multiplie donc lui-même ces
-  lignes (1 kg d’urée devient 0,46 kg de « Urea, as N ») et affiche chacune
-  de celles qu’il change.
+  par kg de « Urea, as N », 0,599 MJ de froid par MJ de chaleur. Le moteur
+  l’applique : 1 kg d’urée devient 0,46 kg de « Urea, as N ». Entre deux unités
+  d’une même grandeur et de tailles différentes, comme le kWh et le MJ, la table
+  d’unités du moteur fait foi et refuse un facteur qui la contredit. Le script y
+  laisse donc le facteur de côté, et affiche chacun de ceux qu’il écarte.
 - **Sens.** ecoinvent compte un déchet comme une sortie négative de son marché
   (« market for wastewater from textile production », −1 m³), BAFU comme la
   sortie positive d’un traitement (« Treatment, sewage, … class 3 », +1 m³).

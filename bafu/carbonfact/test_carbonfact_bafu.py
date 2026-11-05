@@ -90,7 +90,7 @@ def test_dummy_drops_the_line() -> None:
         [f"market for {chloride}", 0.2, chloride, "GLO", "kg", None, "technosphere", None, "ecoinvent-3.12"],
         ["market for tap water", 3, "tap water", "GLO", "kg", None, "technosphere", None, "ecoinvent-3.12"],
     ]
-    (kept,) = cf.by_activity([block], {}, frozenset({(f"market for {chloride}", "GLO")}))
+    (kept,) = cf.by_activity([block], frozenset({(f"market for {chloride}", "GLO")}))
     assert [row[0] for row in kept] == ["Activity", "name", "finishing", "market for tap water"]
 
 
@@ -128,18 +128,17 @@ def test_built_in_renames() -> None:
     assert cf.from_mapping(rer, {}, mapping).target is None, "the check proves nothing"
 
 
-def test_conversion_within_one_measure() -> None:
-    """Urea « as N » is kg for kg: the engine would drop the mapping's 2.17, so the script divides the line.
-    kWh to MJ the engine converts itself, and a piece to kg it converts by the mapping: both left to it."""
-    units = {"kg": cf.UnitDefinition("mass", 1.0), "kWh": cf.UnitDefinition("energy", 3.6), "MJ": cf.UnitDefinition("energy", 1.0), "p": cf.UnitDefinition("count", 1.0)}
-
-    def line(unit: str, target_unit: str, conversion: float) -> cf.Resolution:
-        return cf.Resolution(cf.Supplier("x", "", "GLO", unit), "", cf.Target("y", "RER", target_unit, conversion), "mapped")
-
-    assert abs(cf.scale_by_hand(line("kg", "kg", 2.17), units) - 1 / 2.17) < 1e-12
-    assert abs(cf.scale_by_hand(line("kWh", "MJ", 1 / 3.6), units) - 1) < 1e-12
-    assert cf.scale_by_hand(line("p", "kg", 1.2), units) == 1
-    assert abs(cf.scale_by_hand(line("megajoule", "MJ", 0.599), units | {"megajoule": cf.UnitDefinition("energy", 1.0)}) - 1 / 0.599) < 1e-12
+def test_conversion_left_to_the_unit_table() -> None:
+    """kWh to MJ the unit table converts itself, so the mapping's factor is left out. Urea « as N » is kg for kg,
+    cold per heat is megajoule for MJ (one size, two names), a piece to kg is two measures: the factor is sent."""
+    units = {"kg": cf.UnitDefinition("mass", 1.0), "kWh": cf.UnitDefinition("energy", 3.6), "MJ": cf.UnitDefinition("energy", 1.0),
+             "megajoule": cf.UnitDefinition("energy", 1.0), "mJ": cf.UnitDefinition("energy", 1e-9), "p": cf.UnitDefinition("count", 1.0)}
+    assert cf.table_converts("kWh", "MJ", units)
+    assert cf.table_converts("kwh", "MJ", units), "read in another case as the engine reads it"
+    assert not cf.table_converts("kg", "kg", units)
+    assert not cf.table_converts("megajoule", "MJ", units)
+    assert not cf.table_converts("p", "kg", units)
+    assert not cf.table_converts("mj", "kWh", units), "MJ or mJ: the engine guesses neither"
 
 
 def dye(heat: list, amount: float) -> list:
