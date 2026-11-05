@@ -182,7 +182,9 @@ inscrits dans le script (plus bas) et EF 3.1 adapted 1.03, sur les huit bases :
 sur ecoinvent, le changement climatique est à moins de 0,03 % du chiffre que
 publie Carbonfact, pour chacune des 294 activités qui en ont un. Sur BAFU, le
 rapport médian BAFU / ecoinvent vaut 0,84 sur le changement climatique, avec
-99 % des activités à moins d’un facteur 1,5.
+99 % des activités à moins d’un facteur 1,5. Avec le paquet EF 3.1 du JRC, sur
+la seule base de teinture, le changement climatique est à moins de 0,06 % du
+chiffre de Carbonfact pour ses 38 activités, et le rapport médian vaut 0,92.
 
 Le plus grand écart porte sur l’écotoxicité de l’eau douce, inorganiques,
 environ cent fois plus basse sur BAFU pour « Fabric finishing,

@@ -492,7 +492,7 @@ def drop(c: Client, slug: str) -> None:
 Key = tuple[str, str, str]  # activity, product, place: what tells two activities apart in both versions
 
 
-def score(c: Client, slug: str, collection: str) -> dict[Key, dict]:
+def score(c: Client, slug: str) -> dict[Key, dict]:
     """Every activity's reference unit and score on every category."""
     db = c.use(slug)
     activities = db.search_activities()
@@ -500,9 +500,9 @@ def score(c: Client, slug: str, collection: str) -> dict[Key, dict]:
     if twice:
         sys.exit(f"{slug}: several activities answer to {twice[:5]}, which version's would pair with which is a guess")
     key = {a.process_id: (a.activity_name, a.product_name, a.location) for a in activities}
-    rows = db.score_table(list(key), collection=collection)
+    rows = db.score_table(list(key), collection=COLLECTION)
     # The method file brings its own weighting set too, which is not a category.
-    categories = {m.name for m in c.list_methods() if m.collection == collection}
+    categories = {m.name for m in c.list_methods() if m.collection == COLLECTION}
     return {
         key[row["process_id"]]: {"unit": row["product_unit"]} | {k: v for k, v in row.items() if k in categories}
         for row in rows
@@ -679,9 +679,11 @@ def compare(args) -> None:
         print("loading ecoinvent and BAFU (the first time, several minutes)...")
         c.load_database(ECOINVENT)
         c.load_database(bafu)
+        if CLIMATE not in {m.name for m in c.list_methods() if m.collection == COLLECTION}:
+            sys.exit(f"{args.method} has no {CLIMATE!r} category: is it EF 3.1?")
         slugs = [load(c, path, f"{side}: {path.stem}") for side, path in (("left", args.left), ("right", args.right))]
         print("scoring...")
-        left, right = (score(c, slug, COLLECTION) for slug in slugs)
+        left, right = (score(c, slug) for slug in slugs)
         for slug in slugs:
             drop(c, slug)
     left, right, only_left, only_right = paired(left, right)

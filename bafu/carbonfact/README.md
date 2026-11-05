@@ -170,7 +170,9 @@ With the expert mapping of 28 October 2026 as it comes, the built-in choices
 (below) and EF 3.1 adapted 1.03, on the eight databases: on ecoinvent, climate change is within
 0.03 % of the figure Carbonfact reports, on each of the 294 activities it
 reports one for. On BAFU, the median ratio BAFU / ecoinvent is 0.84 on climate
-change, with 99 % of the activities within a factor 1.5.
+change, with 99 % of the activities within a factor 1.5. With the JRC's EF 3.1
+package instead, on the dyeing database alone, climate change is within 0.06 %
+of Carbonfact's figure on its 38 activities, and the median ratio is 0.92.
 
 The widest gap is on freshwater ecotoxicity, inorganics, about a hundred
 times lower on BAFU for « Fabric finishing, Softening, Exhaust, Jet ». It comes
