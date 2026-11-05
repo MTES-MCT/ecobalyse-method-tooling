@@ -19,7 +19,7 @@ three commands work on one such database, so a new one is handled the same way:
         --ecoinvent "ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "BAFU-2026 v1_ecoSpold v1.zip"
     uv run carbonfact_bafu.py compare Dyeing_Inventory_Brightway.xlsx Dyeing_Inventory_Brightway.bafu.brightway.xlsx \\
         --ecoinvent "ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "BAFU-2026 v1_ecoSpold v1.zip" \\
-        --method "Environmental Footprint 3.1 (adapted).1.03.CSV.zip"
+        --method EF-v3.1.zip
     uv run carbonfact_bafu.py quality Dyeing_Inventory_Brightway.bafu.brightway.xlsx
     uv run carbonfact_bafu.py merge Dyeing_Inventory_Brightway.bafu.brightway.xlsx Printing_Inventory_Brightway.bafu.ecospold2.zip \\
         --bafu "BAFU-2026 v1_ecoSpold v1.zip" --format ecospold2
@@ -46,36 +46,15 @@ from typing import IO
 
 import openpyxl
 import volca
-from volca import Client, DatabaseStatus, ScoringRow, Server, UnitDefinition, VoLCAError
+from volca import Client, DatabaseStatus, Server, UnitDefinition, VoLCAError
 from volca.compare_plot import BANDS, Point, band_shares, fold, scatter_grid, widest
 
 NEEDS = (0, 16, 0)  # keeps a mapping's links through finalize, exports under the linked supplier
-ECOINVENT, COLLECTION, WITH_ECS = "ecoinvent-3.12", "EF 3.1", "ef-3-1-with-ecs"  # a copy's name, as the engine keeps it
+ECOINVENT, COLLECTION = "ecoinvent-3.12", "EF 3.1"
 EXTENSION = {"brightway": "xlsx", "simapro": "csv", "ecospold2": "zip", "openlca": "zip", "ilcd": "zip"}
-TABLES = ("ECS", "Climate change")
-ECS_COLUMN = "ECS Single score"  # score_table names a set's column after the set and its score
+CLIMATE = "Climate change"  # its name in EF 3.1, adapted or the JRC's
 # "polypropylene, granulate {RER}| polypropylene production, granulate | Cut-off, U"
 SIMAPRO_NAME = re.compile(r"^(?P<product>.*?) \{(?P<geo>.+?)\}\s*\|\s*(?P<activity>.*?)(\s*\|.*)?$")
-
-# Ecobalyse's environmental cost on the EF 3.1 adapted names, as ei_bafu_mapping
-# scores it: a category's terms (freshwater ecotoxicity counts organics twice),
-# its normalization and its weight.
-ECS = [
-    ({"Climate change": 1}, 7553.08, 0.2106),
-    ({"Acidification": 1}, 55.5695, 0.0491),
-    ({"Ecotoxicity, freshwater - organics": 2, "Ecotoxicity, freshwater - inorganics": 1}, 98120.0, 0.2106),
-    ({"Eutrophication, freshwater": 1}, 1.60685, 0.0222),
-    ({"Eutrophication, marine": 1}, 19.5452, 0.0235),
-    ({"Eutrophication, terrestrial": 1}, 176.755, 0.0294),
-    ({"Resource use, fossils": 1}, 65004.3, 0.0659),
-    ({"Resource use, minerals and metals": 1}, 0.0636226, 0.0598),
-    ({"Ionising radiation": 1}, 4220.16, 0.0397),
-    ({"Land use": 1}, 819498.0, 0.0629),
-    ({"Ozone depletion": 1}, 0.053648, 0.05),
-    ({"Photochemical ozone formation": 1}, 40.8592, 0.0379),
-    ({"Particulate matter": 1}, 0.000595367, 0.071),
-    ({"Water use": 1}, 11468.7, 0.0674),
-]
 
 # BAFU suppliers chosen by hand, in mapping.csv's columns, for what the mapping
 # leaves without a BAFU process: the README says how strong each one is.
@@ -424,21 +403,6 @@ def db_name(path: Path) -> str:
     return re.sub(r"[^a-z0-9]+", "-", path.stem.lower()).strip("-")
 
 
-def with_ecs(c: Client) -> str:
-    """A copy of the method with ECS added, since a collection read from a file is not changed in place."""
-    for old in c.list_method_collections():  # the engine keeps a previous run's copy
-        if old["name"] == WITH_ECS:
-            c.delete_method_collection(WITH_ECS)
-    copy = c.copy_method_collection(COLLECTION, WITH_ECS)["name"]
-    ids = {m.name: m.id for m in c.list_methods() if m.collection == copy}
-    missing = sorted({name for terms, _, _ in ECS for name in terms} - ids.keys())
-    if missing:
-        sys.exit(f"the method {COLLECTION} lacks what ECS needs ({', '.join(missing)}): is it EF 3.1 adapted?")
-    rows = [ScoringRow(" + ".join(terms), {ids[n]: k for n, k in terms.items()}, normalization, weight) for terms, normalization, weight in ECS]
-    c.create_scoring_set(copy, "ECS", rows, unit="Pts")
-    return copy
-
-
 def reference_amount(c: Client, name: str, location: str) -> float | None:
     """The reference amount of the one process of that name and place, None when there is not exactly one."""
     found = [a for a in c.search_activities(name=name, geo=location, exact=True)]
@@ -529,7 +493,7 @@ Key = tuple[str, str, str]  # activity, product, place: what tells two activitie
 
 
 def score(c: Client, slug: str, collection: str) -> dict[Key, dict]:
-    """Every activity's reference unit and score on ECS and every category."""
+    """Every activity's reference unit and score on every category."""
     db = c.use(slug)
     activities = db.search_activities()
     twice = [k for k, n in Counter((a.activity_name, a.product_name, a.location) for a in activities).items() if n > 1]
@@ -540,7 +504,7 @@ def score(c: Client, slug: str, collection: str) -> dict[Key, dict]:
     # The method file brings its own weighting set too, which is not a category.
     categories = {m.name for m in c.list_methods() if m.collection == collection}
     return {
-        key[row["process_id"]]: {"unit": row["product_unit"], "ECS": row[ECS_COLUMN]} | {k: v for k, v in row.items() if k in categories}
+        key[row["process_id"]]: {"unit": row["product_unit"]} | {k: v for k, v in row.items() if k in categories}
         for row in rows
     }
 
@@ -629,15 +593,14 @@ def report(left: dict, right: dict, names: tuple[str, str], top: int) -> None:
                 total += within[band]
                 shares += f" {total:11.0%}"
             print(f"  {category:45} {statistics.median(ratios):7.3f}{shares}")
-    for category in TABLES:
-        print(f"\nThe {top} widest gaps on {category}:")
-        for p in widest(positive(left, right, category), top):
-            print(f"  {fold(p.right / p.left):>9}  {p.label}")
+    print(f"\nThe {top} widest gaps on {CLIMATE}:")
+    for p in widest(positive(left, right, CLIMATE), top):
+        print(f"  {fold(p.right / p.left):>9}  {p.label}")
 
 
 def check_reported(left: dict, reported: dict[str, float]) -> None:
     """How close the left version comes to the climate change Carbonfact reports for each activity."""
-    climate = [(s["Climate change"], reported[k[0]]) for k, s in left.items() if reported.get(k[0])]
+    climate = [(s[CLIMATE], reported[k[0]]) for k, s in left.items() if reported.get(k[0])]
     if not climate:
         sys.exit("no activity of the left database is in the reported results")
     worst = max(abs(v / ghg - 1) for v, ghg in climate)
@@ -716,10 +679,9 @@ def compare(args) -> None:
         print("loading ecoinvent and BAFU (the first time, several minutes)...")
         c.load_database(ECOINVENT)
         c.load_database(bafu)
-        collection = with_ecs(c)
         slugs = [load(c, path, f"{side}: {path.stem}") for side, path in (("left", args.left), ("right", args.right))]
         print("scoring...")
-        left, right = (score(c, slug, collection) for slug in slugs)
+        left, right = (score(c, slug, COLLECTION) for slug in slugs)
         for slug in slugs:
             drop(c, slug)
     left, right, only_left, only_right = paired(left, right)
@@ -808,7 +770,7 @@ def main() -> None:
     p.add_argument("left", type=Path, help="the reference version, the one on ecoinvent say, in any format the engine reads")
     p.add_argument("right", type=Path, help="the version to judge against it, the one on BAFU say")
     backgrounds(p)
-    p.add_argument("--method", type=Path, required=True, help="EF 3.1 adapted, its SimaPro CSV export")
+    p.add_argument("--method", type=Path, required=True, help="EF 3.1: the adapted SimaPro CSV export, or the JRC's ILCD package")
     p.add_argument("--reported", type=Path, help="Carbonfact's <step>_DB_LCIA.csv, to check the left version against its climate change")
     p.add_argument("--top", type=int, default=20, help="how many of the widest gaps to list (default: %(default)s)")
     out(p)
