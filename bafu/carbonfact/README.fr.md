@@ -139,8 +139,9 @@ Il écrit, sous le nom de la seconde version :
 
 Le terminal dit, si `--reported` est donné, à quel point la première version
 approche les chiffres de Carbonfact, puis, par catégorie, le rapport médian
-entre les deux versions et la part des activités à moins de 10 %, d’un facteur
-1,5, 2 et 10, et finit par les plus grands écarts toutes catégories
+entre les deux versions, la part des activités à moins de 10 %, d’un facteur
+1,5, 2 et 10, et combien aucun rapport ne peut juger (un zéro ou un négatif
+d’un côté), et finit par les plus grands écarts toutes catégories
 confondues (`--top`, 20 par défaut) : un rapport n’a pas d’unité, donc un écart
 sur une catégorie se classe face à un écart sur une autre. Une activité
 présente d’un seul côté est listée, puis laissée de côté.

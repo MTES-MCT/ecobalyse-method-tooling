@@ -31,7 +31,6 @@ local engine build and its data instead.
 import argparse
 import csv
 import io
-import math
 import os
 import re
 import statistics
@@ -48,7 +47,7 @@ from typing import IO
 import openpyxl
 import volca
 from volca import Client, DatabaseStatus, Server, UnitDefinition, VoLCAError
-from volca.compare_plot import BANDS, Point, band_shares, fold, scatter_grid
+from volca.compare_plot import BANDS, Point, band_shares, fold, scatter_grid, widest
 
 NEEDS = (0, 16, 0)  # keeps a mapping's links through finalize, exports under the linked supplier
 ECOINVENT, COLLECTION = "ecoinvent-3.12", "method"  # the collection --method loads under, whatever method it is
@@ -582,27 +581,31 @@ def positive(left: dict, right: dict, category: str) -> list[Point]:
     return [Point(label(k), s[category], right[k][category]) for k, s in left.items() if s[category] > 0 and right[k][category] > 0]
 
 
-def widest_gaps(left: dict, right: dict, top: int) -> list[tuple[str, Point]]:
+def widest_gaps(left: dict, right: dict, top: int) -> list[Point]:
     """The widest gaps, either way, every category together: a ratio has no unit, so categories compare."""
-    gaps = [(category, p) for category in next(iter(left.values())) for p in positive(left, right, category)]
-    return sorted(gaps, key=lambda g: abs(math.log(g[1].right / g[1].left)), reverse=True)[:top]
+    return widest([Point(f"{category:45} {p.label}", p.left, p.right) for category in next(iter(left.values())) for p in positive(left, right, category)], top)
+
+
+def unranked(left: dict, right: dict, category: str) -> int:
+    """The activities a ratio cannot judge on one category: a zero or a negative on one side, not both at zero."""
+    return sum(not (s[category] > 0 and right[k][category] > 0) and (s[category], right[k][category]) != (0, 0) for k, s in left.items())
 
 
 def report(left: dict, right: dict, names: tuple[str, str], top: int) -> None:
     print(f"\n{names[1]} / {names[0]}, {len(left)} activities:")
-    print(f"  {'category':45} {'median':>7} " + " ".join(f"{'within ' + band:>11}" for _, band in BANDS))
+    print(f"  {'category':45} {'median':>7} " + " ".join(f"{'within ' + band:>11}" for _, band in BANDS) + f" {'unranked':>9}")
     for category in next(iter(left.values())):
         ratios = [p.right / p.left for p in positive(left, right, category)]
+        median, shares = (f"{statistics.median(ratios):7.3f}", "") if ratios else (f"{'-':>7}", " " * 12 * len(BANDS))
         if ratios:
             within, total = band_shares(ratios), 0.0
-            shares = ""
             for _, band in BANDS:
                 total += within[band]
                 shares += f" {total:11.0%}"
-            print(f"  {category:45} {statistics.median(ratios):7.3f}{shares}")
-    print(f"\nThe {top} widest gaps, every category together:")
-    for category, p in widest_gaps(left, right, top):
-        print(f"  {fold(p.right / p.left):>9}  {category:45} {p.label}")
+        print(f"  {category:45} {median}{shares} {unranked(left, right, category):9}")
+    print(f"\nThe {top} widest gaps, every category together, of those a ratio can judge (unranked: a zero or a negative on one side):")
+    for p in widest_gaps(left, right, top):
+        print(f"  {fold(p.right / p.left):>9}  {p.label}")
 
 
 def check_reported(left: dict, reported: dict[str, float]) -> None:
@@ -683,11 +686,11 @@ def compare(args) -> None:
     reported = reported_climate(args.reported) if args.reported else None
     bafu = db_name(args.bafu)
     with running({ECOINVENT: args.ecoinvent, bafu: args.bafu}, {COLLECTION: args.method}) as c:
+        if reported is not None and CLIMATE not in {m.name for m in c.list_methods() if m.collection == COLLECTION}:
+            sys.exit(f"--reported checks climate change, and {args.method} has no {CLIMATE!r} category: is it EF 3.1?")
         print("loading ecoinvent and BAFU (the first time, several minutes)...")
         c.load_database(ECOINVENT)
         c.load_database(bafu)
-        if reported is not None and CLIMATE not in {m.name for m in c.list_methods() if m.collection == COLLECTION}:
-            sys.exit(f"--reported checks climate change, and {args.method} has no {CLIMATE!r} category: is it EF 3.1?")
         slugs = [load(c, path, f"{side}: {path.stem}") for side, path in (("left", args.left), ("right", args.right))]
         print("scoring...")
         left, right = (score(c, slug) for slug in slugs)

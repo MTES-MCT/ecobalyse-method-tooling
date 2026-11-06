@@ -131,10 +131,10 @@ It writes, under the name of the second version:
 
 The terminal says, when `--reported` is given, how close the first version
 comes to Carbonfact's figures, then, per category, the median ratio between the
-two versions and the share of activities within 10 %, a factor 1.5, 2 and 10,
-and ends with the widest gaps, every category together (`--top`, 20 by
-default): a ratio has no unit, so a gap on one category ranks against a gap on
-another. An activity found on one side only is listed, then left out.
+two versions, the share of activities within 10 %, a factor 1.5, 2 and 10,
+and how many no ratio can judge (a zero or a negative on one side), and ends
+with the widest gaps, every category together (`--top`, 20 by default): a ratio
+has no unit, so a gap on one category ranks against a gap on another. An activity found on one side only is listed, then left out.
 
 ### `quality`: the quality report
 
