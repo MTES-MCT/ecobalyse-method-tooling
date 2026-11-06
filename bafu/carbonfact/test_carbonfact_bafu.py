@@ -118,6 +118,16 @@ def test_pairing_by_name_product_place() -> None:
         raise AssertionError("two units were compared")
 
 
+def test_widest_gaps_every_category() -> None:
+    """The widest gaps are ranked across every category, either way: ÷4 on water outranks ×3
+    on climate, and an activity at zero on one side cannot be ranked by a ratio."""
+    a, b = ("Dyeing", "x", "GLO"), ("Printing", "y", "GLO")
+    left = {a: {"Climate change": 1.0, "Water use": 4.0}, b: {"Climate change": 0.0, "Water use": 1.0}}
+    right = {a: {"Climate change": 3.0, "Water use": 1.0}, b: {"Climate change": 5.0, "Water use": 1.1}}
+    gaps = [(c, p.label) for c, p in cf.widest_gaps(left, right, 2)]
+    assert gaps == [("Water use", "Dyeing {GLO}"), ("Climate change", "Dyeing {GLO}")], gaps
+
+
 def test_built_in_renames() -> None:
     """Without the correspondence file, the polypropylene market 3.12 splits by region is
     still read as the 3.11 one for the world, the only one the mapping knows."""

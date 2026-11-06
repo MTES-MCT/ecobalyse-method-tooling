@@ -31,6 +31,7 @@ local engine build and its data instead.
 import argparse
 import csv
 import io
+import math
 import os
 import re
 import statistics
@@ -47,12 +48,12 @@ from typing import IO
 import openpyxl
 import volca
 from volca import Client, DatabaseStatus, Server, UnitDefinition, VoLCAError
-from volca.compare_plot import BANDS, Point, band_shares, fold, scatter_grid, widest
+from volca.compare_plot import BANDS, Point, band_shares, fold, scatter_grid
 
 NEEDS = (0, 16, 0)  # keeps a mapping's links through finalize, exports under the linked supplier
-ECOINVENT, COLLECTION = "ecoinvent-3.12", "EF 3.1"
+ECOINVENT, COLLECTION = "ecoinvent-3.12", "method"  # the collection --method loads under, whatever method it is
 EXTENSION = {"brightway": "xlsx", "simapro": "csv", "ecospold2": "zip", "openlca": "zip", "ilcd": "zip"}
-CLIMATE = "Climate change"  # its name in EF 3.1, adapted or the JRC's
+CLIMATE = "Climate change"  # its name in EF 3.1, adapted or the JRC's: what --reported checks
 # "polypropylene, granulate {RER}| polypropylene production, granulate | Cut-off, U"
 SIMAPRO_NAME = re.compile(r"^(?P<product>.*?) \{(?P<geo>.+?)\}\s*\|\s*(?P<activity>.*?)(\s*\|.*)?$")
 
@@ -581,6 +582,12 @@ def positive(left: dict, right: dict, category: str) -> list[Point]:
     return [Point(label(k), s[category], right[k][category]) for k, s in left.items() if s[category] > 0 and right[k][category] > 0]
 
 
+def widest_gaps(left: dict, right: dict, top: int) -> list[tuple[str, Point]]:
+    """The widest gaps, either way, every category together: a ratio has no unit, so categories compare."""
+    gaps = [(category, p) for category in next(iter(left.values())) for p in positive(left, right, category)]
+    return sorted(gaps, key=lambda g: abs(math.log(g[1].right / g[1].left)), reverse=True)[:top]
+
+
 def report(left: dict, right: dict, names: tuple[str, str], top: int) -> None:
     print(f"\n{names[1]} / {names[0]}, {len(left)} activities:")
     print(f"  {'category':45} {'median':>7} " + " ".join(f"{'within ' + band:>11}" for _, band in BANDS))
@@ -593,9 +600,9 @@ def report(left: dict, right: dict, names: tuple[str, str], top: int) -> None:
                 total += within[band]
                 shares += f" {total:11.0%}"
             print(f"  {category:45} {statistics.median(ratios):7.3f}{shares}")
-    print(f"\nThe {top} widest gaps on {CLIMATE}:")
-    for p in widest(positive(left, right, CLIMATE), top):
-        print(f"  {fold(p.right / p.left):>9}  {p.label}")
+    print(f"\nThe {top} widest gaps, every category together:")
+    for category, p in widest_gaps(left, right, top):
+        print(f"  {fold(p.right / p.left):>9}  {category:45} {p.label}")
 
 
 def check_reported(left: dict, reported: dict[str, float]) -> None:
@@ -679,8 +686,8 @@ def compare(args) -> None:
         print("loading ecoinvent and BAFU (the first time, several minutes)...")
         c.load_database(ECOINVENT)
         c.load_database(bafu)
-        if CLIMATE not in {m.name for m in c.list_methods() if m.collection == COLLECTION}:
-            sys.exit(f"{args.method} has no {CLIMATE!r} category: is it EF 3.1?")
+        if reported is not None and CLIMATE not in {m.name for m in c.list_methods() if m.collection == COLLECTION}:
+            sys.exit(f"--reported checks climate change, and {args.method} has no {CLIMATE!r} category: is it EF 3.1?")
         slugs = [load(c, path, f"{side}: {path.stem}") for side, path in (("left", args.left), ("right", args.right))]
         print("scoring...")
         left, right = (score(c, slug) for slug in slugs)
@@ -772,9 +779,9 @@ def main() -> None:
     p.add_argument("left", type=Path, help="the reference version, the one on ecoinvent say, in any format the engine reads")
     p.add_argument("right", type=Path, help="the version to judge against it, the one on BAFU say")
     backgrounds(p)
-    p.add_argument("--method", type=Path, required=True, help="EF 3.1: the adapted SimaPro CSV export, or the JRC's ILCD package")
+    p.add_argument("--method", type=Path, required=True, help="the impact method, any the engine reads: EF 3.1 as the JRC's ILCD package or SimaPro's CSV export, ecological scarcity 2021...")
     p.add_argument("--reported", type=Path, help="Carbonfact's <step>_DB_LCIA.csv, to check the left version against its climate change")
-    p.add_argument("--top", type=int, default=20, help="how many of the widest gaps to list (default: %(default)s)")
+    p.add_argument("--top", type=int, default=20, help="how many of the widest gaps to list, every category together (default: %(default)s)")
     out(p)
     p.set_defaults(run=compare)
 

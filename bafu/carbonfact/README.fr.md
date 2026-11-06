@@ -121,11 +121,13 @@ Les deux versions peuvent être dans n’importe quel format que lit le moteur, 
 pas forcément le même : les activités s’apparient par leur nom, leur produit et
 leur lieu. Le moteur cherche les fournisseurs de chaque version dans ecoinvent
 et BAFU, et dit lesquels il a trouvés pour chacune. Il faut en plus **la méthode
-d’impact** (`--method`), EF 3.1 : le paquet ILCD du JRC (`EF-v3.1.zip`), ou la
-version adapted exportée de SimaPro en CSV. `--reported`, facultatif,
+d’impact** (`--method`), n’importe laquelle que lit le moteur : EF 3.1 en paquet
+ILCD du JRC (`EF-v3.1.zip`) ou en version adapted exportée de SimaPro en CSV,
+la saturation écologique 2021 en CSV SimaPro, etc. `--reported`, facultatif,
 donne les résultats que Carbonfact publie pour la base
 (`Carbonfact_<étape>_DB_LCIA.csv`), pour vérifier que la première version les
-retrouve.
+retrouve : il les lit sur la catégorie `Climate change` de la méthode, et
+demande donc EF 3.1.
 
 Il écrit, sous le nom de la seconde version :
 
@@ -138,9 +140,10 @@ Il écrit, sous le nom de la seconde version :
 Le terminal dit, si `--reported` est donné, à quel point la première version
 approche les chiffres de Carbonfact, puis, par catégorie, le rapport médian
 entre les deux versions et la part des activités à moins de 10 %, d’un facteur
-1,5, 2 et 10, et finit par les plus grands écarts sur le changement
-climatique (`--top`, 20 par défaut). Une activité présente d’un seul côté est
-listée, puis laissée de côté.
+1,5, 2 et 10, et finit par les plus grands écarts toutes catégories
+confondues (`--top`, 20 par défaut) : un rapport n’a pas d’unité, donc un écart
+sur une catégorie se classe face à un écart sur une autre. Une activité
+présente d’un seul côté est listée, puis laissée de côté.
 
 ### `quality` : le rapport de qualité
 
