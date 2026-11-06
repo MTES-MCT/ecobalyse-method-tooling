@@ -115,11 +115,12 @@ uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/
 The two versions can be in any format the engine reads, not necessarily the
 same one: activities pair on their name, product and place. The engine looks
 for each version's suppliers in ecoinvent and BAFU, and says which it found for
-each. It also needs **the impact method** (`--method`), EF 3.1: the JRC's ILCD
-package (`EF-v3.1.zip`), or the adapted version exported from SimaPro as CSV. `--reported`,
-optional, gives the results Carbonfact publishes for the database
+each. It also needs **the impact method** (`--method`), any the engine reads:
+EF 3.1 as the JRC's ILCD package (`EF-v3.1.zip`) or the adapted version exported
+from SimaPro as CSV, ecological scarcity 2021 as a SimaPro CSV, and so on.
+`--reported`, optional, gives the results Carbonfact publishes for the database
 (`Carbonfact_<step>_DB_LCIA.csv`), to check that the first version finds them
-again.
+again: it reads them on the method's `Climate change` category, so it needs EF 3.1.
 
 It writes, under the name of the second version:
 
@@ -130,9 +131,10 @@ It writes, under the name of the second version:
 
 The terminal says, when `--reported` is given, how close the first version
 comes to Carbonfact's figures, then, per category, the median ratio between the
-two versions and the share of activities within 10 %, a factor 1.5, 2 and 10,
-and ends with the widest gaps on climate change (`--top`, 20 by
-default). An activity found on one side only is listed, then left out.
+two versions, the share of activities within 10 %, a factor 1.5, 2 and 10,
+and how many no ratio can judge (a zero or a negative on one side), and ends
+with the widest gaps, every category together (`--top`, 20 by default): a ratio
+has no unit, so a gap on one category ranks against a gap on another. An activity found on one side only is listed, then left out.
 
 ### `quality`: the quality report
 
