@@ -109,30 +109,32 @@ what the mapping leaves without a BAFU process.
 ### `compare`: two versions of a database, one against the other
 
 ```powershell
-uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py compare "C:\data\Dyeing_Inventory_Brightway.xlsx" "C:\data\Dyeing_Inventory_Brightway.bafu.brightway.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip" --reported "C:\data\Carbonfact_Dyeing_DB_LCIA.csv"
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py compare "C:\data\Dyeing_Inventory_Brightway.xlsx" "C:\data\Dyeing_Inventory_Brightway.bafu.brightway.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\EF-v3.1.zip" --reported "C:\data\Carbonfact_Dyeing_DB_LCIA.csv"
 ```
 
 The two versions can be in any format the engine reads, not necessarily the
 same one: activities pair on their name, product and place. The engine looks
 for each version's suppliers in ecoinvent and BAFU, and says which it found for
-each. It also needs **the impact method** (`--method`), EF 3.1 adapted exported
-from SimaPro as CSV: adapted 1.03 is the one Ecobalyse uses. `--reported`,
-optional, gives the results Carbonfact publishes for the database
+each. It also needs **the impact method** (`--method`), any the engine reads:
+EF 3.1 as the JRC's ILCD package (`EF-v3.1.zip`) or the adapted version exported
+from SimaPro as CSV, ecological scarcity 2021 as a SimaPro CSV, and so on.
+`--reported`, optional, gives the results Carbonfact publishes for the database
 (`Carbonfact_<step>_DB_LCIA.csv`), to check that the first version finds them
-again.
+again: it reads them on the method's `Climate change` category, so it needs EF 3.1.
 
 It writes, under the name of the second version:
 
-- `….comparison.csv`: each activity, then each category and the ECS score, for
-  the first version and for the second;
+- `….comparison.csv`: each activity, then each category, for the first version
+  and for the second;
 - `….comparison.svg`: one scatter per category, the first version across, the
   second up; the grey bands mark ±10 % and a factor 2.
 
 The terminal says, when `--reported` is given, how close the first version
 comes to Carbonfact's figures, then, per category, the median ratio between the
-two versions and the share of activities within 10 %, a factor 1.5, 2 and 10,
-and ends with the widest gaps on ECS and on climate change (`--top`, 20 by
-default). An activity found on one side only is listed, then left out.
+two versions, the share of activities within 10 %, a factor 1.5, 2 and 10,
+and how many no ratio can judge (a zero or a negative on one side), and ends
+with the widest gaps, every category together (`--top`, 20 by default): a ratio
+has no unit, so a gap on one category ranks against a gap on another. An activity found on one side only is listed, then left out.
 
 ### `quality`: the quality report
 
@@ -170,11 +172,11 @@ With the expert mapping of 28 October 2026 as it comes, the built-in choices
 (below) and EF 3.1 adapted 1.03, on the eight databases: on ecoinvent, climate change is within
 0.03 % of the figure Carbonfact reports, on each of the 294 activities it
 reports one for. On BAFU, the median ratio BAFU / ecoinvent is 0.84 on climate
-change, with 99 % of the activities within a factor 1.5, and
-0.77 on ECS, where finishing and dyeing processes come out nine to twenty-five
-times lower than on ecoinvent.
+change, with 99 % of the activities within a factor 1.5. With the JRC's EF 3.1
+package instead, on the dyeing database alone, climate change is within 0.06 %
+of Carbonfact's figure on its 38 activities, and the median ratio is 0.92.
 
-That gap is almost all freshwater ecotoxicity, inorganics, about a hundred
+The widest gap is on freshwater ecotoxicity, inorganics, about a hundred
 times lower on BAFU for « Fabric finishing, Softening, Exhaust, Jet ». It comes
 from ecoinvent's own wastewater market for the rest of the world, which sends
 part of the water untreated to the river with the chlorine it carries, a flow
@@ -329,6 +331,3 @@ versions pair, and what a merge keeps once, without the engine.
   reference amount of every supplier and its BAFU process, and marks
   `opposite` the rows where the signs differ; the engine turns those lines. A
   mapping exported from VoLCA's mapping page already carries this column.
-- **ECS** is Ecobalyse's weighting on EF 3.1 alone, without Ecobalyse's own
-  corrections. The script adds it as a scoring set to a copy of the method once
-  the engine has started.

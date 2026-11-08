@@ -114,33 +114,37 @@ ne remplissent que ce que la correspondance laisse sans procédé BAFU.
 ### `compare` : comparer deux versions d’une base
 
 ```powershell
-uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py compare "C:\data\Dyeing_Inventory_Brightway.xlsx" "C:\data\Dyeing_Inventory_Brightway.bafu.brightway.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\Environmental Footprint 3.1 (adapted).1.03.CSV.zip" --reported "C:\data\Carbonfact_Dyeing_DB_LCIA.csv"
+uv run https://raw.githubusercontent.com/MTES-MCT/ecobalyse-method-tooling/main/bafu/carbonfact/carbonfact_bafu.py compare "C:\data\Dyeing_Inventory_Brightway.xlsx" "C:\data\Dyeing_Inventory_Brightway.bafu.brightway.xlsx" --ecoinvent "C:\data\ecoinvent 3.12_cutoff_ecoSpold02.7z" --bafu "C:\data\BAFU-2026 v1_ecoSpold v1.zip" --method "C:\data\EF-v3.1.zip" --reported "C:\data\Carbonfact_Dyeing_DB_LCIA.csv"
 ```
 
 Les deux versions peuvent être dans n’importe quel format que lit le moteur, et
 pas forcément le même : les activités s’apparient par leur nom, leur produit et
 leur lieu. Le moteur cherche les fournisseurs de chaque version dans ecoinvent
 et BAFU, et dit lesquels il a trouvés pour chacune. Il faut en plus **la méthode
-d’impact** (`--method`), EF 3.1 adapted exportée de SimaPro en CSV : la
-version adapted 1.03 est celle qu’utilise Ecobalyse. `--reported`, facultatif,
+d’impact** (`--method`), n’importe laquelle que lit le moteur : EF 3.1 en paquet
+ILCD du JRC (`EF-v3.1.zip`) ou en version adapted exportée de SimaPro en CSV,
+la saturation écologique 2021 en CSV SimaPro, etc. `--reported`, facultatif,
 donne les résultats que Carbonfact publie pour la base
 (`Carbonfact_<étape>_DB_LCIA.csv`), pour vérifier que la première version les
-retrouve.
+retrouve : il les lit sur la catégorie `Climate change` de la méthode, et
+demande donc EF 3.1.
 
 Il écrit, sous le nom de la seconde version :
 
-- `….comparison.csv` : chaque activité, puis chaque catégorie et le score ECS,
-  pour la première version et pour la seconde ;
+- `….comparison.csv` : chaque activité, puis chaque catégorie, pour la
+  première version et pour la seconde ;
 - `….comparison.svg` : un nuage par catégorie, la première version en
   abscisse, la seconde en ordonnée ; les bandes grises marquent ±10 % et un
   facteur 2.
 
 Le terminal dit, si `--reported` est donné, à quel point la première version
 approche les chiffres de Carbonfact, puis, par catégorie, le rapport médian
-entre les deux versions et la part des activités à moins de 10 %, d’un facteur
-1,5, 2 et 10, et finit par les plus grands écarts sur ECS et sur le changement
-climatique (`--top`, 20 par défaut). Une activité présente d’un seul côté est
-listée, puis laissée de côté.
+entre les deux versions, la part des activités à moins de 10 %, d’un facteur
+1,5, 2 et 10, et combien aucun rapport ne peut juger (un zéro ou un négatif
+d’un côté), et finit par les plus grands écarts toutes catégories
+confondues (`--top`, 20 par défaut) : un rapport n’a pas d’unité, donc un écart
+sur une catégorie se classe face à un écart sur une autre. Une activité
+présente d’un seul côté est listée, puis laissée de côté.
 
 ### `quality` : le rapport de qualité
 
@@ -182,12 +186,12 @@ inscrits dans le script (plus bas) et EF 3.1 adapted 1.03, sur les huit bases :
 sur ecoinvent, le changement climatique est à moins de 0,03 % du chiffre que
 publie Carbonfact, pour chacune des 294 activités qui en ont un. Sur BAFU, le
 rapport médian BAFU / ecoinvent vaut 0,84 sur le changement climatique, avec
-99 % des activités à moins d’un facteur 1,5, et 0,77 sur ECS, où les procédés
-d’ennoblissement et de teinture sortent neuf à vingt-cinq fois plus bas que sur
-ecoinvent.
+99 % des activités à moins d’un facteur 1,5. Avec le paquet EF 3.1 du JRC, sur
+la seule base de teinture, le changement climatique est à moins de 0,06 % du
+chiffre de Carbonfact pour ses 38 activités, et le rapport médian vaut 0,92.
 
-Cet écart vient presque entièrement de l’écotoxicité de l’eau douce,
-inorganiques, environ cent fois plus basse sur BAFU pour « Fabric finishing,
+Le plus grand écart porte sur l’écotoxicité de l’eau douce, inorganiques,
+environ cent fois plus basse sur BAFU pour « Fabric finishing,
 Softening, Exhaust, Jet ». Il vient du marché des eaux usées d’ecoinvent pour
 le reste du monde, qui envoie une partie de l’eau à la rivière sans traitement,
 avec le chlore qu’elle contient, un flux qu’EF 3.1 pèse lourdement. BAFU traite
@@ -353,6 +357,3 @@ des activités de deux versions et ce qu’une fusion ne garde qu’une fois, sa
   de son procédé BAFU, et marque `opposite` les lignes où les signes
   diffèrent ; le moteur retourne ces lignes. Une correspondance exportée de la
   page de correspondance de VoLCA porte déjà cette colonne.
-- **ECS** est la pondération d’Ecobalyse sur EF 3.1 seule, sans les
-  corrections propres à Ecobalyse. Le script l’ajoute comme jeu de scores à
-  une copie de la méthode une fois le moteur démarré.

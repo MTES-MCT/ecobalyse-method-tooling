@@ -105,17 +105,28 @@ def test_pairing_by_name_product_place() -> None:
     """Two versions pair activity by activity; what one side lacks is set apart, and a
     reference written in another unit stops the run, since a score is per one reference unit."""
     dye = ("Fabric dyeing", "dyed fabric", "GLO")
-    left = {dye: {"unit": "kg", "ECS": 2.0}, ("Only here", "x", "GLO"): {"unit": "kg", "ECS": 1.0}}
-    right = {dye: {"unit": "kg", "ECS": 1.0}}
+    left = {dye: {"unit": "kg", "Climate change": 2.0}, ("Only here", "x", "GLO"): {"unit": "kg", "Climate change": 1.0}}
+    right = {dye: {"unit": "kg", "Climate change": 1.0}}
     l, r, only_left, only_right = cf.paired(left, right)
-    assert (l, r) == ({dye: {"ECS": 2.0}}, {dye: {"ECS": 1.0}})
+    assert (l, r) == ({dye: {"Climate change": 2.0}}, {dye: {"Climate change": 1.0}})
     assert (only_left, only_right) == ([("Only here", "x", "GLO")], [])
     try:
-        cf.paired(left, {dye: {"unit": "m2", "ECS": 1.0}})
+        cf.paired(left, {dye: {"unit": "m2", "Climate change": 1.0}})
     except SystemExit as stop:
         assert "different units" in str(stop)
     else:
         raise AssertionError("two units were compared")
+
+
+def test_widest_gaps_every_category() -> None:
+    """The widest gaps are ranked across every category, either way: ÷4 on water outranks ×3
+    on climate, and an activity at zero on one side cannot be ranked by a ratio, and is counted as unranked."""
+    a, b = ("Dyeing", "x", "GLO"), ("Printing", "y", "GLO")
+    left = {a: {"Climate change": 1.0, "Water use": 4.0}, b: {"Climate change": 0.0, "Water use": 1.0}}
+    right = {a: {"Climate change": 3.0, "Water use": 1.0}, b: {"Climate change": 5.0, "Water use": 1.1}}
+    gaps = [p.label.split() for p in cf.widest_gaps(left, right, 2)]
+    assert gaps == [["Water", "use", "Dyeing", "{GLO}"], ["Climate", "change", "Dyeing", "{GLO}"]], gaps
+    assert (cf.unranked(left, right, "Climate change"), cf.unranked(left, right, "Water use")) == (1, 0)
 
 
 def test_built_in_renames() -> None:
