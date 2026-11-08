@@ -49,7 +49,7 @@ import volca
 from volca import Client, DatabaseStatus, Server, UnitDefinition, VoLCAError
 from volca.compare_plot import BANDS, Point, band_shares, fold, scatter_grid, widest
 
-NEEDS = (0, 16, 0)  # keeps a mapping's links through finalize, exports under the linked supplier
+NEEDS = (0, 17, 0)  # applies a mapping's conversion between kg and kg, and refuses one the unit table contradicts
 ECOINVENT, COLLECTION = "ecoinvent-3.12", "method"  # the collection --method loads under, whatever method it is
 EXTENSION = {"brightway": "xlsx", "simapro": "csv", "ecospold2": "zip", "openlca": "zip", "ilcd": "zip"}
 CLIMATE = "Climate change"  # its name in EF 3.1, adapted or the JRC's: what --reported checks
@@ -159,9 +159,8 @@ def is_background(f: dict) -> bool:
 
 
 
-def by_activity(activities: list[Block], scales: dict[tuple, float], dropped: frozenset = frozenset()) -> list[Block]:
-    """The activities to relink, every ecoinvent input named after its activity, its amount scaled where scales says,
-    the inputs dropped says removed.
+def by_activity(activities: list[Block], dropped: frozenset = frozenset()) -> list[Block]:
+    """The activities to relink, every ecoinvent input named after its activity, the inputs dropped says removed.
 
     Two ecoinvent activities can make one product in one place (hard coal and
     light fuel oil furnaces both make "heat, district or industrial, other than
@@ -177,11 +176,6 @@ def by_activity(activities: list[Block], scales: dict[tuple, float], dropped: fr
             if is_background(f):
                 row += [None] * (len(header) - len(row))  # its blank end cells were trimmed
                 row[header.index("reference product")] = None
-                scale = scales.get((norm(f["name"]), f["location"]))
-                if scale is not None:
-                    if not isinstance(f["amount"], (int, float)):
-                        sys.exit(f"{block[0][1]}: the amount of {f['name']} is {f['amount']!r}, which the script cannot scale")
-                    row[header.index("amount")] = f["amount"] * scale
         named.append(rows)
     return named
 
@@ -355,38 +349,40 @@ def from_mapping(s: Supplier, back: dict, mapping: dict) -> Resolution:
     return Resolution(s, label, target, "the mapping says Dummy, an empty inventory: the line is dropped" if target is DUMMY else "mapped")
 
 
-def scale_by_hand(r: Resolution, units: dict[str, UnitDefinition]) -> float:
-    """What the script multiplies a line by itself, for a conversion the engine would not apply.
+def table_converts(source_unit: str, target_unit: str, units: dict[str, UnitDefinition]) -> bool:
+    """Two units of one measure and different sizes the unit table knows (kWh and MJ), which it converts by itself.
 
-    The engine applies a mapping's conversion only between units of different
-    measures (1 p of 1200 kg), and converts kWh to MJ by its unit table. Urea
-    "as N" is a kilo of nitrogen where ecoinvent's is a kilo of urea: both are
-    kg, the engine would link 1 kg to 1 kg, and the mapping's 2.17 kg of urea
-    per kg of nitrogen is lost. The script divides the line by it instead, net
-    of what the unit table already converts (0.2778 kWh per MJ is the table's).
+    The engine applies every conversion a mapping states, and refuses one there
+    that disagrees with the table: a factor written the other way round would
+    stop the whole relink, where the table alone gets it right. Two names of one
+    size ("megajoule" and "MJ") are one unit, so a factor between them is a
+    ratio (0.599 MJ of cold per MJ of heat) and is sent.
     """
-    t = r.target
-    if t is None or not isinstance(t.conversion, (int, float)) or t.conversion in (0, 1):
-        return 1
-    folded = {norm(k): v for k, v in units.items()}
-    source, target = (units.get(u) or folded.get(norm(u)) for u in (r.supplier.unit, t.unit))
-    if norm(r.supplier.unit) == norm(t.unit):
-        return 1 / t.conversion
-    if source and target and source.dimension == target.dimension:
-        return target.factor / (source.factor * t.conversion)
-    return 1  # different measures: the engine applies it
+    a, b = table_spelling(source_unit, units), table_spelling(target_unit, units)
+    return a is not None and b is not None and units[a].dimension == units[b].dimension and units[a].factor != units[b].factor
 
 
-def recipe(resolutions: list[Resolution]) -> str:
+def table_spelling(unit: str, units: dict[str, UnitDefinition]) -> str | None:
+    """The table's spelling of a unit, read as the engine reads it: written in another case, it is
+    the table's only if one spelling alone matches (MJ and mJ both fold to mj, so neither is guessed)."""
+    unit = unit.strip()
+    if unit in units:
+        return unit
+    folded = [u for u in units if u.strip().casefold() == unit.casefold()]
+    return folded[0] if len(folded) == 1 else None
+
+
+def recipe(resolutions: list[Resolution], units: dict[str, UnitDefinition]) -> str:
     """The relink CSV: engine columns first, then the columns for a person."""
     out = io.StringIO()
     w = csv.writer(out)
     w.writerow(["source_product", "source_location", "target_product", "target_location", "conversion", "source_unit", "target_unit", "direction", "ecoinvent_3_11", "status"])
     for r in sorted(resolutions, key=lambda r: (r.target is None, r.supplier.activity, r.supplier.location)):
         t = None if r.target is DUMMY else r.target  # its status says why it has no BAFU process
-        # The engine reads a conversion only between units of different measures
-        # (MJ of fuel for 1 kg); kWh to MJ it converts by itself.
-        convert = t is not None and isinstance(t.conversion, (int, float)) and t.conversion > 0 and t.conversion != 1
+        convert = (
+            t is not None and isinstance(t.conversion, (int, float)) and t.conversion > 0 and t.conversion != 1
+            and not table_converts(r.supplier.unit, t.unit, units)
+        )
         w.writerow([
             r.supplier.activity, r.supplier.location, t.name if t else "", t.location if t else "",
             t.conversion if convert else "", r.supplier.unit if convert else "", t.unit if convert else "",
@@ -647,7 +643,7 @@ def relink(args) -> None:
         hint = "; --correspondence may find it under its 3.11 name" if r.status == "not in the mapping" and not args.correspondence else ""
         print(f"  none for {r.supplier.activity} {{{r.supplier.location}}}: {r.status}{hint}")
     if gaps:
-        recipe_path.write_text(recipe(resolutions), encoding="utf-8")
+        recipe_path.write_text(recipe(resolutions, {}), encoding="utf-8")
         sys.exit(f"Name a BAFU supplier for each in a --complement file, in the columns of {recipe_path}.")
 
     bafu = db_name(args.bafu)
@@ -662,15 +658,13 @@ def relink(args) -> None:
         resolutions = directed(c, bafu, [r for r in resolutions if r.target is not DUMMY])
         print(f"  {sum(r.opposite for r in resolutions)} suppliers that BAFU counts the other way, turned")
         units = c.unit_table()
-        scales = {r: k for r in resolutions if abs((k := scale_by_hand(r, units)) - 1) > 1e-9}
-        for r, k in scales.items():
-            print(f"  {r.supplier.activity} {{{r.supplier.location}}}: {r.target.conversion} {r.supplier.unit} per {r.target.unit} of {r.target.name}, the line multiplied by {k:.4g}")
-        # Written without its conversion, which the line already carries.
-        resolutions = [replace(r, target=replace(r.target, conversion=1), status=f"{r.status}, amount multiplied by {scales[r]:.6g}") if r in scales else r for r in resolutions]
-        relinked = recipe(resolutions)
+        for r in resolutions:
+            t = r.target
+            if isinstance(t.conversion, (int, float)) and t.conversion not in (0, 1) and table_converts(r.supplier.unit, t.unit, units):
+                print(f"  {r.supplier.activity} {{{r.supplier.location}}}: {t.conversion} {r.supplier.unit} per {t.unit} left out, the unit table converts them")
+        relinked = recipe(resolutions, units)
         recipe_path.write_text(relinked, encoding="utf-8")
-        lines = {(norm(r.supplier.activity), r.supplier.location): k for r, k in scales.items()}
-        slug = load(c, workbook(database, by_activity(activities, lines, dropped)), f"{database} on BAFU", bafu, relinked)
+        slug = load(c, workbook(database, by_activity(activities, dropped)), f"{database} on BAFU", bafu, relinked)
         written = beside(args.base, args.out, f"bafu.{args.format}.{EXTENSION[args.format]}")
         c.export_to_file(args.format, str(written), db_name=slug)
         drop(c, slug)

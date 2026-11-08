@@ -318,12 +318,11 @@ versions pair, and what a merge keeps once, without the engine.
   the BAFU version names its ecoinvent inputs after their activity instead.
 - **Conversion.** The mapping's `conversion` says how many units of the
   ecoinvent product make one unit of the BAFU process: 2.17 kg of urea per kg
-  of « Urea, as N », 0.599 MJ of cold per MJ of heat. The engine applies it only
-  between units that measure different things (pieces to kilograms); between
-  kilograms and kilograms, or megajoules and megajoules, it converts by its unit
-  table and ignores the factor. The script therefore multiplies those lines
-  itself (1 kg of urea becomes 0.46 kg of « Urea, as N ») and prints each one
-  it changes.
+  of « Urea, as N », 0.599 MJ of cold per MJ of heat. The engine applies it
+  (1 kg of urea becomes 0.46 kg of « Urea, as N »). Between two units of one
+  measure and different sizes, such as kWh and MJ, the engine's unit table is
+  right and refuses a factor that disagrees with it, so the script leaves the
+  factor out there and prints each one it leaves out.
 - **Direction.** ecoinvent counts a waste as a negative output of its market
   (« market for wastewater from textile production », −1 m³), BAFU as the
   positive output of a treatment (« Treatment, sewage, … class 3 », +1 m³). A
