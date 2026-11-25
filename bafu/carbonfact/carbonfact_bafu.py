@@ -513,6 +513,19 @@ def identity(block: Block) -> Key:
     return block[0][1], fields.get("reference product"), fields.get("location")
 
 
+def owned_by(name: str, database: str, activities: list[Block]) -> list[Block]:
+    """The activities, each line to their own database pointing at name instead."""
+    renamed = []
+    for block in activities:
+        rows = [list(row) for row in block]
+        for f, row, header in exchanges(rows):
+            if f.get("database") == database:
+                row += [None] * (len(header) - len(row))  # its blank end cells were trimmed
+                row[header.index("database")] = name
+        renamed.append(rows)
+    return renamed
+
+
 def merged(own: str, databases: list[tuple[str, list[Block]]]) -> list[Block]:
     """Every activity of these databases once, or a stop naming one they write differently.
 
@@ -733,15 +746,13 @@ def merge(args) -> None:
             label = path.name if names.count(path.name) == 1 else str(path)  # one name in two folders
             slug = load(c, path, path.stem)
             # Read through the engine's own Brightway writing, which spells one thing one way in every database.
-            databases.append((label, blocks(io.BytesIO(c.export_database("brightway", db_name=slug)), label)))
+            database, found = blocks(io.BytesIO(c.export_database("brightway", db_name=slug)), label)
+            # The engine names each export after its database: renamed to one, their lines to themselves meet.
+            databases.append((label, owned_by(args.name, database, found)))
             drop(c, slug)
-        names = {database for _, (database, _) in databases}
-        if len(names) != 1:
-            sys.exit(f"the engine named its exports {sorted(names)}: which name their links point to is unclear")
-        own = names.pop()
-        activities = merged(own, [(name, found) for name, (_, found) in databases])
+        activities = merged(args.name, databases)
         print(f"{len(activities)} activities in {len(databases)} databases")
-        slug = load(c, workbook(own, activities), args.name)
+        slug = load(c, workbook(args.name, activities), args.name)
         c.export_to_file(args.format, str(written), db_name=slug)
         drop(c, slug)
     print(f"written: {written}")
