@@ -181,6 +181,13 @@ def test_merge_keeps_a_shared_activity_once() -> None:
             raise AssertionError("two versions of one dye were merged")
 
 
+
+def test_merge_points_each_export_at_the_merged_name() -> None:
+    """Each step's export names its own database: its lines to itself take the merged name, its lines to BAFU stay."""
+    heat = ["Heat, for textile processes, production mix", 12.6, "heat, for textile processes", "GLO", "MJ", None, "technosphere", None, "own"]
+    [renamed] = cf.owned_by("merged", "own", [dye(heat, 0.5)])
+    assert [f["database"] for f, _, _ in cf.exchanges(renamed)] == ["merged", "bafu", "merged"]
+
 if __name__ == "__main__":
     for name, check in list(globals().items()):
         if name.startswith("test_"):
